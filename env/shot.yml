@@ -8,7 +8,7 @@ engines:
 
   tk-maya:
 
-    location: {name: tk-maya, type: app_store, version: v0.2.0}
+    location: {name: tk-maya, type: app_store, version: v0.2.1}
     debug_logging: false
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
@@ -19,26 +19,26 @@ engines:
     apps:
     
       tk-maya-breakdown:
-        location: {name: tk-maya-breakdown, type: app_store, version: v0.2.1}
+        location: {name: tk-maya-breakdown, type: app_store, version: v0.2.2}
         hook_scan_scene: maya_breakdown_scan_scene
         hook_multi_update: maya_breakdown_update    
         
       tk-multi-loader-1:
-        location: {name: tk-multi-loader, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-loader, type: app_store, version: v0.1.1}
         hook_add_file_to_scene: multi_add_file_to_scene
         menu_name: Load Assets...
         sg_entity_types: {"Asset":[]}
         tank_types: [Maya Model, Maya Rig]
         
       tk-multi-loader-2:
-        location: {name: tk-multi-loader, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-loader, type: app_store, version: v0.1.1}
         hook_add_file_to_scene: multi_add_file_to_scene
         menu_name: Load Shots...
         sg_entity_types: {"Shot":[]}
         tank_types: [Maya Anim, Maya Lighting, Maya Scene]
         
       tk-maya-publish:
-        location: {name: tk-maya-publish, type: app_store, version: v0.1.1}
+        location: {name: tk-maya-publish, type: app_store, version: v0.1.2}
         hook_publish_file: maya_publish_file
         hook_scan_scene: maya_breakdown_scan_scene
         input_templates_to_look_for: [maya_shot_publish, maya_asset_publish]
@@ -55,18 +55,18 @@ engines:
         validation_hooks: []
         
       tk-multi-recentfiles:
-        location: {name: tk-multi-recentfiles, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-recentfiles, type: app_store, version: v0.1.1}
         template_work: maya_shot_work
         launch_at_startup: true
         
       tk-multi-revolver:
-        location: {name: tk-multi-revolver, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-revolver, type: app_store, version: v0.1.1}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
         
       tk-multi-setcontext:
-        location: {name: tk-multi-setcontext, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-setcontext, type: app_store, version: v0.1.1}
         enable_create_tasks: true
         sg_entity_types: [Shot, Asset]
         
@@ -76,14 +76,14 @@ engines:
         sg_out_frame_field: sg_cut_out
         
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.1}
 
 
 
   tk-motionbuilder:
 
     debug_logging: false
-    location: {name: tk-motionbuilder, type: app_store, version: v0.2.1}
+    location: {name: tk-motionbuilder, type: app_store, version: v0.2.2}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
     - {app_instance: tk-motionbuilder-publish, name: Snapshot}
@@ -92,7 +92,7 @@ engines:
     apps:
 
       tk-multi-loader:
-        location: {name: tk-multi-loader, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-loader, type: app_store, version: v0.1.1}
         hook_add_file_to_scene: multi_add_file_to_scene
         menu_name: Load FBX...
         sg_entity_types: {"Asset":[], "Shot":[]}
@@ -100,26 +100,26 @@ engines:
         
       tk-motionbuilder-publish:
         hook_publish_file: motionbuilder_publish_file
-        location: {name: tk-motionbuilder-publish, type: app_store, version: v0.1.1}
+        location: {name: tk-motionbuilder-publish, type: app_store, version: v0.1.2}
         template_publish: mobu_shot_publish
         template_snapshot: mobu_shot_snapshot
         template_work: mobu_shot_work
         published_scene_tank_type: Motion Builder FBX
         
       tk-multi-recentfiles:
-        location: {name: tk-multi-recentfiles, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-recentfiles, type: app_store, version: v0.1.1}
         template_work: mobu_shot_work
         launch_at_startup: false
         
       tk-multi-revolver:
-        location: {name: tk-multi-revolver, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-revolver, type: app_store, version: v0.1.1}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
         
       tk-multi-setcontext:
         enable_create_tasks: true
-        location: {name: tk-multi-setcontext, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-setcontext, type: app_store, version: v0.1.1}
         sg_entity_types: [Shot, Asset]
         
       tk-multi-setframerange:
@@ -128,13 +128,13 @@ engines:
         sg_out_frame_field: sg_cut_out
         
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.1}
 
 
   tk-nuke:
   
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.3}
+    location: {name: tk-nuke, type: app_store, version: v0.2.4}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
     - {app_instance: tk-nuke-publish, name: Snapshot}
@@ -143,19 +143,19 @@ engines:
   
     apps:
       tk-nuke-breakdown:
-        location: {name: tk-nuke-breakdown, type: app_store, version: v0.2.2}
+        location: {name: tk-nuke-breakdown, type: app_store, version: v0.2.3}
         hook_multi_update: nuke_breakdown_update
         hook_scan_scene: nuke_breakdown_scan_scene
         
       tk-multi-loader:
-        location: {name: tk-multi-loader, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-loader, type: app_store, version: v0.1.1}
         hook_add_file_to_scene: multi_add_file_to_scene
         menu_name: Load...
         sg_entity_types: {"Shot":[]}
         tank_types: [Rendered Image]
                   
       tk-nuke-publish:
-        location: {name: tk-nuke-publish, type: app_store, version: v0.2.4}
+        location: {name: tk-nuke-publish, type: app_store, version: v0.2.5}
         hook_publish_file: nuke_publish_file
         input_templates_to_look_for: [nuke_asset_render, nuke_shot_render_pub_stereo, nuke_shot_render_pub_mono_dpx]
         published_script_tank_type: Nuke Script
@@ -183,7 +183,7 @@ engines:
           tank_type: Rendered Image
           
       tk-nuke-quickdailies:
-        location: {name: tk-nuke-quickdailies, type: app_store, version: v0.1.2}
+        location: {name: tk-nuke-quickdailies, type: app_store, version: v0.1.3}
         current_scene_template: nuke_shot_work
         height: 768
         movie_template: shot_quicktime_quick
@@ -192,12 +192,12 @@ engines:
         width: 1024
         
       tk-multi-recentfiles:
-        location: {name: tk-multi-recentfiles, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-recentfiles, type: app_store, version: v0.1.1}
         template_work: nuke_shot_work
         launch_at_startup: false
         
       tk-nuke-review:
-        location: {name: tk-nuke-review, type: app_store, version: v0.1.2}
+        location: {name: tk-nuke-review, type: app_store, version: v0.1.3}
         hook_copy_sequence_file: copy_sequence_file
         hook_create_content: review_create_content
         hook_scan_scene: review_scan_scene
@@ -208,14 +208,14 @@ engines:
           sequence_output_template: nuke_shot_render_mono_dpx_review_seq, version_name_template: nuke_shot_version_name}
         
       tk-multi-revolver:
-        location: {name: tk-multi-revolver, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-revolver, type: app_store, version: v0.1.1}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
         
       tk-multi-setcontext:
         enable_create_tasks: true
-        location: {name: tk-multi-setcontext, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-setcontext, type: app_store, version: v0.1.1}
         sg_entity_types: [Shot, Asset]
         
       tk-multi-setframerange:
@@ -224,4 +224,4 @@ engines:
         sg_out_frame_field: sg_cut_out
         
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.0}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.1}

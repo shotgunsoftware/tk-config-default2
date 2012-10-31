@@ -8,7 +8,7 @@ description: "Example shotgun environment. This environment controls what items 
 engines:
 
   tk-shotgun:
-    location: {name: tk-shotgun, type: app_store, version: v0.1.0}
+    location: {name: tk-shotgun, type: app_store, version: v0.1.1}
     debug_logging: false
     
     apps:
@@ -25,7 +25,7 @@ engines:
         entity_types: [Sequence, Shot, Asset, Task]
         
       tk-shotgun-launchmaya:
-        location: {name: tk-shotgun-launchmaya, type: app_store, version: v0.1.2}
+        location: {name: tk-shotgun-launchmaya, type: app_store, version: v0.1.3}
         deny_permissions: []
         deny_platforms: []
         engine: tk-maya
@@ -39,9 +39,8 @@ engines:
         windows_path: C:\Program Files\Autodesk\Maya2012\bin\maya.exe
       
       tk-shotgun-launchmotionbuilder:
-        location: {name: tk-shotgun-launchmotionbuilder, type: app_store, version: v0.2.2}
+        location: {name: tk-shotgun-launchmotionbuilder, type: app_store, version: v0.2.3}
         deny_permissions: []
-        deny_platforms: [Linux, Mac]
         engine: tk-motionbuilder
         entity_types: [Task]
         hook_before_app_launch: motionbuilder_before_app_launch
@@ -49,7 +48,7 @@ engines:
         windows_path: C:\Program Files\Autodesk\MotionBuilder 2013\bin\x64\motionbuilder.exe
       
       tk-shotgun-launchnuke:
-        location: {name: tk-shotgun-launchnuke, type: app_store, version: v0.1.3}
+        location: {name: tk-shotgun-launchnuke, type: app_store, version: v0.1.4}
         deny_permissions: []
         deny_platforms: []
         engine: tk-nuke
@@ -73,7 +72,7 @@ engines:
         viewer_path_windows: C:\Program Files\RV\RV64.exe
       
       tk-shotgun-launchrevolver:
-        location: {name: tk-shotgun-launchrevolver, type: app_store, version: v0.1.1}
+        location: {name: tk-shotgun-launchrevolver, type: app_store, version: v0.1.2}
         deny_permissions: []
         deny_platforms: []
         rv_path_linux: rv
