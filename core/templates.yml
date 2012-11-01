@@ -57,9 +57,6 @@ keys:
         format_spec: "04"
     eye:
         type: str
-        choices: ["L", "R", "%V"]
-        default: "%V"
-        abstract: true
         
 
 
