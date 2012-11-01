@@ -75,7 +75,7 @@ engines:
 
   tk-nuke:
 
-    location: {name: tk-nuke, type: app_store, version: v0.2.4}
+    location: {name: tk-nuke, type: app_store, version: v0.2.6}
     debug_logging: false
     menu_favourites:
     - {app_instance: tk-multi-setcontext, name: Set Work Area...}

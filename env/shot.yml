@@ -134,7 +134,7 @@ engines:
   tk-nuke:
   
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.4}
+    location: {name: tk-nuke, type: app_store, version: v0.2.6}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
     - {app_instance: tk-nuke-publish, name: Snapshot}
