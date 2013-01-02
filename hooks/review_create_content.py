@@ -248,7 +248,7 @@ class NukeReviewCreateContent(Hook):
         """
         Returns the appropriate rvio executable for the current platform
         """
-        system = sys.platform()
+        system = sys.platform
 
         if system == "linux2":
             return RVIO_LINUX
