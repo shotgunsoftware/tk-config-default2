@@ -13,7 +13,7 @@ import re
 import time
 import datetime
 import subprocess
-import platform
+import sys
 
 import nuke
 import nukescripts
@@ -90,8 +90,7 @@ class NukeReviewCreateContent(Hook):
         ########################################################################
         # generate filmstrip thumbs using Nuke
 
-        # this need to run in the main thread to interact with nuke.
-        nuke.executeInMainThreadWithResult(self._generate_thumbnails)
+        self._generate_thumbnails()
 
 
 
@@ -249,13 +248,13 @@ class NukeReviewCreateContent(Hook):
         """
         Returns the appropriate rvio executable for the current platform
         """
-        system = platform.system()
+        system = sys.platform()
 
-        if system == "Linux":
+        if system == "linux2":
             return RVIO_LINUX
-        elif system == "Darwin":
+        elif system == "darwin":
             return RVIO_MACOSX
-        elif system == "Windows":
+        elif system == "win32":
             return RVIO_WINDOWS
         else:
             raise Exception("Unknown platform %s!" % system)
