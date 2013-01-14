@@ -36,7 +36,6 @@ engines:
         location: {name: tk-maya-publish, type: app_store, version: v0.1.2}
         hook_publish_file: maya_publish_file
         hook_scan_scene: maya_breakdown_scan_scene
-        input_templates_to_look_for: [maya_shot_publish, maya_asset_publish]
         
         publish_tank_types:
         - step: Model
@@ -101,7 +100,6 @@ engines:
       tk-nuke-publish:
         location: {name: tk-nuke-publish, type: app_store, version: v0.2.5}
         hook_publish_file: nuke_publish_file
-        input_templates_to_look_for: [nuke_asset_render]
         published_script_tank_type: Nuke Script
         template_publish: nuke_asset_publish
         template_snapshot: nuke_asset_snapshot
