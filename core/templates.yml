@@ -92,8 +92,23 @@ paths:
     # The location of published maya files
     maya_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/maya/{name}.v{version}.ma
 
+
     #
-    # Motion Builder
+    # 3dsmax
+    #
+
+    # The location of WIP files
+    max_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/{name}.v{version}.ma
+
+    # The location of backups of WIP files
+    max_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.ma
+
+    # The location of published maya files
+    max_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/3dsmax/{name}.v{version}.ma
+
+
+    #
+    # Motionbuilder
     #
 
     # The location of WIP files
@@ -150,6 +165,19 @@ paths:
 
     # The location of published maya files
     maya_asset_publish: assets/{sg_asset_type}/{Asset}/{Step}/publish/maya/{name}.v{version}.ma
+
+    #
+    # 3dsmax
+    #
+    
+    # The location of WIP files
+    max_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/{name}.v{version}.ma
+
+    # The location of backups of WIP files
+    max_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.ma
+
+    # The location of published maya files
+    max_asset_publish: assets/{sg_asset_type}/{Asset}/{Step}/publish/3dsmax/{name}.v{version}.ma
 
     #
     # Nuke

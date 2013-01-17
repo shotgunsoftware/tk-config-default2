@@ -1,23 +1,74 @@
 description: Apps and Engines related to Shot based work.
+
 engines:
+
   tk-3dsmax:
-    apps:
-      tk-multi-loader:
-        hook_add_file_to_scene: default
-        location: {name: tk-multi-loader, type: app_store, version: v0.1.2}
-        menu_name: Load Objects...
-        publish_filters: []
-        sg_entity_types:
-          Shot: []
-        tank_types: []
+  
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.2.1}
+  
+    apps:
+      tk-3dsmax-publish:
+        hook_publish_file: default
+        location: {name: tk-3dsmax-publish, type: app_store, version: v0.2.0}
+        published_scene_tank_type: 3dsmax Scene
+        template_publish: max_shot_publish
+        template_snapshot: max_shot_snapshot
+        template_work: max_shot_work
+
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.2}
+      
+      tk-multi-loader-texture:
+        hook_add_file_to_scene: default
+        location: {name: tk-multi-loader, type: app_store, version: v0.1.2}
+        menu_name: Load Texture...
+        publish_filters: []
+        sg_entity_types:
+          Asset: []
+        tank_types: [Diffuse Texture, Specular Texture]
+      
+      tk-multi-recentfiles:
+        hook_add_file_to_scene: default
+        launch_at_startup: true
+        location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.1}
+        template_work: maya_shot_work
+      
+      tk-multi-revolver:
+        location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
+        rv_path_linux: rv
+        rv_path_mac: /Applications/RV64.app
+        rv_path_windows: C:\Program Files\RV\RV64.exe
+      
+      tk-multi-setcontext:
+        enable_create_tasks: true
+        launch_at_startup: false
+        location: {name: tk-multi-setcontext, type: app_store, version: v0.2.0}
+        sg_entity_types: [Shot, Asset]
+      
+      tk-multi-setframerange:
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.1}
+        sg_in_frame_field: sg_cut_in
+        sg_out_frame_field: sg_cut_out
+        
+        
+
+
   tk-maya:
+    debug_logging: false
+    location: {name: tk-maya, type: app_store, version: v0.2.2}
+    menu_favourites:
+    - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
+    - {app_instance: tk-maya-publish, name: Snapshot}
+    - {app_instance: tk-maya-publish, name: Publish...}
+    template_project: shot_work_area_maya  
+  
     apps:
       tk-maya-breakdown:
         hook_multi_update: default
         hook_scan_scene: default
         location: {name: tk-maya-breakdown, type: app_store, version: v0.2.3}
+        
       tk-maya-publish:
         hook_publish_file: default
         hook_scan_scene: default
@@ -33,8 +84,10 @@ engines:
         template_snapshot: maya_shot_snapshot
         template_work: maya_shot_work
         validation_hooks: []
+        
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.2}
+        
       tk-multi-loader-1:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.2}
@@ -43,6 +96,7 @@ engines:
         sg_entity_types:
           Asset: []
         tank_types: [Maya Model, Maya Rig]
+        
       tk-multi-loader-2:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.2}
@@ -51,33 +105,39 @@ engines:
         sg_entity_types:
           Shot: []
         tank_types: [Maya Anim, Maya Lighting, Maya Scene]
+        
       tk-multi-recentfiles:
         hook_add_file_to_scene: default
         launch_at_startup: true
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.1}
         template_work: maya_shot_work
+        
       tk-multi-revolver:
         location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
+        
       tk-multi-setcontext:
         enable_create_tasks: true
         launch_at_startup: false
         location: {name: tk-multi-setcontext, type: app_store, version: v0.2.0}
         sg_entity_types: [Shot, Asset]
+        
       tk-multi-setframerange:
         location: {name: tk-multi-setframerange, type: app_store, version: v0.1.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
+
+
+  tk-motionbuilder:
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.2.2}
+    location: {name: tk-motionbuilder, type: app_store, version: v0.2.3}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
-    - {app_instance: tk-maya-publish, name: Snapshot}
-    - {app_instance: tk-maya-publish, name: Publish...}
-    template_project: shot_work_area_maya
-  tk-motionbuilder:
+    - {app_instance: tk-motionbuilder-publish, name: Snapshot}
+    - {app_instance: tk-motionbuilder-publish, name: Publish...}
+  
     apps:
       tk-motionbuilder-publish:
         hook_publish_file: default
@@ -86,8 +146,10 @@ engines:
         template_publish: mobu_shot_publish
         template_snapshot: mobu_shot_snapshot
         template_work: mobu_shot_work
+        
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.2}
+        
       tk-multi-loader:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.2}
@@ -97,35 +159,44 @@ engines:
           Asset: []
           Shot: []
         tank_types: [Motion Builder FBX]
+        
       tk-multi-recentfiles:
         hook_add_file_to_scene: default
         launch_at_startup: false
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.1}
         template_work: mobu_shot_work
+        
       tk-multi-revolver:
         location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
+        
       tk-multi-setcontext:
         enable_create_tasks: true
         launch_at_startup: false
         location: {name: tk-multi-setcontext, type: app_store, version: v0.2.0}
         sg_entity_types: [Shot, Asset]
+        
       tk-multi-setframerange:
         location: {name: tk-multi-setframerange, type: app_store, version: v0.1.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
+  
+  
+  tk-nuke:
     debug_logging: false
-    location: {name: tk-motionbuilder, type: app_store, version: v0.2.3}
+    location: {name: tk-nuke, type: app_store, version: v0.2.7}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
-    - {app_instance: tk-motionbuilder-publish, name: Snapshot}
-    - {app_instance: tk-motionbuilder-publish, name: Publish...}
-  tk-nuke:
+    - {app_instance: tk-nuke-publish, name: Snapshot}
+    - {app_instance: tk-nuke-publish, name: Publish...}
+    - {app_instance: tk-nuke-review, name: Submit for Review...}
+  
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.2}
+        
       tk-multi-loader:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.2}
@@ -134,29 +205,35 @@ engines:
         sg_entity_types:
           Shot: []
         tank_types: [Rendered Image]
+        
       tk-multi-recentfiles:
         hook_add_file_to_scene: default
         launch_at_startup: false
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.1}
         template_work: nuke_shot_work
+        
       tk-multi-revolver:
         location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
+        
       tk-multi-setcontext:
         enable_create_tasks: true
         launch_at_startup: false
         location: {name: tk-multi-setcontext, type: app_store, version: v0.2.0}
         sg_entity_types: [Shot, Asset]
+        
       tk-multi-setframerange:
         location: {name: tk-multi-setframerange, type: app_store, version: v0.1.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
+        
       tk-nuke-breakdown:
         hook_multi_update: default
         hook_scan_scene: default
         location: {name: tk-nuke-breakdown, type: app_store, version: v0.2.4}
+        
       tk-nuke-publish:
         hook_publish_file: default
         location: {name: tk-nuke-publish, type: app_store, version: v0.3.0}
@@ -183,6 +260,7 @@ engines:
           render_template: nuke_shot_render_mono_dpx
           settings: {}
           tank_type: Rendered Image
+          
       tk-nuke-quickdailies:
         current_scene_template: nuke_shot_work
         height: 768
@@ -191,6 +269,7 @@ engines:
         post_hooks: [snapshot_history_post_quickdaily]
         sg_version_name_template: nuke_quick_shot_version_name
         width: 1024
+        
       tk-nuke-review:
         hook_copy_sequence_file: default
         hook_create_content: default
@@ -201,13 +280,7 @@ engines:
           sequence_output_template: nuke_shot_render_stereo_review_seq, version_name_template: nuke_shot_version_name}
         - {input_template: nuke_shot_render_mono_dpx, quicktime_output_template: nuke_shot_render_mono_dpx_review_mov,
           sequence_output_template: nuke_shot_render_mono_dpx_review_seq, version_name_template: nuke_shot_version_name}
-    debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.7}
-    menu_favourites:
-    - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
-    - {app_instance: tk-nuke-publish, name: Snapshot}
-    - {app_instance: tk-nuke-publish, name: Publish...}
-    - {app_instance: tk-nuke-review, name: Submit for Review...}
+
 frameworks:
   tk-framework-widget_v0.1.1:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
