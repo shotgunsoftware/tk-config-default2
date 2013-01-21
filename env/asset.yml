@@ -194,3 +194,6 @@ engines:
 frameworks:
   tk-framework-widget_v0.1.1:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
+  tk-framework-widget_v0.1.3:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.3}
+    
