@@ -26,7 +26,7 @@ engines:
         hook_add_file_to_scene: default
         launch_at_startup: true
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.2}
-        template_work: maya_shot_work
+        template_work: max_shot_work
       tk-multi-revolver:
         location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
         rv_path_linux: rv

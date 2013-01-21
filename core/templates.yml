@@ -98,13 +98,13 @@ paths:
     #
 
     # The location of WIP files
-    max_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/{name}.v{version}.ma
+    max_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/{name}.v{version}.max
 
     # The location of backups of WIP files
-    max_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.ma
+    max_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max
 
     # The location of published maya files
-    max_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/3dsmax/{name}.v{version}.ma
+    max_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/3dsmax/{name}.v{version}.max
 
 
     #
@@ -171,13 +171,13 @@ paths:
     #
     
     # The location of WIP files
-    max_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/{name}.v{version}.ma
+    max_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/{name}.v{version}.max
 
     # The location of backups of WIP files
-    max_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.ma
+    max_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max
 
     # The location of published maya files
-    max_asset_publish: assets/{sg_asset_type}/{Asset}/{Step}/publish/3dsmax/{name}.v{version}.ma
+    max_asset_publish: assets/{sg_asset_type}/{Asset}/{Step}/publish/3dsmax/{name}.v{version}.max
 
     #
     # Nuke
