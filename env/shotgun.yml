@@ -22,7 +22,7 @@ engines:
         entity_types: [Task]
         hook_app_launch: default
         menu_name: Launch 3DSMax
-        location: {type: git, path: "/shotgun/src/tank/tk-multi-launchapp", version: HEAD}
+        location: {type: app_store, name: tk-multi-launchapp, version: v0.0.1}
         linux_args: ''
         linux_path: ''
         mac_args: ''
@@ -44,7 +44,7 @@ engines:
         entity_types: [Task]
         hook_app_launch: default
         menu_name: Launch Maya
-        location: {type: git, path: "/shotgun/src/tank/tk-multi-launchapp", version: HEAD}
+        location: {type: app_store, name: tk-multi-launchapp, version: v0.0.1}
         linux_args: ''
         linux_path: maya
         mac_args: ''
@@ -60,7 +60,7 @@ engines:
         entity_types: [Task]
         hook_app_launch: default
         menu_name: Launch MotionBuilder
-        location: {type: git, path: "/shotgun/src/tank/tk-multi-launchapp", version: HEAD}
+        location: {type: app_store, name: tk-multi-launchapp, version: v0.0.1}
         linux_args: ''
         linux_path: ''
         mac_args: ''
@@ -76,7 +76,7 @@ engines:
         entity_types: [Task]
         hook_app_launch: default
         menu_name: Launch Nuke
-        location: {type: git, path: "/shotgun/src/tank/tk-multi-launchapp", version: HEAD}
+        location: {type: app_store, name: tk-multi-launchapp, version: v0.0.1}
         linux_args: ''
         linux_path: Nuke6.3
         mac_args: ''
