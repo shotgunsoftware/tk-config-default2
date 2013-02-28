@@ -77,6 +77,20 @@ paths:
     #
 
     #
+    # Photoshop
+    #
+
+    # The location of WIP files
+    photoshop_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/photoshop/{name}.v{version}.psd
+
+    # The location of backups of WIP files
+    photoshop_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd
+
+    # The location of published files
+    photoshop_shot_publish_psd: sequences/{Sequence}/{Shot}/{Step}/publish/photoshop/psd/{name}.v{version}.psd
+    photoshop_shot_publish_jpg: sequences/{Sequence}/{Shot}/{Step}/publish/photoshop/jpg/{name}.v{version}.jpg
+
+    #
     # Maya
     #
 
@@ -149,6 +163,22 @@ paths:
 
     ##########################################################################################
     # Asset pipeline 
+    
+    
+    #
+    # Photoshop
+    #
+
+    # The location of WIP files
+    photoshop_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/photoshop/{name}.v{version}.psd
+
+    # The location of backups of WIP files
+    photoshop_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd
+
+    # The location of published files
+    photoshop_asset_publish_psd: assets/{sg_asset_type}/{Asset}/{Step}/publish/photoshop/psd/{name}.v{version}.psd
+    photoshop_asset_publish_jpg: assets/{sg_asset_type}/{Asset}/{Step}/publish/photoshop/jpg/{name}.v{version}.jpg
+    
     
     #
     # Maya
