@@ -98,10 +98,10 @@ engines:
         viewer_path_linux: rv
         viewer_path_mac: /Applications/RV64.app
         viewer_path_windows: C:\Program Files\RV\RV64.exe
-      tk-shotgun-launchrevolver:
+      tk-shotgun-launchscreeningroom:
         deny_permissions: []
         deny_platforms: []
-        location: {name: tk-shotgun-launchrevolver, type: app_store, version: v0.1.3}
+        location: {name: tk-shotgun-launchscreeningroom, type: app_store, version: v0.1.4}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe

@@ -28,8 +28,8 @@ engines:
         launch_at_startup: true
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.5}
         template_work: max_asset_work
-      tk-multi-revolver:
-        location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
+      tk-multi-screeningroom:
+        location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.3}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
@@ -85,8 +85,8 @@ engines:
         launch_at_startup: true
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.5}
         template_work: maya_asset_work
-      tk-multi-revolver:
-        location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
+      tk-multi-screeningroom:
+        location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.3}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
@@ -122,8 +122,8 @@ engines:
         launch_at_startup: false
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.5}
         template_work: nuke_asset_work
-      tk-multi-revolver:
-        location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
+      tk-multi-screeningroom:
+        location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.3}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
@@ -195,8 +195,8 @@ engines:
         launch_at_startup: false
         location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.5}
         template_work: photoshop_asset_work
-      tk-multi-revolver:
-        location: {name: tk-multi-revolver, type: app_store, version: v0.1.2}
+      tk-multi-screeningroom:
+        location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.3}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
