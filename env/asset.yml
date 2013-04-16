@@ -151,9 +151,9 @@ engines:
           icon: ''
           name: render
           publish_template: nuke_asset_render_pub
-          required: false
+          required: False
           scene_item_type: write_node
-          selected: false
+          selected: True
           tank_type: None
         template_work: nuke_asset_work
       tk-nuke-writenode:
