@@ -94,8 +94,11 @@ paths:
     # Maya
     #
 
-    # project
+    # define the location of a work area
     shot_work_area_maya: sequences/{Sequence}/{Shot}/{Step}/work/maya
+    
+    # define the location of a publish area
+    shot_publish_area_maya: sequences/{Sequence}/{Shot}/{Step}/publish/maya
 
     # The location of WIP files
     maya_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/maya/{name}.v{version}.ma
@@ -137,6 +140,12 @@ paths:
     #
     # Nuke 
     #
+
+    # define the location of a work area
+    shot_work_area_nuke: sequences/{Sequence}/{Shot}/{Step}/work/nuke
+    
+    # define the location of a publish area
+    shot_publish_area_nuke: sequences/{Sequence}/{Shot}/{Step}/publish/nuke
 
     # The location of WIP script files
     nuke_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/nuke/{name}.v{version}.nk
@@ -186,6 +195,9 @@ paths:
     
     # define the location of a work area
     asset_work_area_maya: assets/{sg_asset_type}/{Asset}/{Step}/work/maya
+    
+    # define the location of a publish area
+    asset_publish_area_maya: assets/{sg_asset_type}/{Asset}/{Step}/publish/maya
 
     # The location of WIP files
     maya_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/maya/{name}.v{version}.ma
@@ -212,6 +224,12 @@ paths:
     #
     # Nuke
     #
+
+    # define the location of a work area
+    asset_work_area_nuke: assets/{sg_asset_type}/{Asset}/{Step}/work/nuke
+    
+    # define the location of a publish area
+    asset_publish_area_nuke: assets/{sg_asset_type}/{Asset}/{Step}/publish
 
     # outputs from the tank write node for assets
     nuke_asset_render: assets/{sg_asset_type}/{Asset}/{Step}/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr

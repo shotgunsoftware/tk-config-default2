@@ -136,13 +136,40 @@ engines:
         hook_multi_update: default
         hook_scan_scene: default
         location: {name: tk-nuke-breakdown, type: app_store, version: v0.2.11}
-      tk-nuke-publish:
-        hook_publish_file: default
-        location: {name: tk-nuke-publish, type: app_store, version: v0.3.4}
-        published_script_tank_type: Nuke Script
-        template_publish: nuke_asset_publish
-        template_snapshot: nuke_asset_snapshot
+      tk-multi-publish:
+        display_name: Publish
+        hook_copy_file: default
+        hook_post_publish: default
+        hook_primary_pre_publish: default
+        hook_primary_publish: default
+        hook_scan_scene: default
+        hook_secondary_pre_publish: default
+        hook_secondary_publish: default
+        hook_thumbnail: default
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-publish.git", version: v0.1.9}
+        primary_output:
+          description: Publish and version up the current script
+          display_name: Current Script
+          icon: 'icons/nuke.png'
+          publish_template: nuke_asset_publish
+          scene_item_type: work_file
+          tank_type: Nuke Script
+        secondary_outputs:
+        - description: 'Render output from Tank write nodes'
+          display_group: Renders
+          display_name: Nuke Render
+          icon: ''
+          name: render
+          publish_template: nuke_asset_render_pub
+          required: false
+          scene_item_type: write_node
+          selected: false
+          tank_type: None
         template_work: nuke_asset_work
+      tk-nuke-writenode:
+        hook_find_publishables: default
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-nuke-writenode.git", version: v0.1.1}
+        template_script_work: nuke_asset_work
         write_nodes:
         - file_type: exr
           name: Exr
@@ -150,6 +177,27 @@ engines:
           render_template: nuke_asset_render
           settings: {}
           tank_type: Rendered Image
+      tk-multi-snapshot:
+        hook_copy_file: default
+        hook_scene_operation: default
+        hook_thumbnail: default
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-snapshot.git", version: v0.1.4}
+        snapshot_display_name: Snapshot Work File
+        snapshot_history_display_name: Work File Snapshot History
+        template_snapshot: nuke_asset_snapshot
+        template_work: nuke_asset_work
+      tk-multi-workfiles:
+        display_name: Tank File Manager
+        allow_task_creation: True
+        launch_at_startup: False
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.2}
+        sg_entity_types: [Shot, Asset]
+        template_publish: nuke_asset_publish
+        template_publish_area: asset_publish_area_nuke
+        template_work: nuke_asset_work
+        template_work_area: asset_work_area_nuke
+        hook_copy_file: default
+        hook_scene_operation: default
       tk-nuke-quickdailies:
         current_scene_template: nuke_asset_work
         height: 768
@@ -219,3 +267,5 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.3}
   tk-framework-widget_v0.1.4:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
+  tk-framework-widget_v0.1.9:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.9}
