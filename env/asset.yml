@@ -136,7 +136,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-publish.git", version: v0.1.11}
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-publish.git", version: v0.1.12}
         primary_output:
           description: Publish and version up the current script
           display_name: Current Script
@@ -171,16 +171,15 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-snapshot.git", version: v0.1.6}
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-snapshot.git", version: v0.1.7}
         snapshot_display_name: Snapshot
         snapshot_history_display_name: View Snapshot History
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
       tk-multi-workfiles:
-        display_name: Tank File Manager
         allow_task_creation: True
         launch_at_startup: True
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.6}
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.7}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_asset_publish
         template_publish_area: asset_publish_area_nuke
@@ -260,4 +259,4 @@ frameworks:
   tk-framework-widget_v0.1.10:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.10}
   tk-framework-widget_v0.1.11:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.11}
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.12}
