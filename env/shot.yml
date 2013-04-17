@@ -215,8 +215,8 @@ engines:
         hook_thumbnail: default
         location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-publish.git", version: v0.1.11}
         primary_output:
-          description: Publish and version up the current script
-          display_name: Current Script
+          description: Publishes and versions up the current Nuke script.
+          display_name: Nuke Publish
           icon: 'icons/publish_nuke_main.png'
           publish_template: nuke_shot_publish
           scene_item_type: work_file
@@ -231,7 +231,7 @@ engines:
           required: false
           scene_item_type: write_node
           selected: false
-          tank_type: None
+          tank_type: 'Rendered Image'
         template_work: nuke_shot_work
       tk-nuke-writenode:
         hook_find_publishables: default
