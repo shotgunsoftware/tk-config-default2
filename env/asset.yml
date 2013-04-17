@@ -140,7 +140,7 @@ engines:
         primary_output:
           description: Publish and version up the current script
           display_name: Current Script
-          icon: 'icons/nuke.png'
+          icon: 'icons/publish_nuke_main.png'
           publish_template: nuke_asset_publish
           scene_item_type: work_file
           tank_type: Nuke Script
@@ -148,7 +148,7 @@ engines:
         - description: 'Render output from Tank write nodes'
           display_group: Renders
           display_name: Nuke Render
-          icon: ''
+          icon: 'icons/publish_nuke_writenode.png'
           name: render
           publish_template: nuke_asset_render_pub
           required: False
