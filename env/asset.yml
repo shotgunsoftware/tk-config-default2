@@ -173,7 +173,7 @@ engines:
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
       tk-multi-workfiles:
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.1}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_asset_publish
         template_publish_area: asset_publish_area_nuke
