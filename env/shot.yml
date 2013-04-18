@@ -234,7 +234,6 @@ engines:
           tank_type: 'Rendered Image'
         template_work: nuke_shot_work
       tk-nuke-writenode:
-        hook_find_publishables: default
         location: {name: tk-nuke-writenode, type: app_store, version: v0.1.2}
         template_script_work: nuke_shot_work
         write_nodes:
@@ -261,8 +260,6 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location: {name: tk-multi-snapshot, type: app_store, version: v0.1.9}
-        snapshot_display_name: Snapshot
-        snapshot_history_display_name: View Snapshot History
         template_snapshot: nuke_shot_snapshot
         template_work: nuke_shot_work
       tk-multi-workfiles:
