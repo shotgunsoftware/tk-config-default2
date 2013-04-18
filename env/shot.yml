@@ -268,7 +268,7 @@ engines:
       tk-multi-workfiles:
         allow_task_creation: True
         launch_at_startup: True
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.8}
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.9}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_shot_publish
         template_publish_area: shot_publish_area_nuke
