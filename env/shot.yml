@@ -214,13 +214,12 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location: {name: tk-multi-publish, type: app_store, version: v0.2.0}
-        primary_output:
-          description: Publishes and versions up the current Nuke script.
-          display_name: Nuke Publish
-          icon: 'icons/publish_nuke_main.png'
-          publish_template: nuke_shot_publish
-          scene_item_type: work_file
-          tank_type: Nuke Script
+        primary_description: Publishes and versions up the current Nuke script.
+        primary_display_name: Nuke Publish
+        primary_icon: 'icons/publish_nuke_main.png'
+        primary_publish_template: nuke_shot_publish
+        primary_scene_item_type: work_file
+        primary_tank_type: Nuke Script
         secondary_outputs:
         - description: 'Render output from Tank write nodes'
           display_group: Renders
