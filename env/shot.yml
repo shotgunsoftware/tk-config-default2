@@ -213,7 +213,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.2.0}
+        location: {name: tk-multi-publish, type: app_store, version: v0.2.1}
         primary_description: Publishes and versions up the current Nuke script.
         primary_display_name: Nuke Publish
         primary_icon: 'icons/publish_nuke_main.png'
@@ -262,7 +262,7 @@ engines:
         template_snapshot: nuke_shot_snapshot
         template_work: nuke_shot_work
       tk-multi-workfiles:
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.0}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.1}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_shot_publish
         template_publish_area: shot_publish_area_nuke
