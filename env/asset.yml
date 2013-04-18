@@ -174,9 +174,7 @@ engines:
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
       tk-multi-workfiles:
-        allow_task_creation: True
-        launch_at_startup: True
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.9}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.0}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_asset_publish
         template_publish_area: asset_publish_area_nuke
