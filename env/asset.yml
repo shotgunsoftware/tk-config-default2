@@ -136,7 +136,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-publish.git", version: v0.1.12}
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-publish.git", version: v0.1.13}
         primary_output:
           description: Publishes and versions up the current Nuke script.
           display_name: Nuke Publish
@@ -171,7 +171,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-snapshot.git", version: v0.1.7}
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-snapshot.git", version: v0.1.8}
         snapshot_display_name: Snapshot
         snapshot_history_display_name: View Snapshot History
         template_snapshot: nuke_asset_snapshot
@@ -179,7 +179,7 @@ engines:
       tk-multi-workfiles:
         allow_task_creation: True
         launch_at_startup: True
-        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.7}
+        location: {type: git, path: "git@github.com:shotgunsoftware/tk-multi-workfiles.git", version: v0.1.8}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_asset_publish
         template_publish_area: asset_publish_area_nuke
