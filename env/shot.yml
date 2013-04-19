@@ -327,5 +327,5 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
   tk-framework-widget_v0.1.10:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.10}
-  tk-framework-widget_v0.1.11:
+  tk-framework-widget_v0.1.12:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.12}
