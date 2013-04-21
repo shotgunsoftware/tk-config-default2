@@ -1,0 +1,14 @@
+#
+# Copyright (c) 2012 Shotgun Software, Inc
+# ----------------------------------------------------
+
+# this file defines all the different disk locations that this config uses.
+# these paths can be altered at project creation time to ensure that they map 
+# to the correct location. 
+
+primary: 
+    description: "A location where the primary data is located."
+    mac_path: 
+    linux_path: 
+    windows_path: 
+
