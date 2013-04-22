@@ -190,7 +190,7 @@ engines:
         height: 768
         location: {name: tk-nuke-quickdailies, type: app_store, version: v0.1.5}
         movie_template: shot_quicktime_quick
-        post_hooks: []
+        post_hooks: [snapshot_history_post_quickdaily]
         sg_version_name_template: nuke_quick_shot_version_name
         width: 1024
       tk-nuke-review:
@@ -229,7 +229,7 @@ engines:
           publish_template: nuke_shot_publish
           required: false
           scene_item_type: write_node
-          selected: true
+          selected: false
           tank_type: 'Rendered Image'
         template_work: nuke_shot_work
       tk-nuke-writenode:
