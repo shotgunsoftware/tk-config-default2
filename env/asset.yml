@@ -150,9 +150,9 @@ engines:
           icon: 'icons/publish_nuke_writenode.png'
           name: render
           publish_template: nuke_asset_render_pub
-          required: False
+          required: false
           scene_item_type: write_node
-          selected: True
+          selected: true
           tank_type: 'Rendered Image'
         template_work: nuke_asset_work
       tk-nuke-writenode:
@@ -169,7 +169,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.9}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.10}
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
       tk-multi-workfiles:
