@@ -1,0 +1,48 @@
+################################################################################################
+#
+# Tank Default VFX Configuration
+#
+
+description: This environment controls what items should be shown on the Shotgun Tank menu
+             for shots.
+
+#################################################################################################
+# include common definitions for all the launchers that are used to start maya, nuke etc.
+
+include: ./includes/app_launchers.yml
+
+
+#################################################################################################
+# define all the items that should appear in this environment 
+
+engines:
+  tk-shotgun:
+
+    apps: 
+
+      tk-shotgun-launchmaya: '@launch_maya'
+      tk-shotgun-launch3dsmax: '@launch_3dsmax'
+      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
+      tk-shotgun-launchnuke: '@launch_nuke'
+      tk-shotgun-launchphotoshop: '@launch_photoshop'      
+      tk-shotgun-launchscreeningroom: '@launch_shotgun_screeningroom'
+
+      tk-shotgun-launchfolder:
+        deny_permissions: []
+        deny_platforms: []
+        #location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.2}
+        location: {type: dev, path: /Users/manne/git/tk-shotgun-launchfolder}
+    
+      tk-shotgun-folders:
+        deny_permissions: []
+        deny_platforms: []
+        #location: {name: tk-shotgun-folders, type: app_store, version: v0.1.3}
+        location: {type: dev, path: /Users/manne/git/tk-shotgun-folders}
+
+
+    debug_logging: false
+    location: {name: tk-shotgun, type: dev, path: /Users/manne/git/tk-shotgun}
+
+
+frameworks:
+

@@ -18,10 +18,9 @@ class PickEnvironment(Hook):
         """
         
         # must have an entity
-        if context.entity is None:
-            return None
-        
-        if context.entity["type"] == "Shot":
+        if context.project and context.entity is None:
+            return "project"
+        elif context.entity["type"] == "Shot":
             return "shot"
         elif context.entity["type"] == "Asset":
             return "asset"

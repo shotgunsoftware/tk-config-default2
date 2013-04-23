@@ -1,4 +1,18 @@
+################################################################################################
+#
+# Tank Default VFX Configuration
+#
+
 description: Apps and Engines related to Asset based work.
+
+#################################################################################################
+# include common definitions for all the launchers that are used to start maya, nuke etc.
+
+include: ./includes/app_launchers.yml
+
+
+#################################################################################################
+# define all the items that should appear in this environment 
 
 engines:
 
