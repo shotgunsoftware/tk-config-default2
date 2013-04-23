@@ -9,7 +9,10 @@ description: This environment controls what items should be shown on the Shotgun
 #################################################################################################
 # include common definitions for all the launchers that are used to start maya, nuke etc.
 
-include: ./includes/app_launchers.yml
+includes: 
+    - ./includes/app_launchers.yml
+    - ./includes/paths.yml
+
 
 
 #################################################################################################

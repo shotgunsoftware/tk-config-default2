@@ -1,21 +1,42 @@
-# global include file which contains all the different paths to applications in the studio
-# these paths can be overridden on a per project, or even per shot level.
+################################################################################################
+#
+# Tank Default VFX Configuration
+#
+
+# this file defines paths to key applications for this project
 
 
-
+#
+# maya
+#
 maya_windows: 'C:\Program Files\Autodesk\Maya2012\bin\maya.exe'
 maya_mac: /Applications/Autodesk/maya2012/Maya.app
 maya_linux: maya
 
 
-mobu_windows: 'C:\Program Files\Autodesk\MotionBuilder 2013\bin\x64\motionbuilder.exe'
-
-
+#
+# nuke
+#
 nuke_mac: /Applications/Nuke6.3v8/Nuke6.3v8.app
 nuke_windows: 'C:\Program Files\Nuke6.3v8\Nuke6.3.exe'
 nuke_linux: Nuke6.3
 
 
+#
+# motionbuilder
+#
+motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2013\bin\x64\motionbuilder.exe'
+
+
+#
+# 3dsmax 2012
+#
+3dsmax_windows: 'C:\Program Files\Autodesk\3ds Max 2012\3dsmax.exe'
+
+
+#
+# photoshop CS6
+#
 photoshop_mac: /Applications/Adobe Photoshop CS6/Adobe Photoshop CS6.app
 photoshop_win: 'C:\Program Files\Adobe\Adobe Photoshop CS6 (64 Bit)\Photoshop.exe'
 photoshop_extras:         
@@ -25,6 +46,10 @@ photoshop_extras:
     windows_python_path: 'C:\Python27\python.exe'
 
 
+#
+# Tweak RV
+#
 rv_mac: /Applications/RV64.app
 rv_win: C:\Program Files\RV\RV64.exe
 rv_linux: rv
+

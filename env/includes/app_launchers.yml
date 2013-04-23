@@ -11,7 +11,7 @@
 includes: 
     
     # first include the configuration's global settings for application paths
-    - ./app_paths.yml
+    - ./paths.yml
     
     # now include overrides - these will be loaded if they are found
     - sequences/{Sequence}/{Shot}/tank_overrides.yml
@@ -47,7 +47,7 @@ launch_3dsmax:
     mac_path: ''
     menu_name: Launch 3DSMax
     windows_args: ''
-    windows_path: C:\Program Files\Autodesk\3ds Max 2012\3dsmax.exe
+    windows_path: '@3dsmax_windows'
 
 launch_motionbuilder:
     deny_permissions: []
@@ -61,7 +61,7 @@ launch_motionbuilder:
     mac_path: ''
     menu_name: Launch MotionBuilder
     windows_args: ''
-    windows_path: '@mobu_windows'
+    windows_path: '@motionbuilder_windows'
     
 launch_nuke:
     deny_permissions: []
