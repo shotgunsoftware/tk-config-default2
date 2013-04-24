@@ -92,7 +92,7 @@ launch_photoshop:
     windows_path: '@photoshop_win'
 
 launch_screeningroom:
-    location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.3}
+    location: {name: tk-multi-screeningroom, type: dev, path: /Users/manne/git/tk-multi-screeningroom}
     rv_path_linux: '@rv_linux'
     rv_path_mac: '@rv_mac'
     rv_path_windows: '@rv_win'

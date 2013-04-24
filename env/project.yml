@@ -98,7 +98,7 @@ engines:
   tk-nuke:
     apps:
       tk-multi-workfiles:
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-workfiles, type: dev, path: /Users/manne/git/tk-multi-workfiles}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -146,6 +146,6 @@ frameworks:
   tk-framework-widget_v0.1.4:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
   tk-framework-widget_v0.1.10:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.10}
+    location: {path: /Users/manne/git/tk-framework-widget, type: dev, version: v0.1.10}
   tk-framework-widget_v0.1.12:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.12}
