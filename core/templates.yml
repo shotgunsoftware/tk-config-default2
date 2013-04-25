@@ -72,6 +72,10 @@ keys:
 
 paths:
 
+
+    shot_root: sequences/{Sequence}/{Shot}/{Step}
+
+
     ##########################################################################################
     # Shot pipeline 
     #
@@ -81,33 +85,33 @@ paths:
     #
 
     # The location of WIP files
-    photoshop_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/photoshop/{name}.v{version}.psd
+    photoshop_shot_work: '@shot_root/work/photoshop/{name}.v{version}.psd'
 
     # The location of backups of WIP files
-    photoshop_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd
+    photoshop_shot_snapshot: '@shot_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
 
     # The location of published files
-    photoshop_shot_publish_psd: sequences/{Sequence}/{Shot}/{Step}/publish/photoshop/psd/{name}.v{version}.psd
-    photoshop_shot_publish_jpg: sequences/{Sequence}/{Shot}/{Step}/publish/photoshop/jpg/{name}.v{version}.jpg
+    photoshop_shot_publish_psd: '@shot_root/publish/photoshop/psd/{name}.v{version}.psd'
+    photoshop_shot_publish_jpg: '@shot_root/publish/photoshop/jpg/{name}.v{version}.jpg'
 
     #
     # Maya
     #
 
     # define the location of a work area
-    shot_work_area_maya: sequences/{Sequence}/{Shot}/{Step}/work/maya
+    shot_work_area_maya: '@shot_root/work/maya'
     
     # define the location of a publish area
-    shot_publish_area_maya: sequences/{Sequence}/{Shot}/{Step}/publish/maya
+    shot_publish_area_maya: '@shot_root/publish/maya'
 
     # The location of WIP files
-    maya_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/maya/{name}.v{version}.ma
+    maya_shot_work: '@shot_root/work/maya/{name}.v{version}.ma'
 
     # The location of backups of WIP files
-    maya_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/maya/snapshots/{name}.v{version}.{timestamp}.ma
+    maya_shot_snapshot: '@shot_root/work/maya/snapshots/{name}.v{version}.{timestamp}.ma'
 
     # The location of published maya files
-    maya_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/maya/{name}.v{version}.ma
+    maya_shot_publish: '@shot_root/publish/maya/{name}.v{version}.ma'
 
 
     #
@@ -115,13 +119,13 @@ paths:
     #
 
     # The location of WIP files
-    max_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/{name}.v{version}.max
+    max_shot_work: '@shot_root/work/3dsmax/{name}.v{version}.max'
 
     # The location of backups of WIP files
-    max_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max
+    max_shot_snapshot: '@shot_root/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max'
 
     # The location of published maya files
-    max_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/3dsmax/{name}.v{version}.max
+    max_shot_publish: '@shot_root/publish/3dsmax/{name}.v{version}.max'
 
 
     #
@@ -129,49 +133,51 @@ paths:
     #
 
     # The location of WIP files
-    mobu_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/mobu/{name}.v{version}.fbx
+    mobu_shot_work: '@shot_root/work/mobu/{name}.v{version}.fbx'
 
     # The location of backups of WIP files
-    mobu_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/mobu/snapshots/{name}.v{version}.{timestamp}.fbx
+    mobu_shot_snapshot: '@shot_root/work/mobu/snapshots/{name}.v{version}.{timestamp}.fbx'
 
     # The location of published maya files
-    mobu_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/mobu/{name}.v{version}.fbx
+    mobu_shot_publish: '@shot_root/publish/mobu/{name}.v{version}.fbx'
 
     #
     # Nuke 
     #
 
     # define the location of a work area
-    shot_work_area_nuke: sequences/{Sequence}/{Shot}/{Step}/work/nuke
+    shot_work_area_nuke: '@shot_root/work/nuke'
     
     # define the location of a publish area
-    shot_publish_area_nuke: sequences/{Sequence}/{Shot}/{Step}/publish/nuke
+    shot_publish_area_nuke: '@shot_root/publish/nuke'
 
     # The location of WIP script files
-    nuke_shot_work: sequences/{Sequence}/{Shot}/{Step}/work/nuke/{name}.v{version}.nk
+    nuke_shot_work: '@shot_root/work/nuke/{name}.v{version}.nk'
 
     # The location of backups of WIP files
-    nuke_shot_snapshot: sequences/{Sequence}/{Shot}/{Step}/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk
+    nuke_shot_snapshot: '@shot_root/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk'
 
     # The location of published nuke script files
-    nuke_shot_publish: sequences/{Sequence}/{Shot}/{Step}/publish/nuke/{name}.v{version}.nk
+    nuke_shot_publish: '@shot_root/publish/nuke/{name}.v{version}.nk'
 
     # write node outputs
-    nuke_shot_render_mono_dpx:            sequences/{Sequence}/{Shot}/{Step}/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx
-    nuke_shot_render_mono_dpx_review_mov: sequences/{Sequence}/{Shot}/{Step}/review/{Shot}_{name}_{channel}_v{version}.{iteration}.mov
-    nuke_shot_render_mono_dpx_review_seq: sequences/{Sequence}/{Shot}/{Step}/review/{Shot}_{name}_{channel}_v{version}.{iteration}/{Shot}_{name}_{channel}_v{version}.{iteration}.{SEQ}.dpx
-    nuke_shot_render_pub_mono_dpx:        sequences/{Sequence}/{Shot}/{Step}/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx
+    nuke_shot_render_mono_dpx:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx'
+    nuke_shot_render_mono_dpx_review_mov: '@shot_root/review/{Shot}_{name}_{channel}_v{version}.{iteration}.mov'
+    nuke_shot_render_mono_dpx_review_seq: '@shot_root/review/{Shot}_{name}_{channel}_v{version}.{iteration}/{Shot}_{name}_{channel}_v{version}.{iteration}.{SEQ}.dpx'
+    nuke_shot_render_pub_mono_dpx:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx'
 
-    nuke_shot_render_stereo:            sequences/{Sequence}/{Shot}/{Step}/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr
-    nuke_shot_render_stereo_review_mov: sequences/{Sequence}/{Shot}/{Step}/review/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{iteration}.mov
-    nuke_shot_render_stereo_review_seq: sequences/{Sequence}/{Shot}/{Step}/review/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr
-    nuke_shot_render_pub_stereo:        sequences/{Sequence}/{Shot}/{Step}/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr
+    nuke_shot_render_stereo:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr'
+    nuke_shot_render_stereo_review_mov: '@shot_root/review/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{iteration}.mov'
+    nuke_shot_render_stereo_review_seq: '@shot_root/review/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr'
+    nuke_shot_render_pub_stereo:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr'
 
     # review output
-    shot_quicktime_quick: sequences/{Sequence}/{Shot}/{Step}/review/quickdaily/{Shot}_{name}_quick_{iteration}.mov
+    shot_quicktime_quick: '@shot_root/review/quickdaily/{Shot}_{name}_quick_{iteration}.mov'
 
     ##########################################################################################
     # Asset pipeline 
+    
+    asset_root: assets/{sg_asset_type}/{Asset}/{Step}
     
     
     #
@@ -179,14 +185,14 @@ paths:
     #
 
     # The location of WIP files
-    photoshop_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/photoshop/{name}.v{version}.psd
+    photoshop_asset_work: '@asset_root/work/photoshop/{name}.v{version}.psd'
 
     # The location of backups of WIP files
-    photoshop_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd
+    photoshop_asset_snapshot: '@asset_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
 
     # The location of published files
-    photoshop_asset_publish_psd: assets/{sg_asset_type}/{Asset}/{Step}/publish/photoshop/psd/{name}.v{version}.psd
-    photoshop_asset_publish_jpg: assets/{sg_asset_type}/{Asset}/{Step}/publish/photoshop/jpg/{name}.v{version}.jpg
+    photoshop_asset_publish_psd: '@asset_root/publish/photoshop/psd/{name}.v{version}.psd'
+    photoshop_asset_publish_jpg: '@asset_root/publish/photoshop/jpg/{name}.v{version}.jpg'
     
     
     #
@@ -194,60 +200,60 @@ paths:
     #
     
     # define the location of a work area
-    asset_work_area_maya: assets/{sg_asset_type}/{Asset}/{Step}/work/maya
+    asset_work_area_maya: '@asset_root/work/maya'
     
     # define the location of a publish area
-    asset_publish_area_maya: assets/{sg_asset_type}/{Asset}/{Step}/publish/maya
+    asset_publish_area_maya: '@asset_root/publish/maya'
 
     # The location of WIP files
-    maya_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/maya/{name}.v{version}.ma
+    maya_asset_work: '@asset_root/work/maya/{name}.v{version}.ma'
 
     # The location of backups of WIP files
-    maya_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/maya/snapshots/{name}.v{version}.{timestamp}.ma
+    maya_asset_snapshot: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.ma'
 
     # The location of published maya files
-    maya_asset_publish: assets/{sg_asset_type}/{Asset}/{Step}/publish/maya/{name}.v{version}.ma
+    maya_asset_publish: '@asset_root/publish/maya/{name}.v{version}.ma'
 
     #
     # 3dsmax
     #
     
     # The location of WIP files
-    max_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/{name}.v{version}.max
+    max_asset_work: '@asset_root/work/3dsmax/{name}.v{version}.max'
 
     # The location of backups of WIP files
-    max_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max
+    max_asset_snapshot: '@asset_root/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max'
 
     # The location of published maya files
-    max_asset_publish: assets/{sg_asset_type}/{Asset}/{Step}/publish/3dsmax/{name}.v{version}.max
+    max_asset_publish: '@asset_root/publish/3dsmax/{name}.v{version}.max'
 
     #
     # Nuke
     #
 
     # define the location of a work area
-    asset_work_area_nuke: assets/{sg_asset_type}/{Asset}/{Step}/work/nuke
+    asset_work_area_nuke: '@asset_root/work/nuke'
     
     # define the location of a publish area
-    asset_publish_area_nuke: assets/{sg_asset_type}/{Asset}/{Step}/publish
+    asset_publish_area_nuke: '@asset_root/publish'
 
     # outputs from the tank write node for assets
-    nuke_asset_render: assets/{sg_asset_type}/{Asset}/{Step}/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr
-    nuke_asset_render_review_mov: assets/{sg_asset_type}/{Asset}/{Step}/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.mov
-    nuke_asset_render_review_seq: assets/{sg_asset_type}/{Asset}/{Step}/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr
-    nuke_asset_render_pub: assets/{sg_asset_type}/{Asset}/{Step}/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr
+    nuke_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
+    nuke_asset_render_review_mov: '@asset_root/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.mov'
+    nuke_asset_render_review_seq: '@asset_root/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr'
+    nuke_asset_render_pub: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
 
     # review output
-    asset_quicktime_quick: assets/{sg_asset_type}/{Asset}/{Step}/review/quickdaily/{Asset}_{name}_quick_{iteration}.mov
+    asset_quicktime_quick: '@asset_root/review/quickdaily/{Asset}_{name}_quick_{iteration}.mov'
 
     # The location of WIP script files
-    nuke_asset_work: assets/{sg_asset_type}/{Asset}/{Step}/work/nuke/{name}.v{version}.nk
+    nuke_asset_work: '@asset_root/work/nuke/{name}.v{version}.nk'
 
     # The location of backups of WIP files
-    nuke_asset_snapshot: assets/{sg_asset_type}/{Asset}/{Step}/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk
+    nuke_asset_snapshot: '@asset_root/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk'
 
     # The location of published nuke script files
-    nuke_asset_publish: assets/{sg_asset_type}/{Asset}/{Step}/publish/nuke/{name}.v{version}.nk
+    nuke_asset_publish: '@asset_root/publish/nuke/{name}.v{version}.nk'
 
 
 
