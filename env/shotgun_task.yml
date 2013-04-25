@@ -27,7 +27,11 @@ engines:
       tk-shotgun-launchphotoshop: '@launch_photoshop'      
       tk-shotgun-launchscreeningroom: '@launch_shotgun_screeningroom'
 
-      tk-shotgun-launchfolder: '@tk-shotgun-launchfolder'
+      tk-shotgun-launchfolder:
+        deny_permissions: []
+        deny_platforms: []
+        #location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.2}
+        location: {type: dev, path: /Users/manne/git/tk-shotgun-launchfolder}
 
     debug_logging: false
     location: {name: tk-shotgun, type: dev, path: /Users/manne/git/tk-shotgun}
