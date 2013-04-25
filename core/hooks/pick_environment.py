@@ -13,12 +13,17 @@ class PickEnvironment(Hook):
 
     def execute(self, context, **kwargs):
         """
-        The default implementation assumes there are two environments, called shot 
-        and asset, and switches to these based on entity type.
+        The default implementation assumes there are three environments, called shot, asset 
+        and project, and switches to these based on entity type.
         """
         
-        # must have an entity
+        if context.project is None:
+            # our context is completely empty! 
+            # don't know how to handle this case.
+            return None
+        
         if context.project and context.entity is None:
+            # project-only context
             return "project"
         elif context.entity["type"] == "Shot":
             return "shot"
