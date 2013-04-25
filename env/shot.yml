@@ -47,22 +47,6 @@ engines:
         hook_multi_update: default
         hook_scan_scene: default
         location: {name: tk-maya-breakdown, type: app_store, version: v0.2.7}
-      tk-maya-publish:
-        hook_post_publish: default
-        hook_publish_file: default
-        hook_scan_scene: default
-        location: {name: tk-maya-publish, type: app_store, version: v0.1.6}
-        publish_tank_types:
-        - step: Anm
-          tank_types: [Maya Anim]
-        - step: Light
-          tank_types: [Maya Lighting]
-        - step: '*'
-          tank_types: [Maya Scene]
-        template_publish: maya_shot_publish
-        template_snapshot: maya_shot_snapshot
-        template_work: maya_shot_work
-        validation_hooks: []
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.6}
       tk-multi-loader-1:
@@ -83,31 +67,58 @@ engines:
           Shot: []
         single_select: true
         tank_types: [Maya Anim, Maya Lighting, Maya Scene]
-      tk-multi-recentfiles:
-        hook_add_file_to_scene: default
-        launch_at_startup: true
-        location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.5}
-        template_work: maya_shot_work
       tk-multi-screeningroom:
         location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.3}
         rv_path_linux: rv
         rv_path_mac: /Applications/RV64.app
         rv_path_windows: C:\Program Files\RV\RV64.exe
-      tk-multi-setcontext:
-        enable_create_tasks: true
-        launch_at_startup: false
-        location: {name: tk-multi-setcontext, type: app_store, version: v0.2.2}
-        sg_entity_types: [Shot, Asset]
       tk-multi-setframerange:
         location: {name: tk-multi-setframerange, type: app_store, version: v0.1.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
+      tk-multi-publish:
+        display_name: Publish
+        hook_copy_file: default
+        hook_post_publish: default
+        hook_primary_pre_publish: default
+        hook_primary_publish: default
+        hook_scan_scene: default
+        hook_secondary_pre_publish: default
+        hook_secondary_publish: default
+        hook_thumbnail: default
+        location: {name: tk-multi-publish, type: app_store, version: v0.2.1}
+        primary_description: Publish and version up the current Maya scene
+        primary_display_name: Maya Publish
+        primary_icon: 'icons/publish_maya_main.png'
+        primary_publish_template: maya_shot_publish
+        primary_scene_item_type: work_file
+        primary_tank_type: Maya Scene
+        secondary_outputs: []
+        template_work: maya_shot_work
+      tk-multi-snapshot:
+        hook_copy_file: default
+        hook_scene_operation: default
+        hook_thumbnail: default
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.11}
+        template_snapshot: maya_shot_snapshot
+        template_work: maya_shot_work
+      tk-multi-workfiles:
+        hook_copy_file: default
+        hook_scene_operation: default
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
+        sg_entity_types: [Shot, Asset]
+        template_publish: maya_shot_publish
+        template_publish_area: shot_publish_area_maya
+        template_work: maya_shot_work
+        template_work_area: shot_work_area_maya
     debug_logging: false
     location: {name: tk-maya, type: app_store, version: v0.2.5}
     menu_favourites:
-    - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
-    - {app_instance: tk-maya-publish, name: Snapshot}
-    - {app_instance: tk-maya-publish, name: Publish...}
+    - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
+    - {app_instance: tk-multi-snapshot, name: Snapshot...}
+    - {app_instance: tk-multi-workfiles, name: Tank Save As...}
+    - {app_instance: tk-multi-publish, name: Publish...}
+    
     template_project: shot_work_area_maya
 
 
