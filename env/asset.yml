@@ -16,6 +16,22 @@ include: ./includes/app_launchers.yml
 
 engines:
 
+  tk-shell:
+    apps: 
+    
+      tk-multi-launchmaya: '@launch_maya'
+      tk-multi-launch3dsmax: '@launch_3dsmax'
+      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+      tk-multi-launchnuke: '@launch_nuke'
+      tk-multi-launchphotoshop: '@launch_photoshop'      
+      tk-multi-screeningroom: '@launch_screeningroom'
+    
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+
+    debug_logging: false
+    location: {name: tk-shell, type: dev, path: /Users/manne/git/tk-shell}
+
 
   tk-3dsmax:
     apps:
