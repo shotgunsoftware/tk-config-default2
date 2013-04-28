@@ -28,7 +28,7 @@ launch_maya:
     hook_app_launch: default
     linux_args: ''
     linux_path: '@maya_linux'
-    location: {name: tk-multi-launchapp, type: dev, path: /Users/manne/git/tk-multi-launchapp}
+    location: {name: tk-multi-launchapp, type: app_store, version: v0.2.0}
     mac_args: ''
     mac_path: '@maya_mac'
     menu_name: Launch Maya
@@ -42,7 +42,7 @@ launch_3dsmax:
     hook_app_launch: default
     linux_args: ''
     linux_path: ''
-    location: {name: tk-multi-launchapp, type: dev, path: /Users/manne/git/tk-multi-launchapp}
+    location: {name: tk-multi-launchapp, type: app_store, version: v0.2.0}
     mac_args: ''
     mac_path: ''
     menu_name: Launch 3DSMax
@@ -56,7 +56,7 @@ launch_motionbuilder:
     hook_app_launch: default
     linux_args: ''
     linux_path: ''
-    location: {name: tk-multi-launchapp, type: dev, path: /Users/manne/git/tk-multi-launchapp}
+    location: {name: tk-multi-launchapp, type: app_store, version: v0.2.0}
     mac_args: ''
     mac_path: ''
     menu_name: Launch MotionBuilder
@@ -70,7 +70,7 @@ launch_nuke:
     hook_app_launch: default
     linux_args: ''
     linux_path: '@nuke_linux'
-    location: {name: tk-multi-launchapp, type: dev, path: /Users/manne/git/tk-multi-launchapp}
+    location: {name: tk-multi-launchapp, type: app_store, version: v0.2.0}
     mac_args: ''
     mac_path: '@nuke_mac'
     menu_name: Launch Nuke
@@ -84,7 +84,7 @@ launch_photoshop:
     hook_app_launch: default
     linux_args: ''
     linux_path: ''
-    location: {name: tk-multi-launchapp, type: dev, path: /Users/manne/git/tk-multi-launchapp}
+    location: {name: tk-multi-launchapp, type: app_store, version: v0.2.0}
     mac_args: ''
     mac_path: '@photoshop_mac'
     menu_name: Launch Photoshop
@@ -92,7 +92,7 @@ launch_photoshop:
     windows_path: '@photoshop_win'
 
 launch_screeningroom:
-    location: {name: tk-multi-screeningroom, type: dev, path: /Users/manne/git/tk-multi-screeningroom}
+    location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.3}
     rv_path_linux: '@rv_linux'
     rv_path_mac: '@rv_mac'
     rv_path_windows: '@rv_win'
@@ -103,5 +103,5 @@ launch_shotgun_screeningroom:
     rv_path_linux: '@rv_linux'
     rv_path_mac: '@rv_mac'
     rv_path_windows: '@rv_win'
-    location: {type: dev, path: /Users/manne/git/tk-shotgun-launchscreeningroom}
+    location: {name: tk-shotgun-launchscreeningroom, type: app_store, version: v0.1.4}
 

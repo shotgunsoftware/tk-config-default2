@@ -27,10 +27,10 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
     
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
 
     debug_logging: false
-    location: {name: tk-shell, type: dev, path: /Users/manne/git/tk-shell}
+    location: {name: tk-shell, type: app_store, version: v0.2.2}
 
 
   tk-3dsmax:
@@ -43,7 +43,7 @@ engines:
         template_snapshot: max_shot_snapshot
         template_work: max_shot_work
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader-texture:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}
@@ -75,7 +75,7 @@ engines:
         hook_scan_scene: default
         location: {name: tk-maya-breakdown, type: app_store, version: v0.2.7}
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader-1:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}
@@ -155,7 +155,7 @@ engines:
         template_snapshot: mobu_shot_snapshot
         template_work: mobu_shot_work
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}
@@ -192,7 +192,7 @@ engines:
   tk-nuke:
     apps:
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}
@@ -311,7 +311,7 @@ engines:
   tk-photoshop:
     apps:
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}

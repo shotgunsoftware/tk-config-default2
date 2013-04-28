@@ -32,7 +32,7 @@ engines:
         location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.2}
 
     debug_logging: false
-    location: {name: tk-shotgun, type: dev, path: /Users/manne/git/tk-shotgun}
+    location: {name: tk-shotgun, type: app_store, version: v0.2.1}
 
 
 frameworks:

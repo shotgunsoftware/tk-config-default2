@@ -27,10 +27,10 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
     
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
 
     debug_logging: false
-    location: {name: tk-shell, type: dev, path: /Users/manne/git/tk-shell}
+    location: {name: tk-shell, type: app_store, version: v0.2.2}
 
 
   tk-3dsmax:
@@ -43,7 +43,7 @@ engines:
         template_snapshot: max_asset_snapshot
         template_work: max_asset_work
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader-texture:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}
@@ -75,7 +75,7 @@ engines:
   tk-maya:
     apps:
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader-rigging:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}
@@ -147,7 +147,7 @@ engines:
   tk-nuke:
     apps:
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}
@@ -250,7 +250,7 @@ engines:
   tk-photoshop:
     apps:
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-loader:
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.1.7}

@@ -27,10 +27,10 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
     
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
 
     debug_logging: false
-    location: {name: tk-shell, type: dev, path: /Users/manne/git/tk-shell}
+    location: {name: tk-shell, type: app_store, version: v0.2.2}
 
 
   tk-3dsmax:
@@ -45,7 +45,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default    
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.2.4}
 
@@ -62,7 +62,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default    
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
 
     debug_logging: false
     location: {name: tk-maya, type: app_store, version: v0.2.5}
@@ -85,7 +85,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default    
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
 
     debug_logging: false
     location: {name: tk-motionbuilder, type: app_store, version: v0.2.6}
@@ -98,7 +98,7 @@ engines:
   tk-nuke:
     apps:
       tk-multi-workfiles:
-        location: {name: tk-multi-workfiles, type: dev, path: /Users/manne/git/tk-multi-workfiles}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -107,7 +107,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default    
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
 
     debug_logging: false
     location: {name: tk-nuke, type: app_store, version: v0.2.10}
@@ -132,7 +132,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default    
       tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.6}
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
 
     debug_logging: true
     location: {name: tk-photoshop, type: app_store, version: v0.0.12}
@@ -146,6 +146,6 @@ frameworks:
   tk-framework-widget_v0.1.4:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
   tk-framework-widget_v0.1.10:
-    location: {path: /Users/manne/git/tk-framework-widget, type: dev, version: v0.1.10}
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.10}
   tk-framework-widget_v0.1.12:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.12}
