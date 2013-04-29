@@ -12,7 +12,8 @@ various executables, such as Maya and Nuke. These configuration
 options can be found in your newly created project:
 
 - First navigate to the new project root folder.
-- Now navigate to the tank folder and then to the config/env/includes folder.
+- Now navigate to the tank folder and then to the config/env/includes 
+  folder.
 - Open the paths.yml file and edit the settings.  
 
 

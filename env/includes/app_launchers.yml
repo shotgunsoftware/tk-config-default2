@@ -36,7 +36,6 @@ launch_maya:
     windows_path: '@maya_windows'
 
 launch_3dsmax:
-    deny_permissions: []
     engine: tk-3dsmax
     extra: {}
     hook_app_launch: default
@@ -50,7 +49,6 @@ launch_3dsmax:
     windows_path: '@3dsmax_windows'
 
 launch_motionbuilder:
-    deny_permissions: []
     engine: tk-motionbuilder
     extra: {}
     hook_app_launch: default
@@ -64,7 +62,6 @@ launch_motionbuilder:
     windows_path: '@motionbuilder_windows'
     
 launch_nuke:
-    deny_permissions: []
     engine: tk-nuke
     extra: {}
     hook_app_launch: default
@@ -78,7 +75,6 @@ launch_nuke:
     windows_path: '@nuke_windows'
 
 launch_photoshop:
-    deny_permissions: []
     engine: tk-photoshop
     extra: '@photoshop_extras'
     hook_app_launch: default
