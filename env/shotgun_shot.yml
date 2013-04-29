@@ -20,11 +20,6 @@ engines:
 
     apps: 
 
-      tk-shotgun-launchmaya: '@launch_maya'
-      tk-shotgun-launch3dsmax: '@launch_3dsmax'
-      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
-      tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'      
       tk-shotgun-launchscreeningroom: '@launch_shotgun_screeningroom'
 
       tk-shotgun-launchfolder:
