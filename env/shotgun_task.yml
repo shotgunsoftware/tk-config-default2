@@ -25,7 +25,6 @@ engines:
       tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
       tk-shotgun-launchnuke: '@launch_nuke'
       tk-shotgun-launchphotoshop: '@launch_photoshop'      
-      tk-shotgun-launchscreeningroom: '@launch_shotgun_screeningroom'
 
       tk-shotgun-launchfolder:
         deny_permissions: []
