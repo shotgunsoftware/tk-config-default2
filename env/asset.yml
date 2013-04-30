@@ -265,11 +265,6 @@ engines:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchmaya: '@launch_maya'
-      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchphotoshop: '@launch_photoshop'
       tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.2.2}
