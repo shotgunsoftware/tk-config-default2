@@ -118,6 +118,12 @@ paths:
     # 3dsmax
     #
 
+    # define the location of a work area
+    shot_work_area_max: '@shot_root/work/3dsmax'
+    
+    # define the location of a publish area
+    shot_publish_area_max: '@shot_root/publish/3dsmax'
+
     # The location of WIP files
     max_shot_work: '@shot_root/work/3dsmax/{name}.v{version}.max'
 
@@ -217,6 +223,12 @@ paths:
     #
     # 3dsmax
     #
+    
+    # define the location of a work area
+    asset_work_area_max: '@asset_root/work/3dsmax'
+    
+    # define the location of a publish area
+    asset_publish_area_max: '@asset_root/publish/3dsmax'
     
     # The location of WIP files
     max_asset_work: '@asset_root/work/3dsmax/{name}.v{version}.max'

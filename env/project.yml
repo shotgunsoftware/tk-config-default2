@@ -23,7 +23,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -39,7 +39,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -58,7 +58,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -76,7 +76,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -94,7 +94,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -114,7 +114,7 @@ engines:
       tk-multi-launchphotoshop: '@launch_photoshop'
       tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.2.2}
+    location: {name: tk-shell, type: app_store, version: v0.2.4}
 
 frameworks:
   tk-framework-widget_v0.1.1:
@@ -123,6 +123,8 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.10}
   tk-framework-widget_v0.1.12:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.12}
+  tk-framework-widget_v0.1.13:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.13}
   tk-framework-widget_v0.1.3:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.3}
   tk-framework-widget_v0.1.4:
