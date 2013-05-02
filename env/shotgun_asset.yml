@@ -33,7 +33,7 @@ engines:
         location: {name: tk-shotgun-folders, type: app_store, version: v0.1.4}
 
     debug_logging: false
-    location: {name: tk-shotgun, type: app_store, version: v0.2.1}
+    location: {name: tk-shotgun, type: app_store, version: v0.2.2}
 
 
 frameworks:

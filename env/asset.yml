@@ -285,7 +285,7 @@ engines:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.2.4}
+    location: {name: tk-shell, type: app_store, version: v0.2.5}
     
     
 frameworks:

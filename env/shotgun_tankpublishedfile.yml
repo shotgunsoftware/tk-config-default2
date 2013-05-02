@@ -41,7 +41,7 @@ engines:
 
 
     debug_logging: false
-    location: {name: tk-shotgun, type: app_store, version: v0.2.1}
+    location: {name: tk-shotgun, type: app_store, version: v0.2.2}
 
 
 frameworks:

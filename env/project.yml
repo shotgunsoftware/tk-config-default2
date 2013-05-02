@@ -114,7 +114,7 @@ engines:
       tk-multi-launchphotoshop: '@launch_photoshop'
       tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.2.4}
+    location: {name: tk-shell, type: app_store, version: v0.2.5}
 
 frameworks:
   tk-framework-widget_v0.1.1:
