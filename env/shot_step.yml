@@ -338,6 +338,11 @@ engines:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-screeningroom: '@launch_screeningroom'
+      tk-shotgun-launchmaya: '@launch_maya'
+      tk-shotgun-launch3dsmax: '@launch_3dsmax'
+      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
+      tk-shotgun-launchnuke: '@launch_nuke'
+      tk-shotgun-launchphotoshop: '@launch_photoshop'      
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.2.5}
 

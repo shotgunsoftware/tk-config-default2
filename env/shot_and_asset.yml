@@ -3,23 +3,24 @@
 # Tank Default VFX Configuration
 #
 
-description: Apps and Engines showing when an engine is launched with a project only context.
+description: Apps and engines loaded when an asset or Shot is loaded. Since this configuration
+             does not have any configuration on a per shot or per asset basis, there are no
+             apps registered in this config. All the work is carried out on a step level.
+             On the shot level, the typical workflow is to open the work files app and 
+             pick a step and then start work.
 
 #################################################################################################
 # include common definitions for all the launchers that are used to start maya, nuke etc.
 
 include: ./includes/app_launchers.yml
 
-
 #################################################################################################
 # define all the items that should appear in this environment 
 
 engines:
-
+  
   tk-3dsmax:
     apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -29,13 +30,23 @@ engines:
         template_publish_area: null
         template_work: null
         template_work_area: null
+
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
+
+      tk-multi-screeningroom: '@launch_screeningroom'
+      
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.5}
-    
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.6}
+  
   tk-maya:
     apps:
+    
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
+
+      tk-multi-screeningroom: '@launch_screeningroom'
+
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -45,34 +56,20 @@ engines:
         template_publish_area: null
         template_work: null
         template_work_area: null
+
     debug_logging: false
     location: {name: tk-maya, type: app_store, version: v0.2.7}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
     template_project: null
   
-  tk-motionbuilder:
-    apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-      tk-multi-workfiles:
-        hook_copy_file: default
-        hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
-        sg_entity_types: [Shot, Asset]
-        template_publish: null
-        template_publish_area: null
-        template_work: null
-        template_work_area: null
-    debug_logging: false
-    location: {name: tk-motionbuilder, type: app_store, version: v0.2.6}
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
-  
   tk-nuke:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
+        
+      tk-multi-screeningroom: '@launch_screeningroom'
+      
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -82,6 +79,7 @@ engines:
         template_publish_area: null
         template_work: null
         template_work_area: null
+        
     debug_logging: false
     location: {name: tk-nuke, type: app_store, version: v0.2.10}
     menu_favourites:
@@ -91,6 +89,9 @@ engines:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
+      
+      tk-multi-screeningroom: '@launch_screeningroom'
+      
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -100,19 +101,22 @@ engines:
         template_publish_area: null
         template_work: null
         template_work_area: null
+
     debug_logging: true
     location: {name: tk-photoshop, type: app_store, version: v0.0.14}
   
   tk-shell:
     apps:
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchmaya: '@launch_maya'
-      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchphotoshop: '@launch_photoshop'
+      tk-shotgun-launchmaya: '@launch_maya'
+      tk-shotgun-launch3dsmax: '@launch_3dsmax'
+      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
+      tk-shotgun-launchnuke: '@launch_nuke'
+      tk-shotgun-launchphotoshop: '@launch_photoshop'      
+      tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.2.5}
-
+    
+    
 frameworks:
   tk-framework-widget_v0.1.1:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
