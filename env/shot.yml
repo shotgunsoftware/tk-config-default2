@@ -224,7 +224,7 @@ engines:
         secondary_outputs:
         - {description: Render output from Tank write nodes, display_group: Renders,
           display_name: Nuke Render, icon: icons/publish_nuke_writenode.png, name: render,
-          publish_template: nuke_shot_publish, required: false, scene_item_type: write_node,
+          publish_template: null, required: false, scene_item_type: write_node,
           selected: false, tank_type: Rendered Image}
         template_work: nuke_shot_work
       tk-multi-screeningroom: '@launch_screeningroom'
