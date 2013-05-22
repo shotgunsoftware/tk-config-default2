@@ -16,107 +16,82 @@ include: ./includes/app_launchers.yml
 
 #################################################################################################
 # define all the items that should appear in this environment 
-
 engines:
-  
   tk-3dsmax:
     apps:
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
+      tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
         template_work: null
         template_work_area: null
-
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-
-      tk-multi-screeningroom: '@launch_screeningroom'
-      
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.2.6}
-  
   tk-maya:
     apps:
-    
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-
       tk-multi-screeningroom: '@launch_screeningroom'
-
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
         template_work: null
         template_work_area: null
-
     debug_logging: false
     location: {name: tk-maya, type: app_store, version: v0.2.7}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
     template_project: null
-  
   tk-nuke:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-        
       tk-multi-screeningroom: '@launch_screeningroom'
-      
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
         template_work: null
         template_work_area: null
-        
     debug_logging: false
     location: {name: tk-nuke, type: app_store, version: v0.2.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
-  
   tk-photoshop:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-      
       tk-multi-screeningroom: '@launch_screeningroom'
-      
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
         template_work: null
         template_work_area: null
-
     debug_logging: true
     location: {name: tk-photoshop, type: app_store, version: v0.0.14}
-  
   tk-shell:
-    apps:
-      tk-shotgun-launchmaya: '@launch_maya'
-      tk-shotgun-launch3dsmax: '@launch_3dsmax'
-      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
-      tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'      
-      tk-multi-screeningroom: '@launch_screeningroom'
+    apps: {tk-multi-screeningroom: '@launch_screeningroom', tk-shotgun-launch3dsmax: '@launch_3dsmax',
+      tk-shotgun-launchmaya: '@launch_maya', tk-shotgun-launchmotionbuilder: '@launch_motionbuilder',
+      tk-shotgun-launchnuke: '@launch_nuke', tk-shotgun-launchphotoshop: '@launch_photoshop'}
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.2.5}
-    
-    
+    location: {name: tk-shell, type: app_store, version: v0.3.0}
 frameworks:
   tk-framework-widget_v0.1.1:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
@@ -132,4 +107,3 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
   tk-framework-widget_v0.1.5:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.5}
-

@@ -15,7 +15,6 @@ include: ./includes/app_launchers.yml
 # define all the items that should appear in this environment 
 
 engines:
-
   tk-3dsmax:
     apps:
       tk-multi-about:
@@ -23,15 +22,14 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
         template_work: null
         template_work_area: null
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.5}
-    
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.6}
   tk-maya:
     apps:
       tk-multi-about:
@@ -39,7 +37,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -50,7 +48,6 @@ engines:
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
     template_project: null
-  
   tk-motionbuilder:
     apps:
       tk-multi-about:
@@ -58,7 +55,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -68,7 +65,6 @@ engines:
     location: {name: tk-motionbuilder, type: app_store, version: v0.2.6}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
-  
   tk-nuke:
     apps:
       tk-multi-about:
@@ -76,7 +72,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -86,7 +82,6 @@ engines:
     location: {name: tk-nuke, type: app_store, version: v0.2.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
-  
   tk-photoshop:
     apps:
       tk-multi-about:
@@ -94,7 +89,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -102,17 +97,12 @@ engines:
         template_work_area: null
     debug_logging: true
     location: {name: tk-photoshop, type: app_store, version: v0.0.14}
-  
   tk-shell:
-    apps:
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchmaya: '@launch_maya'
-      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchphotoshop: '@launch_photoshop'
+    apps: {tk-multi-launch3dsmax: '@launch_3dsmax', tk-multi-launchmaya: '@launch_maya',
+      tk-multi-launchmotionbuilder: '@launch_motionbuilder', tk-multi-launchnuke: '@launch_nuke',
+      tk-multi-launchphotoshop: '@launch_photoshop'}
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.2.5}
-
+    location: {name: tk-shell, type: app_store, version: v0.3.0}
 frameworks:
   tk-framework-widget_v0.1.1:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
@@ -128,4 +118,3 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
   tk-framework-widget_v0.1.5:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.5}
-

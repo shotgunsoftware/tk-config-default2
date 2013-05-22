@@ -17,29 +17,22 @@ include: ./includes/app_launchers.yml
 
 engines:
   tk-shotgun:
-
-    apps: 
-      
-      tk-shotgun-launchscreeningroom: '@launch_shotgun_screeningroom'
-      tk-shotgun-launchmaya: '@launch_maya'
-      tk-shotgun-launch3dsmax: '@launch_3dsmax'
-      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
-      tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'            
-      
-      tk-shotgun-launchfolder:
-        deny_permissions: []
-        deny_platforms: []
-        location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.3}
-    
+    apps:
       tk-shotgun-folders:
         deny_permissions: []
         deny_platforms: []
         location: {name: tk-shotgun-folders, type: app_store, version: v0.1.4}
-
+      tk-shotgun-launch3dsmax: '@launch_3dsmax'
+      tk-shotgun-launchfolder:
+        deny_permissions: []
+        deny_platforms: []
+        location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.3}
+      tk-shotgun-launchmaya: '@launch_maya'
+      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
+      tk-shotgun-launchnuke: '@launch_nuke'
+      tk-shotgun-launchphotoshop: '@launch_photoshop'
+      tk-shotgun-launchscreeningroom: '@launch_shotgun_screeningroom'
     debug_logging: false
-    location: {name: tk-shotgun, type: app_store, version: v0.2.2}
+    location: {name: tk-shotgun, type: app_store, version: v0.3.0}
 
-
-frameworks:
-
+frameworks: null

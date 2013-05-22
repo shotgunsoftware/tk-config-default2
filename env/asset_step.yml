@@ -1,8 +1,3 @@
-################################################################################################
-#
-# Tank Default VFX Configuration
-#
-
 description: Apps and Engines related to Asset based work.
 
 #################################################################################################
@@ -15,9 +10,22 @@ include: ./includes/app_launchers.yml
 # define all the items that should appear in this environment 
 
 engines:
-  
+
+
   tk-3dsmax:
     apps:
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
+      tk-multi-loader-texture:
+        dependency_mode: false
+        hook_add_file_to_scene: default
+        location: {name: tk-multi-loader, type: app_store, version: v0.2.6}
+        menu_name: Load Texture...
+        publish_filters: []
+        sg_entity_types:
+          Asset: []
+        single_select: true
+        tank_types: [Diffuse Texture, Specular Texture]
       tk-multi-publish:
         display_name: Publish
         hook_copy_file: default
@@ -28,7 +36,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-publish, type: app_store, version: v0.2.5}
         primary_description: Publish and version up the current 3ds Max scene
         primary_display_name: 3ds Max Publish
         primary_icon: icons/publish_3dsmax_main.png
@@ -37,38 +45,27 @@ engines:
         primary_tank_type: 3dsmax Scene
         secondary_outputs: []
         template_work: max_asset_work
+      tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.15}
         template_snapshot: max_asset_snapshot
         template_work: max_asset_work
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: max_asset_publish
         template_publish_area: asset_publish_area_max
         template_work: max_asset_work
         template_work_area: asset_work_area_max
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-      tk-multi-loader-texture:
-        dependency_mode: false
-        hook_add_file_to_scene: default
-        location: {name: tk-multi-loader, type: app_store, version: v0.2.2}
-        menu_name: Load Texture...
-        publish_filters: []
-        sg_entity_types:
-          Asset: []
-        single_select: true
-        tank_types: [Diffuse Texture, Specular Texture]
-      tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.2.6}
-  
+
+
   tk-maya:
     apps:
       tk-multi-about:
@@ -76,7 +73,7 @@ engines:
       tk-multi-loader-rigging:
         dependency_mode: false
         hook_add_file_to_scene: default
-        location: {name: tk-multi-loader, type: app_store, version: v0.2.2}
+        location: {name: tk-multi-loader, type: app_store, version: v0.2.6}
         menu_name: Load Rig...
         publish_filters: []
         sg_entity_types:
@@ -86,7 +83,7 @@ engines:
       tk-multi-loader-texture:
         dependency_mode: false
         hook_add_file_to_scene: default
-        location: {name: tk-multi-loader, type: app_store, version: v0.2.2}
+        location: {name: tk-multi-loader, type: app_store, version: v0.2.6}
         menu_name: Load Texture...
         publish_filters: []
         sg_entity_types:
@@ -103,7 +100,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-publish, type: app_store, version: v0.2.5}
         primary_description: Publish and version up the current Maya scene
         primary_display_name: Maya Publish
         primary_icon: icons/publish_maya_main.png
@@ -117,13 +114,13 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.15}
         template_snapshot: maya_asset_snapshot
         template_work: maya_asset_work
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: maya_asset_publish
         template_publish_area: asset_publish_area_maya
@@ -137,7 +134,8 @@ engines:
     - {app_instance: tk-multi-workfiles, name: Tank Save As...}
     - {app_instance: tk-multi-publish, name: Publish...}
     template_project: asset_work_area_maya
-  
+
+
   tk-nuke:
     apps:
       tk-multi-about:
@@ -145,7 +143,7 @@ engines:
       tk-multi-loader:
         dependency_mode: false
         hook_add_file_to_scene: default
-        location: {name: tk-multi-loader, type: app_store, version: v0.2.2}
+        location: {name: tk-multi-loader, type: app_store, version: v0.2.6}
         menu_name: Load Render...
         publish_filters: []
         sg_entity_types:
@@ -162,7 +160,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.2.3}
+        location: {name: tk-multi-publish, type: app_store, version: v0.2.5}
         primary_description: Publishes and versions up the current Nuke script.
         primary_display_name: Nuke Publish
         primary_icon: icons/publish_nuke_main.png
@@ -172,21 +170,21 @@ engines:
         secondary_outputs:
         - {description: Render output from Tank write nodes, display_group: Renders,
           display_name: Nuke Render, icon: icons/publish_nuke_writenode.png, name: render,
-          publish_template: null, required: false, scene_item_type: write_node,
-          selected: true, tank_type: Rendered Image}
+          publish_template: null, required: false, scene_item_type: write_node, selected: true,
+          tank_type: Rendered Image}
         template_work: nuke_asset_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.15}
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.4}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_asset_publish
         template_publish_area: asset_publish_area_nuke
@@ -213,7 +211,7 @@ engines:
         - {input_template: nuke_asset_render, quicktime_output_template: nuke_asset_render_review_mov,
           sequence_output_template: nuke_asset_render_review_seq, version_name_template: nuke_asset_version_name}
       tk-nuke-writenode:
-        location: {name: tk-nuke-writenode, type: app_store, version: v0.1.3}
+        location: {name: tk-nuke-writenode, type: app_store, version: v0.1.4}
         template_script_work: nuke_asset_work
         write_nodes:
         - file_type: exr
@@ -230,7 +228,8 @@ engines:
     - {app_instance: tk-multi-workfiles, name: Tank Save As...}
     - {app_instance: tk-multi-publish, name: Publish...}
     - {app_instance: tk-nuke-review, name: Submit for Review...}
-  
+
+
   tk-photoshop:
     apps:
       tk-multi-about:
@@ -238,7 +237,7 @@ engines:
       tk-multi-loader:
         dependency_mode: false
         hook_add_file_to_scene: default
-        location: {name: tk-multi-loader, type: app_store, version: v0.2.2}
+        location: {name: tk-multi-loader, type: app_store, version: v0.2.6}
         menu_name: Load Image...
         publish_filters: []
         sg_entity_types:
@@ -249,7 +248,7 @@ engines:
       tk-multi-recentfiles:
         hook_add_file_to_scene: default
         launch_at_startup: false
-        location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.6}
+        location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.7}
         template_work: photoshop_asset_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-photoshop-publish:
@@ -262,21 +261,22 @@ engines:
         template_work: photoshop_asset_work
     debug_logging: true
     location: {name: tk-photoshop, type: app_store, version: v0.0.14}
-  
+
+
   tk-shell:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-      tk-shotgun-launchmaya: '@launch_maya'
+      tk-multi-screeningroom: '@launch_screeningroom'
       tk-shotgun-launch3dsmax: '@launch_3dsmax'
+      tk-shotgun-launchmaya: '@launch_maya'
       tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
       tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'              
-      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.2.5}
-    
-    
+    location: {name: tk-shell, type: app_store, version: v0.3.0}
+
+
 frameworks:
   tk-framework-widget_v0.1.1:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
@@ -292,4 +292,3 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
   tk-framework-widget_v0.1.5:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.5}
-
