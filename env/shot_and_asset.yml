@@ -25,7 +25,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.13}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -41,14 +41,14 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.13}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
         template_work: null
         template_work_area: null
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.2.7}
+    location: {name: tk-maya, type: app_store, version: v0.3.2}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Tank File Manager...}
     template_project: null
@@ -60,7 +60,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.13}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -78,7 +78,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.5}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.13}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
