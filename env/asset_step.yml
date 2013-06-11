@@ -70,16 +70,16 @@ engines:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.8}
-      tk-multi-loader-rigging:
+      tk-multi-loader-geo:
         dependency_mode: false
         hook_add_file_to_scene: default
         location: {name: tk-multi-loader, type: app_store, version: v0.2.6}
-        menu_name: Load Rig...
+        menu_name: Load Geometry...
         publish_filters: []
         sg_entity_types:
           Asset: []
         single_select: true
-        tank_types: [Maya Rig]
+        tank_types: [Maya Scene]
       tk-multi-loader-texture:
         dependency_mode: false
         hook_add_file_to_scene: default

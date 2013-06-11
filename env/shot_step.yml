@@ -68,6 +68,7 @@ engines:
         template_work_area: shot_work_area_max
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.2.6}
+  
   tk-maya:
     apps:
       tk-maya-breakdown:
@@ -85,7 +86,7 @@ engines:
         sg_entity_types:
           Asset: []
         single_select: true
-        tank_types: [Maya Model, Maya Rig]
+        tank_types: [Maya Model, Maya Rig, Maya Scene]
       tk-multi-loader-2:
         dependency_mode: false
         hook_add_file_to_scene: default
