@@ -60,7 +60,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.13}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.14}
         sg_entity_types: [Shot, Asset]
         template_publish: max_shot_publish
         template_publish_area: shot_publish_area_max
@@ -131,7 +131,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.13}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.14}
         sg_entity_types: [Shot, Asset]
         template_publish: maya_shot_publish
         template_publish_area: shot_publish_area_maya
@@ -240,7 +240,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.13}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.2.14}
         sg_entity_types: [Shot, Asset]
         template_publish: nuke_shot_publish
         template_publish_area: shot_publish_area_nuke
@@ -328,7 +328,7 @@ engines:
         template_snapshot: photoshop_shot_snapshot
         template_work: photoshop_shot_work
     debug_logging: true
-    location: {name: tk-photoshop, type: app_store, version: v0.0.14}
+    location: {name: tk-photoshop, type: app_store, version: v0.0.15}
   tk-shell:
     apps:
       tk-multi-about:
