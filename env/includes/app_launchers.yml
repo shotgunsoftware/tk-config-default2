@@ -12,8 +12,8 @@ includes:
     - ./paths.yml
     
     # now include overrides - these will be loaded if they are found
-    - sequences/{Sequence}/{Shot}/tank_overrides.yml
-    - assets/{sg_asset_type}/{Asset}/tank_overrides.yml
+    - sequences/{Sequence}/{Shot}/sgtk_overrides.yml
+    - assets/{sg_asset_type}/{Asset}/sgtk_overrides.yml
 
 ################################################################################################
 # app definitions for all the Sgtk app launchers.
