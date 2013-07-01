@@ -34,7 +34,7 @@ engines:
         template_work: null
         template_work_area: null
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.7}
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.8}
     
     
   tk-maya:
@@ -52,7 +52,7 @@ engines:
         template_work: null
         template_work_area: null
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.3}
+    location: {name: tk-maya, type: app_store, version: v0.3.4}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
@@ -74,7 +74,7 @@ engines:
         template_work: null
         template_work_area: null
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.11}
+    location: {name: tk-nuke, type: app_store, version: v0.2.12}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false

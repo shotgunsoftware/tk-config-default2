@@ -28,7 +28,7 @@ engines:
       tk-shotgun-launchfolder:
         deny_permissions: []
         deny_platforms: []
-        location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.4}
+        location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.5}
       tk-shotgun-launchmaya: '@launch_maya'
       tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
       tk-shotgun-launchnuke: '@launch_nuke'

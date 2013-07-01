@@ -69,7 +69,7 @@ engines:
         template_work: max_shot_work
         template_work_area: shot_work_area_max
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.7}
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.8}
     
     
   tk-maya:
@@ -77,7 +77,7 @@ engines:
       tk-maya-breakdown:
         hook_multi_update: default
         hook_scan_scene: default
-        location: {name: tk-maya-breakdown, type: app_store, version: v0.2.9}
+        location: {name: tk-maya-breakdown, type: app_store, version: v0.2.10}
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.9}
       tk-multi-loader-1:
@@ -141,7 +141,7 @@ engines:
         template_work: maya_shot_work
         template_work_area: shot_work_area_maya
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.3}
+    location: {name: tk-maya, type: app_store, version: v0.3.4}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -155,7 +155,7 @@ engines:
     apps:
       tk-motionbuilder-publish:
         hook_publish_file: default
-        location: {name: tk-motionbuilder-publish, type: app_store, version: v0.1.5}
+        location: {name: tk-motionbuilder-publish, type: app_store, version: v0.1.6}
         published_scene_tank_type: Motion Builder FBX
         template_publish: mobu_shot_publish
         template_snapshot: mobu_shot_snapshot
@@ -189,7 +189,7 @@ engines:
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
     debug_logging: false
-    location: {name: tk-motionbuilder, type: app_store, version: v0.2.7}
+    location: {name: tk-motionbuilder, type: app_store, version: v0.2.8}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
     - {app_instance: tk-motionbuilder-publish, name: Snapshot}
@@ -300,7 +300,7 @@ engines:
           settings: {}
           tank_type: Rendered Image
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.11}
+    location: {name: tk-nuke, type: app_store, version: v0.2.12}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}

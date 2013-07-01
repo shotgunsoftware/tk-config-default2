@@ -63,7 +63,7 @@ engines:
         template_work: max_asset_work
         template_work_area: asset_work_area_max
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.7}
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.8}
     
     
   tk-maya:
@@ -127,7 +127,7 @@ engines:
         template_work: maya_asset_work
         template_work_area: asset_work_area_maya
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.3}
+    location: {name: tk-maya, type: app_store, version: v0.3.4}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -222,7 +222,7 @@ engines:
           settings: {}
           tank_type: Rendered Image
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.11}
+    location: {name: tk-nuke, type: app_store, version: v0.2.12}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
