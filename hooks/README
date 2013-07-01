@@ -9,6 +9,7 @@ when an app is using a default hook, the value in the config is simply set to "d
 and the app will look for the hook in a hook folder inside of the app itself.
 
 If you want to customize a hook, just change the value from default to something else, for 
-example myhook.py. Tank will then look for a file named myhook.py in *this* folder and try
+example myhook.py. Sgtk will then look for a file named myhook.py in *this* folder and try
 to execute it instead of the default hook. You can of course use the default hooks as
-examples and starting points when you want to configure Tank to perform your desired behaviour. 
+examples and starting points when you want to configure the Shotgun Pipeline Toolkit to
+perform your desired behaviour. 

@@ -1,6 +1,6 @@
 ################################################################################################
 #
-# Tank Default VFX Configuration
+# Shotgun Pipeline Toolkit Default VFX Configuration
 #
 
 #################################################################################################
@@ -16,7 +16,7 @@ includes:
     - assets/{sg_asset_type}/{Asset}/tank_overrides.yml
 
 ################################################################################################
-# app definitions for all the tank app launchers.
+# app definitions for all the Sgtk app launchers.
 
 launch_3dsmax:
   engine: tk-3dsmax
@@ -25,13 +25,13 @@ launch_3dsmax:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.4}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.5}
   mac_args: ''
   mac_path: ''
   menu_name: Launch 3DSMax
   windows_args: ''
   windows_path: '@3dsmax_windows'
-
+  
 launch_maya:
   engine: tk-maya
   extra: {}
@@ -39,13 +39,13 @@ launch_maya:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: '@maya_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.4}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.5}
   mac_args: ''
   mac_path: '@maya_mac'
   menu_name: Launch Maya
   windows_args: ''
   windows_path: '@maya_windows'
-
+  
 launch_motionbuilder:
   engine: tk-motionbuilder
   extra: {}
@@ -53,7 +53,7 @@ launch_motionbuilder:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.4}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.5}
   mac_args: ''
   mac_path: ''
   menu_name: Launch MotionBuilder
@@ -67,7 +67,7 @@ launch_nuke:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: '@nuke_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.4}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.5}
   mac_args: ''
   mac_path: '@nuke_mac'
   menu_name: Launch Nuke
@@ -81,7 +81,7 @@ launch_photoshop:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.4}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.5}
   mac_args: ''
   mac_path: '@photoshop_mac'
   menu_name: Launch Photoshop
@@ -89,7 +89,7 @@ launch_photoshop:
   windows_path: '@photoshop_win'
   
 launch_screeningroom:
-  location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.4}
+  location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.5}
   rv_path_linux: '@rv_linux'
   rv_path_mac: '@rv_mac'
   rv_path_windows: '@rv_win'
@@ -97,7 +97,7 @@ launch_screeningroom:
 launch_shotgun_screeningroom:
   deny_permissions: []
   deny_platforms: []
-  location: {name: tk-shotgun-launchscreeningroom, type: app_store, version: v0.1.4}
+  location: {name: tk-shotgun-launchscreeningroom, type: app_store, version: v0.1.6}
   rv_path_linux: '@rv_linux'
   rv_path_mac: '@rv_mac'
   rv_path_windows: '@rv_win'

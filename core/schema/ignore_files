@@ -5,7 +5,7 @@
 # Sometimes, there may be files inside the configuration scaffold
 # that should not be copied across. It may be because the configuration
 # was created on a mac, or because the configuration is kept in source
-# control. This file makes it easy for tank to ignore such files.
+# control. This file makes it easy for Sgtk to ignore such files.
 #
 
 placeholder

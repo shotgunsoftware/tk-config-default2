@@ -3,22 +3,22 @@
 # ----------------------------------------------------
 
 #
-# This file is one of the central points in the Tank configuration and a counterpart to
-# the folder configuration structure.
+# This file is one of the central points in the Shotgun Pipeline Toolkit configuration and
+# a counterpart to the folder configuration structure.
 #
-# the folder structure underneath the project folder is used to create folders on disk - 
+# The folder structure underneath the project folder is used to create folders on disk - 
 # templates.yml (this file) refers to those folders. Therefore, the two files need to be 
-# in sync. This file contains an overview of all locations that are used in Tank.
+# in sync. This file contains an overview of all locations that are used by Sgtk.
 #
-# Whenever an app or an engine refers to a location on disk, it is using a entry defined in 
-# this file. For more information, see the Tank Documentation. 
+# Whenever an app or an engine refers to a location on disk, it is using an entry defined in 
+# this file. For more information, see the Shotgun Pipeline Toolkit Documentation. 
 
 
 
 #
 # The keys section contains the definitions for all the different keys that are being
-# used in Tank. A key is a magic token that is replaced by a value at runtime, for example
-# {Shot}. The section below tells Tank which data types and formats to expect for each key.
+# used by Sgtk. A key is a magic token that is replaced by a value at runtime, for example
+# {Shot}. The section below tells Sgtk which data types and formats to expect for each key.
 #
 keys:
     Sequence:
@@ -63,10 +63,10 @@ keys:
 
 #
 # The paths section contains all the the key locations where files are to be stored
-# by Tank Apps. Each path is made up of several keys (like {version} or {shot}) and
+# by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
 # these are defined in the keys section above.
 #
-# Tank apps use these paths as part of their configuration to define where on disk
+# Apps use these paths as part of their configuration to define where on disk
 # different files should go.
 #
 
@@ -249,7 +249,7 @@ paths:
     # define the location of a publish area
     asset_publish_area_nuke: '@asset_root/publish'
 
-    # outputs from the tank write node for assets
+    # outputs from the Shotgun Write Node for assets
     nuke_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
     nuke_asset_render_review_mov: '@asset_root/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.mov'
     nuke_asset_render_review_seq: '@asset_root/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr'
