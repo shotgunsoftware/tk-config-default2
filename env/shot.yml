@@ -3,11 +3,14 @@
 # Shotgun Pipeline Toolkit Default VFX Configuration
 #
 
-description: Apps and engines loaded when an asset or Shot is loaded. Since this configuration
-             does not have any configuration on a per shot or per asset basis, there are no
-             apps registered in this config. All the work is carried out on a step level.
-             On the shot level, the typical workflow is to open the work files app and 
-             pick a step and then start work.
+description: Apps and engines loaded when a Shot is loaded. Since std VFX config template
+             has a file system structure which is centered around pipeline steps, this 
+             environment is largely empty. Most of the work takes place on a level in 
+             the file system where both a shot and a pipeline step is available - e.g
+             Shot ABC, modeling, so all apps for loading, publishing etc. are located
+             in the shot_step environment. This environment mostly contains utility 
+             apps and the tank work files app, which lets you choose a task to work
+             on and load associated content into an application.             
 
 #################################################################################################
 # include common definitions for all the launchers that are used to start maya, nuke etc.
