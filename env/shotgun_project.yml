@@ -26,9 +26,8 @@ engines:
         deny_platforms: []
         location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.5}
       tk-shotgun-launchmaya: '@launch_maya'
-      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
       tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'
+      tk-shotgun-launchhiero: '@launch_hiero'
     debug_logging: false
     location: {name: tk-shotgun, type: app_store, version: v0.3.2}
     

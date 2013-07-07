@@ -74,10 +74,52 @@ paths:
 
 
     shot_root: sequences/{Sequence}/{Shot}/{Step}
+    asset_root: assets/{sg_asset_type}/{Asset}/{Step}
+    sequence_root: sequences/{Sequence}
+
+    ##########################################################################################
+    # Project level paths 
+    #
+
+    #
+    # Hiero
+    #
+
+    # The location of WIP files
+    hiero_project_work: 'editorial/work/{name}.v{version}.hrox'
+    hiero_project_work_area: 'editorial/work'
+
+    # The location of backups of WIP files
+    hiero_project_snapshot: 'editorial/work/snapshots/{name}.v{version}.{timestamp}.hrox'
+
+    # The location of published maya files
+    hiero_project_publish: 'editorial/publish/{name}.v{version}.hrox'
+    hiero_project_publish_area: 'editorial/publish'
+
+    
+    ##########################################################################################
+    # Sequence level paths 
+    #
+
+
+    #
+    # Hiero
+    #
+
+    # The location of WIP files
+    hiero_sequence_work: 'sequences/{Sequence}/editorial/work/{name}.v{version}.hrox'
+    hiero_sequence_work_area: 'sequences/{Sequence}/editorial/work'
+
+    # The location of backups of WIP files
+    hiero_sequence_snapshot: 'sequences/{Sequence}/editorial/work/snapshots/{name}.v{version}.{timestamp}.hrox'
+
+    # The location of published maya files
+    hiero_sequence_publish: 'sequences/{Sequence}/editorial/publish/{name}.v{version}.hrox'
+    hiero_sequence_publish_area: 'sequences/{Sequence}/editorial/publish'
 
 
     ##########################################################################################
-    # Shot pipeline 
+    # Shot level paths 
     #
 
     #
@@ -180,11 +222,21 @@ paths:
     # review output
     shot_quicktime_quick: '@shot_root/review/quickdaily/{Shot}_{name}_quick_{iteration}.mov'
 
+    #
+    # Hiero
+    #
+
+    # export of shot asset data from hiero
+    hiero_plate_path: '@shot_root/plates/{name}.mov'
+    hiero_script_path: '@shot_root/nuke/{Shot}.{version}.nk'
+    hiero_render_path: '@shot_root/review/{Shot}.{version}.{SEQ}.exr'
+
+
+
+
+
     ##########################################################################################
     # Asset pipeline 
-    
-    asset_root: assets/{sg_asset_type}/{Asset}/{Step}
-    
     
     #
     # Photoshop

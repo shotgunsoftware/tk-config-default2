@@ -17,8 +17,6 @@ include: ./includes/app_launchers.yml
 
 
 engines:
-
-
   tk-shotgun:
     apps:
       tk-shotgun-launch3dsmax: '@launch_3dsmax'
@@ -32,6 +30,5 @@ engines:
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
     location: {name: tk-shotgun, type: app_store, version: v0.3.2}
-    
-    
 frameworks: null
+

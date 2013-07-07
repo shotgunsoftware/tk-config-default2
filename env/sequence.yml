@@ -3,13 +3,19 @@
 # Shotgun Pipeline Toolkit Default VFX Configuration
 #
 
-description: Apps and Engines showing when an engine is launched with a project only context.
+description: Apps and engines loaded when a Sequence is loaded. Since std VFX config template
+             has a file system structure which is centered around pipeline steps, this 
+             environment is largely empty. Most of the work takes place on a level in 
+             the file system where both a shot and a pipeline step is available - e.g
+             Shot ABC, modeling, so all apps for loading, publishing etc. are located
+             in the shot_step environment. This environment mostly contains utility 
+             apps and the tank work files app, which lets you choose a task to work
+             on and load associated content into an application.             
 
 #################################################################################################
 # include common definitions for all the launchers that are used to start maya, nuke etc.
 
 include: ./includes/app_launchers.yml
-
 
 #################################################################################################
 # define all the items that should appear in this environment 
@@ -19,6 +25,7 @@ engines:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+      tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -30,14 +37,17 @@ engines:
         template_work_area: null
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.2.8}
+
   tk-hiero:
     apps:
       tk-hiero-openinshotgun:
         location: {name: tk-hiero-openinshotgun, type: app_store, version: v0.1.0}
-        
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+
 #      tk-hiero-export:
 #        location: {name: tk-hiero-export, type: app_store, version: v0.1.0}
-#        sg_entity_types: [Project]
+#        sg_entity_types: [Sequence]
 #        hook_populate_shot_ui: default
 #        hook_populate_shot_properties: default
 #        hook_process_shot: default
@@ -48,9 +58,8 @@ engines:
 #        template_script_path: hiero_script_path
 #        template_render_path: hiero_render_path
 #        default_task_template: Basic shot template
-        
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+
+
       tk-multi-publish:
         display_name: Publish Project
         hook_copy_file: default
@@ -66,29 +75,29 @@ engines:
         primary_description: Publish and version up the selected Hiero project
         primary_display_name: Hiero Publish
         primary_icon: icons/publish_hiero_main.png
-        primary_publish_template: hiero_project_publish
+        primary_publish_template: hiero_sequence_publish
         primary_scene_item_type: work_file
         primary_tank_type: Hiero Project
         secondary_outputs: []
-        template_work: hiero_project_work
+        template_work: hiero_sequence_work
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
         location: {name: tk-multi-snapshot, path: /Users/manne/git/tk-multi-snapshot,
           type: dev}
-        template_snapshot: hiero_project_snapshot
-        template_work: hiero_project_work
+        template_snapshot: hiero_sequence_snapshot
+        template_work: hiero_sequence_work
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
         location: {name: tk-multi-workfiles, path: /Users/manne/git/tk-multi-workfiles,
           type: dev, version: v0.3.0}
         sg_entity_types: []
-        template_publish: hiero_project_publish
-        template_publish_area: hiero_project_publish_area
-        template_work: hiero_project_work
-        template_work_area: hiero_project_work_area
+        template_publish: hiero_sequence_publish
+        template_publish_area: hiero_sequence_publish_area
+        template_work: hiero_sequence_work
+        template_work_area: hiero_sequence_work_area
     bin_context_menu:
     - {app_instance: tk-multi-workfiles, keep_in_menu: false, name: Shotgun Save As...,
       requires_selection: true}
@@ -113,6 +122,7 @@ engines:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+      tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -132,6 +142,7 @@ engines:
     apps:
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+      tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -146,17 +157,19 @@ engines:
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
-
-
-
+    
+    
   tk-shell:
     apps: 
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchmaya: '@launch_maya'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchhiero: '@launch_hiero'
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-shotgun-launch3dsmax: '@launch_3dsmax'
+      tk-shotgun-launchmaya: '@launch_maya'
+      tk-shotgun-launchnuke: '@launch_nuke'
+      tk-shotgun-launchhiero: '@launch_hiero'
+      
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.3.1}
+    
 
 
 frameworks:

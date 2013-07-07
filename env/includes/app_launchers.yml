@@ -87,7 +87,21 @@ launch_photoshop:
   menu_name: Launch Photoshop
   windows_args: ''
   windows_path: '@photoshop_win'
-  
+
+launch_hiero:
+  engine: tk-hiero
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  linux_args: ''
+  linux_path: '@hiero_linux'
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.5}
+  mac_args: ''
+  mac_path: '@hiero_mac'
+  menu_name: Launch Hiero
+  windows_args: ''
+  windows_path: '@hiero_win'
+
 launch_screeningroom:
   location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.5}
   rv_path_linux: '@rv_linux'
