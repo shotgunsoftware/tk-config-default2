@@ -102,22 +102,6 @@ paths:
     #
 
 
-    #
-    # Hiero
-    #
-
-    # The location of WIP files
-    hiero_sequence_work: 'sequences/{Sequence}/editorial/work/{name}.v{version}.hrox'
-    hiero_sequence_work_area: 'sequences/{Sequence}/editorial/work'
-
-    # The location of backups of WIP files
-    hiero_sequence_snapshot: 'sequences/{Sequence}/editorial/work/snapshots/{name}.v{version}.{timestamp}.hrox'
-
-    # The location of published maya files
-    hiero_sequence_publish: 'sequences/{Sequence}/editorial/publish/{name}.v{version}.hrox'
-    hiero_sequence_publish_area: 'sequences/{Sequence}/editorial/publish'
-
-
     ##########################################################################################
     # Shot level paths 
     #
