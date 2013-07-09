@@ -23,7 +23,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.2}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -37,13 +37,13 @@ engines:
       tk-hiero-openinshotgun:
         location: {name: tk-hiero-openinshotgun, type: app_store, version: v0.1.0}
         
-      tk-hiero-export:
-        location: {name: tk-hiero-export, type: dev, version: v0.1.0, path: /Users/manne/git/tk-hiero-export}
-        hook_translate_template: default        
-        template_plate_path: hiero_plate_path
-        template_nuke_script_path: hiero_nuke_script_path
-        template_render_path: hiero_render_path
-        default_task_template: Basic shot template
+#      tk-hiero-export:
+#        location: {name: tk-hiero-export, type: dev, version: v0.1.0, path: /Users/manne/git/tk-hiero-export}
+#        hook_translate_template: default        
+#        template_plate_path: hiero_plate_path
+#        template_nuke_script_path: hiero_nuke_script_path
+#        template_render_path: hiero_render_path
+#        default_task_template: Basic shot template
         
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.10}
@@ -79,8 +79,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, path: /Users/manne/git/tk-multi-workfiles,
-          type: dev, version: v0.3.0}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
         sg_entity_types: []
         template_publish: hiero_project_publish
         template_publish_area: hiero_project_publish_area
@@ -114,7 +113,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.2}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -133,7 +132,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.2}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null

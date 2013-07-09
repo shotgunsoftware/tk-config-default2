@@ -29,7 +29,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.2}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -45,7 +45,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.2}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
@@ -65,7 +65,7 @@ engines:
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.2}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
         sg_entity_types: [Shot, Asset]
         template_publish: null
         template_publish_area: null
