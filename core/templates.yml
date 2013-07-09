@@ -211,9 +211,9 @@ paths:
     #
 
     # export of shot asset data from hiero
-    hiero_plate_path: '@shot_root/plates/{name}.mov'
-    hiero_script_path: '@shot_root/nuke/{Shot}.{version}.nk'
-    hiero_render_path: '@shot_root/review/{Shot}.{version}.{SEQ}.exr'
+    hiero_plate_path:       'sequences/{Sequence}/{Shot}/editorial/plates/{Shot}_{name}_v{version}.mov'
+    hiero_nuke_script_path: 'sequences/{Sequence}/{Shot}/editorial/nuke/{Shot}_{name}_v{version}.nk'
+    hiero_render_path:      'sequences/{Sequence}/{Shot}/editorial/renders/{Shot}_{name}_v{version}.{SEQ}.exr'
 
 
 
