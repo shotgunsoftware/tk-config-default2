@@ -36,7 +36,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.2.10}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.0}
         primary_description: Publish and version up the current 3ds Max scene
         primary_display_name: 3ds Max Publish
         primary_icon: icons/publish_3dsmax_main.png
@@ -50,7 +50,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.22}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.0}
         template_snapshot: max_asset_snapshot
         template_work: max_asset_work
       tk-multi-workfiles:
@@ -98,7 +98,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.2.10}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.0}
         primary_description: Publish and version up the current Maya scene
         primary_display_name: Maya Publish
         primary_icon: icons/publish_maya_main.png
@@ -112,7 +112,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.22}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.0}
         template_snapshot: maya_asset_snapshot
         template_work: maya_asset_work
       tk-multi-workfiles:
@@ -157,7 +157,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.2.10}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.0}
         primary_description: Publishes and versions up the current Nuke script.
         primary_display_name: Nuke Publish
         primary_icon: icons/publish_nuke_main.png
@@ -175,7 +175,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.1.22}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.0}
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
       tk-multi-workfiles:
