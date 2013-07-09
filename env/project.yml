@@ -15,6 +15,7 @@ include: ./includes/app_launchers.yml
 # define all the items that should appear in this environment 
 
 engines:
+  
   tk-3dsmax:
     apps:
       tk-multi-about:
@@ -30,27 +31,23 @@ engines:
         template_work_area: null
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.2.8}
+  
   tk-hiero:
     apps:
       tk-hiero-openinshotgun:
         location: {name: tk-hiero-openinshotgun, type: app_store, version: v0.1.0}
         
-#      tk-hiero-export:
-#        location: {name: tk-hiero-export, type: app_store, version: v0.1.0}
-#        sg_entity_types: [Project]
-#        hook_populate_shot_ui: default
-#        hook_populate_shot_properties: default
-#        hook_process_shot: default
-#        hook_translate_template: default
-#        hook_publish_transcode: default
-#        hook_update_shot_item: default
-#        template_plate_path: hiero_plate_path
-#        template_script_path: hiero_script_path
-#        template_render_path: hiero_render_path
-#        default_task_template: Basic shot template
+      tk-hiero-export:
+        location: {name: tk-hiero-export, type: dev, version: v0.1.0, path: /Users/manne/git/tk-hiero-export}
+        hook_translate_template: default        
+        template_plate_path: hiero_plate_path
+        template_nuke_script_path: hiero_nuke_script_path
+        template_render_path: hiero_render_path
+        default_task_template: Basic shot template
         
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+      
       tk-multi-publish:
         display_name: Publish Project
         hook_copy_file: default
@@ -70,6 +67,7 @@ engines:
         primary_tank_type: Hiero Project
         secondary_outputs: []
         template_work: hiero_project_work
+      
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
@@ -77,6 +75,7 @@ engines:
         location: {name: tk-multi-snapshot, type: app_store, version: v0.2.0}
         template_snapshot: hiero_project_snapshot
         template_work: hiero_project_work
+      
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -87,6 +86,7 @@ engines:
         template_publish_area: hiero_project_publish_area
         template_work: hiero_project_work
         template_work_area: hiero_project_work_area
+    
     bin_context_menu:
     - {app_instance: tk-multi-workfiles, keep_in_menu: false, name: Shotgun Save As...,
       requires_selection: true}
