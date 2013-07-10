@@ -96,7 +96,7 @@ engines:
       requires_selection: true}
     - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
       requires_selection: true}
-    debug_logging: true
+    debug_logging: false
     location: {name: tk-hiero, type: app_store, version: v0.2.1}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
