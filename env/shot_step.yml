@@ -212,7 +212,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.0}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.2}
         primary_description: Publishes and versions up the current Nuke script.
         primary_display_name: Nuke Publish
         primary_icon: icons/publish_nuke_main.png
@@ -220,11 +220,22 @@ engines:
         primary_scene_item_type: work_file
         primary_tank_type: Nuke Script
         secondary_outputs:
-        - {description: Copies renders from work area to publish area, display_group: Shotgun Write Nodes,
-          display_name: Publish Renders, icon: icons/publish_nuke_writenode.png, name: render,
+        - {description: Copies renders from work area to publish area., 
+          display_group: Shotgun Write Nodes,
+          display_name: Publish Renders and send to Screening Room, icon: icons/publish_nuke_writenode.png, name: render,
           publish_template: null, required: false, scene_item_type: write_node, selected: true,
           tank_type: Rendered Image}
         template_work: nuke_shot_work
+      tk-multi-reviewsubmission:
+        location: {name: tk-multi-reviewsubmission, type: app_store, version: v0.1.3}
+        new_version_status: rev
+        movie_path_template: nuke_shot_render_movie
+        movie_width: 1024
+        movie_height: 540
+        version_number_padding: 3
+        store_on_disk: true
+        upload_to_shotgun: true        
+        slate_logo: icons/review_submit_logo.png
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
         location: {name: tk-multi-setframerange, type: app_store, version: v0.1.4}
@@ -258,16 +269,6 @@ engines:
         post_hooks: [snapshot_history_post_quickdaily]
         sg_version_name_template: nuke_quick_shot_version_name
         width: 1024
-      tk-nuke-review:
-        hook_copy_sequence_file: default
-        hook_create_content: default
-        hook_scan_scene: default
-        location: {name: tk-nuke-review, type: app_store, version: v0.2.6}
-        mappings:
-        - {input_template: nuke_shot_render_stereo, quicktime_output_template: nuke_shot_render_stereo_review_mov,
-          sequence_output_template: nuke_shot_render_stereo_review_seq, version_name_template: nuke_shot_version_name}
-        - {input_template: nuke_shot_render_mono_dpx, quicktime_output_template: nuke_shot_render_mono_dpx_review_mov,
-          sequence_output_template: nuke_shot_render_mono_dpx_review_seq, version_name_template: nuke_shot_version_name}
       tk-nuke-writenode:
         location: {name: tk-nuke-writenode, type: app_store, version: v0.1.5}
         template_script_work: nuke_shot_work
@@ -297,8 +298,8 @@ engines:
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
     - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
     - {app_instance: tk-multi-publish, name: Publish...}
-    - {app_instance: tk-nuke-review, name: Submit for Review...}
     use_sgtk_as_menu_name: false
+
   tk-photoshop:
     apps:
       tk-multi-about:

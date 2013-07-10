@@ -209,17 +209,13 @@ paths:
 
     # write node outputs
     nuke_shot_render_mono_dpx:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx'
-    nuke_shot_render_mono_dpx_review_mov: '@shot_root/review/{Shot}_{name}_{channel}_v{version}.{iteration}.mov'
-    nuke_shot_render_mono_dpx_review_seq: '@shot_root/review/{Shot}_{name}_{channel}_v{version}.{iteration}/{Shot}_{name}_{channel}_v{version}.{iteration}.{SEQ}.dpx'
     nuke_shot_render_pub_mono_dpx:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx'
-
     nuke_shot_render_stereo:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr'
-    nuke_shot_render_stereo_review_mov: '@shot_root/review/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{iteration}.mov'
-    nuke_shot_render_stereo_review_seq: '@shot_root/review/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr'
     nuke_shot_render_pub_stereo:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr'
 
     # review output
-    shot_quicktime_quick: '@shot_root/review/quickdaily/{Shot}_{name}_quick_{iteration}.mov'
+    shot_quicktime_quick:   '@shot_root/review/quickdaily/{Shot}_{name}_{iteration}.mov'
+    nuke_shot_render_movie: '@shot_root/review/{Shot}_{name}_{channel}_v{version}.mov'
 
     #
     # Hiero
@@ -302,12 +298,12 @@ paths:
 
     # outputs from the Shotgun Write Node for assets
     nuke_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
-    nuke_asset_render_review_mov: '@asset_root/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.mov'
     nuke_asset_render_review_seq: '@asset_root/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr'
     nuke_asset_render_pub: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
 
     # review output
-    asset_quicktime_quick: '@asset_root/review/quickdaily/{Asset}_{name}_quick_{iteration}.mov'
+    nuke_asset_render_movie: '@asset_root/review/{Asset}_{name}_{channel}_v{version}.mov'
+    asset_quicktime_quick:   '@asset_root/review/quickdaily/{Asset}_{name}_{iteration}.mov'
 
     # The location of WIP script files
     nuke_asset_work: '@asset_root/work/nuke/{name}.v{version}.nk'
