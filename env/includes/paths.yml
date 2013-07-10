@@ -50,7 +50,7 @@ photoshop_extras:
 # Hiero
 #
 hiero_mac: /Applications/Hiero1.7v2/Hiero1.7v2.app
-hiero_win: C:\Program Files\Hiero1.7v2\Hiero1.7v2.exe
+hiero_win: C:\Program Files\The Foundry\Hiero1.7v2\hiero.exe
 hiero_linux: /usr/local/Hiero1.7v2/bin/Hiero1.7v2
 
 #
