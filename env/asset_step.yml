@@ -180,7 +180,7 @@ engines:
         version_number_padding: 3
         slate_logo: icons/review_submit_logo.png
         store_on_disk: true
-        upload_to_shotgun: true
+        upload_to_shotgun: false
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-snapshot:
         hook_copy_file: default

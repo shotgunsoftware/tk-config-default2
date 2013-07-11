@@ -234,7 +234,7 @@ engines:
         movie_height: 540
         version_number_padding: 3
         store_on_disk: true
-        upload_to_shotgun: true        
+        upload_to_shotgun: false        
         slate_logo: icons/review_submit_logo.png
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
