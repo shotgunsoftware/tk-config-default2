@@ -170,6 +170,10 @@ engines:
           display_name: Publish Renders and send to Screening Room, icon: icons/publish_nuke_writenode.png, name: render,
           publish_template: null, required: false, scene_item_type: write_node, selected: true,
           tank_type: Rendered Image}        
+        - {description: Create quicktime and send to Screening Room, display_group: Shotgun Write Nodes,
+          display_name: Send to Screening Room, icon: icons/publish_nuke_review.png, name: quicktime,
+          publish_template: null, required: false, scene_item_type: write_node, selected: true,
+          tank_type: Quicktime}
         template_work: nuke_asset_work
       tk-multi-reviewsubmission:
         location: {name: tk-multi-reviewsubmission, type: app_store, version: v0.1.3}
@@ -180,7 +184,7 @@ engines:
         version_number_padding: 3
         slate_logo: icons/review_submit_logo.png
         store_on_disk: true
-        upload_to_shotgun: false
+        upload_to_shotgun: true
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-snapshot:
         hook_copy_file: default
@@ -227,8 +231,7 @@ engines:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
     - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
-    - {app_instance: tk-multi-publish, name: Publish...}
-    
+    - {app_instance: tk-multi-publish, name: Publish...}    
 
   tk-photoshop:
     apps:

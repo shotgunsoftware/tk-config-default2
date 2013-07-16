@@ -222,9 +222,13 @@ engines:
         secondary_outputs:
         - {description: Copies renders from work area to publish area., 
           display_group: Shotgun Write Nodes,
-          display_name: Publish Renders and send to Screening Room, icon: icons/publish_nuke_writenode.png, name: render,
+          display_name: Publish Renders, icon: icons/publish_nuke_writenode.png, name: render,
           publish_template: null, required: false, scene_item_type: write_node, selected: true,
           tank_type: Rendered Image}
+        - {description: Create quicktime and send to Screening Room, display_group: Shotgun Write Nodes,
+          display_name: Send to Screening Room, icon: icons/publish_nuke_review.png, name: quicktime,
+          publish_template: null, required: false, scene_item_type: write_node, selected: true,
+          tank_type: Quicktime}
         template_work: nuke_shot_work
       tk-multi-reviewsubmission:
         location: {name: tk-multi-reviewsubmission, type: app_store, version: v0.1.3}
@@ -234,7 +238,7 @@ engines:
         movie_height: 540
         version_number_padding: 3
         store_on_disk: true
-        upload_to_shotgun: false        
+        upload_to_shotgun: true
         slate_logo: icons/review_submit_logo.png
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
