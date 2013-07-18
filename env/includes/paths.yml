@@ -35,6 +35,13 @@ motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2013\bin\x64\mot
 
 
 #
+# Houdini
+#
+houdini_windows: 'C:\Program Files\Side Effects Software\Houdini 12.5.427\bin\houdini.exe'
+houdini_linux: '/opt/hfs12.5.427/bin/houdini'
+
+
+#
 # photoshop CS6
 #
 photoshop_mac: /Applications/Adobe Photoshop CS6/Adobe Photoshop CS6.app

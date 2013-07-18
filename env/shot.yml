@@ -77,11 +77,8 @@ engines:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
 
-
-    
-    
   tk-shell:
-    apps: 
+    apps:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-shotgun-launch3dsmax: '@launch_3dsmax'
       tk-shotgun-launchmaya: '@launch_maya'

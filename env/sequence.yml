@@ -77,8 +77,7 @@ engines:
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
-    
-    
+
   tk-shell:
     apps: 
       tk-multi-screeningroom: '@launch_screeningroom'

@@ -156,6 +156,26 @@ paths:
 
 
     #
+    # Houdini
+    #
+
+    # define the location of a work area
+    shot_work_area_houdini: '@shot_root/work/houdini'
+
+    # define the location of a publish area
+    shot_publish_area_houdini: '@shot_root/publish/houdini'
+
+    # The location of WIP files
+    houdini_shot_work: '@shot_root/work/houdini/{name}.v{version}.hip'
+
+    # The location of backups of WIP files
+    houdini_shot_snapshot: '@shot_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+
+    # The location of published houdini files
+    houdini_shot_publish: '@shot_root/publish/houdini/{name}.v{version}.hip'
+
+
+    #
     # 3dsmax
     #
 
@@ -266,6 +286,27 @@ paths:
 
     # The location of published maya files
     maya_asset_publish: '@asset_root/publish/maya/{name}.v{version}.ma'
+
+
+    #
+    # Houdini
+    #
+
+    # define the location of a work area
+    asset_work_area_houdini: '@asset_root/work/houdini'
+
+    # define the location of a publish area
+    asset_publish_area_houdini: '@asset_root/publish/houdini'
+
+    # The location of WIP files
+    houdini_asset_work: '@asset_root/work/houdini/{name}.v{version}.hip'
+
+    # The location of backups of WIP files
+    houdini_asset_snapshot: '@asset_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+
+    # The location of published houdini files
+    houdini_asset_publish: '@asset_root/publish/houdini/{name}.v{version}.hip'
+
 
     #
     # 3dsmax

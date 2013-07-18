@@ -25,6 +25,7 @@ engines:
       tk-shotgun-launchmaya: '@launch_maya'
       tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
       tk-shotgun-launchnuke: '@launch_nuke'
+      tk-shotgun-launchhoudini: '@launch_houdini'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
       tk-shotgun-launchpublish:
         deny_permissions: []
