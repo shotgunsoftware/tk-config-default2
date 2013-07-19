@@ -12,7 +12,7 @@ include: ./includes/app_launchers.yml
 
 
 #################################################################################################
-# define all the items that should appear in this environment 
+# define all the items that should appear in this environment
 
 engines:
   tk-3dsmax:
@@ -303,6 +303,58 @@ engines:
     - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
     - {app_instance: tk-multi-publish, name: Publish...}
     use_sgtk_as_menu_name: false
+  tk-houdini:
+    apps:
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+      tk-multi-publish:
+        display_name: Publish
+        hook_copy_file: default
+        hook_post_publish: default
+        hook_primary_pre_publish: default
+        hook_primary_publish: default
+        hook_scan_scene: default
+        hook_secondary_pre_publish: default
+        hook_secondary_publish: default
+        hook_thumbnail: default
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.2}
+        primary_description: Publish and version up the current scene
+        primary_display_name: Scene File Publish
+        primary_icon: icons/publish_houdini_main.png
+        primary_publish_template: houdini_shot_publish
+        primary_scene_item_type: work_file
+        primary_tank_type: Houdini Scene
+        secondary_outputs: []
+        template_work: houdini_shot_work
+      tk-multi-setframerange:
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.5}
+        sg_in_frame_field: sg_cut_in
+        sg_out_frame_field: sg_cut_out
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-snapshot:
+        hook_copy_file: default
+        hook_scene_operation: default
+        hook_thumbnail: default
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.0}
+        template_snapshot: houdini_shot_snapshot
+        template_work: houdini_shot_work
+      tk-multi-workfiles:
+        hook_copy_file: default
+        hook_scene_operation: default
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.3}
+        sg_entity_types: []
+        template_publish: houdini_shot_publish
+        template_publish_area: shot_publish_area_houdini
+        template_work: houdini_shot_work
+        template_work_area: shot_work_area_houdini
+    debug_logging: false
+    location: {name: tk-houdini, type: app_store, version: v0.1.5}
+    menu_favourites:
+    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-snapshot, name: Snapshot...}
+    - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
+    - {app_instance: tk-multi-publish, name: Publish...}
+
 
   tk-photoshop:
     apps:
@@ -344,6 +396,7 @@ engines:
       tk-shotgun-launchmaya: '@launch_maya'
       tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
       tk-shotgun-launchnuke: '@launch_nuke'
+      tk-shotgun-launchhoudini: '@launch_houdini'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.3.1}

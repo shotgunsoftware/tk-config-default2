@@ -145,7 +145,6 @@ engines:
     use_sgtk_as_menu_name: false
 
 
-
   tk-shell:
     apps: 
       tk-multi-launch3dsmax: '@launch_3dsmax'

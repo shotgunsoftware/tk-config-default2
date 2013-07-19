@@ -13,7 +13,7 @@ include: ./includes/app_launchers.yml
 
 
 #################################################################################################
-# define all the items that should appear in this environment 
+# define all the items that should appear in this environment
 
 engines:
 
@@ -34,6 +34,6 @@ engines:
       tk-shotgun-launchscreeningroom: '@launch_shotgun_screeningroom'
     debug_logging: false
     location: {name: tk-shotgun, type: app_store, version: v0.3.2}
-    
-    
+
+
 frameworks: null

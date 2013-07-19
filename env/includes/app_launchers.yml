@@ -31,7 +31,21 @@ launch_3dsmax:
   menu_name: Launch 3DSMax
   windows_args: ''
   windows_path: '@3dsmax_windows'
-  
+
+launch_houdini:
+  engine: tk-houdini
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  linux_args: ''
+  linux_path: '@houdini_linux'
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.7}
+  mac_args: ''
+  mac_path: ''
+  menu_name: Launch Houdini
+  windows_args: ''
+  windows_path: '@houdini_windows'
+
 launch_maya:
   engine: tk-maya
   extra: {}
