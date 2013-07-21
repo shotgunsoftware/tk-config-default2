@@ -133,13 +133,14 @@ paths:
 
     # The location of WIP files
     photoshop_shot_work: '@shot_root/work/photoshop/{name}.v{version}.psd'
+    shot_work_area_photoshop: '@shot_root/work/photoshop'
 
     # The location of backups of WIP files
     photoshop_shot_snapshot: '@shot_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
 
     # The location of published files
-    photoshop_shot_publish_psd: '@shot_root/publish/photoshop/psd/{name}.v{version}.psd'
-    photoshop_shot_publish_jpg: '@shot_root/publish/photoshop/jpg/{name}.v{version}.jpg'
+    shot_publish_area_photoshop: '@shot_root/publish/photoshop'
+    photoshop_shot_publish: '@shot_root/publish/photoshop/{name}.v{version}.psd'
 
     #
     # Maya
@@ -265,13 +266,14 @@ paths:
 
     # The location of WIP files
     photoshop_asset_work: '@asset_root/work/photoshop/{name}.v{version}.psd'
+    asset_work_area_photoshop: '@asset_root/work/photoshop'
 
     # The location of backups of WIP files
     photoshop_asset_snapshot: '@asset_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
 
     # The location of published files
-    photoshop_asset_publish_psd: '@asset_root/publish/photoshop/psd/{name}.v{version}.psd'
-    photoshop_asset_publish_jpg: '@asset_root/publish/photoshop/jpg/{name}.v{version}.jpg'
+    asset_publish_area_photoshop: '@asset_root/publish/photoshop'
+    photoshop_asset_publish: '@asset_root/publish/photoshop/{name}.v{version}.psd'
     
     
     #
