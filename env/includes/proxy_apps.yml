@@ -10,18 +10,17 @@ include: ./app_launchers.yml
 default_proxy_apps:
   tk-multi-about:
     location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+  tk-multi-screeningroom: '@launch_screeningroom'
   tk-multi-workfiles:
     hook_copy_file: default
     hook_scene_operation: default
-    location: {name: tk-multi-workfiles, type: app_store, version: v0.3.7}
+    location: {name: tk-multi-workfiles, type: app_store, version: v0.3.8}
     sg_entity_types: [Shot, Asset]
     template_publish: null
     template_publish_area: null
     template_work: null
     template_work_area: null
-  tk-multi-screeningroom: '@launch_screeningroom'
-
-
+    
 frameworks:
   tk-framework-widget_v0.1.12:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.12}

@@ -15,28 +15,25 @@ includes: [./includes/app_launchers.yml, ./includes/proxy_apps.yml]
 # define all the items that should appear in this environment 
 
 engines:
-  
+
   tk-3dsmax:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.8}
-  
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.9}
+    
   tk-hiero:
     apps:
+      tk-hiero-export:
+        default_task_template: Basic shot template
+        hook_translate_template: default
+        location: {name: tk-hiero-export, type: app_store, version: v0.1.1}
+        template_nuke_script_path: hiero_nuke_script_path
+        template_plate_path: hiero_plate_path
+        template_render_path: hiero_render_path
       tk-hiero-openinshotgun:
         location: {name: tk-hiero-openinshotgun, type: app_store, version: v0.1.0}
-        
-      tk-hiero-export:
-        location: {name: tk-hiero-export, type: app_store, version: v0.1.1}
-        hook_translate_template: default        
-        template_plate_path: hiero_plate_path
-        template_nuke_script_path: hiero_nuke_script_path
-        template_render_path: hiero_render_path
-        default_task_template: Basic shot template
-        
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.10}
-      
       tk-multi-publish:
         display_name: Publish Project
         hook_copy_file: default
@@ -56,25 +53,22 @@ engines:
         primary_tank_type: Hiero Project
         secondary_outputs: []
         template_work: hiero_project_work
-      
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.1}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.2}
         template_snapshot: hiero_project_snapshot
         template_work: hiero_project_work
-      
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.7}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.8}
         sg_entity_types: []
         template_publish: hiero_project_publish
         template_publish_area: hiero_project_publish_area
         template_work: hiero_project_work
         template_work_area: hiero_project_work_area
-    
     bin_context_menu:
     - {app_instance: tk-multi-workfiles, keep_in_menu: false, name: Shotgun Save As...,
       requires_selection: true}
@@ -95,48 +89,47 @@ engines:
     timeline_context_menu:
     - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
       requires_selection: true}
-  
+      
   tk-maya:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.4}
+    location: {name: tk-maya, type: app_store, version: v0.3.5}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
     use_sgtk_as_menu_name: false
-
+    
   tk-nuke:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.12}
+    location: {name: tk-nuke, type: app_store, version: v0.2.13}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
-
+    
   tk-photoshop:
     apps: '@default_proxy_apps'
     debug_logging: false
     location: {name: tk-photoshop, type: app_store, version: v0.1.1}
-
-
+    
   tk-shell:
     apps: 
       tk-multi-launch3dsmax: '@launch_3dsmax'
       tk-multi-launchmaya: '@launch_maya'
       tk-multi-launchnuke: '@launch_nuke'
       tk-multi-launchhiero: '@launch_hiero'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'
+      tk-shotgun-launchphotoshop: '@launch_photoshop'    
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.3.1}
+    location: {name: tk-shell, type: app_store, version: v0.3.3}
     
   tk-softimage:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.1.7}
+    location: {name: tk-softimage, type: app_store, version: v0.1.8}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
-    template_project: null    
-
+    template_project: null
+    
 frameworks:
   tk-framework-widget_v0.1.12:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.12}
@@ -144,4 +137,3 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.13}
   tk-framework-widget_v0.1.15:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.15}
-

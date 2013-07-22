@@ -15,8 +15,8 @@ include: ./includes/app_launchers.yml
 #################################################################################################
 # define all the items that should appear in this environment 
 
-
 engines:
+
   tk-shotgun:
     apps:
       tk-shotgun-launch3dsmax: '@launch_3dsmax'
@@ -24,13 +24,13 @@ engines:
         deny_permissions: []
         deny_platforms: []
         location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.5}
+      tk-shotgun-launchhoudini: '@launch_houdini'
       tk-shotgun-launchmaya: '@launch_maya'
       tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
       tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchhoudini: '@launch_houdini'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
       tk-shotgun-launchsoftimage: '@launch_softimage'
     debug_logging: false
-    location: {name: tk-shotgun, type: app_store, version: v0.3.2}
-frameworks: null
+    location: {name: tk-shotgun, type: app_store, version: v0.3.4}
 
+frameworks: null
