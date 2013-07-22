@@ -472,7 +472,7 @@ engines:
         template_work: softimage_shot_work
         template_work_area: shot_work_area_softimage
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.1.8}
+    location: {name: tk-softimage, type: app_store, version: v0.2.0}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
