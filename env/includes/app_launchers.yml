@@ -129,3 +129,19 @@ launch_shotgun_screeningroom:
   rv_path_linux: '@rv_linux'
   rv_path_mac: '@rv_mac'
   rv_path_windows: '@rv_win'
+  
+launch_softimage:
+  engine: tk-softimage
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  linux_args: ''
+  linux_path: '@softimage_linux'
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.6}
+  mac_args: ''
+  mac_path: ''
+  menu_name: Launch Softimage
+  windows_args: ''
+  windows_path: '@softimage_windows'
+  
+  

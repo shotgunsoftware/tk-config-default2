@@ -18,6 +18,8 @@ includes:
 #################################################################################################
 # define all the items that should appear in this environment 
 engines:
+
+
   tk-shotgun:
     apps:
       tk-shotgun-launch3dsmax: '@launch_3dsmax'
@@ -27,6 +29,7 @@ engines:
       tk-shotgun-launchnuke: '@launch_nuke'
       tk-shotgun-launchhoudini: '@launch_houdini'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
+      tk-shotgun-launchsoftimage: '@launch_softimage'      
       tk-shotgun-launchpublish:
         deny_permissions: []
         deny_platforms: []

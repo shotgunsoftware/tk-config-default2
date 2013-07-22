@@ -254,7 +254,24 @@ paths:
     hiero_render_path:      'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
 
 
+    #
+    # Softimage
+    #
 
+    # define the location of a work area
+    shot_work_area_softimage: '@shot_root/work/softimage'
+    
+    # define the location of a publish area
+    shot_publish_area_softimage: '@shot_root/publish/softimage'
+
+    # The location of WIP files
+    softimage_shot_work: '@shot_root/work/softimage/{name}.v{version}.scn'
+
+    # The location of backups of WIP files
+    softimage_shot_snapshot: '@shot_root/work/softimage/snapshots/{name}.v{version}.{timestamp}.scn'
+
+    # The location of published softimage files
+    softimage_shot_publish: '@shot_root/publish/softimage/{name}.v{version}.scn'
 
 
     ##########################################################################################
@@ -363,7 +380,24 @@ paths:
     # The location of published nuke script files
     nuke_asset_publish: '@asset_root/publish/nuke/{name}.v{version}.nk'
 
+    #
+    # Softimage
+    #
 
+    # define the location of a work area
+    asset_work_area_softimage: '@asset_root/work/softimage'
+    
+    # define the location of a publish area
+    asset_publish_area_softimage: '@asset_root/publish/softimage'
+
+    # The location of WIP files
+    softimage_asset_work: '@asset_root/work/softimage/{name}.v{version}.scn'
+
+    # The location of backups of WIP files
+    softimage_asset_snapshot: '@asset_root/work/softimage/snapshots/{name}.v{version}.{timestamp}.scn'
+
+    # The location of published softimage files
+    softimage_asset_publish: '@asset_root/publish/softimage/{name}.v{version}.scn'
 
 
 #

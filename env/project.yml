@@ -128,7 +128,14 @@ engines:
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.3.1}
-
+    
+  tk-softimage:
+    apps: '@default_proxy_apps'
+    debug_logging: false
+    location: {name: tk-softimage, type: app_store, version: v0.1.7}
+    menu_favourites:
+    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    template_project: null    
 
 frameworks:
   tk-framework-widget_v0.1.12:

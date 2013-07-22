@@ -29,6 +29,7 @@ engines:
       tk-shotgun-launchnuke: '@launch_nuke'
       tk-shotgun-launchhoudini: '@launch_houdini'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
+      tk-shotgun-launchsoftimage: '@launch_softimage'
     debug_logging: false
     location: {name: tk-shotgun, type: app_store, version: v0.3.2}
 frameworks: null

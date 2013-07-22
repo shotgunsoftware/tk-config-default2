@@ -282,12 +282,9 @@ engines:
 
   tk-photoshop:
     apps:
-
       tk-multi-about:
         location: {name: tk-multi-about, type: app_store, version: v0.1.10}
-
       tk-multi-screeningroom: '@launch_screeningroom'
-
       tk-multi-publish:
         display_name: Publish
         hook_copy_file: default
@@ -307,7 +304,6 @@ engines:
         primary_tank_type: Photoshop Image
         secondary_outputs: []
         template_work: photoshop_asset_work
-        
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
@@ -315,7 +311,6 @@ engines:
         location: {name: tk-multi-snapshot, type: app_store, version: v0.2.1}
         template_snapshot: photoshop_asset_snapshot
         template_work: photoshop_asset_work
-      
       tk-multi-workfiles:
         hook_copy_file: default
         hook_scene_operation: default
@@ -325,8 +320,6 @@ engines:
         template_publish_area: asset_publish_area_photoshop
         template_work: photoshop_asset_work
         template_work_area: asset_work_area_photoshop
-
-
     debug_logging: false
     location: {name: tk-photoshop, type: app_store, version: v0.1.1}
   tk-shell:
@@ -342,6 +335,60 @@ engines:
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.3.1}
+
+  tk-softimage:
+    apps:
+      tk-multi-about:
+        location: {name: tk-multi-about, type: app_store, version: v0.1.10}
+      tk-multi-setframerange:
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.4}
+        sg_in_frame_field: sg_cut_in
+        sg_out_frame_field: sg_cut_out        
+      tk-multi-snapshot:
+        hook_copy_file: default
+        hook_scene_operation: default
+        hook_thumbnail: default
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.0}
+        template_snapshot: softimage_asset_snapshot
+        template_work: softimage_asset_work
+      tk-multi-workfiles:
+        hook_copy_file: default
+        hook_scene_operation: default
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.4}
+        sg_entity_types: [Shot, Asset]
+        template_publish: softimage_asset_publish
+        template_publish_area: asset_publish_area_softimage
+        template_work: softimage_asset_work
+        template_work_area: asset_work_area_softimage
+      tk-multi-publish:
+        display_name: Publish
+        hook_copy_file: default
+        hook_post_publish: default
+        hook_primary_pre_publish: default
+        hook_primary_publish: default
+        hook_scan_scene: default
+        hook_secondary_pre_publish: default
+        hook_secondary_publish: default
+        hook_thumbnail: default
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.2}
+        primary_description: Publish and version up the current Softimage scene
+        primary_display_name: Softimage Publish
+        primary_icon: icons/publish_softimage_main.png
+        primary_publish_template: softimage_asset_publish
+        primary_scene_item_type: work_file
+        primary_tank_type: Softimage Scene
+        secondary_outputs: []
+        template_work: softimage_asset_work
+      tk-multi-screeningroom: '@launch_screeningroom'
+    debug_logging: false
+    location: {name: tk-softimage, type: app_store, version: v0.1.7}
+    menu_favourites:
+    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-snapshot, name: Snapshot...}
+    - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
+    - {app_instance: tk-multi-publish, name: Publish...}
+    template_project: asset_work_area_softimage    
+
 frameworks:
   tk-framework-widget_v0.1.1:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
