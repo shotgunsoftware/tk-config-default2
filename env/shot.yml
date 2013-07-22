@@ -50,6 +50,7 @@ engines:
     location: {name: tk-photoshop, type: app_store, version: v0.1.1}
     
   tk-shell:
+    apps:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-shotgun-launch3dsmax: '@launch_3dsmax'
       tk-shotgun-launchmaya: '@launch_maya'
