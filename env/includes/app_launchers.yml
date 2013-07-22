@@ -25,7 +25,7 @@ launch_3dsmax:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.6}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.11}
   mac_args: ''
   mac_path: ''
   menu_name: Launch 3DSMax
@@ -39,7 +39,7 @@ launch_houdini:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: '@houdini_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.7}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.11}
   mac_args: ''
   mac_path: ''
   menu_name: Launch Houdini
@@ -53,7 +53,7 @@ launch_maya:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: '@maya_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.6}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.11}
   mac_args: ''
   mac_path: '@maya_mac'
   menu_name: Launch Maya
@@ -67,7 +67,7 @@ launch_motionbuilder:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.6}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.11}
   mac_args: ''
   mac_path: ''
   menu_name: Launch MotionBuilder
@@ -81,7 +81,7 @@ launch_nuke:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: '@nuke_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.6}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.11}
   mac_args: ''
   mac_path: '@nuke_mac'
   menu_name: Launch Nuke
@@ -95,7 +95,7 @@ launch_photoshop:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.6}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.11}
   mac_args: ''
   mac_path: '@photoshop_mac'
   menu_name: Launch Photoshop
@@ -109,7 +109,7 @@ launch_hiero:
   hook_before_app_launch: default
   linux_args: ''
   linux_path: '@hiero_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.6}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.2.11}
   mac_args: ''
   mac_path: '@hiero_mac'
   menu_name: Launch Hiero
