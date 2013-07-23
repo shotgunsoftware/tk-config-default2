@@ -57,7 +57,7 @@ engines:
   tk-softimage:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.0}
+    location: {name: tk-softimage, type: app_store, version: v0.2.1}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
