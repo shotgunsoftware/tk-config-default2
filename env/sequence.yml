@@ -25,12 +25,12 @@ engines:
   tk-3dsmax:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.9}
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.10}
     
   tk-maya:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.5}
+    location: {name: tk-maya, type: app_store, version: v0.3.7}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
@@ -57,7 +57,7 @@ engines:
   tk-softimage:
     apps: '@default_proxy_apps'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.1}
+    location: {name: tk-softimage, type: app_store, version: v0.2.2}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
