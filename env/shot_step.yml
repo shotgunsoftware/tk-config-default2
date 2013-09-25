@@ -1,6 +1,12 @@
-################################################################################################
-#
-# Shotgun Pipeline Toolkit Default VFX Configuration
+# Copyright (c) 2013 Shotgun Software Inc.
+# 
+# CONFIDENTIAL AND PROPRIETARY
+# 
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your 
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
+# not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
 description: Apps and Engines related to Shot based work.
@@ -8,7 +14,7 @@ description: Apps and Engines related to Shot based work.
 #################################################################################################
 # include common definitions for all the launchers that are used to start maya, nuke etc.
 
-include: ./includes/app_launchers.yml
+includes: [./includes/app_launchers.yml, ./includes/common_apps.yml]
 
 
 #################################################################################################
@@ -18,8 +24,7 @@ engines:
 
   tk-3dsmax:
     apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about'
       tk-multi-loader-texture:
         button_name: Load Selected Texture
         dependency_mode: false
@@ -60,12 +65,13 @@ engines:
         template_snapshot: max_shot_snapshot
         template_work: max_shot_work
       tk-multi-workfiles:
+        launch_at_startup: false
         allow_task_creation: true
         file_extensions: []
         hook_copy_file: default
         hook_scene_operation: default
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.23}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -79,8 +85,7 @@ engines:
     
   tk-houdini:
     apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about'
       tk-multi-publish:
         display_name: Publish
         hook_copy_file: default
@@ -113,12 +118,13 @@ engines:
         template_snapshot: houdini_shot_snapshot
         template_work: houdini_shot_work
       tk-multi-workfiles:
+        launch_at_startup: false
         allow_task_creation: true
         file_extensions: []
         hook_copy_file: default
         hook_scene_operation: default
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.23}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -141,8 +147,7 @@ engines:
         hook_multi_update: default
         hook_scan_scene: default
         location: {name: tk-maya-breakdown, type: app_store, version: v0.2.13}
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about'
       tk-multi-loader-1:
         button_name: Create Reference
         dependency_mode: false
@@ -199,12 +204,13 @@ engines:
         template_snapshot: maya_shot_snapshot
         template_work: maya_shot_work
       tk-multi-workfiles:
+        launch_at_startup: true
         allow_task_creation: true
         file_extensions: []
         hook_copy_file: default
         hook_scene_operation: default
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.23}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -232,8 +238,7 @@ engines:
         template_publish: mobu_shot_publish
         template_snapshot: mobu_shot_snapshot
         template_work: mobu_shot_work
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about'
       tk-multi-loader:
         button_name: Load Selected Item
         dependency_mode: false
@@ -272,8 +277,7 @@ engines:
     
   tk-nuke:
     apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about' 
       tk-multi-loader:
         button_name: Load Selected Render
         dependency_mode: false
@@ -337,12 +341,13 @@ engines:
         template_snapshot: nuke_shot_snapshot
         template_work: nuke_shot_work
       tk-multi-workfiles:
+        launch_at_startup: false
         allow_task_creation: true
         file_extensions: []
         hook_copy_file: default
         hook_scene_operation: default
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.23}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -364,7 +369,7 @@ engines:
         sg_version_name_template: nuke_quick_shot_version_name
         width: 1024
       tk-nuke-writenode:
-        location: {name: tk-nuke-writenode, type: app_store, version: v0.1.7}
+        location: {name: tk-nuke-writenode, type: app_store, version: v0.1.8}
         template_script_work: nuke_shot_work
         write_nodes:
         - file_type: exr
@@ -396,8 +401,7 @@ engines:
     
   tk-photoshop:
     apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about'
       tk-multi-publish:
         display_name: Publish
         hook_copy_file: default
@@ -426,12 +430,13 @@ engines:
         template_snapshot: photoshop_shot_snapshot
         template_work: photoshop_shot_work
       tk-multi-workfiles:
+        launch_at_startup: false
         allow_task_creation: true
         file_extensions: []
         hook_copy_file: default
         hook_scene_operation: default
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.23}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -445,8 +450,7 @@ engines:
     
   tk-shell:
     apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-shotgun-launch3dsmax: '@launch_3dsmax'
       tk-shotgun-launchhoudini: '@launch_houdini'
@@ -459,8 +463,7 @@ engines:
     
   tk-softimage:
     apps:
-      tk-multi-about:
-        location: {name: tk-multi-about, type: app_store, version: v0.1.12}
+      tk-multi-about: '@about'
       tk-multi-publish:
         display_name: Publish
         hook_copy_file: default
@@ -493,12 +496,13 @@ engines:
         template_snapshot: softimage_shot_snapshot
         template_work: softimage_shot_work
       tk-multi-workfiles:
+        launch_at_startup: false
         allow_task_creation: true
         file_extensions: []
         hook_copy_file: default
         hook_scene_operation: default
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.23}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -517,23 +521,8 @@ engines:
     template_project: shot_work_area_softimage
     
 frameworks:
-  tk-framework-widget_v0.1.1:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.1}
-  tk-framework-widget_v0.1.10:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.10}
-  tk-framework-widget_v0.1.12:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.12}
-  tk-framework-widget_v0.1.13:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.13}
-  tk-framework-widget_v0.1.15:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.15}
-  tk-framework-widget_v0.1.16:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.16}
   tk-framework-widget_v0.1.18:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.18}
-  tk-framework-widget_v0.1.3:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.3}
-  tk-framework-widget_v0.1.4:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.4}
-  tk-framework-widget_v0.1.5:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.5}
+  tk-framework-widget_v0.1.16:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.16}
+    
