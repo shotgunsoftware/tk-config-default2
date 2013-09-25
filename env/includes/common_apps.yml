@@ -32,6 +32,23 @@ workfiles:
     template_work: null
     template_work_area: null
 
+workfiles-launch-at-startup:
+    allow_task_creation: true
+    file_extensions: []
+    hook_copy_file: default
+    hook_scene_operation: default
+    launch_change_work_area_at_startup: false
+    launch_at_startup: true
+    location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
+    saveas_default_name: scene
+    saveas_prefer_version_up: false
+    sg_entity_type_filters: {}
+    sg_entity_types: [Shot, Asset]
+    template_publish: null
+    template_publish_area: null
+    template_work: null
+    template_work_area: null
+
 frameworks:
   tk-framework-widget_v0.1.18:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.18}

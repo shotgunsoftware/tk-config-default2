@@ -44,7 +44,7 @@ engines:
     template_project: null
     use_sgtk_as_menu_name: false
     apps: 
-        tk-multi-workfiles: '@workfiles'
+        tk-multi-workfiles: '@workfiles-launch-at-startup'
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     
