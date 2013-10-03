@@ -133,6 +133,11 @@ engines:
         name: 'Alembic Output'
         work_file_template: houdini_asset_work
         work_cache_template: houdini_asset_work_alembic_cache
+      tk-houdini-mantranode:
+        location: {name: tk-houdini-mantranode, type: app_store, version: v0.1.0}
+        name: Mantra Output
+        work_file_template: houdini_asset_work
+        work_render_template: houdini_asset_render
     debug_logging: false
     location: {name: tk-houdini, type: app_store, version: v0.1.5}
     menu_favourites:

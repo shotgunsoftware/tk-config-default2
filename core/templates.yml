@@ -184,6 +184,10 @@ paths:
     # Alembic caches
     houdini_shot_work_alembic_cache: '@shot_root/work/houdini/cache/alembic/{name}/v{version}/{Shot}_{name}_v{version}_{node}.abc'
 
+    # Rendered images
+    houdini_shot_render: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
+
+
     #
     # 3dsmax
     #
@@ -336,6 +340,9 @@ paths:
 
     # Alembic caches
     houdini_asset_work_alembic_cache: '@asset_root/work/houdini/cache/alembic/{name}/v{version}/{Shot}_{name}_v{version}_{node}.abc'
+
+    # Rendered images
+    houdini_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
 
 
     #
