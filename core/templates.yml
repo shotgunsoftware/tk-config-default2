@@ -181,6 +181,8 @@ paths:
     # The location of published houdini files
     houdini_shot_publish: '@shot_root/publish/houdini/{name}.v{version}.hip'
 
+    # Alembic caches
+    houdini_shot_work_alembic_cache: '@shot_root/work/houdini/cache/alembic/{name}/v{version}/{Shot}_{name}_v{version}_{node}.abc'
 
     #
     # 3dsmax
@@ -331,6 +333,9 @@ paths:
 
     # The location of published houdini files
     houdini_asset_publish: '@asset_root/publish/houdini/{name}.v{version}.hip'
+
+    # Alembic caches
+    houdini_asset_work_alembic_cache: '@asset_root/work/houdini/cache/alembic/{name}/v{version}/{Shot}_{name}_v{version}_{node}.abc'
 
 
     #

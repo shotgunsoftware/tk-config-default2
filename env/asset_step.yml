@@ -128,6 +128,11 @@ engines:
         template_publish_area: asset_publish_area_houdini
         template_work: houdini_asset_work
         template_work_area: asset_work_area_houdini
+      tk-houdini-alembicnode:
+        location: {name: tk-houdini-alembicnode, type: app_store, version: v0.1.0}
+        name: 'Alembic Output'
+        work_file_template: houdini_asset_work
+        work_cache_template: houdini_asset_work_alembic_cache
     debug_logging: false
     location: {name: tk-houdini, type: app_store, version: v0.1.5}
     menu_favourites:
