@@ -37,6 +37,7 @@ engines:
         default_task_template: Basic shot template
         hook_get_shot: default
         hook_translate_template: default
+        hook_upload_thumbnail: default
         location: {name: tk-hiero-export, type: app_store, version: v0.1.4}
         template_nuke_script_path: hiero_nuke_script_path
         template_plate_path: hiero_plate_path
