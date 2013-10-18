@@ -63,6 +63,8 @@ keys:
         format_spec: "04"
     eye:
         type: str
+    node:
+        type: str
     
     # these are used by the hiero exporter and pipeline
     YYYY:

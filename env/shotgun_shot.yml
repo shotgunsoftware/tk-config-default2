@@ -34,6 +34,7 @@ engines:
         deny_permissions: []
         deny_platforms: []
         location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.5}
+      tk-shotgun-launchhoudini: '@launch_houdini'
       tk-shotgun-launchmaya: '@launch_maya'
       tk-shotgun-launchnuke: '@launch_nuke'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
