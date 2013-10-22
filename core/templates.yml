@@ -109,14 +109,14 @@ paths:
     #
 
     # The location of WIP files
-    hiero_project_work: 'editorial/work/{name}.v{version}.hrox'
+    hiero_project_work: 'editorial/work/{name}_v{version}.hrox'
     hiero_project_work_area: 'editorial/work'
 
     # The location of backups of WIP files
-    hiero_project_snapshot: 'editorial/work/snapshots/{name}.v{version}.{timestamp}.hrox'
+    hiero_project_snapshot: 'editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
 
     # The location of published maya files
-    hiero_project_publish: 'editorial/publish/{name}.v{version}.hrox'
+    hiero_project_publish: 'editorial/publish/{name}_v{version}.hrox'
     hiero_project_publish_area: 'editorial/publish'
 
     
