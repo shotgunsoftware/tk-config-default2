@@ -55,7 +55,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.11}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.15}
         primary_description: Publish and version up the selected Hiero project
         primary_display_name: Hiero Publish
         primary_icon: icons/publish_hiero_main.png
@@ -68,7 +68,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.10}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.11}
         template_snapshot: hiero_project_snapshot
         template_work: hiero_project_work
       tk-multi-workfiles:
@@ -78,7 +78,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.24}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.29}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -110,7 +110,7 @@ engines:
       
   tk-maya:
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.7}
+    location: {name: tk-maya, type: app_store, version: v0.3.9}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
@@ -122,7 +122,7 @@ engines:
     
   tk-nuke:
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.13}
+    location: {name: tk-nuke, type: app_store, version: v0.2.16}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
@@ -147,11 +147,11 @@ engines:
       tk-multi-launchhiero: '@launch_hiero'
       tk-shotgun-launchphotoshop: '@launch_photoshop'    
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.3.3}
+    location: {name: tk-shell, type: app_store, version: v0.3.4}
     
   tk-softimage:
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.2}
+    location: {name: tk-softimage, type: app_store, version: v0.2.6}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
@@ -162,8 +162,10 @@ engines:
     
     
 frameworks:
-  tk-framework-widget_v0.1.18:
-    location: {name: tk-framework-widget, type: app_store, version: v0.1.18}
   tk-framework-widget_v0.1.16:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.16}
+  tk-framework-widget_v0.1.18:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.18}
+  tk-framework-widget_v0.1.19:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.19}
     

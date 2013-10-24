@@ -38,7 +38,7 @@ engines:
     
   tk-maya:
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.7}
+    location: {name: tk-maya, type: app_store, version: v0.3.9}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
@@ -50,7 +50,7 @@ engines:
     
   tk-nuke:
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.13}
+    location: {name: tk-nuke, type: app_store, version: v0.2.16}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
@@ -75,11 +75,11 @@ engines:
       tk-shotgun-launchnuke: '@launch_nuke'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.3.3}
+    location: {name: tk-shell, type: app_store, version: v0.3.4}
     
   tk-softimage:
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.2}
+    location: {name: tk-softimage, type: app_store, version: v0.2.6}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null

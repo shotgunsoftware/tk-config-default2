@@ -36,6 +36,6 @@ engines:
       tk-shotgun-launchphotoshop: '@launch_photoshop'
       tk-shotgun-launchsoftimage: '@launch_softimage'
     debug_logging: false
-    location: {name: tk-shotgun, type: app_store, version: v0.3.4}
+    location: {name: tk-shotgun, type: app_store, version: v0.3.5}
 
 frameworks: null
