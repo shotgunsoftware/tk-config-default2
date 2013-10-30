@@ -43,6 +43,7 @@ engines:
         viewer_path_linux: '@rv_linux'
         viewer_path_mac: '@rv_mac'
         viewer_path_windows: '@rv_win'
+      tk-shotgun-launchsoftimage: '@launch_softimage'
     debug_logging: false
     location: {name: tk-shotgun, type: app_store, version: v0.3.5}
     
