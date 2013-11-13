@@ -61,7 +61,7 @@ engines:
     
   tk-photoshop:
     debug_logging: false
-    location: {name: tk-photoshop, type: app_store, version: v0.1.5}
+    location: {name: tk-photoshop, type: app_store, version: v0.1.6}
     apps: 
         tk-multi-workfiles: '@workfiles'
         tk-multi-about: '@about'

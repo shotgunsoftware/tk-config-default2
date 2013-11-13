@@ -371,7 +371,7 @@ engines:
         template_work: photoshop_asset_work
         template_work_area: asset_work_area_photoshop
     debug_logging: false
-    location: {name: tk-photoshop, type: app_store, version: v0.1.5}
+    location: {name: tk-photoshop, type: app_store, version: v0.1.6}
     
   tk-shell:
     apps:

@@ -446,7 +446,7 @@ engines:
         template_work: photoshop_shot_work
         template_work_area: shot_work_area_photoshop
     debug_logging: false
-    location: {name: tk-photoshop, type: app_store, version: v0.1.5}
+    location: {name: tk-photoshop, type: app_store, version: v0.1.6}
     
   tk-shell:
     apps:
