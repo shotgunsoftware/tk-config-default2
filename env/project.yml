@@ -38,10 +38,18 @@ engines:
         hook_get_shot: default
         hook_translate_template: default
         hook_upload_thumbnail: default
-        location: {name: tk-hiero-export, type: app_store, version: v0.1.8}
+        location: {name: tk-hiero-export, type: app_store, version: v0.1.9}
+        nuke_script_path_step: Comp
+        nuke_script_published_file_type: Nuke Script
+        nuke_script_toolkit_write_nodes:
+          - {name: "Stereo Exr, 32 bit", channel: stereoexr32}
+          - {name: "Stereo Exr, 16 bit", channel: stereoexr16}
+          - {name: "Mono Dpx", channel: monodpx}
+        plate_published_file_type: Hiero Plate
         template_nuke_script_path: hiero_nuke_script_path
         template_plate_path: hiero_plate_path
         template_render_path: hiero_render_path
+        template_version: hiero_version
       tk-hiero-openinshotgun:
         location: {name: tk-hiero-openinshotgun, type: app_store, version: v0.1.0}
       tk-multi-about: '@about'

@@ -258,7 +258,7 @@ paths:
 
     # export of shot asset data from hiero
     hiero_plate_path:       'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
-    hiero_nuke_script_path: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/nuke/{project}_{Shot}.nk'
+    hiero_nuke_script_path: 'sequences/{Sequence}/{Shot}/{Step}/work/nuke/hieroexport.v{version}.nk'
     hiero_render_path:      'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
 
 
@@ -430,3 +430,6 @@ strings:
 
     nuke_asset_version_name: "{Asset}_{name}_{channel}_v{version}.{iteration}"
     nuke_quick_asset_version_name: "{Asset}_{name}_quick_{iteration}"
+
+    # Defines how the {tk_version} token in Hiero gets formatted back to tk.
+    hiero_version: "{version}"
