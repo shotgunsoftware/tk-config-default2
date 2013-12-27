@@ -12,7 +12,7 @@ with your system. The main item to configure are the paths to the
 various executables, such as Maya and Nuke. These configuration 
 options can be found in your newly created project:
 
-- First navigate to the new project configuration root folder.
+- First navigate to the new project's configuration root folder.
 - Now navigate to the config/env/includes folder.
 - Open the paths.yml file and edit the settings.
 
