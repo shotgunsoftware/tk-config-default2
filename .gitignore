@@ -1,3 +1,5 @@
+core/pipeline_configuration.yml
+
 *.py[co]
 
 # Packages
