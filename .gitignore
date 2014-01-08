@@ -1,3 +1,9 @@
+# we want to specifically ignore changes made to the pipeline_configuration.yml file
+# since this is specific to each project that is being set up
+core/pipeline_configuration.yml
+
+
+# standard gitignore stuff
 *.py[co]
 
 # Packages
