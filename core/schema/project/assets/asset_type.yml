@@ -14,8 +14,10 @@ type: "shotgun_list_field"
 # the shotgun entity type to connect to
 entity_type: "Asset"
 
-# only make directories for field values which are used
-skip_unused: true 
+# switch this to true if you only want to make folders for
+# values that are being used. Note that evaluating this is 
+# expensive and may potentially slow down folder creation.
+skip_unused: false 
 
 # the shotgun field to use for the folder name
 field_name: "sg_asset_type"
