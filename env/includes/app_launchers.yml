@@ -126,7 +126,7 @@ launch_photoshop:
 launch_screeningroom:
   enable_rv_mode: true
   enable_web_mode: true
-  location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.8}
+  location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.9}
   rv_path_linux: '@rv_linux'
   rv_path_mac: '@rv_mac'
   rv_path_windows: '@rv_win'
@@ -134,7 +134,7 @@ launch_screeningroom:
 launch_shotgun_screeningroom:
   deny_permissions: []
   deny_platforms: []
-  location: {name: tk-shotgun-launchscreeningroom, type: app_store, version: v0.1.6}
+  location: {name: tk-shotgun-launchscreeningroom, type: app_store, version: v0.1.7}
   rv_path_linux: '@rv_linux'
   rv_path_mac: '@rv_mac'
   rv_path_windows: '@rv_win'
