@@ -47,7 +47,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.16}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
         primary_description: Publish and version up the current 3ds Max scene
         primary_display_name: 3ds Max Publish
         primary_icon: icons/publish_3dsmax_main.png
@@ -71,7 +71,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.35}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -97,7 +97,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.16}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
         primary_description: Publish and version up the current scene
         primary_display_name: Scene File Publish
         primary_icon: icons/publish_houdini_main.png
@@ -121,7 +121,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.35}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -176,7 +176,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.16}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
         primary_description: Publish and version up the current Maya scene
         primary_display_name: Maya Publish
         primary_icon: icons/publish_maya_main.png
@@ -200,7 +200,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: true
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.35}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -245,7 +245,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.16}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
         primary_description: Publishes and versions up the current Nuke script.
         primary_display_name: Nuke Publish
         primary_icon: icons/publish_nuke_main.png
@@ -288,7 +288,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.35}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -342,7 +342,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.16}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
         primary_description: Publish and version up the current Photoshop scene
         primary_display_name: Photoshop Publish
         primary_icon: icons/publish_photoshop_main.png
@@ -366,7 +366,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.35}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -405,7 +405,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.16}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
         primary_description: Publish and version up the current Softimage scene
         primary_display_name: Softimage Publish
         primary_icon: icons/publish_softimage_main.png
@@ -429,7 +429,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.35}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -439,7 +439,7 @@ engines:
         template_work: softimage_asset_work
         template_work_area: asset_work_area_softimage
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.7}
+    location: {name: tk-softimage, type: app_store, version: v0.2.8}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -448,6 +448,8 @@ engines:
     template_project: asset_work_area_softimage
     
 frameworks:
+  tk-framework-softimageqt_v1.0.0:
+    location: {name: tk-framework-softimageqt, type: app_store, version: v1.0.0}
   tk-framework-widget_v0.1.16:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.16}
   tk-framework-widget_v0.1.18:

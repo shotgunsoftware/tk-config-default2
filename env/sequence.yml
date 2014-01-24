@@ -75,11 +75,13 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.7}
+    location: {name: tk-softimage, type: app_store, version: v0.2.8}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
     
 frameworks:
+  tk-framework-softimageqt_v1.0.0:
+    location: {name: tk-framework-softimageqt, type: app_store, version: v1.0.0}
   tk-framework-widget_v0.1.18:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.18}
