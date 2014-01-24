@@ -62,7 +62,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.16}
+        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
         primary_description: Publish and version up the selected Hiero project
         primary_display_name: Hiero Publish
         primary_icon: icons/publish_hiero_main.png
@@ -85,7 +85,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.35}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -162,12 +162,14 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.7}
+    location: {name: tk-softimage, type: app_store, version: v0.2.8}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
     
 frameworks:
+  tk-framework-softimageqt_v1.0.0:
+    location: {name: tk-framework-softimageqt, type: app_store, version: v1.0.0}
   tk-framework-widget_v0.1.16:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.16}
   tk-framework-widget_v0.1.18:
