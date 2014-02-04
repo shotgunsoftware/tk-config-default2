@@ -131,7 +131,7 @@ engines:
         template_work: houdini_asset_work
         template_work_area: asset_work_area_houdini
     debug_logging: false
-    location: {name: tk-houdini, type: app_store, version: v0.1.9}
+    location: {name: tk-houdini, type: app_store, version: v0.1.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
