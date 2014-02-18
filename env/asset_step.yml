@@ -439,7 +439,7 @@ engines:
         template_work: softimage_asset_work
         template_work_area: asset_work_area_softimage
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.8}
+    location: {name: tk-softimage, type: app_store, version: v0.2.9}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -448,8 +448,8 @@ engines:
     template_project: asset_work_area_softimage
     
 frameworks:
-  tk-framework-softimageqt_v1.0.0:
-    location: {name: tk-framework-softimageqt, type: app_store, version: v1.0.0}
+  tk-framework-softimageqt_v1.0.1:
+    location: {name: tk-framework-softimageqt, type: app_store, version: v1.0.1}
   tk-framework-widget_v0.1.16:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.16}
   tk-framework-widget_v0.1.18:
