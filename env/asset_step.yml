@@ -218,6 +218,48 @@ engines:
     - {app_instance: tk-multi-publish, name: Publish...}
     template_project: asset_work_area_maya
     use_sgtk_as_menu_name: false
+
+  tk-motionbuilder:
+    apps:
+      tk-motionbuilder-publish:
+        hook_publish_file: default
+        location: {name: tk-motionbuilder-publish, type: app_store, version: v0.1.7}
+        published_scene_tank_type: Motion Builder FBX
+        template_publish: mobu_asset_publish
+        template_snapshot: mobu_asset_snapshot
+        template_work: mobu_asset_work
+      tk-multi-about: '@about'
+      tk-multi-loader:
+        button_name: Load Selected Item
+        dependency_mode: false
+        hook_add_file_to_scene: default
+        location: {name: tk-multi-loader, type: app_store, version: v0.2.21}
+        menu_name: Load FBX...
+        publish_filters: []
+        sg_entity_types:
+          Asset: []
+          Shot: []
+        single_select: true
+        tank_types: [Motion Builder FBX]
+        title_name: Add items to your Scene
+      tk-multi-recentfiles:
+        hook_add_file_to_scene: default
+        launch_at_startup: false
+        location: {name: tk-multi-recentfiles, type: app_store, version: v0.2.11}
+        template_work: mobu_asset_work
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-setcontext:
+        enable_create_tasks: true
+        launch_at_startup: false
+        location: {name: tk-multi-setcontext, type: app_store, version: v0.2.9}
+        sg_entity_types: [Shot, Asset]
+    debug_logging: false
+    location: {name: tk-motionbuilder, type: app_store, version: v0.2.11}
+    menu_favourites:
+    - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
+    - {app_instance: tk-motionbuilder-publish, name: Snapshot}
+    - {app_instance: tk-motionbuilder-publish, name: Publish...}
+    use_sgtk_as_menu_name: false
     
   tk-nuke:
     apps:
@@ -456,4 +498,5 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.18}
   tk-framework-widget_v0.1.19:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.19}
-    
+  tk-framework-widget_v0.1.22:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.22}

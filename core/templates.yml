@@ -366,6 +366,19 @@ paths:
     max_asset_publish: '@asset_root/publish/3dsmax/{name}.v{version}.max'
 
     #
+    # Motionbuilder
+    #
+
+    # The location of WIP files
+    mobu_asset_work: '@asset_root/work/mobu/{name}.v{version}.fbx'
+
+    # The location of backups of WIP files
+    mobu_asset_snapshot: '@asset_root/work/mobu/snapshots/{name}.v{version}.{timestamp}.fbx'
+
+    # The location of published Motionbuilder files
+    mobu_asset_publish: '@asset_root/publish/mobu/{name}.v{version}.fbx'
+
+    #
     # Nuke
     #
 

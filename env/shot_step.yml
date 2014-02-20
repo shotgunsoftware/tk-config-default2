@@ -236,7 +236,7 @@ engines:
     apps:
       tk-motionbuilder-publish:
         hook_publish_file: default
-        location: {name: tk-motionbuilder-publish, type: app_store, version: v0.1.6}
+        location: {name: tk-motionbuilder-publish, type: app_store, version: v0.1.7}
         published_scene_tank_type: Motion Builder FBX
         template_publish: mobu_shot_publish
         template_snapshot: mobu_shot_snapshot
