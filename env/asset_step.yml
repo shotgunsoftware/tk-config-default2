@@ -61,7 +61,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: max_asset_snapshot
         template_work: max_asset_work
       tk-multi-workfiles:
@@ -71,7 +71,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -111,7 +111,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: houdini_asset_snapshot
         template_work: houdini_asset_work
       tk-multi-workfiles:
@@ -121,7 +121,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -190,7 +190,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: maya_asset_snapshot
         template_work: maya_asset_work
       tk-multi-workfiles:
@@ -200,7 +200,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: true
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -218,7 +218,7 @@ engines:
     - {app_instance: tk-multi-publish, name: Publish...}
     template_project: asset_work_area_maya
     use_sgtk_as_menu_name: false
-
+    
   tk-motionbuilder:
     apps:
       tk-motionbuilder-publish:
@@ -254,7 +254,7 @@ engines:
         location: {name: tk-multi-setcontext, type: app_store, version: v0.2.9}
         sg_entity_types: [Shot, Asset]
     debug_logging: false
-    location: {name: tk-motionbuilder, type: app_store, version: v0.2.11}
+    location: {name: tk-motionbuilder, type: app_store, version: v0.2.13}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
     - {app_instance: tk-motionbuilder-publish, name: Snapshot}
@@ -320,7 +320,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
       tk-multi-workfiles:
@@ -330,7 +330,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -398,7 +398,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: photoshop_asset_snapshot
         template_work: photoshop_asset_work
       tk-multi-workfiles:
@@ -408,7 +408,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -461,7 +461,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: softimage_asset_snapshot
         template_work: softimage_asset_work
       tk-multi-workfiles:
@@ -471,7 +471,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -481,7 +481,7 @@ engines:
         template_work: softimage_asset_work
         template_work_area: asset_work_area_softimage
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.9}
+    location: {name: tk-softimage, type: app_store, version: v0.2.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}

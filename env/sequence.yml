@@ -75,7 +75,7 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.9}
+    location: {name: tk-softimage, type: app_store, version: v0.2.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null

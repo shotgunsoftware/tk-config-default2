@@ -37,7 +37,7 @@ engines:
         hook_get_shot: default
         hook_translate_template: default
         hook_upload_thumbnail: default
-        location: {name: tk-hiero-export, type: app_store, version: v0.1.11}
+        location: {name: tk-hiero-export, type: app_store, version: v0.1.13}
         nuke_script_published_file_type: Nuke Script
         nuke_script_toolkit_write_nodes:
         - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
@@ -75,7 +75,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: hiero_project_snapshot
         template_work: hiero_project_work
       tk-multi-workfiles:
@@ -85,7 +85,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -105,7 +105,7 @@ engines:
     - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
       requires_selection: true}
     debug_logging: false
-    location: {name: tk-hiero, type: app_store, version: v0.2.2}
+    location: {name: tk-hiero, type: app_store, version: v0.2.3}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     spreadsheet_context_menu:
@@ -162,7 +162,7 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.9}
+    location: {name: tk-softimage, type: app_store, version: v0.2.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null

@@ -62,7 +62,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: max_shot_snapshot
         template_work: max_shot_work
       tk-multi-workfiles:
@@ -72,7 +72,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -116,7 +116,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: houdini_shot_snapshot
         template_work: houdini_shot_work
       tk-multi-workfiles:
@@ -126,7 +126,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -203,7 +203,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: maya_shot_snapshot
         template_work: maya_shot_work
       tk-multi-workfiles:
@@ -213,7 +213,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: true
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -271,7 +271,7 @@ engines:
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
     debug_logging: false
-    location: {name: tk-motionbuilder, type: app_store, version: v0.2.11}
+    location: {name: tk-motionbuilder, type: app_store, version: v0.2.13}
     menu_favourites:
     - {app_instance: tk-multi-recentfiles, name: Recent Work Files...}
     - {app_instance: tk-motionbuilder-publish, name: Snapshot}
@@ -341,7 +341,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: nuke_shot_snapshot
         template_work: nuke_shot_work
       tk-multi-workfiles:
@@ -351,7 +351,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -431,7 +431,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: photoshop_shot_snapshot
         template_work: photoshop_shot_work
       tk-multi-workfiles:
@@ -441,7 +441,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -465,6 +465,7 @@ engines:
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
     location: {name: tk-shell, type: app_store, version: v0.3.5}
+    
   tk-softimage:
     apps:
       tk-multi-about: '@about'
@@ -497,7 +498,7 @@ engines:
         hook_copy_file: default
         hook_scene_operation: default
         hook_thumbnail: default
-        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.12}
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.2.13}
         template_snapshot: softimage_shot_snapshot
         template_work: softimage_shot_work
       tk-multi-workfiles:
@@ -507,7 +508,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.36}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -517,7 +518,7 @@ engines:
         template_work: softimage_shot_work
         template_work_area: shot_work_area_softimage
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.9}
+    location: {name: tk-softimage, type: app_store, version: v0.2.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
