@@ -54,10 +54,11 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.17}
+    location: {name: tk-nuke, type: app_store, version: v0.2.18}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
+    favourite_directories: []
     
   tk-photoshop:
     apps: 

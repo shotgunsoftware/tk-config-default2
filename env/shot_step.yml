@@ -395,13 +395,14 @@ engines:
           settings: {}
           tank_type: Rendered Image
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.17}
+    location: {name: tk-nuke, type: app_store, version: v0.2.18}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
     - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
     - {app_instance: tk-multi-publish, name: Publish...}
     use_sgtk_as_menu_name: false
+    favourite_directories: []
     
   tk-photoshop:
     apps:
