@@ -28,16 +28,20 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.13}
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.14}
     
   tk-hiero:
     apps:
       tk-hiero-export:
+        custom_template_fields: []
+        default_task_filter: '[[''step.Step.code'', ''is'', ''Comp'']]'
         default_task_template: Basic shot template
+        hook_get_quicktime_settings: default
         hook_get_shot: default
+        hook_resolve_custom_strings: default
         hook_translate_template: default
         hook_upload_thumbnail: default
-        location: {name: tk-hiero-export, type: app_store, version: v0.1.13}
+        location: {name: tk-hiero-export, type: app_store, version: v0.1.18}
         nuke_script_published_file_type: Nuke Script
         nuke_script_toolkit_write_nodes:
         - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
@@ -52,6 +56,7 @@ engines:
         location: {name: tk-hiero-openinshotgun, type: app_store, version: v0.1.0}
       tk-multi-about: '@about'
       tk-multi-publish:
+        allow_taskless_publishes: true
         display_name: Publish Project
         expand_single_items: false
         hook_copy_file: default
@@ -62,7 +67,7 @@ engines:
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
-        location: {name: tk-multi-publish, type: app_store, version: v0.3.17}
+        location: {name: tk-multi-publish, type: app_store, version: v0.4.2}
         primary_description: Publish and version up the selected Hiero project
         primary_display_name: Hiero Publish
         primary_icon: icons/publish_hiero_main.png
@@ -82,14 +87,17 @@ engines:
         allow_task_creation: true
         file_extensions: []
         hook_copy_file: default
+        hook_filter_publishes: default
+        hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.3.38}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.6}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
         sg_entity_types: []
+        task_extra_display_fields: []
         template_publish: hiero_project_publish
         template_publish_area: hiero_project_publish_area
         template_work: hiero_project_work
@@ -121,7 +129,7 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.9}
+    location: {name: tk-maya, type: app_store, version: v0.3.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
@@ -133,7 +141,8 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.18}
+    compatibility_dialog_min_version: 8
+    location: {name: tk-nuke, type: app_store, version: v0.2.20}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
@@ -145,7 +154,7 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-photoshop, type: app_store, version: v0.1.9}
+    location: {name: tk-photoshop, type: app_store, version: v0.1.11}
     
   tk-shell:
     apps: 

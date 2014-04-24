@@ -34,7 +34,7 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.13}
+    location: {name: tk-3dsmax, type: app_store, version: v0.2.14}
     
   tk-maya:
     apps: 
@@ -42,7 +42,7 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.9}
+    location: {name: tk-maya, type: app_store, version: v0.3.10}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
@@ -54,7 +54,8 @@ engines:
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-nuke, type: app_store, version: v0.2.18}
+    compatibility_dialog_min_version: 8
+    location: {name: tk-nuke, type: app_store, version: v0.2.20}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
@@ -68,7 +69,7 @@ engines:
       tk-shotgun-launchnuke: '@launch_nuke'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.3.5}
+    location: {name: tk-shell, type: app_store, version: v0.3.6}
     
   tk-softimage:
     apps: 
