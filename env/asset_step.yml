@@ -240,7 +240,7 @@ engines:
         template_work: maya_asset_work
         template_work_area: asset_work_area_maya
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.3.10}
+    location: {name: tk-maya, type: app_store, version: v0.4.0}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
