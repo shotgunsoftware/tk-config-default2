@@ -390,7 +390,6 @@ paths:
 
     # outputs from the Shotgun Write Node for assets
     nuke_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
-    nuke_asset_render_review_seq: '@asset_root/review/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{iteration}.{SEQ}.exr'
     nuke_asset_render_pub: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
 
     # review output
