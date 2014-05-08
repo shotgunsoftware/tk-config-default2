@@ -46,7 +46,7 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
-        location: {name: tk-multi-loader2, type: app_store, version: v1.0.5}
+        location: {name: tk-multi-loader2, type: app_store, version: v1.0.7}
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -187,7 +187,7 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
-        location: {name: tk-multi-loader2, type: app_store, version: v1.0.5}
+        location: {name: tk-multi-loader2, type: app_store, version: v1.0.7}
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -305,7 +305,7 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
-        location: {name: tk-multi-loader2, type: app_store, version: v1.0.5}
+        location: {name: tk-multi-loader2, type: app_store, version: v1.0.7}
         menu_name: Load
         publish_filters: []
         title_name: Loader
