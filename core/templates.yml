@@ -55,9 +55,12 @@ keys:
         type: int
     height:
         type: int
-    channel:
+        
+    # Represents the optional output name for frames written by the Shotgun Write Node
+    output:
         type: str
         filter_by: alphanumeric
+        
     SEQ:
         type: sequence
         format_spec: "04"
@@ -243,14 +246,14 @@ paths:
     nuke_shot_publish: '@shot_root/publish/nuke/{name}.v{version}.nk'
 
     # write node outputs
-    nuke_shot_render_mono_dpx:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx'
-    nuke_shot_render_pub_mono_dpx:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_v{version}.{SEQ}.dpx'
-    nuke_shot_render_stereo:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr'
-    nuke_shot_render_pub_stereo:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{channel}_{eye}_v{version}.{SEQ}.exr'
+    nuke_shot_render_mono_dpx:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{output}_v{version}.{SEQ}.dpx'
+    nuke_shot_render_pub_mono_dpx:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{output}_v{version}.{SEQ}.dpx'
+    nuke_shot_render_stereo:            '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{output}_{eye}_v{version}.{SEQ}.exr'
+    nuke_shot_render_pub_stereo:        '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{output}_{eye}_v{version}.{SEQ}.exr'
 
     # review output
     shot_quicktime_quick:   '@shot_root/review/quickdaily/{Shot}_{name}_{iteration}.mov'
-    nuke_shot_render_movie: '@shot_root/review/{Shot}_{name}_{channel}_v{version}.mov'
+    nuke_shot_render_movie: '@shot_root/review/{Shot}_{name}_{output}_v{version}.mov'
 
     #
     # Hiero
@@ -389,11 +392,11 @@ paths:
     asset_publish_area_nuke: '@asset_root/publish'
 
     # outputs from the Shotgun Write Node for assets
-    nuke_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
-    nuke_asset_render_pub: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{channel}_v{version}.{SEQ}.exr'
+    nuke_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{output}_v{version}.{SEQ}.exr'
+    nuke_asset_render_pub: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{output}_v{version}.{SEQ}.exr'
 
     # review output
-    nuke_asset_render_movie: '@asset_root/review/{Asset}_{name}_{channel}_v{version}.mov'
+    nuke_asset_render_movie: '@asset_root/review/{Asset}_{name}_{output}_v{version}.mov'
     asset_quicktime_quick:   '@asset_root/review/quickdaily/{Asset}_{name}_{iteration}.mov'
 
     # The location of WIP script files
@@ -436,10 +439,10 @@ strings:
 
     # when a review version in shotgun is created inside of nuke, this is the 
     # name that is being given to it (the code field)
-    nuke_shot_version_name: "{Shot}_{name}_{channel}_v{version}.{iteration}"
+    nuke_shot_version_name: "{Shot}_{name}_{output}_v{version}.{iteration}"
     nuke_quick_shot_version_name: "{Shot}_{name}_quick_{iteration}"
 
-    nuke_asset_version_name: "{Asset}_{name}_{channel}_v{version}.{iteration}"
+    nuke_asset_version_name: "{Asset}_{name}_{output}_v{version}.{iteration}"
     nuke_quick_asset_version_name: "{Asset}_{name}_quick_{iteration}"
 
     # Defines how the {tk_version} token in Hiero gets formatted back to tk.
