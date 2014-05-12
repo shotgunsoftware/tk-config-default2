@@ -89,7 +89,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.6}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.8}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -147,7 +147,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.6}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.8}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -158,7 +158,7 @@ engines:
         template_work: houdini_shot_work
         template_work_area: shot_work_area_houdini
     debug_logging: false
-    location: {name: tk-houdini, type: app_store, version: v0.1.10}
+    location: {name: tk-houdini, type: app_store, version: v0.1.11}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -242,7 +242,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: true
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.6}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.8}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -386,7 +386,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.6}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.8}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -409,7 +409,7 @@ engines:
         sg_version_name_template: nuke_quick_shot_version_name
         width: 1024
       tk-nuke-writenode:
-        location: {name: tk-nuke-writenode, type: app_store, version: v1.0.4}
+        location: {name: tk-nuke-writenode, type: app_store, version: v1.0.6}
         template_script_work: nuke_shot_work
         write_nodes:
         - file_type: exr
@@ -488,7 +488,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.6}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.8}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -512,7 +512,7 @@ engines:
       tk-shotgun-launchnuke: '@launch_nuke'
       tk-shotgun-launchphotoshop: '@launch_photoshop'
     debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.3.6}
+    location: {name: tk-shell, type: app_store, version: v0.3.8}
     
   tk-softimage:
     apps:
@@ -559,7 +559,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         launch_change_work_area_at_startup: false
-        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.6}
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.4.8}
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_filters: {}
@@ -580,7 +580,7 @@ engines:
     
 frameworks:
   tk-framework-shotgunutils_v1.x.x:
-    location: {name: tk-framework-shotgunutils, type: app_store, version: v1.0.6}
+    location: {name: tk-framework-shotgunutils, type: app_store, version: v1.0.8}
   tk-framework-softimageqt_v1.0.1:
     location: {name: tk-framework-softimageqt, type: app_store, version: v1.0.1}
   tk-framework-widget_v0.1.16:
@@ -591,4 +591,4 @@ frameworks:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.19}
   tk-framework-widget_v0.1.22:
     location: {name: tk-framework-widget, type: app_store, version: v0.1.22}
-
+    
