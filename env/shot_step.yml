@@ -73,6 +73,10 @@ engines:
         secondary_outputs: []
         template_work: max_shot_work
       tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-setframerange:
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.1}
+        sg_in_frame_field: sg_cut_in
+        sg_out_frame_field: sg_cut_out      
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
@@ -128,7 +132,7 @@ engines:
         template_work: houdini_shot_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
-        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.7}
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
       tk-multi-snapshot:
@@ -223,7 +227,7 @@ engines:
         template_work: maya_shot_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
-        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.7}
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
       tk-multi-snapshot:
@@ -285,7 +289,7 @@ engines:
         location: {name: tk-multi-setcontext, type: app_store, version: v0.2.9}
         sg_entity_types: [Shot, Asset]
       tk-multi-setframerange:
-        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.7}
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
     debug_logging: false
@@ -367,7 +371,7 @@ engines:
         version_number_padding: 3
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
-        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.7}
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
       tk-multi-snapshot:
@@ -540,7 +544,7 @@ engines:
         template_work: softimage_shot_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
-        location: {name: tk-multi-setframerange, type: app_store, version: v0.1.7}
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.1}
         sg_in_frame_field: sg_cut_in
         sg_out_frame_field: sg_cut_out
       tk-multi-snapshot:
