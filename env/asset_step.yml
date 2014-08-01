@@ -330,7 +330,7 @@ engines:
         primary_tank_type: Nuke Script
         secondary_outputs:
         - {description: Copies renders from work area to publish area., display_group: Shotgun
-            Write Nodes, display_name: Publish Renders and send to Screening Room,
+            Write Nodes, display_name: Publish Renders,
           icon: icons/publish_nuke_writenode.png, name: render, publish_template: null,
           required: false, scene_item_type: write_node, selected: true, tank_type: Rendered
             Image}
