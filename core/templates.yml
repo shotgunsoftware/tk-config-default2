@@ -217,6 +217,12 @@ paths:
     # Motionbuilder
     #
 
+    # define the location of a work area
+    shot_work_area_mobu: '@shot_root/work/mobu'
+
+    # define the location of a publish area
+    shot_publish_area_mobu: '@shot_root/publish/mobu'
+
     # The location of WIP files
     mobu_shot_work: '@shot_root/work/mobu/{name}.v{version}.fbx'
 
@@ -371,6 +377,12 @@ paths:
     #
     # Motionbuilder
     #
+
+    # define the location of a work area
+    asset_work_area_mobu: '@asset_root/work/mobu'
+
+    # define the location of a publish area
+    asset_publish_area_mobu: '@asset_root/publish/mobu'
 
     # The location of WIP files
     mobu_asset_work: '@asset_root/work/mobu/{name}.v{version}.fbx'

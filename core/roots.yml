@@ -13,7 +13,7 @@
 # to the correct location. 
 
 primary: 
-    description: "A location where the primary data is located."
+    description: "A top-level root folder where all production data lives.  Project folders will be created beneath this location."
     mac_path: 
     linux_path: 
     windows_path: 

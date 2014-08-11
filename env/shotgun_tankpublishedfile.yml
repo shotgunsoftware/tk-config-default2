@@ -27,13 +27,15 @@ engines:
 
   tk-shotgun:
     apps:
-      tk-shotgun-launch3dsmax: '@launch_3dsmax'
-      tk-shotgun-launchhiero: '@launch_hiero'
-      tk-shotgun-launchhoudini: '@launch_houdini'
-      tk-shotgun-launchmaya: '@launch_maya'
-      tk-shotgun-launchmotionbuilder: '@launch_motionbuilder'
-      tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'
+      tk-multi-launch3dsmax: '@launch_3dsmax'
+      tk-multi-launchhiero: '@launch_hiero'
+      tk-multi-launchhoudini: '@launch_houdini'
+      tk-multi-launchmaya: '@launch_maya'
+      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+      tk-multi-launchnuke: '@launch_nuke'
+      tk-multi-launchphotoshop: '@launch_photoshop'
+      tk-multi-launchsoftimage: '@launch_softimage'
+      tk-multi-screeningroom: '@launch_screeningroom'
       tk-shotgun-launchpublish:
         deny_permissions: []
         deny_platforms: []
@@ -43,8 +45,7 @@ engines:
         viewer_path_linux: '@rv_linux'
         viewer_path_mac: '@rv_mac'
         viewer_path_windows: '@rv_win'
-      tk-shotgun-launchsoftimage: '@launch_softimage'
     debug_logging: false
-    location: {name: tk-shotgun, type: app_store, version: v0.4.2}
+    location: {name: tk-shotgun, type: app_store, version: v0.5.0}
     
 frameworks: null

@@ -1,22 +1,21 @@
 # Copyright (c) 2013 Shotgun Software Inc.
-# 
+#
 # CONFIDENTIAL AND PROPRIETARY
-# 
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
 # Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your 
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when a Sequence is loaded. Since std VFX config template
-             has a file system structure which is centered around pipeline steps, this 
-             environment is largely empty. Most of the work takes place on a level in 
-             the file system where both a shot and a pipeline step is available - e.g
-             Shot ABC, modeling, so all apps for loading, publishing etc. are located
-             in the shot_step environment. This environment mostly contains utility 
-             apps and the tank work files app, which lets you choose a task to work
-             on and load associated content into an application.             
+description: Apps and engines loaded when a Sequence is loaded. Since std VFX config
+  template has a file system structure which is centered around pipeline steps, this
+  environment is largely empty. Most of the work takes place on a level in the file
+  system where both a shot and a pipeline step is available - e.g Shot ABC, modeling,
+  so all apps for loading, publishing etc. are located in the shot_step environment.
+  This environment mostly contains utility apps and the tank work files app, which
+  lets you choose a task to work on and load associated content into an application.
 
 #################################################################################################
 # include common definitions for all the launchers that are used to start maya, nuke etc.
@@ -24,65 +23,78 @@ description: Apps and engines loaded when a Sequence is loaded. Since std VFX co
 includes: [./includes/app_launchers.yml, ./includes/common_apps.yml]
 
 #################################################################################################
-# define all the items that should appear in this environment 
+# define all the items that should appear in this environment
 
 engines:
 
   tk-3dsmax:
-    apps: 
+    apps:
         tk-multi-workfiles: '@workfiles'
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-3dsmax, type: app_store, version: v0.2.14}
-    
+    location: {name: tk-3dsmax, type: app_store, version: v0.3.2}
+
   tk-maya:
-    apps: 
+    apps:
         tk-multi-workfiles: '@workfiles-launch-at-startup'
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     compatibility_dialog_min_version: 2015
     debug_logging: false
-    location: {name: tk-maya, type: app_store, version: v0.4.1}
+    location: {name: tk-maya, type: app_store, version: v0.4.2}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
     use_sgtk_as_menu_name: false
-    
-  tk-nuke:
-    apps: 
+
+  tk-motionbuilder:
+    apps:
         tk-multi-workfiles: '@workfiles'
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
-    compatibility_dialog_min_version: 8
+    debug_logging: false
+    location: {name: tk-motionbuilder, type: app_store, version: v0.3.0}
+    menu_favourites:
+    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    use_sgtk_as_menu_name: false
+
+  tk-nuke:
+    apps:
+        tk-multi-workfiles: '@workfiles'
+        tk-multi-about: '@about'
+        tk-multi-screeningroom: '@launch_screeningroom'
+    compatibility_dialog_min_version: 9
     debug_logging: false
     favourite_directories: []
-    location: {name: tk-nuke, type: app_store, version: v0.2.20}
+    location: {name: tk-nuke, type: app_store, version: v0.2.23}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    project_favourite_name: Shotgun Current Project
     use_sgtk_as_menu_name: false
-    
+
   tk-shell:
-    apps: 
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-shotgun-launch3dsmax: '@launch_3dsmax'
-      tk-shotgun-launchmaya: '@launch_maya'
-      tk-shotgun-launchnuke: '@launch_nuke'
-      tk-shotgun-launchphotoshop: '@launch_photoshop'
-    debug_logging: false
-    location: {name: tk-shell, type: app_store, version: v0.3.8}
-    
+    apps:
+        tk-multi-screeningroom: '@launch_screeningroom'
+        tk-multi-launch3dsmax: '@launch_3dsmax'
+        tk-multi-launchmaya: '@launch_maya'
+        tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+        tk-multi-launchnuke: '@launch_nuke'
+        tk-multi-launchphotoshop: '@launch_photoshop'
+        tk-multi-launchsoftimage: '@launch_softimage'
+    location: {name: tk-shell, type: app_store, version: v0.4.0}
+
   tk-softimage:
-    apps: 
+    apps:
         tk-multi-workfiles: '@workfiles'
         tk-multi-about: '@about'
         tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-softimage, type: app_store, version: v0.2.10}
+    location: {name: tk-softimage, type: app_store, version: v0.3.0}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project: null
-    
+
 frameworks:
   tk-framework-softimageqt_v1.0.1:
     location: {name: tk-framework-softimageqt, type: app_store, version: v1.0.1}

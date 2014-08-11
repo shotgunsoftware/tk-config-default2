@@ -16,23 +16,23 @@
 #
 # maya
 #
-maya_windows: 'C:\Program Files\Autodesk\Maya2012\bin\maya.exe'
-maya_mac: /Applications/Autodesk/maya2012/Maya.app
+maya_windows: 'C:\Program Files\Autodesk\Maya2014\bin\maya.exe'
+maya_mac: /Applications/Autodesk/maya2014/Maya.app
 maya_linux: maya
 
 
 #
 # nuke
 #
-nuke_mac: /Applications/Nuke6.3v8/Nuke6.3v8.app
-nuke_windows: 'C:\Program Files\Nuke6.3v8\Nuke6.3.exe'
-nuke_linux: Nuke6.3
+nuke_mac: /Applications/Nuke8.0v5/Nuke8.0v5.app
+nuke_windows: 'C:\Program Files\Nuke8.0v5\Nuke8.0.exe'
+nuke_linux: Nuke8.0
 
 
 #
 # motionbuilder
 #
-motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2013\bin\x64\motionbuilder.exe'
+motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2014\bin\x64\motionbuilder.exe'
 
 
 #
@@ -44,8 +44,8 @@ motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2013\bin\x64\mot
 #
 # Houdini
 #
-houdini_windows: 'C:\Program Files\Side Effects Software\Houdini 12.5.427\bin\houdini.exe'
-houdini_linux: '/opt/hfs12.5.427/bin/houdini'
+houdini_windows: 'C:\Program Files\Side Effects Software\Houdini 13.0.498\bin\houdini.exe'
+houdini_linux: '/opt/hfs13.0.498/bin/houdini'
 
 
 #
@@ -63,9 +63,9 @@ photoshop_extras:
 #
 # Hiero
 #
-hiero_mac: /Applications/Hiero1.7v2/Hiero1.7v2.app
-hiero_win: C:\Program Files\The Foundry\Hiero1.7v2\hiero.exe
-hiero_linux: /usr/local/Hiero1.7v2/bin/Hiero1.7v2
+hiero_mac: /Applications/Hiero1.8v2/Hiero1.8v2.app
+hiero_win: C:\Program Files\The Foundry\Hiero1.8v2\hiero.exe
+hiero_linux: /usr/local/Hiero1.8v2/bin/Hiero1.8v2
 
 #
 # Softimage

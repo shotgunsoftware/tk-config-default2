@@ -27,6 +27,5 @@ def create(sg, project_id, log, **kwargs):
     """
     Insert post-project code here
     """
-    # the default config does not require any post-session stuff.
     pass
 
