@@ -18,7 +18,7 @@
 #
 mari_linux: 'Mari2.6'
 mari_mac: /Applications/Mari2.6v2
-mari_windows: 'C:\Program Files\Mari2.6v2\Mari2.6.exe'
+mari_windows: 'C:\Program Files\Mari2.6v2\Bundle\bin\Mari2.6v2.exe'
 
 
 #
