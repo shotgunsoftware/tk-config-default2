@@ -1,11 +1,11 @@
 # Copyright (c) 2013 Shotgun Software Inc.
-#
+# 
 # CONFIDENTIAL AND PROPRIETARY
-#
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# 
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
 # Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# By accessing, using, copying or modifying this work you indicate your 
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
@@ -77,7 +77,7 @@ engines:
       tk-multi-setframerange:
         location: {name: tk-multi-setframerange, type: app_store, version: v0.2.2}
         sg_in_frame_field: sg_cut_in
-        sg_out_frame_field: sg_cut_out
+        sg_out_frame_field: sg_cut_out      
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
@@ -583,8 +583,8 @@ engines:
     
   tk-shell:
     apps:
-        tk-multi-about: '@about'
-        tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-about: '@about'
+      tk-multi-screeningroom: '@launch_screeningroom'
         tk-multi-launch3dsmax: '@launch_3dsmax'
         tk-multi-launchhoudini: '@launch_houdini'
         tk-multi-launchmaya: '@launch_maya'
