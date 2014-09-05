@@ -585,13 +585,13 @@ engines:
     apps:
       tk-multi-about: '@about'
       tk-multi-screeningroom: '@launch_screeningroom'
-        tk-multi-launch3dsmax: '@launch_3dsmax'
-        tk-multi-launchhoudini: '@launch_houdini'
-        tk-multi-launchmaya: '@launch_maya'
-        tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-        tk-multi-launchnuke: '@launch_nuke'
-        tk-multi-launchphotoshop: '@launch_photoshop'
-        tk-multi-launchphotoshop: '@launch_softimage'
+      tk-multi-launch3dsmax: '@launch_3dsmax'
+      tk-multi-launchhoudini: '@launch_houdini'
+      tk-multi-launchmaya: '@launch_maya'
+      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+      tk-multi-launchnuke: '@launch_nuke'
+      tk-multi-launchphotoshop: '@launch_photoshop'
+      tk-multi-launchphotoshop: '@launch_softimage'
     location: {name: tk-shell, type: app_store, version: v0.4.0}
     
   tk-softimage:

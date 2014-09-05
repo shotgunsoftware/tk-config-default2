@@ -24,23 +24,23 @@ engines:
 
   tk-3dsmax:
     apps:
-        tk-multi-about: '@about'
-        tk-multi-screeningroom: '@launch_screeningroom'
-        tk-multi-workfiles: '@workfiles'
+      tk-multi-about: '@about'
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.3.2}
     
   tk-desktop:
     apps:
-        tk-multi-launch3dsmax: '@launch_3dsmax'
-        tk-multi-launchhiero: '@launch_hiero'
-        tk-multi-launchmari: '@launch_mari'
-        tk-multi-launchmaya: '@launch_maya'
-        tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-        tk-multi-launchnuke: '@launch_nuke'
-        tk-multi-launchphotoshop: '@launch_photoshop'
-        tk-multi-launchsoftimage: '@launch_softimage'
-        tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-launch3dsmax: '@launch_3dsmax'
+      tk-multi-launchhiero: '@launch_hiero'
+      tk-multi-launchmari: '@launch_mari'
+      tk-multi-launchmaya: '@launch_maya'
+      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+      tk-multi-launchnuke: '@launch_nuke'
+      tk-multi-launchphotoshop: '@launch_photoshop'
+      tk-multi-launchsoftimage: '@launch_softimage'
+      tk-multi-screeningroom: '@launch_screeningroom'
     collapse_rules:
     - {button_label: $app, match: Launch $app, menu_label: None}
     debug_logging: false
@@ -175,9 +175,9 @@ engines:
     
   tk-maya:
     apps:
-        tk-multi-about: '@about'
-        tk-multi-screeningroom: '@launch_screeningroom'
-        tk-multi-workfiles: '@workfiles-launch-at-startup'
+      tk-multi-about: '@about'
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-workfiles: '@workfiles-launch-at-startup'
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location: {name: tk-maya, type: app_store, version: v0.4.2}
@@ -188,9 +188,9 @@ engines:
     
   tk-motionbuilder:
     apps:
-        tk-multi-about: '@about'
-        tk-multi-screeningroom: '@launch_screeningroom'
-        tk-multi-workfiles: '@workfiles'
+      tk-multi-about: '@about'
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location: {name: tk-motionbuilder, type: app_store, version: v0.3.0}
     menu_favourites:
@@ -200,9 +200,9 @@ engines:
     
   tk-nuke:
     apps:
-        tk-multi-about: '@about'
-        tk-multi-screeningroom: '@launch_screeningroom'
-        tk-multi-workfiles: '@workfiles'
+      tk-multi-about: '@about'
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-workfiles: '@workfiles'
     compatibility_dialog_min_version: 9
     debug_logging: false
     favourite_directories: []
@@ -214,30 +214,30 @@ engines:
     
   tk-photoshop:
     apps:
-        tk-multi-about: '@about'
-        tk-multi-screeningroom: '@launch_screeningroom'
-        tk-multi-workfiles: '@workfiles'
+      tk-multi-about: '@about'
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location: {name: tk-photoshop, type: app_store, version: v0.2.0}
     
   tk-shell:
     apps:
-        tk-multi-launch3dsmax: '@launch_3dsmax'
-        tk-multi-launchhiero: '@launch_hiero'
-        tk-multi-launchmari: '@launch_mari'
-        tk-multi-launchmaya: '@launch_maya'
-        tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-        tk-multi-launchnuke: '@launch_nuke'
-        tk-multi-launchphotoshop: '@launch_photoshop'
-        tk-multi-launchsoftimage: '@launch_softimage'
-        tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-launch3dsmax: '@launch_3dsmax'
+      tk-multi-launchhiero: '@launch_hiero'
+      tk-multi-launchmari: '@launch_mari'
+      tk-multi-launchmaya: '@launch_maya'
+      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+      tk-multi-launchnuke: '@launch_nuke'
+      tk-multi-launchphotoshop: '@launch_photoshop'
+      tk-multi-launchsoftimage: '@launch_softimage'
+      tk-multi-screeningroom: '@launch_screeningroom'
     location: {name: tk-shell, type: app_store, version: v0.4.0}
     
   tk-softimage:
     apps:
-        tk-multi-about: '@about'
-        tk-multi-screeningroom: '@launch_screeningroom'
-        tk-multi-workfiles: '@workfiles'
+      tk-multi-about: '@about'
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location: {name: tk-softimage, type: app_store, version: v0.3.0}
     menu_favourites:
