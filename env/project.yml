@@ -75,6 +75,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         hook_get_extra_publish_data: default
+        hook_pre_export: default
         location: {name: tk-hiero-export, type: app_store, version: v0.1.22}
         nuke_script_published_file_type: Nuke Script
         nuke_script_toolkit_write_nodes:
