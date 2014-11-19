@@ -34,7 +34,17 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.3.2}
-    
+
+  tk-3dsmaxplus:
+    apps: 
+      tk-multi-about: '@about'
+      tk-multi-workfiles: '@workfiles'
+      tk-multi-screeningroom: '@launch_screeningroom'
+    compatibility_dialog_min_version: 2016
+    debug_logging: false
+    menu_favourites: []
+    location: {name: tk-3dsmaxplus, type: app_store, version: v0.1.5}
+
   tk-mari:
     apps:
       tk-multi-about: '@about'

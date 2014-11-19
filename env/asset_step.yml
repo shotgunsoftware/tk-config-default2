@@ -104,6 +104,98 @@ engines:
     debug_logging: false
     location: {name: tk-3dsmax, type: app_store, version: v0.3.2}
     
+  tk-3dsmaxplus:
+    apps:
+      tk-multi-about: '@about'
+      tk-multi-loader2:
+        action_mappings:
+          3dsmax Scene: [import, reference]
+        actions_hook: '{self}/tk-3dsmaxplus_actions.py'
+        download_thumbnails: true
+        entities:
+        - caption: Assets
+          entity_type: Asset
+          filters:
+          - [project, is, '{context.project}']
+          hierarchy: [sg_asset_type, code]
+          publish_filters: []
+        - caption: Asset
+          entity_type: Asset
+          filters:
+          - [project, is, '{context.project}']
+          hierarchy: [sg_sequence, code]
+          publish_filters: []
+        - caption: My Tasks
+          entity_type: Task
+          filters:
+          - [task_assignees, is, '{context.user}']
+          - [project, is, '{context.project}']
+          hierarchy: [entity, content]
+          publish_filters: []
+        filter_publishes_hook: '{self}/filter_publishes.py'
+        location: {name: tk-multi-loader2, type: app_store, version: v1.4.0}
+        menu_name: Load
+        publish_filters: []
+        title_name: Loader
+      tk-multi-publish:
+        allow_taskless_publishes: true
+        display_name: Publish
+        expand_single_items: false
+        hook_copy_file: default
+        hook_post_publish: default
+        hook_primary_pre_publish: default
+        hook_primary_publish: default
+        hook_scan_scene: default
+        hook_secondary_pre_publish: default
+        hook_secondary_publish: default
+        hook_thumbnail: default
+        location: {name: tk-multi-publish, type: app_store, version: v0.6.5}
+        primary_description: Publish and version up the current 3ds Max scene
+        primary_display_name: 3ds Max Publish
+        primary_icon: icons/publish_3dsmax_main.png
+        primary_publish_template: max_asset_publish
+        primary_scene_item_type: work_file
+        primary_tank_type: 3dsmax Scene
+        secondary_outputs: []
+        template_work: max_asset_work
+      tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-setframerange:
+        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.3}
+        sg_in_frame_field: sg_cut_in
+        sg_out_frame_field: sg_cut_out
+      tk-multi-snapshot:
+        hook_copy_file: default
+        hook_scene_operation: default
+        hook_thumbnail: default
+        location: {name: tk-multi-snapshot, type: app_store, version: v0.4.1}
+        template_snapshot: max_asset_snapshot
+        template_work: max_asset_work
+      tk-multi-workfiles:
+        allow_task_creation: true
+        file_extensions: []
+        hook_copy_file: default
+        hook_filter_publishes: default
+        hook_filter_work_files: default
+        hook_scene_operation: default
+        launch_at_startup: false
+        launch_change_work_area_at_startup: false
+        location: {name: tk-multi-workfiles, type: app_store, version: v0.6.3}
+        saveas_default_name: scene
+        saveas_prefer_version_up: false
+        sg_entity_type_extra_display_fields: {}
+        sg_entity_type_filters: {}
+        sg_entity_types: [Shot, Asset]
+        sg_task_filters: []
+        task_extra_display_fields: []
+        template_publish: max_asset_publish
+        template_publish_area: asset_publish_area_max
+        template_work: max_asset_work
+        template_work_area: asset_work_area_max
+    compatibility_dialog_min_version: 2016
+    debug_logging: false
+    menu_favourites: []
+    location: {name: tk-3dsmaxplus, type: app_store, version: v0.1.5}
+
   tk-houdini:
     apps:
       tk-multi-about: '@about'

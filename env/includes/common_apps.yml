@@ -24,7 +24,7 @@ workfiles:
   hook_scene_operation: default
   launch_at_startup: false
   launch_change_work_area_at_startup: false
-  location: {name: tk-multi-workfiles, type: app_store, version: v0.6.0}
+  location: {name: tk-multi-workfiles, type: app_store, version: v0.6.3}
   saveas_default_name: scene
   saveas_prefer_version_up: false
   sg_entity_type_extra_display_fields: {}
@@ -45,7 +45,7 @@ workfiles-launch-at-startup:
   hook_scene_operation: default
   launch_at_startup: true
   launch_change_work_area_at_startup: false
-  location: {name: tk-multi-workfiles, type: app_store, version: v0.6.0}
+  location: {name: tk-multi-workfiles, type: app_store, version: v0.6.3}
   saveas_default_name: scene
   saveas_prefer_version_up: false
   sg_entity_type_extra_display_fields: {}
