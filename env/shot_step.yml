@@ -266,10 +266,9 @@ engines:
     
   tk-maya:
     apps:
-      tk-maya-breakdown:
-        hook_multi_update: default
-        hook_scan_scene: default
-        location: {name: tk-maya-breakdown, type: app_store, version: v0.3.0}
+      tk-multi-breakdown:
+        hook_scene_operations: '{self}/tk-maya_scene_operations.py'
+        location: {name: tk-multi-breakdown, type: app_store, version: v1.1.1}
       tk-multi-about: '@about'
       tk-multi-loader2:
         action_mappings:
@@ -563,10 +562,9 @@ engines:
         template_publish_area: shot_publish_area_nuke
         template_work: nuke_shot_work
         template_work_area: shot_work_area_nuke
-      tk-nuke-breakdown:
-        hook_multi_update: default
-        hook_scan_scene: default
-        location: {name: tk-nuke-breakdown, type: app_store, version: v0.3.0}
+      tk-multi-breakdown:
+        hook_scene_operations: '{self}/tk-nuke_scene_operations.py'
+        location: {name: tk-multi-breakdown, type: app_store, version: v1.1.1}
       tk-nuke-quickdailies:
         current_scene_template: nuke_shot_work
         height: 768
