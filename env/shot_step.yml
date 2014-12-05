@@ -622,6 +622,7 @@ engines:
       tk-multi-loader2:
         action_mappings:
           Photoshop Image: [add_as_a_layer, open_file]
+          Rendered Image: [add_as_a_layer, open_file]
         actions_hook: '{self}/tk-photoshop_actions.py'
         download_thumbnails: true
         entities:
