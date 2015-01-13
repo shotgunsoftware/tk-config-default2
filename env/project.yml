@@ -216,10 +216,10 @@ engines:
       tk-multi-about: '@about'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles: '@workfiles'
-    compatibility_dialog_min_version: 9
+    compatibility_dialog_min_version: 10
     debug_logging: false
     favourite_directories: []
-    location: {name: tk-nuke, type: app_store, version: v0.2.23}
+    location: {name: tk-nuke, type: app_store, version: v0.2.24}
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     project_favourite_name: Shotgun Current Project
