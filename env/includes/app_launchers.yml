@@ -164,7 +164,7 @@ launch_photoshop:
 launch_screeningroom:
   enable_rv_mode: true
   enable_web_mode: true
-  location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.9}
+  location: {name: tk-multi-screeningroom, type: app_store, version: v0.1.10}
   rv_path_linux: '@rv_linux'
   rv_path_mac: '@rv_mac'
   rv_path_windows: '@rv_win'
