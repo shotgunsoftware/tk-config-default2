@@ -37,7 +37,7 @@ launch_3dsmax:
   location: {name: tk-multi-launchapp, type: app_store, version: v0.5.4}
   mac_args: ''
   mac_path: ''
-  menu_name: Launch 3DSMax
+  menu_name: Launch 3ds Max
   versions: []
   windows_args: ''
   windows_path: '@3dsmax_windows'
