@@ -380,10 +380,10 @@ paths:
     houdini_asset_publish: '@asset_root/publish/houdini/{name}.v{version}.hip'
 
     # Alembic caches
-    houdini_asset_work_alembic_cache: '@asset_root/work/houdini/cache/alembic/{name}/v{version}/{Shot}_{name}_v{version}_{node}.abc'
+    houdini_asset_work_alembic_cache: '@asset_root/work/houdini/cache/alembic/{name}/v{version}/{Asset}_{name}_v{version}_{node}.abc'
 
     # Rendered images
-    houdini_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
+    houdini_asset_render: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
 
 
     #
