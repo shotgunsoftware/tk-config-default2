@@ -369,7 +369,7 @@ engines:
       tk-multi-loader2:
         action_mappings:
           Motion Builder FBX: [import]
-        actions_hook: '{self}/tk-maya_actions.py'
+        actions_hook: '{self}/tk-motionbuilder_actions.py'
         download_thumbnails: true
         entities:
         - caption: Assets
