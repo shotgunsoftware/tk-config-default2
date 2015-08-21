@@ -103,6 +103,8 @@ keys:
         type: str
         shotgun_entity_type: Task
         shotgun_field_name: content 
+    grp_name:
+        type: str
 
 
 
@@ -221,6 +223,11 @@ paths:
     maya_shot_publish:
         definition: '@shot_root/publish/maya/{name}.v{version}.ma'
         root_name: 'primary'
+    # The location where quickreview quicktimes are stored on disk
+    maya_shot_quickreview:
+        definition: '@shot_root/quickreview/review_{timestamp}.mov'
+        root_name: 'primary'
+
 
 
     #
@@ -464,7 +471,11 @@ paths:
     maya_asset_publish:
         definition: '@asset_root/publish/maya/{name}.v{version}.ma'
         root_name: 'primary'
-
+    # The location where quick reiview quicktimes are stored on disk
+    maya_asset_quickreview:
+        definition: '@asset_root/quickreview/review_{timestamp}.mov'
+        root_name: 'primary'
+    maya_shot_mesh_alembic_cache: '@shot_root/publish/maya/{name}[_{grp_name}].v{version}.abc'
 
     #
     # Houdini

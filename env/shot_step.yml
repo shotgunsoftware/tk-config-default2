@@ -266,6 +266,9 @@ engines:
     
   tk-maya:
     apps:
+      tk-maya-quickreview:
+        quicktime_template: maya_shot_quickreview
+        location: {"type": "git", "path": "https://github.com/josh-t/tk-maya-quickreview.git", "version": "v0.1.0"}
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-maya_scene_operations.py'
         location: {name: tk-multi-breakdown, type: app_store, version: v1.1.1}
@@ -307,7 +310,7 @@ engines:
         hook_post_publish: default
         hook_primary_pre_publish: default
         hook_primary_publish: default
-        hook_scan_scene: default
+        hook_scan_scene: alembic_scan_scene_tk-maya
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
@@ -318,7 +321,17 @@ engines:
         primary_publish_template: maya_shot_publish
         primary_scene_item_type: work_file
         primary_tank_type: Maya Scene
-        secondary_outputs: []
+        secondary_outputs:
+        - description: 'Publish Alembic Cache data for the model'
+          display_group: Caches
+          display_name: Alembic Cache
+          icon: 'icons/alembic_output.png'
+          name: alembic_cache
+          publish_template: maya_shot_mesh_alembic_cache
+          required: false
+          scene_item_type: mesh_group
+          selected: false
+          tank_type: 'Alembic Cache'
         template_work: maya_shot_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
