@@ -115,7 +115,7 @@ engines:
       tk-multi-about: '@about'
       tk-multi-screeningroom: '@launch_screeningroom'
     debug_logging: false
-    location: {name: tk-photoshop, type: app_store, version: v0.2.0}
+    location: {name: tk-photoshop, type: app_store, version: v0.3.2}
     
   tk-shell:
     apps:

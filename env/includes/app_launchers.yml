@@ -153,7 +153,7 @@ launch_photoshop:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.5.4}
   mac_args: ''
   mac_path: '@photoshop_mac'
   menu_name: Launch Photoshop
