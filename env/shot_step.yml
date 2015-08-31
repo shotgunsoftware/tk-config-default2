@@ -310,7 +310,7 @@ engines:
         hook_post_publish: default
         hook_primary_pre_publish: default
         hook_primary_publish: default
-        hook_scan_scene: alembic_scan_scene_tk-maya
+        hook_scan_scene: scan_scene_tk-maya_alembic
         hook_secondary_pre_publish: default
         hook_secondary_publish: default
         hook_thumbnail: default
