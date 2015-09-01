@@ -357,6 +357,9 @@ engines:
     
   tk-maya:
     apps:
+      tk-maya-quickreview:
+        quicktime_template: maya_asset_quickreview
+        location: {"type": "git", "path": "https://github.com/josh-t/tk-maya-quickreview.git", "version": "0.1.0"}
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-maya_scene_operations.py'
         location: {name: tk-multi-breakdown, type: app_store, version: v1.1.1}
