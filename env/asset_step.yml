@@ -119,20 +119,17 @@ engines:
           filters:
           - [project, is, '{context.project}']
           hierarchy: [sg_asset_type, code]
-          publish_filters: []
-        - caption: Asset
-          entity_type: Asset
+        - caption: Shots
+          entity_type: Shot
           filters:
           - [project, is, '{context.project}']
           hierarchy: [sg_sequence, code]
-          publish_filters: []
         - caption: My Tasks
           entity_type: Task
           filters:
           - [task_assignees, is, '{context.user}']
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
-          publish_filters: []
         filter_publishes_hook: '{self}/filter_publishes.py'
         location: {name: tk-multi-loader2, type: app_store, version: v1.7.1}
         menu_name: Load
