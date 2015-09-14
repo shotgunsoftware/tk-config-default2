@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Shotgun Software Inc.
+# Copyright (c) 2015 Shotgun Software Inc.
 # 
 # CONFIDENTIAL AND PROPRIETARY
 # 
@@ -22,7 +22,6 @@ include: ./includes/app_launchers.yml
 # define all the items that should appear in this environment
 
 engines:
-
   tk-shotgun:
     apps:
       tk-multi-launch3dsmax: '@launch_3dsmax'
@@ -39,6 +38,5 @@ engines:
         deny_platforms: []
         location: {name: tk-shotgun-launchfolder, type: app_store, version: v0.1.5}
     debug_logging: false
-    location: {name: tk-shotgun, type: app_store, version: v0.5.0}
-    
+    location: {name: tk-shotgun, type: app_store, version: v0.5.1}
 frameworks: null

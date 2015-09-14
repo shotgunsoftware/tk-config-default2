@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Shotgun Software Inc.
+# Copyright (c) 2015 Shotgun Software Inc.
 # 
 # CONFIDENTIAL AND PROPRIETARY
 # 
@@ -34,14 +34,14 @@ launch_3dsmax:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.5.4}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: ''
   menu_name: Launch 3ds Max
   versions: []
   windows_args: ''
   windows_path: '@3dsmax_windows'
-  
+
 launch_hiero:
   defer_keyword: ''
   engine: tk-hiero
@@ -51,14 +51,14 @@ launch_hiero:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: '@hiero_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: '@hiero_mac'
   menu_name: Launch Hiero
   versions: []
   windows_args: ''
   windows_path: '@hiero_win'
-  
+
 launch_houdini:
   defer_keyword: ''
   engine: tk-houdini
@@ -68,14 +68,14 @@ launch_houdini:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: '@houdini_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: ''
   menu_name: Launch Houdini
   versions: []
   windows_args: ''
   windows_path: '@houdini_windows'
-  
+
 launch_mari:
   defer_keyword: ''
   engine: tk-mari
@@ -85,14 +85,14 @@ launch_mari:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: '@mari_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: '@mari_mac'
   menu_name: Launch Mari
   versions: []
   windows_args: ''
   windows_path: '@mari_windows'
-  
+
 launch_maya:
   defer_keyword: ''
   engine: tk-maya
@@ -102,14 +102,14 @@ launch_maya:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: '@maya_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: '@maya_mac'
   menu_name: Launch Maya
   versions: []
   windows_args: ''
   windows_path: '@maya_windows'
-  
+
 launch_motionbuilder:
   defer_keyword: ''
   engine: tk-motionbuilder
@@ -119,14 +119,14 @@ launch_motionbuilder:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: ''
   menu_name: Launch MotionBuilder
   versions: []
   windows_args: ''
   windows_path: '@motionbuilder_windows'
-  
+
 launch_nuke:
   defer_keyword: ''
   engine: tk-nuke
@@ -136,14 +136,14 @@ launch_nuke:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: '@nuke_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: '@nuke_mac'
   menu_name: Launch Nuke
   versions: []
   windows_args: ''
   windows_path: '@nuke_windows'
-  
+
 launch_photoshop:
   defer_keyword: ''
   engine: tk-photoshop
@@ -153,14 +153,14 @@ launch_photoshop:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: ''
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.5.4}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: '@photoshop_mac'
   menu_name: Launch Photoshop
   versions: []
   windows_args: ''
   windows_path: '@photoshop_win'
-  
+
 launch_screeningroom:
   enable_rv_mode: true
   enable_web_mode: true
@@ -168,7 +168,7 @@ launch_screeningroom:
   rv_path_linux: '@rv_linux'
   rv_path_mac: '@rv_mac'
   rv_path_windows: '@rv_win'
-  
+
 launch_softimage:
   defer_keyword: ''
   engine: tk-softimage
@@ -178,7 +178,7 @@ launch_softimage:
   icon: '{target_engine}/icon_256.png'
   linux_args: ''
   linux_path: '@softimage_linux'
-  location: {name: tk-multi-launchapp, type: app_store, version: v0.4.0}
+  location: {name: tk-multi-launchapp, type: app_store, version: v0.6.6}
   mac_args: ''
   mac_path: ''
   menu_name: Launch Softimage
