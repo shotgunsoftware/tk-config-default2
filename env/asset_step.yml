@@ -442,11 +442,8 @@ engines:
           Task:
           - actions: [assign_task]
             filters: {}
-          Version:
-          - actions: [play_in_rv]
-            filters: {}
         actions_hook: '{self}/tk-maya_actions.py'
-        location: {name: tk-multi-shotgunpanel, type: app_store, version: v1.0.3}
+        location: {name: tk-multi-shotgunpanel, type: app_store, version: v1.0.4}
         shotgun_fields_hook: '{self}/shotgun_fields.py'
       tk-multi-snapshot:
         hook_copy_file: default
@@ -668,11 +665,8 @@ engines:
           Task:
           - actions: [assign_task]
             filters: {}
-          Version:
-          - actions: [play_in_rv]
-            filters: {}
         actions_hook: '{self}/tk-nuke_actions.py'
-        location: {name: tk-multi-shotgunpanel, type: app_store, version: v1.0.3}
+        location: {name: tk-multi-shotgunpanel, type: app_store, version: v1.0.4}
         shotgun_fields_hook: '{self}/shotgun_fields.py'
       tk-multi-snapshot:
         hook_copy_file: default
