@@ -614,12 +614,11 @@ engines:
         sg_version_name_template: nuke_quick_shot_version_name
         width: 1024
       tk-nuke-writenode:
-        location: {name: tk-nuke-writenode, type: app_store, version: v1.0.16}
+        location: {name: tk-nuke-writenode, type: app_store, version: v1.0.15}
         template_script_work: nuke_shot_work
         write_nodes:
         - file_type: exr
           name: Stereo Exr, 32 bit
-          promote_write_knobs: []
           proxy_publish_template: null
           proxy_render_template: null
           publish_template: nuke_shot_render_pub_stereo

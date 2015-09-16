@@ -157,10 +157,6 @@ engines:
         secondary_outputs: []
         template_work: max_asset_work
       tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-setframerange:
-        location: {name: tk-multi-setframerange, type: app_store, version: v0.2.4}
-        sg_in_frame_field: sg_cut_in
-        sg_out_frame_field: sg_cut_out
       tk-multi-snapshot:
         hook_copy_file: default
         hook_scene_operation: default
@@ -706,12 +702,11 @@ engines:
         sg_version_name_template: nuke_quick_asset_version_name
         width: 1024
       tk-nuke-writenode:
-        location: {name: tk-nuke-writenode, type: app_store, version: v1.0.16}
+        location: {name: tk-nuke-writenode, type: app_store, version: v1.0.15}
         template_script_work: nuke_asset_work
         write_nodes:
         - file_type: exr
           name: Exr
-          promote_write_knobs: []
           proxy_publish_template: null
           proxy_render_template: null
           publish_template: nuke_asset_render_pub
