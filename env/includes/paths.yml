@@ -1,11 +1,11 @@
-# Copyright (c) 2013 Shotgun Software Inc.
-# 
+# Copyright (c) 2015 Shotgun Software Inc.
+#
 # CONFIDENTIAL AND PROPRIETARY
-# 
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
 # Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your 
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
@@ -44,9 +44,9 @@ motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2014\bin\x64\mot
 
 
 #
-# 3dsmax 2012
+# 3dsmax 2015
 #
-3dsmax_windows: 'C:\Program Files\Autodesk\3ds Max 2012\3dsmax.exe'
+3dsmax_windows: 'C:\Program Files\Autodesk\3ds Max 2015\3dsmax.exe'
 
 
 #
@@ -61,7 +61,7 @@ houdini_linux: '/opt/hfs13.0.498/bin/houdini'
 #
 photoshop_mac: /Applications/Adobe Photoshop CS6/Adobe Photoshop CS6.app
 photoshop_win: 'C:\Program Files\Adobe\Adobe Photoshop CS6 (64 Bit)\Photoshop.exe'
-photoshop_extras:         
+photoshop_extras:
     mac_extension_manager_path: /Applications/Adobe Extension Manager CS6/Adobe Extension Manager CS6.app
     # An empty Python path will cause the engine to default to using the "current"
     # Python that the engine is running in. This is often the best approach, as it
@@ -78,12 +78,13 @@ hiero_mac: /Applications/Hiero1.8v2/Hiero1.8v2.app
 hiero_win: C:\Program Files\The Foundry\Hiero1.8v2\hiero.exe
 hiero_linux: /usr/local/Hiero1.8v2/bin/Hiero1.8v2
 
+
 #
 # Softimage
 #
-
 softimage_windows: C:\Program Files\Autodesk\Softimage 2013\Application\bin\XSI.bat
 softimage_linux: XSI
+
 
 #
 # Tweak RV
@@ -91,4 +92,3 @@ softimage_linux: XSI
 rv_mac: /Applications/RV64.app
 rv_win: C:\Program Files\RV\RV64.exe
 rv_linux: rv
-

@@ -2,14 +2,14 @@
 The Shotgun Pipeline Toolkit Standard Project Configuration
 -------------------------------------------------------------------------
 
-Welcome to the Shotgun Pipeline Toolkit Standard config! It provides a 
-starting point for experimentation and testing and will help you discover 
+Welcome to the Shotgun Pipeline Toolkit Standard config! It provides a
+starting point for experimentation and testing and will help you discover
 how everything works!
 
 Once you have installed the standard config for a project, you need to
-do a quick configuration pass to make sure the config will work 
-with your system. The main item to configure are the paths to the 
-various executables, such as Maya and Nuke. These configuration 
+do a quick configuration pass to make sure the config will work
+with your system. The main item to configure are the paths to the
+various executables, such as Maya and Nuke. These configuration
 options can be found in your newly created project:
 
 - First navigate to the new project's configuration root folder.

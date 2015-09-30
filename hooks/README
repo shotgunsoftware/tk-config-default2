@@ -1,16 +1,16 @@
 
 This location is for project hook override files.
 
-Apps come bundled with hooks - a hook is a small python code snippet that is part of 
+Apps come bundled with hooks - a hook is a small python code snippet that is part of
 the configuration. Hooks extend configuration values such as strings and its, and allow
 the person configuring the app to go in and define a behaviour in the code.
 
-Apps come with default hooks that typically provide a plain vanilla implementation, 
+Apps come with default hooks that typically provide a plain vanilla implementation,
 when an app is using a default hook, the value in the config is simply set to "default"
 and the app will look for the hook in a hook folder inside of the app itself.
 
-If you want to customize a hook, just change the value from default to something else, for 
+If you want to customize a hook, just change the value from default to something else, for
 example myhook.py. Sgtk will then look for a file named myhook.py in *this* folder and try
 to execute it instead of the default hook. You can of course use the default hooks as
 examples and starting points when you want to configure the Shotgun Pipeline Toolkit to
-perform your desired behaviour. 
+perform your desired behaviour.
