@@ -746,7 +746,7 @@ engines:
         location:
           name: tk-multi-workfiles
           type: app_store
-          version: v0.6.15
+          version: v0.6.16
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -814,12 +814,15 @@ engines:
     location:
       name: tk-nuke
       type: app_store
-      version: v0.3.3
+      version: v0.4.0
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
     - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
     - {app_instance: tk-multi-publish, name: Publish...}
+    bin_context_menu: []
+    spreadsheet_context_menu: []
+    timeline_context_menu: []
     project_favourite_name: Shotgun Current Project
     use_sgtk_as_menu_name: false
   #

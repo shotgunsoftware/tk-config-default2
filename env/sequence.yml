@@ -119,7 +119,7 @@ engines:
     location:
       name: tk-nuke
       type: app_store
-      version: v0.3.3
+      version: v0.4.0
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     project_favourite_name: Shotgun Current Project
