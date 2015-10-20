@@ -22,7 +22,6 @@ description: Apps and engines loaded when a Sequence is loaded. Since std VFX co
 # include common files
 
 includes:
-
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
 # common app configurations that are reused across environments
@@ -33,7 +32,6 @@ includes:
 # define all the items that should appear in this environment
 
 engines:
-
   #
   # -------------------------------------------------
   # 3dsmax
@@ -65,7 +63,6 @@ engines:
       type: app_store
       version: v0.1.8
     menu_favourites: []
-
   #
   # -------------------------------------------------
   # Maya
@@ -83,7 +80,7 @@ engines:
       version: v0.5.2
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
-    template_project: null
+    template_project:
     use_sgtk_as_menu_name: false
 
   #
@@ -117,11 +114,14 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      name: tk-nuke
-      type: app_store
       version: v0.4.0
+      type: app_store
+      name: tk-nuke
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    bin_context_menu: []
+    spreadsheet_context_menu: []
+    timeline_context_menu: []
     project_favourite_name: Shotgun Current Project
     use_sgtk_as_menu_name: false
 
@@ -159,7 +159,7 @@ engines:
       version: v0.3.1
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
-    template_project: null
+    template_project:
 #
 ###############################################################################
 #

@@ -15,7 +15,6 @@ description: Apps and Engines related to Shot based work.
 # include common files
 
 includes:
-
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
 # common app configurations that are reused across environments
@@ -25,7 +24,6 @@ includes:
 # define all the items that should appear in this environment
 
 engines:
-
   #
   # -------------------------------------------------
   # 3dsmax
@@ -57,9 +55,9 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          name: tk-multi-loader2
+          version: v1.7.4
           type: app_store
-          version: v1.7.1
+          name: tk-multi-loader2
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -115,9 +113,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -170,9 +168,9 @@ engines:
           publish_filters: []
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          name: tk-multi-loader2
+          version: v1.7.4
           type: app_store
-          version: v1.7.1
+          name: tk-multi-loader2
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -228,9 +226,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -250,8 +248,6 @@ engines:
       type: app_store
       version: v0.1.8
     menu_favourites: []
-
-
   #
   # -------------------------------------------------
   # houdini
@@ -311,9 +307,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -328,19 +324,20 @@ engines:
         version_compare_ignore_fields: []
     debug_logging: false
     location:
-      name: tk-houdini
+      version: v0.2.5
       type: app_store
-      version: v0.2.2
+      name: tk-houdini
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
     - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
     - {app_instance: tk-multi-publish, name: Publish...}
-
   #
   # -------------------------------------------------
   # maya
   # -------------------------------------------------
+    enable_sg_shelf: true
+    enable_sg_menu: true
   tk-maya:
     apps:
       tk-multi-about: '@about'
@@ -376,9 +373,9 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          name: tk-multi-loader2
+          version: v1.7.4
           type: app_store
-          version: v1.7.1
+          name: tk-multi-loader2
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -430,9 +427,9 @@ engines:
             filters: {}
         actions_hook: '{self}/tk-maya_actions.py'
         location:
-          name: tk-multi-shotgunpanel
+          version: v1.0.5
           type: app_store
-          version: v1.0.4
+          name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
       tk-multi-snapshot:
         hook_copy_file: default
@@ -454,9 +451,9 @@ engines:
         launch_at_startup: true
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -514,9 +511,9 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          name: tk-multi-loader2
+          version: v1.7.4
           type: app_store
-          version: v1.7.1
+          name: tk-multi-loader2
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -572,9 +569,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -637,9 +634,9 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          name: tk-multi-loader2
+          version: v1.7.4
           type: app_store
-          version: v1.7.1
+          name: tk-multi-loader2
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -671,7 +668,7 @@ engines:
           display_name: Publish Renders
           icon: icons/publish_nuke_writenode.png
           name: render
-          publish_template: null
+          publish_template:
           required: false
           scene_item_type: write_node
           selected: true
@@ -681,7 +678,7 @@ engines:
           display_name: Send to Screening Room
           icon: icons/publish_nuke_review.png
           name: quicktime
-          publish_template: null
+          publish_template:
           required: false
           scene_item_type: write_node
           selected: true
@@ -689,9 +686,9 @@ engines:
         template_work: nuke_shot_work
       tk-multi-reviewsubmission:
         location:
-          name: tk-multi-reviewsubmission
+          version: v0.2.0
           type: app_store
-          version: v0.1.12
+          name: tk-multi-reviewsubmission
         movie_height: 540
         movie_path_template: nuke_shot_render_movie
         movie_width: 1024
@@ -700,6 +697,7 @@ engines:
         store_on_disk: true
         upload_to_shotgun: true
         version_number_padding: 3
+        codec_settings_hook: '{self}/codec_settings.py'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
         location:
@@ -720,9 +718,9 @@ engines:
             filters: {}
         actions_hook: '{self}/tk-nuke_actions.py'
         location:
-          name: tk-multi-shotgunpanel
+          version: v1.0.5
           type: app_store
-          version: v1.0.4
+          name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
       tk-multi-snapshot:
         hook_copy_file: default
@@ -744,9 +742,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
-          type: app_store
           version: v0.6.16
+          type: app_store
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -763,35 +761,38 @@ engines:
         current_scene_template: nuke_shot_work
         height: 768
         location:
-          name: tk-nuke-quickdailies
+          version: v0.2.0
           type: app_store
-          version: v0.1.8
+          name: tk-nuke-quickdailies
         movie_template: shot_quicktime_quick
         post_hooks: [snapshot_history_post_quickdaily]
         sg_version_name_template: nuke_quick_shot_version_name
         width: 1024
+        upload_movie: false
+        codec_settings_hook: '{self}/codec_settings.py'
       tk-nuke-writenode:
         location:
-          name: tk-nuke-writenode
+          version: v1.0.18
           type: app_store
-          version: v1.0.15
+          name: tk-nuke-writenode
         template_script_work: nuke_shot_work
         write_nodes:
         - file_type: exr
           name: Stereo Exr, 32 bit
-          proxy_publish_template: null
-          proxy_render_template: null
+          proxy_publish_template:
+          proxy_render_template:
           publish_template: nuke_shot_render_pub_stereo
           render_template: nuke_shot_render_stereo
           settings:
             datatype: 32 bit float
           tank_type: Rendered Image
           tile_color: []
+          promote_write_knobs: []
         - file_type: exr
           name: Stereo Exr, 16 bit
           promote_write_knobs: []
-          proxy_publish_template: null
-          proxy_render_template: null
+          proxy_publish_template:
+          proxy_render_template:
           publish_template: nuke_shot_render_pub_stereo
           render_template: nuke_shot_render_stereo
           settings:
@@ -801,8 +802,8 @@ engines:
         - file_type: dpx
           name: Mono Dpx
           promote_write_knobs: []
-          proxy_publish_template: null
-          proxy_render_template: null
+          proxy_publish_template:
+          proxy_render_template:
           publish_template: nuke_shot_render_pub_mono_dpx
           render_template: nuke_shot_render_mono_dpx
           settings: {}
@@ -857,9 +858,9 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          name: tk-multi-loader2
+          version: v1.7.4
           type: app_store
-          version: v1.7.1
+          name: tk-multi-loader2
         menu_name: Load
         publish_filters: []
         title_name: Loader
@@ -908,9 +909,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -1008,9 +1009,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
