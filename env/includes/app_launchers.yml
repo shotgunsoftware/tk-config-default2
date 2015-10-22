@@ -56,18 +56,18 @@ launch_hiero:
   extra: {}
   hook_app_launch: default
   hook_before_app_launch: default
-  icon: '{target_engine}/icon_256.png'
-  linux_args: ''
+  icon: '{target_engine}/icon_hiero_256.png'
+  linux_args: '--hiero'
   linux_path: '@hiero_linux'
   location:
     name: tk-multi-launchapp
     type: app_store
     version: v0.6.6
-  mac_args: ''
+  mac_args: '--hiero'
   mac_path: '@hiero_mac'
   menu_name: Launch Hiero
   versions: []
-  windows_args: ''
+  windows_args: '--hiero'
   windows_path: '@hiero_win'
 #
 # -------------------------------------------------

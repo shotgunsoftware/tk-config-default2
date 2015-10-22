@@ -51,9 +51,9 @@ workfiles:
   launch_at_startup: false
   launch_change_work_area_at_startup: false
   location:
-    name: tk-multi-workfiles
+    version: v0.6.16
     type: app_store
-    version: v0.6.15
+    name: tk-multi-workfiles
   saveas_default_name: scene
   saveas_prefer_version_up: false
   sg_entity_type_extra_display_fields: {}
@@ -61,10 +61,10 @@ workfiles:
   sg_entity_types: [Shot, Asset]
   sg_task_filters: []
   task_extra_display_fields: []
-  template_publish: null
-  template_publish_area: null
-  template_work: null
-  template_work_area: null
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
   version_compare_ignore_fields: []
 #
 #
@@ -82,9 +82,9 @@ workfiles-launch-at-startup:
   launch_at_startup: true
   launch_change_work_area_at_startup: false
   location:
-    name: tk-multi-workfiles
+    version: v0.6.16
     type: app_store
-    version: v0.6.15
+    name: tk-multi-workfiles
   saveas_default_name: scene
   saveas_prefer_version_up: false
   sg_entity_type_extra_display_fields: {}
@@ -92,12 +92,11 @@ workfiles-launch-at-startup:
   sg_entity_types: [Shot, Asset]
   sg_task_filters: []
   task_extra_display_fields: []
-  template_publish: null
-  template_publish_area: null
-  template_work: null
-  template_work_area: null
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
   version_compare_ignore_fields: []
-
 ###############################################################################
 #
 # Framework includes.
@@ -114,9 +113,9 @@ frameworks:
       version: v1.0.3
   tk-framework-shotgunutils_v2.x.x:
     location:
-      name: tk-framework-shotgunutils
+      version: v2.5.0
       type: app_store
-      version: v2.4.2
+      name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
     location:
       name: tk-framework-widget

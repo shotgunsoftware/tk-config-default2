@@ -32,8 +32,8 @@ maya_linux: maya
 #
 # nuke
 #
-nuke_mac: /Applications/Nuke9.0v3/Nuke9.0v3.app
-nuke_windows: 'C:\Program Files\Nuke9.0v3\Nuke9.0.exe'
+nuke_mac: /Applications/Nuke9.0v7/Nuke9.0v7.app
+nuke_windows: 'C:\Program Files\Nuke9.0v7\Nuke9.0.exe'
 nuke_linux: Nuke9.0
 
 
@@ -74,9 +74,9 @@ photoshop_extras:
 #
 # Hiero
 #
-hiero_mac: /Applications/Hiero1.8v2/Hiero1.8v2.app
-hiero_win: C:\Program Files\The Foundry\Hiero1.8v2\hiero.exe
-hiero_linux: /usr/local/Hiero1.8v2/bin/Hiero1.8v2
+hiero_mac: /Applications/Nuke9.0v7/Nuke9.0v7.app
+hiero_win: 'C:\Program Files\Nuke9.0v7\Nuke9.0.exe'
+hiero_linux: Nuke9.0
 
 
 #

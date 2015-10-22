@@ -15,7 +15,6 @@ description: Apps and Engines when launching with a project only context.
 # include common files
 
 includes:
-
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
 # common app configurations that are reused across environments
@@ -27,7 +26,6 @@ includes:
 
 
 engines:
-
   #
   # -------------------------------------------------
   # 3dsmax
@@ -59,7 +57,6 @@ engines:
       type: app_store
       version: v0.1.8
     menu_favourites: []
-
   #
   # -------------------------------------------------
   # Shotgun Desktop
@@ -75,13 +72,13 @@ engines:
       tk-multi-launchphotoshop: '@launch_photoshop'
       tk-multi-launchsoftimage: '@launch_softimage'
       tk-multi-screeningroom: '@launch_screeningroom'
-
     collapse_rules:
     - {button_label: $app, match: Launch $app, menu_label: None}
     debug_logging: false
     default_group: Studio
     groups:
-    - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*', '*Softimage*']
+    - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*',
+        '*Softimage*']
       name: Creative Tools
     - matches: ['*Hiero*']
       name: Editorial Tools
@@ -89,9 +86,9 @@ engines:
       name: Finishing Tools
     hook_launch_python: default
     location:
-      name: tk-desktop
+      version: v2.0.8
       type: app_store
-      version: v2.0.5
+      name: tk-desktop
     show_recents: true
 
   #
@@ -116,7 +113,7 @@ engines:
         location:
           name: tk-hiero-export
           type: app_store
-          version: v0.1.30
+          version: v0.2.0
         nuke_script_published_file_type: Nuke Script
         nuke_script_toolkit_write_nodes:
         - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
@@ -131,7 +128,7 @@ engines:
         location:
           name: tk-hiero-openinshotgun
           type: app_store
-          version: v0.1.0
+          version: v0.2.0
       tk-multi-about: '@about'
       tk-multi-publish:
         allow_taskless_publishes: true
@@ -179,7 +176,7 @@ engines:
         location:
           name: tk-multi-workfiles
           type: app_store
-          version: v0.6.15
+          version: v0.6.16
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -202,11 +199,15 @@ engines:
       requires_selection: true}
     - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
       requires_selection: true}
+    project_favourite_name: Shotgun Current Project
+    use_sgtk_as_menu_name: false
+    favourite_directories: []
+    compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      name: tk-hiero
+      name: tk-nuke
       type: app_store
-      version: v0.2.4
+      version: v0.4.0
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     spreadsheet_context_menu:
@@ -215,7 +216,6 @@ engines:
     timeline_context_menu:
     - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
       requires_selection: true}
-
   #
   # -------------------------------------------------
   # Mari
@@ -233,9 +233,9 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          name: tk-multi-workfiles
+          version: v0.6.16
           type: app_store
-          version: v0.6.15
+          name: tk-multi-workfiles
         saveas_default_name: scene
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
@@ -243,10 +243,10 @@ engines:
         sg_entity_types: [Asset]
         sg_task_filters: []
         task_extra_display_fields: []
-        template_publish: null
-        template_publish_area: null
-        template_work: null
-        template_work_area: null
+        template_publish:
+        template_publish_area:
+        template_work:
+        template_work_area:
         version_compare_ignore_fields: []
     compatibility_dialog_min_version: 2
     debug_logging: false
@@ -272,7 +272,7 @@ engines:
       version: v0.5.2
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
-    template_project: null
+    template_project:
     use_sgtk_as_menu_name: false
 
   #
@@ -291,7 +291,7 @@ engines:
       version: v0.3.0
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
-    template_project: null
+    template_project:
     use_sgtk_as_menu_name: false
 
   #
@@ -309,12 +309,14 @@ engines:
     location:
       name: tk-nuke
       type: app_store
-      version: v0.3.3
+      version: v0.4.0
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     project_favourite_name: Shotgun Current Project
     use_sgtk_as_menu_name: false
-
+    bin_context_menu: []
+    spreadsheet_context_menu: []
+    timeline_context_menu: []
   #
   # -------------------------------------------------
   # Photoshop
@@ -366,8 +368,7 @@ engines:
       version: v0.3.1
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
-    template_project: null
-
+    template_project:
 #
 ###############################################################################
 #
