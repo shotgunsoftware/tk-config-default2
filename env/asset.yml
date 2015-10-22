@@ -79,7 +79,7 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          version: v0.6.16
+          version: v0.6.17
           type: app_store
           name: tk-multi-workfiles
         saveas_default_name: scene
