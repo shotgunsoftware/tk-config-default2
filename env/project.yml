@@ -113,7 +113,7 @@ engines:
         location:
           name: tk-hiero-export
           type: app_store
-          version: v0.2.0
+          version: v0.2.1
         nuke_script_published_file_type: Nuke Script
         nuke_script_toolkit_write_nodes:
         - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
