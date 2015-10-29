@@ -159,7 +159,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: hiero_project_snapshot

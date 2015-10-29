@@ -92,7 +92,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: max_asset_snapshot
@@ -195,7 +195,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: max_asset_snapshot
@@ -269,7 +269,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: houdini_asset_snapshot
@@ -542,7 +542,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: maya_asset_snapshot
@@ -652,7 +652,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: mobu_asset_snapshot
@@ -817,7 +817,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: nuke_asset_snapshot
@@ -962,7 +962,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: photoshop_asset_snapshot
@@ -1053,7 +1053,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.0
+          version: v0.5.1
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: softimage_asset_snapshot
