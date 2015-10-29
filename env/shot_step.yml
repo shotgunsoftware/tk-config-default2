@@ -813,9 +813,9 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      name: tk-nuke
+      version: v0.4.1
       type: app_store
-      version: v0.4.0
+      name: tk-nuke
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}

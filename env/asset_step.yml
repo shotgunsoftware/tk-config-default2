@@ -881,7 +881,7 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      version: v0.4.0
+      version: v0.4.1
       type: app_store
       name: tk-nuke
     menu_favourites:
