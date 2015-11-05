@@ -74,7 +74,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current 3ds Max scene
@@ -187,7 +187,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current 3ds Max scene
@@ -268,7 +268,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current scene
@@ -392,7 +392,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current Maya scene
@@ -530,7 +530,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current work file
@@ -653,7 +653,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publishes and versions up the current Nuke script.
@@ -877,7 +877,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current Photoshop scene
@@ -970,7 +970,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current Softimage scene

@@ -111,9 +111,9 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          name: tk-hiero-export
+          version: v0.2.2
           type: app_store
-          version: v0.2.1
+          name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
         nuke_script_toolkit_write_nodes:
         - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
@@ -143,7 +143,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.7.2
+          version: v0.7.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project
