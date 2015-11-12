@@ -432,10 +432,9 @@ engines:
     compatibility_dialog_min_version: 2
     debug_logging: false
     location:
-      name: tk-mari
+      version: v1.1.0
       type: app_store
-      version: v1.0.2
-
+      name: tk-mari
   #
   # -------------------------------------------------
   # Maya
