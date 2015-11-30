@@ -313,7 +313,7 @@ engines:
         saveas_prefer_version_up: false
         sg_entity_type_extra_display_fields: {}
         sg_entity_type_filters: {}
-        sg_entity_types: []
+        sg_entity_types: [Shot, Asset]
         sg_task_filters: []
         task_extra_display_fields: []
         template_publish: houdini_shot_publish
@@ -321,11 +321,22 @@ engines:
         template_work: houdini_shot_work
         template_work_area: shot_work_area_houdini
         version_compare_ignore_fields: []
+      tk-multi-shotgunpanel:
+        location:
+          version: v1.2.3
+          type: app_store
+          name: tk-multi-shotgunpanel
+        action_mappings:
+          Task:
+          - actions: [assign_task, task_to_ip]
+            filters: {}
+        actions_hook: '{self}/general_actions.py'
+        shotgun_fields_hook: '{self}/shotgun_fields.py'
     debug_logging: false
     enable_sg_shelf: true
     enable_sg_menu: true
     location:
-      version: v0.2.10
+      version: v1.0.0
       type: app_store
       name: tk-houdini
     menu_favourites:

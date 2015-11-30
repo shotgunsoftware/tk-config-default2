@@ -52,8 +52,9 @@ motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2014\bin\x64\mot
 #
 # Houdini
 #
-houdini_windows: 'C:\Program Files\Side Effects Software\Houdini 13.0.498\bin\houdini.exe'
-houdini_linux: '/opt/hfs13.0.498/bin/houdini'
+houdini_mac: /Applications/Houdini 15.0.244.16/Houdini.app
+houdini_windows: 'C:\Program Files\Side Effects Software\Houdini 15.0.244.16\bin\houdini.exe'
+houdini_linux: '/opt/hfs15.0.244.16/bin/houdini'
 
 
 #

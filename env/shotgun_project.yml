@@ -32,6 +32,7 @@ engines:
     apps:
       tk-multi-launch3dsmax: '@launch_3dsmax'
       tk-multi-launchhiero: '@launch_hiero'
+      tk-multi-launchhoudini: '@launch_houdini'
       tk-multi-launchmari: '@launch_mari'
       tk-multi-launchmaya: '@launch_maya'
       tk-multi-launchmotionbuilder: '@launch_motionbuilder'

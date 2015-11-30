@@ -87,7 +87,7 @@ launch_houdini:
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
-  mac_path: ''
+  mac_path: '@houdini_mac'
   menu_name: Launch Houdini
   versions: []
   windows_args: ''
