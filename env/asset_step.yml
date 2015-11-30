@@ -529,7 +529,7 @@ engines:
           Task:
           - actions: [assign_task, task_to_ip]
             filters: {}
-        actions_hook: '{self}/tk-maya_actions.py'
+        actions_hook: '{self}/general_actions.py:{self}/tk-maya_actions.py'
         location:
           version: v1.2.3
           type: app_store
@@ -804,7 +804,7 @@ engines:
           Task:
           - actions: [assign_task, task_to_ip]
             filters: {}
-        actions_hook: '{self}/tk-nuke_actions.py'
+        actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
         location:
           version: v1.2.3
           type: app_store
