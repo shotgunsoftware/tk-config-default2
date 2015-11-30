@@ -42,10 +42,9 @@ engines:
       tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location:
-      name: tk-3dsmax
+      version: v0.3.6
       type: app_store
-      version: v0.3.5
-
+      name: tk-3dsmax
   #
   # -------------------------------------------------
   # 3dsmax plus
@@ -74,9 +73,9 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      name: tk-maya
+      version: v0.5.3
       type: app_store
-      version: v0.5.2
+      name: tk-maya
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project:

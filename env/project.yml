@@ -37,10 +37,9 @@ engines:
       tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location:
-      name: tk-3dsmax
+      version: v0.3.6
       type: app_store
-      version: v0.3.5
-
+      name: tk-3dsmax
   #
   # -------------------------------------------------
   # 3dsmax plus
@@ -86,7 +85,7 @@ engines:
       name: Finishing Tools
     hook_launch_python: default
     location:
-      version: v2.0.8
+      version: v2.0.9
       type: app_store
       name: tk-desktop
     show_recents: true
@@ -111,7 +110,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.2.2
+          version: v0.2.3
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -124,6 +123,7 @@ engines:
         template_plate_path: hiero_plate_path
         template_render_path: hiero_render_path
         template_version: hiero_version
+        hook_post_version_creation: default
       tk-hiero-openinshotgun:
         location:
           name: tk-hiero-openinshotgun
@@ -266,9 +266,9 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      name: tk-maya
+      version: v0.5.3
       type: app_store
-      version: v0.5.2
+      name: tk-maya
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project:
@@ -385,9 +385,9 @@ frameworks:
       version: v0.1.2
   tk-framework-login_v1.x.x:
     location:
-      name: tk-framework-login
-      type: app_store
       version: v1.2.1
+      type: app_store
+      name: tk-framework-login
   tk-framework-softimageqt_v1.0.1:
     location:
       name: tk-framework-softimageqt

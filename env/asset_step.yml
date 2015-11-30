@@ -56,7 +56,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.7.4
+          version: v1.9.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -124,10 +124,9 @@ engines:
         version_compare_ignore_fields: []
     debug_logging: false
     location:
-      name: tk-3dsmax
+      version: v0.3.6
       type: app_store
-      version: v0.3.5
-
+      name: tk-3dsmax
   #
   # -------------------------------------------------
   # 3dsmax Plus
@@ -159,7 +158,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.7.4
+          version: v1.9.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -303,7 +302,7 @@ engines:
     enable_sg_shelf: true
     enable_sg_menu: true
     location:
-      version: v0.2.5
+      version: v0.2.10
       type: app_store
       name: tk-houdini
     menu_favourites:
@@ -354,7 +353,7 @@ engines:
           publish_filters: []
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.7.4
+          version: v1.9.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -475,7 +474,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.7.4
+          version: v1.9.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -528,11 +527,11 @@ engines:
           - actions: [udim_texture_node]
             filters: {published_file_type: UDIM Image}
           Task:
-          - actions: [assign_task]
+          - actions: [assign_task, task_to_ip]
             filters: {}
         actions_hook: '{self}/tk-maya_actions.py'
         location:
-          version: v1.0.5
+          version: v1.2.3
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -574,9 +573,9 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      name: tk-maya
+      version: v0.5.3
       type: app_store
-      version: v0.5.2
+      name: tk-maya
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -615,7 +614,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.7.4
+          version: v1.9.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -730,7 +729,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.7.4
+          version: v1.9.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -803,11 +802,11 @@ engines:
           - actions: [script_import]
             filters: {published_file_type: Nuke Script}
           Task:
-          - actions: [assign_task]
+          - actions: [assign_task, task_to_ip]
             filters: {}
         actions_hook: '{self}/tk-nuke_actions.py'
         location:
-          version: v1.0.5
+          version: v1.2.3
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -925,7 +924,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.7.4
+          version: v1.9.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -1109,3 +1108,18 @@ frameworks:
       name: tk-framework-softimageqt
       type: app_store
       version: v1.0.1
+  tk-framework-shotgunutils_v3.x.x:
+    location:
+      version: v3.0.4
+      type: app_store
+      name: tk-framework-shotgunutils
+  tk-framework-qtwidgets_v2.x.x:
+    location:
+      version: v2.2.0
+      type: app_store
+      name: tk-framework-qtwidgets
+  tk-framework-shotgunutils_v4.x.x:
+    location:
+      version: v4.0.1
+      type: app_store
+      name: tk-framework-shotgunutils
