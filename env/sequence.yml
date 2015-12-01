@@ -70,7 +70,7 @@ engines:
     apps:
       tk-multi-about: '@about'
       tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles: '@workfiles-launch-at-startup'
+      tk-multi-workfiles: '@workfiles'
     location:
       version: v1.0.0
       type: app_store
