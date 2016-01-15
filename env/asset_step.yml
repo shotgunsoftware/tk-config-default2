@@ -92,7 +92,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: max_asset_snapshot
@@ -194,7 +194,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: max_asset_snapshot
@@ -227,9 +227,9 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      name: tk-3dsmaxplus
+      version: v0.1.9
       type: app_store
-      version: v0.1.8
+      name: tk-3dsmaxplus
     menu_favourites: []
   #
   # -------------------------------------------------
@@ -268,7 +268,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: houdini_asset_snapshot
@@ -551,7 +551,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: maya_asset_snapshot
@@ -584,7 +584,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.5.3
+      version: v0.5.4
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -661,7 +661,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: mobu_asset_snapshot
@@ -792,7 +792,7 @@ engines:
         template_work: nuke_asset_work
       tk-multi-reviewsubmission:
         location:
-          version: v0.2.0
+          version: v0.2.1
           type: app_store
           name: tk-multi-reviewsubmission
         movie_height: 540
@@ -826,7 +826,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: nuke_asset_snapshot
@@ -860,7 +860,7 @@ engines:
         current_scene_template: nuke_asset_work
         height: 768
         location:
-          version: v0.2.0
+          version: v0.2.1
           type: app_store
           name: tk-nuke-quickdailies
         movie_template: asset_quicktime_quick
@@ -871,7 +871,7 @@ engines:
         codec_settings_hook: '{self}/codec_settings.py'
       tk-nuke-writenode:
         location:
-          version: v1.0.18
+          version: v1.0.19
           type: app_store
           name: tk-nuke-writenode
         template_script_work: nuke_asset_work
@@ -971,7 +971,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: photoshop_asset_snapshot
@@ -1062,7 +1062,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: softimage_asset_snapshot

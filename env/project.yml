@@ -52,9 +52,9 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      name: tk-3dsmaxplus
+      version: v0.1.9
       type: app_store
-      version: v0.1.8
+      name: tk-3dsmaxplus
     menu_favourites: []
   #
   # -------------------------------------------------
@@ -111,7 +111,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.2.3
+          version: v0.2.5
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -160,7 +160,7 @@ engines:
         hook_scene_operation: default
         hook_thumbnail: default
         location:
-          version: v0.5.1
+          version: v0.5.2
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: hiero_project_snapshot
@@ -284,7 +284,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.5.3
+      version: v0.5.4
       type: app_store
       name: tk-maya
     menu_favourites:
