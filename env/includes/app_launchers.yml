@@ -37,7 +37,7 @@ launch_3dsmax:
   linux_args: ''
   linux_path: ''
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
@@ -60,10 +60,10 @@ launch_hiero:
   linux_args: --hiero
   linux_path: '@hiero_linux'
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
-  mac_args: --hiero
+  mac_args: ''
   mac_path: '@hiero_mac'
   menu_name: Launch Hiero
   versions: []
@@ -83,7 +83,7 @@ launch_houdini:
   linux_args: ''
   linux_path: '@houdini_linux'
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
@@ -106,7 +106,7 @@ launch_mari:
   linux_args: ''
   linux_path: '@mari_linux'
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
@@ -129,7 +129,7 @@ launch_maya:
   linux_args: ''
   linux_path: '@maya_linux'
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
@@ -152,7 +152,7 @@ launch_motionbuilder:
   linux_args: ''
   linux_path: ''
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
@@ -175,7 +175,7 @@ launch_nuke:
   linux_args: ''
   linux_path: '@nuke_linux'
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
@@ -184,6 +184,29 @@ launch_nuke:
   versions: []
   windows_args: ''
   windows_path: '@nuke_windows'
+#
+# -------------------------------------------------
+# Nuke Studio
+# -------------------------------------------------
+launch_nukestudio:
+  defer_keyword: ''
+  engine: tk-nukestudio
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  icon: '{target_engine}/icon_nukestudio_256.png'
+  linux_args: --studio
+  linux_path: '@nukestudio_linux'
+  location:
+    version: v0.7.2
+    type: app_store
+    name: tk-multi-launchapp
+  mac_args: ''
+  mac_path: '@nukestudio_mac'
+  menu_name: Launch NukeStudio
+  versions: []
+  windows_args: --studio
+  windows_path: '@nukestudio_windows'
 #
 # -------------------------------------------------
 # Photoshop
@@ -198,7 +221,7 @@ launch_photoshop:
   linux_args: ''
   linux_path: ''
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
@@ -215,7 +238,7 @@ launch_screeningroom:
   enable_rv_mode: true
   enable_web_mode: true
   location:
-    version: v0.2.0
+    version: v0.3.0
     type: app_store
     name: tk-multi-screeningroom
   rv_path_linux: '@rv_linux'
@@ -236,7 +259,7 @@ launch_softimage:
   linux_args: ''
   linux_path: '@softimage_linux'
   location:
-    version: v0.6.7
+    version: v0.7.2
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''

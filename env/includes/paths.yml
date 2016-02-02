@@ -16,9 +16,9 @@
 #
 # Mari
 #
-mari_linux: 'Mari2.6'
-mari_mac: /Applications/Mari2.6v2
-mari_windows: 'C:\Program Files\Mari2.6v2\Bundle\bin\Mari2.6v2.exe'
+mari_linux: 'Mari3.0'
+mari_mac: /Applications/Mari3.0v2
+mari_windows: 'C:\Program Files\Mari3.0v2\Bundle\bin\Mari3.0v2.exe'
 
 
 #
@@ -30,11 +30,19 @@ maya_linux: maya
 
 
 #
-# nuke
+# Nuke
 #
-nuke_mac: /Applications/Nuke9.0v7/Nuke9.0v7.app
-nuke_windows: 'C:\Program Files\Nuke9.0v7\Nuke9.0.exe'
+nuke_mac: /Applications/Nuke9.0v8/Nuke9.0v8.app
+nuke_windows: 'C:\Program Files\Nuke9.0v8\Nuke9.0.exe'
 nuke_linux: Nuke9.0
+
+
+#
+# Nuke Studio
+#
+nukestudio_mac: /Applications/Nuke9.0v8/NukeStudio9.0v8.app
+nukestudio_windows: 'C:\Program Files\Nuke9.0v8\Nuke9.0.exe'
+nukestudio_linux: Nuke9.0
 
 
 #
@@ -75,8 +83,8 @@ photoshop_extras:
 #
 # Hiero
 #
-hiero_mac: /Applications/Nuke9.0v7/Nuke9.0v7.app
-hiero_win: 'C:\Program Files\Nuke9.0v7\Nuke9.0.exe'
+hiero_mac: /Applications/Nuke9.0v8/Hiero9.0v8.app
+hiero_win: 'C:\Program Files\Nuke9.0v8\Nuke9.0.exe'
 hiero_linux: Nuke9.0
 
 

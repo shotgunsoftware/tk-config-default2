@@ -23,7 +23,7 @@ about:
   location:
     name: tk-multi-about
     type: app_store
-    version: v0.1.20
+    version: v0.2.0
 #
 # General File Manager configuration.
 # -----------------------------------
@@ -51,7 +51,7 @@ workfiles:
   launch_at_startup: false
   launch_change_work_area_at_startup: false
   location:
-    version: v0.6.17
+    version: v0.7.0
     type: app_store
     name: tk-multi-workfiles
   saveas_default_name: scene
@@ -82,7 +82,7 @@ workfiles-launch-at-startup:
   launch_at_startup: true
   launch_change_work_area_at_startup: false
   location:
-    version: v0.6.17
+    version: v0.7.0
     type: app_store
     name: tk-multi-workfiles
   saveas_default_name: scene

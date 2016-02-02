@@ -253,13 +253,26 @@ paths:
         root_name: 'primary'
     # Alembic caches
     houdini_shot_work_alembic_cache:
-        definition: '@shot_root/work/houdini/cache/alembic/{name}/v{version}/{Shot}_{name}_v{version}_{houdini.node}.abc'
-        root_name: 'primary'
-    # Rendered images
-    houdini_shot_render:
-        definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
+        definition: '@shot_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Shot}_{name}_v{version}.abc'
         root_name: 'primary'
 
+    # Rendered images
+    houdini_shot_render:
+        definition: '@shot_root/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+        root_name: 'primary'
+
+    # Additional mantra outputs
+    houdini_shot_ifd:
+        definition: '@shot_root/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.ifd'
+        root_name: 'primary'
+
+    houdini_shot_dcm:
+        definition: '@shot_root/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.dcm'
+        root_name: 'primary'
+
+    houdini_shot_extra_plane:
+        definition: '@shot_root/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+        root_name: 'primary'
 
     #
     # 3dsmax
@@ -493,11 +506,25 @@ paths:
         root_name: 'primary'
     # Alembic caches
     houdini_asset_work_alembic_cache:
-        definition: '@asset_root/work/houdini/cache/alembic/{name}/v{version}/{Asset}_{name}_v{version}_{houdini.node}.abc'
+        definition: '@asset_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
         root_name: 'primary'
+
     # Rendered images
     houdini_asset_render:
-        definition: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+        definition: '@asset_root/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+        root_name: 'primary'
+
+    # Additional mantra outputs
+    houdini_asset_ifd:
+        definition: '@asset_root/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.ifd'
+        root_name: 'primary'
+
+    houdini_asset_dcm:
+        definition: '@asset_root/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.dcm'
+        root_name: 'primary'
+
+    houdini_asset_extra_plane:
+        definition: '@asset_root/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
         root_name: 'primary'
 
 
