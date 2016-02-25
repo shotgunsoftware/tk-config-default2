@@ -42,7 +42,7 @@ engines:
       tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location:
-      version: v0.3.6
+      version: v0.3.9
       type: app_store
       name: tk-3dsmax
   #
@@ -57,7 +57,7 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      version: v0.1.9
+      version: v0.1.12
       type: app_store
       name: tk-3dsmaxplus
     menu_favourites: []
@@ -71,7 +71,7 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles: '@workfiles'
     location:
-      version: v1.0.0
+      version: v1.0.1
       type: app_store
       name: tk-houdini
     enable_sg_shelf: true
@@ -90,7 +90,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.5.4
+      version: v0.5.5
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -109,9 +109,9 @@ engines:
       tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location:
-      name: tk-motionbuilder
+      version: v0.3.1
       type: app_store
-      version: v0.3.0
+      name: tk-motionbuilder
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     use_sgtk_as_menu_name: false
@@ -150,10 +150,9 @@ engines:
       tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location:
-      name: tk-photoshop
+      version: v0.3.3
       type: app_store
-      version: v0.3.2
-
+      name: tk-photoshop
   #
   # -------------------------------------------------
   # Shell (tank command)
@@ -184,9 +183,9 @@ engines:
       tk-multi-workfiles: '@workfiles'
     debug_logging: false
     location:
-      name: tk-softimage
+      version: v0.3.2
       type: app_store
-      version: v0.3.1
+      name: tk-softimage
     menu_favourites:
     - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
     template_project:
