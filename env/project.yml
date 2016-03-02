@@ -208,7 +208,7 @@ engines:
     compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      version: v0.5.5
+      version: v0.5.6
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -326,7 +326,7 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      version: v0.5.5
+      version: v0.5.6
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -452,7 +452,7 @@ engines:
     compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      version: v0.5.5
+      version: v0.5.6
       type: app_store
       name: tk-nuke
     menu_favourites:

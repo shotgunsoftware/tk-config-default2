@@ -351,7 +351,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.4
+          version: v1.2.5
           type: app_store
           name: tk-multi-shotgunpanel
         action_mappings:
@@ -657,7 +657,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-maya_actions.py'
         location:
-          version: v1.2.4
+          version: v1.2.5
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -951,7 +951,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
         location:
-          version: v1.2.4
+          version: v1.2.5
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -1014,7 +1014,7 @@ engines:
         codec_settings_hook: '{self}/codec_settings.py'
       tk-nuke-writenode:
         location:
-          version: v1.1.1
+          version: v1.1.2
           type: app_store
           name: tk-nuke-writenode
         template_script_work: nuke_asset_work
@@ -1033,7 +1033,7 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      version: v0.5.5
+      version: v0.5.6
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -1131,7 +1131,7 @@ engines:
         codec_settings_hook: '{self}/codec_settings.py'
       tk-nuke-writenode:
         location:
-          version: v1.1.1
+          version: v1.1.2
           type: app_store
           name: tk-nuke-writenode
         template_script_work: nuke_shot_work
@@ -1242,7 +1242,7 @@ engines:
     compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      version: v0.5.5
+      version: v0.5.6
       type: app_store
       name: tk-nuke
     menu_favourites:
