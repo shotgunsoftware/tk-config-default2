@@ -110,6 +110,14 @@ keys:
         shotgun_entity_type: Task
         shotgun_field_name: content
 
+    # Maya supports two extension types.
+    maya_extension:
+        type: str
+        choices:
+            ma: Maya Ascii (.ma)
+            mb: Maya Binary (.mb)
+        default: ma
+        alias: extension
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -216,15 +224,15 @@ paths:
         root_name: 'primary'
     # The location of WIP files
     maya_shot_work:
-        definition: '@shot_root/work/maya/{name}.v{version}.ma'
+        definition: '@shot_root/work/maya/{name}.v{version}.{maya_extension}'
         root_name: 'primary'
     # The location of backups of WIP files
     maya_shot_snapshot:
-        definition: '@shot_root/work/maya/snapshots/{name}.v{version}.{timestamp}.ma'
+        definition: '@shot_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
         root_name: 'primary'
     # The location of published maya files
     maya_shot_publish:
-        definition: '@shot_root/publish/maya/{name}.v{version}.ma'
+        definition: '@shot_root/publish/maya/{name}.v{version}.{maya_extension}'
         root_name: 'primary'
 
 
@@ -470,15 +478,15 @@ paths:
         root_name: 'primary'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/work/maya/{name}.v{version}.ma'
+        definition: '@asset_root/work/maya/{name}.v{version}.{maya_extension}'
         root_name: 'primary'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.ma'
+        definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
         root_name: 'primary'
     # The location of published maya files
     maya_asset_publish:
-        definition: '@asset_root/publish/maya/{name}.v{version}.ma'
+        definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
         root_name: 'primary'
 
 

@@ -11,7 +11,7 @@
 #
 # This file contains commonly used apps and is included from
 # other environment files. You'll see references to for example
-# @about, @workfiles etc. Whenever a definition like that appears,
+# @about, @workfiles2 etc. Whenever a definition like that appears,
 # one of the definitions below are pulled in to replace that
 # include statement.
 #
@@ -35,32 +35,38 @@ about:
 # have another file manager app running, with different settings,
 # allowing files to be loaded and saved.
 #
-# References to this @workfiles include typically appears at
+# References to this @workfiles2 include typically appears at
 # 'transit' levels in the configuration, where work normally
 # doesn't happen, but you just want the user to jump to their
 # work area. The work area is typically a task or pipeline step
 # and these 'transit' areas can be project, shot, or sequence level.
 #
-workfiles:
+workfiles2:
   allow_task_creation: true
+  create_new_task_hook: '{self}/create_new_task.py'
+  custom_actions_hook: '{self}/custom_actions.py'
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
   file_extensions: []
-  hook_copy_file: default
+  hook_copy_file: '{self}/copy_file.py'
   hook_filter_publishes: default
   hook_filter_work_files: default
   hook_scene_operation: default
   launch_at_startup: false
-  launch_change_work_area_at_startup: false
-  location:
-    version: v0.7.1
-    type: app_store
-    name: tk-multi-workfiles
+  location: {name: tk-multi-workfiles2, type: app_store, version: v0.7.29}
+  my_tasks_extra_display_fields: []
   saveas_default_name: scene
   saveas_prefer_version_up: false
-  sg_entity_type_extra_display_fields: {}
-  sg_entity_type_filters: {}
-  sg_entity_types: [Shot, Asset]
-  sg_task_filters: []
-  task_extra_display_fields: []
+  show_my_tasks: true
   template_publish:
   template_publish_area:
   template_work:
@@ -72,26 +78,32 @@ workfiles:
 # --------------------------------------
 # For details, see above.
 #
-workfiles-launch-at-startup:
+workfiles2-launch-at-startup:
   allow_task_creation: true
+  create_new_task_hook: '{self}/create_new_task.py'
+  custom_actions_hook: '{self}/custom_actions.py'
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
   file_extensions: []
-  hook_copy_file: default
+  hook_copy_file: '{self}/copy_file.py'
   hook_filter_publishes: default
   hook_filter_work_files: default
   hook_scene_operation: default
   launch_at_startup: true
-  launch_change_work_area_at_startup: false
-  location:
-    version: v0.7.1
-    type: app_store
-    name: tk-multi-workfiles
+  location: {name: tk-multi-workfiles2, type: app_store, version: v0.7.29}
+  my_tasks_extra_display_fields: []
   saveas_default_name: scene
   saveas_prefer_version_up: false
-  sg_entity_type_extra_display_fields: {}
-  sg_entity_type_filters: {}
-  sg_entity_types: [Shot, Asset]
-  sg_task_filters: []
-  task_extra_display_fields: []
+  show_my_tasks: true
   template_publish:
   template_publish_area:
   template_work:
@@ -111,9 +123,24 @@ frameworks:
       name: tk-framework-qtwidgets
       type: app_store
       version: v1.0.3
+  tk-framework-qtwidgets_v2.x.x:
+    location:
+      version: v2.2.1
+      type: app_store
+      name: tk-framework-qtwidgets
   tk-framework-shotgunutils_v2.x.x:
     location:
       version: v2.5.1
+      type: app_store
+      name: tk-framework-shotgunutils
+  tk-framework-shotgunutils_v3.x.x:
+    location:
+      version: v3.0.4
+      type: app_store
+      name: tk-framework-shotgunutils
+  tk-framework-shotgunutils_v4.x.x:
+    location:
+      version: v4.0.4
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
@@ -121,13 +148,3 @@ frameworks:
       version: v0.2.3
       type: app_store
       name: tk-framework-widget
-  tk-framework-qtwidgets_v2.x.x:
-    location:
-      version: v2.2.1
-      type: app_store
-      name: tk-framework-qtwidgets
-  tk-framework-shotgunutils_v4.x.x:
-    location:
-      version: v4.0.4
-      type: app_store
-      name: tk-framework-shotgunutils

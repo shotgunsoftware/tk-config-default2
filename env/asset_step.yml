@@ -97,26 +97,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: max_asset_snapshot
         template_work: max_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: max_asset_publish
         template_publish_area: asset_publish_area_max
         template_work: max_asset_work
@@ -199,26 +208,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: max_asset_snapshot
         template_work: max_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: max_asset_publish
         template_publish_area: asset_publish_area_max
         template_work: max_asset_work
@@ -297,26 +315,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: houdini_asset_snapshot
         template_work: houdini_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: houdini_asset_publish
         template_publish_area: asset_publish_area_houdini
         template_work: houdini_asset_work
@@ -404,9 +431,9 @@ engines:
       type: app_store
       name: tk-houdini
     menu_favourites:
-    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-workfiles2, name: File Open...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
-    - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
+    - {app_instance: tk-multi-workfiles2, name: File Save...}
     - {app_instance: tk-multi-publish, name: Publish...}
   #
   # -------------------------------------------------
@@ -644,26 +671,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: maya_asset_snapshot
         template_work: maya_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
-        launch_at_startup: true
-        launch_change_work_area_at_startup: false
+        launch_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: maya_asset_publish
         template_publish_area: asset_publish_area_maya
         template_work: maya_asset_work
@@ -676,9 +712,9 @@ engines:
       type: app_store
       name: tk-maya
     menu_favourites:
-    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-workfiles2, name: File Open...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
-    - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
+    - {app_instance: tk-multi-workfiles2, name: File Save...}
     - {app_instance: tk-multi-publish, name: Publish...}
     template_project: asset_work_area_maya
     use_sgtk_as_menu_name: false
@@ -754,26 +790,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: mobu_asset_snapshot
         template_work: mobu_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: mobu_asset_publish
         template_publish_area: asset_publish_area_mobu
         template_work: mobu_asset_work
@@ -785,9 +830,9 @@ engines:
       type: app_store
       name: tk-motionbuilder
     menu_favourites:
-    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-workfiles2, name: File Open...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
-    - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
+    - {app_instance: tk-multi-workfiles2, name: File Save...}
     - {app_instance: tk-multi-publish, name: Publish...}
     use_sgtk_as_menu_name: false
   #
@@ -920,26 +965,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: nuke_asset_snapshot
         template_work: nuke_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: nuke_asset_publish
         template_publish_area: asset_publish_area_nuke
         template_work: nuke_asset_work
@@ -979,13 +1033,13 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      version: v0.5.4
+      version: v0.5.5
       type: app_store
       name: tk-nuke
     menu_favourites:
-    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-workfiles2, name: File Open...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
-    - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
+    - {app_instance: tk-multi-workfiles2, name: File Save...}
     - {app_instance: tk-multi-publish, name: Publish...}
     bin_context_menu: []
     spreadsheet_context_menu: []
@@ -1034,26 +1088,29 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: hiero_project_snapshot
         template_work: hiero_project_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Projects
+          entity_type: Project
+          filters: []
+          hierarchy: [name]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          name: tk-multi-workfiles2
           type: app_store
-          name: tk-multi-workfiles
+          version: v0.7.29
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: []
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: false
         template_publish: hiero_project_publish
         template_publish_area: hiero_project_publish_area
         template_work: hiero_project_work
@@ -1172,10 +1229,8 @@ engines:
         publish_filters: []
         title_name: Loader
     bin_context_menu:
-    - {app_instance: tk-multi-workfiles, keep_in_menu: false, name: Shotgun Save As...,
+    - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
       requires_selection: true}
-    - {app_instance: tk-multi-workfiles, keep_in_menu: false, name: Version up Current
-        Scene..., requires_selection: true}
     - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
     - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
       requires_selection: true}
@@ -1187,11 +1242,11 @@ engines:
     compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      version: v0.5.4
+      version: v0.5.5
       type: app_store
       name: tk-nuke
     menu_favourites:
-    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-workfiles2, name: File Open...}
     spreadsheet_context_menu: []
     timeline_context_menu: []
   #
@@ -1267,26 +1322,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: photoshop_asset_snapshot
         template_work: photoshop_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: photoshop_asset_publish
         template_publish_area: asset_publish_area_photoshop
         template_work: photoshop_asset_work
@@ -1358,26 +1422,35 @@ engines:
           name: tk-multi-snapshot
         template_snapshot: softimage_asset_snapshot
         template_work: softimage_asset_work
-      tk-multi-workfiles:
+      tk-multi-workfiles2:
         allow_task_creation: true
+        create_new_task_hook: default
+        custom_actions_hook: default
+        entities:
+        - caption: Assets
+          entity_type: Task
+          filters:
+          - [entity, type_is, Asset]
+          hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+        - caption: Shots
+          entity_type: Task
+          filters:
+          - [entity, type_is, Shot]
+          hierarchy: [entity.Shot.sg_sequence, entity, step, content]
         file_extensions: []
         hook_copy_file: default
         hook_filter_publishes: default
         hook_filter_work_files: default
         hook_scene_operation: default
         launch_at_startup: false
-        launch_change_work_area_at_startup: false
         location:
-          version: v0.7.1
+          version: v0.7.29
           type: app_store
-          name: tk-multi-workfiles
+          name: tk-multi-workfiles2
+        my_tasks_extra_display_fields: []
         saveas_default_name: scene
         saveas_prefer_version_up: false
-        sg_entity_type_extra_display_fields: {}
-        sg_entity_type_filters: {}
-        sg_entity_types: [Shot, Asset]
-        sg_task_filters: []
-        task_extra_display_fields: []
+        show_my_tasks: true
         template_publish: softimage_asset_publish
         template_publish_area: asset_publish_area_softimage
         template_work: softimage_asset_work
@@ -1389,9 +1462,9 @@ engines:
       type: app_store
       name: tk-softimage
     menu_favourites:
-    - {app_instance: tk-multi-workfiles, name: Shotgun File Manager...}
+    - {app_instance: tk-multi-workfiles2, name: File Open...}
     - {app_instance: tk-multi-snapshot, name: Snapshot...}
-    - {app_instance: tk-multi-workfiles, name: Shotgun Save As...}
+    - {app_instance: tk-multi-workfiles2, name: File Save...}
     - {app_instance: tk-multi-publish, name: Publish...}
     template_project: asset_work_area_softimage
 
@@ -1410,18 +1483,3 @@ frameworks:
       name: tk-framework-softimageqt
       type: app_store
       version: v1.0.1
-  tk-framework-shotgunutils_v3.x.x:
-    location:
-      version: v3.0.4
-      type: app_store
-      name: tk-framework-shotgunutils
-  tk-framework-qtwidgets_v2.x.x:
-    location:
-      version: v2.2.1
-      type: app_store
-      name: tk-framework-qtwidgets
-  tk-framework-shotgunutils_v4.x.x:
-    location:
-      version: v4.0.3
-      type: app_store
-      name: tk-framework-shotgunutils
