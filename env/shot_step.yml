@@ -385,9 +385,9 @@ engines:
         shotgun_fields_hook: '{self}/shotgun_fields.py'
       tk-houdini-alembicnode:
         location:
-          name: tk-houdini-alembicnode
+          version: v0.2.5
           type: app_store
-          version: v0.2.4
+          name: tk-houdini-alembicnode
         work_file_template: houdini_shot_work
         default_node_name: sg_alembic_out
         output_profiles:
@@ -397,9 +397,9 @@ engines:
           output_cache_template: houdini_shot_work_alembic_cache
       tk-houdini-mantranode:
         location:
-          name: tk-houdini-mantranode
+          version: v0.2.7
           type: app_store
-          version: v0.2.6
+          name: tk-houdini-mantranode
         work_file_template: houdini_shot_work
         default_node_name: sg_mantra_out
         output_profiles:
@@ -829,7 +829,7 @@ engines:
         template_work: nuke_shot_work
       tk-multi-reviewsubmission:
         location:
-          version: v0.3.0
+          version: v0.3.1
           type: app_store
           name: tk-multi-reviewsubmission
         movie_height: 540
@@ -1102,7 +1102,7 @@ engines:
           tile_color: []
       tk-multi-reviewsubmission:
         location:
-          version: v0.3.0
+          version: v0.3.1
           type: app_store
           name: tk-multi-reviewsubmission
         movie_height: 540
