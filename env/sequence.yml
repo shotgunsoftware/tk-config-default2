@@ -58,7 +58,7 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      version: v0.1.12
+      version: v0.1.14
       type: app_store
       name: tk-3dsmaxplus
     menu_favourites: []

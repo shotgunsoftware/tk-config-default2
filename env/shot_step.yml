@@ -55,7 +55,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -152,6 +152,7 @@ engines:
       tk-multi-loader2:
         action_mappings:
           3dsmax Scene: [import, reference]
+          Alembic Cache: [import]
         actions_hook: '{self}/tk-3dsmaxplus_actions.py'
         download_thumbnails: true
         entities:
@@ -176,7 +177,7 @@ engines:
           publish_filters: []
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -261,7 +262,7 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      version: v0.1.12
+      version: v0.1.14
       type: app_store
       name: tk-3dsmaxplus
     menu_favourites: []
@@ -434,7 +435,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -497,7 +498,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -644,7 +645,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -777,7 +778,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -1154,7 +1155,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -1213,7 +1214,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.10.5
+          version: v1.11.1
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
