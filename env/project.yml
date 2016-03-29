@@ -112,7 +112,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.2
+          version: v0.3.3
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -145,7 +145,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.8.7
+          version: v0.9.0
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project
@@ -356,7 +356,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.2
+          version: v0.3.3
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -389,7 +389,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.8.7
+          version: v0.9.0
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project

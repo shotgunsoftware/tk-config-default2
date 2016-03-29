@@ -140,7 +140,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v4.x.x:
     location:
-      version: v4.0.4
+      version: v4.1.0
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
