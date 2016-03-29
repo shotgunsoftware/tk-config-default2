@@ -196,7 +196,17 @@ engines:
         primary_publish_template: max_asset_publish
         primary_scene_item_type: work_file
         primary_tank_type: 3dsmax Scene
-        secondary_outputs: []
+        secondary_outputs:
+        - description: Publish Alembic data for all geometry in the scene
+          display_group: Geometry Caches
+          display_name: Alembic Caches
+          icon: icons/alembic_cache_publish.png
+          name: alembic_cache
+          publish_template: asset_alembic_cache
+          required: false
+          scene_item_type: geometry
+          selected: false
+          tank_type: Alembic Cache
         template_work: max_asset_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-snapshot:
