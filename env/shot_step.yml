@@ -262,7 +262,7 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      version: v0.1.14
+      version: v0.1.15
       type: app_store
       name: tk-3dsmaxplus
     menu_favourites: []
@@ -451,7 +451,7 @@ engines:
     enable_sg_shelf: true
     enable_sg_menu: true
     location:
-      version: v1.0.1
+      version: v1.0.2
       type: app_store
       name: tk-houdini
     menu_favourites:

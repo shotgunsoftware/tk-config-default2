@@ -52,7 +52,7 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      version: v0.1.14
+      version: v0.1.15
       type: app_store
       name: tk-3dsmaxplus
     menu_favourites: []
@@ -112,7 +112,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.3
+          version: v0.3.4
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -229,7 +229,7 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
     location:
-      version: v1.0.1
+      version: v1.0.2
       type: app_store
       name: tk-houdini
     enable_sg_shelf: true
@@ -356,7 +356,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.3
+          version: v0.3.4
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
