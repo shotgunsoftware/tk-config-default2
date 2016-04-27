@@ -62,7 +62,10 @@ workfiles2:
   hook_filter_work_files: default
   hook_scene_operation: default
   launch_at_startup: false
-  location: {name: tk-multi-workfiles2, type: app_store, version: v0.7.29}
+  location:
+    version: v0.7.31
+    type: app_store
+    name: tk-multi-workfiles2
   my_tasks_extra_display_fields: []
   saveas_default_name: scene
   saveas_prefer_version_up: false
@@ -99,7 +102,10 @@ workfiles2-launch-at-startup:
   hook_filter_work_files: default
   hook_scene_operation: default
   launch_at_startup: true
-  location: {name: tk-multi-workfiles2, type: app_store, version: v0.7.29}
+  location:
+    version: v0.7.31
+    type: app_store
+    name: tk-multi-workfiles2
   my_tasks_extra_display_fields: []
   saveas_default_name: scene
   saveas_prefer_version_up: false
@@ -140,7 +146,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v4.x.x:
     location:
-      version: v4.1.0
+      version: v4.1.2
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
