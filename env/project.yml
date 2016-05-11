@@ -438,6 +438,36 @@ engines:
         template_work: hiero_project_work
         template_work_area: hiero_project_work_area
         version_compare_ignore_fields: []
+      tk-multi-shotgunpanel:
+        location:
+          version: v1.2.5
+          type: app_store
+          name: tk-multi-shotgunpanel
+        shotgun_fields_hook: '{self}/shotgun_fields.py'
+        actions_hook: '{self}/general_actions.py'
+        action_mappings:
+          PublishedFile:
+          - actions:
+            - publish_clipboard
+            filters: {}
+          - actions:
+            - read_node
+            filters:
+              published_file_type: Rendered Image
+          - actions:
+            - script_import
+            filters:
+              published_file_type: Nuke Script
+          Task:
+          - actions:
+            - assign_task
+            - task_to_ip
+            filters: {}
+          Version:
+          - actions:
+            - quicktime_clipboard
+            - sequence_clipboard
+            filters: {}
     bin_context_menu:
     - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
       requires_selection: true}

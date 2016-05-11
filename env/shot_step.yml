@@ -259,6 +259,28 @@ engines:
         template_work: max_shot_work
         template_work_area: shot_work_area_max
         version_compare_ignore_fields: []
+      tk-multi-shotgunpanel:
+        location:
+          version: v1.2.5
+          type: app_store
+          name: tk-multi-shotgunpanel
+        shotgun_fields_hook: '{self}/shotgun_fields.py'
+        actions_hook: '{self}/general_actions.py'
+        action_mappings:
+          PublishedFile:
+          - actions:
+            - publish_clipboard
+            filters: {}
+          Task:
+          - actions:
+            - assign_task
+            - task_to_ip
+            filters: {}
+          Version:
+          - actions:
+            - quicktime_clipboard
+            - sequence_clipboard
+            filters: {}
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
@@ -379,8 +401,19 @@ engines:
           type: app_store
           name: tk-multi-shotgunpanel
         action_mappings:
+          PublishedFile:
+          - actions:
+            - publish_clipboard
+            filters: {}
           Task:
-          - actions: [assign_task, task_to_ip]
+          - actions:
+            - assign_task
+            - task_to_ip
+            filters: {}
+          Version:
+          - actions:
+            - quicktime_clipboard
+            - sequence_clipboard
             filters: {}
         actions_hook: '{self}/general_actions.py'
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -727,6 +760,28 @@ engines:
         template_work: mobu_shot_work
         template_work_area: shot_work_area_mobu
         version_compare_ignore_fields: []
+      tk-multi-shotgunpanel:
+        location:
+          version: v1.2.5
+          type: app_store
+          name: tk-multi-shotgunpanel
+        shotgun_fields_hook: '{self}/shotgun_fields.py'
+        actions_hook: '{self}/general_actions.py'
+        action_mappings:
+          PublishedFile:
+          - actions:
+            - publish_clipboard
+            filters: {}
+          Task:
+          - actions:
+            - assign_task
+            - task_to_ip
+            filters: {}
+          Version:
+          - actions:
+            - quicktime_clipboard
+            - sequence_clipboard
+            filters: {}
     debug_logging: false
     location:
       version: v0.3.1
@@ -1161,6 +1216,27 @@ engines:
         menu_name: Load
         publish_filters: []
         title_name: Loader
+      tk-multi-shotgunpanel:
+        action_mappings:
+          PublishedFile:
+          - actions: [read_node]
+            filters: {published_file_type: Rendered Image}
+          - actions: [script_import]
+            filters: {published_file_type: Nuke Script}
+          Task:
+          - actions: [assign_task, task_to_ip]
+            filters: {}
+          Version:
+          - actions:
+            - quicktime_clipboard
+            - sequence_clipboard
+            filters: {}
+        actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
+        location:
+          version: v1.2.5
+          type: app_store
+          name: tk-multi-shotgunpanel
+        shotgun_fields_hook: '{self}/shotgun_fields.py'
     bin_context_menu:
     - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
       requires_selection: true}
@@ -1289,6 +1365,28 @@ engines:
         template_work: photoshop_shot_work
         template_work_area: shot_work_area_photoshop
         version_compare_ignore_fields: []
+      tk-multi-shotgunpanel:
+        location:
+          version: v1.2.5
+          type: app_store
+          name: tk-multi-shotgunpanel
+        shotgun_fields_hook: '{self}/shotgun_fields.py'
+        actions_hook: '{self}/general_actions.py'
+        action_mappings:
+          PublishedFile:
+          - actions:
+            - publish_clipboard
+            filters: {}
+          Task:
+          - actions:
+            - assign_task
+            - task_to_ip
+            filters: {}
+          Version:
+          - actions:
+            - quicktime_clipboard
+            - sequence_clipboard
+            filters: {}
     debug_logging: false
     location:
       version: v0.3.3
@@ -1397,6 +1495,28 @@ engines:
         template_work: softimage_shot_work
         template_work_area: shot_work_area_softimage
         version_compare_ignore_fields: []
+      tk-multi-shotgunpanel:
+        location:
+          version: v1.2.5
+          type: app_store
+          name: tk-multi-shotgunpanel
+        shotgun_fields_hook: '{self}/shotgun_fields.py'
+        actions_hook: '{self}/general_actions.py'
+        action_mappings:
+          PublishedFile:
+          - actions:
+            - publish_clipboard
+            filters: {}
+          Task:
+          - actions:
+            - assign_task
+            - task_to_ip
+            filters: {}
+          Version:
+          - actions:
+            - quicktime_clipboard
+            - sequence_clipboard
+            filters: {}
     debug_logging: false
     location:
       version: v0.3.2
