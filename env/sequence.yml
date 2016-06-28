@@ -72,7 +72,7 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
     location:
-      version: v1.0.2
+      version: v1.0.5
       type: app_store
       name: tk-houdini
     enable_sg_shelf: true
@@ -130,7 +130,7 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      version: v0.6.0
+      version: v0.6.6
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -156,10 +156,9 @@ engines:
       tk-multi-launchsoftimage: '@launch_softimage'
       tk-multi-screeningroom: '@launch_screeningroom'
     location:
-      name: tk-shell
+      version: v0.5.0
       type: app_store
-      version: v0.4.1
-
+      name: tk-shell
   #
   # -------------------------------------------------
   # Softimage
