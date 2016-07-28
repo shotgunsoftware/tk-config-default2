@@ -88,7 +88,7 @@ engines:
       name: Finishing Tools
     hook_launch_python: default
     location:
-      version: v2.0.10
+      version: v2.0.13
       type: app_store
       name: tk-desktop
     show_recents: true
@@ -291,7 +291,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.5.6
+      version: v0.5.9
       type: app_store
       name: tk-maya
     menu_favourites:
