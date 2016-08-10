@@ -484,7 +484,7 @@ engines:
     enable_sg_shelf: true
     enable_sg_menu: true
     location:
-      version: v1.0.7
+      version: v1.0.8
       type: app_store
       name: tk-houdini
     menu_favourites:
