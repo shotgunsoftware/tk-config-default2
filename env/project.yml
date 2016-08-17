@@ -88,7 +88,7 @@ engines:
       name: Finishing Tools
     hook_launch_python: default
     location:
-      version: v2.0.13
+      version: v2.0.16
       type: app_store
       name: tk-desktop
     show_recents: true
@@ -113,7 +113,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.14
+          version: v0.3.19
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -129,9 +129,9 @@ engines:
         hook_post_version_creation: default
       tk-hiero-openinshotgun:
         location:
-          name: tk-hiero-openinshotgun
+          version: v0.3.3
           type: app_store
-          version: v0.3.0
+          name: tk-hiero-openinshotgun
       tk-multi-about: '@about'
       tk-multi-shotgunpanel: '@shotgunpanel'
       tk-multi-publish:
@@ -147,7 +147,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.9.2
+          version: v0.9.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project
@@ -184,7 +184,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.37
+          version: v0.7.39
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -210,7 +210,7 @@ engines:
     compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      version: v0.6.7
+      version: v0.6.9
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -291,7 +291,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.5.10
+      version: v0.6.0
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -333,7 +333,7 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      version: v0.6.7
+      version: v0.6.9
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -363,7 +363,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.14
+          version: v0.3.19
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -379,9 +379,9 @@ engines:
         hook_post_version_creation: default
       tk-hiero-openinshotgun:
         location:
-          name: tk-hiero-openinshotgun
+          version: v0.3.3
           type: app_store
-          version: v0.3.0
+          name: tk-hiero-openinshotgun
       tk-multi-about: '@about'
       tk-multi-publish:
         allow_taskless_publishes: true
@@ -396,7 +396,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.9.2
+          version: v0.9.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project
@@ -433,7 +433,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.37
+          version: v0.7.39
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -447,7 +447,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.6
+          version: v1.2.7
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -489,7 +489,7 @@ engines:
     compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      version: v0.6.7
+      version: v0.6.9
       type: app_store
       name: tk-nuke
     menu_favourites:
