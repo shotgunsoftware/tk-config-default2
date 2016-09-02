@@ -88,7 +88,7 @@ engines:
       name: Finishing Tools
     hook_launch_python: default
     location:
-      version: v2.0.16
+      version: v2.0.19
       type: app_store
       name: tk-desktop
     show_recents: true
@@ -232,7 +232,7 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
     location:
-      version: v1.0.8
+      version: v1.0.10
       type: app_store
       name: tk-houdini
     enable_sg_shelf: true
@@ -257,7 +257,7 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          version: v0.7.3
+          version: v0.7.4
           type: app_store
           name: tk-multi-workfiles
         saveas_default_name: scene
@@ -566,14 +566,9 @@ engines:
 frameworks:
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.1.5
+      version: v0.1.6
       type: app_store
       name: tk-framework-adminui
-  tk-framework-login_v1.x.x:
-    location:
-      version: v1.2.2
-      type: app_store
-      name: tk-framework-login
   tk-framework-softimageqt_v1.0.1:
     location:
       name: tk-framework-softimageqt

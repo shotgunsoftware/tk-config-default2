@@ -464,14 +464,14 @@ engines:
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-houdini_scene_operations.py'
         location:
-          name: tk-multi-breakdown
+          version: v1.4.4
           type: app_store
-          version: v1.4.3
+          name: tk-multi-breakdown
     debug_logging: false
     enable_sg_shelf: true
     enable_sg_menu: true
     location:
-      version: v1.0.8
+      version: v1.0.10
       type: app_store
       name: tk-houdini
     menu_favourites:
@@ -499,7 +499,7 @@ engines:
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-mari_scene_operations.py'
         location:
-          version: v1.4.3
+          version: v1.4.4
           type: app_store
           name: tk-multi-breakdown
       tk-multi-loader2:
@@ -583,7 +583,7 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          version: v0.7.3
+          version: v0.7.4
           type: app_store
           name: tk-multi-workfiles
         saveas_default_name: scene
@@ -636,7 +636,7 @@ engines:
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-maya_scene_operations.py'
         location:
-          version: v1.4.3
+          version: v1.4.4
           type: app_store
           name: tk-multi-breakdown
       tk-multi-loader2:
@@ -933,7 +933,7 @@ engines:
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-nuke_scene_operations.py'
         location:
-          version: v1.4.3
+          version: v1.4.4
           type: app_store
           name: tk-multi-breakdown
       tk-multi-loader2:
@@ -1281,7 +1281,7 @@ engines:
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-nuke_scene_operations.py'
         location:
-          version: v1.4.3
+          version: v1.4.4
           type: app_store
           name: tk-multi-breakdown
       tk-multi-loader2:

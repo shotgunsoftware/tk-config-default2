@@ -74,7 +74,7 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
     location:
-      version: v1.0.8
+      version: v1.0.10
       type: app_store
       name: tk-houdini
     enable_sg_shelf: true

@@ -73,7 +73,7 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
     location:
-      version: v1.0.8
+      version: v1.0.10
       type: app_store
       name: tk-houdini
     enable_sg_shelf: true
@@ -98,7 +98,7 @@ engines:
         launch_at_startup: false
         launch_change_work_area_at_startup: false
         location:
-          version: v0.7.3
+          version: v0.7.4
           type: app_store
           name: tk-multi-workfiles
         saveas_default_name: scene
