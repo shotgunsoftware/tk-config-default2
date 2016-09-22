@@ -1,72 +1,80 @@
-# Copyright (c) 2015 Shotgun Software Inc.
-#
-# CONFIDENTIAL AND PROPRIETARY
-#
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
-# Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
-# not expressly granted therein are reserved by Shotgun Software Inc.
-#
-#
-# This file contains commonly used apps and is included from
-# other environment files. You'll see references to for example
-# @about, @workfiles2 etc. Whenever a definition like that appears,
-# one of the definitions below are pulled in to replace that
-# include statement.
-#
-
-#
-# Toolkit Current Work Area information App
-#
 about:
+  location: {name: tk-multi-about, type: app_store, version: v0.2.0}
+frameworks:
+  tk-framework-qtwidgets_v1.x.x:
+    location: {name: tk-framework-qtwidgets, type: app_store, version: v1.0.3}
+  tk-framework-qtwidgets_v2.x.x:
+    location:
+      version: v2.4.3
+      type: app_store
+      name: tk-framework-qtwidgets
+  tk-framework-shotgunutils_v2.x.x:
+    location: {name: tk-framework-shotgunutils, type: app_store, version: v2.5.1}
+  tk-framework-shotgunutils_v4.x.x:
+    location:
+      version: v4.4.5
+      type: app_store
+      name: tk-framework-shotgunutils
+  tk-framework-widget_v0.1.18:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.18}
+  tk-framework-widget_v0.1.20:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.20}
+  tk-framework-widget_v0.1.23:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.23}
+  tk-framework-widget_v0.1.24:
+    location: {name: tk-framework-widget, type: app_store, version: v0.1.24}
+  tk-framework-widget_v0.2.x:
+    location:
+      version: v0.2.4
+      type: app_store
+      name: tk-framework-widget
+workfiles:
+  allow_task_creation: true
+  file_extensions: []
+  hook_copy_file: default
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: default
+  launch_at_startup: false
+  launch_change_work_area_at_startup: false
   location:
-    name: tk-multi-about
+    version: v0.7.4
     type: app_store
-    version: v0.2.0
-
-#
-# General Shotgun Panel configuration
-#
-shotgunpanel:
-  location:
-    version: v1.2.7
-    type: app_store
-    name: tk-multi-shotgunpanel
-  shotgun_fields_hook: '{self}/shotgun_fields.py'
-  actions_hook: '{self}/general_actions.py'
-  action_mappings:
-    PublishedFile:
-    - actions:
-      - publish_clipboard
-      filters: {}
-    Task:
-    - actions:
-      - assign_task
-      - task_to_ip
-      filters: {}
-    Version:
-    - actions:
-      - quicktime_clipboard
-      - sequence_clipboard
-      filters: {}
-#
-# General File Manager configuration.
-# -----------------------------------
-# This configuration is used whenever a general file manager
-# is needed. This configuration doesn't look for files,
-# but only lets you switch to a valid work area. When a user
-# switches (by selecting a task), the engine is restarted, and
-# another environment is loaded in. This environment will
-# have another file manager app running, with different settings,
-# allowing files to be loaded and saved.
-#
-# References to this @workfiles2 include typically appears at
-# 'transit' levels in the configuration, where work normally
-# doesn't happen, but you just want the user to jump to their
-# work area. The work area is typically a task or pipeline step
-# and these 'transit' areas can be project, shot, or sequence level.
-#
+    name: tk-multi-workfiles
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  sg_entity_type_extra_display_fields: {}
+  sg_entity_type_filters: {}
+  sg_entity_types: [Shot, Asset]
+  sg_task_filters: []
+  task_extra_display_fields: []
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
+workfiles-launch-at-startup:
+  allow_task_creation: true
+  file_extensions: []
+  hook_copy_file: default
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: default
+  launch_at_startup: true
+  launch_change_work_area_at_startup: false
+  location: {name: tk-multi-workfiles, type: app_store, version: v0.6.17}
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  sg_entity_type_extra_display_fields: {}
+  sg_entity_type_filters: {}
+  sg_entity_types: [Shot, Asset]
+  sg_task_filters: []
+  task_extra_display_fields: []
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
 workfiles2:
   allow_task_creation: true
   create_new_task_hook: '{self}/create_new_task.py'
@@ -84,48 +92,8 @@ workfiles2:
     hierarchy: [entity.Shot.sg_sequence, entity, step, content]
   file_extensions: []
   hook_copy_file: '{self}/copy_file.py'
-  hook_filter_publishes: default
-  hook_filter_work_files: default
-  hook_scene_operation: default
-  launch_at_startup: false
-  location:
-    version: v0.7.39
-    type: app_store
-    name: tk-multi-workfiles2
-  my_tasks_extra_display_fields: []
-  saveas_default_name: scene
-  saveas_prefer_version_up: false
-  show_my_tasks: true
-  template_publish:
-  template_publish_area:
-  template_work:
-  template_work_area:
-  version_compare_ignore_fields: []
-#
-#
-# File Manager that launches at startup.
-# --------------------------------------
-# For details, see above.
-#
-workfiles2-launch-at-startup:
-  allow_task_creation: true
-  create_new_task_hook: '{self}/create_new_task.py'
-  custom_actions_hook: '{self}/custom_actions.py'
-  entities:
-  - caption: Assets
-    entity_type: Task
-    filters:
-    - [entity, type_is, Asset]
-    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
-  - caption: Shots
-    entity_type: Task
-    filters:
-    - [entity, type_is, Shot]
-    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
-  file_extensions: []
-  hook_copy_file: '{self}/copy_file.py'
-  hook_filter_publishes: default
-  hook_filter_work_files: default
+  hook_filter_publishes: '{self}/filter_publishes.py'
+  hook_filter_work_files: '{self}/filter_work_files.py'
   hook_scene_operation: default
   launch_at_startup: true
   location:
@@ -141,27 +109,3 @@ workfiles2-launch-at-startup:
   template_work:
   template_work_area:
   version_compare_ignore_fields: []
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-qtwidgets_v2.x.x:
-    location:
-      version: v2.4.3
-      type: app_store
-      name: tk-framework-qtwidgets
-  tk-framework-shotgunutils_v4.x.x:
-    location:
-      version: v4.4.5
-      type: app_store
-      name: tk-framework-shotgunutils
-  tk-framework-widget_v0.2.x:
-    location:
-      version: v0.2.4
-      type: app_store
-      name: tk-framework-widget

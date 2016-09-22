@@ -1,11 +1,11 @@
-# Copyright (c) 2015 Shotgun Software Inc.
-#
+# Copyright (c) 2013 Shotgun Software Inc.
+# 
 # CONFIDENTIAL AND PROPRIETARY
-#
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# 
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
 # Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# By accessing, using, copying or modifying this work you indicate your 
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
@@ -14,85 +14,70 @@
 #
 
 #
-# Mari
+# maya
 #
-mari_linux: 'Mari3.0'
-mari_mac: /Applications/Mari3.0v2
-mari_windows: 'C:\Program Files\Mari3.0v2\Bundle\bin\Mari3.0v2.exe'
+maya_windows: 'C:\appnet\applications\maya\{version}-x64\Maya{version}\bin\maya.exe'
+maya_mac: /Applications/Autodesk/maya{version}/Maya.app
+maya_linux: maya{version}
 
 
 #
-# Maya
+# nuke
 #
-maya_windows: 'C:\Program Files\Autodesk\Maya2015\bin\maya.exe'
-maya_mac: /Applications/Autodesk/maya2015/Maya.app
-maya_linux: maya
-
-
-#
-# Nuke
-#
-nuke_mac: /Applications/Nuke9.0v8/Nuke9.0v8.app
-nuke_windows: 'C:\Program Files\Nuke9.0v8\Nuke9.0.exe'
-nuke_linux: Nuke9.0
-
-
-#
-# Nuke Studio
-#
-nukestudio_mac: /Applications/Nuke9.0v8/NukeStudio9.0v8.app
-nukestudio_windows: 'C:\Program Files\Nuke9.0v8\Nuke9.0.exe'
-nukestudio_linux: Nuke9.0
-
-
-#
-# motionbuilder
-#
-motionbuilder_windows: 'C:\Program Files\Autodesk\MotionBuilder 2014\bin\x64\motionbuilder.exe'
-
-
-#
-# 3dsmax 2015
-#
-3dsmax_windows: 'C:\Program Files\Autodesk\3ds Max 2015\3dsmax.exe'
+nuke_mac: /Applications/Nuke8.0v3/Nuke8.0v3.app
+nuke_windows: 'E:\Program Files\Nuke8.0v5\Nuke8.0.exe'
+nuke_linux: Nuke8.0
 
 
 #
 # Houdini
 #
-houdini_mac: /Applications/Houdini 15.0.244.16/Houdini.app
-houdini_windows: 'C:\Program Files\Side Effects Software\Houdini 15.0.244.16\bin\houdini.exe'
-houdini_linux: '/opt/hfs15.0.244.16/bin/houdini'
+#houdini_windows: 'C:\Program Files\Side Effects Software\Houdini 13.0.375\bin\houdini.exe'
+
+houdini_windows: 'C:\appnet\applications\houdini\15.0.416\bin\h{v0}.exe'
+#houdiniFX_windows: 'C:\appnet\applications\houdini\15.0.416\bin\hmaster.exe'
+#houdini_windows: 'C:\Python27\python.exe'
+
+#[Rob] This is going to be launched via the python wrapper instead
+#houdini_linux: '/studio/application_support/houdiniSettings/studio/houdini13.0/scripts/HFX13.0.376'
+
+#houdini_linux: '/opt/Shotgun/Python/bin/python'
+houdini_linux: '/opt/hfs15.0.416/bin/h{v0}'
+#houdiniFX_linux: '/opt/Shotgun/Python/bin/python'
+#houdini_master_linux: '/usr/bin/python'
+
+
+#HJ: COMMENTED OUT FOR THE MOMENT
+
+#
+# Houdini
+#
+#houdini_windows: 'C:\Python27\python.exe'
+
+#[Rob] This is going to be launched via the python wrapper instead
+#houdini_linux: '/studio/application_support/houdiniSettings/studio/houdini13.0/scripts/HFX13.0.376'
+#houdini_linux: '/usr/bin/python'
 
 
 #
 # photoshop CS6
 #
 photoshop_mac: /Applications/Adobe Photoshop CS6/Adobe Photoshop CS6.app
-photoshop_win: 'C:\Program Files\Adobe\Adobe Photoshop CS6 (64 Bit)\Photoshop.exe'
-photoshop_extras:
+photoshop_win: 'C:\Program Files\Adobe\Adobe Photoshop CC (64 Bit)\Photoshop.exe'
+photoshop_extras:         
     mac_extension_manager_path: /Applications/Adobe Extension Manager CS6/Adobe Extension Manager CS6.app
-    # An empty Python path will cause the engine to default to using the "current"
-    # Python that the engine is running in. This is often the best approach, as it
-    # should guarantee all necessary Python libraries are available.
-    mac_python_path: ''
-    windows_extension_manager_path: 'C:\Program Files (x86)\Adobe\Adobe Extension Manager CS6\XManCommand.exe'
-    windows_python_path: ''
+    mac_python_path: /usr/bin/python
+    windows_extension_manager_path: 'C:\Program Files (x86)\Adobe\Adobe Extension Manager CC\XManCommand.exe'
+    windows_python_path: 'C:\Python27\python.exe'
 
 
 #
 # Hiero
 #
-hiero_mac: /Applications/Nuke9.0v8/Hiero9.0v8.app
-hiero_win: 'C:\Program Files\Nuke9.0v8\Nuke9.0.exe'
-hiero_linux: Nuke9.0
-
-
-#
-# Softimage
-#
-softimage_windows: C:\Program Files\Autodesk\Softimage 2013\Application\bin\XSI.bat
-softimage_linux: XSI
+# Hiero argument passed in app_launchers.yml
+hiero_mac: /Applications/Nuke{v0}{v1}/Hiero{v0}{v1}.app
+hiero_win: 'E:\Program Files\Nuke{v0}{v1}\Nuke{v0}.exe'
+hiero_linux: Nuke{v0}
 
 
 #
@@ -101,3 +86,4 @@ softimage_linux: XSI
 rv_mac: /Applications/RV64.app
 rv_win: C:\Program Files\RV\RV64.exe
 rv_linux: rv
+

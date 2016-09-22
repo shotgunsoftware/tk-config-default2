@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2013 Shotgun Software Inc.
 # 
 # CONFIDENTIAL AND PROPRIETARY
 # 
@@ -11,6 +11,5 @@
 # the type of dynamic content
 type: "static"
 
-# defer creation and only create this folder when 3dsmax starts
+# only create this folder when Nuke launches
 defer_creation: "tk-nuke"
-
