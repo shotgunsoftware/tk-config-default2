@@ -1,6 +1,6 @@
 ##########################################################################################
 # This file contains file patterns that should be ignored
-# when folders are created on disk. Similar to a gitignore file. 
+# when folders are created on disk. Similar to a gitignore file.
 #
 # Sometimes, there may be files inside the configuration scaffold
 # that should not be copied across. It may be because the configuration

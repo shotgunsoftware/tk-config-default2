@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------
+The Shotgun Pipeline Toolkit Standard Project Configuration
+-------------------------------------------------------------------------
+
+Welcome to the Shotgun Pipeline Toolkit Standard config! It provides a
+starting point for experimentation and testing and will help you discover
+how everything works!
+
+Once you have installed the standard config for a project, you need to
+do a quick configuration pass to make sure the config will work
+with your system. The main item to configure are the paths to the
+various executables, such as Maya and Nuke. These configuration
+options can be found in your newly created project:
+
+- First navigate to the new project's configuration root folder.
+- Now navigate to the config/env/includes folder.
+- Open the paths.yml file and edit the settings.
+
+Once things are set up, go to Shotgun:
+
+1. Select some shots, right click and select Create Folders
+3. Right click on a task for one of the shots and try launching Maya/Nuke
+4. Once Maya or Nuke is launched, you should see a Shotgun menu appear
+
+For more information, go to the following url:
+https://support.shotgunsoftware.com/entries/95440087
+
+-------------------------------------------------------------------------
