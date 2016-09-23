@@ -53,7 +53,7 @@ engines:
     compatibility_dialog_min_version: 2017
     debug_logging: false
     location:
-      version: v0.1.16
+      version: v0.2.0
       type: app_store
       name: tk-3dsmaxplus
     menu_favourites: []
@@ -88,7 +88,7 @@ engines:
       name: Finishing Tools
     hook_launch_python: default
     location:
-      version: v2.0.19
+      version: v2.0.21
       type: app_store
       name: tk-desktop
     show_recents: true
@@ -291,7 +291,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.6.0
+      version: v0.6.1
       type: app_store
       name: tk-maya
     menu_favourites:
