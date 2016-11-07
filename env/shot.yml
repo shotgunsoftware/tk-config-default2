@@ -79,7 +79,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.6.1
+      version: v0.7.3
       type: app_store
       name: tk-maya
     menu_favourites:

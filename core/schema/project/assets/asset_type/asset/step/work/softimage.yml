@@ -11,6 +11,6 @@
 # the type of dynamic content
 type: "static"
 
-# defer creation and only create this folder when 3dsmax starts
+# defer creation and only create this folder when Softimage starts
 defer_creation: "tk-softimage"
 

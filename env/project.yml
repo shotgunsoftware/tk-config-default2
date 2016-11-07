@@ -74,7 +74,7 @@ engines:
       name: Finishing Tools
     hook_launch_python: default
     location:
-      version: v2.0.21
+      version: v2.0.22
       type: app_store
       name: tk-desktop
     show_recents: true
@@ -99,7 +99,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.19
+          version: v0.3.31
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -170,7 +170,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.39
+          version: v0.7.42
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -277,7 +277,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.6.1
+      version: v0.7.3
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -349,7 +349,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.19
+          version: v0.3.31
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -419,7 +419,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.39
+          version: v0.7.42
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -433,7 +433,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.7
+          version: v1.2.8
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'

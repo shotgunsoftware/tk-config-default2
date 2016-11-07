@@ -30,7 +30,7 @@ about:
 #
 shotgunpanel:
   location:
-    version: v1.2.7
+    version: v1.2.8
     type: app_store
     name: tk-multi-shotgunpanel
   shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -89,7 +89,7 @@ workfiles2:
   hook_scene_operation: default
   launch_at_startup: false
   location:
-    version: v0.7.39
+    version: v0.7.42
     type: app_store
     name: tk-multi-workfiles2
   my_tasks_extra_display_fields: []
@@ -129,7 +129,7 @@ workfiles2-launch-at-startup:
   hook_scene_operation: default
   launch_at_startup: true
   location:
-    version: v0.7.39
+    version: v0.7.42
     type: app_store
     name: tk-multi-workfiles2
   my_tasks_extra_display_fields: []
@@ -152,12 +152,12 @@ workfiles2-launch-at-startup:
 frameworks:
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.5.7
+      version: v2.5.10
       type: app_store
       name: tk-framework-qtwidgets
   tk-framework-shotgunutils_v4.x.x:
     location:
-      version: v4.4.5
+      version: v4.4.14
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
