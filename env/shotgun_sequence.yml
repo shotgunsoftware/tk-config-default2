@@ -54,9 +54,9 @@ engines:
           version: v0.1.5
     debug_logging: false
     location:
-      name: tk-shotgun
+      version: v0.5.2
       type: app_store
-      version: v0.5.1
+      name: tk-shotgun
 #
 ###############################################################################
 #

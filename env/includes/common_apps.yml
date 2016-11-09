@@ -30,7 +30,7 @@ about:
 #
 shotgunpanel:
   location:
-    version: v1.2.8
+    version: v1.2.11
     type: app_store
     name: tk-multi-shotgunpanel
   shotgun_fields_hook: '{self}/shotgun_fields.py'

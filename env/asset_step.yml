@@ -144,7 +144,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -273,7 +273,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         action_mappings:
@@ -489,7 +489,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -612,7 +612,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-maya_actions.py'
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -663,7 +663,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.7.3
+      version: v0.7.4
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -781,7 +781,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -928,7 +928,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -1010,7 +1010,7 @@ engines:
     debug_logging: false
     favourite_directories: []
     location:
-      version: v0.6.9
+      version: v0.6.11
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -1222,7 +1222,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -1240,7 +1240,7 @@ engines:
     compatibility_dialog_min_version: 10
     debug_logging: false
     location:
-      version: v0.6.9
+      version: v0.6.11
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -1356,7 +1356,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -1478,7 +1478,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.8
+          version: v1.2.11
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
