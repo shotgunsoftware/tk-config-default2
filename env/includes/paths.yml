@@ -66,17 +66,17 @@ houdini_linux: '/opt/hfs15.0.244.16/bin/houdini'
 
 
 #
-# photoshop CS6
+# photoshop CC
 #
-photoshop_mac: /Applications/Adobe Photoshop CS6/Adobe Photoshop CS6.app
-photoshop_win: 'C:\Program Files\Adobe\Adobe Photoshop CS6 (64 Bit)\Photoshop.exe'
+photoshop_mac: /Applications/Adobe Photoshop CC/Adobe Photoshop CC.app
+photoshop_win: 'C:\Program Files\Adobe\Adobe Photoshop CC (64 Bit)\Photoshop.exe'
 photoshop_extras:
-    mac_extension_manager_path: /Applications/Adobe Extension Manager CS6/Adobe Extension Manager CS6.app
+    mac_extension_manager_path: /Applications/Adobe Extension Manager CC/Adobe Extension Manager CC.app
     # An empty Python path will cause the engine to default to using the "current"
     # Python that the engine is running in. This is often the best approach, as it
     # should guarantee all necessary Python libraries are available.
     mac_python_path: ''
-    windows_extension_manager_path: 'C:\Program Files (x86)\Adobe\Adobe Extension Manager CS6\XManCommand.exe'
+    windows_extension_manager_path: 'C:\Program Files (x86)\Adobe\Adobe Extension Manager CC\XManCommand.exe'
     windows_python_path: ''
 
 
