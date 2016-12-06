@@ -118,7 +118,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.7.4
+      version: v0.7.8
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -181,7 +181,7 @@ engines:
       tk-multi-workfiles2: '@workfiles2'
     debug_logging: false
     location:
-      version: v0.3.3
+      version: v0.3.6
       type: app_store
       name: tk-photoshop
   #
@@ -200,7 +200,7 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-shotgun-launchmari: '@launch_mari'
     location:
-      version: v0.5.0
+      version: v0.5.1
       type: app_store
       name: tk-shell
   #

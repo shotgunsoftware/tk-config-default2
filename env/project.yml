@@ -99,7 +99,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.31
+          version: v0.3.32
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -133,7 +133,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.9.4
+          version: v0.9.6
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project
@@ -170,7 +170,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.42
+          version: v0.7.46
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -277,7 +277,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.7.4
+      version: v0.7.8
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -349,7 +349,7 @@ engines:
         hook_update_version_data: default
         hook_upload_thumbnail: default
         location:
-          version: v0.3.31
+          version: v0.3.32
           type: app_store
           name: tk-hiero-export
         nuke_script_published_file_type: Nuke Script
@@ -382,7 +382,7 @@ engines:
         hook_secondary_publish: default
         hook_thumbnail: default
         location:
-          version: v0.9.4
+          version: v0.9.6
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project
@@ -419,7 +419,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.42
+          version: v0.7.46
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -433,7 +433,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.11
+          version: v1.2.13
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -498,7 +498,7 @@ engines:
       tk-multi-workfiles2: '@workfiles2'
     debug_logging: false
     location:
-      version: v0.3.3
+      version: v0.3.6
       type: app_store
       name: tk-photoshop
   #
@@ -519,7 +519,7 @@ engines:
       tk-multi-launchsoftimage: '@launch_softimage'
       tk-multi-screeningroom: '@launch_screeningroom'
     location:
-      version: v0.5.0
+      version: v0.5.1
       type: app_store
       name: tk-shell
   #
