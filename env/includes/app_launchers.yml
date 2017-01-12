@@ -238,7 +238,7 @@ launch_screeningroom:
   enable_rv_mode: true
   enable_web_mode: true
   location:
-    version: v0.3.0
+    version: v0.3.2
     type: app_store
     name: tk-multi-screeningroom
   rv_path_linux: '@rv_linux'

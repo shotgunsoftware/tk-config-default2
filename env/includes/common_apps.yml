@@ -21,10 +21,9 @@
 #
 about:
   location:
-    name: tk-multi-about
+    version: v0.2.1
     type: app_store
-    version: v0.2.0
-
+    name: tk-multi-about
 #
 # General Shotgun Panel configuration
 #
