@@ -59,7 +59,7 @@ engines:
           publish_filters: []
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.12.4
+          version: v1.13.4
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -129,7 +129,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -143,7 +143,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -265,7 +265,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -279,7 +279,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         action_mappings:
@@ -350,7 +350,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.12.4
+          version: v1.13.4
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -413,7 +413,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.12.4
+          version: v1.13.4
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -467,7 +467,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-maya_actions.py'
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -503,7 +503,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -518,7 +518,7 @@ engines:
     compatibility_dialog_min_version: 2015
     debug_logging: false
     location:
-      version: v0.7.11
+      version: v0.7.14
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -560,7 +560,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.12.4
+          version: v1.13.4
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -630,7 +630,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -644,7 +644,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -715,7 +715,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.12.4
+          version: v1.13.4
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -799,7 +799,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -835,7 +835,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -974,7 +974,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -1092,7 +1092,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.12.4
+          version: v1.13.4
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -1115,7 +1115,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -1172,7 +1172,7 @@ engines:
           hierarchy: [entity, content]
         filter_publishes_hook: '{self}/filter_publishes.py'
         location:
-          version: v1.12.4
+          version: v1.13.4
           type: app_store
           name: tk-multi-loader2
         menu_name: Load
@@ -1235,7 +1235,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -1249,7 +1249,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
@@ -1364,7 +1364,7 @@ engines:
         hook_scene_operation: default
         launch_at_startup: false
         location:
-          version: v0.7.46
+          version: v0.8.2
           type: app_store
           name: tk-multi-workfiles2
         my_tasks_extra_display_fields: []
@@ -1378,7 +1378,7 @@ engines:
         version_compare_ignore_fields: []
       tk-multi-shotgunpanel:
         location:
-          version: v1.2.13
+          version: v1.2.14
           type: app_store
           name: tk-multi-shotgunpanel
         shotgun_fields_hook: '{self}/shotgun_fields.py'
