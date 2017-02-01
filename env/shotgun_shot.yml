@@ -35,7 +35,7 @@ engines:
       tk-multi-launchmaya: '@launch_maya'
       tk-multi-launchmotionbuilder: '@launch_motionbuilder'
       tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchphotoshop: '@launch_photoshop'
+      tk-multi-launchphotoshopcc: '@launch_photoshopcc'
       tk-multi-launchsoftimage: '@launch_softimage'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-shotgun-folders:

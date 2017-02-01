@@ -209,12 +209,12 @@ launch_nukestudio:
   windows_path: '@nukestudio_windows'
 #
 # -------------------------------------------------
-# Photoshop
+# Photoshop CC
 # -------------------------------------------------
-launch_photoshop:
+launch_photoshopcc:
   defer_keyword: ''
-  engine: tk-photoshop
-  extra: '@photoshop_extras'
+  engine: tk-photoshopcc
+  extra: {}
   hook_app_launch: default
   hook_before_app_launch: default
   icon: '{target_engine}/icon_256.png'
