@@ -1142,7 +1142,7 @@ engines:
     timeline_context_menu: []
   #
   # -------------------------------------------------
-  # photoshop CC
+  # Photoshop CC
   # -------------------------------------------------
   tk-photoshopcc:
     apps:
