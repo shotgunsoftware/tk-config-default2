@@ -161,7 +161,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.1.0
+      version: v5.0.1
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
