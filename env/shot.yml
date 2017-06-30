@@ -41,13 +41,10 @@ engines:
       tk-multi-shotgunpanel: '@shotgunpanel'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
-    compatibility_dialog_min_version: 2017
-    debug_logging: false
     location:
       version: v0.2.0
       type: app_store
       name: tk-3dsmaxplus
-    menu_favourites: []
   #
   # -------------------------------------------------
   # Houdini
@@ -62,10 +59,6 @@ engines:
       version: v1.0.10
       type: app_store
       name: tk-houdini
-    enable_sg_shelf: true
-    debug_logging: false
-    enable_sg_menu: true
-    menu_favourites: []
   #
   # -------------------------------------------------
   # maya
@@ -76,17 +69,12 @@ engines:
       tk-multi-shotgunpanel: '@shotgunpanel'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2-launch-at-startup'
-    compatibility_dialog_min_version: 2015
-    debug_logging: false
     location:
       version: v0.7.14
       type: app_store
       name: tk-maya
     menu_favourites:
     - {app_instance: tk-multi-workfiles2, name: File Open...}
-    template_project:
-    use_sgtk_as_menu_name: false
-
   #
   # -------------------------------------------------
   # motionbuilder
@@ -97,15 +85,12 @@ engines:
       tk-multi-shotgunpanel: '@shotgunpanel'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
-    debug_logging: false
     location:
       version: v0.3.1
       type: app_store
       name: tk-motionbuilder
     menu_favourites:
     - {app_instance: tk-multi-workfiles2, name: File Open...}
-    use_sgtk_as_menu_name: false
-
   #
   # -------------------------------------------------
   # nuke
@@ -116,20 +101,12 @@ engines:
       tk-multi-shotgunpanel: '@shotgunpanel'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
-    compatibility_dialog_min_version: 10
-    debug_logging: false
-    favourite_directories: []
     location:
       version: v0.6.11
       type: app_store
       name: tk-nuke
     menu_favourites:
     - {app_instance: tk-multi-workfiles2, name: File Open...}
-    project_favourite_name: Shotgun Current Project
-    use_sgtk_as_menu_name: false
-    bin_context_menu: []
-    spreadsheet_context_menu: []
-    timeline_context_menu: []
   #
   # -------------------------------------------------
   # Photoshop CC
@@ -143,7 +120,6 @@ engines:
     shelf_favorites:
     - {app_instance: tk-multi-workfiles2, name: File Open...}
     - {app_instance: tk-multi-workfiles2, name: File Save...}
-    debug_logging: false
     location:
       version: v1.0.1
       type: app_store
@@ -176,14 +152,12 @@ engines:
       tk-multi-shotgunpanel: '@shotgunpanel'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-workfiles2: '@workfiles2'
-    debug_logging: false
     location:
       version: v0.3.2
       type: app_store
       name: tk-softimage
     menu_favourites:
     - {app_instance: tk-multi-workfiles2, name: File Open...}
-    template_project:
 #
 ###############################################################################
 #
