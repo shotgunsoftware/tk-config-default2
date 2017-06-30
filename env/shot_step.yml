@@ -36,12 +36,12 @@ engines:
           3dsmax Scene: [import, reference]
           Alembic Cache: [import]
         location:
-          version: v1.14.1
+          version: v1.17.3
           type: app_store
           name: tk-multi-loader2
       tk-multi-publish:
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current 3ds Max scene
@@ -58,14 +58,14 @@ engines:
           name: tk-multi-setframerange
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: max_shot_snapshot
         template_work: max_shot_work
       tk-multi-workfiles2:
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         template_publish: max_shot_publish
@@ -74,11 +74,11 @@ engines:
         template_work_area: shot_work_area_max
       tk-multi-shotgunpanel:
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
     location:
-      version: v0.2.0
+      version: v0.4.1
       type: app_store
       name: tk-3dsmaxplus
   #
@@ -90,7 +90,7 @@ engines:
       tk-multi-about: '@about'
       tk-multi-publish:
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current scene
@@ -132,14 +132,14 @@ engines:
           name: tk-multi-setframerange
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: houdini_shot_snapshot
         template_work: houdini_shot_work
       tk-multi-workfiles2:
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         template_publish: houdini_shot_publish
@@ -148,7 +148,7 @@ engines:
         template_work_area: shot_work_area_houdini
       tk-multi-shotgunpanel:
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
       tk-houdini-alembicnode:
@@ -199,16 +199,16 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         location:
-          version: v1.14.1
+          version: v1.17.3
           type: app_store
           name: tk-multi-loader2
       tk-multi-breakdown:
         location:
-          version: v1.4.4
+          version: v1.4.6
           type: app_store
           name: tk-multi-breakdown
     location:
-      version: v1.0.10
+      version: v1.2.2
       type: app_store
       name: tk-houdini
     menu_favourites:
@@ -225,7 +225,7 @@ engines:
       tk-multi-about: '@about'
       tk-multi-breakdown:
         location:
-          version: v1.4.4
+          version: v1.4.6
           type: app_store
           name: tk-multi-breakdown
       tk-multi-loader2:
@@ -251,12 +251,12 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         location:
-          version: v1.14.1
+          version: v1.17.3
           type: app_store
           name: tk-multi-loader2
       tk-multi-publish:
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current Maya scene
@@ -286,19 +286,19 @@ engines:
           - actions: [assign_task, task_to_ip]
             filters: {}
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: maya_shot_snapshot
         template_work: maya_shot_work
       tk-multi-workfiles2:
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         template_publish: maya_shot_publish
@@ -306,7 +306,7 @@ engines:
         template_work: maya_shot_work
         template_work_area: shot_work_area_maya
     location:
-      version: v0.7.14
+      version: v0.8.1
       type: app_store
       name: tk-maya
     menu_favourites:
@@ -341,12 +341,12 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         location:
-          version: v1.14.1
+          version: v1.17.3
           type: app_store
           name: tk-multi-loader2
       tk-multi-publish:
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_icon: icons/publish_motionbuilder_main.png
@@ -361,14 +361,14 @@ engines:
           name: tk-multi-setframerange
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: mobu_shot_snapshot
         template_work: mobu_shot_work
       tk-multi-workfiles2:
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         template_publish: mobu_shot_publish
@@ -377,7 +377,7 @@ engines:
         template_work_area: shot_work_area_mobu
       tk-multi-shotgunpanel:
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
     location:
@@ -398,7 +398,7 @@ engines:
       tk-multi-about: '@about'
       tk-multi-breakdown:
         location:
-          version: v1.4.4
+          version: v1.4.6
           type: app_store
           name: tk-multi-breakdown
       tk-multi-loader2:
@@ -424,12 +424,12 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         location:
-          version: v1.14.1
+          version: v1.17.3
           type: app_store
           name: tk-multi-loader2
       tk-multi-publish:
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publishes and versions up the current Nuke script.
@@ -483,19 +483,19 @@ engines:
           - actions: [assign_task, task_to_ip]
             filters: {}
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: nuke_shot_snapshot
         template_work: nuke_shot_work
       tk-multi-workfiles2:
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         template_publish: nuke_shot_publish
@@ -506,7 +506,7 @@ engines:
         current_scene_template: nuke_shot_work
         height: 768
         location:
-          version: v0.3.4
+          version: v0.3.5
           type: app_store
           name: tk-nuke-quickdailies
         movie_template: shot_quicktime_quick
@@ -554,7 +554,7 @@ engines:
           tank_type: Rendered Image
           tile_color: []
     location:
-      version: v0.6.11
+      version: v0.7.2
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -572,7 +572,7 @@ engines:
       tk-multi-publish:
         display_name: Publish Project
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the selected Hiero project
@@ -583,7 +583,7 @@ engines:
         template_work: hiero_project_work
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: hiero_project_snapshot
@@ -595,7 +595,7 @@ engines:
           filters: []
           hierarchy: [name]
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         show_my_tasks: false
@@ -607,7 +607,7 @@ engines:
         current_scene_template: nuke_shot_work
         height: 768
         location:
-          version: v0.3.4
+          version: v0.3.5
           type: app_store
           name: tk-nuke-quickdailies
         movie_template: shot_quicktime_quick
@@ -670,7 +670,7 @@ engines:
       tk-multi-breakdown:
         hook_scene_operations: '{self}/tk-nuke_scene_operations.py'
         location:
-          version: v1.4.4
+          version: v1.4.6
           type: app_store
           name: tk-multi-breakdown
       tk-multi-loader2:
@@ -697,7 +697,7 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         location:
-          version: v1.14.1
+          version: v1.17.3
           type: app_store
           name: tk-multi-loader2
       tk-multi-shotgunpanel:
@@ -717,7 +717,7 @@ engines:
             filters: {}
         actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
     bin_context_menu:
@@ -729,7 +729,7 @@ engines:
     - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
       requires_selection: true}
     location:
-      version: v0.6.11
+      version: v0.7.2
       type: app_store
       name: tk-nuke
     menu_favourites:
@@ -763,12 +763,12 @@ engines:
           - [project, is, '{context.project}']
           hierarchy: [entity, content]
         location:
-          version: v1.14.1
+          version: v1.17.3
           type: app_store
           name: tk-multi-loader2
       tk-multi-publish:
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current Photoshop scene
@@ -780,14 +780,14 @@ engines:
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: photoshop_shot_snapshot
         template_work: photoshop_shot_work
       tk-multi-workfiles2:
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         template_publish: photoshop_shot_publish
@@ -796,7 +796,7 @@ engines:
         template_work_area: shot_work_area_photoshop
       tk-multi-shotgunpanel:
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
     shelf_favorites:
@@ -805,7 +805,7 @@ engines:
     - {app_instance: tk-multi-workfiles2, name: File Save...}
     - {app_instance: tk-multi-publish, name: Publish...}
     location:
-      version: v1.0.1
+      version: v1.1.5
       type: app_store
       name: tk-photoshopcc
   #
@@ -824,7 +824,7 @@ engines:
       tk-multi-launchsoftimage: '@launch_softimage'
       tk-multi-screeningroom: '@launch_screeningroom'
     location:
-      version: v0.5.1
+      version: v0.5.2
       type: app_store
       name: tk-shell
   #
@@ -836,7 +836,7 @@ engines:
       tk-multi-about: '@about'
       tk-multi-publish:
         location:
-          version: v0.10.0
+          version: v0.10.4
           type: app_store
           name: tk-multi-publish
         primary_description: Publish and version up the current Softimage scene
@@ -853,14 +853,14 @@ engines:
           name: tk-multi-setframerange
       tk-multi-snapshot:
         location:
-          version: v0.7.0
+          version: v0.7.3
           type: app_store
           name: tk-multi-snapshot
         template_snapshot: softimage_shot_snapshot
         template_work: softimage_shot_work
       tk-multi-workfiles2:
         location:
-          version: v0.9.0
+          version: v0.9.6
           type: app_store
           name: tk-multi-workfiles2
         template_publish: softimage_shot_publish
@@ -869,7 +869,7 @@ engines:
         template_work_area: shot_work_area_softimage
       tk-multi-shotgunpanel:
         location:
-          version: v1.3.0
+          version: v1.4.3
           type: app_store
           name: tk-multi-shotgunpanel
     location:
