@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 
 houdini.project:
@@ -23,7 +24,4 @@ houdini.project:
     tk-multi-shotgunpanel: '@shotgunpanel'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-workfiles2: '@workfiles2'
-  location:
-    version: v1.2.2
-    type: app_store
-    name: tk-houdini
+  location: '@common.engines.tk-houdini.location'

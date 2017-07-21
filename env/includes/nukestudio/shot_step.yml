@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 
 nukestudio.shot_step:
@@ -179,9 +180,6 @@ nukestudio.shot_step:
     requires_selection: true}
   - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
     requires_selection: true}
-  location:
-    version: v0.7.2
-    type: app_store
-    name: tk-nuke
+  location: '@common.engines.tk-nuke.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

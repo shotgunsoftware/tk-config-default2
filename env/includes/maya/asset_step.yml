@@ -15,7 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
-
+- ../common/engines.yml
 
 maya.asset_step:
   apps:
@@ -104,10 +104,7 @@ maya.asset_step:
       template_publish_area: asset_publish_area_maya
       template_work: maya_asset_work
       template_work_area: asset_work_area_maya
-  location:
-    version: v0.8.1
-    type: app_store
-    name: tk-maya
+  location: '@common.engines.tk-maya.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

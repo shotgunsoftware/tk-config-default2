@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 3dsmax.shot:
   apps:
@@ -22,7 +23,4 @@ includes:
     tk-multi-shotgunpanel: '@shotgunpanel'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-workfiles2: '@workfiles2'
-  location:
-    version: v0.4.1
-    type: app_store
-    name: tk-3dsmaxplus
+  location: "@common.engines.tk-3dsmaxplus.location"

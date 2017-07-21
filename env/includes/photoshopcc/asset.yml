@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 
 photoshopcc.asset:
@@ -26,7 +27,4 @@ photoshopcc.asset:
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  location:
-    version: v1.1.5
-    type: app_store
-    name: tk-photoshopcc
+  location: '@common.engines.tk-photoshopcc.location'

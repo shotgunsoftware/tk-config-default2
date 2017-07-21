@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 motionbuilder.asset_step:
   apps:
@@ -72,10 +73,7 @@ motionbuilder.asset_step:
         version: v1.4.3
         type: app_store
         name: tk-multi-shotgunpanel
-  location:
-    version: v0.3.1
-    type: app_store
-    name: tk-motionbuilder
+  location: '@common.engines.tk-motionbuilder.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

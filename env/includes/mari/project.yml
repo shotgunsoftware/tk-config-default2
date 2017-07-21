@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 mari.project:
   apps:
@@ -26,8 +27,5 @@ mari.project:
         type: app_store
         name: tk-multi-workfiles
       sg_entity_types: [Asset]
-  location:
-    version: v1.1.4
-    type: app_store
-    name: tk-mari
+  location: '@common.engines.tk-mari.location'
 

@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 shell.sequence:
   apps:
@@ -26,7 +27,4 @@ shell.sequence:
     tk-multi-launchphotoshopcc: '@launch_photoshopcc'
     tk-multi-launchsoftimage: '@launch_softimage'
     tk-multi-screeningroom: '@launch_screeningroom'
-  location:
-    version: v0.5.2
-    type: app_store
-    name: tk-shell
+  location: '@common.engines.tk-shell.location'

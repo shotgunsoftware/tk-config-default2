@@ -15,7 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
-
+- ../common/engines.yml
 
 houdini.shot_step:
   apps:
@@ -139,10 +139,7 @@ houdini.shot_step:
         version: v1.4.6
         type: app_store
         name: tk-multi-breakdown
-  location:
-    version: v1.2.2
-    type: app_store
-    name: tk-houdini
+  location: '@common.engines.tk-houdini.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

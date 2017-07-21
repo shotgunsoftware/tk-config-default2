@@ -15,7 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
-
+- ../common/engines.yml
 
 maya.project:
   apps:
@@ -23,10 +23,7 @@ maya.project:
     tk-multi-shotgunpanel: '@shotgunpanel'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-workfiles2: '@workfiles2-launch-at-startup'
-  location:
-    version: v0.8.0
-    type: app_store
-    name: tk-maya
+  location: '@common.engines.tk-maya.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
 

@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 
 photoshopcc.shot_step:
@@ -83,7 +84,4 @@ photoshopcc.shot_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish, name: Publish...}
-  location:
-    version: v1.1.5
-    type: app_store
-    name: tk-photoshopcc
+  location: '@common.engines.tk-photoshopcc.location'

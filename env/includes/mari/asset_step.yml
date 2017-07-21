@@ -15,6 +15,7 @@
 includes:
 - ../app_launchers.yml
 - ../common_apps.yml
+- ../common/engines.yml
 
 mari.asset_step:
   apps:
@@ -92,7 +93,4 @@ mari.asset_step:
         version: v1.4.3
         type: app_store
         name: tk-multi-shotgunpanel
-  location:
-    version: v1.1.4
-    type: app_store
-    name: tk-mari
+  location: '@common.engines.tk-mari.location'
