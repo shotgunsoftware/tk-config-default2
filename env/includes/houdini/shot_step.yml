@@ -1,0 +1,150 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Houdini Integration when it
+# is running in its shot step level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common_apps.yml
+
+
+houdini.shot_step:
+  apps:
+    tk-multi-about: '@about'
+    tk-multi-publish:
+      location:
+        version: v0.10.4
+        type: app_store
+        name: tk-multi-publish
+      primary_description: Publish and version up the current scene
+      primary_display_name: Scene File Publish
+      primary_icon: icons/publish_houdini_main.png
+      primary_publish_template: houdini_shot_publish
+      primary_tank_type: Houdini Scene
+      secondary_outputs:
+      - description: Publish Alembic Cache data for the model
+        display_group: Caches
+        display_name: Alembic Cache
+        group_name: Alembic Caches
+        icon: icons/alembic_cache_publish.png
+        name: alembic_cache
+        publish_group: true
+        publish_template: houdini_shot_work_alembic_cache
+        required: false
+        scene_item_type: alembic_cache
+        selected: false
+        tank_type: Alembic Cache
+      - description: Publish a rendered image sequence
+        display_group: Renders
+        display_name: Rendered
+        group_name: default
+        icon: icons/publish_houdini_renders.png
+        name: rendered_image
+        publish_group: false
+        publish_template: houdini_shot_render
+        required: false
+        scene_item_type: rendered_image
+        selected: false
+        tank_type: Rendered Image
+      template_work: houdini_shot_work
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-setframerange:
+      location:
+        version: v0.3.0
+        type: app_store
+        name: tk-multi-setframerange
+    tk-multi-snapshot:
+      location:
+        version: v0.7.3
+        type: app_store
+        name: tk-multi-snapshot
+      template_snapshot: houdini_shot_snapshot
+      template_work: houdini_shot_work
+    tk-multi-workfiles2:
+      location:
+        version: v0.9.6
+        type: app_store
+        name: tk-multi-workfiles2
+      template_publish: houdini_shot_publish
+      template_publish_area: shot_publish_area_houdini
+      template_work: houdini_shot_work
+      template_work_area: shot_work_area_houdini
+    tk-multi-shotgunpanel:
+      location:
+        version: v1.4.3
+        type: app_store
+        name: tk-multi-shotgunpanel
+    tk-houdini-alembicnode:
+      location:
+        version: v0.2.5
+        type: app_store
+        name: tk-houdini-alembicnode
+      work_file_template: houdini_shot_work
+      default_node_name: sg_alembic_out
+      output_profiles:
+      - name: Shot Work Cache
+        settings: {}
+        color: []
+        output_cache_template: houdini_shot_work_alembic_cache
+    tk-houdini-mantranode:
+      location:
+        version: v0.2.7
+        type: app_store
+        name: tk-houdini-mantranode
+      work_file_template: houdini_shot_work
+      default_node_name: sg_mantra_out
+      output_profiles:
+      - name: Default Render
+        settings: {}
+        color: []
+        output_render_template: houdini_shot_render
+        output_ifd_template: houdini_shot_ifd
+        output_dcm_template: houdini_shot_dcm
+        output_extra_plane_template: houdini_shot_extra_plane
+    tk-multi-loader2:
+      action_mappings:
+        Alembic Cache: [import]
+      entities:
+      - caption: Assets
+        entity_type: Asset
+        filters:
+        - [project, is, '{context.project}']
+        hierarchy: [sg_asset_type, code]
+      - caption: Shots
+        entity_type: Shot
+        filters:
+        - [project, is, '{context.project}']
+        hierarchy: [sg_sequence, code]
+      - caption: My Tasks
+        entity_type: Task
+        filters:
+        - [task_assignees, is, '{context.user}']
+        - [project, is, '{context.project}']
+        hierarchy: [entity, content]
+      location:
+        version: v1.17.3
+        type: app_store
+        name: tk-multi-loader2
+    tk-multi-breakdown:
+      location:
+        version: v1.4.6
+        type: app_store
+        name: tk-multi-breakdown
+  location:
+    version: v1.2.2
+    type: app_store
+    name: tk-houdini
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish, name: Publish...}

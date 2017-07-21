@@ -1,0 +1,33 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Tank command when it
+# is running in an asset environment
+
+includes:
+- ../app_launchers.yml
+- ../common_apps.yml
+
+shell.asset:
+  apps:
+    tk-multi-launch3dsmax: '@launch_3dsmax'
+    tk-multi-launchhoudini: '@launch_houdini'
+    tk-multi-launchmaya: '@launch_maya'
+    tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+    tk-multi-launchnuke: '@launch_nuke'
+    tk-multi-launchphotoshopcc: '@launch_photoshopcc'
+    tk-multi-launchsoftimage: '@launch_softimage'
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-shotgun-launchmari: '@launch_mari'
+  location:
+    version: v0.5.2
+    type: app_store
+    name: tk-shell

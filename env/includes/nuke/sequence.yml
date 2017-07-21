@@ -1,0 +1,30 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Nuke Integration when it
+# is running in its sequence level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common_apps.yml
+
+nuke.sequence:
+  apps:
+    tk-multi-about: '@about'
+    tk-multi-shotgunpanel: '@shotgunpanel'
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-workfiles2: '@workfiles2'
+  location:
+    version: v0.7.2
+    type: app_store
+    name: tk-nuke
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}

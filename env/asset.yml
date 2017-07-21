@@ -25,6 +25,17 @@ includes:
 # common app configurations that are reused across environments
 - ./includes/common_apps.yml
 
+- ./includes/houdini/asset.yml
+- ./includes/maya/asset.yml
+- ./includes/nuke/asset.yml
+- ./includes/photoshopcc/asset.yml
+- ./includes/shell/asset.yml
+- ./includes/3dsmax/asset.yml
+
+- ./includes/mari/asset.yml
+- ./includes/motionbuilder/asset.yml
+- ./includes/softimage/asset.yml
+
 #################################################################################################
 # define all the items that should appear in this environment
 
@@ -35,148 +46,47 @@ engines:
   # -------------------------------------------------
   # 3dsmax plus
   # -------------------------------------------------
-  tk-3dsmaxplus:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.4.1
-      type: app_store
-      name: tk-3dsmaxplus
+  tk-3dsmaxplus: '@3dsmax.asset'
   #
   # -------------------------------------------------
   # Houdini
   # -------------------------------------------------
-  tk-houdini:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v1.2.2
-      type: app_store
-      name: tk-houdini
+  tk-houdini: '@houdini.asset'
   #
   # -------------------------------------------------
   # Mari
   # -------------------------------------------------
-  tk-mari:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-workfiles:
-        location:
-          version: v0.7.4
-          type: app_store
-          name: tk-multi-workfiles
-        sg_entity_types: [Asset]
-    location:
-      version: v1.1.4
-      type: app_store
-      name: tk-mari
+  tk-mari: '@mari.asset'
   #
   # -------------------------------------------------
   # Maya
   # -------------------------------------------------
-  tk-maya:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2-launch-at-startup'
-    location:
-      version: v0.8.1
-      type: app_store
-      name: tk-maya
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
+  tk-maya: '@maya.asset'
   #
   # -------------------------------------------------
   # Motionbuilder
   # -------------------------------------------------
-  tk-motionbuilder:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.3.1
-      type: app_store
-      name: tk-motionbuilder
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
+  tk-motionbuilder: '@motionbuilder.asset'
   #
   # -------------------------------------------------
   # Nuke
   # -------------------------------------------------
-  tk-nuke:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.7.2
-      type: app_store
-      name: tk-nuke
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
+  tk-nuke: '@nuke.asset'
   #
   # -------------------------------------------------
   # Photoshop CC
   # -------------------------------------------------
-  tk-photoshopcc:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    shelf_favorites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
-    - {app_instance: tk-multi-workfiles2, name: File Save...}
-    location:
-      version: v1.1.5
-      type: app_store
-      name: tk-photoshopcc
+  tk-photoshopcc: '@photoshopcc.asset'
   #
   # -------------------------------------------------
   # Shell
   # -------------------------------------------------
-  tk-shell:
-    apps:
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchhoudini: '@launch_houdini'
-      tk-multi-launchmaya: '@launch_maya'
-      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchphotoshopcc: '@launch_photoshopcc'
-      tk-multi-launchsoftimage: '@launch_softimage'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-shotgun-launchmari: '@launch_mari'
-    location:
-      version: v0.5.2
-      type: app_store
-      name: tk-shell
+  tk-shell: '@shell.asset'
   #
   # -------------------------------------------------
   # Softimage
   # -------------------------------------------------
-  tk-softimage:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.3.2
-      type: app_store
-      name: tk-softimage
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
+  tk-softimage: '@softimage.asset'
 #
 ###############################################################################
 #

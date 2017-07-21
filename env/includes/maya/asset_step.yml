@@ -1,0 +1,117 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Maya Integration when it
+# is running in its asset step level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common_apps.yml
+
+
+maya.asset_step:
+  apps:
+    tk-multi-about: '@about'
+    tk-multi-breakdown:
+      location:
+        version: v1.4.6
+        type: app_store
+        name: tk-multi-breakdown
+    tk-multi-loader2:
+      entities:
+      - caption: Assets
+        entity_type: Asset
+        filters:
+        - [project, is, '{context.project}']
+        hierarchy: [sg_asset_type, code]
+      - caption: Shots
+        entity_type: Shot
+        filters:
+        - [project, is, '{context.project}']
+        hierarchy: [sg_sequence, code]
+      - caption: My Tasks
+        entity_type: Task
+        filters:
+        - [task_assignees, is, '{context.user}']
+        - [project, is, '{context.project}']
+        hierarchy: [entity, content]
+      location:
+        version: v1.17.3
+        type: app_store
+        name: tk-multi-loader2
+    tk-multi-publish:
+      location:
+        version: v0.10.4
+        type: app_store
+        name: tk-multi-publish
+      primary_description: Publish and version up the current Maya scene
+      primary_display_name: Maya Publish
+      primary_icon: icons/publish_maya_main.png
+      primary_publish_template: maya_asset_publish
+      primary_tank_type: Maya Scene
+      secondary_outputs:
+      - description: Publish Alembic data for all geometry in the scene
+        display_group: Geometry Caches
+        display_name: Alembic Caches
+        icon: icons/alembic_cache_publish.png
+        name: alembic_cache
+        publish_template: asset_alembic_cache
+        required: false
+        scene_item_type: geometry
+        selected: false
+        tank_type: Alembic Cache
+      template_work: maya_asset_work
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-shotgunpanel:
+      action_mappings:
+        PublishedFile:
+        - actions: [reference, import]
+          filters: {published_file_type: Maya Scene}
+        - actions: [texture_node]
+          filters: {published_file_type: Rendered Image}
+        - actions: [texture_node]
+          filters: {published_file_type: Photoshop Image}
+        - actions: [udim_texture_node]
+          filters: {published_file_type: UDIM Image}
+        Task:
+        - actions: [assign_task, task_to_ip]
+          filters: {}
+      location:
+        version: v1.4.3
+        type: app_store
+        name: tk-multi-shotgunpanel
+    tk-multi-snapshot:
+      location:
+        version: v0.7.3
+        type: app_store
+        name: tk-multi-snapshot
+      template_snapshot: maya_asset_snapshot
+      template_work: maya_asset_work
+    tk-multi-workfiles2:
+      location:
+        version: v0.9.6
+        type: app_store
+        name: tk-multi-workfiles2
+      template_publish: maya_asset_publish
+      template_publish_area: asset_publish_area_maya
+      template_work: maya_asset_work
+      template_work_area: asset_work_area_maya
+  location:
+    version: v0.8.1
+    type: app_store
+    name: tk-maya
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish, name: Publish...}
+  template_project: asset_work_area_maya
+

@@ -1,0 +1,69 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Softimage Integration when it
+# is running in its shot step level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common_apps.yml
+
+softimage.shot_step:
+  apps:
+    tk-multi-about: '@about'
+    tk-multi-publish:
+      location:
+        version: v0.10.4
+        type: app_store
+        name: tk-multi-publish
+      primary_description: Publish and version up the current Softimage scene
+      primary_display_name: Softimage Publish
+      primary_icon: icons/publish_softimage_main.png
+      primary_publish_template: softimage_shot_publish
+      primary_tank_type: Softimage Scene
+      template_work: softimage_shot_work
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-setframerange:
+      location:
+        version: v0.3.0
+        type: app_store
+        name: tk-multi-setframerange
+    tk-multi-snapshot:
+      location:
+        version: v0.7.3
+        type: app_store
+        name: tk-multi-snapshot
+      template_snapshot: softimage_shot_snapshot
+      template_work: softimage_shot_work
+    tk-multi-workfiles2:
+      location:
+        version: v0.9.6
+        type: app_store
+        name: tk-multi-workfiles2
+      template_publish: softimage_shot_publish
+      template_publish_area: shot_publish_area_softimage
+      template_work: softimage_shot_work
+      template_work_area: shot_work_area_softimage
+    tk-multi-shotgunpanel:
+      location:
+        version: v1.4.3
+        type: app_store
+        name: tk-multi-shotgunpanel
+  location:
+    version: v0.3.2
+    type: app_store
+    name: tk-softimage
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish, name: Publish...}
+  template_project: shot_work_area_softimage
