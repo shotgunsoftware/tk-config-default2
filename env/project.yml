@@ -56,7 +56,6 @@ engines:
       tk-multi-launchsoftimage: '@launch_softimage'
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-launchapp:
-        scan_all_projects: true
         use_software_entity: true
         location: "@common.apps.tk-multi-launchapp.location"
     groups:
