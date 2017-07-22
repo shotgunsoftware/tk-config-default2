@@ -16,16 +16,15 @@ includes:
 - ../app_launchers.yml
 - ../common_apps.yml
 - ../common/engines.yml
+- ../common/apps.yml
 
 shell.asset_step:
   apps:
-    tk-multi-launch3dsmax: '@launch_3dsmax'
-    tk-multi-launchhoudini: '@launch_houdini'
     tk-multi-launchmari: '@launch_mari'
-    tk-multi-launchmaya: '@launch_maya'
     tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-    tk-multi-launchnuke: '@launch_nuke'
-    tk-multi-launchphotoshopcc: '@launch_photoshopcc'
     tk-multi-launchsoftimage: '@launch_softimage'
     tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-launchapp:
+      use_software_entity: true
+      location: "@common.apps.tk-multi-launchapp.location"
   location: '@common.engines.tk-shell.location'

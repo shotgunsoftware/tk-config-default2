@@ -19,6 +19,7 @@ includes:
 - ./includes/app_launchers.yml
 # common app configurations that are reused across environments
 - ./includes/common_apps.yml
+- ./includes/common/apps.yml
 
 - ./includes/houdini/project.yml
 - ./includes/maya/project.yml
@@ -50,17 +51,14 @@ engines:
   # -------------------------------------------------
   tk-desktop:
     apps:
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchhiero: '@launch_hiero'
-      tk-multi-launchhoudini: '@launch_houdini'
       tk-multi-launchmari: '@launch_mari'
-      tk-multi-launchmaya: '@launch_maya'
       tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchnukestudio: '@launch_nukestudio'
-      tk-multi-launchphotoshopcc: '@launch_photoshopcc'
       tk-multi-launchsoftimage: '@launch_softimage'
       tk-multi-screeningroom: '@launch_screeningroom'
+      tk-multi-launchapp:
+        scan_all_projects: true
+        use_software_entity: true
+        location: "@common.apps.tk-multi-launchapp.location"
     groups:
     - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*',
         '*Softimage*']
