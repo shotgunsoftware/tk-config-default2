@@ -21,6 +21,7 @@ includes:
 - ./includes/common_apps.yml
 - ./includes/common/apps.yml
 
+- ./includes/flame/project.yml
 - ./includes/houdini/project.yml
 - ./includes/maya/project.yml
 - ./includes/nuke/project.yml
@@ -105,6 +106,11 @@ engines:
   # Nuke Studio
   # -------------------------------------------------
   tk-nukestudio: '@nukestudio.project'
+  #
+  # -------------------------------------------------
+  # Flame
+  # -------------------------------------------------
+  tk-flame: '@flame.project'
   #
   # -------------------------------------------------
   # Photoshop CC
