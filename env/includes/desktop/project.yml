@@ -9,16 +9,15 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-# this configuration defines the behavior of the Tank command when it
-# is running in an asset step environment
+# this configuration defines the behavior of the Shotgun Desktop when it
+# is running in its project level configuration
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
 - ../common/engines.yml
 - ../common/apps.yml
 
-shell.asset_step:
+desktop.project:
   apps:
     tk-multi-launchmari: '@launch_mari'
     tk-multi-launchmotionbuilder: '@launch_motionbuilder'
@@ -27,4 +26,11 @@ shell.asset_step:
     tk-multi-launchapp:
       use_software_entity: true
       location: "@common.apps.tk-multi-launchapp.location"
-  location: '@common.engines.tk-shell.location'
+  groups:
+  - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*', '*Softimage*']
+    name: Creative Tools
+  - matches: ['*Hiero*']
+    name: Editorial Tools
+  - matches: ['*Fla*']
+    name: Finishing Tools
+  location: "@common.engines.tk-desktop.location"
