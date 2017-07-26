@@ -21,6 +21,7 @@ includes:
 - ./includes/common_apps.yml
 - ./includes/common/apps.yml
 
+- ./includes/desktop/project.yml
 - ./includes/flame/project.yml
 - ./includes/houdini/project.yml
 - ./includes/maya/project.yml
@@ -50,27 +51,7 @@ engines:
   # -------------------------------------------------
   # Shotgun Desktop
   # -------------------------------------------------
-  tk-desktop:
-    apps:
-      tk-multi-launchmari: '@launch_mari'
-      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchsoftimage: '@launch_softimage'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-launchapp:
-        use_software_entity: true
-        location: "@common.apps.tk-multi-launchapp.location"
-    groups:
-    - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*',
-        '*Softimage*']
-      name: Creative Tools
-    - matches: ['*Hiero*']
-      name: Editorial Tools
-    - matches: ['*Fla*']
-      name: Finishing Tools
-    location:
-      version: v2.3.0
-      type: app_store
-      name: tk-desktop
+  tk-desktop: '@desktop.project'
   #
   # -------------------------------------------------
   # Hiero
@@ -108,14 +89,14 @@ engines:
   tk-nukestudio: '@nukestudio.project'
   #
   # -------------------------------------------------
-  # Flame
-  # -------------------------------------------------
-  tk-flame: '@flame.project'
-  #
-  # -------------------------------------------------
   # Photoshop CC
   # -------------------------------------------------
   tk-photoshopcc: '@photoshopcc.project'
+  #
+  # -------------------------------------------------
+  # Flame
+  # -------------------------------------------------
+  tk-flame: '@flame.project'
   #
   # -------------------------------------------------
   # Shell Engine (tank command)
