@@ -30,6 +30,7 @@ includes:
 - ./includes/nuke/asset.yml
 - ./includes/photoshopcc/asset.yml
 - ./includes/shell/asset.yml
+- ./includes/shotgun/asset.yml
 - ./includes/3dsmax/asset.yml
 
 - ./includes/mari/asset.yml
@@ -82,6 +83,11 @@ engines:
   # Shell
   # -------------------------------------------------
   tk-shell: '@shell.asset'
+  #
+  # -------------------------------------------------
+  # Shotgun
+  # -------------------------------------------------
+  tk-shotgun: '@shotgun.asset'
   #
   # -------------------------------------------------
   # Softimage

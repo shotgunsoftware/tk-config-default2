@@ -28,6 +28,7 @@ includes:
 - ./includes/nuke/project.yml
 - ./includes/photoshopcc/project.yml
 - ./includes/shell/project.yml
+- ./includes/shotgun/project.yml
 - ./includes/3dsmax/project.yml
 
 - ./includes/hiero/project.yml
@@ -102,6 +103,11 @@ engines:
   # Shell Engine (tank command)
   # -------------------------------------------------
   tk-shell: '@shell.project'
+  #
+  # -------------------------------------------------
+  # Shotgun
+  # -------------------------------------------------
+  tk-shotgun: '@shotgun.project'
   #
   # -------------------------------------------------
   # Softimage
