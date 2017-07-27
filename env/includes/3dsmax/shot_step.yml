@@ -30,7 +30,7 @@ includes:
         name: tk-multi-loader2
     tk-multi-publish:
       location:
-      version: v0.10.4
+        version: v0.10.4
         type: app_store
         name: tk-multi-publish
       primary_description: Publish and version up the current 3ds Max scene

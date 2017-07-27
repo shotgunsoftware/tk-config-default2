@@ -31,6 +31,7 @@ includes:
 - ./includes/maya/sequence.yml
 - ./includes/nuke/sequence.yml
 - ./includes/shell/sequence.yml
+- ./includes/shotgun/sequence.yml
 - ./includes/3dsmax/sequence.yml
 
 - ./includes/motionbuilder/sequence.yml
@@ -70,6 +71,11 @@ engines:
   # Shell (tank command)
   # -------------------------------------------------
   tk-shell: '@shell.sequence'
+  #
+  # -------------------------------------------------
+  # Shotgun
+  # -------------------------------------------------
+  tk-shotgun: '@shotgun.sequence'
   #
   # -------------------------------------------------
   # Softimage
