@@ -16,6 +16,8 @@ includes:
 - ../app_launchers.yml
 - ../common_apps.yml
 - ../common/engines.yml
+- ../common/apps.yml
+- ../common/settings/tk-multi-publish2.yml
 
 hiero.project:
   apps:
@@ -39,18 +41,19 @@ hiero.project:
         name: tk-hiero-openinshotgun
     tk-multi-about: '@about'
     tk-multi-shotgunpanel: '@shotgunpanel'
-    tk-multi-publish:
-      display_name: Publish Project
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish and version up the selected Hiero project
-      primary_display_name: Hiero Publish
-      primary_icon: icons/publish_hiero_main.png
-      primary_publish_template: hiero_project_publish
-      primary_tank_type: Hiero Project
-      template_work: hiero_project_work
+    tk-multi-publish2:
+      help_url: "@common.apps.tk-multi-publish2.help_url"
+      collector: "{config}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/hiero.basic/collector.py"
+      publish_plugins:
+      - '@common.settings.tk-multi-publish2.publish_file'
+      - '@common.settings.tk-multi-publish2.upload_version'
+      - name: Begin file versioning
+        hook: "{config}/tk-multi-publish2/hiero.basic/start_version_control.py"
+        settings: {}
+      - name: Publish to Shotgun
+        hook: "{config}/tk-multi-publish2/hiero.basic/publish_hiero_session.py"
+        settings: {}
+      location: "@common.apps.tk-multi-publish2.location"
     tk-multi-snapshot:
       location:
         version: v0.7.3
@@ -73,7 +76,7 @@ hiero.project:
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
     requires_selection: true}
-  - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
+  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish Project...,
     requires_selection: true}
   location: '@common.engines.tk-nuke.location'
   menu_favourites:

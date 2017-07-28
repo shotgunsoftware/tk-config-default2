@@ -16,6 +16,7 @@ includes:
 - ../app_launchers.yml
 - ../common_apps.yml
 - ../common/engines.yml
+- apps.yml
 
 3dsmax.asset_step:
   apps:
@@ -45,28 +46,7 @@ includes:
         version: v1.17.3
         type: app_store
         name: tk-multi-loader2
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish and version up the current 3ds Max scene
-      primary_display_name: 3ds Max Publish
-      primary_icon: icons/publish_3dsmax_main.png
-      primary_publish_template: max_asset_publish
-      primary_tank_type: 3dsmax Scene
-      secondary_outputs:
-      - description: Publish Alembic data for all geometry in the scene
-        display_group: Geometry Caches
-        display_name: Alembic Caches
-        icon: icons/alembic_cache_publish.png
-        name: alembic_cache
-        publish_template: asset_alembic_cache
-        required: false
-        scene_item_type: geometry
-        selected: false
-        tank_type: Alembic Cache
-      template_work: max_asset_work
+    tk-multi-publish2: '@3dsmax.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-snapshot:
       location:

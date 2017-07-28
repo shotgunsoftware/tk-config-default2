@@ -16,7 +16,7 @@ includes:
 - ../app_launchers.yml
 - ../common_apps.yml
 - ../common/engines.yml
-
+- apps.yml
 
 photoshopcc.shot_step:
   apps:
@@ -46,17 +46,7 @@ photoshopcc.shot_step:
         version: v1.17.3
         type: app_store
         name: tk-multi-loader2
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish and version up the current Photoshop scene
-      primary_display_name: Photoshop Publish
-      primary_icon: icons/publish_photoshop_main.png
-      primary_publish_template: photoshop_shot_publish
-      primary_tank_type: Photoshop Image
-      template_work: photoshop_shot_work
+    tk-multi-publish2: "@photoshopcc.apps.tk-multi-publish2"
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-snapshot:
       location:
@@ -83,5 +73,5 @@ photoshopcc.shot_step:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish, name: Publish...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
   location: '@common.engines.tk-photoshopcc.location'

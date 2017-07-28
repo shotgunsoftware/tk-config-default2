@@ -16,47 +16,13 @@ includes:
 - ../app_launchers.yml
 - ../common_apps.yml
 - ../common/engines.yml
+- apps.yml
 
 
 houdini.asset_step:
   apps:
     tk-multi-about: '@about'
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish and version up the current scene
-      primary_display_name: Scene File Publish
-      primary_icon: icons/publish_houdini_main.png
-      primary_publish_template: houdini_asset_publish
-      primary_tank_type: Houdini Scene
-      secondary_outputs:
-      - description: Publish Alembic Cache data for the model
-        display_group: Caches
-        display_name: Alembic Cache
-        group_name: Alembic Caches
-        icon: icons/alembic_cache_publish.png
-        name: alembic_cache
-        publish_group: true
-        publish_template: houdini_asset_work_alembic_cache
-        required: false
-        scene_item_type: alembic_cache
-        selected: false
-        tank_type: Alembic Cache
-      - description: Publish a rendered image sequence
-        display_group: Renders
-        display_name: Rendered
-        group_name: default
-        icon: icons/publish_houdini_renders.png
-        name: rendered_image
-        publish_group: false
-        publish_template: houdini_asset_render
-        required: false
-        scene_item_type: rendered_image
-        selected: false
-        tank_type: Rendered Image
-      template_work: houdini_asset_work
+    tk-multi-publish2: '@houdini.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-snapshot:
       location:
@@ -140,4 +106,4 @@ houdini.asset_step:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish, name: Publish...}
+  - {app_instance: tk-multi-publish2, name: Publish...}

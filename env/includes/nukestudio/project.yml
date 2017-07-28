@@ -16,6 +16,7 @@ includes:
 - ../app_launchers.yml
 - ../common_apps.yml
 - ../common/engines.yml
+- apps.yml
 
 nukestudio.project:
   apps:
@@ -38,18 +39,7 @@ nukestudio.project:
         type: app_store
         name: tk-hiero-openinshotgun
     tk-multi-about: '@about'
-    tk-multi-publish:
-      display_name: Publish Project
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish and version up the selected Hiero project
-      primary_display_name: Hiero Publish
-      primary_icon: icons/publish_hiero_main.png
-      primary_publish_template: hiero_project_publish
-      primary_tank_type: Hiero Project
-      template_work: hiero_project_work
+    tk-multi-publish2: '@nukestudio.apps.tk-multi-publish2'
     tk-multi-snapshot:
       location:
         version: v0.7.3
@@ -106,7 +96,7 @@ nukestudio.project:
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
     requires_selection: true}
-  - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
+  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish Project...,
     requires_selection: true}
   location: '@common.engines.tk-nuke.location'
   menu_favourites:

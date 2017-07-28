@@ -16,6 +16,7 @@ includes:
 - ../app_launchers.yml
 - ../common_apps.yml
 - ../common/engines.yml
+- apps.yml
 
 
 nuke.shot_step:
@@ -52,38 +53,7 @@ nuke.shot_step:
         version: v1.17.3
         type: app_store
         name: tk-multi-loader2
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publishes and versions up the current Nuke script.
-      primary_display_name: Nuke Publish
-      primary_icon: icons/publish_nuke_main.png
-      primary_publish_template: nuke_shot_publish
-      primary_tank_type: Nuke Script
-      secondary_outputs:
-      - description: Copy renders from work area to publish area.
-        display_group: Shotgun Write Nodes
-        display_name: Publish Renders
-        icon: icons/publish_nuke_writenode.png
-        name: render
-        publish_template:
-        required: false
-        scene_item_type: write_node
-        selected: true
-        tank_type: Rendered Image
-      - description: Create quicktime and send to Screening Room
-        display_group: Shotgun Write Nodes
-        display_name: Send to Screening Room
-        icon: icons/publish_nuke_review.png
-        name: quicktime
-        publish_template:
-        required: false
-        scene_item_type: write_node
-        selected: true
-        tank_type: Quicktime
-      template_work: nuke_shot_work
+    tk-multi-publish2: '@nuke.apps.tk-multi-publish2'
     tk-multi-reviewsubmission:
       location:
         version: v0.3.2
@@ -183,4 +153,4 @@ nuke.shot_step:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish, name: Publish...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
