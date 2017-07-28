@@ -52,4 +52,4 @@ shotgun.sequence:
         type: app_store
         version: v0.1.5
   debug_logging: false
-  location: "@common.engines.tk-desktop.location"
+  location: "@common.engines.tk-shotgun.location"

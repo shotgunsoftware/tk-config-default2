@@ -51,7 +51,7 @@ engines:
         viewer_path_mac: '@rv_mac'
         viewer_path_windows: '@rv_win'
     debug_logging: false
-    location: "@common.engines.tk-desktop.location"
+    location: "@common.engines.tk-shotgun.location"
 #
 ###############################################################################
 #
