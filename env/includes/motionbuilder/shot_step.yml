@@ -1,0 +1,80 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Motion Builder Integration when it
+# is running in its shot step level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common/apps.yml
+- ../common/engines.yml
+
+motionbuilder.shot_step:
+  apps:
+    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-loader2:
+      entities:
+      - caption: Assets
+        entity_type: Asset
+        filters:
+        - [project, is, '{context.project}']
+        hierarchy: [sg_asset_type, code]
+      - caption: Shots
+        entity_type: Shot
+        filters:
+        - [project, is, '{context.project}']
+        hierarchy: [sg_sequence, code]
+      - caption: My Tasks
+        entity_type: Task
+        filters:
+        - [task_assignees, is, '{context.user}']
+        - [project, is, '{context.project}']
+        hierarchy: [entity, content]
+      location:
+        version: v1.17.3
+        type: app_store
+        name: tk-multi-loader2
+    tk-multi-publish:
+      location:
+        version: v0.10.4
+        type: app_store
+        name: tk-multi-publish
+      primary_icon: icons/publish_motionbuilder_main.png
+      primary_publish_template: mobu_shot_publish
+      primary_tank_type: Motion Builder FBX
+      template_work: mobu_shot_work
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-setframerange:
+      location:
+        version: v0.3.0
+        type: app_store
+        name: tk-multi-setframerange
+    tk-multi-snapshot:
+      location:
+        version: v0.7.3
+        type: app_store
+        name: tk-multi-snapshot
+      template_snapshot: mobu_shot_snapshot
+      template_work: mobu_shot_work
+    tk-multi-workfiles2:
+      location: '@common.apps.workfiles2.location'
+      template_publish: mobu_shot_publish
+      template_publish_area: shot_publish_area_mobu
+      template_work: mobu_shot_work
+      template_work_area: shot_work_area_mobu
+    tk-multi-shotgunpanel:
+      location: '@common.apps.tk-multi-shotgunpanel.location'
+  location: '@common.engines.tk-motionbuilder.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish, name: Publish...}

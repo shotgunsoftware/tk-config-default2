@@ -1,0 +1,30 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Tank command when it
+# is running in an asset environment
+
+includes:
+- ../app_launchers.yml
+- ../common/apps.yml
+- ../common/engines.yml
+- ../common/apps.yml
+
+shell.asset:
+  apps:
+    tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+    tk-multi-launchsoftimage: '@launch_softimage'
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-shotgun-launchmari: '@launch_mari'
+    tk-multi-launchapp:
+      use_software_entity: true
+      location: "@common.apps.tk-multi-launchapp.location"
+  location: '@common.engines.tk-shell.location'

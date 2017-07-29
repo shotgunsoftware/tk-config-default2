@@ -17,8 +17,24 @@ description: Apps and Engines when launching with a project only context.
 includes:
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
-# common app configurations that are reused across environments
-- ./includes/common_apps.yml
+
+- ./includes/common/apps.yml
+
+- ./includes/desktop/project.yml
+- ./includes/flame/project.yml
+- ./includes/houdini/project.yml
+- ./includes/maya/project.yml
+- ./includes/nuke/project.yml
+- ./includes/photoshopcc/project.yml
+- ./includes/shell/project.yml
+- ./includes/shotgun/project.yml
+- ./includes/3dsmax/project.yml
+
+- ./includes/hiero/project.yml
+- ./includes/mari/project.yml
+- ./includes/motionbuilder/project.yml
+- ./includes/nukestudio/project.yml
+- ./includes/softimage/project.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
@@ -30,361 +46,72 @@ engines:
   # -------------------------------------------------
   # 3dsmax plus
   # -------------------------------------------------
-  tk-3dsmaxplus:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.4.1
-      type: app_store
-      name: tk-3dsmaxplus
+  tk-3dsmaxplus: '@3dsmax.project'
   #
   # -------------------------------------------------
   # Shotgun Desktop
   # -------------------------------------------------
-  tk-desktop:
-    apps:
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchhiero: '@launch_hiero'
-      tk-multi-launchhoudini: '@launch_houdini'
-      tk-multi-launchmari: '@launch_mari'
-      tk-multi-launchmaya: '@launch_maya'
-      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchnukestudio: '@launch_nukestudio'
-      tk-multi-launchphotoshopcc: '@launch_photoshopcc'
-      tk-multi-launchsoftimage: '@launch_softimage'
-      tk-multi-screeningroom: '@launch_screeningroom'
-    groups:
-    - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*',
-        '*Softimage*']
-      name: Creative Tools
-    - matches: ['*Hiero*']
-      name: Editorial Tools
-    - matches: ['*Fla*']
-      name: Finishing Tools
-    location:
-      version: v2.3.0
-      type: app_store
-      name: tk-desktop
+  tk-desktop: '@desktop.project'
   #
   # -------------------------------------------------
   # Hiero
   # -------------------------------------------------
-  tk-hiero:
-    apps:
-      tk-hiero-export:
-        location:
-          version: v0.4.1
-          type: app_store
-          name: tk-hiero-export
-        nuke_script_toolkit_write_nodes:
-        - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
-        - {channel: stereoexr16, name: 'Stereo Exr, 16 bit'}
-        - {channel: monodpx, name: Mono Dpx}
-        template_nuke_script_path: nuke_shot_work
-        template_plate_path: hiero_plate_path
-        template_render_path: hiero_render_path
-        template_version: hiero_version
-      tk-hiero-openinshotgun:
-        location:
-          version: v0.3.3
-          type: app_store
-          name: tk-hiero-openinshotgun
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-publish:
-        display_name: Publish Project
-        location:
-          version: v0.10.4
-          type: app_store
-          name: tk-multi-publish
-        primary_description: Publish and version up the selected Hiero project
-        primary_display_name: Hiero Publish
-        primary_icon: icons/publish_hiero_main.png
-        primary_publish_template: hiero_project_publish
-        primary_tank_type: Hiero Project
-        template_work: hiero_project_work
-      tk-multi-snapshot:
-        location:
-          version: v0.7.3
-          type: app_store
-          name: tk-multi-snapshot
-        template_snapshot: hiero_project_snapshot
-        template_work: hiero_project_work
-      tk-multi-workfiles2:
-        location:
-          version: v0.9.6
-          type: app_store
-          name: tk-multi-workfiles2
-        template_publish: hiero_project_publish
-        template_publish_area: hiero_project_publish_area
-        template_work: hiero_project_work
-        template_work_area: hiero_project_work_area
-    bin_context_menu:
-    - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
-      requires_selection: true}
-    - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
-    - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
-      requires_selection: true}
-    - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
-      requires_selection: true}
-    location:
-      version: v0.7.2
-      type: app_store
-      name: tk-nuke
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
-    spreadsheet_context_menu:
-    - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
-      requires_selection: true}
-    timeline_context_menu:
-    - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
-      requires_selection: true}
+  tk-hiero: '@hiero.project'
   #
   # -------------------------------------------------
   # Houdini
   # -------------------------------------------------
-  tk-houdini:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v1.2.2
-      type: app_store
-      name: tk-houdini
+  tk-houdini: '@houdini.project'
   #
   # -------------------------------------------------
   # Mari
   # -------------------------------------------------
-  tk-mari:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-workfiles:
-        location:
-          version: v0.7.4
-          type: app_store
-          name: tk-multi-workfiles
-        sg_entity_types: [Asset]
-    location:
-      version: v1.1.4
-      type: app_store
-      name: tk-mari
+  tk-mari: '@mari.project'
   #
   # -------------------------------------------------
   # Maya
   # -------------------------------------------------
-  tk-maya:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2-launch-at-startup'
-    location:
-      version: v0.8.1
-      type: app_store
-      name: tk-maya
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
+  tk-maya: '@maya.project'
   #
   # -------------------------------------------------
   # Motionbuilder
   # -------------------------------------------------
-  tk-motionbuilder:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.3.1
-      type: app_store
-      name: tk-motionbuilder
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
-    template_project:
+  tk-motionbuilder: '@motionbuilder.project'
   #
   # -------------------------------------------------
   # Nuke
   # -------------------------------------------------
-  tk-nuke:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.7.2
-      type: app_store
-      name: tk-nuke
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
+  tk-nuke: '@nuke.project'
   #
   # -------------------------------------------------
   # Nuke Studio
   # -------------------------------------------------
-  tk-nukestudio:
-    apps:
-      tk-hiero-export:
-        location:
-          version: v0.4.1
-          type: app_store
-          name: tk-hiero-export
-        nuke_script_toolkit_write_nodes:
-        - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
-        - {channel: stereoexr16, name: 'Stereo Exr, 16 bit'}
-        - {channel: monodpx, name: Mono Dpx}
-        template_nuke_script_path: nuke_shot_work
-        template_plate_path: hiero_plate_path
-        template_render_path: hiero_render_path
-        template_version: hiero_version
-      tk-hiero-openinshotgun:
-        location:
-          version: v0.3.3
-          type: app_store
-          name: tk-hiero-openinshotgun
-      tk-multi-about: '@about'
-      tk-multi-publish:
-        display_name: Publish Project
-        location:
-          version: v0.10.4
-          type: app_store
-          name: tk-multi-publish
-        primary_description: Publish and version up the selected Hiero project
-        primary_display_name: Hiero Publish
-        primary_icon: icons/publish_hiero_main.png
-        primary_publish_template: hiero_project_publish
-        primary_tank_type: Hiero Project
-        template_work: hiero_project_work
-      tk-multi-snapshot:
-        location:
-          version: v0.7.3
-          type: app_store
-          name: tk-multi-snapshot
-        template_snapshot: hiero_project_snapshot
-        template_work: hiero_project_work
-      tk-multi-workfiles2:
-        entities:
-        - caption: Projects
-          entity_type: Project
-          filters: []
-          hierarchy: [name]
-        location:
-          version: v0.9.6
-          type: app_store
-          name: tk-multi-workfiles2
-        show_my_tasks: false
-        template_publish: hiero_project_publish
-        template_publish_area: hiero_project_publish_area
-        template_work: hiero_project_work
-        template_work_area: hiero_project_work_area
-      tk-multi-shotgunpanel:
-        location:
-          version: v1.4.3
-          type: app_store
-          name: tk-multi-shotgunpanel
-        action_mappings:
-          PublishedFile:
-          - actions:
-            - publish_clipboard
-            filters: {}
-          - actions:
-            - read_node
-            filters:
-              published_file_type: Rendered Image
-          - actions:
-            - script_import
-            filters:
-              published_file_type: Nuke Script
-          Task:
-          - actions:
-            - assign_task
-            - task_to_ip
-            filters: {}
-          Version:
-          - actions:
-            - quicktime_clipboard
-            - sequence_clipboard
-            filters: {}
-    bin_context_menu:
-    - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
-      requires_selection: true}
-    - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
-    - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
-      requires_selection: true}
-    - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
-      requires_selection: true}
-    location:
-      version: v0.7.2
-      type: app_store
-      name: tk-nuke
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
-    spreadsheet_context_menu:
-    - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
-      requires_selection: true}
-    timeline_context_menu:
-    - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
-      requires_selection: true}
+  tk-nukestudio: '@nukestudio.project'
   #
   # -------------------------------------------------
   # Photoshop CC
   # -------------------------------------------------
-  tk-photoshopcc:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    shelf_favorites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
-    - {app_instance: tk-multi-workfiles2, name: File Save...}
-    location:
-      version: v1.1.5
-      type: app_store
-      name: tk-photoshopcc
+  tk-photoshopcc: '@photoshopcc.project'
+  #
+  # -------------------------------------------------
+  # Flame
+  # -------------------------------------------------
+  tk-flame: '@flame.project'
   #
   # -------------------------------------------------
   # Shell Engine (tank command)
   # -------------------------------------------------
-  tk-shell:
-    apps:
-      tk-multi-launch3dsmax: '@launch_3dsmax'
-      tk-multi-launchhiero: '@launch_hiero'
-      tk-multi-launchhoudini: '@launch_houdini'
-      tk-multi-launchmari: '@launch_mari'
-      tk-multi-launchmaya: '@launch_maya'
-      tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-      tk-multi-launchnuke: '@launch_nuke'
-      tk-multi-launchnukestudio: '@launch_nukestudio'
-      tk-multi-launchphotoshopcc: '@launch_photoshopcc'
-      tk-multi-launchsoftimage: '@launch_softimage'
-      tk-multi-screeningroom: '@launch_screeningroom'
-    location:
-      version: v0.5.2
-      type: app_store
-      name: tk-shell
+  tk-shell: '@shell.project'
+  #
+  # -------------------------------------------------
+  # Shotgun
+  # -------------------------------------------------
+  tk-shotgun: '@shotgun.project'
   #
   # -------------------------------------------------
   # Softimage
   # -------------------------------------------------
-  tk-softimage:
-    apps:
-      tk-multi-about: '@about'
-      tk-multi-shotgunpanel: '@shotgunpanel'
-      tk-multi-screeningroom: '@launch_screeningroom'
-      tk-multi-workfiles2: '@workfiles2'
-    location:
-      version: v0.3.2
-      type: app_store
-      name: tk-softimage
-    menu_favourites:
-    - {app_instance: tk-multi-workfiles2, name: File Open...}
+  tk-softimage: '@softimage.project'
 #
 ###############################################################################
 #

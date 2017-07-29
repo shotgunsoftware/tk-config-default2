@@ -1,0 +1,86 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Hiero Integration when it
+# is running in its project level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common/apps.yml
+- ../common/engines.yml
+- ../common/apps.yml
+- ../common/settings/tk-multi-publish2.yml
+
+hiero.project:
+  apps:
+    tk-hiero-export:
+      location:
+        version: v0.4.1
+        type: app_store
+        name: tk-hiero-export
+      nuke_script_toolkit_write_nodes:
+      - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
+      - {channel: stereoexr16, name: 'Stereo Exr, 16 bit'}
+      - {channel: monodpx, name: Mono Dpx}
+      template_nuke_script_path: nuke_shot_work
+      template_plate_path: hiero_plate_path
+      template_render_path: hiero_render_path
+      template_version: hiero_version
+    tk-hiero-openinshotgun:
+      location:
+        version: v0.3.3
+        type: app_store
+        name: tk-hiero-openinshotgun
+    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
+    tk-multi-publish2:
+      help_url: "@common.apps.tk-multi-publish2.help_url"
+      collector: "{config}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/hiero.basic/collector.py"
+      publish_plugins:
+      - '@common.settings.tk-multi-publish2.publish_file'
+      - '@common.settings.tk-multi-publish2.upload_version'
+      - name: Begin file versioning
+        hook: "{config}/tk-multi-publish2/hiero.basic/start_version_control.py"
+        settings: {}
+      - name: Publish to Shotgun
+        hook: "{config}/tk-multi-publish2/hiero.basic/publish_hiero_session.py"
+        settings: {}
+      location: "@common.apps.tk-multi-publish2.location"
+    tk-multi-snapshot:
+      location:
+        version: v0.7.3
+        type: app_store
+        name: tk-multi-snapshot
+      template_snapshot: hiero_project_snapshot
+      template_work: hiero_project_work
+    tk-multi-workfiles2:
+      location: '@common.apps.workfiles2.location'
+      template_publish: hiero_project_publish
+      template_publish_area: hiero_project_publish_area
+      template_work: hiero_project_work
+      template_work_area: hiero_project_work_area
+  bin_context_menu:
+  - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
+    requires_selection: true}
+  - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
+  - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
+    requires_selection: true}
+  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish Project...,
+    requires_selection: true}
+  location: '@common.engines.tk-nuke.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  spreadsheet_context_menu:
+  - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
+    requires_selection: true}
+  timeline_context_menu:
+  - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
+    requires_selection: true}

@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2016 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -8,30 +8,37 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
-#
-# This file contains commonly used apps and is included from
-# other environment files. You'll see references to for example
-# @about, @workfiles2 etc. Whenever a definition like that appears,
-# one of the definitions below are pulled in to replace that
-# include statement.
-#
 
-#
-# Toolkit Current Work Area information App
-#
-about:
+# this file contains apps that are common to multiple applications
+# and setups
+
+includes:
+- frameworks.yml
+
+# full app settings
+
+common.apps.tk-multi-about:
   location:
     version: v0.2.5
     type: app_store
     name: tk-multi-about
-#
-# General Shotgun Panel configuration
-#
-shotgunpanel:
+
+common.apps.tk-multi-pythonconsole:
   location:
-    version: v1.4.3
+    version: v1.1.0
+    type: app_store
+    name: tk-multi-pythonconsole
+
+common.apps.tk-multi-shotgunpanel.location:
+  type: app_store
+  name: tk-multi-shotgunpanel
+  version: v1.4.3
+
+common.apps.tk-multi-shotgunpanel:
+  location:
     type: app_store
     name: tk-multi-shotgunpanel
+    version: v1.4.3
   shotgun_fields_hook: '{self}/shotgun_fields.py'
   actions_hook: '{self}/general_actions.py'
   action_mappings:
@@ -49,6 +56,7 @@ shotgunpanel:
       - quicktime_clipboard
       - sequence_clipboard
       filters: {}
+
 #
 # General File Manager configuration.
 # -----------------------------------
@@ -66,7 +74,12 @@ shotgunpanel:
 # work area. The work area is typically a task or pipeline step
 # and these 'transit' areas can be project, shot, or sequence level.
 #
-workfiles2:
+common.apps.workfiles2.location:
+  version: v0.9.6
+  type: app_store
+  name: tk-multi-workfiles2
+
+common.apps.workfiles2:
   allow_task_creation: true
   create_new_task_hook: '{self}/create_new_task.py'
   custom_actions_hook: '{self}/custom_actions.py'
@@ -106,7 +119,7 @@ workfiles2:
 # --------------------------------------
 # For details, see above.
 #
-workfiles2-launch-at-startup:
+common.apps.workfiles2-launch-at-startup:
   allow_task_creation: true
   create_new_task_hook: '{self}/create_new_task.py'
   custom_actions_hook: '{self}/custom_actions.py'
@@ -140,32 +153,29 @@ workfiles2-launch-at-startup:
   template_work:
   template_work_area:
   version_compare_ignore_fields: []
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-qtwidgets_v2.x.x:
-    location:
-      version: v2.6.3
-      type: app_store
-      name: tk-framework-qtwidgets
-  tk-framework-shotgunutils_v4.x.x:
-    location:
-      version: v4.4.15
-      type: app_store
-      name: tk-framework-shotgunutils
-  tk-framework-shotgunutils_v5.x.x:
-    location:
-      version: v5.0.1
-      type: app_store
-      name: tk-framework-shotgunutils
-  tk-framework-widget_v0.2.x:
-    location:
-      version: v0.2.6
-      type: app_store
-      name: tk-framework-widget
+
+# locations for common apps
+
+common.apps.tk-multi-publish2.location:
+  type: app_store
+  version: v1.1.4
+  name: tk-multi-publish2
+
+common.apps.tk-multi-loader2.location:
+  type: app_store
+  name: tk-multi-loader2
+  version: v1.17.1
+
+common.apps.tk-multi-launchapp.location:
+  type: app_store
+  name: tk-multi-launchapp
+  version: v0.9.4
+
+common.apps.tk-multi-setframerange.location:
+  version: v0.3.0
+  type: app_store
+  name: tk-multi-setframerange
+
+# help urls
+
+common.apps.tk-multi-publish2.help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher

@@ -1,0 +1,93 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Mari Integration when it
+# is running in its asset step level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common/apps.yml
+- ../common/engines.yml
+
+mari.asset_step:
+  apps:
+    tk-mari-projectmanager:
+      location:
+        version: v1.2.0
+        type: app_store
+        name: tk-mari-projectmanager
+      template_new_project_name: mari_asset_project_name
+    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-breakdown:
+      location:
+        version: v1.4.6
+        type: app_store
+        name: tk-multi-breakdown
+    tk-multi-loader2:
+      entities:
+      - caption: Assets
+        entity_type: Asset
+        filters:
+        - [project, is, '{context.project}']
+        hierarchy: [sg_asset_type, code]
+        publish_filters: []
+      - caption: My Tasks
+        entity_type: Task
+        filters:
+        - [task_assignees, is, '{context.user}']
+        - [project, is, '{context.project}']
+        hierarchy: [entity, content]
+        publish_filters: []
+      location:
+        version: v1.17.3
+        type: app_store
+        name: tk-multi-loader2
+      title_name: Import
+    tk-multi-publish:
+      expand_single_items: true
+      location:
+        version: v0.10.4
+        type: app_store
+        name: tk-multi-publish
+      primary_description: Publish items from the current Mari project
+      primary_display_name: Mari Publish
+      primary_icon: icons/publish_mari_main.png
+      primary_tank_type: Mari Scene
+      secondary_outputs:
+      - description: Publish flattened channels
+        display_group: Texture Channels
+        display_name: Channels
+        icon: icons/mari_channel_publish.png
+        name: channel
+        publish_template: asset_mari_texture_tif
+        required: false
+        scene_item_type: channel
+        selected: false
+        tank_type: UDIM Image
+      - description: Publish individual layers for channels
+        display_group: Texture Channel Layers
+        display_name: Layers
+        icon: icons/mari_layer_publish.png
+        name: layer
+        publish_template: asset_mari_texture_tif
+        required: false
+        scene_item_type: layer
+        selected: false
+        tank_type: UDIM Image
+    tk-multi-workfiles:
+      location:
+        version: v0.7.4
+        type: app_store
+        name: tk-multi-workfiles
+      sg_entity_types: [Asset]
+    tk-multi-shotgunpanel:
+      location: '@common.apps.tk-multi-shotgunpanel.location'
+  location: '@common.engines.tk-mari.location'

@@ -1,0 +1,85 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# locations for common engines
+
+# 3dsMax
+common.engines.tk-3dsmaxplus.location:
+    type: app_store
+    name: tk-3dsmaxplus
+    version: v0.4.1
+
+# Houdini
+common.engines.tk-houdini.location:
+    type: app_store
+    name: tk-houdini
+    version: v1.2.2
+
+# Maya
+common.engines.tk-maya.location:
+    type: app_store
+    name: tk-maya
+    version: v0.8.1
+
+# Nuke
+common.engines.tk-nuke.location:
+    type: app_store
+    name: tk-nuke
+    version: v0.7.2
+
+# Photoshop
+common.engines.tk-photoshopcc.location:
+    type: app_store
+    name: tk-photoshopcc
+    version: v1.1.5
+
+# Flame
+common.engines.tk-flame.location:
+    type: app_store
+    name: tk-flame
+    version: v1.9.2
+
+# Desktop
+common.engines.tk-desktop.location:
+    type: app_store
+    name: tk-desktop
+    version: v2.3.0
+
+# Shell
+common.engines.tk-shell.location:
+    type: app_store
+    name: tk-shell
+    version: v0.5.2
+
+# shotgun
+common.engines.tk-shotgun.location:
+    type: app_store
+    name: tk-shotgun
+    version: v0.5.2
+
+# Softimage
+common.engines.tk-softimage.location:
+    type: app_store
+    name: tk-softimage
+    version: v0.3.2
+
+# Motion Builder
+common.engines.tk-motionbuilder.location:
+    version: v0.3.1
+    type: app_store
+    name: tk-motionbuilder
+
+# Mari
+common.engines.tk-mari.location:
+    version: v1.1.4
+    type: app_store
+    name: tk-mari
+

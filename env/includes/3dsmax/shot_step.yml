@@ -1,0 +1,55 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the 3dsMax Integration when it
+# is running in its shot step level configuration
+
+includes:
+- ../app_launchers.yml
+- ../common/apps.yml
+- ../common/engines.yml
+- apps.yml
+
+3dsmax.shot_step:
+  apps:
+    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-loader2:
+      action_mappings:
+        3dsmax Scene: [import, reference]
+        Alembic Cache: [import]
+      location:
+        version: v1.17.3
+        type: app_store
+        name: tk-multi-loader2
+    tk-multi-publish2: '@3dsmax.apps.tk-multi-publish2'
+    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-setframerange:
+      location:
+        version: v0.3.0
+        type: app_store
+        name: tk-multi-setframerange
+    tk-multi-snapshot:
+      location:
+        version: v0.7.3
+        type: app_store
+        name: tk-multi-snapshot
+      template_snapshot: max_shot_snapshot
+      template_work: max_shot_work
+    tk-multi-workfiles2:
+      location: '@common.apps.workfiles2.location'
+      template_publish: max_shot_publish
+      template_publish_area: shot_publish_area_max
+      template_work: max_shot_work
+      template_work_area: shot_work_area_max
+    tk-multi-shotgunpanel:
+      location: '@common.apps.tk-multi-shotgunpanel.location'
+  location: "@common.engines.tk-3dsmaxplus.location"
+
