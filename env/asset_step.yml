@@ -17,8 +17,6 @@ description: Apps and Engines related to Asset based work.
 includes:
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
-# common app configurations that are reused across environments
-- ./includes/common_apps.yml
 
 - ./includes/houdini/asset_step.yml
 - ./includes/maya/asset_step.yml

@@ -14,12 +14,12 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 softimage.asset_step:
   apps:
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-publish:
       location:
         version: v0.10.4
@@ -40,19 +40,13 @@ softimage.asset_step:
       template_snapshot: softimage_asset_snapshot
       template_work: softimage_asset_work
     tk-multi-workfiles2:
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       template_publish: softimage_asset_publish
       template_publish_area: asset_publish_area_softimage
       template_work: softimage_asset_work
       template_work_area: asset_work_area_softimage
     tk-multi-shotgunpanel:
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
   location: '@common.engines.tk-softimage.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

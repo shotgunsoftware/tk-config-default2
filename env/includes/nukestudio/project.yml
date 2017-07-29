@@ -14,7 +14,7 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 nukestudio.project:
@@ -37,7 +37,7 @@ nukestudio.project:
         version: v0.3.3
         type: app_store
         name: tk-hiero-openinshotgun
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-publish:
       display_name: Publish Project
       location:
@@ -63,20 +63,14 @@ nukestudio.project:
         entity_type: Project
         filters: []
         hierarchy: [name]
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       show_my_tasks: false
       template_publish: hiero_project_publish
       template_publish_area: hiero_project_publish_area
       template_work: hiero_project_work
       template_work_area: hiero_project_work_area
     tk-multi-shotgunpanel:
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
       action_mappings:
         PublishedFile:
         - actions:

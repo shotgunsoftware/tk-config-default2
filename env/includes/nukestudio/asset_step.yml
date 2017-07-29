@@ -14,12 +14,12 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 nukestudio.asset_step:
   apps:
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-publish:
       display_name: Publish Project
       location:
@@ -45,10 +45,7 @@ nukestudio.asset_step:
         entity_type: Project
         filters: []
         hierarchy: [name]
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       show_my_tasks: false
       template_publish: hiero_project_publish
       template_publish_area: hiero_project_publish_area
@@ -167,10 +164,7 @@ nukestudio.asset_step:
           - sequence_clipboard
           filters: {}
       actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
   bin_context_menu:
   - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
     requires_selection: true}

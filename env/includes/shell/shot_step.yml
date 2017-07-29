@@ -14,13 +14,13 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 - ../common/apps.yml
 
 shell.shot_step:
   apps:
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-launchmotionbuilder: '@launch_motionbuilder'
     tk-multi-launchsoftimage: '@launch_softimage'
     tk-multi-screeningroom: '@launch_screeningroom'

@@ -14,7 +14,7 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 hiero.project:
@@ -37,8 +37,8 @@ hiero.project:
         version: v0.3.3
         type: app_store
         name: tk-hiero-openinshotgun
-    tk-multi-about: '@about'
-    tk-multi-shotgunpanel: '@shotgunpanel'
+    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
     tk-multi-publish:
       display_name: Publish Project
       location:
@@ -59,10 +59,7 @@ hiero.project:
       template_snapshot: hiero_project_snapshot
       template_work: hiero_project_work
     tk-multi-workfiles2:
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       template_publish: hiero_project_publish
       template_publish_area: hiero_project_publish_area
       template_work: hiero_project_work

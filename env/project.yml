@@ -17,8 +17,7 @@ description: Apps and Engines when launching with a project only context.
 includes:
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
-# common app configurations that are reused across environments
-- ./includes/common_apps.yml
+
 - ./includes/common/apps.yml
 
 - ./includes/desktop/project.yml

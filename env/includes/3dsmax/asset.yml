@@ -14,13 +14,13 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 3dsmax.asset:
   apps:
-    tk-multi-about: '@about'
-    tk-multi-shotgunpanel: '@shotgunpanel'
+    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
     tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-workfiles2: '@workfiles2'
+    tk-multi-workfiles2: '@common.apps.workfiles2'
   location: "@common.engines.tk-3dsmaxplus.location"

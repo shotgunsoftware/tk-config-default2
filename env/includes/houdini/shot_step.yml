@@ -14,12 +14,12 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 houdini.shot_step:
   apps:
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-publish:
       location:
         version: v0.10.4
@@ -70,19 +70,13 @@ houdini.shot_step:
       template_snapshot: houdini_shot_snapshot
       template_work: houdini_shot_work
     tk-multi-workfiles2:
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       template_publish: houdini_shot_publish
       template_publish_area: shot_publish_area_houdini
       template_work: houdini_shot_work
       template_work_area: shot_work_area_houdini
     tk-multi-shotgunpanel:
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
     tk-houdini-alembicnode:
       location:
         version: v0.2.5

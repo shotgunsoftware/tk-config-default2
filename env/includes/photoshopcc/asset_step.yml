@@ -14,13 +14,13 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 
 photoshopcc.asset_step:
   apps:
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-loader2:
       action_mappings:
         Photoshop Image: [add_as_a_layer, open_file]
@@ -66,19 +66,13 @@ photoshopcc.asset_step:
       template_snapshot: photoshop_asset_snapshot
       template_work: photoshop_asset_work
     tk-multi-workfiles2:
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       template_publish: photoshop_asset_publish
       template_publish_area: asset_publish_area_photoshop
       template_work: photoshop_asset_work
       template_work_area: asset_work_area_photoshop
     tk-multi-shotgunpanel:
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

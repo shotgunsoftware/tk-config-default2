@@ -14,12 +14,12 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 3dsmax.asset_step:
   apps:
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-loader2:
       action_mappings:
         3dsmax Scene: [import, reference]
@@ -76,17 +76,11 @@ includes:
       template_snapshot: max_asset_snapshot
       template_work: max_asset_work
     tk-multi-workfiles2:
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       template_publish: max_asset_publish
       template_publish_area: asset_publish_area_max
       template_work: max_asset_work
       template_work_area: asset_work_area_max
-    tk-multi-shotgunpanel:
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+    tk-multi-shotgunpanel: 
+      location: '@common.apps.tk-multi-shotgunpanel.location'
   location: "@common.engines.tk-3dsmaxplus.location"

@@ -24,7 +24,7 @@ includes:
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
 # common app configurations that are reused across environments
-- ./includes/common_apps.yml
+- ./includes/common/apps.yml
 
 - ./includes/flame/shot.yml
 - ./includes/houdini/shot.yml
