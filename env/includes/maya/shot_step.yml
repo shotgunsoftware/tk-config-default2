@@ -16,6 +16,7 @@ includes:
 - ../app_launchers.yml
 - ../common/apps.yml
 - ../common/engines.yml
+- apps.yml
 
 maya.shot_step:
   apps:
@@ -51,17 +52,7 @@ maya.shot_step:
         version: v1.17.3
         type: app_store
         name: tk-multi-loader2
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish and version up the current Maya scene
-      primary_display_name: Maya Publish
-      primary_icon: icons/publish_maya_main.png
-      primary_publish_template: maya_shot_publish
-      primary_tank_type: Maya Scene
-      template_work: maya_shot_work
+    tk-multi-publish2: '@maya.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-setframerange:
       location:
@@ -101,5 +92,5 @@ maya.shot_step:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish, name: Publish...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
   template_project: shot_work_area_maya
