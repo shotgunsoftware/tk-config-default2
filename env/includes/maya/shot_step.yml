@@ -14,13 +14,13 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 - apps.yml
 
 maya.shot_step:
   apps:
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-breakdown:
       location:
         version: v1.4.6
@@ -73,10 +73,7 @@ maya.shot_step:
         Task:
         - actions: [assign_task, task_to_ip]
           filters: {}
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
     tk-multi-snapshot:
       location:
         version: v0.7.3
@@ -85,10 +82,7 @@ maya.shot_step:
       template_snapshot: maya_shot_snapshot
       template_work: maya_shot_work
     tk-multi-workfiles2:
-      location:
-        version: v0.9.6
-        type: app_store
-        name: tk-multi-workfiles2
+      location: '@common.apps.workfiles2.location'
       template_publish: maya_shot_publish
       template_publish_area: shot_publish_area_maya
       template_work: maya_shot_work

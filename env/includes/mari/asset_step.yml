@@ -14,7 +14,7 @@
 
 includes:
 - ../app_launchers.yml
-- ../common_apps.yml
+- ../common/apps.yml
 - ../common/engines.yml
 
 mari.asset_step:
@@ -25,7 +25,7 @@ mari.asset_step:
         type: app_store
         name: tk-mari-projectmanager
       template_new_project_name: mari_asset_project_name
-    tk-multi-about: '@about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-breakdown:
       location:
         version: v1.4.6
@@ -89,8 +89,5 @@ mari.asset_step:
         name: tk-multi-workfiles
       sg_entity_types: [Asset]
     tk-multi-shotgunpanel:
-      location:
-        version: v1.4.3
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
   location: '@common.engines.tk-mari.location'

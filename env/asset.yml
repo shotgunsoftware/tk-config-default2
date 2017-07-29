@@ -22,8 +22,6 @@ description: Apps and engines loaded when an Asset is loaded. Since std VFX conf
 includes:
 # launchers for launching DCCs such as Maya, Nuke etc.
 - ./includes/app_launchers.yml
-# common app configurations that are reused across environments
-- ./includes/common_apps.yml
 
 - ./includes/houdini/asset.yml
 - ./includes/maya/asset.yml
@@ -39,7 +37,6 @@ includes:
 
 #################################################################################################
 # define all the items that should appear in this environment
-
 
 
 engines:

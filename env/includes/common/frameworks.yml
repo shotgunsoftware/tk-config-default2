@@ -34,7 +34,7 @@ frameworks:
       name: tk-framework-adminui
   tk-framework-widget_v0.2.x:
     location:
-      version: v0.2.4
+      version: v0.2.6
       type: app_store
       name: tk-framework-widget
   tk-framework-desktopserver_v1.x.x:
