@@ -25,6 +25,29 @@ includes:
 
 #
 # -------------------------------------------------
+# Hiero
+# -------------------------------------------------
+launch_hiero:
+  defer_keyword: ''
+  engine: tk-hiero
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  icon: '{target_engine}/icon_hiero_256.png'
+  linux_args: --hiero
+  linux_path: '@hiero_linux'
+  location:
+    version: v0.8.0
+    type: app_store
+    name: tk-multi-launchapp
+  mac_args: ''
+  mac_path: '@hiero_mac'
+  menu_name: Launch Hiero
+  versions: []
+  windows_args: --hiero
+  windows_path: '@hiero_win'
+#
+# -------------------------------------------------
 # Mari
 # -------------------------------------------------
 launch_mari:
