@@ -22,7 +22,7 @@ softimage.shot:
     tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
     tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-workfiles2: '@workfiles2'
+    tk-multi-workfiles2: '@common.apps.workfiles2'
   location: '@common.engines.tk-softimage.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

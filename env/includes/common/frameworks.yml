@@ -39,6 +39,6 @@ frameworks:
       name: tk-framework-widget
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.1.10
+      version: v1.1.15
       type: app_store
       name: tk-framework-desktopserver

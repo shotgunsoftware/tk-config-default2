@@ -158,13 +158,13 @@ common.apps.workfiles2-launch-at-startup:
 
 common.apps.tk-multi-publish2.location:
   type: app_store
-  version: v1.1.4
+  version: v1.1.9
   name: tk-multi-publish2
 
 common.apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.17.1
+  version: v1.17.3
 
 common.apps.tk-multi-launchapp.location:
   type: app_store
