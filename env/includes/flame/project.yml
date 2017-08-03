@@ -13,13 +13,11 @@
 # is running in its project level configuration
 
 includes:
-- ../common/engines.yml
+- ./flame.yml
 
 
 # the flame integration is built into flame
 # we only include the engine here so that we can launch flame
 # from shotgun desktop and shotgun.
-flame.project:
-  apps:
-  location: "@common.engines.tk-flame.location"
+flame.project: '@std_flame_flare'
 

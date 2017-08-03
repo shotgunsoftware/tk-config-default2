@@ -20,6 +20,7 @@ includes:
 
 shell.project:
   apps:
+    tk-multi-launchhiero: '@launch_hiero'
     tk-multi-launchmari: '@launch_mari'
     tk-multi-launchmotionbuilder: '@launch_motionbuilder'
     tk-multi-launchsoftimage: '@launch_softimage'
