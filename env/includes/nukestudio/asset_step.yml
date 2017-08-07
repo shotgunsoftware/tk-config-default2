@@ -161,7 +161,7 @@ nukestudio.asset_step:
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
     requires_selection: true}
-  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish Project...,
+  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish...,
     requires_selection: true}
   location: '@common.engines.tk-nuke.location'
   menu_favourites:
