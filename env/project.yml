@@ -12,14 +12,8 @@
 description: Apps and Engines when launching with a project only context.
 
 #################################################################################################
-# include common files
 
 includes:
-# launchers for launching DCCs such as Maya, Nuke etc.
-- ./includes/app_launchers.yml
-
-- ./includes/common/apps.yml
-
 - ./includes/desktop/project.yml
 - ./includes/flame/project.yml
 - ./includes/houdini/project.yml

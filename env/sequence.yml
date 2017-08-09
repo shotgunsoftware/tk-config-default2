@@ -19,14 +19,8 @@ description: Apps and engines loaded when a Sequence is loaded. Since std VFX co
 
 
 #################################################################################################
-# include common files
 
 includes:
-# launchers for launching DCCs such as Maya, Nuke etc.
-- ./includes/app_launchers.yml
-# common app configurations that are reused across environments
-- ./includes/common/apps.yml
-
 - ./includes/houdini/sequence.yml
 - ./includes/maya/sequence.yml
 - ./includes/nuke/sequence.yml

@@ -13,7 +13,6 @@
 # is running in its project level configuration
 
 includes:
-- ../app_launchers.yml
 - ../common/apps.yml
 - ../common/engines.yml
 
