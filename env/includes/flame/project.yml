@@ -14,10 +14,27 @@
 
 includes:
 - ./flame.yml
+- ../common/engines.yml
 
 
 # the flame integration is built into flame
 # we only include the engine here so that we can launch flame
 # from shotgun desktop and shotgun.
-flame.project: '@std_flame_flare'
-
+flame.project:
+  apps:
+    tk-flame-review: '@flame.apps.tk-flame-review'
+    tk-flame-export: '@flame.apps.tk-flame-export'
+  #
+  # Flame engine settings
+  #
+  debug_logging: true
+  location:
+    version: v1.9.4
+    type: app_store
+    name: tk-flame
+  project_startup_hook: '{self}/project_startup.py'
+  flame_batch_publish_type: Flame Batch File
+  backburner_shared_tmp: /tmp
+  run_at_startup: []
+  backburner_manager: ''
+  context_menu: []

@@ -15,75 +15,60 @@
 # brought in at various points where flame is desired. The configuration
 # bundle assumes a project context
 #
-includes:
-- ../common/engines.yml
 
-std_flame_flare:
-  apps:
-    #
-    # Flame review app that sends a sequence to Shotgun Review
-    #
-    tk-flame-review:
-      location:
-        version: v1.1.4
-        type: app_store
-        name: tk-flame-review
-      task_template: ''
-      shotgun_entity_type: Sequence
-      menu_name: Submit for Shotgun review
-      settings_hook: '{self}/settings.py'
-    #
-    # Complex pipeline based on managed media with shot based
-    # review and export.
-    #
-    tk-flame-export:
-      location:
-        version: v1.7.6
-        type: app_store
-        name: tk-flame-export
-      shot_parent_entity_type: Sequence
-      shot_parent_link_field: sg_sequence
-      shot_parent_task_template: ''
-      task_template: Basic shot template
-      menu_name: Shotgun Shot Export
-      settings_hook: '{self}/settings.py'
-      bypass_shotgun_transcoding: false
-      plate_presets:
-      - template: flame_shot_render_dpx
-        publish_type: Flame Render
-        name: 10 bit DPX
-        upload_quicktime: true
-        quicktime_publish_type: Flame Quicktime
-        quicktime_template:
-        batch_quicktime_template:
-        batch_render_template: flame_shot_comp_dpx
-        start_frame: 100
-        frame_handles: 10
-        cut_type: ''
-      - template: flame_shot_render_exr
-        publish_type: Flame Render
-        name: 16 bit OpenEXR
-        upload_quicktime: true
-        quicktime_publish_type: Flame Quicktime
-        quicktime_template:
-        batch_quicktime_template:
-        batch_render_template: flame_shot_comp_exr
-        start_frame: 100
-        frame_handles: 10
-        cut_type: ''
-      shot_clip_template: flame_shot_clip
-      segment_clip_template: flame_segment_clip
-      batch_template: flame_shot_batch
-      batch_publish_type: Flame Batch File
+#
+# Flame review app that sends a sequence to Shotgun Review
+#
+flame.apps.tk-flame-review:
+  location:
+    version: v1.1.4
+    type: app_store
+    name: tk-flame-review
+  task_template: ''
+  shotgun_entity_type: Sequence
+  menu_name: Submit for Shotgun review
+  settings_hook: '{self}/settings.py'
+#
+# Complex pipeline based on managed media with shot based
+# review and export.
+#
+flame.apps.tk-flame-export:
+  location:
+    version: v1.7.7
+    type: app_store
+    name: tk-flame-export
+  shot_parent_entity_type: Sequence
+  shot_parent_link_field: sg_sequence
+  shot_parent_task_template: ''
+  task_template: Basic shot template
+  menu_name: Shotgun Shot Export
+  settings_hook: '{self}/settings.py'
+  bypass_shotgun_transcoding: false
+  plate_presets:
+  - template: flame_shot_render_dpx
+    publish_type: Flame Render
+    name: 10 bit DPX
+    upload_quicktime: true
+    quicktime_publish_type: Flame Quicktime
+    quicktime_template:
+    batch_quicktime_template:
+    batch_render_template: flame_shot_comp_dpx
+    start_frame: 100
+    frame_handles: 10
+    cut_type: ''
+  - template: flame_shot_render_exr
+    publish_type: Flame Render
+    name: 16 bit OpenEXR
+    upload_quicktime: true
+    quicktime_publish_type: Flame Quicktime
+    quicktime_template:
+    batch_quicktime_template:
+    batch_render_template: flame_shot_comp_exr
+    start_frame: 100
+    frame_handles: 10
+    cut_type: ''
+  shot_clip_template: flame_shot_clip
+  segment_clip_template: flame_segment_clip
+  batch_template: flame_shot_batch
+  batch_publish_type: Flame Batch File
 
-  #
-  # Flame engine settings
-  #
-  debug_logging: true
-  location: "@common.engines.tk-flame.location"
-  project_startup_hook: '{self}/project_startup.py'
-  flame_batch_publish_type: Flame Batch File
-  backburner_shared_tmp: /tmp
-  run_at_startup: []
-  backburner_manager: ''
-  context_menu: []
