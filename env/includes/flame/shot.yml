@@ -28,10 +28,7 @@ flame.shot:
   # Flame engine settings
   #
   debug_logging: true
-  location:
-    version: v1.9.4
-    type: app_store
-    name: tk-flame
+  location: '@common.engines.tk-flame.location'
   project_startup_hook: '{self}/project_startup.py'
   flame_batch_publish_type: Flame Batch File
   backburner_shared_tmp: /tmp

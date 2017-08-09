@@ -12,14 +12,8 @@
 description: Apps and Engines related to Shot based work.
 
 #################################################################################################
-# include common files
 
 includes:
-# launchers for launching DCCs such as Maya, Nuke etc.
-- ./includes/app_launchers.yml
-# common app configurations that are reused across environments
-- ./includes/common/apps.yml
-
 - ./includes/houdini/shot_step.yml
 - ./includes/maya/shot_step.yml
 - ./includes/nuke/shot_step.yml

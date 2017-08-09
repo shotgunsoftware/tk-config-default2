@@ -18,14 +18,8 @@ description: Apps and engines loaded when a Shot is loaded. Since std VFX config
   a task to work on and load associated content into an application.
 
 #################################################################################################
-# include common files
 
 includes:
-# launchers for launching DCCs such as Maya, Nuke etc.
-- ./includes/app_launchers.yml
-# common app configurations that are reused across environments
-- ./includes/common/apps.yml
-
 - ./includes/flame/shot.yml
 - ./includes/houdini/shot.yml
 - ./includes/maya/shot.yml
