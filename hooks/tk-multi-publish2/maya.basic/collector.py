@@ -20,7 +20,7 @@ HookBaseClass = sgtk.get_hook_baseclass()
 class MayaSessionCollector(HookBaseClass):
     """
     Collector that operates on the maya session. Should inherit from the basic
-    collector hook.
+    collector hook (via the config).
     """
 
     def process_current_session(self, parent_item):

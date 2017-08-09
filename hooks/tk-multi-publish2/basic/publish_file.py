@@ -85,7 +85,7 @@ class BasicFilePublishPlugin(HookBaseClass):
         through the settings parameter in the accept, validate, publish and
         finalize methods.
 
-        A dictionary on the following form::
+        A dictionary of the following form::
 
             {
                 "Settings Name": {

@@ -29,7 +29,8 @@ _HOUDINI_OUTPUTS = {
 
 class HoudiniSessionCollector(HookBaseClass):
     """
-    Collector that operates on the houdini session
+    Collector that operates on the houdini session. Should inherit from the
+    basic collector (via the config).
     """
 
     def process_current_session(self, parent_item):

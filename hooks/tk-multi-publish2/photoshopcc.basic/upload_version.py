@@ -68,17 +68,37 @@ class PhotoshopUploadVersionPlugin(HookBaseClass):
     @property
     def settings(self):
         """
-        Dictionary defining the settings that this plugin expects to recieve
+        Dictionary defining the settings that this plugin expects to receive
         through the settings parameter in the accept, validate, publish and
         finalize methods.
 
-        A dictionary on the following form::
+        A dictionary of the following form::
 
             {
                 "Settings Name": {
                     "type": "settings_type",
                     "default": "default_value",
                     "description": "One line description of the setting"
+            }
+
+        Example::
+
+            return {
+                "File Extensions": {
+                    "type": "str",
+                    "default": "jpeg, jpg, png, mov, mp4",
+                    "description": "File Extensions of files to include"
+                },
+                "Upload": {
+                    "type": "bool",
+                    "default": True,
+                    "description": "Upload content to Shotgun?"
+                },
+                "Link Local File": {
+                    "type": "bool",
+                    "default": True,
+                    "description": "Should the local file be referenced by Shotgun"
+                },
             }
 
         The type string should be one of the data types that toolkit accepts as
@@ -96,7 +116,6 @@ class PhotoshopUploadVersionPlugin(HookBaseClass):
         ["maya.*", "file.maya"]
         """
 
-        # we use "video" since that's the mimetype category.
         return ["photoshop.document"]
 
     def accept(self, settings, item):
@@ -208,25 +227,26 @@ class PhotoshopUploadVersionPlugin(HookBaseClass):
                 # make the document being processed the active document
                 engine.adobe.app.activeDocument = document
 
-                # path to a temp jpg file
-                upload_path = os.path.join(
-                    tempfile.gettempdir(),
-                    "%s_sgtk.jpg" % uuid.uuid4().hex
-                )
+                try:
+                    # path to a temp jpg file
+                    upload_path = os.path.join(
+                        tempfile.gettempdir(),
+                        "%s_sgtk.jpg" % uuid.uuid4().hex
+                    )
 
-                # jpg file/options
-                jpg_file = engine.adobe.File(upload_path)
-                jpg_options = engine.adobe.JPEGSaveOptions
-                jpg_options.quality = 12
+                    # jpg file/options
+                    jpg_file = engine.adobe.File(upload_path)
+                    jpg_options = engine.adobe.JPEGSaveOptions
+                    jpg_options.quality = 12
 
-                # mark the temp upload path for removal
-                item.properties["remove_upload"] = True
+                    # mark the temp upload path for removal
+                    item.properties["remove_upload"] = True
 
-                # save a jpg copy of the document
-                document.saveAs(jpg_file, jpg_options, True)
-
-                # restore the active document
-                engine.adobe.app.activeDocument = previous_active_document
+                    # save a jpg copy of the document
+                    document.saveAs(jpg_file, jpg_options, True)
+                finally:
+                    # restore the active document
+                    engine.adobe.app.activeDocument = previous_active_document
 
         # use the original path for the version display name
         publish_name = publisher.util.get_publish_name(path)

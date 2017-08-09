@@ -24,7 +24,7 @@ _NUKE_OUTPUTS = {
 class NukeSessionCollector(HookBaseClass):
     """
     Collector that operates on the current nuke/nukestudio session. Should
-    inherit from the basic collector hook.
+    inherit from the basic collector hook (via the config).
     """
 
     def process_current_session(self, parent_item):

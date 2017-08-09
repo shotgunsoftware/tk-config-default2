@@ -19,7 +19,7 @@ HookBaseClass = sgtk.get_hook_baseclass()
 class MaxSessionCollector(HookBaseClass):
     """
     Collector that operates on the max session. Should inherit from the basic
-    collector hook.
+    collector hook (via the config).
     """
 
     def process_current_session(self, parent_item):
