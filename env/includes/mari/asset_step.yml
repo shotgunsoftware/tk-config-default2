@@ -15,6 +15,7 @@
 includes:
 - ../common/apps.yml
 - ../common/engines.yml
+- ./apps.yml
 
 mari.asset_step:
   apps:
@@ -46,41 +47,11 @@ mari.asset_step:
         hierarchy: [entity, content]
         publish_filters: []
       location:
-        version: v1.17.3
+        version: v1.17.4
         type: app_store
         name: tk-multi-loader2
       title_name: Import
-    tk-multi-publish:
-      expand_single_items: true
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish items from the current Mari project
-      primary_display_name: Mari Publish
-      primary_icon: icons/publish_mari_main.png
-      primary_tank_type: Mari Scene
-      secondary_outputs:
-      - description: Publish flattened channels
-        display_group: Texture Channels
-        display_name: Channels
-        icon: icons/mari_channel_publish.png
-        name: channel
-        publish_template: asset_mari_texture_tif
-        required: false
-        scene_item_type: channel
-        selected: false
-        tank_type: UDIM Image
-      - description: Publish individual layers for channels
-        display_group: Texture Channel Layers
-        display_name: Layers
-        icon: icons/mari_layer_publish.png
-        name: layer
-        publish_template: asset_mari_texture_tif
-        required: false
-        scene_item_type: layer
-        selected: false
-        tank_type: UDIM Image
+    tk-multi-publish2: '@mari.apps.tk-multi-publish2'
     tk-multi-workfiles:
       location:
         version: v0.7.4
@@ -88,5 +59,8 @@ mari.asset_step:
         name: tk-multi-workfiles
       sg_entity_types: [Asset]
     tk-multi-shotgunpanel:
-      location: '@common.apps.tk-multi-shotgunpanel.location'
+      location:
+        version: v1.4.4
+        type: app_store
+        name: tk-multi-shotgunpanel
   location: '@common.engines.tk-mari.location'

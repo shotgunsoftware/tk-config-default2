@@ -16,6 +16,7 @@ includes:
 - ../app_launchers.yml
 - ../common/apps.yml
 - ../common/engines.yml
+- ./apps.yml
 
 motionbuilder.shot_step:
   apps:
@@ -42,15 +43,7 @@ motionbuilder.shot_step:
         version: v1.17.3
         type: app_store
         name: tk-multi-loader2
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_icon: icons/publish_motionbuilder_main.png
-      primary_publish_template: mobu_shot_publish
-      primary_tank_type: Motion Builder FBX
-      template_work: mobu_shot_work
+    tk-multi-publish: '@motionbuilder.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-setframerange:
       location:
@@ -77,4 +70,4 @@ motionbuilder.shot_step:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish, name: Publish...}
+  - {app_instance: tk-multi-publish2, name: Publish...}

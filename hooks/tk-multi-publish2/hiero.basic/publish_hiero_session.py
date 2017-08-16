@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Shotgun Software Inc.
+﻿# Copyright (c) 2017 Shotgun Software Inc.
 # 
 # CONFIDENTIAL AND PROPRIETARY
 # 
@@ -10,16 +10,14 @@
 
 import os
 import pprint
-import maya.cmds as cmds
-import maya.mel as mel
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class MayaSessionPublishPlugin(HookBaseClass):
+class HieroSessionPublishPlugin(HookBaseClass):
     """
-    Plugin for publishing an open maya session.
+    Plugin for publishing an open hiero session.
     """
 
     @property
@@ -117,7 +115,7 @@ class MayaSessionPublishPlugin(HookBaseClass):
         return {
             "Publish Type": {
                 "type": "shotgun_publish_type",
-                "default": "Maya Scene",
+                "default": "Hiero Scene",
                 "description": "SG publish type to associate publishes with."
             },
         }
@@ -129,9 +127,9 @@ class MayaSessionPublishPlugin(HookBaseClass):
 
         Only items matching entries in this list will be presented to the
         accept() method. Strings can contain glob patters such as *, for example
-        ["maya.*", "file.maya"]
+        ["hiero.*", "file.hiero"]
         """
-        return ["maya.session"]
+        return ["hiero.session"]
 
     def accept(self, settings, item):
         """
@@ -166,12 +164,12 @@ class MayaSessionPublishPlugin(HookBaseClass):
             # provide a save button. the session will need to be saved before
             # validation will succeed.
             self.logger.warn(
-                "The Maya session has not been saved.",
+                "The Hiero session has not been saved.",
                 extra=_get_save_as_action()
             )
 
         self.logger.info(
-            "Maya '%s' plugin accepted the current Maya session." %
+            "Hiero '%s' plugin accepted the current Hiero session." %
             (self.name,)
         )
         return {
@@ -198,24 +196,24 @@ class MayaSessionPublishPlugin(HookBaseClass):
             # the session still requires saving. provide a save button.
             # validation fails.
             self.logger.error(
-                "The Maya session has not been saved.",
+                "The Hiero session has not been saved.",
                 extra=_get_save_as_action()
             )
             return False
 
         # ensure we have an updated project root
-        project_root = cmds.workspace(q=True, rootDirectory=True)
+        project_root = None #cmds.workspace(q=True, rootDirectory=True)
         item.properties["project_root"] = project_root
 
         # warn if no project root could be determined.
         if not project_root:
             self.logger.warning(
-                "Your session is not part of a maya project.",
+                "Your session is not part of a hiero project.",
                 extra={
                     "action_button": {
                         "label": "Set Project",
-                        "tooltip": "Set the maya project",
-                        "callback": lambda: mel.eval('setProject ""')
+                        "tooltip": "Set the hiero project",
+                        "callback": None#lambda: mel.eval('setProject ""')
                     }
                 }
             )
@@ -327,7 +325,7 @@ class MayaSessionPublishPlugin(HookBaseClass):
             "version_number": version_number,
             "thumbnail_path": item.get_thumbnail_as_path(),
             "published_file_type": settings["Publish Type"].value,
-            "dependency_paths": _maya_find_additional_session_dependencies(),
+            "dependency_paths": _hiero_find_additional_session_dependencies(),
         }
 
         # log the publish data for debugging
@@ -436,7 +434,7 @@ class MayaSessionPublishPlugin(HookBaseClass):
         return next_version_path
 
 
-def _maya_find_additional_session_dependencies():
+def _hiero_find_additional_session_dependencies():
     """
     Find additional dependencies from the session
     """
@@ -444,29 +442,28 @@ def _maya_find_additional_session_dependencies():
     # textures (file nodes)
     ref_paths = set()
 
-    # first let's look at maya references
-    ref_nodes = cmds.ls(references=True)
+    # first let's look at hiero references
+    ref_nodes = None #cmds.ls(references=True)
     for ref_node in ref_nodes:
         # get the path:
-        ref_path = cmds.referenceQuery(ref_node, filename=True)
+        ref_path = None #cmds.referenceQuery(ref_node, filename=True)
         # make it platform dependent
-        # (maya uses C:/style/paths)
+        # (hiero uses C:/style/paths)
         ref_path = ref_path.replace("/", os.path.sep)
         if ref_path:
             ref_paths.add(ref_path)
 
     # now look at file texture nodes
-    for file_node in cmds.ls(l=True, type="file"):
+    for file_node in None: #cmds.ls(l=True, type="file"):
         # ensure this is actually part of this session and not referenced
-        if cmds.referenceQuery(file_node, isNodeReferenced=True):
+        if False: #cmds.referenceQuery(file_node, isNodeReferenced=True):
             # this is embedded in another reference, so don't include it in
             # the breakdown
             continue
 
         # get path and make it platform dependent
-        # (maya uses C:/style/paths)
-        texture_path = cmds.getAttr(
-            "%s.fileTextureName" % file_node).replace("/", os.path.sep)
+        # (hiero uses C:/style/paths)
+        texture_path = None #cmds.getAttr("%s.fileTextureName" % file_node).replace("/", os.path.sep)
         if texture_path:
             ref_paths.add(texture_path)
 
@@ -478,7 +475,7 @@ def _session_path():
     Return the path to the current session
     :return:
     """
-    path = cmds.file(query=True, sn=True)
+    path = None #cmds.file(query=True, sn=True)
 
     if isinstance(path, unicode):
         path = path.encode("utf-8")
@@ -491,21 +488,19 @@ def _save_session(path):
     Save the current session to the supplied path.
     """
 
-    # Maya can choose the wrong file type so we should set it here
+    # Hiero can choose the wrong file type so we should set it here
     # explicitly based on the extension
-    maya_file_type = None
-    if path.lower().endswith(".ma"):
-        maya_file_type = "mayaAscii"
-    elif path.lower().endswith(".mb"):
-        maya_file_type = "mayaBinary"
+    hiero_file_type = None
+    if path.lower().endswith(".fbx"):
+        hiero_file_type = "hieroFbx"
 
-    cmds.file(rename=path)
+    #cmds.file(rename=path)
 
     # save the scene:
-    if maya_file_type:
-        cmds.file(save=True, force=True, type=maya_file_type)
+    if hiero_file_type:
+        pass #cmds.file(save=True, force=True, type=hiero_file_type)
     else:
-        cmds.file(save=True, force=True)
+        pass #cmds.file(save=True, force=True)
 
 
 def _get_save_as_action():
@@ -517,6 +512,6 @@ def _get_save_as_action():
         "action_button": {
             "label": "Save As...",
             "tooltip": "Save the current session",
-            "callback": cmds.SaveScene
+            "callback": None #cmds.SaveScene
         }
     }

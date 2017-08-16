@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Shotgun Software Inc.
+﻿# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -9,15 +9,14 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
-import maya.cmds as cmds
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class MayaStartVersionControlPlugin(HookBaseClass):
+class HieroStartVersionControlPlugin(HookBaseClass):
     """
-    Simple plugin to insert a version number into the maya file path if one
+    Simple plugin to insert a version number into the hiero file path if one
     does not exist.
     """
 
@@ -71,9 +70,9 @@ class MayaStartVersionControlPlugin(HookBaseClass):
 
         Only items matching entries in this list will be presented to the
         accept() method. Strings can contain glob patters such as *, for example
-        ["maya.*", "file.maya"]
+        ["hiero.*", "file.hiero"]
         """
-        return ["maya.session"]
+        return ["hiero.session"]
 
     @property
     def settings(self):
@@ -129,24 +128,24 @@ class MayaStartVersionControlPlugin(HookBaseClass):
             version_number = publisher.util.get_version_number(path)
             if version_number is not None:
                 self.logger.info(
-                    "Maya '%s' plugin rejected the current Maya session..." %
+                    "Hiero '%s' plugin rejected the current Hiero session..." %
                     (self.name,)
                 )
                 self.logger.info(
                     "  There is already a version number in the file...")
-                self.logger.info("  Maya file path: %s" % (path,))
+                self.logger.info("  Hiero file path: %s" % (path,))
                 return {"accepted": False}
         else:
             # the session has not been saved before (no path determined).
             # provide a save button. the session will need to be saved before
             # validation will succeed.
             self.logger.warn(
-                "The Maya session has not been saved.",
+                "The Hiero session has not been saved.",
                 extra=_get_save_as_action()
             )
 
         self.logger.info(
-            "Maya '%s' plugin accepted the current Maya session." %
+            "Hiero '%s' plugin accepted the current Hiero session." %
             (self.name,),
             extra=_get_version_docs_action()
         )
@@ -179,7 +178,7 @@ class MayaStartVersionControlPlugin(HookBaseClass):
             # the session still requires saving. provide a save button.
             # validation fails
             self.logger.error(
-                "The Maya session has not been saved.",
+                "The Hiero session has not been saved.",
                 extra=_get_save_as_action()
             )
             return False
@@ -220,8 +219,8 @@ class MayaStartVersionControlPlugin(HookBaseClass):
 
         # save to the new version path
         _save_session(version_path)
-        self.logger.info("A version number has been added to the Maya file...")
-        self.logger.info("  Maya file path: %s" % (version_path,))
+        self.logger.info("A version number has been added to the Hiero file...")
+        self.logger.info("  Hiero file path: %s" % (version_path,))
 
     def finalize(self, settings, item):
         """
@@ -242,7 +241,7 @@ def _session_path():
     Return the path to the current session
     :return:
     """
-    path = cmds.file(query=True, sn=True)
+    path = None #cmds.file(query=True, sn=True)
 
     if isinstance(path, unicode):
         path = path.encode("utf-8")
@@ -255,21 +254,19 @@ def _save_session(path):
     Save the current session to the supplied path.
     """
 
-    # Maya can choose the wrong file type so we should set it here
+    # Hiero can choose the wrong file type so we should set it here
     # explicitly based on the extension
-    maya_file_type = None
-    if path.lower().endswith(".ma"):
-        maya_file_type = "mayaAscii"
-    elif path.lower().endswith(".mb"):
-        maya_file_type = "mayaBinary"
+    hiero_file_type = None
+    if path.lower().endswith(".fbx"):
+        hiero_file_type = "hieroFbx"
 
-    cmds.file(rename=path)
+    #cmds.file(rename=path)
 
     # save the scene:
-    if maya_file_type:
-        cmds.file(save=True, force=True, type=maya_file_type)
+    if hiero_file_type:
+        pass #cmds.file(save=True, force=True, type=hiero_file_type)
     else:
-        cmds.file(save=True, force=True)
+        pass #cmds.file(save=True, force=True)
 
 
 def _get_save_as_action():
@@ -281,7 +278,7 @@ def _get_save_as_action():
         "action_button": {
             "label": "Save As...",
             "tooltip": "Save the current session",
-            "callback": cmds.SaveSceneAs
+            "callback": None #cmds.SaveSceneAs
         }
     }
 

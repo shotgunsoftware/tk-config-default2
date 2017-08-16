@@ -16,6 +16,7 @@ includes:
 - ../common/apps.yml
 - ../common/engines.yml
 - ../common/apps.yml
+- ./apps.yml
 
 hiero.project:
   apps:
@@ -39,30 +40,7 @@ hiero.project:
         name: tk-hiero-openinshotgun
     tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
-    tk-multi-publish:
-      allow_taskless_publishes: true
-      display_name: Publish Project
-      expand_single_items: false
-      hook_copy_file: default
-      hook_post_publish: default
-      hook_primary_pre_publish: default
-      hook_primary_publish: default
-      hook_scan_scene: default
-      hook_secondary_pre_publish: default
-      hook_secondary_publish: default
-      hook_thumbnail: default
-      location:
-        version: v0.10.0
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish and version up the selected Hiero project
-      primary_display_name: Hiero Publish
-      primary_icon: icons/publish_hiero_main.png
-      primary_publish_template: hiero_project_publish
-      primary_scene_item_type: work_file
-      primary_tank_type: Hiero Project
-      secondary_outputs: []
-      template_work: hiero_project_work
+    tk-multi-publish2: '@hiero.apps.tk-multi-publish2'
     tk-multi-snapshot:
       location:
         version: v0.7.3
@@ -96,14 +74,16 @@ hiero.project:
       template_work_area: hiero_project_work_area
       version_compare_ignore_fields: []
   bin_context_menu:
-  - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
-    requires_selection: true}
+  - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save..., requires_selection: true}
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
     requires_selection: true}
-  - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
+  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish Project...,
     requires_selection: true}
-  location: '@common.engines.tk-nuke.location'
+  location:
+    version: v0.8.1
+    type: app_store
+    name: tk-nuke
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   spreadsheet_context_menu:
