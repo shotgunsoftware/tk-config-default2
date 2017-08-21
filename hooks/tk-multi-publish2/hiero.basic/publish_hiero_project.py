@@ -1,23 +1,24 @@
 ﻿# Copyright (c) 2017 Shotgun Software Inc.
-# 
+#
 # CONFIDENTIAL AND PROPRIETARY
-# 
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
 # Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your 
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
 import pprint
 import sgtk
+from sgtk.platform.qt import QtGui
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class HieroSessionPublishPlugin(HookBaseClass):
+class HieroProjectPublishPlugin(HookBaseClass):
     """
-    Plugin for publishing an open hiero session.
+    Plugin for publishing a Hiero project.
     """
 
     @property
@@ -115,7 +116,7 @@ class HieroSessionPublishPlugin(HookBaseClass):
         return {
             "Publish Type": {
                 "type": "shotgun_publish_type",
-                "default": "Hiero Scene",
+                "default": "NukeStudio Project",
                 "description": "SG publish type to associate publishes with."
             },
         }
@@ -127,9 +128,9 @@ class HieroSessionPublishPlugin(HookBaseClass):
 
         Only items matching entries in this list will be presented to the
         accept() method. Strings can contain glob patters such as *, for example
-        ["hiero.*", "file.hiero"]
+        ["maya.*", "file.maya"]
         """
-        return ["hiero.session"]
+        return ["nukestudio.project"]
 
     def accept(self, settings, item):
         """
@@ -157,20 +158,26 @@ class HieroSessionPublishPlugin(HookBaseClass):
         :returns: dictionary with boolean keys accepted, required and enabled
         """
 
-        path = _session_path()
+        project = item.properties.get("project")
+        if not project:
+            self.logger.warn("Could not determine the project.")
+            return {"accepted": False}
+
+        path = project.path()
 
         if not path:
             # the session has not been saved before (no path determined).
             # provide a save button. the session will need to be saved before
             # validation will succeed.
             self.logger.warn(
-                "The Hiero session has not been saved.",
-                extra=_get_save_as_action()
+                "The Hiero project '%s' has not been saved." %
+                (project.name()),
+                extra=_get_save_as_action(project)
             )
 
         self.logger.info(
-            "Hiero '%s' plugin accepted the current Hiero session." %
-            (self.name,)
+            "Hiero '%s' plugin accepted project: %s." %
+            (self.name, project.name())
         )
         return {
             "accepted": True,
@@ -190,33 +197,18 @@ class HieroSessionPublishPlugin(HookBaseClass):
         """
 
         publisher = self.parent
-        path = _session_path()
+        project = item.properties.get("project")
+        path = project.path()
 
         if not path:
             # the session still requires saving. provide a save button.
             # validation fails.
             self.logger.error(
-                "The Hiero session has not been saved.",
-                extra=_get_save_as_action()
+                "The Hiero project '%s' has not been saved." %
+                (project.name(),),
+                extra=_get_save_as_action(project)
             )
             return False
-
-        # ensure we have an updated project root
-        project_root = None #cmds.workspace(q=True, rootDirectory=True)
-        item.properties["project_root"] = project_root
-
-        # warn if no project root could be determined.
-        if not project_root:
-            self.logger.warning(
-                "Your session is not part of a hiero project.",
-                extra={
-                    "action_button": {
-                        "label": "Set Project",
-                        "tooltip": "Set the hiero project",
-                        "callback": None#lambda: mel.eval('setProject ""')
-                    }
-                }
-            )
 
         # get the path in a normalized state. no trailing separator,
         # separators are appropriate for current os, no double separators,
@@ -277,7 +269,7 @@ class HieroSessionPublishPlugin(HookBaseClass):
                         "label": "Save to v%s" % (version,),
                         "tooltip": "Save to the next available version number, "
                                    "v%s" % (version,),
-                        "callback": lambda: _save_session(next_version_path)
+                        "callback": lambda: project.saveAs(next_version_path)
                     }
                 }
             )
@@ -299,13 +291,15 @@ class HieroSessionPublishPlugin(HookBaseClass):
         """
 
         publisher = self.parent
+        project = item.properties.get("project")
+        path = project.path()
 
         # get the path in a normalized state. no trailing separator, separators
         # are appropriate for current os, no double separators, etc.
-        path = sgtk.util.ShotgunPath.normalize(_session_path())
+        path = sgtk.util.ShotgunPath.normalize(path)
 
         # ensure the session is saved
-        _save_session(path)
+        project.saveAs(path)
 
         # get the publish name for this file path. this will ensure we get a
         # consistent name across version publishes of this file.
@@ -325,7 +319,7 @@ class HieroSessionPublishPlugin(HookBaseClass):
             "version_number": version_number,
             "thumbnail_path": item.get_thumbnail_as_path(),
             "published_file_type": settings["Publish Type"].value,
-            "dependency_paths": _hiero_find_additional_session_dependencies(),
+            "dependency_paths": []  # TODO: dependencies
         }
 
         # log the publish data for debugging
@@ -366,6 +360,7 @@ class HieroSessionPublishPlugin(HookBaseClass):
         """
 
         publisher = self.parent
+        project = item.properties.get("project")
 
         # get the data for the publish that was just created in SG
         publish_data = item.properties["sg_publish_data"]
@@ -390,9 +385,10 @@ class HieroSessionPublishPlugin(HookBaseClass):
         )
 
         # insert the path into the properties
-        item.properties["next_version_path"] = self._bump_file_version(path)
+        item.properties["next_version_path"] = self._bump_file_version(
+            project, path)
 
-    def _bump_file_version(self, path):
+    def _bump_file_version(self, project, path):
         """
         Save the supplied path to the next version on disk.
         """
@@ -428,90 +424,51 @@ class HieroSessionPublishPlugin(HookBaseClass):
             return None
 
         # save the session to the new path
-        _save_session(next_version_path)
+        project.saveAs(next_version_path)
         self.logger.info("Session saved as: %s" % (next_version_path,))
 
         return next_version_path
 
 
-def _hiero_find_additional_session_dependencies():
+def _get_save_as_action(project):
     """
-    Find additional dependencies from the session
-    """
-    # default implementation looks for references and
-    # textures (file nodes)
-    ref_paths = set()
-
-    # first let's look at hiero references
-    ref_nodes = None #cmds.ls(references=True)
-    for ref_node in ref_nodes:
-        # get the path:
-        ref_path = None #cmds.referenceQuery(ref_node, filename=True)
-        # make it platform dependent
-        # (hiero uses C:/style/paths)
-        ref_path = ref_path.replace("/", os.path.sep)
-        if ref_path:
-            ref_paths.add(ref_path)
-
-    # now look at file texture nodes
-    for file_node in None: #cmds.ls(l=True, type="file"):
-        # ensure this is actually part of this session and not referenced
-        if False: #cmds.referenceQuery(file_node, isNodeReferenced=True):
-            # this is embedded in another reference, so don't include it in
-            # the breakdown
-            continue
-
-        # get path and make it platform dependent
-        # (hiero uses C:/style/paths)
-        texture_path = None #cmds.getAttr("%s.fileTextureName" % file_node).replace("/", os.path.sep)
-        if texture_path:
-            ref_paths.add(texture_path)
-
-    return list(ref_paths)
-
-
-def _session_path():
-    """
-    Return the path to the current session
-    :return:
-    """
-    path = None #cmds.file(query=True, sn=True)
-
-    if isinstance(path, unicode):
-        path = path.encode("utf-8")
-
-    return path
-
-
-def _save_session(path):
-    """
-    Save the current session to the supplied path.
-    """
-
-    # Hiero can choose the wrong file type so we should set it here
-    # explicitly based on the extension
-    hiero_file_type = None
-    if path.lower().endswith(".fbx"):
-        hiero_file_type = "hieroFbx"
-
-    #cmds.file(rename=path)
-
-    # save the scene:
-    if hiero_file_type:
-        pass #cmds.file(save=True, force=True, type=hiero_file_type)
-    else:
-        pass #cmds.file(save=True, force=True)
-
-
-def _get_save_as_action():
-    """
-
     Simple helper for returning a log action dict for saving the session
     """
     return {
         "action_button": {
             "label": "Save As...",
             "tooltip": "Save the current session",
-            "callback": None #cmds.SaveScene
+            "callback": lambda: _project_save_as(project)
         }
     }
+
+
+def _project_save_as(project):
+    """
+    A save as wrapper for the current session.
+
+    :param path: Optional path to save the current session as.
+    """
+    # TODO: consider moving to engine
+
+    # import here since the hooks are imported into nuke and nukestudio.
+    # hiero module is only available in later versions of nuke
+    import hiero
+
+    # hiero doesn't appear to have a "save as" dialog accessible via
+    # python. so open our own Qt file dialog.
+    file_dialog = QtGui.QFileDialog(
+        parent=hiero.ui.mainWindow(),
+        caption="Save As",
+        directory=project.path(),
+        filter="Nuke Studio Files (*.hrox)"
+    )
+    file_dialog.setLabelText(QtGui.QFileDialog.Accept, "Save")
+    file_dialog.setLabelText(QtGui.QFileDialog.Reject, "Cancel")
+    file_dialog.setOption(QtGui.QFileDialog.DontResolveSymlinks)
+    file_dialog.setOption(QtGui.QFileDialog.DontUseNativeDialog)
+    if not file_dialog.exec_():
+        return
+    path = file_dialog.selectedFiles()[0]
+    project.saveAs(path)
+
