@@ -11,6 +11,10 @@
 import os
 import sgtk
 
+from pyfbsdk import FBApplication
+
+mb_app = FBApplication()
+
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
@@ -241,7 +245,7 @@ def _session_path():
     Return the path to the current session
     :return:
     """
-    path = None #cmds.file(query=True, sn=True)
+    path = mb_app.FBXFileName
 
     if isinstance(path, unicode):
         path = path.encode("utf-8")
@@ -256,17 +260,7 @@ def _save_session(path):
 
     # Motion Builder can choose the wrong file type so we should set it here
     # explicitly based on the extension
-    motionbuilder_file_type = None
-    if path.lower().endswith(".fbx"):
-        motionbuilder_file_type = "motionbuilderFbx"
-
-    #cmds.file(rename=path)
-
-    # save the scene:
-    if motionbuilder_file_type:
-        pass #cmds.file(save=True, force=True, type=motionbuilder_file_type)
-    else:
-        pass #cmds.file(save=True, force=True)
+    mb_app.FileSave(path)
 
 
 def _get_save_as_action():
@@ -278,7 +272,7 @@ def _get_save_as_action():
         "action_button": {
             "label": "Save As...",
             "tooltip": "Save the current session",
-            "callback": None #cmds.SaveSceneAs
+            "callback": lambda: _save_session(_session_path())
         }
     }
 

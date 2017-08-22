@@ -9,8 +9,11 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import glob
+import mari
 import os
 import sgtk
+
+from tank import TankError
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -73,6 +76,9 @@ class MariSessionCollector(HookBaseClass):
         :param parent_item: Parent Item instance
         :returns: Item of type mari.session
         """
+
+        if not mari.projects.current():
+            raise TankError("You must be in an open Mari project to be able to publish!")
 
         publisher = self.parent
 

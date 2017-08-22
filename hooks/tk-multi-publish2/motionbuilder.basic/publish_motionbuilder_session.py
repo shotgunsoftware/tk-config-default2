@@ -12,6 +12,10 @@ import os
 import pprint
 import sgtk
 
+from pyfbsdk import FBApplication
+
+mb_app = FBApplication()
+
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
@@ -201,23 +205,6 @@ class MotionBuilderSessionPublishPlugin(HookBaseClass):
             )
             return False
 
-        # ensure we have an updated project root
-        project_root = None #cmds.workspace(q=True, rootDirectory=True)
-        item.properties["project_root"] = project_root
-
-        # warn if no project root could be determined.
-        if not project_root:
-            self.logger.warning(
-                "Your session is not part of a motion builder project.",
-                extra={
-                    "action_button": {
-                        "label": "Set Project",
-                        "tooltip": "Set the motion builder project",
-                        "callback": None#lambda: mel.eval('setProject ""')
-                    }
-                }
-            )
-
         # get the path in a normalized state. no trailing separator,
         # separators are appropriate for current os, no double separators,
         # etc.
@@ -325,7 +312,7 @@ class MotionBuilderSessionPublishPlugin(HookBaseClass):
             "version_number": version_number,
             "thumbnail_path": item.get_thumbnail_as_path(),
             "published_file_type": settings["Publish Type"].value,
-            "dependency_paths": _motionbuilder_find_additional_session_dependencies(),
+            "dependency_paths": [],
         }
 
         # log the publish data for debugging
@@ -433,50 +420,12 @@ class MotionBuilderSessionPublishPlugin(HookBaseClass):
 
         return next_version_path
 
-
-def _motionbuilder_find_additional_session_dependencies():
-    """
-    Find additional dependencies from the session
-    """
-    # default implementation looks for references and
-    # textures (file nodes)
-    ref_paths = set()
-
-    # first let's look at motion builder references
-    ref_nodes = None #cmds.ls(references=True)
-    for ref_node in ref_nodes:
-        # get the path:
-        ref_path = None #cmds.referenceQuery(ref_node, filename=True)
-        # make it platform dependent
-        # (motion builder uses C:/style/paths)
-        ref_path = ref_path.replace("/", os.path.sep)
-        if ref_path:
-            ref_paths.add(ref_path)
-
-    # now look at file texture nodes
-    for file_node in None: #cmds.ls(l=True, type="file"):
-        # ensure this is actually part of this session and not referenced
-        if False: #cmds.referenceQuery(file_node, isNodeReferenced=True):
-            # this is embedded in another reference, so don't include it in
-            # the breakdown
-            continue
-
-        # get path and make it platform dependent
-        # (motion builder uses C:/style/paths)
-        texture_path = None #cmds.getAttr("%s.fileTextureName" % file_node).replace("/", os.path.sep)
-        if texture_path:
-            ref_paths.add(texture_path)
-
-    return list(ref_paths)
-
-
 def _session_path():
     """
     Return the path to the current session
     :return:
     """
-    path = None #cmds.file(query=True, sn=True)
-
+    path = mb_app.FBXFileName
     if isinstance(path, unicode):
         path = path.encode("utf-8")
 
@@ -488,19 +437,7 @@ def _save_session(path):
     Save the current session to the supplied path.
     """
 
-    # Motion Builder can choose the wrong file type so we should set it here
-    # explicitly based on the extension
-    motionbuilder_file_type = None
-    if path.lower().endswith(".fbx"):
-        motionbuilder_file_type = "motionBuilderFbx"
-
-    #cmds.file(rename=path)
-
-    # save the scene:
-    if motionbuilder_file_type:
-        pass #cmds.file(save=True, force=True, type=motionbuilder_file_type)
-    else:
-        pass #cmds.file(save=True, force=True)
+    mb_app.FileSave(path)
 
 
 def _get_save_as_action():
@@ -512,6 +449,6 @@ def _get_save_as_action():
         "action_button": {
             "label": "Save As...",
             "tooltip": "Save the current session",
-            "callback": None #cmds.SaveScene
+            "callback": lambda: _save_session(_session_path())
         }
     }
