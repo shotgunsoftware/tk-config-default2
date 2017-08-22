@@ -8,27 +8,23 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-"""
-Before Register Command Hook
-
-This hook is run prior to launchapp registering launcher commands with
-the parent engine. Note: this hook is only run for Software entity 
-launchers.
-"""
-
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 class BeforeRegisterCommand(HookBaseClass):
     """
-    Hook to intercept SoftwareLauncher and engine instance name data prior to
-    launcher command registration and alter the engine instance name should that
-    be required.
+    Before Register Command Hook
+
+    This hook is run prior to launchapp registering launcher commands with
+    the parent engine. Note: this hook is only run for Software entity 
+    launchers.
     """
     def determine_engine_instance_name(self, software_version, engine_instance_name):
         """
-        Called when the hook is run prior to launcher command registration.
+        Hook method to intercept SoftwareLauncher and engine instance name data prior to
+        launcher command registration and alter the engine instance name should that
+        be required.
 
         :param software_version: The software version instance constructed when
             the scan software routine was run.
