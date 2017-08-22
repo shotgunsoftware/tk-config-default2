@@ -154,6 +154,14 @@ common.apps.workfiles2-launch-at-startup:
   template_work_area:
   version_compare_ignore_fields: []
 
+common.apps.launchapp-software:
+  use_software_entity: true
+  hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+  location:
+    type: app_store
+    name: tk-multi-launchapp
+    version: v0.9.5
+
 # locations for common apps
 
 common.apps.tk-multi-publish2.location:
@@ -165,11 +173,6 @@ common.apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
   version: v1.17.3
-
-common.apps.tk-multi-launchapp.location:
-  type: app_store
-  name: tk-multi-launchapp
-  version: v0.9.4
 
 common.apps.tk-multi-setframerange.location:
   version: v0.3.0
