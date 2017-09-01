@@ -8,6 +8,7 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
+import mari
 import os
 import pprint
 import sgtk
@@ -115,7 +116,7 @@ class MariSessionPublishPlugin(HookBaseClass):
         return {
             "Publish Type": {
                 "type": "shotgun_publish_type",
-                "default": "Mari Scene",
+                "default": "Tif File",
                 "description": "SG publish type to associate publishes with."
             },
         }
@@ -127,9 +128,9 @@ class MariSessionPublishPlugin(HookBaseClass):
 
         Only items matching entries in this list will be presented to the
         accept() method. Strings can contain glob patters such as *, for example
-        ["mari.*", "file.mari"]
+        ["maya.*", "file.maya"]
         """
-        return ["mari.session"]
+        return ["file.texture"]
 
     def accept(self, settings, item):
         """
@@ -156,22 +157,6 @@ class MariSessionPublishPlugin(HookBaseClass):
 
         :returns: dictionary with boolean keys accepted, required and enabled
         """
-
-        path = _session_path()
-
-        if not path:
-            # the session has not been saved before (no path determined).
-            # provide a save button. the session will need to be saved before
-            # validation will succeed.
-            self.logger.warn(
-                "The Mari session has not been saved.",
-                extra=_get_save_as_action()
-            )
-
-        self.logger.info(
-            "Mari '%s' plugin accepted the current Mari session." %
-            (self.name,)
-        )
         return {
             "accepted": True,
             "checked": True
@@ -190,19 +175,33 @@ class MariSessionPublishPlugin(HookBaseClass):
         """
 
         publisher = self.parent
-        path = _session_path()
+        path = item.properties["path"]
 
         if not path:
-            # the session still requires saving. provide a save button.
-            # validation fails.
-            self.logger.error(
-                "The Mari session has not been saved.",
-                extra=_get_save_as_action()
-            )
+            self.logger.warning("Invalid file to publish. Validation failed.")
             return False
 
+        geo_name = item.properties["geo_publish_name"]
+        geo = mari.geo.find(geo_name)
+        if not geo:
+            self.logger.warning("Failed to find geometry in the project! Validation failed." % geo_name)
+            return False
+        
+        channel_name = item.properties["channel_publish_name"]
+        channel = geo.findChannel(channel_name)
+        if not channel:
+            self.logger.warning("Failed to find channel on geometry! Validation failed." % channel_name)
+            return False
+        
+        layer_name = item.properties["layer_publish_name"]
+        if layer_name:
+            layer = channel.findLayer(layer_name)
+            if not layer:
+                self.logger.warning("Failed to find layer for channel: %s Validation failed." % layer_name)
+                return False
+
         # ensure we have an updated project root
-        project_root = None #cmds.workspace(q=True, rootDirectory=True)
+        project_root = _session_path()
         item.properties["project_root"] = project_root
 
         # warn if no project root could be determined.
@@ -212,8 +211,8 @@ class MariSessionPublishPlugin(HookBaseClass):
                 extra={
                     "action_button": {
                         "label": "Set Project",
-                        "tooltip": "Set the mari project",
-                        "callback": None#lambda: mel.eval('setProject ""')
+                        "tooltip": "Select the mari project from the Projects tab",
+                        "callback": lambda: mari.app.setActiveTab("Projects")
                     }
                 }
             )
@@ -277,7 +276,7 @@ class MariSessionPublishPlugin(HookBaseClass):
                         "label": "Save to v%s" % (version,),
                         "tooltip": "Save to the next available version number, "
                                    "v%s" % (version,),
-                        "callback": lambda: _save_session(next_version_path)
+                        "callback": _save_session
                     }
                 }
             )
@@ -302,10 +301,48 @@ class MariSessionPublishPlugin(HookBaseClass):
 
         # get the path in a normalized state. no trailing separator, separators
         # are appropriate for current os, no double separators, etc.
-        path = sgtk.util.ShotgunPath.normalize(_session_path())
+        path = sgtk.util.ShotgunPath.normalize(item.properties["path"])
 
         # ensure the session is saved
-        _save_session(path)
+        _save_session()
+
+        geo_name = item.properties["geo_publish_name"]
+        geo = mari.geo.find(geo_name)        
+        channel_name = item.properties["channel_publish_name"]
+        channel = geo.findChannel(channel_name)
+        layer_name = item.properties["layer_publish_name"]
+        if layer_name:
+            layer = channel.findLayer(layer_name)
+            layer.exportImages(path)
+        else:
+            # publish the entire channel, flattened
+            layers = channel.layerList()
+            if len(layers) == 1:
+                # only one layer so just publish it:
+                # Note - this works around an issue that was reported (#27945) where flattening a channel
+                # with only a single layer would cause Mari to crash - this bug was not reproducible by
+                # us but happened 100% for the client!
+                layer = layers[0]
+                layer.exportImages(path)
+            elif len(layers) > 1:
+                # flatten layers in the channel and publish the flattened layer:
+                # remember the current channel:
+                current_channel = geo.currentChannel()
+                # duplicate the channel so we don't operate on the original:
+                duplicate_channel = geo.createDuplicateChannel(channel)
+                try:
+                    # flatten it into a single layer:
+                    flattened_layer = duplicate_channel.flatten()
+                    # export the images for it:
+                    flattened_layer.exportImages(path)
+                finally:
+                    # set the current channel back - not doing this will result in Mari crashing
+                    # when the duplicated channel is removed!
+                    geo.setCurrentChannel(current_channel)
+                    # remove the duplicate channel, destroying the channel and the flattened layer:
+                    geo.removeChannel(duplicate_channel, geo.DESTROY_ALL)
+            else:
+                raise TankError("Channel '%s' doesn't appear to have any layers!" % channel.name())            
 
         # get the publish name for this file path. this will ensure we get a
         # consistent name across version publishes of this file.
@@ -325,7 +362,7 @@ class MariSessionPublishPlugin(HookBaseClass):
             "version_number": version_number,
             "thumbnail_path": item.get_thumbnail_as_path(),
             "published_file_type": settings["Publish Type"].value,
-            "dependency_paths": _mari_find_additional_session_dependencies(),
+            "dependency_paths": [],
         }
 
         # log the publish data for debugging
@@ -428,54 +465,35 @@ class MariSessionPublishPlugin(HookBaseClass):
             return None
 
         # save the session to the new path
-        _save_session(next_version_path)
+        _save_session()
         self.logger.info("Session saved as: %s" % (next_version_path,))
 
         return next_version_path
 
-
-def _mari_find_additional_session_dependencies():
+def _project_path():
     """
-    Find additional dependencies from the session
+    Return the path to the current session
+    :return:
     """
-    # default implementation looks for references and
-    # textures (file nodes)
-    ref_paths = set()
+    path = None
+    current_project = mari.projects.current()
+    if current_project:
+        path = current_project.info().projectPath()
 
-    # first let's look at mari references
-    ref_nodes = None #cmds.ls(references=True)
-    for ref_node in ref_nodes:
-        # get the path:
-        ref_path = None #cmds.referenceQuery(ref_node, filename=True)
-        # make it platform dependent
-        # (mari uses C:/style/paths)
-        ref_path = ref_path.replace("/", os.path.sep)
-        if ref_path:
-            ref_paths.add(ref_path)
+    if isinstance(path, unicode):
+        path = path.encode("utf-8")
 
-    # now look at file texture nodes
-    for file_node in None: #cmds.ls(l=True, type="file"):
-        # ensure this is actually part of this session and not referenced
-        if False: #cmds.referenceQuery(file_node, isNodeReferenced=True):
-            # this is embedded in another reference, so don't include it in
-            # the breakdown
-            continue
-
-        # get path and make it platform dependent
-        # (mari uses C:/style/paths)
-        texture_path = None #cmds.getAttr("%s.fileTextureName" % file_node).replace("/", os.path.sep)
-        if texture_path:
-            ref_paths.add(texture_path)
-
-    return list(ref_paths)
-
+    return path
 
 def _session_path():
     """
     Return the path to the current session
     :return:
     """
-    path = None #cmds.file(query=True, sn=True)
+    path = None
+    current_project = mari.projects.current()
+    if current_project:
+        path = current_project.uuid()
 
     if isinstance(path, unicode):
         path = path.encode("utf-8")
@@ -483,35 +501,23 @@ def _session_path():
     return path
 
 
-def _save_session(path):
+def _save_session():
     """
-    Save the current session to the supplied path.
+    Save the current session
     """
+    current_project = mari.projects.current()
+    if current_project and current_project.isModified():
+        current_project.save()
 
-    # Mari can choose the wrong file type so we should set it here
-    # explicitly based on the extension
-    mari_file_type = None
-    if path.lower().endswith(".fbx"):
-        mari_file_type = "mariFbx"
-
-    #cmds.file(rename=path)
-
-    # save the scene:
-    if maribuilder_file_type:
-        pass #cmds.file(save=True, force=True, type=maribuilder_file_type)
-    else:
-        pass #cmds.file(save=True, force=True)
-
-
-def _get_save_as_action():
+def _get_save_action():
     """
 
     Simple helper for returning a log action dict for saving the session
     """
     return {
         "action_button": {
-            "label": "Save As...",
+            "label": "Save",
             "tooltip": "Save the current session",
-            "callback": None #cmds.SaveScene
+            "callback": _save_session
         }
     }

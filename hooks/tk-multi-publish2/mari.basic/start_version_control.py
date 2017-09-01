@@ -8,6 +8,7 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
+import mari
 import os
 import sgtk
 
@@ -70,9 +71,9 @@ class MariStartVersionControlPlugin(HookBaseClass):
 
         Only items matching entries in this list will be presented to the
         accept() method. Strings can contain glob patters such as *, for example
-        ["mari.*", "file.maribuilder"]
+        ["maya.*", "file.maya"]
         """
-        return ["mari.session"]
+        return ["file.texture"]
 
     @property
     def settings(self):
@@ -122,7 +123,7 @@ class MariStartVersionControlPlugin(HookBaseClass):
         """
 
         publisher = self.parent
-        path = _session_path()
+        path = item.properties["path"]
 
         if path:
             version_number = publisher.util.get_version_number(path)
@@ -135,14 +136,6 @@ class MariStartVersionControlPlugin(HookBaseClass):
                     "  There is already a version number in the file...")
                 self.logger.info("  Mari file path: %s" % (path,))
                 return {"accepted": False}
-        else:
-            # the session has not been saved before (no path determined).
-            # provide a save button. the session will need to be saved before
-            # validation will succeed.
-            self.logger.warn(
-                "The Mari session has not been saved.",
-                extra=_get_save_as_action()
-            )
 
         self.logger.info(
             "Mari '%s' plugin accepted the current Mari session." %
@@ -172,16 +165,7 @@ class MariStartVersionControlPlugin(HookBaseClass):
         """
 
         publisher = self.parent
-        path = _session_path()
-
-        if not path:
-            # the session still requires saving. provide a save button.
-            # validation fails
-            self.logger.error(
-                "The Mari session has not been saved.",
-                extra=_get_save_as_action()
-            )
-            return False
+        path = item.properties["path"]
 
         # get the path to a versioned copy of the file.
         version_path = publisher.util.get_version_path(path, "v001")
@@ -189,7 +173,7 @@ class MariStartVersionControlPlugin(HookBaseClass):
             self.logger.error(
                 "A file already exists with a version number. Please choose "
                 "another name.",
-                extra=_get_save_as_action()
+                extra=None
             )
             return False
 
@@ -206,19 +190,15 @@ class MariStartVersionControlPlugin(HookBaseClass):
         """
 
         publisher = self.parent
+        path = item.properties["path"]
 
         # get the path in a normalized state. no trailing separator, separators
         # are appropriate for current os, no double separators, etc.
         path = sgtk.util.ShotgunPath.normalize(_session_path())
 
-        # ensure the session is saved in its current state
-        _save_session(path)
-
         # get the path to a versioned copy of the file.
         version_path = publisher.util.get_version_path(path, "v001")
 
-        # save to the new version path
-        _save_session(version_path)
         self.logger.info("A version number has been added to the Mari file...")
         self.logger.info("  Mari file path: %s" % (version_path,))
 
@@ -241,7 +221,10 @@ def _session_path():
     Return the path to the current session
     :return:
     """
-    path = None #cmds.file(query=True, sn=True)
+    path = None
+    current_project = mari.projects.current()
+    if current_project:
+        path = current_project.info().projectPath()
 
     if isinstance(path, unicode):
         path = path.encode("utf-8")
@@ -249,36 +232,26 @@ def _session_path():
     return path
 
 
-def _save_session(path):
+def _save_session():
     """
-    Save the current session to the supplied path.
+    Save the current session.
     """
 
-    # Mari can choose the wrong file type so we should set it here
-    # explicitly based on the extension
-    mari_file_type = None
-    if path.lower().endswith(".mari"):
-        mari_file_type = "mari"
-
-    #cmds.file(rename=path)
-
-    # save the scene:
-    if mari_file_type:
-        pass #cmds.file(save=True, force=True, type=mari_file_type)
-    else:
-        pass #cmds.file(save=True, force=True)
+    current_project = mari.projects.current()
+    if current_project:
+        current_project.save()
 
 
-def _get_save_as_action():
+def _get_save_action():
     """
 
     Simple helper for returning a log action dict for saving the session
     """
     return {
         "action_button": {
-            "label": "Save As...",
+            "label": "Save",
             "tooltip": "Save the current session",
-            "callback": None #cmds.SaveSceneAs
+            "callback": _save_session
         }
     }
 

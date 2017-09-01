@@ -14,6 +14,8 @@ import os
 import sgtk
 
 from tank import TankError
+from tank import TemplatePath
+from tank.templatekey import (IntegerKey, SequenceKey, StringKey)
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -36,8 +38,8 @@ class MariSessionCollector(HookBaseClass):
         item = self.collect_current_mari_session(parent_item)
         project_root = item.properties["project_root"]
 
-        # look at the render layers to find rendered images on disk
-        self.collect_rendered_images(item)
+        # collect all the layer files
+        self._collect_files(item)
 
         # if we can determine a project root, collect other files to publish
         if project_root:
@@ -47,14 +49,11 @@ class MariSessionCollector(HookBaseClass):
                 extra={
                     "action_button": {
                         "label": "Change Project",
-                        "tooltip": "Change to a different Mari project",
-                        "callback": None #lambda: mel.eval('setProject ""')
+                        "tooltip": "Change to a different Mari project, select it from the projects tab.",
+                        "callback": lambda: mari.app.setActiveTab("Projects")
                     }
                 }
             )
-
-            self.collect_playblasts(item, project_root)
-            self.collect_alembic_caches(item, project_root)
 
         else:
 
@@ -64,7 +63,7 @@ class MariSessionCollector(HookBaseClass):
                     "action_button": {
                         "label": "Set Project",
                         "tooltip": "Set the Mari project",
-                        "callback": None #lambda: mel.eval('setProject ""')
+                        "callback": lambda: mari.app.setActiveTab("Projects")
                     }
                 }
             )
@@ -83,19 +82,18 @@ class MariSessionCollector(HookBaseClass):
         publisher = self.parent
 
         # get the path to the current file
-        path = None #cmds.file(query=True, sn=True)
+        path = _project_path()
 
         # determine the display name for the item
         if path:
-            file_info = publisher.util.get_file_path_components(path)
-            display_name = file_info["filename"]
+            display_name = mari.current.project().name()
         else:
-            display_name = "Current Mari Session"
+            display_name = "Current Mari Project"
 
         # create the session item for the publish hierarchy
         session_item = parent_item.create_item(
-            "mari.session",
-            "Mari Session",
+            "mari.project",
+            "Mari Project",
             display_name
         )
 
@@ -110,140 +108,185 @@ class MariSessionCollector(HookBaseClass):
 
         # discover the project root which helps in discovery of other
         # publishable items
-        project_root = None #cmds.workspace(q=True, rootDirectory=True)
+        project_root = _session_path()
         session_item.properties["project_root"] = project_root
 
-        self.logger.info("Collected current Mari scene")
+        self.logger.info("Collected current Mari project")
 
         return session_item
 
-    def collect_alembic_caches(self, parent_item, project_root):
+    def _collect_files(self, parent_item):
         """
-        Creates items for alembic caches
-
-        Looks for a 'project_root' property on the parent item, and if such
-        exists, look for alembic caches in a 'cache/alembic' subfolder.
-
-        :param parent_item: Parent Item instance
-        :param str project_root: The mari project root to search for alembics
+        Collect texture files to be published
+        :param parent_item:   Parent Item instance
         """
 
-        # ensure the alembic cache dir exists
-        cache_dir = os.path.join(project_root, "cache", "alembic")
-        if not os.path.exists(cache_dir):
-            return
+        # check that we are currently inside a project:
+        if not mari.projects.current():
+            raise TankError("You must be in an open Mari project to be able to publish!")
+        
+        fields = {}
 
-        self.logger.info(
-            "Processing alembic cache folder: %s" % (cache_dir,),
-            extra={
-                "action_show_folder": {
-                    "path": cache_dir
-                }
-            }
-        )
+        #This template and keys are hard coded for now. They will be addressed in ticket # 44077
+        publish_template_keys = {'Asset': StringKey('Asset'),
+                                 'Step': StringKey('Step'), 
+                                 'channel': StringKey('channel'), 
+                                 'layer': StringKey('layer'), 
+                                 'name': StringKey('name'), 
+                                 'sg_asset_type': StringKey('sg_asset_type'), 
+                                 'version': IntegerKey('version', format_spec='03')}
+        publish_template = TemplatePath('assets/{sg_asset_type}/{Asset}/{Step}/publish/mari/{name}_{channel}[_{layer}].v{version}.tif', 
+                                        publish_template_keys,
+                                        self.tank.roots["primary"],
+                                        None,
+                                        None)
 
-        # look for alembic files in the cache folder
-        for filename in os.listdir(cache_dir):
-            cache_path = os.path.join(cache_dir, filename)
+        # Get fields from the current context
+        ctx_fields = self.parent.context.as_template_fields(publish_template)
+        fields.update(ctx_fields)
 
-            # do some early pre-processing to ensure the file is of the right
-            # type. use the base class item info method to see what the item
-            # type would be.
-            item_info = self._get_item_info(filename)
-            if item_info["item_type"] != "file.alembic":
-                continue
+        publisher = self.parent
 
-            # allow the base class to collect and create the item. it knows how
-            # to handle alembic files
-            super(MariSessionCollector, self)._collect_file(
-                parent_item,
-                cache_path
-            )
+        # Look for all layers for all channels on all geometry.  Create items for both
+        # the flattened channel as well as the individual layers
+        for geo in mari.geo.list():
+            geo_name = geo.name()
+            fields["name"] = geo_name
+            
+            for channel in geo.channelList():
+                channel_name = channel.name()
+                fields["channel"] = channel_name
 
-    def collect_playblasts(self, parent_item, project_root):
+                # find all publishable layers:
+                publishable_layers = self._find_publishable_layers_r(channel.layerList())
+                if not publishable_layers:
+                    # no layers to publish!
+                    continue
+
+                # add item for whole flattened channel:
+                item_name = "%s, %s" % (geo.name(), channel.name())
+                
+                # add item for each publishable layer:
+                found_layer_names = set()
+                for layer in publishable_layers:
+                    
+                    # for now, duplicate layer names aren't allowed!
+                    layer_name = layer.name()
+                    if layer_name in found_layer_names:
+                        # we might want to handle this one day...
+                        pass
+                    found_layer_names.add(layer_name)
+
+                    if layer:
+                        fields["layer"] = layer_name
+
+                    publish_name_fields = fields.copy()
+                    publish_name_fields["version"] = 0
+                    publish_name = publisher.util.get_publish_name(publish_template.apply_fields(publish_name_fields))
+
+                    existing_publishes = self._find_publishes(self.parent.context, publish_name, "Tif File")
+                    version = max([p["version_number"] for p in existing_publishes] or [0]) + 1
+                    fields["version"] = version
+
+                    publish_path = publish_template.apply_fields(fields)
+
+                    # allow the base class to collect and create the item. it knows how
+                    # to handle alembic files
+                    item = super(MariSessionCollector, self)._collect_file(parent_item, publish_path)
+
+                    item.properties["geo_publish_name"] = geo_name
+                    item.properties["channel_publish_name"] = channel_name
+                    item.properties["layer_publish_name"] = layer_name
+
+    def _find_publishable_layers_r(self, layers):
         """
-        Creates items for quicktime playblasts.
-
-        Looks for a 'project_root' property on the parent item, and if such
-        exists, look for movie files in a 'movies' subfolder.
-
-        :param parent_item: Parent Item instance
-        :param str project_root: The mari project root to search for playblasts
+        Find all publishable layers within the specified list of layers.  This will return
+        all layers that are either paintable or procedural and traverse any layer groups
+        to find all grouped publishable layers
+        :param layers:  The list of layers to inspect
+        :returns:       A list of all publishable layers
         """
+        publishable = []
+        for layer in layers:
+            # Note, only paintable or procedural layers are exportable from Mari - all
+            # other layer types are only used within Mari.
+            if layer.isPaintableLayer() or layer.isProceduralLayer():
+                # these are the only types of layers that are publishable
+                publishable.append(layer)
+            elif layer.isGroupLayer():
+                # recurse over all layers in the group looking for exportable layers:
+                grouped_layers = self._find_publishable_layers_r(layer.layerStack().layerList())
+                publishable.extend(grouped_layers or [])
+    
+        return publishable
 
-        # ensure the movies dir exists
-        movies_dir = os.path.join(project_root, "movies")
-        if not os.path.exists(movies_dir):
-            return
-
-        self.logger.info(
-            "Processing movies folder: %s" % (movies_dir,),
-            extra={
-                "action_show_folder": {
-                    "path": movies_dir
-                }
-            }
-        )
-
-        # look for movie files in the movies folder
-        for filename in os.listdir(movies_dir):
-
-            # do some early pre-processing to ensure the file is of the right
-            # type. use the base class item info method to see what the item
-            # type would be.
-            item_info = self._get_item_info(filename)
-            if item_info["item_type"] != "file.video":
-                continue
-
-            movie_path = os.path.join(movies_dir, filename)
-
-            # allow the base class to collect and create the item. it knows how
-            # to handle movie files
-            item = super(MariSessionCollector, self)._collect_file(
-                parent_item,
-                movie_path
-            )
-
-            # the item has been created. update the display name to include
-            # the an indication of what it is and why it was collected
-            item.name = "%s (%s)" % (item.name, "playblast")
-
-    def collect_rendered_images(self, parent_item):
+    def _find_publishes(self, ctx, publish_name, publish_type):
         """
-        Creates items for any rendered images that can be identified by
-        render layers in the file.
-
-        :param parent_item: Parent Item instance
-        :return:
+        Given a context, publish name and type, find all publishes from Shotgun
+        that match.
+        
+        :param ctx:             Context to use when looking for publishes
+        :param publish_name:    The name of the publishes to look for
+        :param publish_type:    The type of publishes to look for
+        
+        :returns:               A list of Shotgun publish records that match the search
+                                criteria        
         """
+        publish_entity_type = sgtk.util.get_published_file_entity_type(self.parent.sgtk)
+        if publish_entity_type == "PublishedFile":
+            publish_type_field = "published_file_type.PublishedFileType.code"
+        else:
+            publish_type_field = "tank_type.TankType.code"
+        
+        # construct filters from the context:
+        filters = [["project", "is", ctx.project]]
+        if ctx.entity:
+            filters.append(["entity", "is", ctx.entity])
+        if ctx.task:
+            filters.append(["task", "is", ctx.task])
+            
+        # add in name & type:
+        if publish_name:
+            filters.append(["name", "is", publish_name])
+        if publish_type:
+            filters.append([publish_type_field, "is", publish_type])
+            
+        # retrieve a list of all matching publishes from Shotgun:
+        sg_publishes = []
+        try:
+            query_fields = ["version_number"]
+            sg_publishes = self.parent.shotgun.find(publish_entity_type, filters, query_fields)
+        except Exception, e:
+            raise TankError("Failed to find publishes of type '%s', called '%s', for context %s: %s" 
+                            % (publish_name, publish_type, ctx, e))
+        return sg_publishes
 
-        # iterate over defined render layers and query the render settings for
-        # information about a potential render
-        for layer in []: #cmds.ls(type="renderLayer"):
+def _project_path():
+    """
+    Return the path to the current session
+    :return:
+    """
+    path = None
+    current_project = mari.projects.current()
+    if current_project:
+        path = current_project.info().projectPath()
 
-            self.logger.info("Processing render layer: %s" % (layer,))
+    if isinstance(path, unicode):
+        path = path.encode("utf-8")
 
-            # use the render settings api to get a path where the frame number
-            # spec is replaced with a '*' which we can use to glob
-            (frame_glob,) = None 
-                            #cmds.renderSettings(
-            #    genericFrameImageName="*",
-            #    fullPath=True,
-            #    layer=layer
-            #)
+    return path
 
-            # see if there are any files on disk that match this pattern
-            rendered_paths = glob.glob(frame_glob)
+def _session_path():
+    """
+    Return the path to the current session
+    :return:
+    """
+    path = None
+    current_project = mari.projects.current()
+    if current_project:
+        path = current_project.uuid()
 
-            if rendered_paths:
-                # we only need one path to publish, so take the first one and
-                # let the base class collector handle it
-                item = super(MariSessionCollector, self)._collect_file(
-                    parent_item,
-                    rendered_paths[0],
-                    frame_sequence=True
-                )
+    if isinstance(path, unicode):
+        path = path.encode("utf-8")
 
-                # the item has been created. update the display name to include
-                # the an indication of what it is and why it was collected
-                item.name = "%s (Render Layer: %s)" % (item.name, layer)
+    return path
