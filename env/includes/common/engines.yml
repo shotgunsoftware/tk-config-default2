@@ -63,7 +63,7 @@ common.engines.tk-shell.location:
 common.engines.tk-shotgun.location:
     type: app_store
     name: tk-shotgun
-    version: v0.5.5
+    version: v0.6.0
 
 # Softimage
 common.engines.tk-softimage.location:

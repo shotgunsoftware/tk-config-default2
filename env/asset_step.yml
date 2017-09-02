@@ -20,7 +20,7 @@ includes:
 - ./includes/photoshopcc/asset_step.yml
 - ./includes/shell/asset_step.yml
 - ./includes/3dsmax/asset_step.yml
-
+- ./includes/shotgun/asset_step.yml
 - ./includes/mari/asset_step.yml
 - ./includes/motionbuilder/asset_step.yml
 - ./includes/nukestudio/asset_step.yml
@@ -75,6 +75,11 @@ engines:
   # Shell Engine (tank command)
   # -------------------------------------------------
   tk-shell: '@shell.asset_step'
+  #
+  # -------------------------------------------------
+  # Shell Engine (tank command)
+  # -------------------------------------------------
+  tk-shotgun: '@shotgun.asset_step'
   #
   # -------------------------------------------------
   # Softimage

@@ -1,0 +1,43 @@
+# Copyright (c) 2015 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+description: Apps and engines loaded when a Version is loaded. By default,
+  the only engine defined here is tk-shotgun. This configuration provides
+  the apps that are necessary to display menu actions in the Shotgun web
+  application by way of Toolkit's browser integration.
+
+#################################################################################################
+# include common files
+
+includes:
+- ./includes/shotgun/publishedfile_version.yml
+
+#################################################################################################
+# define all the items that should appear in this environment
+
+engines:
+  #
+  # -------------------------------------------------
+  # Shotgun
+  # -------------------------------------------------
+  tk-shotgun: '@shotgun.publishedfile_version'
+
+#
+###############################################################################
+#
+# Framework includes.
+#
+# Frameworks are libraries that are shared between apps and that contain
+# common functionality for building UIs and communicating with Shotgun.
+# Frameworks are automatically installed when apps are installed and udpated.
+#
+frameworks:
+

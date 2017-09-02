@@ -20,7 +20,7 @@ includes:
 - ./includes/photoshopcc/shot_step.yml
 - ./includes/shell/shot_step.yml
 - ./includes/3dsmax/shot_step.yml
-
+- ./includes/shotgun/shot_step.yml
 - ./includes/motionbuilder/shot_step.yml
 - ./includes/nukestudio/shot_step.yml
 - ./includes/softimage/shot_step.yml
@@ -69,6 +69,11 @@ engines:
   # Shell (tank command)
   # -------------------------------------------------
   tk-shell: '@shell.shot_step'
+  #
+  # -------------------------------------------------
+  # Shell (tank command)
+  # -------------------------------------------------
+  tk-shotgun: '@shotgun.shot_step'
   #
   # -------------------------------------------------
   # Softimage

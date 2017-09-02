@@ -160,7 +160,7 @@ common.apps.launchapp-software:
   location:
     type: app_store
     name: tk-multi-launchapp
-    version: v0.9.5
+    version: v0.9.7
 
 # locations for common apps
 

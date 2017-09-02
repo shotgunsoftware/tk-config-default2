@@ -24,7 +24,5 @@ shell.asset_step:
     tk-multi-launchmotionbuilder: '@launch_motionbuilder'
     tk-multi-launchsoftimage: '@launch_softimage'
     tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-launchapp:
-      use_software_entity: true
-      location: "@common.apps.tk-multi-launchapp.location"
+    tk-multi-launchapp: '@common.apps.launchapp-software'
   location: '@common.engines.tk-shell.location'
