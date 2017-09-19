@@ -37,12 +37,12 @@ launch_hiero:
   linux_args: --hiero
   linux_path: '@hiero_linux'
   location:
-    version: v0.9.7
+    version: v0.9.8
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
   mac_path: '@hiero_mac'
-  menu_name: Launch Hiero
+  menu_name: Hiero
   versions: []
   windows_args: --hiero
   windows_path: '@hiero_win'
@@ -60,12 +60,12 @@ launch_mari:
   linux_args: ''
   linux_path: '@mari_linux'
   location:
-    version: v0.9.7
+    version: v0.9.8
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
   mac_path: '@mari_mac'
-  menu_name: Launch Mari
+  menu_name: Mari
   versions: []
   windows_args: ''
   windows_path: '@mari_windows'
@@ -83,12 +83,12 @@ launch_motionbuilder:
   linux_args: ''
   linux_path: ''
   location:
-    version: v0.9.7
+    version: v0.9.8
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
   mac_path: ''
-  menu_name: Launch MotionBuilder
+  menu_name: MotionBuilder
   versions: []
   windows_args: ''
   windows_path: '@motionbuilder_windows'
@@ -121,15 +121,17 @@ launch_softimage:
   linux_args: ''
   linux_path: '@softimage_linux'
   location:
-    version: v0.9.7
+    version: v0.9.8
     type: app_store
     name: tk-multi-launchapp
   mac_args: ''
   mac_path: ''
-  menu_name: Launch Softimage
+  menu_name: Softimage
   versions: []
   windows_args: ''
   windows_path: '@softimage_windows'
+
+
 frameworks:
   tk-framework-shotgunutils_v5.x.x:
     location:
