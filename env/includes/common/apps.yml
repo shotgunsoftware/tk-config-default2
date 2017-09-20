@@ -179,6 +179,15 @@ common.apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
 
+common.apps.tk-multi-snapshot.location:
+  version: v0.7.3
+  type: app_store
+  name: tk-multi-snapshot
+
+common.apps.tk-multi-breakdown.location:
+  version: v1.4.6
+  type: app_store
+  name: tk-multi-breakdown
 # help urls
 
 common.apps.tk-multi-publish2.help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher

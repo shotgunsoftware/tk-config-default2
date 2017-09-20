@@ -42,3 +42,8 @@ frameworks:
       version: v1.1.15
       type: app_store
       name: tk-framework-desktopserver
+  tk-framework-softimageqt_v1.0.1:
+    location:
+      name: tk-framework-softimageqt
+      type: app_store
+      version: v1.0.1

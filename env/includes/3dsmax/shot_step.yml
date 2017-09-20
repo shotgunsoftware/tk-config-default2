@@ -25,22 +25,13 @@ includes:
       action_mappings:
         3dsmax Scene: [import, reference]
         Alembic Cache: [import]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
+      location: '@common.apps.tk-multi-loader2.location'
     tk-multi-publish2: '@3dsmax.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-setframerange:
-      location:
-        version: v0.3.0
-        type: app_store
-        name: tk-multi-setframerange
+      location: '@common.apps.tk-multi-setframerange.location'
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
+      location: '@common.apps.tk-multi-snapshot.location'
       template_snapshot: max_shot_snapshot
       template_work: max_shot_work
     tk-multi-workfiles2:

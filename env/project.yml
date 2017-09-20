@@ -14,6 +14,7 @@ description: Apps and Engines when launching with a project only context.
 #################################################################################################
 
 includes:
+- ./includes/common/frameworks.yml
 - ./includes/desktop/project.yml
 - ./includes/flame/project.yml
 - ./includes/houdini/project.yml
@@ -106,28 +107,4 @@ engines:
   # Softimage
   # -------------------------------------------------
   tk-softimage: '@softimage.project'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-adminui_v0.x.x:
-    location:
-      version: v0.1.6
-      type: app_store
-      name: tk-framework-adminui
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
-  tk-framework-desktopserver_v1.x.x:
-    location:
-      version: v1.1.15
-      type: app_store
-      name: tk-framework-desktopserver
+
