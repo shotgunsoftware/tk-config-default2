@@ -36,6 +36,7 @@ shotgun.project:
     tk-multi-launchsoftimage: '@launch_softimage'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-launchapp: '@common.apps.launchapp-software'
+    tk-multi-launchhiero: '@launch_hiero'
     tk-shotgun-launchfolder:
       deny_permissions: []
       deny_platforms: []
