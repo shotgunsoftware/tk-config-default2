@@ -34,7 +34,14 @@ shotgun.asset_step:
     tk-multi-launchmotionbuilder: '@launch_motionbuilder'
     tk-multi-launchsoftimage: '@launch_softimage'
     tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-launchapp: '@common.apps.launchapp-software'
+    tk-multi-launchapp:
+      use_software_entity: true
+      skip_engine_instances: ['tk-nukestudio']
+      hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+      location:
+        type: app_store
+        name: tk-multi-launchapp
+        version: v0.9.10
     tk-shotgun-launchfolder:
       deny_permissions: []
       deny_platforms: []
