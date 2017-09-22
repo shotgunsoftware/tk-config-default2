@@ -41,7 +41,7 @@ shotgun.asset:
       location:
         name: tk-shotgun-folders
         type: app_store
-        version: v0.1.5
+        version: v0.1.6
     tk-shotgun-launchfolder:
       deny_permissions: []
       deny_platforms: []
