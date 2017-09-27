@@ -10,15 +10,18 @@
 
 import os
 import sgtk
-from sgtk.platform.qt import QtGui
+
+from pyfbsdk import FBApplication
+
+mb_app = FBApplication()
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class HieroStartVersionControlPlugin(HookBaseClass):
+class MotionBuilderStartVersionControlPlugin(HookBaseClass):
     """
-    Simple plugin to insert a version number into the hiero project file
-    path if one does not exist.
+    Simple plugin to insert a version number into the motion builder file path if one
+    does not exist.
     """
 
     @property
@@ -71,9 +74,9 @@ class HieroStartVersionControlPlugin(HookBaseClass):
 
         Only items matching entries in this list will be presented to the
         accept() method. Strings can contain glob patters such as *, for example
-        ["maya.*", "file.maya"]
+        ["motionbuilder.*", "file.motionbuilder"]
         """
-        return ["hiero.project"]
+        return ["motionbuilder.session"]
 
     @property
     def settings(self):
@@ -123,37 +126,31 @@ class HieroStartVersionControlPlugin(HookBaseClass):
         """
 
         publisher = self.parent
-        project = item.properties.get("project")
-        if not project:
-            self.logger.warn("Could not determine the project.")
-            return {"accepted": False}
-
-        path = project.path()
+        path = _session_path()
 
         if path:
             version_number = publisher.util.get_version_number(path)
             if version_number is not None:
                 self.logger.info(
-                    "Hiero '%s' plugin rejected project: %s..." %
-                    (self.name, project.name())
+                    "Motion Builder '%s' plugin rejected the current Motion Builder session..." %
+                    (self.name,)
                 )
                 self.logger.info(
                     "  There is already a version number in the file...")
-                self.logger.info("  Project file path: %s" % (path,))
+                self.logger.info("  Motion Builder file path: %s" % (path,))
                 return {"accepted": False}
         else:
             # the session has not been saved before (no path determined).
             # provide a save button. the session will need to be saved before
             # validation will succeed.
             self.logger.warn(
-                "Hiero project '%s' has not been saved." %
-                (project.name()),
-                extra=_get_save_as_action(project)
+                "The Motion Builder session has not been saved.",
+                extra=_get_save_as_action()
             )
 
         self.logger.info(
-            "Hiero '%s' plugin accepted the project %s." %
-            (self.name, project.name()),
+            "Motion Builder '%s' plugin accepted the current Motion Builder session." %
+            (self.name,),
             extra=_get_version_docs_action()
         )
 
@@ -179,16 +176,14 @@ class HieroStartVersionControlPlugin(HookBaseClass):
         """
 
         publisher = self.parent
-        project = item.properties.get("project")
-        path = project.path()
+        path = _session_path()
 
         if not path:
             # the session still requires saving. provide a save button.
             # validation fails
             self.logger.error(
-                "The Hiero project '%s' has not been saved." %
-                (project.name(),),
-                extra=_get_save_as_action(project)
+                "The Motion Builder session has not been saved.",
+                extra=_get_save_as_action()
             )
             return False
 
@@ -198,7 +193,7 @@ class HieroStartVersionControlPlugin(HookBaseClass):
             self.logger.error(
                 "A file already exists with a version number. Please choose "
                 "another name.",
-                extra=_get_save_as_action(project)
+                extra=_get_save_as_action()
             )
             return False
 
@@ -215,24 +210,21 @@ class HieroStartVersionControlPlugin(HookBaseClass):
         """
 
         publisher = self.parent
-        project = item.properties.get("project")
-        path = project.path()
 
         # get the path in a normalized state. no trailing separator, separators
         # are appropriate for current os, no double separators, etc.
-        path = sgtk.util.ShotgunPath.normalize(path)
+        path = sgtk.util.ShotgunPath.normalize(_session_path())
 
         # ensure the session is saved in its current state
-        project.saveAs(path)
+        _save_session(path)
 
         # get the path to a versioned copy of the file.
         version_path = publisher.util.get_version_path(path, "v001")
 
         # save to the new version path
-        project.saveAs(version_path)
-        self.logger.info(
-            "A version number has been added to the Hiero project...")
-        self.logger.info("  Hiero project path: %s" % (version_path,))
+        _save_session(version_path)
+        self.logger.info("A version number has been added to the Motion Builder file...")
+        self.logger.info("  Motion Builder file path: %s" % (version_path,))
 
     def finalize(self, settings, item):
         """
@@ -248,15 +240,39 @@ class HieroStartVersionControlPlugin(HookBaseClass):
         pass
 
 
-def _get_save_as_action(project):
+def _session_path():
     """
+    Return the path to the current session
+    :return:
+    """
+    path = mb_app.FBXFileName
+
+    if isinstance(path, unicode):
+        path = path.encode("utf-8")
+
+    return path
+
+
+def _save_session(path):
+    """
+    Save the current session to the supplied path.
+    """
+
+    # Motion Builder can choose the wrong file type so we should set it here
+    # explicitly based on the extension
+    mb_app.FileSave(path)
+
+
+def _get_save_as_action():
+    """
+
     Simple helper for returning a log action dict for saving the session
     """
     return {
         "action_button": {
             "label": "Save As...",
             "tooltip": "Save the current session",
-            "callback": lambda: _project_save_as(project)
+            "callback": lambda: _save_session(_session_path())
         }
     }
 
@@ -272,32 +288,3 @@ def _get_version_docs_action():
             "url": "https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-User-Guide-WIP-#What%20happens%20when%20you%20publish"
         }
     }
-
-
-def _project_save_as(project):
-    """
-    A save as wrapper for the current session.
-
-    :param path: Optional path to save the current session as.
-    """
-    # import here since the hooks are imported into nuke and nukestudio.
-    # hiero module is only available in later versions of nuke
-    import hiero
-
-    # hiero doesn't appear to have a "save as" dialog accessible via
-    # python. so open our own Qt file dialog.
-    file_dialog = QtGui.QFileDialog(
-        parent=hiero.ui.mainWindow(),
-        caption="Save As",
-        directory=project.path(),
-        filter="Nuke Studio Files (*.hrox)"
-    )
-    file_dialog.setLabelText(QtGui.QFileDialog.Accept, "Save")
-    file_dialog.setLabelText(QtGui.QFileDialog.Reject, "Cancel")
-    file_dialog.setOption(QtGui.QFileDialog.DontResolveSymlinks)
-    file_dialog.setOption(QtGui.QFileDialog.DontUseNativeDialog)
-    if not file_dialog.exec_():
-        return
-    path = file_dialog.selectedFiles()[0]
-    project.saveAs(path)
-

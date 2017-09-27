@@ -17,7 +17,7 @@ HookBaseClass = sgtk.get_hook_baseclass()
 class PhotoshopCCSceneCollector(HookBaseClass):
     """
     Collector that operates on the photoshop cc active document. Should inherit
-    from the basic collector.
+    from the basic collector (via the config).
     """
 
     def process_current_session(self, parent_item):
@@ -40,6 +40,9 @@ class PhotoshopCCSceneCollector(HookBaseClass):
 
         # get the active document name
         try:
+            # TODO: to avoid try/except, consider adding to PS engine API:
+            #   `get_active_document`
+            #   `get_active_document_name`
             active_doc_name = engine.adobe.app.activeDocument.name
         except RuntimeError:
             engine.logger.debug("No active document found.")
@@ -95,6 +98,8 @@ def _document_path(document):
     Returns the path on disk to the supplied document. May be ``None`` if the
     document has not been saved.
     """
+
+    # TODO: move logic to adobe bridge api in PS engine
 
     try:
         path = document.fullName.fsName

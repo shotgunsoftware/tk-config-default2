@@ -172,12 +172,22 @@ common.apps.tk-multi-publish2.location:
 common.apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.17.3
+  version: v1.17.4
 
 common.apps.tk-multi-setframerange.location:
   version: v0.3.0
   type: app_store
   name: tk-multi-setframerange
+
+common.apps.tk-multi-snapshot.location:
+  version: v0.7.3
+  type: app_store
+  name: tk-multi-snapshot
+
+common.apps.tk-multi-breakdown.location:
+  version: v1.4.6
+  type: app_store
+  name: tk-multi-breakdown
 
 # help urls
 

@@ -94,9 +94,12 @@ class BasicSceneCollector(HookBaseClass):
             for the supplied path
         """
 
-        # handle files and folders differently
+        # handle files and folders differently. Folder collection will create
+        # items for any sequences found (but not for the supplied path). File
+        # collection will create a single item for the supplied path.
         if os.path.isdir(path):
             self._collect_folder(parent_item, path)
+            # items aren't created for the folder itself, so return None
             return None
         else:
             return self._collect_file(parent_item, path)
@@ -141,7 +144,7 @@ class BasicSceneCollector(HookBaseClass):
             item_type, type_display, display_name)
         file_item.set_icon_from_path(item_info["icon_path"])
 
-        # if the supplied path is an image, use the path as # the thumbnail.
+        # if the supplied path is an image, use the path as the thumbnail.
         if (item_type.startswith("file.image") or
             item_type.startswith("file.texture")):
             file_item.set_thumbnail_from_path(path)

@@ -16,6 +16,7 @@ includes:
 - ../app_launchers.yml
 - ../common/apps.yml
 - ../common/engines.yml
+- ./apps.yml
 
 motionbuilder.asset_step:
   apps:
@@ -38,25 +39,11 @@ motionbuilder.asset_step:
         - [task_assignees, is, '{context.user}']
         - [project, is, '{context.project}']
         hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_icon: icons/publish_motionbuilder_main.png
-      primary_publish_template: mobu_asset_publish
-      primary_tank_type: Motion Builder FBX
-      template_work: mobu_asset_work
+      location: '@common.apps.tk-multi-loader2.location'
+    tk-multi-publish: '@motionbuilder.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
+      location: '@common.apps.tk-multi-snapshot.location'
       template_snapshot: mobu_asset_snapshot
       template_work: mobu_asset_work
     tk-multi-workfiles2:
@@ -72,4 +59,4 @@ motionbuilder.asset_step:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish, name: Publish...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
