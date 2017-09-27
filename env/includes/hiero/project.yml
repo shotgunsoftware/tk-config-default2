@@ -42,10 +42,7 @@ hiero.project:
     tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
     tk-multi-publish2: '@hiero.apps.tk-multi-publish2'
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
+      location: '@common.apps.tk-multi-snapshot.location'
       template_snapshot: hiero_project_snapshot
       template_work: hiero_project_work
     tk-multi-workfiles2:
@@ -80,10 +77,7 @@ hiero.project:
     requires_selection: true}
   - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish Project...,
     requires_selection: true}
-  location:
-    version: v0.8.1
-    type: app_store
-    name: tk-nuke
+  location: '@common.engines.tk-nuke.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   spreadsheet_context_menu:

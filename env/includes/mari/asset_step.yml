@@ -27,10 +27,7 @@ mari.asset_step:
       template_new_project_name: mari_asset_project_name
     tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-breakdown:
-      location:
-        version: v1.4.6
-        type: app_store
-        name: tk-multi-breakdown
+      location: '@common.apps.tk-multi-breakdown.location'
     tk-multi-loader2:
       entities:
       - caption: Assets
@@ -46,10 +43,7 @@ mari.asset_step:
         - [project, is, '{context.project}']
         hierarchy: [entity, content]
         publish_filters: []
-      location:
-        version: v1.17.4
-        type: app_store
-        name: tk-multi-loader2
+      location: '@common.apps.tk-multi-loader2.location'
       title_name: Import
     tk-multi-publish2: '@mari.apps.tk-multi-publish2'
     tk-multi-workfiles:
@@ -59,8 +53,5 @@ mari.asset_step:
         name: tk-multi-workfiles
       sg_entity_types: [Asset]
     tk-multi-shotgunpanel:
-      location:
-        version: v1.4.4
-        type: app_store
-        name: tk-multi-shotgunpanel
+      location: '@common.apps.tk-multi-shotgunpanel.location'
   location: '@common.engines.tk-mari.location'

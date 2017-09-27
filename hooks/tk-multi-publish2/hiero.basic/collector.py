@@ -31,13 +31,10 @@ class HieroSessionCollector(HookBaseClass):
         publisher = self.parent
         engine = publisher.engine
 
-        if hasattr(engine, "hiero_enabled") and engine.hiero_enabled:
-            # running hiero
-            self.collect_current_hiero_session(parent_item)
+        self.collect_current_hiero_session(parent_item)
 
-            # since we're in NS, any additional collected outputs will be
-            # parented under the root item
-            session_item = parent_item
+        # Any additional collected outputs will be parented under the root item
+        session_item = parent_item
 
     def collect_current_hiero_session(self, parent_item):
         """
@@ -69,8 +66,8 @@ class HieroSessionCollector(HookBaseClass):
 
             # create the session item for the publish hierarchy
             session_item = parent_item.create_item(
-                "nukestudio.project",
-                "NukeStudio Project",
+                "hiero.project",
+                "Hiero Project",
                 project.name()
             )
             session_item.set_icon_from_path(icon_path)

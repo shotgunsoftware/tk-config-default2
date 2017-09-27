@@ -73,7 +73,7 @@ class HieroStartVersionControlPlugin(HookBaseClass):
         accept() method. Strings can contain glob patters such as *, for example
         ["maya.*", "file.maya"]
         """
-        return ["nukestudio.project"]
+        return ["hiero.project"]
 
     @property
     def settings(self):

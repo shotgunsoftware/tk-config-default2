@@ -39,22 +39,13 @@ motionbuilder.shot_step:
         - [task_assignees, is, '{context.user}']
         - [project, is, '{context.project}']
         hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
+      location: '@common.apps.tk-multi-loader2.location'
     tk-multi-publish: '@motionbuilder.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-setframerange:
-      location:
-        version: v0.3.0
-        type: app_store
-        name: tk-multi-setframerange
+      location: '@common.apps.tk-multi-setframerange.location'
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
+      location: '@common.apps.tk-multi-snapshot.location'
       template_snapshot: mobu_shot_snapshot
       template_work: mobu_shot_work
     tk-multi-workfiles2:

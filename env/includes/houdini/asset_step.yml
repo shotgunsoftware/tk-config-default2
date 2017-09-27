@@ -25,10 +25,7 @@ houdini.asset_step:
     tk-multi-publish2: '@houdini.apps.tk-multi-publish2'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
+      location: '@common.apps.tk-multi-snapshot.location'
       template_snapshot: houdini_asset_snapshot
       template_work: houdini_asset_work
     tk-multi-workfiles2:
