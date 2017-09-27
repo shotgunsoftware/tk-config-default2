@@ -17,27 +17,13 @@ description: Apps and engines loaded when a Version is loaded. By default,
 #################################################################################################
 # include common files
 
-includes:
-- ./includes/shotgun/publishedfile_version.yml
+#includes:
+#- ./includes/shotgun/publishedfile_version.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
 
 engines:
-  #
-  # -------------------------------------------------
-  # Shotgun
-  # -------------------------------------------------
-  tk-shotgun: '@shotgun.publishedfile_version'
+#  tk-shotgun: '@shotgun.publishedfile_version'
 
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
 

@@ -1,0 +1,35 @@
+# Copyright (c) 2016 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+description: Configuration to load when when we are running in a site
+             specific context and no project or other shotgun entity
+             has yet been established as the current context.
+
+includes:
+#- includes/houdini/site.yml
+- includes/maya/site.yml
+#- includes/nuke/site.yml
+- includes/desktop/site.yml
+#- includes/shell/site.yml
+#- includes/photoshopcc/site.yml
+#- includes/3dsmax/site.yml
+#- includes/shotgun/all.yml
+
+engines:
+  #tk-houdini: '@houdini.site'
+  tk-maya: '@maya.site'
+  #tk-nuke: '@nuke.site'
+  tk-desktop: '@desktop.site'
+  #tk-shell: '@shell.site'
+  #tk-photoshopcc: '@photoshopcc.site'
+  #tk-3dsmaxplus: '@3dsmax.site'
+  #tk-shotgun: '@shotgun.all'
+

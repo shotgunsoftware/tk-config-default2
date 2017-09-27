@@ -48,7 +48,7 @@ maya.asset_step:
         version: v1.17.3
         type: app_store
         name: tk-multi-loader2
-    tk-multi-publish2: '@maya.apps.tk-multi-publish2'
+    tk-multi-publish2: '@maya.apps.tk-multi-publish2.asset'
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-shotgunpanel:
       action_mappings:

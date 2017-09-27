@@ -16,14 +16,17 @@ includes:
 - ../app_launchers.yml
 - ../common/apps.yml
 - ../common/engines.yml
+- apps.yml
 
 maya.project:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
-    tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-workfiles2: '@common.apps.workfiles2-launch-at-startup'
-  location: '@common.engines.tk-maya.location'
+    tk-multi-about: "@common.apps.tk-multi-about"
+    tk-multi-shotgunpanel: "@common.apps.tk-multi-shotgunpanel"
+    tk-multi-screeningroom: "@launch_screeningroom"
+    tk-multi-workfiles2: "@common.apps.workfiles2-launch-at-startup"
+    tk-multi-publish2: "@maya.apps.tk-multi-publish2"
+
+  location: "@common.engines.tk-maya.location"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
 

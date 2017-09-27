@@ -16,8 +16,9 @@ includes:
 - ./paths.yml
 
 # now include overrides - these will be loaded if they are found
-- sequences/{Sequence}/{Shot}/sgtk_overrides.yml
-- assets/{sg_asset_type}/{Asset}/sgtk_overrides.yml
+# TODO: doesn't work without templates
+#- sequences/{Sequence}/{Shot}/sgtk_overrides.yml
+#- assets/{sg_asset_type}/{Asset}/sgtk_overrides.yml
 
 
 ################################################################################################
