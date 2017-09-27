@@ -25,9 +25,11 @@ common.engines.tk-houdini.location:
 
 # Maya
 common.engines.tk-maya.location:
-    type: app_store
-    name: tk-maya
-    version: v0.8.1
+    #type: app_store
+    #name: tk-maya
+    #version: v0.8.1
+    type: dev
+    path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-maya
 
 # Nuke
 common.engines.tk-nuke.location:

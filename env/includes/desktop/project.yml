@@ -13,23 +13,51 @@
 # is running in its project level configuration
 
 includes:
-- ../app_launchers.yml
+- ../common/frameworks.yml
 - ../common/engines.yml
 - ../common/apps.yml
+- ../app_launchers.yml
 
 desktop.project:
   apps:
-    tk-multi-launchhiero: '@launch_hiero'
-    tk-multi-launchmari: '@launch_mari'
-    tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-    tk-multi-launchsoftimage: '@launch_softimage'
+
+    # context menu commands
+    tk-multi-pythonconsole: '@common.apps.tk-multi-pythonconsole'
     tk-multi-screeningroom: '@launch_screeningroom'
+
+    # stand alone publisher
+    tk-multi-publish2: "@common.apps.tk-multi-publish2"
+
+    # App launchers
+
+    # handles auto-discovery for configured Software entities
     tk-multi-launchapp: '@common.apps.launchapp-software'
+
+    # Engines that do not support the Software entity auto-discovery
+    #tk-multi-launchhiero: '@launch_hiero'
+    #tk-multi-launchmari: '@launch_mari'
+    #tk-multi-launchmotionbuilder: '@launch_motionbuilder'
+    #tk-multi-launchsoftimage: '@launch_softimage'
+
+  collapse_rules:
+  - {button_label: $app, match: Launch $app, menu_label: None}
+  default_group: Studio
   groups:
-  - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*', '*Softimage*']
+  - matches:
+    - '*Houdini*'
+    - '*Mari*'
+    - '*Max*'
+    - '*Maya*'
+    - '*Motion*'
+    - '*Nuke*'
+    - '*Photoshop*'
+    - 'CC*'
+    - '*Softimage*'
     name: Creative Tools
-  - matches: ['*Hiero*']
+  - matches:
+    - '*Hiero*'
     name: Editorial Tools
-  - matches: ['*Fla*']
+  - matches:
+    - '*Fla*'
     name: Finishing Tools
   location: "@common.engines.tk-desktop.location"

@@ -27,9 +27,8 @@ class PickEnvironment(Hook):
                 return "publishedfile_version"
 
         if context.project is None:
-            # our context is completely empty!
-            # don't know how to handle this case.
-            return None
+            # no project defined. fall back to site
+            return "site"
 
         if context.entity is None:
             # we have a project but not an entity
@@ -51,4 +50,5 @@ class PickEnvironment(Hook):
             if context.entity["type"] == "Asset":
                 return "asset_step"
 
-        return None
+        # fall back to the site context
+        return "site"

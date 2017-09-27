@@ -1,0 +1,61 @@
+# Copyright (c) 2016 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this configuration defines the behavior of the Maya Integration when it
+# is running in its site level configuration
+
+includes:
+- ../common/engines.yml
+- ../common/apps.yml
+- apps.yml
+
+maya.site:
+  apps:
+
+    tk-multi-about: '@common.apps.tk-multi-about'
+
+    tk-multi-loader2:
+      action_mappings:
+        Alembic Cache: [reference, import]
+        Image: [texture_node, image_plane]
+        Maya Scene: [reference, import]
+        Photoshop Image: [texture_node, image_plane]
+        Rendered Image: [texture_node, image_plane]
+        Texture: [texture_node, image_plane]
+      actions_hook: '{self}/tk-maya_actions.py'
+      entities:
+      - caption: Project
+        type: Hierarchy
+        root:
+        publish_filters: []
+      - caption: My Tasks
+        type: Query
+        entity_type: Task
+        filters:
+        - [task_assignees, is, '{context.user}']
+        hierarchy: [project, entity, content]
+      # ignore publishes without a status. with zero config, it is very easy
+      # to publish the same path multiple times. the default zero config publish
+      # plugins will clear the status of previous publishes of the same path.
+      # this filter means only the latest publish will be displayed.
+      publish_filters: [["sg_status_list", "is_not", null]]
+      location: "@common.apps.tk-multi-loader2.location"
+
+    #tk-multi-shotgunpanel: '@maya.apps.tk-multi-shotgunpanel'
+
+  location: "@common.engines.tk-maya.location"
+  menu_favourites: []
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: ''}
+  launch_builtin_plugins: [basic]
+  automatic_context_switch: false
+
+

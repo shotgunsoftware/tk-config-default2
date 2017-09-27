@@ -16,17 +16,69 @@ includes:
 - ../common/apps.yml
 - ../common/settings/tk-multi-publish2.yml
 
+# ----- Plugins
+
+# start version control plugin
+maya.apps.tk-multi-publish2.start_version_control: &start_version_control
+  name: "Begin file versioning"
+  hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+  settings: {}
+
+# publish maya session plugin
+maya.apps.tk-multi-publish2.publish_session: &publish_session
+  name: "Publish to Shotgun"
+  hook: "{engine}/tk-multi-publish2/basic/publish_session.py"
+  settings: {}
+
+# publish maya session plugin for shot work
+maya.apps.tk-multi-publish2.publish_session.shot: &publish_session_shot
+  name: "Publish to Shotgun"
+  hook: "{engine}/tk-multi-publish2/basic/publish_session.py"
+  settings: {
+    Work file Template: maya_shot_work,
+    Publish file Template: maya_shot_publish
+  }
+
+# publish maya session plugin for asset work
+maya.apps.tk-multi-publish2.publish_session.asset: &publish_session_asset
+  name: "Publish to Shotgun"
+  hook: "{engine}/tk-multi-publish2/basic/publish_session.py"
+  settings: {
+    Work file Template: maya_asset_work,
+    Publish file Template: maya_asset_publish
+  }
+
+# ----- Publish2 app configurations
+
+# zero config
 maya.apps.tk-multi-publish2:
   help_url: "@common.apps.tk-multi-publish2.help_url"
-  collector: "{config}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/maya.basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   publish_plugins:
-  - '@common.settings.tk-multi-publish2.publish_file'
-  - '@common.settings.tk-multi-publish2.upload_version'
-  - name: Begin file versioning
-    hook: "{config}/tk-multi-publish2/maya.basic/start_version_control.py"
-    settings: {}
-  - name: Publish to Shotgun
-    hook: "{config}/tk-multi-publish2/maya.basic/publish_maya_session.py"
-    settings: {}
+  - *start_version_control
+  - *publish_session
+  - "@common.settings.tk-multi-publish2.publish_file"
+  - "@common.settings.tk-multi-publish2.upload_version"
   location: "@common.apps.tk-multi-publish2.location"
 
+# shot templates
+maya.apps.tk-multi-publish2.shot:
+  help_url: "@common.apps.tk-multi-publish2.help_url"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+  - *start_version_control
+  - *publish_session_shot
+  - "@common.settings.tk-multi-publish2.publish_file"
+  - "@common.settings.tk-multi-publish2.upload_version"
+  location: "@common.apps.tk-multi-publish2.location"
+
+# asset templates
+maya.apps.tk-multi-publish2.asset:
+  help_url: "@common.apps.tk-multi-publish2.help_url"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+  - *start_version_control
+  - *publish_session_asset
+  - "@common.settings.tk-multi-publish2.publish_file"
+  - "@common.settings.tk-multi-publish2.upload_version"
+  location: "@common.apps.tk-multi-publish2.location"

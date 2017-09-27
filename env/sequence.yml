@@ -21,72 +21,26 @@ description: Apps and engines loaded when a Sequence is loaded. Since std VFX co
 #################################################################################################
 
 includes:
-- ./includes/houdini/sequence.yml
+# TODO: include frameworks
+#- ./includes/houdini/sequence.yml
 - ./includes/maya/sequence.yml
-- ./includes/nuke/sequence.yml
-- ./includes/shell/sequence.yml
-- ./includes/shotgun/sequence.yml
-- ./includes/3dsmax/sequence.yml
-
-- ./includes/motionbuilder/sequence.yml
-- ./includes/softimage/sequence.yml
+#- ./includes/nuke/sequence.yml
+#- ./includes/shell/sequence.yml
+#- ./includes/shotgun/sequence.yml
+#- ./includes/3dsmax/sequence.yml
+#
+#- ./includes/motionbuilder/sequence.yml
+#- ./includes/softimage/sequence.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
 
 engines:
-  #
-  # -------------------------------------------------
-  # 3dsmax plus
-  # -------------------------------------------------
-  tk-3dsmaxplus: '@3dsmax.sequence'
-  #
-  # -------------------------------------------------
-  # Houdini
-  # -------------------------------------------------
-  tk-houdini: '@houdini.sequence'
-  #
-  # -------------------------------------------------
-  # Maya
-  # -------------------------------------------------
+#  tk-3dsmaxplus: '@3dsmax.sequence'
+#  tk-houdini: '@houdini.sequence'
   tk-maya: '@maya.sequence'
-  #
-  # -------------------------------------------------
-  # Motionbuilder
-  # -------------------------------------------------
-  tk-motionbuilder: '@motionbuilder.sequence'
-  #
-  # -------------------------------------------------
-  # Nuke
-  # -------------------------------------------------
-  tk-nuke: '@nuke.sequence'
-  #
-  # -------------------------------------------------
-  # Shell (tank command)
-  # -------------------------------------------------
-  tk-shell: '@shell.sequence'
-  #
-  # -------------------------------------------------
-  # Shotgun
-  # -------------------------------------------------
-  tk-shotgun: '@shotgun.sequence'
-  #
-  # -------------------------------------------------
-  # Softimage
-  # -------------------------------------------------
-  tk-softimage: '@softimage.sequence'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
+#  tk-motionbuilder: '@motionbuilder.sequence'
+#  tk-nuke: '@nuke.sequence'
+#  tk-shell: '@shell.sequence'
+#  tk-shotgun: '@shotgun.sequence'
+#  tk-softimage: '@softimage.sequence'

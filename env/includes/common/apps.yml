@@ -32,13 +32,13 @@ common.apps.tk-multi-pythonconsole:
 common.apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.4.3
+  version: v1.4.8
 
 common.apps.tk-multi-shotgunpanel:
   location:
     type: app_store
     name: tk-multi-shotgunpanel
-    version: v1.4.3
+    version: v1.4.8
   shotgun_fields_hook: '{self}/shotgun_fields.py'
   actions_hook: '{self}/general_actions.py'
   action_mappings:
@@ -164,10 +164,15 @@ common.apps.launchapp-software:
 
 # locations for common apps
 
-common.apps.tk-multi-publish2.location:
-  type: app_store
-  version: v1.1.9
-  name: tk-multi-publish2
+common.apps.tk-multi-publish2.location: &publish2_location
+  #type: app_store
+  #version: v1.1.9
+  #name: tk-multi-publish2
+  type: dev
+  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-multi-publish2
+
+common.apps.tk-multi-publish2:
+  location: *publish2_location
 
 common.apps.tk-multi-loader2.location:
   type: app_store
