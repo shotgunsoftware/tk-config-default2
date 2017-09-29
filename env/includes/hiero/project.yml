@@ -15,7 +15,6 @@
 includes:
 - ../common/apps.yml
 - ../common/engines.yml
-- ../common/apps.yml
 
 hiero.project:
   apps:
