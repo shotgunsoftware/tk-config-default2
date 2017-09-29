@@ -20,6 +20,7 @@ description: Apps and engines loaded when an Asset is loaded. Since std VFX conf
 #################################################################################################
 
 includes:
+- ./includes/common/frameworks.yml
 - ./includes/houdini/asset.yml
 - ./includes/maya/asset.yml
 - ./includes/nuke/asset.yml
@@ -87,18 +88,3 @@ engines:
   # Softimage
   # -------------------------------------------------
   tk-softimage: '@softimage.asset'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1

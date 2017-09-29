@@ -26,5 +26,4 @@ motionbuilder.project:
   location: '@common.engines.tk-motionbuilder.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  template_project:
 

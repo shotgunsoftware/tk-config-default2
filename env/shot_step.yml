@@ -14,6 +14,7 @@ description: Apps and Engines related to Shot based work.
 #################################################################################################
 
 includes:
+- ./includes/common/frameworks.yml
 - ./includes/houdini/shot_step.yml
 - ./includes/maya/shot_step.yml
 - ./includes/nuke/shot_step.yml
@@ -79,18 +80,3 @@ engines:
   # Softimage
   # -------------------------------------------------
   tk-softimage: '@softimage.shot_step'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1

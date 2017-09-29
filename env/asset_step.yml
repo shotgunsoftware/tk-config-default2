@@ -14,6 +14,7 @@ description: Apps and Engines related to Asset based work.
 #################################################################################################
 
 includes:
+- ./includes/common/frameworks.yml
 - ./includes/houdini/asset_step.yml
 - ./includes/maya/asset_step.yml
 - ./includes/nuke/asset_step.yml
@@ -85,18 +86,3 @@ engines:
   # Softimage
   # -------------------------------------------------
   tk-softimage: '@softimage.asset_step'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1

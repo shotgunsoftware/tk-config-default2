@@ -22,10 +22,7 @@ nuke.shot_step:
   apps:
     tk-multi-about: '@common.apps.tk-multi-about'
     tk-multi-breakdown:
-      location:
-        version: v1.4.6
-        type: app_store
-        name: tk-multi-breakdown
+      location: '@common.apps.tk-multi-breakdown.location'
     tk-multi-loader2:
       action_mappings:
         Nuke Script: [script_import]
@@ -48,10 +45,7 @@ nuke.shot_step:
         - [task_assignees, is, '{context.user}']
         - [project, is, '{context.project}']
         hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
+      location: '@common.apps.tk-multi-loader2.location'
     tk-multi-publish2: '@nuke.apps.tk-multi-publish2'
     tk-multi-reviewsubmission:
       location:
@@ -62,10 +56,7 @@ nuke.shot_step:
       slate_logo: icons/review_submit_logo.png
     tk-multi-screeningroom: '@launch_screeningroom'
     tk-multi-setframerange:
-      location:
-        name: tk-multi-setframerange
-        type: app_store
-        version: v0.3.0
+      location: '@common.apps.tk-multi-setframerange.location'
     tk-multi-shotgunpanel:
       action_mappings:
         PublishedFile:
@@ -78,10 +69,7 @@ nuke.shot_step:
           filters: {}
       location: '@common.apps.tk-multi-shotgunpanel.location'
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
+      location: '@common.apps.tk-multi-snapshot.location'
       template_snapshot: nuke_shot_snapshot
       template_work: nuke_shot_work
     tk-multi-workfiles2:
