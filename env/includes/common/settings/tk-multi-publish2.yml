@@ -8,6 +8,31 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
+################################################################################
+
+# Default file publish plugin. This plugin handles publishing files that are
+# browsed to or dragged/dropped into the publisher.
+common.settings.tk-multi-publish2.publish_file:
+  name: Publish to Shotgun
+  hook: "{self}/publish_file.py"
+  settings: {}
+
+# Default version upload plugin. When configured, handles creating a Version
+# in Shotgun and uploading the corresponding media.
+common.settings.tk-multi-publish2.upload_version:
+  name: Upload for review
+  hook: "{self}/upload_version.py"
+  settings: {}
+
+# Help URL for publish2 workflows
+# TODO: this URL is for "zero config". We should create a default workflow doc
+common.settings.tk-multi-publish2.help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher
+
+# TODO: we can probably get rid of everything below once we move the file types
+# to the default hook settings
+################################################################################
+
+# TODO: move this deault configuration into the hook
 # A mapping of SG publish types to file extensions. The basic file publisher
 # will use the publish type matching the extension if it exists in this list,
 # otherwise, the publish type will simply be the extension + " File". To
@@ -27,6 +52,7 @@ publish_type_to_extensions: &file_types
   - [Image, jpeg, jpg, png]
   - [Movie, mov, mp4]
 
+# TODO: move this deault configuration into the hook
 image_publish_type_to_extensions: &image_file_types
   - [Photoshop Image, psd, psb]
   - [Rendered Image, dpx, exr]
@@ -34,17 +60,7 @@ image_publish_type_to_extensions: &image_file_types
   - [Image, jpeg, jpg, png]
   - [Movie, mov, mp4]
 
-common.settings.tk-multi-publish2.publish_file:
-  name: Publish to Shotgun
-  hook: "{config}/tk-multi-publish2/basic/publish_file.py"
-  settings:
-    File Types: *file_types
-
-common.settings.tk-multi-publish2.upload_version:
-  name: Upload for review
-  hook: "{config}/tk-multi-publish2/basic/upload_version.py"
-  settings: {}
-
+# TODO:
 common.settings.tk-multi-publish2.publish_photoshop_document:
   name: Publish to Shotgun
   hook: "{config}/tk-multi-publish2/photoshopcc.basic/publish_photoshop_document.py"

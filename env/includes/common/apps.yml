@@ -13,32 +13,66 @@
 # and setups
 
 includes:
-- frameworks.yml
+- settings/tk-multi-publish2.yml
 
-# full app settings
+# ---- locations for common apps
 
+# publish2
+common.apps.tk-multi-publish2.location: &publish2_location
+  #type: app_store
+  #version: v1.1.9
+  #name: tk-multi-publish2
+  type: dev
+  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-multi-publish2
+
+# launch app
+common.apps.tk-multi-launchapp.location: &launchapp_location
+    type: app_store
+    name: tk-multi-launchapp
+    version: v0.9.10
+
+# loader2
+common.apps.tk-multi-loader2.location:
+  type: app_store
+  name: tk-multi-loader2
+  version: v1.17.3
+
+# setframerange
+common.apps.tk-multi-setframerange.location:
+  version: v0.3.0
+  type: app_store
+  name: tk-multi-setframerange
+
+# shotgun panel
+common.apps.tk-multi-shotgunpanel.location: &shotgun_panel_location
+  type: app_store
+  name: tk-multi-shotgunpanel
+  version: v1.4.3
+
+# workfiles2
+common.apps.workfiles2.location: &workfiles2_location
+  version: v0.9.6
+  type: app_store
+  name: tk-multi-workfiles2
+
+# ---- full app settings
+
+# about
 common.apps.tk-multi-about:
   location:
     version: v0.2.5
     type: app_store
     name: tk-multi-about
 
+# python console
 common.apps.tk-multi-pythonconsole:
   location:
     version: v1.1.0
     type: app_store
     name: tk-multi-pythonconsole
 
-common.apps.tk-multi-shotgunpanel.location:
-  type: app_store
-  name: tk-multi-shotgunpanel
-  version: v1.4.3
-
+# shotgun panel
 common.apps.tk-multi-shotgunpanel:
-  location:
-    type: app_store
-    name: tk-multi-shotgunpanel
-    version: v1.4.3
   shotgun_fields_hook: '{self}/shotgun_fields.py'
   actions_hook: '{self}/general_actions.py'
   action_mappings:
@@ -56,6 +90,7 @@ common.apps.tk-multi-shotgunpanel:
       - quicktime_clipboard
       - sequence_clipboard
       filters: {}
+  location: *shotgun_panel_location
 
 #
 # General File Manager configuration.
@@ -74,10 +109,6 @@ common.apps.tk-multi-shotgunpanel:
 # work area. The work area is typically a task or pipeline step
 # and these 'transit' areas can be project, shot, or sequence level.
 #
-common.apps.workfiles2.location:
-  version: v0.9.6
-  type: app_store
-  name: tk-multi-workfiles2
 
 common.apps.workfiles2:
   allow_task_creation: true
@@ -100,10 +131,6 @@ common.apps.workfiles2:
   hook_filter_work_files: default
   hook_scene_operation: default
   launch_at_startup: false
-  location:
-    version: v0.9.6
-    type: app_store
-    name: tk-multi-workfiles2
   my_tasks_extra_display_fields: []
   saveas_default_name: scene
   saveas_prefer_version_up: false
@@ -113,7 +140,8 @@ common.apps.workfiles2:
   template_work:
   template_work_area:
   version_compare_ignore_fields: []
-#
+  location: *workfiles2_location
+
 #
 # File Manager that launches at startup.
 # --------------------------------------
@@ -140,10 +168,6 @@ common.apps.workfiles2-launch-at-startup:
   hook_filter_work_files: default
   hook_scene_operation: default
   launch_at_startup: true
-  location:
-    version: v0.9.6
-    type: app_store
-    name: tk-multi-workfiles2
   my_tasks_extra_display_fields: []
   saveas_default_name: scene
   saveas_prefer_version_up: false
@@ -153,32 +177,15 @@ common.apps.workfiles2-launch-at-startup:
   template_work:
   template_work_area:
   version_compare_ignore_fields: []
+  location: *workfiles2_location
 
+# auto discover DCCs for launch
 common.apps.launchapp-software:
   use_software_entity: true
   hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
-  location:
-    type: app_store
-    name: tk-multi-launchapp
-    version: v0.9.10
+  location: *launchapp_location
 
-# locations for common apps
-
-common.apps.tk-multi-publish2.location:
-  type: app_store
-  version: v1.1.9
-  name: tk-multi-publish2
-
-common.apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.17.3
-
-common.apps.tk-multi-setframerange.location:
-  version: v0.3.0
-  type: app_store
-  name: tk-multi-setframerange
-
-# help urls
-
-common.apps.tk-multi-publish2.help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher
+# publish2
+common.apps.tk-multi-publish2.basic:
+  help_url: "@common.settings.tk-multi-publish2.help_url"
+  location: *publish2_location

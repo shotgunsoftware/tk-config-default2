@@ -19,12 +19,24 @@ includes:
 
 desktop.project:
   apps:
+
+    # python console
+    tk-multi-pythonconsole: '@common.apps.tk-multi-pythonconsole'
+
+    # stand alone publisher
+    tk-multi-publish2: "@common.apps.tk-multi-publish2.basic"
+
+    # launchers for engines without Software entity/startup support
     tk-multi-launchhiero: '@launch_hiero'
     tk-multi-launchmari: '@launch_mari'
     tk-multi-launchmotionbuilder: '@launch_motionbuilder'
     tk-multi-launchsoftimage: '@launch_softimage'
-    tk-multi-screeningroom: '@launch_screeningroom'
+
+    # auto-discover Software using eneityt/startup logic
     tk-multi-launchapp: '@common.apps.launchapp-software'
+
+    tk-multi-screeningroom: '@launch_screeningroom'
+
   groups:
   - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*', '*Softimage*']
     name: Creative Tools

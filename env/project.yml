@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -14,120 +14,47 @@ description: Apps and Engines when launching with a project only context.
 #################################################################################################
 
 includes:
+
+# frameworks
+- ./includes/common/frameworks.yml
+
+# DCC-specific project environments
+- ./includes/3dsmax/project.yml
 - ./includes/desktop/project.yml
 - ./includes/flame/project.yml
+- ./includes/hiero/project.yml
 - ./includes/houdini/project.yml
+- ./includes/mari/project.yml
 - ./includes/maya/project.yml
+- ./includes/motionbuilder/project.yml
 - ./includes/nuke/project.yml
+- ./includes/nukestudio/project.yml
 - ./includes/photoshopcc/project.yml
 - ./includes/shell/project.yml
 - ./includes/shotgun/project.yml
-- ./includes/3dsmax/project.yml
-
-- ./includes/hiero/project.yml
-- ./includes/mari/project.yml
-- ./includes/motionbuilder/project.yml
-- ./includes/nukestudio/project.yml
 - ./includes/softimage/project.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
 
-
-
 engines:
-  #
-  # -------------------------------------------------
-  # 3dsmax plus
-  # -------------------------------------------------
+  # referencing the DCC-specific project environments included above
   tk-3dsmaxplus: '@3dsmax.project'
-  #
-  # -------------------------------------------------
-  # Shotgun Desktop
-  # -------------------------------------------------
   tk-desktop: '@desktop.project'
-  #
-  # -------------------------------------------------
-  # Hiero
-  # -------------------------------------------------
   tk-hiero: '@hiero.project'
-  #
-  # -------------------------------------------------
-  # Houdini
-  # -------------------------------------------------
   tk-houdini: '@houdini.project'
-  #
-  # -------------------------------------------------
-  # Mari
-  # -------------------------------------------------
   tk-mari: '@mari.project'
-  #
-  # -------------------------------------------------
-  # Maya
-  # -------------------------------------------------
   tk-maya: '@maya.project'
-  #
-  # -------------------------------------------------
-  # Motionbuilder
-  # -------------------------------------------------
   tk-motionbuilder: '@motionbuilder.project'
-  #
-  # -------------------------------------------------
-  # Nuke
-  # -------------------------------------------------
   tk-nuke: '@nuke.project'
-  #
-  # -------------------------------------------------
-  # Nuke Studio
-  # -------------------------------------------------
   tk-nukestudio: '@nukestudio.project'
-  #
-  # -------------------------------------------------
-  # Photoshop CC
-  # -------------------------------------------------
   tk-photoshopcc: '@photoshopcc.project'
-  #
-  # -------------------------------------------------
-  # Flame
-  # -------------------------------------------------
   tk-flame: '@flame.project'
-  #
-  # -------------------------------------------------
-  # Shell Engine (tank command)
-  # -------------------------------------------------
   tk-shell: '@shell.project'
-  #
-  # -------------------------------------------------
-  # Shotgun
-  # -------------------------------------------------
   tk-shotgun: '@shotgun.project'
-  #
-  # -------------------------------------------------
-  # Softimage
-  # -------------------------------------------------
   tk-softimage: '@softimage.project'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-adminui_v0.x.x:
-    location:
-      version: v0.1.6
-      type: app_store
-      name: tk-framework-adminui
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
-  tk-framework-desktopserver_v1.x.x:
-    location:
-      version: v1.1.15
-      type: app_store
-      name: tk-framework-desktopserver
+
+#################################################################################################
+# frameworks required for this environment
+
+frameworks: "@common.frameworks"
