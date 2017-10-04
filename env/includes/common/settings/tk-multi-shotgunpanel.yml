@@ -1,0 +1,39 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+# reusable shotgun panel settings and configurations
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# basic shotgun panel
+common.settings.tk-multi-shotgunpanel:
+  shotgun_fields_hook: "{self}/shotgun_fields.py"
+  actions_hook: "{self}/general_actions.py"
+  action_mappings:
+    PublishedFile:
+    - actions:
+      - publish_clipboard
+      filters: {}
+    Task:
+    - actions:
+      - assign_task
+      - task_to_ip
+      filters: {}
+    Version:
+    - actions:
+      - quicktime_clipboard
+      - sequence_clipboard
+      filters: {}
+  location: "@common.apps.tk-multi-shotgunpanel.location"

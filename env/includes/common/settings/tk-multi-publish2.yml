@@ -28,6 +28,7 @@ common.settings.tk-multi-publish2.upload_version:
 # TODO: this URL is for "zero config". We should create a default workflow doc
 common.settings.tk-multi-publish2.help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher
 
+
 # TODO: we can probably get rid of everything below once we move the file types
 # to the default hook settings
 ################################################################################

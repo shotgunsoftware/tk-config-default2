@@ -13,15 +13,14 @@
 # is running in sequence environments
 
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
-- ../common/apps.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-launchapp.yml
+- ../common/settings/tk-multi-screeningroom.yml
 
 shell.sequence:
   apps:
-    tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-    tk-multi-launchsoftimage: '@launch_softimage'
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-launchapp: '@common.apps.launchapp-software'
+    tk-multi-launchapp: '@common.settings.tk-multi-launchapp'
+    tk-multi-launchmotionbuilder: '@common.settings.tk-multi-launchapp.motionbuilder'
+    tk-multi-launchsoftimage: '@common.settings.tk-multi-launchapp.softimage'
+    tk-multi-screeningroom: '@common.settings.tk-multi-screeningroom.rv'
   location: '@common.engines.tk-shell.location'

@@ -13,7 +13,7 @@
 #################################################################################################
 
 includes:
-- ../common/apps.yml
+- ../common/app_locations.yml
 - ../common/settings/tk-multi-publish2.yml
 
 #################################################################################################
@@ -30,8 +30,8 @@ maya.apps.tk-multi-publish2.asset_step:
   publish_plugins:
 
   # default, stand alone plugins for drag/drop and file browsing
-  - '@common.settings.tk-multi-publish2.publish_file'
-  - '@common.settings.tk-multi-publish2.upload_version'
+  - "@common.settings.tk-multi-publish2.publish_file"
+  - "@common.settings.tk-multi-publish2.upload_version"
 
   # Maya-specific asset publish plugin configurations
   - name: Begin file versioning
@@ -59,8 +59,8 @@ maya.apps.tk-multi-publish2.shot_step:
   publish_plugins:
 
   # default, stand alone plugins for drag/drop and file browsing
-  - '@common.settings.tk-multi-publish2.publish_file'
-  - '@common.settings.tk-multi-publish2.upload_version'
+  - "@common.settings.tk-multi-publish2.publish_file"
+  - "@common.settings.tk-multi-publish2.upload_version"
 
   # Maya-specific shot publish plugin configurations
   - name: Begin file versioning
@@ -73,6 +73,3 @@ maya.apps.tk-multi-publish2.shot_step:
 
   help_url: "@common.settings.tk-multi-publish2.help_url"
   location: "@common.apps.tk-multi-publish2.location"
-
-
-  # TODO: alembic pub plugin, camera pub plugin

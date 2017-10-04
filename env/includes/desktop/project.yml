@@ -13,35 +13,50 @@
 # is running in its project level configuration
 
 includes:
-- ../app_launchers.yml
-- ../common/engines.yml
-- ../common/apps.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-launchapp.yml
+- ../common/settings/tk-multi-publish2.yml
+- ../common/settings/tk-multi-screeningroom.yml
 
 desktop.project:
   apps:
 
     # python console
-    tk-multi-pythonconsole: '@common.apps.tk-multi-pythonconsole'
+    tk-multi-pythonconsole:
+      location: "@common.apps.tk-multi-pythonconsole.location"
 
     # stand alone publisher
-    tk-multi-publish2: "@common.apps.tk-multi-publish2.basic"
+    tk-multi-publish2:
+        help_url: "@common.settings.tk-multi-publish2.help_url"
+        location: "@common.apps.tk-multi-publish2.location"
 
     # launchers for engines without Software entity/startup support
-    tk-multi-launchhiero: '@launch_hiero'
-    tk-multi-launchmari: '@launch_mari'
-    tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-    tk-multi-launchsoftimage: '@launch_softimage'
+    tk-multi-launchhiero: "@common.settings.tk-multi-launchapp.hiero"
+    tk-multi-launchmari: "@common.settings.tk-multi-launchapp.mari"
+    tk-multi-launchmotionbuilder: "@common.settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-launchsoftimage: "@common.settings.tk-multi-launchapp.softimage"
 
     # auto-discover Software using eneityt/startup logic
-    tk-multi-launchapp: '@common.apps.launchapp-software'
+    tk-multi-launchapp: "@common.settings.tk-multi-launchapp"
 
-    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
 
   groups:
-  - matches: ['*Houdini*', '*Mari*', '*Max*', '*Maya*', '*Motion*', '*Nuke*', '*Photoshop*', '*Softimage*']
+  - matches:
+    - "*Houdini*"
+    - "*Mari*"
+    - "*Max*"
+    - "*Maya*"
+    - "*Motion*"
+    - "*Nuke*"
+    - "*Photoshop*"
+    - "*Softimage*"
     name: Creative Tools
-  - matches: ['*Hiero*']
+  - matches:
+    - "*Hiero*"
     name: Editorial Tools
-  - matches: ['*Fla*']
+  - matches:
+    - "*Fla*"
     name: Finishing Tools
   location: "@common.engines.tk-desktop.location"

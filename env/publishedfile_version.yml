@@ -12,13 +12,13 @@
 description: Apps and engines loaded when a PublishedFile or Version is loaded.
   By default, the only engine defined here is tk-shotgun. This configuration
   provides the apps that are necessary to display menu actions in the Shotgun
-  web application by way of Toolkit's browser integration.
+  web application by way of Toolkit"s browser integration.
 
 #################################################################################################
 # include common files
 
 includes:
-# Shotgun-specific PublishedFile & Version environment
+- ./includes/common/frameworks.yml
 - ./includes/shotgun/publishedfile_version.yml
 
 #################################################################################################
@@ -26,7 +26,7 @@ includes:
 
 engines:
   # referencing the Shotgun-specific environment included above
-  tk-shotgun: '@shotgun.publishedfile_version'
+  tk-shotgun: "@shotgun.publishedfile_version"
 
 #################################################################################################
 # frameworks required for this environment

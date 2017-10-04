@@ -1,0 +1,100 @@
+# Copyright (c) 2016 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# locations for common apps
+
+################################################################################
+
+# about
+common.apps.tk-multi-about.location:
+  type: app_store
+  name: tk-multi-about
+  version: v0.2.5
+
+# breakdown
+common.apps.tk-multi-breakdown.location:
+  type: app_store
+  name: tk-multi-breakdown
+  version: v1.4.6
+
+# launchapp
+common.apps.tk-multi-launchapp.location:
+  type: app_store
+  name: tk-multi-launchapp
+  version: v0.9.10
+
+# loader2
+common.apps.tk-multi-loader2.location:
+  type: app_store
+  name: tk-multi-loader2
+  version: v1.17.3
+
+# publish2
+common.apps.tk-multi-publish2.location:
+  #type: app_store
+  #name: tk-multi-publish2
+  #version: v1.1.9
+  type: dev
+  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-multi-publish2
+
+# pythonconsole
+common.apps.tk-multi-pythonconsole.location:
+  type: app_store
+  name: tk-multi-pythonconsole
+  version: v1.1.0
+
+# setframerange
+common.apps.tk-multi-setframerange.location:
+  type: app_store
+  name: tk-multi-setframerange
+  version: v0.3.0
+
+# screeningroom
+common.apps.tk-multi-screeningroom.location:
+  type: app_store
+  name: tk-multi-screeningroom
+  version: v0.3.2
+
+# shotgun panel
+common.apps.tk-multi-shotgunpanel.location:
+  type: app_store
+  name: tk-multi-shotgunpanel
+  version: v1.4.3
+
+# snapshot
+common.apps.tk-multi-snapshot.location:
+  type: app_store
+  name: tk-multi-snapshot
+  version: v0.7.3
+
+# workfiles2
+common.apps.tk-multi-workfiles2.location:
+  type: app_store
+  name: tk-multi-workfiles2
+  version: v0.9.6
+
+# shotgun folders
+common.apps.tk-shotgun-folders.location:
+  type: app_store
+  name: tk-shotgun-folders
+  version: v0.1.6
+
+# shotgun launchfolder
+common.apps.tk-shotgun-launchfolder.location:
+  type: app_store
+  name: tk-shotgun-launchfolder
+  version: v0.1.5
+
+# shotgun launchpublish
+common.apps.tk-shotgun-launchpublish.location:
+  type: app_store
+  name: tk-shotgun-launchpublish
+  version: v0.2.1
