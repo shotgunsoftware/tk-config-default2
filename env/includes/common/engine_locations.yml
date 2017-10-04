@@ -28,8 +28,10 @@ common.engines.tk-maya.location:
     #type: app_store
     #name: tk-maya
     #version: v0.8.1
-    type: dev
-    path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-maya
+    type: git_branch
+    branch: 44077_def2_pub2_templates
+    path: https://github.com/shotgunsoftware/tk-maya.git
+    version: bd5da0539d8f1e74e5f3c930224f3621be8bb211
 
 # Nuke
 common.engines.tk-nuke.location:
