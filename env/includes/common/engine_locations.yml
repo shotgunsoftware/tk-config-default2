@@ -19,9 +19,13 @@ common.engines.tk-3dsmaxplus.location:
 
 # Houdini
 common.engines.tk-houdini.location:
-    type: app_store
-    name: tk-houdini
-    version: v1.2.2
+    #type: app_store
+    #name: tk-houdini
+    #version: v1.2.2
+    type: git_branch
+    branch: 44077_defcon2
+    path: https://github.com/shotgunsoftware/tk-houdini.git
+    version: b4ba1726c67dbea8d7fd77b76770f259f3b7faa4
 
 # Maya
 common.engines.tk-maya.location:

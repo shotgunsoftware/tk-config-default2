@@ -23,7 +23,7 @@ includes:
 - ./includes/desktop/project.yml
 #- ./includes/flame/project.yml
 #- ./includes/hiero/project.yml
-#- ./includes/houdini/project.yml
+- ./includes/houdini/project.yml
 #- ./includes/mari/project.yml
 - ./includes/maya/project.yml
 #- ./includes/motionbuilder/project.yml
@@ -42,7 +42,7 @@ engines:
 #  tk-3dsmaxplus: "@3dsmax.project"
   tk-desktop: "@desktop.project"
 #  tk-hiero: "@hiero.project"
-#  tk-houdini: "@houdini.project"
+  tk-houdini: "@houdini.project"
 #  tk-mari: "@mari.project"
   tk-maya: "@maya.project"
 #  tk-motionbuilder: "@motionbuilder.project"

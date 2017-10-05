@@ -13,15 +13,20 @@
 # is running in its asset level configuration
 
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
-
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-launchapp.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-multi-workfiles2.yml
 
 houdini.asset:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
-    tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-workfiles2: '@common.apps.workfiles2'
-  location: '@common.engines.tk-houdini.location'
+    tk-multi-about:
+      location: "@common.apps.tk-multi-about.location"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.launch_at_startup"
+  location: "@common.engines.tk-houdini.location"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}

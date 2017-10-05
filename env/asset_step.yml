@@ -20,7 +20,7 @@ includes:
 
 # DCC-specific asset_step environments
 #- ./includes/3dsmax/asset_step.yml
-#- ./includes/houdini/asset_step.yml
+- ./includes/houdini/asset_step.yml
 #- ./includes/mari/asset_step.yml
 - ./includes/maya/asset_step.yml
 #- ./includes/motionbuilder/asset_step.yml
@@ -37,7 +37,7 @@ includes:
 engines:
   # referencing the DCC-specific asset_step environments included above
 #  tk-3dsmaxplus: "@3dsmax.asset_step"
-#  tk-houdini: "@houdini.asset_step"
+  tk-houdini: "@houdini.asset_step"
 #  tk-mari: "@mari.asset_step"
   tk-maya: "@maya.asset_step"
 #  tk-motionbuilder: "@motionbuilder.asset_step"

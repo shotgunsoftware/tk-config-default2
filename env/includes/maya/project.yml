@@ -25,7 +25,7 @@ maya.project:
       location: "@common.apps.tk-multi-about.location"
     tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
     tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
-    tk-multi-workfiles2: "@common.settings.workfiles2.launch_at_startup"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.launch_at_startup"
   location: "@common.engines.tk-maya.location"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

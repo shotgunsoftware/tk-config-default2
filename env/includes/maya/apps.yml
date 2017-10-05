@@ -10,13 +10,13 @@
 #
 
 # This file is used to include commonly used, maya-specific app configurations
-#################################################################################################
+################################################################################
 
 includes:
 - ../common/app_locations.yml
 - ../common/settings/tk-multi-publish2.yml
 
-#################################################################################################
+################################################################################
 
 # asset_step configuration for publish2
 maya.apps.tk-multi-publish2.asset_step:
@@ -45,7 +45,7 @@ maya.apps.tk-multi-publish2.asset_step:
   help_url: "@common.settings.tk-multi-publish2.help_url"
   location: "@common.apps.tk-multi-publish2.location"
 
-#################################################################################################
+################################################################################
 
 # shot_step configuration for publish2
 maya.apps.tk-multi-publish2.shot_step:
