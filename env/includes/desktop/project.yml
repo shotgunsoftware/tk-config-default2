@@ -35,7 +35,6 @@ desktop.project:
     tk-multi-launchhiero: "@common.settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@common.settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@common.settings.tk-multi-launchapp.motionbuilder"
-    tk-multi-launchsoftimage: "@common.settings.tk-multi-launchapp.softimage"
 
     # auto-discover Software using eneityt/startup logic
     tk-multi-launchapp: "@common.settings.tk-multi-launchapp"
@@ -51,7 +50,6 @@ desktop.project:
     - "*Motion*"
     - "*Nuke*"
     - "*Photoshop*"
-    - "*Softimage*"
     name: Creative Tools
   - matches:
     - "*Hiero*"
