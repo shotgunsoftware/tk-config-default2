@@ -33,7 +33,6 @@ shotgun.asset:
     tk-multi-launchapp: "@common.settings.tk-multi-launchapp"
     tk-multi-launchmari: "@common.settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@common.settings.tk-multi-launchapp.motionbuilder"
-    tk-multi-launchsoftimage: "@common.settings.tk-multi-launchapp.softimage"
     tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders:
       deny_permissions: []

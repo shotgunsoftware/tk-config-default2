@@ -9,31 +9,39 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-# this include configuration defines the common apps of the Nuke Integration when it
-# is running in either its project or shot level configuration
+# This file is used to include commonly used, nuke-specific app configurations
+################################################################################
 
 includes:
-- ../common/apps.yml
+- ../common/app_locations.yml
 - ../common/settings/tk-multi-publish2.yml
 
+################################################################################
 
+# asset_step configuration for publish2
 nukestudio.apps.tk-multi-publish2:
-  help_url: "@common.settings.tk-multi-publish2.help_url"
-  collector: "{config}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/nuke.basic/collector.py"
+
+  # DCC-specific collector defined in the engine. Subclasses the base collector
+  # provided by the app to inherit drag/drop and file browsing collection
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector_settings:
+      Work file Template: hiero_project_work
+
   publish_plugins:
-    - '@common.settings.tk-multi-publish2.publish_file'
-    - '@common.settings.tk-multi-publish2.upload_version'
-    - name: Begin file versioning
-      hook: "{config}/tk-multi-publish2/nuke.basic/nuke_start_version_control.py"
-      settings: {}
-    - name: Begin file versioning
-      hook: "{config}/tk-multi-publish2/nuke.basic/nukestudio_start_version_control.py"
-      settings: {}
-    - name: Publish to Shotgun
-      hook: "{config}/tk-multi-publish2/nuke.basic/nuke_publish_script.py"
-      settings: {}
-    - name: Publish to Shotgun
-      hook: "{config}/tk-multi-publish2/nuke.basic/nukestudio_publish_project.py"
-      settings: {}
+
+  # default, stand alone plugins for drag/drop and file browsing
+  - "@common.settings.tk-multi-publish2.publish_file"
+  - "@common.settings.tk-multi-publish2.upload_version"
+
+  # Maya-specific asset publish plugin configurations
+  - name: Begin file versioning
+    hook: "{engine}/tk-multi-publish2/basic/nukestudio_start_version_control.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{engine}/tk-multi-publish2/basic/nukestudio_publish_project.py"
+    settings:
+        Publish file Template: hiero_project_publish
+
+  help_url: "@common.settings.tk-multi-publish2.help_url"
   location: "@common.apps.tk-multi-publish2.location"
 

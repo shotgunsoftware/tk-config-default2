@@ -47,13 +47,6 @@ common.frameworks:
       type: app_store
       name: tk-framework-shotgunutils
 
-  # softimageqt - PySide & Qt distributions for the Tk Softimage engine
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
-
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:

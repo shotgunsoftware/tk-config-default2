@@ -23,12 +23,11 @@ includes:
 - ./includes/houdini/shot_step.yml
 - ./includes/maya/shot_step.yml
 #- ./includes/motionbuilder/shot_step.yml
-#- ./includes/nuke/shot_step.yml
-#- ./includes/nukestudio/shot_step.yml
+- ./includes/nuke/shot_step.yml
+- ./includes/nukestudio/shot_step.yml
 #- ./includes/photoshopcc/shot_step.yml
 - ./includes/shell/shot_step.yml
 - ./includes/shotgun/shot_step.yml
-#- ./includes/softimage/shot_step.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
@@ -39,12 +38,11 @@ engines:
   tk-houdini: "@houdini.shot_step"
   tk-maya: "@maya.shot_step"
 #  tk-motionbuilder: "@motionbuilder.shot_step"
-#  tk-nuke: "@nuke.shot_step"
-#  tk-nukestudio: "@nukestudio.shot_step"
+  tk-nuke: "@nuke.shot_step"
+  tk-nukestudio: "@nukestudio.shot_step"
 #  tk-photoshopcc: "@photoshopcc.shot_step"
   tk-shell: "@shell.shot_step"
   tk-shotgun: "@shotgun.shot_step"
-#  tk-softimage: "@softimage.shot_step"
 
 #################################################################################################
 # frameworks required for this environment

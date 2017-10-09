@@ -23,13 +23,9 @@ common.path.windows.mari: C:\Program Files\Mari3.0v2\Bundle\bin\Mari3.0v2.exe
 common.path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2014\bin\x64\motionbuilder.exe
 
 # Hiero
-common.path.linux.hiero: "Nuke9.0"
-common.path.mac.hiero: "/Applications/Nuke9.0v8/Hiero9.0v8.app"
-common.path.windows.hiero: C:\Program Files\Nuke9.0v8\Nuke9.0.exe
-
-# Softimage
-common.path.linux.softimage: "XSI"
-common.path.windows.softimage: C:\Program Files\Autodesk\Softimage 2013\Application\bin\XSI.bat
+common.path.linux.hiero: "Nuke10.5v1"
+common.path.mac.hiero: "/Applications/Nuke10.5v1/Hiero10.5v1.app"
+common.path.windows.hiero: C:\Program Files\Nuke10.5v1\Nuke11.0v2.exe
 
 # RV
 common.path.linux.rv: "rv"

@@ -1,0 +1,69 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+# reusable loader2 settings and configurations
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# nuke
+common.settings.tk-multi-loader2.nuke:
+  action_mappings:
+    Nuke Script: [script_import]
+    Rendered Image: [read_node]
+    Alembic Cache: [read_node]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  location: "@common.apps.tk-multi-loader2.location"
+
+# nuke studio (actions hook)
+common.settings.tk-multi-loader2.nukestudio:
+  actions_hook: '{self}/tk-nuke_actions.py'
+  action_mappings:
+    Nuke Script: [script_import]
+    Rendered Image: [read_node]
+    Alembic Cache: [read_node]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  location: "@common.apps.tk-multi-loader2.location"

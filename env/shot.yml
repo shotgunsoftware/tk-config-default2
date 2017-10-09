@@ -30,11 +30,10 @@ includes:
 - ./includes/houdini/shot.yml
 - ./includes/maya/shot.yml
 #- ./includes/motionbuilder/shot.yml
-#- ./includes/nuke/shot.yml
+- ./includes/nuke/shot.yml
 #- ./includes/photoshopcc/shot.yml
 - ./includes/shell/shot.yml
 - ./includes/shotgun/shot.yml
-#- ./includes/softimage/shot.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
@@ -45,12 +44,11 @@ engines:
   tk-houdini: "@houdini.shot"
   tk-maya: "@maya.shot"
 #  tk-motionbuilder: "@motionbuilder.shot"
-#  tk-nuke: "@nuke.shot"
+  tk-nuke: "@nuke.shot"
 #  tk-photoshopcc: "@photoshopcc.shot"
 #  tk-flame: "@flame.shot"
   tk-shell: "@shell.shot"
   tk-shotgun: "@shotgun.shot"
-#  tk-softimage: "@softimage.shot"
 
 #################################################################################################
 # frameworks required for this environment

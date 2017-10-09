@@ -393,33 +393,6 @@ paths:
         definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
         root_name: 'primary'
 
-
-    #
-    # Softimage
-    #
-
-    # define the location of a work area
-    shot_work_area_softimage:
-        definition: '@shot_root/work/softimage'
-        root_name: 'primary'
-    # define the location of a publish area
-    shot_publish_area_softimage:
-        definition: '@shot_root/publish/softimage'
-        root_name: 'primary'
-    # The location of WIP files
-    softimage_shot_work:
-        definition: '@shot_root/work/softimage/{name}.v{version}.scn'
-        root_name: 'primary'
-    # The location of backups of WIP files
-    softimage_shot_snapshot:
-        definition: '@shot_root/work/softimage/snapshots/{name}.v{version}.{timestamp}.scn'
-        root_name: 'primary'
-    # The location of published softimage files
-    softimage_shot_publish:
-        definition: '@shot_root/publish/softimage/{name}.v{version}.scn'
-        root_name: 'primary'
-
-
     ##########################################################################################
     # Asset pipeline
 
@@ -627,32 +600,6 @@ paths:
     # The location of published nuke script files
     nuke_asset_publish:
         definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
-        root_name: 'primary'
-
-
-    #
-    # Softimage
-    #
-
-    # define the location of a work area
-    asset_work_area_softimage:
-        definition: '@asset_root/work/softimage'
-        root_name: 'primary'
-    # define the location of a publish area
-    asset_publish_area_softimage:
-        definition: '@asset_root/publish/softimage'
-        root_name: 'primary'
-    # The location of WIP files
-    softimage_asset_work:
-        definition: '@asset_root/work/softimage/{name}.v{version}.scn'
-        root_name: 'primary'
-    # The location of backups of WIP files
-    softimage_asset_snapshot:
-        definition: '@asset_root/work/softimage/snapshots/{name}.v{version}.{timestamp}.scn'
-        root_name: 'primary'
-    # The location of published softimage files
-    softimage_asset_publish:
-        definition: '@asset_root/publish/softimage/{name}.v{version}.scn'
         root_name: 'primary'
 
 

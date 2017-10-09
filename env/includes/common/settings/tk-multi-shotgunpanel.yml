@@ -19,21 +19,32 @@ includes:
 
 # basic shotgun panel
 common.settings.tk-multi-shotgunpanel:
-  shotgun_fields_hook: "{self}/shotgun_fields.py"
-  actions_hook: "{self}/general_actions.py"
   action_mappings:
     PublishedFile:
-    - actions:
-      - publish_clipboard
+    - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions:
-      - assign_task
-      - task_to_ip
+    - actions: [assign_task, task_to_ip]
       filters: {}
     Version:
-    - actions:
-      - quicktime_clipboard
-      - sequence_clipboard
+    - actions: [quicktime_clipboard, sequence_clipboard]
+      filters: {}
+  location: "@common.apps.tk-multi-shotgunpanel.location"
+
+# reused nukestudio configuration
+common.settings.tk-multi-shotgunpanel.nuke:
+  action_mappings:
+    PublishedFile:
+    - actions: [publish_clipboard]
+      filters: {}
+    - actions: [read_node]
+      filters: {published_file_type: Rendered Image}
+    - actions: [script_import]
+      filters: {published_file_type: Nuke Script}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard]
       filters: {}
   location: "@common.apps.tk-multi-shotgunpanel.location"

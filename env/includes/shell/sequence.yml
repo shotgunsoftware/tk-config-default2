@@ -21,6 +21,5 @@ shell.sequence:
   apps:
     tk-multi-launchapp: '@common.settings.tk-multi-launchapp'
     tk-multi-launchmotionbuilder: '@common.settings.tk-multi-launchapp.motionbuilder'
-    tk-multi-launchsoftimage: '@common.settings.tk-multi-launchapp.softimage'
     tk-multi-screeningroom: '@common.settings.tk-multi-screeningroom.rv'
   location: '@common.engines.tk-shell.location'

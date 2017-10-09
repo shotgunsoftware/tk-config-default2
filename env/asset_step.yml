@@ -24,12 +24,11 @@ includes:
 #- ./includes/mari/asset_step.yml
 - ./includes/maya/asset_step.yml
 #- ./includes/motionbuilder/asset_step.yml
-#- ./includes/nuke/asset_step.yml
-#- ./includes/nukestudio/asset_step.yml
+- ./includes/nuke/asset_step.yml
+- ./includes/nukestudio/asset_step.yml
 #- ./includes/photoshopcc/asset_step.yml
 - ./includes/shell/asset_step.yml
 - ./includes/shotgun/asset_step.yml
-#- ./includes/softimage/asset_step.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
@@ -41,12 +40,11 @@ engines:
 #  tk-mari: "@mari.asset_step"
   tk-maya: "@maya.asset_step"
 #  tk-motionbuilder: "@motionbuilder.asset_step"
-#  tk-nuke: "@nuke.asset_step"
-#  tk-nukestudio: "@nukestudio.asset_step"
+  tk-nuke: "@nuke.asset_step"
+  tk-nukestudio: "@nukestudio.asset_step"
 #  tk-photoshopcc: "@photoshopcc.asset_step"
   tk-shell: "@shell.asset_step"
   tk-shotgun: "@shotgun.asset_step"
-#  tk-softimage: "@softimage.asset_step"
 
 #################################################################################################
 # frameworks required for this environment

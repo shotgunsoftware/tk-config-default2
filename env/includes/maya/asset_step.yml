@@ -61,9 +61,9 @@ maya.asset_step:
           filters: {}
       location: "@common.apps.tk-multi-shotgunpanel.location"
     tk-multi-snapshot:
-      location: "@common.apps.tk-multi-snapshot.location"
       template_snapshot: maya_asset_snapshot
       template_work: maya_asset_work
+      location: "@common.apps.tk-multi-snapshot.location"
     tk-multi-workfiles2:
       location: "@common.apps.tk-multi-workfiles2.location"
       template_publish: maya_asset_publish

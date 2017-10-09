@@ -13,137 +13,51 @@
 # is running in its shot step level configuration
 
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
-- apps.yml
+- ./apps.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-loader2.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-nuke-quickdailies.yml
+- ../common/settings/tk-nuke-writenode.yml
 
 nuke.shot_step:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
+
+    # Multi apps
+    tk-multi-about:
+      location: "@common.apps.tk-multi-about.location"
     tk-multi-breakdown:
-      location:
-        version: v1.4.6
-        type: app_store
-        name: tk-multi-breakdown
-    tk-multi-loader2:
-      action_mappings:
-        Nuke Script: [script_import]
-        Rendered Image: [read_node]
-        Alembic Cache: [read_node]
-      entities:
-      - caption: Assets
-        entity_type: Asset
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_asset_type, code]
-      - caption: Shots
-        entity_type: Shot
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_sequence, code]
-      - caption: My Tasks
-        entity_type: Task
-        filters:
-        - [task_assignees, is, '{context.user}']
-        - [project, is, '{context.project}']
-        hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
-    tk-multi-publish2: '@nuke.apps.tk-multi-publish2'
+      location: "@common.apps.tk-multi-breakdown.location"
+    tk-multi-loader2: "@common.settings.tk-multi-loader2.nuke"
+    tk-multi-publish2: "@nuke.apps.tk-multi-publish2.shot_step"
     tk-multi-reviewsubmission:
-      location:
-        version: v0.3.2
-        type: app_store
-        name: tk-multi-reviewsubmission
       movie_path_template: nuke_shot_render_movie
       slate_logo: icons/review_submit_logo.png
-    tk-multi-screeningroom: '@launch_screeningroom'
+      location: "@common.apps.tk-multi-reviewsubmission.location"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
     tk-multi-setframerange:
-      location:
-        name: tk-multi-setframerange
-        type: app_store
-        version: v0.3.0
-    tk-multi-shotgunpanel:
-      action_mappings:
-        PublishedFile:
-        - actions: [read_node]
-          filters: {published_file_type: Rendered Image}
-        - actions: [script_import]
-          filters: {published_file_type: Nuke Script}
-        Task:
-        - actions: [assign_task, task_to_ip]
-          filters: {}
-      location: '@common.apps.tk-multi-shotgunpanel.location'
+      location: "@common.apps.tk-multi-setframerange.location"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel.nuke"
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
       template_snapshot: nuke_shot_snapshot
       template_work: nuke_shot_work
+      location: "@common.apps.tk-multi-snapshot.location"
     tk-multi-workfiles2:
-      location: '@common.apps.workfiles2.location'
       template_publish: nuke_shot_publish
       template_publish_area: shot_publish_area_nuke
       template_work: nuke_shot_work
       template_work_area: shot_work_area_nuke
-    tk-nuke-quickdailies:
-      current_scene_template: nuke_shot_work
-      height: 768
-      location:
-        version: v0.3.5
-        type: app_store
-        name: tk-nuke-quickdailies
-      movie_template: shot_quicktime_quick
-      post_hooks: [snapshot_history_post_quickdaily]
-      sg_version_name_template: nuke_quick_shot_version_name
-      width: 1024
-      upload_movie: false
-    tk-nuke-writenode:
-      location:
-        version: v1.2.0
-        type: app_store
-        name: tk-nuke-writenode
-      template_script_work: nuke_shot_work
-      write_nodes:
-      - file_type: exr
-        name: Stereo Exr, 32 bit
-        proxy_publish_template:
-        proxy_render_template:
-        publish_template: nuke_shot_render_pub_stereo
-        render_template: nuke_shot_render_stereo
-        settings:
-          datatype: 32 bit float
-        tank_type: Rendered Image
-        tile_color: []
-        promote_write_knobs: []
-      - file_type: exr
-        name: Stereo Exr, 16 bit
-        promote_write_knobs: []
-        proxy_publish_template:
-        proxy_render_template:
-        publish_template: nuke_shot_render_pub_stereo
-        render_template: nuke_shot_render_stereo
-        settings:
-          datatype: 16 bit half
-        tank_type: Rendered Image
-        tile_color: []
-      - file_type: dpx
-        name: Mono Dpx
-        promote_write_knobs: []
-        proxy_publish_template:
-        proxy_render_template:
-        publish_template: nuke_shot_render_pub_mono_dpx
-        render_template: nuke_shot_render_mono_dpx
-        settings: {}
-        tank_type: Rendered Image
-        tile_color: []
-  location: '@common.engines.tk-nuke.location'
+      location: "@common.apps.tk-multi-workfiles2.location"
+
+    # Nuke apps
+    tk-nuke-quickdailies: "@common.settings.tk-nuke-quickdailies.shot"
+    tk-nuke-writenode: "@common.settings.tk-nuke-writenode.shot"
+
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  location: "@common.engines.tk-nuke.location"

@@ -29,10 +29,9 @@ includes:
 - ./includes/houdini/sequence.yml
 - ./includes/maya/sequence.yml
 #- ./includes/motionbuilder/sequence.yml
-#- ./includes/nuke/sequence.yml
+- ./includes/nuke/sequence.yml
 - ./includes/shell/sequence.yml
 - ./includes/shotgun/sequence.yml
-#- ./includes/softimage/sequence.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
@@ -43,10 +42,9 @@ engines:
   tk-houdini: "@houdini.sequence"
   tk-maya: "@maya.sequence"
 #  tk-motionbuilder: "@motionbuilder.sequence"
-#  tk-nuke: "@nuke.sequence"
+  tk-nuke: "@nuke.sequence"
   tk-shell: "@shell.sequence"
   tk-shotgun: "@shotgun.sequence"
-#  tk-softimage: "@softimage.sequence"
 
 #################################################################################################
 # frameworks required for this environment

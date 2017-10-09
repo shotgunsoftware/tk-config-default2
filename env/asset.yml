@@ -30,11 +30,10 @@ includes:
 #- ./includes/mari/asset.yml
 - ./includes/maya/asset.yml
 #- ./includes/motionbuilder/asset.yml
-#- ./includes/nuke/asset.yml
+- ./includes/nuke/asset.yml
 #- ./includes/photoshopcc/asset.yml
 - ./includes/shell/asset.yml
 - ./includes/shotgun/asset.yml
-#- ./includes/softimage/asset.yml
 
 #################################################################################################
 # define all the items that should appear in this environment
@@ -46,11 +45,10 @@ engines:
 #  tk-mari: "@mari.asset"
   tk-maya: "@maya.asset"
 #  tk-motionbuilder: "@motionbuilder.asset"
-#  tk-nuke: "@nuke.asset"
+  tk-nuke: "@nuke.asset"
 #  tk-photoshopcc: "@photoshopcc.asset"
   tk-shell: "@shell.asset"
   tk-shotgun: "@shotgun.asset"
-#  tk-softimage: "@softimage.asset"
 
 #################################################################################################
 # frameworks required for this environment

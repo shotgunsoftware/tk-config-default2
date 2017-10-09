@@ -81,21 +81,3 @@ common.settings.tk-multi-launchapp.motionbuilder:
   versions: []
   windows_args: ""
   windows_path: "@common.path.windows.motionbuilder"
-
-# softimage
-common.settings.tk-multi-launchapp.softimage:
-  defer_keyword: ""
-  engine: tk-softimage
-  extra: {}
-  hook_app_launch: default
-  hook_before_app_launch: default
-  icon: "{target_engine}/icon_256.png"
-  linux_args: ""
-  linux_path: "@common.path.linux.softimage"
-  location: "@common.apps.tk-multi-launchapp.location"
-  mac_args: ""
-  mac_path: ""
-  menu_name: Softimage
-  versions: []
-  windows_args: ""
-  windows_path: "@common.path.windows.softimage"

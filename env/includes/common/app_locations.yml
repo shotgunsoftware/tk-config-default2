@@ -55,6 +55,12 @@ common.apps.tk-multi-pythonconsole.location:
   name: tk-multi-pythonconsole
   version: v1.1.0
 
+# reviewsubmission
+common.apps.tk-multi-reviewsubmission.location:
+  type: app_store
+  name: tk-multi-reviewsubmission
+  version: v0.3.2
+
 # setframerange
 common.apps.tk-multi-setframerange.location:
   type: app_store
@@ -105,6 +111,20 @@ common.apps.tk-shotgun-launchpublish.location:
   name: tk-shotgun-launchpublish
   version: v0.2.1
 
+# ---- Hiero apps
+
+# hiero export
+common.apps.tk-hiero-export.location:
+  type: app_store
+  name: tk-hiero-export
+  version: v0.4.1
+
+# hiero openinshotgun
+common.apps.tk-hiero-openinshotgun.location:
+  type: app_store
+  name: tk-hiero-openinshotgun
+  version: v0.3.3
+
 # ---- Houdini apps
 
 # houdini alembicnode
@@ -127,3 +147,16 @@ common.apps.tk-houdini-mantranode.location:
   path: https://github.com/shotgunsoftware/tk-houdini-mantranode.git
   version: b5a4aee65b0ecf8e2f88369ab3f82a009ff12e0b
 
+# ---- Nuke apps
+
+# quickdailies
+common.apps.tk-nuke-quickdailies.location:
+  type: app_store
+  name: tk-nuke-quickdailies
+  version: v0.3.5
+
+# writenode
+common.apps.tk-nuke-writenode.location:
+  name: tk-nuke-writenode
+  type: app_store
+  version: v1.2.0

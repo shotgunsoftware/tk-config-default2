@@ -95,3 +95,16 @@ common.settings.tk-multi-workfiles2.launch_at_startup:
   version_compare_ignore_fields: []
   location: "@common.apps.tk-multi-workfiles2.location"
 
+# wf2 config shared by hiero and nuke studio
+common.settings.tk-multi-workfiles2.nukestudio:
+  entities:
+  - caption: Projects
+    entity_type: Project
+    filters: []
+    hierarchy: [name]
+  template_publish: hiero_project_publish
+  template_publish_area: hiero_project_publish_area
+  template_work: hiero_project_work
+  template_work_area: hiero_project_work_area
+  location: "@common.apps.tk-multi-workfiles2.location"
+
