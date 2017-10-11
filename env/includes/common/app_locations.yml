@@ -44,10 +44,12 @@ common.apps.tk-multi-publish2.location:
   #type: app_store
   #name: tk-multi-publish2
   #version: v1.1.9
-  type: git_branch
-  branch: 44077_defcon2
-  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: ce220f67e934c45254cd4402a7c84e1e7c72b4e4
+  #type: git_branch
+  #branch: 44077_defcon2
+  #path: https://github.com/shotgunsoftware/tk-multi-publish2.git
+  #version: ce220f67e934c45254cd4402a7c84e1e7c72b4e4
+  type: dev
+  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-multi-publish2
 
 # pythonconsole
 common.apps.tk-multi-pythonconsole.location:
