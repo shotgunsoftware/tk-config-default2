@@ -46,24 +46,24 @@ common.engines.tk-nuke.location:
     #type: app_store
     #name: tk-nuke
     #version: v0.7.2
-    #type: git_branch
-    #branch: 44077_defcon2
-    #path: https://github.com/shotgunsoftware/tk-nuke.git
-    #version: 47e5d82e49e2f7fa370c7e6574641721c5e4cd90
-    type: dev
-    path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-nuke
+    type: git_branch
+    branch: 44077_defcon2
+    path: https://github.com/shotgunsoftware/tk-nuke.git
+    version: 47e5d82e49e2f7fa370c7e6574641721c5e4cd90
+    #type: dev
+    #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-nuke
 
 # Photoshop
 common.engines.tk-photoshopcc.location:
     #type: app_store
     #name: tk-photoshopcc
     #version: v1.1.5
-    #type: git_branch
-    #branch: 44077_defcon2
-    #path: https://github.com/shotgunsoftware/tk-photoshopcc.git
-    #version: 011e94aa5f6a1af92b8049a061c401976b3c0309
-    type: dev
-    path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-photoshopcc
+    type: git_branch
+    branch: 44077_defcon2
+    path: https://github.com/shotgunsoftware/tk-photoshopcc.git
+    version: 2eb6bf1f3baaaf5024d5ae5c44c623462e0da170
+    #type: dev
+    #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-photoshopcc
 
 # Flame
 common.engines.tk-flame.location:
