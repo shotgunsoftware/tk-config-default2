@@ -25,7 +25,7 @@ houdini.apps.tk-multi-publish2.asset_step:
   # provided by the app to inherit drag/drop and file browsing collection
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work file Template: houdini_asset_work
+      Work Template: houdini_asset_work
 
   publish_plugins:
 
@@ -38,9 +38,9 @@ houdini.apps.tk-multi-publish2.asset_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{engine}/tk-multi-publish2/basic/publish_session.py:"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:"
     settings:
-        Publish file Template: houdini_asset_publish
+        Publish Template: houdini_asset_publish
 
   help_url: "@common.settings.tk-multi-publish2.help_url"
   location: "@common.apps.tk-multi-publish2.location"
@@ -54,7 +54,7 @@ houdini.apps.tk-multi-publish2.shot_step:
   # provided by the app to inherit drag/drop and file browsing collection
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work file Template: houdini_shot_work
+      Work Template: houdini_shot_work
 
   publish_plugins:
 
@@ -67,9 +67,9 @@ houdini.apps.tk-multi-publish2.shot_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{engine}/tk-multi-publish2/basic/publish_session.py"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
-        Publish file Template: houdini_shot_publish
+        Publish Template: houdini_shot_publish
 
   help_url: "@common.settings.tk-multi-publish2.help_url"
   location: "@common.apps.tk-multi-publish2.location"

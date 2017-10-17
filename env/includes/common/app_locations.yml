@@ -44,10 +44,12 @@ common.apps.tk-multi-publish2.location:
   #type: app_store
   #name: tk-multi-publish2
   #version: v1.1.9
-  type: git_branch
-  branch: 44077_defcon2
-  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: a65dade2ea8ef758fc913d8c710de0d25c2759b1
+  #type: git_branch
+  #branch: 44077_defcon2
+  #path: https://github.com/shotgunsoftware/tk-multi-publish2.git
+  #version: a65dade2ea8ef758fc913d8c710de0d25c2759b1
+  type: dev
+  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-multi-publish2
 
 # pythonconsole
 common.apps.tk-multi-pythonconsole.location:
@@ -117,7 +119,7 @@ common.apps.tk-shotgun-launchpublish.location:
 common.apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
-  version: v0.4.1
+  version: v0.4.3
 
 # hiero openinshotgun
 common.apps.tk-hiero-openinshotgun.location:

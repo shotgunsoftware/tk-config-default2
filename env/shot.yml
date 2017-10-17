@@ -31,7 +31,7 @@ includes:
 - ./includes/maya/shot.yml
 #- ./includes/motionbuilder/shot.yml
 - ./includes/nuke/shot.yml
-#- ./includes/photoshopcc/shot.yml
+- ./includes/photoshopcc/shot.yml
 - ./includes/shell/shot.yml
 - ./includes/shotgun/shot.yml
 
@@ -45,7 +45,7 @@ engines:
   tk-maya: "@maya.shot"
 #  tk-motionbuilder: "@motionbuilder.shot"
   tk-nuke: "@nuke.shot"
-#  tk-photoshopcc: "@photoshopcc.shot"
+  tk-photoshopcc: "@photoshopcc.shot"
 #  tk-flame: "@flame.shot"
   tk-shell: "@shell.shot"
   tk-shotgun: "@shotgun.shot"

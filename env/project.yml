@@ -29,7 +29,7 @@ includes:
 #- ./includes/motionbuilder/project.yml
 - ./includes/nuke/project.yml
 - ./includes/nukestudio/project.yml
-#- ./includes/photoshopcc/project.yml
+- ./includes/photoshopcc/project.yml
 - ./includes/shell/project.yml
 - ./includes/shotgun/project.yml
 
@@ -47,7 +47,7 @@ engines:
 #  tk-motionbuilder: "@motionbuilder.project"
   tk-nuke: "@nuke.project"
   tk-nukestudio: "@nukestudio.project"
-#  tk-photoshopcc: "@photoshopcc.project"
+  tk-photoshopcc: "@photoshopcc.project"
 #  tk-flame: "@flame.project"
   tk-shell: "@shell.project"
   tk-shotgun: "@shotgun.project"

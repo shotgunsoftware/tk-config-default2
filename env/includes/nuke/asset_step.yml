@@ -18,6 +18,7 @@ includes:
 - ../common/engine_locations.yml
 - ../common/settings/tk-multi-loader2.yml
 - ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
 - ../common/settings/tk-nuke-quickdailies.yml
 - ../common/settings/tk-nuke-writenode.yml
 

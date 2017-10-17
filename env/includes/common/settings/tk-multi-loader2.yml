@@ -67,3 +67,27 @@ common.settings.tk-multi-loader2.nukestudio:
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
   location: "@common.apps.tk-multi-loader2.location"
+
+# photoshop
+common.settings.tk-multi-loader2.photoshop:
+  action_mappings:
+    Photoshop Image: [add_as_a_layer, open_file]
+    Rendered Image: [add_as_a_layer, open_file]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  location: "@common.apps.tk-multi-loader2.location"

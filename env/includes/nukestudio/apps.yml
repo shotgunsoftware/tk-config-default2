@@ -25,7 +25,7 @@ nukestudio.apps.tk-multi-publish2:
   # provided by the app to inherit drag/drop and file browsing collection
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work file Template: hiero_project_work
+      Work Template: hiero_project_work
 
   publish_plugins:
 
@@ -38,9 +38,9 @@ nukestudio.apps.tk-multi-publish2:
     hook: "{engine}/tk-multi-publish2/basic/nukestudio_start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{engine}/tk-multi-publish2/basic/nukestudio_publish_project.py"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nukestudio_publish_project.py"
     settings:
-        Publish file Template: hiero_project_publish
+        Publish Template: hiero_project_publish
 
   help_url: "@common.settings.tk-multi-publish2.help_url"
   location: "@common.apps.tk-multi-publish2.location"

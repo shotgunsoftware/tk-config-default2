@@ -20,8 +20,6 @@ includes:
 - ../common/settings/tk-multi-workfiles2.yml
 - ../nukestudio/apps.yml
 
-# this configuration is nearly identical to the nuke studio configuration.
-# TODO...
 hiero.project:
   apps:
 
@@ -47,7 +45,7 @@ hiero.project:
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
   - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
     requires_selection: true}
-  - {app_instance: tk-multi-publish, keep_in_menu: false, name: Publish Project...,
+  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish...,
     requires_selection: true}
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

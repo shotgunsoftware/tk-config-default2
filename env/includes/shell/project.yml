@@ -13,8 +13,10 @@
 # is running in all environments
 
 includes:
+- ../common/app_locations.yml
 - ../common/engine_locations.yml
 - ../common/settings/tk-multi-launchapp.yml
+- ../common/settings/tk-multi-publish2.yml
 - ../common/settings/tk-multi-screeningroom.yml
 
 shell.project:
@@ -23,5 +25,11 @@ shell.project:
     tk-multi-launchhiero: '@common.settings.tk-multi-launchapp.hiero'
     tk-multi-launchmari: '@common.settings.tk-multi-launchapp.mari'
     tk-multi-launchmotionbuilder: '@common.settings.tk-multi-launchapp.motionbuilder'
+
+    # stand alone publisher
+    tk-multi-publish2:
+        help_url: "@common.settings.tk-multi-publish2.help_url"
+        location: "@common.apps.tk-multi-publish2.location"
+
     tk-multi-screeningroom: '@common.settings.tk-multi-screeningroom.rv'
   location: '@common.engines.tk-shell.location'

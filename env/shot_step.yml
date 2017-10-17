@@ -25,7 +25,7 @@ includes:
 #- ./includes/motionbuilder/shot_step.yml
 - ./includes/nuke/shot_step.yml
 - ./includes/nukestudio/shot_step.yml
-#- ./includes/photoshopcc/shot_step.yml
+- ./includes/photoshopcc/shot_step.yml
 - ./includes/shell/shot_step.yml
 - ./includes/shotgun/shot_step.yml
 
@@ -40,7 +40,7 @@ engines:
 #  tk-motionbuilder: "@motionbuilder.shot_step"
   tk-nuke: "@nuke.shot_step"
   tk-nukestudio: "@nukestudio.shot_step"
-#  tk-photoshopcc: "@photoshopcc.shot_step"
+  tk-photoshopcc: "@photoshopcc.shot_step"
   tk-shell: "@shell.shot_step"
   tk-shotgun: "@shotgun.shot_step"
 

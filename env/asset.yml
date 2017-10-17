@@ -31,7 +31,7 @@ includes:
 - ./includes/maya/asset.yml
 #- ./includes/motionbuilder/asset.yml
 - ./includes/nuke/asset.yml
-#- ./includes/photoshopcc/asset.yml
+- ./includes/photoshopcc/asset.yml
 - ./includes/shell/asset.yml
 - ./includes/shotgun/asset.yml
 
@@ -46,7 +46,7 @@ engines:
   tk-maya: "@maya.asset"
 #  tk-motionbuilder: "@motionbuilder.asset"
   tk-nuke: "@nuke.asset"
-#  tk-photoshopcc: "@photoshopcc.asset"
+  tk-photoshopcc: "@photoshopcc.asset"
   tk-shell: "@shell.asset"
   tk-shotgun: "@shotgun.asset"
 

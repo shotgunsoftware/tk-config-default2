@@ -13,56 +13,34 @@
 # is running in its asset step level configuration
 
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
-- apps.yml
+- ./apps.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-loader2.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
 
 photoshopcc.asset_step:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
-    tk-multi-loader2:
-      action_mappings:
-        Photoshop Image: [add_as_a_layer, open_file]
-        Rendered Image: [add_as_a_layer, open_file]
-      entities:
-      - caption: Assets
-        entity_type: Asset
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_asset_type, code]
-      - caption: Shots
-        entity_type: Shot
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_sequence, code]
-      - caption: My Tasks
-        entity_type: Task
-        filters:
-        - [task_assignees, is, '{context.user}']
-        - [project, is, '{context.project}']
-        hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
-    tk-multi-publish2: "@photoshopcc.apps.tk-multi-publish2"
-    tk-multi-screeningroom: '@launch_screeningroom'
+
+    # Multi apps
+    tk-multi-about:
+      location: "@common.apps.tk-multi-about.location"
+    tk-multi-loader2: "@common.settings.tk-multi-loader2.photoshop"
+    tk-multi-publish2: "@photoshop.apps.tk-multi-publish2.asset_step"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
     tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
       template_snapshot: photoshop_asset_snapshot
       template_work: photoshop_asset_work
+      location: "@common.apps.tk-multi-snapshot.location"
     tk-multi-workfiles2:
-      location: '@common.apps.workfiles2.location'
       template_publish: photoshop_asset_publish
       template_publish_area: asset_publish_area_photoshop
       template_work: photoshop_asset_work
       template_work_area: asset_work_area_photoshop
-    tk-multi-shotgunpanel:
-      location: '@common.apps.tk-multi-shotgunpanel.location'
+      location: "@common.apps.tk-multi-workfiles2.location"
+
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

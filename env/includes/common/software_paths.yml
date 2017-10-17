@@ -24,7 +24,7 @@ common.path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2014\
 
 # Hiero
 common.path.linux.hiero: "Nuke10.5v1"
-common.path.mac.hiero: "/Applications/Nuke10.5v1/Hiero10.5v1.app"
+common.path.mac.hiero: "/Applications/Nuke11.0v2/Hiero11.0v2.app"
 common.path.windows.hiero: C:\Program Files\Nuke10.5v1\Nuke11.0v2.exe
 
 # RV

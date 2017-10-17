@@ -26,7 +26,7 @@ includes:
 #- ./includes/motionbuilder/asset_step.yml
 - ./includes/nuke/asset_step.yml
 - ./includes/nukestudio/asset_step.yml
-#- ./includes/photoshopcc/asset_step.yml
+- ./includes/photoshopcc/asset_step.yml
 - ./includes/shell/asset_step.yml
 - ./includes/shotgun/asset_step.yml
 
@@ -42,7 +42,7 @@ engines:
 #  tk-motionbuilder: "@motionbuilder.asset_step"
   tk-nuke: "@nuke.asset_step"
   tk-nukestudio: "@nukestudio.asset_step"
-#  tk-photoshopcc: "@photoshopcc.asset_step"
+  tk-photoshopcc: "@photoshopcc.asset_step"
   tk-shell: "@shell.asset_step"
   tk-shotgun: "@shotgun.asset_step"
 
