@@ -91,6 +91,12 @@ common.apps.tk-multi-workfiles2.location:
   name: tk-multi-workfiles2
   version: v0.9.6
 
+# workfiles
+common.apps.tk-multi-workfiles.location:
+  type: app_store
+  name: tk-multi-workfiles
+  version: v0.7.4
+
 # ---- Shotgun apps
 
 # shotgun folders
