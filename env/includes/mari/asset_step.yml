@@ -13,8 +13,9 @@
 # is running in its asset step level configuration
 
 includes:
-- ../common/apps.yml
-- ../common/engines.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ./apps.yml
 
 mari.asset_step:
   apps:
@@ -24,12 +25,10 @@ mari.asset_step:
         type: app_store
         name: tk-mari-projectmanager
       template_new_project_name: mari_asset_project_name
-    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-about:
+      location: '@common.apps.tk-multi-about.location'
     tk-multi-breakdown:
-      location:
-        version: v1.4.6
-        type: app_store
-        name: tk-multi-breakdown
+      location: '@common.apps.tk-multi-breakdown.location'
     tk-multi-loader2:
       entities:
       - caption: Assets
@@ -45,42 +44,9 @@ mari.asset_step:
         - [project, is, '{context.project}']
         hierarchy: [entity, content]
         publish_filters: []
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
+      location: '@common.apps.tk-multi-loader2.location'
       title_name: Import
-    tk-multi-publish:
-      expand_single_items: true
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_description: Publish items from the current Mari project
-      primary_display_name: Mari Publish
-      primary_icon: icons/publish_mari_main.png
-      primary_tank_type: Mari Scene
-      secondary_outputs:
-      - description: Publish flattened channels
-        display_group: Texture Channels
-        display_name: Channels
-        icon: icons/mari_channel_publish.png
-        name: channel
-        publish_template: asset_mari_texture_tif
-        required: false
-        scene_item_type: channel
-        selected: false
-        tank_type: UDIM Image
-      - description: Publish individual layers for channels
-        display_group: Texture Channel Layers
-        display_name: Layers
-        icon: icons/mari_layer_publish.png
-        name: layer
-        publish_template: asset_mari_texture_tif
-        required: false
-        scene_item_type: layer
-        selected: false
-        tank_type: UDIM Image
+    tk-multi-publish2: '@mari.apps.tk-multi-publish2.asset_step'
     tk-multi-workfiles:
       location:
         version: v0.7.4

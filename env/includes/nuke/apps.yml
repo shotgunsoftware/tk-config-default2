@@ -33,7 +33,7 @@ nuke.apps.tk-multi-publish2.asset_step:
   - "@common.settings.tk-multi-publish2.publish_file"
   - "@common.settings.tk-multi-publish2.upload_version"
 
-  # Maya-specific asset publish plugin configurations
+  # Nuke-specific asset publish plugin configurations
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
     settings: {}
@@ -62,7 +62,7 @@ nuke.apps.tk-multi-publish2.shot_step:
   - "@common.settings.tk-multi-publish2.publish_file"
   - "@common.settings.tk-multi-publish2.upload_version"
 
-  # Maya-specific shot publish plugin configurations
+  # Nuke-specific shot publish plugin configurations
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
     settings: {}

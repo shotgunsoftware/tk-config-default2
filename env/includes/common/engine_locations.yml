@@ -32,10 +32,8 @@ common.engines.tk-maya.location:
     #type: app_store
     #name: tk-maya
     #version: v0.8.1
-    type: git_branch
-    branch: 44077_def2_pub2_templates
-    path: https://github.com/shotgunsoftware/tk-maya.git
-    version: bd5da0539d8f1e74e5f3c930224f3621be8bb211
+    type: dev
+    path: D:\projects\shotgun\manual\tk-maya
 
 # Nuke
 common.engines.tk-nuke.location:
@@ -85,7 +83,9 @@ common.engines.tk-motionbuilder.location:
 
 # Mari
 common.engines.tk-mari.location:
-    version: v1.1.4
-    type: app_store
-    name: tk-mari
+#    version: v1.1.4
+#    type: app_store
+#    name: tk-mari
+    type: dev
+    path: D:\projects\shotgun\manual\tk-mari
 

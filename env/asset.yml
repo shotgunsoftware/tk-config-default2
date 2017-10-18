@@ -27,7 +27,7 @@ includes:
 # DCC-specific asset environments
 #- ./includes/3dsmax/asset.yml
 - ./includes/houdini/asset.yml
-#- ./includes/mari/asset.yml
+- ./includes/mari/asset.yml
 - ./includes/maya/asset.yml
 #- ./includes/motionbuilder/asset.yml
 - ./includes/nuke/asset.yml
@@ -42,7 +42,7 @@ engines:
   # referencing the DCC-specific project environments included above
 #  tk-3dsmaxplus: "@3dsmax.asset"
   tk-houdini: "@houdini.asset"
-#  tk-mari: "@mari.asset"
+  tk-mari: "@mari.asset"
   tk-maya: "@maya.asset"
 #  tk-motionbuilder: "@motionbuilder.asset"
   tk-nuke: "@nuke.asset"
