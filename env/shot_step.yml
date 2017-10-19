@@ -11,7 +11,7 @@
 
 description: Apps and Engines related to Shot based work.
 
-#################################################################################################
+################################################################################
 
 includes:
 
@@ -29,22 +29,22 @@ includes:
 - ./includes/shell/shot_step.yml
 - ./includes/shotgun/shot_step.yml
 
-#################################################################################################
-# define all the items that should appear in this environment
+################################################################################
+# configuration for all engines to load in a shot step context
 
 engines:
   # referencing the DCC-specific shot_step environments included above
-#  tk-3dsmaxplus: "@3dsmax.shot_step"
+  #tk-3dsmaxplus: "@3dsmax.shot_step"
   tk-houdini: "@houdini.shot_step"
   tk-maya: "@maya.shot_step"
-#  tk-motionbuilder: "@motionbuilder.shot_step"
+  #tk-motionbuilder: "@motionbuilder.shot_step"
   tk-nuke: "@nuke.shot_step"
   tk-nukestudio: "@nukestudio.shot_step"
   tk-photoshopcc: "@photoshopcc.shot_step"
   tk-shell: "@shell.shot_step"
   tk-shotgun: "@shotgun.shot_step"
 
-#################################################################################################
-# frameworks required for this environment
+################################################################################
+# reference all of the common frameworks
 
 frameworks: "@common.frameworks"

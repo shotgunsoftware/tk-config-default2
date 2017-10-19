@@ -12,6 +12,8 @@
 # this configuration defines the behavior of the Tank command when it
 # is running in all environments
 
+################################################################################
+
 includes:
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
@@ -19,17 +21,21 @@ includes:
 - ../common/settings/tk-multi-publish2.yml
 - ../common/settings/tk-multi-screeningroom.yml
 
+################################################################################
+
 shell.project:
   apps:
+
+    # ---- Multi apps
+
+    # These app configurations are included and referenced via
+    # env/includes/common/settings/{app_name}.yml
     tk-multi-launchapp: '@common.settings.tk-multi-launchapp'
     tk-multi-launchhiero: '@common.settings.tk-multi-launchapp.hiero'
     tk-multi-launchmari: '@common.settings.tk-multi-launchapp.mari'
     tk-multi-launchmotionbuilder: '@common.settings.tk-multi-launchapp.motionbuilder'
-
-    # stand alone publisher
-    tk-multi-publish2:
-        help_url: "@common.settings.tk-multi-publish2.help_url"
-        location: "@common.apps.tk-multi-publish2.location"
-
+    tk-multi-publish2: "@common.settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: '@common.settings.tk-multi-screeningroom.rv'
+
+  # engine settings
   location: '@common.engines.tk-shell.location'

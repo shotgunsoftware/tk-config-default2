@@ -17,6 +17,54 @@ includes:
 
 ################################################################################
 
+# houdini
+common.settings.tk-multi-loader2.houdini:
+  action_mappings:
+    Alembic Cache: [import]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  location: "@common.apps.tk-multi-loader2.location"
+
+# maya
+common.settings.tk-multi-loader2.maya:
+  action_mappings:
+    Maya Scene: [reference, import]
+    Photoshop Image: [texture_node]
+    Rendered Image: [texture_node]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, "{context.project}"]
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, "{context.project}"]
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, "{context.user}"]
+    - [project, is, "{context.project}"]
+    hierarchy: [entity, content]
+  location: "@common.apps.tk-multi-loader2.location"
+
 # nuke
 common.settings.tk-multi-loader2.nuke:
   action_mappings:

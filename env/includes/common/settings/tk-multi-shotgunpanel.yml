@@ -17,7 +17,7 @@ includes:
 
 ################################################################################
 
-# basic shotgun panel
+# generic
 common.settings.tk-multi-shotgunpanel:
   action_mappings:
     PublishedFile:
@@ -31,7 +31,24 @@ common.settings.tk-multi-shotgunpanel:
       filters: {}
   location: "@common.apps.tk-multi-shotgunpanel.location"
 
-# reused nukestudio configuration
+# maya
+common.settings.tk-multi-shotgunpanel.maya:
+  action_mappings:
+    PublishedFile:
+    - actions: [reference, import]
+      filters: {published_file_type: Maya Scene}
+    - actions: [texture_node]
+      filters: {published_file_type: Rendered Image}
+    - actions: [texture_node]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [udim_texture_node]
+      filters: {published_file_type: UDIM Image}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+  location: "@common.apps.tk-multi-shotgunpanel.location"
+
+# nuke
 common.settings.tk-multi-shotgunpanel.nuke:
   action_mappings:
     PublishedFile:

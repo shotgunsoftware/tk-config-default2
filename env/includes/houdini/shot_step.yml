@@ -12,80 +12,50 @@
 # this configuration defines the behavior of the Houdini Integration when it
 # is running in its shot step level configuration
 
+################################################################################
+
 includes:
-- ./apps.yml
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
+- ../common/settings/tk-houdini-alembicnode.yml
+- ../common/settings/tk-houdini-mantranode.yml
+- ../common/settings/tk-multi-loader2.yml
+- ../common/settings/tk-multi-publish2.yml
 - ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-multi-snapshot.yml
+- ../common/settings/tk-multi-workfiles2.yml
+
+################################################################################
 
 houdini.shot_step:
   apps:
+
+    # ---- Multi apps
+
+    # Simple app configurations where only the location setting is required
     tk-multi-about:
       location: "@common.apps.tk-multi-about.location"
     tk-multi-breakdown:
       location: "@common.apps.tk-multi-breakdown.location"
-    tk-multi-loader2:
-      action_mappings:
-        Alembic Cache: [import]
-      entities:
-      - caption: Assets
-        entity_type: Asset
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_asset_type, code]
-      - caption: Shots
-        entity_type: Shot
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_sequence, code]
-      - caption: My Tasks
-        entity_type: Task
-        filters:
-        - [task_assignees, is, '{context.user}']
-        - [project, is, '{context.project}']
-        hierarchy: [entity, content]
-      location: "@common.apps.tk-multi-loader2.location"
-    tk-multi-publish2: "@houdini.apps.tk-multi-publish2.shot_step"
-    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
     tk-multi-setframerange:
       location: "@common.apps.tk-multi-setframerange.location"
-    tk-multi-shotgunpanel:
-      action_mappings:
-        Task:
-        - actions: [assign_task, task_to_ip]
-          filters: {}
-      location: "@common.apps.tk-multi-shotgunpanel.location"
-    tk-multi-snapshot:
-      location: "@common.apps.tk-multi-snapshot.location"
-      template_snapshot: houdini_shot_snapshot
-      template_work: houdini_shot_work
-    tk-multi-workfiles2:
-      location: '@common.apps.tk-multi-workfiles2.location'
-      template_publish: houdini_shot_publish
-      template_publish_area: shot_publish_area_houdini
-      template_work: houdini_shot_work
-      template_work_area: shot_work_area_houdini
-    tk-houdini-alembicnode:
-      work_file_template: houdini_shot_work
-      default_node_name: sg_alembic_out
-      output_profiles:
-      - name: Shot Work Cache
-        settings: {}
-        color: []
-        output_cache_template: houdini_shot_work_alembic_cache
-      location: "@common.apps.tk-houdini-alembicnode.location"
-    tk-houdini-mantranode:
-      work_file_template: houdini_shot_work
-      default_node_name: sg_mantra_out
-      output_profiles:
-      - name: Default Render
-        settings: {}
-        color: []
-        output_render_template: houdini_shot_render
-        output_ifd_template: houdini_shot_ifd
-        output_dcm_template: houdini_shot_dcm
-        output_extra_plane_template: houdini_shot_extra_plane
-      location: "@common.apps.tk-houdini-mantranode.location"
+
+    # More complex configurations. These app configurations are included and
+    # referenced via env/includes/common/settings/{app_name}.yml
+    tk-multi-loader2: "@common.settings.tk-multi-loader2.houdini"
+    tk-multi-publish2: "@common.settings.tk-multi-publish2.houdini.shot_step"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
+    tk-multi-snapshot: "@common.settings.tk-multi-snapshot.houdini.shot_step"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.houdini.shot_step"
+
+    # ---- Houdini apps
+
+    tk-houdini-alembicnode: "@common.settings.tk-houdini-alembicnode.shot_step"
+    tk-houdini-mantranode: "@common.settings.tk-houdini-mantranode.shot_step"
+
+  # engine settings
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

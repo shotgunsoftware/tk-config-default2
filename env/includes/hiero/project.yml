@@ -12,47 +12,74 @@
 # this configuration defines the behavior of the Hiero Integration when it
 # is running in its project level configuration
 
+################################################################################
+
 includes:
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
 - ../common/settings/tk-hiero-export.yml
+- ../common/settings/tk-multi-publish2.yml
 - ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-multi-snapshot.yml
 - ../common/settings/tk-multi-workfiles2.yml
-- ../nukestudio/apps.yml
+
+################################################################################
 
 hiero.project:
   apps:
 
-    # Hiero/NukeStudio apps
-    tk-hiero-export: "@common.settings.tk-hiero-export"
+    # ---- Multi apps
+
+    # Simple app configurations where only the location setting is required
+    tk-multi-about:
+      location: "@common.apps.tk-multi-about.location"
+
+    # More complex configurations. These app configurations are included and
+    # referenced via env/includes/common/settings/{app_name}.yml
+    tk-multi-publish2: "@common.settings.tk-multi-publish2.nukestudio"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
+    tk-multi-snapshot: "@common.settings.tk-multi-snapshot.hiero"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.hiero"
+
+    # ---- Hiero/NukeStudio apps
+
     tk-hiero-openinshotgun:
       location: "@common.apps.tk-hiero-openinshotgun.location"
 
-    # Multi apps
-    tk-multi-about:
-      location: "@common.apps.tk-multi-about.location"
-    tk-multi-publish2: '@nukestudio.apps.tk-multi-publish2'
-    tk-multi-snapshot:
-      template_snapshot: hiero_project_snapshot
-      template_work: hiero_project_work
-      location: "@common.apps.tk-multi-snapshot.location"
-    tk-multi-shotgunpanel: '@common.settings.tk-multi-shotgunpanel'
-    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.nukestudio"
+    tk-hiero-export: "@common.settings.tk-hiero-export"
 
+  # engine settings
   bin_context_menu:
-  - {app_instance: tk-multi-workfiles2, keep_in_menu: false, name: File Save...,
-    requires_selection: true}
-  - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot..., requires_selection: true}
-  - {app_instance: tk-multi-snapshot, keep_in_menu: false, name: Snapshot History...,
-    requires_selection: true}
-  - {app_instance: tk-multi-publish2, keep_in_menu: false, name: Publish...,
-    requires_selection: true}
-  menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - app_instance: tk-multi-workfiles2
+    keep_in_menu: false
+    name: "File Save..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot History..."
+    requires_selection: true
+  - app_instance: tk-multi-publish2
+    keep_in_menu: false
+    name: "Publish..."
+    requires_selection: true
+
   spreadsheet_context_menu:
-  - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
-    requires_selection: true}
+  - app_instance: tk-hiero-openinshotgun
+    keep_in_menu: false
+    name: "Open in Shotgun"
+    requires_selection: true
+
   timeline_context_menu:
-  - {app_instance: tk-hiero-openinshotgun, keep_in_menu: false, name: Open in Shotgun,
-    requires_selection: true}
-  location: '@common.engines.tk-nuke.location'
+  - app_instance: tk-hiero-openinshotgun
+    keep_in_menu: false
+    name: "Open in Shotgun"
+    requires_selection: true
+
+  menu_favourites:
+  - app_instance: tk-multi-workfiles2
+    name: "File Open..."
+  location: "@common.engines.tk-nuke.location"

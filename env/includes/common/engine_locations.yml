@@ -11,11 +11,25 @@
 
 # locations for common engines
 
+################################################################################
+
 # 3dsMax
 common.engines.tk-3dsmaxplus.location:
     type: app_store
     name: tk-3dsmaxplus
     version: v0.4.1
+
+# Desktop
+common.engines.tk-desktop.location:
+    type: app_store
+    name: tk-desktop
+    version: v2.3.7
+
+# Flame
+common.engines.tk-flame.location:
+    type: app_store
+    name: tk-flame
+    version: v1.9.4
 
 # Houdini
 common.engines.tk-houdini.location:
@@ -29,6 +43,12 @@ common.engines.tk-houdini.location:
     #type: dev
     #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini
 
+# Mari
+common.engines.tk-mari.location:
+    version: v1.1.4
+    type: app_store
+    name: tk-mari
+
 # Maya
 common.engines.tk-maya.location:
     #type: app_store
@@ -40,6 +60,12 @@ common.engines.tk-maya.location:
     version: 16934b660382ca2c2afff1344dc14c17cc912538
     #type: dev
     #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-maya
+
+# Motion Builder
+common.engines.tk-motionbuilder.location:
+    version: v0.3.1
+    type: app_store
+    name: tk-motionbuilder
 
 # Nuke
 common.engines.tk-nuke.location:
@@ -65,39 +91,16 @@ common.engines.tk-photoshopcc.location:
     #type: dev
     #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-photoshopcc
 
-# Flame
-common.engines.tk-flame.location:
-    type: app_store
-    name: tk-flame
-    version: v1.9.4
-
-# Desktop
-common.engines.tk-desktop.location:
-    type: app_store
-    name: tk-desktop
-    version: v2.3.7
-
 # Shell
 common.engines.tk-shell.location:
     type: app_store
     name: tk-shell
     version: v0.5.4
 
-# shotgun
+# Shotgun
 common.engines.tk-shotgun.location:
     type: app_store
     name: tk-shotgun
     version: v0.6.0
 
-# Motion Builder
-common.engines.tk-motionbuilder.location:
-    version: v0.3.1
-    type: app_store
-    name: tk-motionbuilder
-
-# Mari
-common.engines.tk-mari.location:
-    version: v1.1.4
-    type: app_store
-    name: tk-mari
 

@@ -9,15 +9,16 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when an Asset is loaded. Since std VFX config
-  template has a file system structure which is centered around pipeline steps, this
-  environment is largely empty. Most of the work takes place on a level in the file
-  system where both an asset and a pipeline step is available - e.g Asset Hero, modeling,
-  so all apps for loading, publishing etc. are located in the asset_step environment.
-  This environment mostly contains utility apps and the tank work files app, which
-  lets you choose a task to work on and load associated content into an application.
+description: Apps and engines loaded when an Asset is loaded. Since std VFX
+  config template has a file system structure which is centered around pipeline
+  steps, this environment is largely empty. Most of the work takes place on a
+  level in the file system where both an asset and a pipeline step is available
+  - e.g Asset Hero, modeling, so all apps for loading, publishing etc. are
+  located in the asset_step environment. This environment mostly contains
+  utility apps and the tank work files app, which lets you choose a task to work
+  on and load associated content into an application.
 
-#################################################################################################
+################################################################################
 
 includes:
 
@@ -35,22 +36,21 @@ includes:
 - ./includes/shell/asset.yml
 - ./includes/shotgun/asset.yml
 
-#################################################################################################
-# define all the items that should appear in this environment
+################################################################################
+# configuration for all engines to load in an asset context
 
 engines:
-  # referencing the DCC-specific project environments included above
-#  tk-3dsmaxplus: "@3dsmax.asset"
+  #tk-3dsmaxplus: "@3dsmax.asset"
   tk-houdini: "@houdini.asset"
-#  tk-mari: "@mari.asset"
+  #tk-mari: "@mari.asset"
   tk-maya: "@maya.asset"
-#  tk-motionbuilder: "@motionbuilder.asset"
+  #tk-motionbuilder: "@motionbuilder.asset"
   tk-nuke: "@nuke.asset"
   tk-photoshopcc: "@photoshopcc.asset"
   tk-shell: "@shell.asset"
   tk-shotgun: "@shotgun.asset"
 
-#################################################################################################
-# frameworks required for this environment
+################################################################################
+# reference all of the common frameworks
 
 frameworks: "@common.frameworks"

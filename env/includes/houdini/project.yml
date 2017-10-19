@@ -12,6 +12,8 @@
 # this configuration defines the behavior of the Houdini Integration when it
 # is running in its project level configuration
 
+################################################################################
+
 includes:
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
@@ -19,14 +21,24 @@ includes:
 - ../common/settings/tk-multi-shotgunpanel.yml
 - ../common/settings/tk-multi-workfiles2.yml
 
+################################################################################
 
 houdini.project:
   apps:
+
+    # ---- Multi apps
+
+    # Simple app configurations where only the location setting is required
     tk-multi-about:
       location: "@common.apps.tk-multi-about.location"
-    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
+
+    # More complex configurations. These app configurations are included and
+    # referenced via env/includes/common/settings/{app_name}.yml
     tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2"
-  location: "@common.engines.tk-houdini.location"
+
+  # engine settings
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@common.engines.tk-houdini.location"
