@@ -23,13 +23,13 @@ common.engines.tk-3dsmaxplus.location:
 common.engines.tk-desktop.location:
     type: app_store
     name: tk-desktop
-    version: v2.3.7
+    version: v2.3.10
 
 # Flame
 common.engines.tk-flame.location:
     type: app_store
     name: tk-flame
-    version: v1.9.4
+    version: v1.9.9
 
 # Houdini
 common.engines.tk-houdini.location:
@@ -40,12 +40,10 @@ common.engines.tk-houdini.location:
     branch: 44077_defcon2
     path: https://github.com/shotgunsoftware/tk-houdini.git
     version: 449265c7362b77f08bdd3cb248df7d48d57301a5
-    #type: dev
-    #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini
 
 # Mari
 common.engines.tk-mari.location:
-    version: v1.1.4
+    version: v1.1.5
     type: app_store
     name: tk-mari
 
@@ -58,8 +56,6 @@ common.engines.tk-maya.location:
     branch: 44077_def2_pub2_templates
     path: https://github.com/shotgunsoftware/tk-maya.git
     version: 16934b660382ca2c2afff1344dc14c17cc912538
-    #type: dev
-    #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-maya
 
 # Motion Builder
 common.engines.tk-motionbuilder.location:
@@ -76,8 +72,6 @@ common.engines.tk-nuke.location:
     branch: 44077_defcon2
     path: https://github.com/shotgunsoftware/tk-nuke.git
     version: 47e5d82e49e2f7fa370c7e6574641721c5e4cd90
-    #type: dev
-    #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-nuke
 
 # Photoshop
 common.engines.tk-photoshopcc.location:
@@ -88,8 +82,6 @@ common.engines.tk-photoshopcc.location:
     branch: 44077_defcon2
     path: https://github.com/shotgunsoftware/tk-photoshopcc.git
     version: 2eb6bf1f3baaaf5024d5ae5c44c623462e0da170
-    #type: dev
-    #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-photoshopcc
 
 # Shell
 common.engines.tk-shell.location:
