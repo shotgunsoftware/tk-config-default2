@@ -26,7 +26,7 @@ includes:
 - ./includes/common/frameworks.yml
 
 # DCC-specific shot environments
-#- ./includes/3dsmax/shot.yml
+- ./includes/3dsmax/shot.yml
 #- ./includes/flame/shot.yml
 - ./includes/houdini/shot.yml
 - ./includes/maya/shot.yml
@@ -41,7 +41,7 @@ includes:
 
 engines:
   # referencing the DCC-specific shot environments included above
-  #tk-3dsmaxplus: "@3dsmax.shot"
+  tk-3dsmaxplus: "@3dsmax.shot"
   tk-houdini: "@houdini.shot"
   tk-maya: "@maya.shot"
   #tk-motionbuilder: "@motionbuilder.shot"

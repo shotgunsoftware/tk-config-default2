@@ -97,6 +97,24 @@ common.settings.tk-multi-workfiles2.launch_at_startup:
 
 ################################################################################
 
+# ---- 3dsmax
+
+common.settings.tk-multi-workfiles2.3dsmax.asset_step:
+  template_publish: max_asset_publish
+  template_publish_area: asset_publish_area_max
+  template_work: max_asset_work
+  template_work_area: asset_work_area_max
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+common.settings.tk-multi-workfiles2.3dsmax.shot_step:
+  template_publish: max_shot_publish
+  template_publish_area: shot_publish_area_max
+  template_work: max_shot_work
+  template_work_area: shot_work_area_max
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+################################################################################
+
 # ---- hiero/nukestudio
 
 common.settings.tk-multi-workfiles2.hiero:

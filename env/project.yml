@@ -19,7 +19,7 @@ includes:
 - ./includes/common/frameworks.yml
 
 # DCC-specific project environments
-#- ./includes/3dsmax/project.yml
+- ./includes/3dsmax/project.yml
 - ./includes/desktop/project.yml
 #- ./includes/flame/project.yml
 - ./includes/hiero/project.yml
@@ -37,7 +37,7 @@ includes:
 # configuration for all engines to load in a project context
 
 engines:
-  #tk-3dsmaxplus: "@3dsmax.project"
+  tk-3dsmaxplus: "@3dsmax.project"
   tk-desktop: "@desktop.project"
   tk-hiero: "@hiero.project"
   tk-houdini: "@houdini.project"

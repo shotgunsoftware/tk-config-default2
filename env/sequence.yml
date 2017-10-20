@@ -26,7 +26,7 @@ includes:
 - ./includes/common/frameworks.yml
 
 # DCC-specific sequence environments
-#- ./includes/3dsmax/sequence.yml
+- ./includes/3dsmax/sequence.yml
 - ./includes/houdini/sequence.yml
 - ./includes/maya/sequence.yml
 #- ./includes/motionbuilder/sequence.yml
@@ -38,7 +38,7 @@ includes:
 # configuration for all engines to load in a sequence context
 
 engines:
-  #tk-3dsmaxplus: "@3dsmax.sequence"
+  tk-3dsmaxplus: "@3dsmax.sequence"
   tk-houdini: "@houdini.sequence"
   tk-maya: "@maya.sequence"
   #tk-motionbuilder: "@motionbuilder.sequence"

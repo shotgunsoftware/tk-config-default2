@@ -18,14 +18,31 @@ includes:
 ################################################################################
 
 # 3dsmax
-#common.settings.tk-multi-loader2.3dsmax:
-#  action_mappings:
-#    3dsmax Scene: [import, reference]
-#    Alembic Cache: [import]
-#    Image: [texture_node]
-#    Rendered Image: [texture_node]
-#    Texture: [texture_node]
-#  location: "@common.apps.tk-multi-loader2.location"
+common.settings.tk-multi-loader2.3dsmax:
+  action_mappings:
+    3dsmax Scene: [import, reference]
+    Alembic Cache: [import]
+    Image: [texture_node]
+    Rendered Image: [texture_node]
+    Texture: [texture_node]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  location: "@common.apps.tk-multi-loader2.location"
 
 # houdini
 common.settings.tk-multi-loader2.houdini:
@@ -53,6 +70,7 @@ common.settings.tk-multi-loader2.houdini:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
   location: "@common.apps.tk-multi-loader2.location"
 
 # maya
@@ -81,6 +99,7 @@ common.settings.tk-multi-loader2.maya:
     - [task_assignees, is, "{context.user}"]
     - [project, is, "{context.project}"]
     hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
   location: "@common.apps.tk-multi-loader2.location"
 
 # nuke
@@ -110,6 +129,7 @@ common.settings.tk-multi-loader2.nuke:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
   location: "@common.apps.tk-multi-loader2.location"
 
 # nuke studio (actions hook)
@@ -141,6 +161,7 @@ common.settings.tk-multi-loader2.nukestudio:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
   location: "@common.apps.tk-multi-loader2.location"
 
 # photoshop
@@ -167,4 +188,5 @@ common.settings.tk-multi-loader2.photoshop:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
   location: "@common.apps.tk-multi-loader2.location"

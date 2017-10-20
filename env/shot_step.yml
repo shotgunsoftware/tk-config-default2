@@ -19,7 +19,7 @@ includes:
 - ./includes/common/frameworks.yml
 
 # DCC-specific shot_step environments
-#- ./includes/3dsmax/shot_step.yml
+- ./includes/3dsmax/shot_step.yml
 - ./includes/houdini/shot_step.yml
 - ./includes/maya/shot_step.yml
 #- ./includes/motionbuilder/shot_step.yml
@@ -34,7 +34,7 @@ includes:
 
 engines:
   # referencing the DCC-specific shot_step environments included above
-  #tk-3dsmaxplus: "@3dsmax.shot_step"
+  tk-3dsmaxplus: "@3dsmax.shot_step"
   tk-houdini: "@houdini.shot_step"
   tk-maya: "@maya.shot_step"
   #tk-motionbuilder: "@motionbuilder.shot_step"

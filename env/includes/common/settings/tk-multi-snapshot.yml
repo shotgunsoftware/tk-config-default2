@@ -17,6 +17,21 @@ includes:
 
 ################################################################################
 
+# ---- 3dsMax
+
+common.settings.tk-multi-snapshot.3dsmax.asset_step:
+  template_snapshot: max_asset_snapshot
+  template_work: max_asset_work
+  location: "@common.apps.tk-multi-snapshot.location"
+
+common.settings.tk-multi-snapshot.3dsmax.shot_step:
+  template_snapshot: max_shot_snapshot
+  template_work: max_shot_work
+  location: "@common.apps.tk-multi-snapshot.location"
+
+
+################################################################################
+
 # ---- Hiero
 
 common.settings.tk-multi-snapshot.hiero:

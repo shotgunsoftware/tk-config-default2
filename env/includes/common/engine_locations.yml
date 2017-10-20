@@ -36,10 +36,12 @@ common.engines.tk-houdini.location:
     #type: app_store
     #name: tk-houdini
     #version: v1.2.2
-    type: git_branch
-    branch: 44077_defcon2
-    path: https://github.com/shotgunsoftware/tk-houdini.git
-    version: 449265c7362b77f08bdd3cb248df7d48d57301a5
+    #type: git_branch
+    #branch: 44077_defcon2
+    #path: https://github.com/shotgunsoftware/tk-houdini.git
+    #version: 449265c7362b77f08bdd3cb248df7d48d57301a5
+    type: dev
+    path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini
 
 # Mari
 common.engines.tk-mari.location:

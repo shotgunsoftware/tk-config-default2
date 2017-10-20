@@ -138,20 +138,24 @@ common.apps.tk-houdini-alembicnode.location:
   #type: app_store
   #name: tk-houdini-alembicnode
   #version: v0.2.5
-  type: git_branch
-  branch: 44077_defcon2
-  path: https://github.com/shotgunsoftware/tk-houdini-alembicnode.git
-  version: 8cef8e50352b9a03ab06798ab2019321025ea02b
+  #type: git_branch
+  #branch: 44077_defcon2
+  #path: https://github.com/shotgunsoftware/tk-houdini-alembicnode.git
+  #version: 8cef8e50352b9a03ab06798ab2019321025ea02b
+  type: dev
+  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini-alembicnode
 
 # houdini mantranode
 common.apps.tk-houdini-mantranode.location:
   #type: app_store
   #name: tk-houdini-mantranode
   #version: v0.2.7
-  type: git_branch
-  branch: 44077_defcon2
-  path: https://github.com/shotgunsoftware/tk-houdini-mantranode.git
-  version: b5a4aee65b0ecf8e2f88369ab3f82a009ff12e0b
+  #type: git_branch
+  #branch: 44077_defcon2
+  #path: https://github.com/shotgunsoftware/tk-houdini-mantranode.git
+  #version: b5a4aee65b0ecf8e2f88369ab3f82a009ff12e0b
+  type: dev
+  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini-mantranode
 
 # ---- Nuke apps
 

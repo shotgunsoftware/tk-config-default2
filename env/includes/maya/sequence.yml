@@ -17,8 +17,8 @@
 includes:
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
-- ../common/settings/tk-multi-shotgunpanel.yml
 - ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
 - ../common/settings/tk-multi-workfiles2.yml
 
 ################################################################################
@@ -34,8 +34,8 @@ maya.sequence:
 
     # More complex configurations. These app configurations are included and
     # referenced via env/includes/common/settings/{app_name}.yml
-    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
     tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.launch_at_startup"
 
   # engine settings
