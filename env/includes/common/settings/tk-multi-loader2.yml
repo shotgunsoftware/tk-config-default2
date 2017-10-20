@@ -17,10 +17,25 @@ includes:
 
 ################################################################################
 
+# 3dsmax
+#common.settings.tk-multi-loader2.3dsmax:
+#  action_mappings:
+#    3dsmax Scene: [import, reference]
+#    Alembic Cache: [import]
+#    Image: [texture_node]
+#    Rendered Image: [texture_node]
+#    Texture: [texture_node]
+#  location: "@common.apps.tk-multi-loader2.location"
+
 # houdini
 common.settings.tk-multi-loader2.houdini:
   action_mappings:
     Alembic Cache: [import]
+    Houdini Scene: [merge]
+    Image: [file_cop]
+    Photoshop Image: [file_cop]
+    Rendered Image: [file_cop]
+    Texture: [file_cop]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -43,9 +58,12 @@ common.settings.tk-multi-loader2.houdini:
 # maya
 common.settings.tk-multi-loader2.maya:
   action_mappings:
+    Alembic Cache: [reference, import]
+    Image: [texture_node, image_plane]
     Maya Scene: [reference, import]
-    Photoshop Image: [texture_node]
-    Rendered Image: [texture_node]
+    Photoshop Image: [texture_node, image_plane]
+    Rendered Image: [texture_node, image_plane]
+    Texture: [texture_node, image_plane]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -68,9 +86,13 @@ common.settings.tk-multi-loader2.maya:
 # nuke
 common.settings.tk-multi-loader2.nuke:
   action_mappings:
-    Nuke Script: [script_import]
-    Rendered Image: [read_node]
     Alembic Cache: [read_node]
+    Image: [read_node]
+    Movie: [read_node]
+    Nuke Script: [script_import]
+    Photoshop Image: [read_node]
+    Rendered Image: [read_node]
+    Texture: [read_node]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -94,9 +116,14 @@ common.settings.tk-multi-loader2.nuke:
 common.settings.tk-multi-loader2.nukestudio:
   actions_hook: '{self}/tk-nuke_actions.py'
   action_mappings:
-    Nuke Script: [script_import]
-    Rendered Image: [read_node]
     Alembic Cache: [read_node]
+    Image: [read_node]
+    Movie: [read_node]
+    Nuke Script: [script_import]
+    NukeStudio Project: [open_project]
+    Photoshop Image: [read_node]
+    Rendered Image: [read_node]
+    Texture: [read_node]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -121,6 +148,8 @@ common.settings.tk-multi-loader2.photoshop:
   action_mappings:
     Photoshop Image: [add_as_a_layer, open_file]
     Rendered Image: [add_as_a_layer, open_file]
+    Image: [add_as_a_layer, open_file]
+    Texture: [add_as_a_layer, open_file]
   entities:
   - caption: Assets
     entity_type: Asset

@@ -40,7 +40,7 @@ photoshopcc.shot_step:
     tk-multi-loader2: "@common.settings.tk-multi-loader2.photoshop"
     tk-multi-publish2: "@common.settings.tk-multi-publish2.photoshop.shot_step"
     tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel.photoshop"
     tk-multi-snapshot: "@common.settings.tk-multi-snapshot.photoshop.shot_step"
     tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.photoshop.shot_step"
 

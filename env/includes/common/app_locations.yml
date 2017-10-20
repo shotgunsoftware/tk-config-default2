@@ -27,6 +27,12 @@ common.apps.tk-multi-breakdown.location:
   name: tk-multi-breakdown
   version: v1.4.6
 
+# demo
+common.apps.tk-multi-demo.location:
+  type: app_store
+  name: tk-multi-demo
+  version: v1.0.0
+
 # launchapp
 common.apps.tk-multi-launchapp.location:
   type: app_store
