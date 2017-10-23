@@ -14,21 +14,19 @@ description: Apps and engines loaded when a PublishedFile or Version is loaded.
   provides the apps that are necessary to display menu actions in the Shotgun
   web application by way of Toolkit"s browser integration.
 
-#################################################################################################
-# include common files
+################################################################################
 
 includes:
 - ./includes/common/frameworks.yml
 - ./includes/shotgun/publishedfile_version.yml
 
-#################################################################################################
-# define all the items that should appear in this environment
+################################################################################
+# configuration for all engines to load in a publishedfile or version context
 
 engines:
-  # referencing the Shotgun-specific environment included above
   tk-shotgun: "@shotgun.publishedfile_version"
 
-#################################################################################################
-# frameworks required for this environment
+################################################################################
+# reference all of the common frameworks
 
 frameworks: "@common.frameworks"

@@ -12,49 +12,49 @@
 # this configuration defines the behavior of the Nuke Integration when it
 # is running in its shot step level configuration
 
+################################################################################
+
 includes:
-- ./apps.yml
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
 - ../common/settings/tk-multi-loader2.yml
+- ../common/settings/tk-multi-publish2.yml
+- ../common/settings/tk-multi-reviewsubmission.yml
 - ../common/settings/tk-multi-screeningroom.yml
 - ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-multi-snapshot.yml
+- ../common/settings/tk-multi-workfiles2.yml
 - ../common/settings/tk-nuke-quickdailies.yml
 - ../common/settings/tk-nuke-writenode.yml
+
+################################################################################
 
 nuke.shot_step:
   apps:
 
-    # Multi apps
+    # ---- Multi apps
     tk-multi-about:
       location: "@common.apps.tk-multi-about.location"
     tk-multi-breakdown:
       location: "@common.apps.tk-multi-breakdown.location"
-    tk-multi-loader2: "@common.settings.tk-multi-loader2.nuke"
-    tk-multi-publish2: "@nuke.apps.tk-multi-publish2.shot_step"
-    tk-multi-reviewsubmission:
-      movie_path_template: nuke_shot_render_movie
-      slate_logo: icons/review_submit_logo.png
-      location: "@common.apps.tk-multi-reviewsubmission.location"
-    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
     tk-multi-setframerange:
       location: "@common.apps.tk-multi-setframerange.location"
-    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel.nuke"
-    tk-multi-snapshot:
-      template_snapshot: nuke_shot_snapshot
-      template_work: nuke_shot_work
-      location: "@common.apps.tk-multi-snapshot.location"
-    tk-multi-workfiles2:
-      template_publish: nuke_shot_publish
-      template_publish_area: shot_publish_area_nuke
-      template_work: nuke_shot_work
-      template_work_area: shot_work_area_nuke
-      location: "@common.apps.tk-multi-workfiles2.location"
 
-    # Nuke apps
+    # More complex configurations. These app configurations are included and
+    # referenced via env/includes/common/settings/{app_name}.yml
+    tk-multi-loader2: "@common.settings.tk-multi-loader2.nuke"
+    tk-multi-publish2: "@common.settings.tk-multi-publish2.nuke.shot_step"
+    tk-multi-reviewsubmission: "@common.settings.tk-multi-reviewsubmission.nuke.shot"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-snapshot: "@common.settings.tk-multi-snapshot.nuke.shot_step"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.nuke.shot_step"
+
+    # ---- Nuke apps
     tk-nuke-quickdailies: "@common.settings.tk-nuke-quickdailies.shot"
     tk-nuke-writenode: "@common.settings.tk-nuke-writenode.shot"
 
+  # engine settings
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

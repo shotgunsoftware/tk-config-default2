@@ -12,57 +12,39 @@
 # this configuration defines the behavior of the Photoshop Integration when it
 # is running in its shot step level configuration
 
+################################################################################
+
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
-- apps.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-loader2.yml
+- ../common/settings/tk-multi-publish2.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-multi-snapshot.yml
+- ../common/settings/tk-multi-workfiles2.yml
+
+################################################################################
 
 photoshopcc.shot_step:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
-    tk-multi-loader2:
-      action_mappings:
-        Photoshop Image: [add_as_a_layer, open_file]
-        Rendered Image: [add_as_a_layer, open_file]
-      entities:
-      - caption: Assets
-        entity_type: Asset
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_asset_type, code]
-      - caption: Shots
-        entity_type: Shot
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_sequence, code]
-      - caption: My Tasks
-        entity_type: Task
-        filters:
-        - [task_assignees, is, '{context.user}']
-        - [project, is, '{context.project}']
-        hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
-    tk-multi-publish2: "@photoshopcc.apps.tk-multi-publish2"
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
-      template_snapshot: photoshop_shot_snapshot
-      template_work: photoshop_shot_work
-    tk-multi-workfiles2:
-      location: '@common.apps.workfiles2.location'
-      template_publish: photoshop_shot_publish
-      template_publish_area: shot_publish_area_photoshop
-      template_work: photoshop_shot_work
-      template_work_area: shot_work_area_photoshop
-    tk-multi-shotgunpanel:
-      location: '@common.apps.tk-multi-shotgunpanel.location'
+
+    # ---- Multi apps
+
+    # Simple app configurations where only the location setting is required
+    tk-multi-about:
+      location: "@common.apps.tk-multi-about.location"
+
+    # More complex configurations. These app configurations are included and
+    # referenced via env/includes/common/settings/{app_name}.yml
+    tk-multi-loader2: "@common.settings.tk-multi-loader2.photoshop"
+    tk-multi-publish2: "@common.settings.tk-multi-publish2.photoshop.shot_step"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel.photoshop"
+    tk-multi-snapshot: "@common.settings.tk-multi-snapshot.photoshop.shot_step"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.photoshop.shot_step"
+
+  # engine settings
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

@@ -9,38 +9,43 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: This environment controls what items should be shown on the menu in Shotgun
-  for assets.
+description: This environment controls what items should be shown on the menu in
+  Shotgun for assets.
 
-#################################################################################################
-# include common definitions for all the launchers that are used to start maya, nuke etc.
+################################################################################
 
 includes:
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
 - ../common/settings/tk-multi-launchapp.yml
 - ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-shotgun-folders.yml
+- ../common/settings/tk-shotgun-launchfolder.yml
 
-#################################################################################################
+################################################################################
 # Define all the items that should appear in this environment
 #
 # Note! This environment is special and is only used by the Shotgun action
 # menu integration. It can only contain a Shotgun engine and the file name
 # reflects the entity type for which a menu will be generated in Shotgun.
-#
+
 shotgun.asset:
   apps:
+
+    # ---- Multi apps
+
+    # These app configurations are included and referenced via
+    # env/includes/common/settings/{app_name}.yml
     tk-multi-launchapp: "@common.settings.tk-multi-launchapp"
     tk-multi-launchmari: "@common.settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@common.settings.tk-multi-launchapp.motionbuilder"
     tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
-    tk-shotgun-folders:
-      deny_permissions: []
-      deny_platforms: []
-      location: "@common.apps.tk-shotgun-folders.location"
-    tk-shotgun-launchfolder:
-      deny_permissions: []
-      deny_platforms: []
-      location: "@common.apps.tk-shotgun-launchfolder.location"
+
+    # ---- Shotgun apps
+
+    tk-shotgun-folders: "@common.settings.tk-shotgun-folders"
+    tk-shotgun-launchfolder: "@common.settings.tk-shotgun-launchfolder"
+
+  # engine settings
   debug_logging: false
   location: "@common.engines.tk-shotgun.location"

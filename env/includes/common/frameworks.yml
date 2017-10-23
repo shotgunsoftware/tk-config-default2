@@ -9,7 +9,10 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-# define all required frameworks here
+################################################################################
+# A single, top-level setting is defined: "@common.frameworks". This setting can
+# be included and referenced wherever shared frameworks are required.
+
 common.frameworks:
 
   # adminui - provides GUIs for administrative commands
@@ -22,7 +25,7 @@ common.frameworks:
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.1.15
+      version: v1.2.0
       type: app_store
       name: tk-framework-desktopserver
 

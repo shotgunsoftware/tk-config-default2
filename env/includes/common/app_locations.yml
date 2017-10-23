@@ -27,6 +27,12 @@ common.apps.tk-multi-breakdown.location:
   name: tk-multi-breakdown
   version: v1.4.6
 
+# demo
+common.apps.tk-multi-demo.location:
+  type: app_store
+  name: tk-multi-demo
+  version: v1.0.0
+
 # launchapp
 common.apps.tk-multi-launchapp.location:
   type: app_store
@@ -37,7 +43,7 @@ common.apps.tk-multi-launchapp.location:
 common.apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.17.3
+  version: v1.18.0
 
 # publish2
 common.apps.tk-multi-publish2.location:
@@ -47,13 +53,13 @@ common.apps.tk-multi-publish2.location:
   type: git_branch
   branch: 44077_defcon2
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: a65dade2ea8ef758fc913d8c710de0d25c2759b1
+  version: f38a7f83d753a62a42ed93d375714e994ff0e82f
 
 # pythonconsole
 common.apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.1.0
+  version: v1.1.1
 
 # reviewsubmission
 common.apps.tk-multi-reviewsubmission.location:
@@ -77,7 +83,7 @@ common.apps.tk-multi-screeningroom.location:
 common.apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.4.3
+  version: v1.4.8
 
 # snapshot
 common.apps.tk-multi-snapshot.location:
@@ -89,7 +95,7 @@ common.apps.tk-multi-snapshot.location:
 common.apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.9.6
+  version: v0.9.7
 
 # workfiles
 common.apps.tk-multi-workfiles.location:
@@ -123,13 +129,13 @@ common.apps.tk-shotgun-launchpublish.location:
 common.apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
-  version: v0.4.1
+  version: v0.4.3
 
 # hiero openinshotgun
 common.apps.tk-hiero-openinshotgun.location:
   type: app_store
   name: tk-hiero-openinshotgun
-  version: v0.3.3
+  version: v0.3.4
 
 # ---- Houdini apps
 
@@ -165,4 +171,4 @@ common.apps.tk-nuke-quickdailies.location:
 common.apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.2.0
+  version: v1.2.1

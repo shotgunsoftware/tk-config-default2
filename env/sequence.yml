@@ -9,15 +9,16 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when a Sequence is loaded. Since std VFX config
-  template has a file system structure which is centered around pipeline steps, this
-  environment is largely empty. Most of the work takes place on a level in the file
-  system where both a shot and a pipeline step is available - e.g Shot ABC, modeling,
-  so all apps for loading, publishing etc. are located in the shot_step environment.
-  This environment mostly contains utility apps and the tank work files app, which
-  lets you choose a task to work on and load associated content into an application.
+description: Apps and engines loaded when a Sequence is loaded. Since std VFX
+  config template has a file system structure which is centered around pipeline
+  steps, this environment is largely empty. Most of the work takes place on a
+  level in the file system where both a shot and a pipeline step is available -
+  e.g Shot ABC, modeling, so all apps for loading, publishing etc. are located
+  in the shot_step environment. This environment mostly contains utility apps
+  and the tank work files app, which lets you choose a task to work on and load
+  associated content into an application.
 
-#################################################################################################
+################################################################################
 
 includes:
 
@@ -25,7 +26,7 @@ includes:
 - ./includes/common/frameworks.yml
 
 # DCC-specific sequence environments
-#- ./includes/3dsmax/sequence.yml
+- ./includes/3dsmax/sequence.yml
 - ./includes/houdini/sequence.yml
 - ./includes/maya/sequence.yml
 #- ./includes/motionbuilder/sequence.yml
@@ -33,20 +34,19 @@ includes:
 - ./includes/shell/sequence.yml
 - ./includes/shotgun/sequence.yml
 
-#################################################################################################
-# define all the items that should appear in this environment
+################################################################################
+# configuration for all engines to load in a sequence context
 
 engines:
-  # referencing the DCC-specific sequence environments included above
-#  tk-3dsmaxplus: "@3dsmax.sequence"
+  tk-3dsmaxplus: "@3dsmax.sequence"
   tk-houdini: "@houdini.sequence"
   tk-maya: "@maya.sequence"
-#  tk-motionbuilder: "@motionbuilder.sequence"
+  #tk-motionbuilder: "@motionbuilder.sequence"
   tk-nuke: "@nuke.sequence"
   tk-shell: "@shell.sequence"
   tk-shotgun: "@shotgun.sequence"
 
-#################################################################################################
-# frameworks required for this environment
+################################################################################
+# reference all of the common frameworks
 
 frameworks: "@common.frameworks"

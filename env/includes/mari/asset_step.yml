@@ -15,7 +15,7 @@
 includes:
 - ../common/app_locations.yml
 - ../common/engine_locations.yml
-- ./apps.yml
+- ../common/settings/tk-multi-publish2.yml
 
 mari.asset_step:
   apps:
@@ -46,7 +46,7 @@ mari.asset_step:
         publish_filters: []
       location: '@common.apps.tk-multi-loader2.location'
       title_name: Import
-    tk-multi-publish2: '@mari.apps.tk-multi-publish2.asset_step'
+    tk-multi-publish2: '@common.settings.tk-multi-publish2.mari.asset_step'
     tk-multi-workfiles:
       location: '@common.apps.tk-multi-workfiles.location'
       sg_entity_types: [Asset]

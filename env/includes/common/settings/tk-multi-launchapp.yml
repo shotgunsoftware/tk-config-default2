@@ -24,6 +24,13 @@ common.settings.tk-multi-launchapp:
   hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
   location: "@common.apps.tk-multi-launchapp.location"
 
+# shotgun
+common.settings.tk-multi-launchapp.shotgun:
+  use_software_entity: true
+  skip_engine_instances: ["tk-nukestudio"]
+  hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+  location: "@common.apps.tk-multi-launchapp.location"
+
 ################################################################################
 
 # app-specific launchapp configurations
@@ -81,3 +88,4 @@ common.settings.tk-multi-launchapp.motionbuilder:
   versions: []
   windows_args: ""
   windows_path: "@common.path.windows.motionbuilder"
+

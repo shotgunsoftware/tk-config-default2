@@ -10,22 +10,22 @@
 #
 
 # Software path configuration. Typically consumed by the launchapp
-# configurations for common that is not auto-discovered
+# configurations for common software that is not auto-discovered
 
 ################################################################################
 
 # Mari
-common.path.linux.mari: "Mari3.0"
-common.path.mac.mari: "/Applications/Mari3.0v2"
-common.path.windows.mari: C:\Program Files\Mari3.0v2\Bundle\bin\Mari3.0v2.exe
+common.path.linux.mari: "Mari3.3"
+common.path.mac.mari: "/Applications/Mari3.3v1"
+common.path.windows.mari: C:\Program Files\Mari3.3v1\Bundle\bin\Mari3.3v1.exe
 
 # Motionbuilder
-common.path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2014\bin\x64\motionbuilder.exe
+common.path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2017\bin\x64\motionbuilder.exe
 
 # Hiero
-common.path.linux.hiero: "Nuke10.5v1"
-common.path.mac.hiero: "/Applications/Nuke10.5v1/Hiero10.5v1.app"
-common.path.windows.hiero: C:\Program Files\Nuke10.5v1\Nuke11.0v2.exe
+common.path.linux.hiero: "Nuke11.0v1"
+common.path.mac.hiero: "/Applications/Nuke11.0v1/Hiero11.0v1.app"
+common.path.windows.hiero: C:\Program Files\Nuke11.0v1\Nuke11.0v1.exe
 
 # RV
 common.path.linux.rv: "rv"

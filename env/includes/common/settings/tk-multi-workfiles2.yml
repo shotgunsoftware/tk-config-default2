@@ -95,8 +95,29 @@ common.settings.tk-multi-workfiles2.launch_at_startup:
   version_compare_ignore_fields: []
   location: "@common.apps.tk-multi-workfiles2.location"
 
-# wf2 config shared by hiero and nuke studio
-common.settings.tk-multi-workfiles2.nukestudio:
+################################################################################
+
+# ---- 3dsmax
+
+common.settings.tk-multi-workfiles2.3dsmax.asset_step:
+  template_publish: max_asset_publish
+  template_publish_area: asset_publish_area_max
+  template_work: max_asset_work
+  template_work_area: asset_work_area_max
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+common.settings.tk-multi-workfiles2.3dsmax.shot_step:
+  template_publish: max_shot_publish
+  template_publish_area: shot_publish_area_max
+  template_work: max_shot_work
+  template_work_area: shot_work_area_max
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- hiero/nukestudio
+
+common.settings.tk-multi-workfiles2.hiero:
   entities:
   - caption: Projects
     entity_type: Project
@@ -108,3 +129,82 @@ common.settings.tk-multi-workfiles2.nukestudio:
   template_work_area: hiero_project_work_area
   location: "@common.apps.tk-multi-workfiles2.location"
 
+################################################################################
+
+# ---- Houdini
+
+# asset_step
+common.settings.tk-multi-workfiles2.houdini.asset_step:
+  template_publish: houdini_asset_publish
+  template_publish_area: asset_publish_area_houdini
+  template_work: houdini_asset_work
+  template_work_area: asset_work_area_houdini
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+# shot_step
+common.settings.tk-multi-workfiles2.houdini.shot_step:
+  template_publish: houdini_shot_publish
+  template_publish_area: shot_publish_area_houdini
+  template_work: houdini_shot_work
+  template_work_area: shot_work_area_houdini
+  location: '@common.apps.tk-multi-workfiles2.location'
+
+################################################################################
+
+# ---- Maya
+
+# asset_step
+common.settings.tk-multi-workfiles2.maya.asset_step:
+  template_publish: maya_asset_publish
+  template_publish_area: asset_publish_area_maya
+  template_work: maya_asset_work
+  template_work_area: asset_work_area_maya
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+# shot_step
+common.settings.tk-multi-workfiles2.maya.shot_step:
+  template_publish: maya_shot_publish
+  template_publish_area: shot_publish_area_maya
+  template_work: maya_shot_work
+  template_work_area: shot_work_area_maya
+  location: '@common.apps.tk-multi-workfiles2.location'
+
+################################################################################
+
+# ---- nuke
+
+# asset_step
+common.settings.tk-multi-workfiles2.nuke.asset_step:
+  template_publish: nuke_asset_publish
+  template_publish_area: asset_publish_area_nuke
+  template_work: nuke_asset_work
+  template_work_area: asset_work_area_nuke
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+# shot_step
+common.settings.tk-multi-workfiles2.nuke.shot_step:
+  template_publish: nuke_shot_publish
+  template_publish_area: shot_publish_area_nuke
+  template_work: nuke_shot_work
+  template_work_area: shot_work_area_nuke
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- photoshop
+
+# asset_step
+common.settings.tk-multi-workfiles2.photoshop.asset_step:
+  template_publish: photoshop_asset_publish
+  template_publish_area: asset_publish_area_photoshop
+  template_work: photoshop_asset_work
+  template_work_area: asset_work_area_photoshop
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+# shot_step
+common.settings.tk-multi-workfiles2.photoshop.shot_step:
+  template_publish: photoshop_shot_publish
+  template_publish_area: shot_publish_area_photoshop
+  template_work: photoshop_shot_work
+  template_work_area: shot_work_area_photoshop
+  location: "@common.apps.tk-multi-workfiles2.location"
