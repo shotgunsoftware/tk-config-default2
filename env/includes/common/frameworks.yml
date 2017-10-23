@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -9,36 +9,50 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-# all the frameworks required by the config are defined here.
+################################################################################
+# A single, top-level setting is defined: "@common.frameworks". This setting can
+# be included and referenced wherever shared frameworks are required.
 
-frameworks:
-  tk-framework-qtwidgets_v2.x.x:
-    location:
-      version: v2.6.3
-      type: app_store
-      name: tk-framework-qtwidgets
-  tk-framework-shotgunutils_v4.x.x:
-    location:
-      version: v4.4.15
-      type: app_store
-      name: tk-framework-shotgunutils
-  tk-framework-shotgunutils_v5.x.x:
-    location:
-      version: v5.2.1
-      type: app_store
-      name: tk-framework-shotgunutils
+common.frameworks:
+
+  # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
       version: v0.1.6
       type: app_store
       name: tk-framework-adminui
-  tk-framework-widget_v0.2.x:
-    location:
-      version: v0.2.6
-      type: app_store
-      name: tk-framework-widget
+
+  # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
       version: v1.1.15
       type: app_store
       name: tk-framework-desktopserver
+
+  # qtwidgets - collection of Toolkit related QT Widgets
+  tk-framework-qtwidgets_v2.x.x:
+    location:
+      version: v2.6.3
+      type: app_store
+      name: tk-framework-qtwidgets
+
+  # shotgunutils v4 - Shotgun Related Utilities
+  tk-framework-shotgunutils_v4.x.x:
+    location:
+      version: v4.4.15
+      type: app_store
+      name: tk-framework-shotgunutils
+
+  # shotgunutils v5 - Shotgun Related Utilities
+  tk-framework-shotgunutils_v5.x.x:
+    location:
+      version: v5.2.1
+      type: app_store
+      name: tk-framework-shotgunutils
+
+  # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
+  tk-framework-widget_v0.2.x:
+    location:
+      version: v0.2.6
+      type: app_store
+      name: tk-framework-widget

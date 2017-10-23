@@ -12,55 +12,37 @@
 # this configuration defines the behavior of the 3dsMax Integration when it
 # is running in its asset step level configuration
 
+################################################################################
+
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
-- apps.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-loader2.yml
+- ../common/settings/tk-multi-publish2.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-multi-snapshot.yml
+- ../common/settings/tk-multi-workfiles2.yml
+
+################################################################################
 
 3dsmax.asset_step:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
-    tk-multi-loader2:
-      action_mappings:
-        3dsmax Scene: [import, reference]
-        Alembic Cache: [import]
-      entities:
-      - caption: Assets
-        entity_type: Asset
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_asset_type, code]
-      - caption: Shots
-        entity_type: Shot
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_sequence, code]
-      - caption: My Tasks
-        entity_type: Task
-        filters:
-        - [task_assignees, is, '{context.user}']
-        - [project, is, '{context.project}']
-        hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
-    tk-multi-publish2: '@3dsmax.apps.tk-multi-publish2'
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
-      template_snapshot: max_asset_snapshot
-      template_work: max_asset_work
-    tk-multi-workfiles2:
-      location: '@common.apps.workfiles2.location'
-      template_publish: max_asset_publish
-      template_publish_area: asset_publish_area_max
-      template_work: max_asset_work
-      template_work_area: asset_work_area_max
-    tk-multi-shotgunpanel: 
-      location: '@common.apps.tk-multi-shotgunpanel.location'
+
+    # ---- Multi apps
+
+    # Simple app configurations where only the location setting is required
+    tk-multi-about:
+      location: "@common.apps.tk-multi-about.location"
+
+    # More complex configurations. These app configurations are included and
+    # referenced via env/includes/common/settings/{app_name}.yml
+    tk-multi-loader2: "@common.settings.tk-multi-loader2.3dsmax"
+    tk-multi-publish2: "@common.settings.tk-multi-publish2.3dsmax.asset_step"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel.3dsmax"
+    tk-multi-snapshot: "@common.settings.tk-multi-snapshot.3dsmax.asset_step"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.3dsmax.asset_step"
+
+  # engine settings
   location: "@common.engines.tk-3dsmaxplus.location"

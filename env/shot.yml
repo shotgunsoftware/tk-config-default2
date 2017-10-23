@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -9,96 +9,49 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when a Shot is loaded. Since std VFX config template
-  has a file system structure which is centered around pipeline steps, this environment
-  is largely empty. Most of the work takes place on a level in the file system where
-  both a shot and a pipeline step is available - e.g Shot ABC, modeling, so all apps
-  for loading, publishing etc. are located in the shot_step environment. This environment
-  mostly contains utility apps and the tank work files app, which lets you choose
-  a task to work on and load associated content into an application.
+description: Apps and engines loaded when a Shot is loaded. Since std VFX config
+  template has a file system structure which is centered around pipeline steps,
+  this environment is largely empty. Most of the work takes place on a level in
+  the file system where both a shot and a pipeline step is available - e.g Shot
+  ABC, modeling, so all apps for loading, publishing etc. are located in the
+  shot_step environment. This environment mostly contains utility apps and the
+  tank work files app, which lets you choose a task to work on and load
+  associated content into an application.
 
-#################################################################################################
+################################################################################
 
 includes:
-- ./includes/flame/shot.yml
+
+# frameworks
+- ./includes/common/frameworks.yml
+
+# DCC-specific shot environments
+- ./includes/3dsmax/shot.yml
+#- ./includes/flame/shot.yml
 - ./includes/houdini/shot.yml
 - ./includes/maya/shot.yml
+#- ./includes/motionbuilder/shot.yml
 - ./includes/nuke/shot.yml
 - ./includes/photoshopcc/shot.yml
 - ./includes/shell/shot.yml
 - ./includes/shotgun/shot.yml
-- ./includes/3dsmax/shot.yml
 
-- ./includes/motionbuilder/shot.yml
-- ./includes/softimage/shot.yml
-
-#################################################################################################
-# define all the items that should appear in this environment
-
+################################################################################
+# configuration for all engines to load in a shot context
 
 engines:
-  #
-  # -------------------------------------------------
-  # 3dsmax plus
-  # -------------------------------------------------
-  tk-3dsmaxplus: '@3dsmax.shot'
-  #
-  # -------------------------------------------------
-  # Houdini
-  # -------------------------------------------------
-  tk-houdini: '@houdini.shot'
-  #
-  # -------------------------------------------------
-  # maya
-  # -------------------------------------------------
-  tk-maya: '@maya.shot'
-  #
-  # -------------------------------------------------
-  # motionbuilder
-  # -------------------------------------------------
-  tk-motionbuilder: '@motionbuilder.shot'
-  #
-  # -------------------------------------------------
-  # nuke
-  # -------------------------------------------------
-  tk-nuke: '@nuke.shot'
-  #
-  # -------------------------------------------------
-  # Photoshop CC
-  # -------------------------------------------------
-  tk-photoshopcc: '@photoshopcc.shot'
-  #
-  # -------------------------------------------------
-  # Flame
-  # -------------------------------------------------
-  tk-flame: '@flame.shot'
-  #
-  # -------------------------------------------------
-  # Shell (tank command)
-  # -------------------------------------------------
-  tk-shell: '@shell.shot'
-  #
-  # -------------------------------------------------
-  # Shotgun
-  # -------------------------------------------------
-  tk-shotgun: '@shotgun.shot'
-  #
-  # -------------------------------------------------
-  # Softimage
-  # -------------------------------------------------
-  tk-softimage: '@softimage.shot'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
+  # referencing the DCC-specific shot environments included above
+  tk-3dsmaxplus: "@3dsmax.shot"
+  tk-houdini: "@houdini.shot"
+  tk-maya: "@maya.shot"
+  #tk-motionbuilder: "@motionbuilder.shot"
+  tk-nuke: "@nuke.shot"
+  tk-photoshopcc: "@photoshopcc.shot"
+  #tk-flame: "@flame.shot"
+  tk-shell: "@shell.shot"
+  tk-shotgun: "@shotgun.shot"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@common.frameworks"

@@ -12,111 +12,53 @@
 # this configuration defines the behavior of the Nuke Integration when it
 # is running in its asset step level configuration
 
+################################################################################
+
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
-- apps.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-loader2.yml
+- ../common/settings/tk-multi-publish2.yml
+- ../common/settings/tk-multi-reviewsubmission.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-shotgunpanel.yml
+- ../common/settings/tk-multi-snapshot.yml
+- ../common/settings/tk-multi-workfiles2.yml
+- ../common/settings/tk-nuke-quickdailies.yml
+- ../common/settings/tk-nuke-writenode.yml
+
+################################################################################
 
 nuke.asset_step:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
+
+    # ---- Multi apps
+
+    # Simple app configurations where only the location setting is required
+    tk-multi-about:
+      location: "@common.apps.tk-multi-about.location"
     tk-multi-breakdown:
-      location:
-        version: v1.4.6
-        type: app_store
-        name: tk-multi-breakdown
-    tk-multi-loader2:
-      action_mappings:
-        Nuke Script: [script_import]
-        Rendered Image: [read_node]
-        Alembic Cache: [read_node]
-      entities:
-      - caption: Assets
-        entity_type: Asset
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_asset_type, code]
-      - caption: Shots
-        entity_type: Shot
-        filters:
-        - [project, is, '{context.project}']
-        hierarchy: [sg_sequence, code]
-      - caption: My Tasks
-        entity_type: Task
-        filters:
-        - [task_assignees, is, '{context.user}']
-        - [project, is, '{context.project}']
-        hierarchy: [entity, content]
-      location:
-        version: v1.17.3
-        type: app_store
-        name: tk-multi-loader2
-    tk-multi-publish2: '@nuke.apps.tk-multi-publish2'
-    tk-multi-reviewsubmission:
-      location:
-        version: v0.3.2
-        type: app_store
-        name: tk-multi-reviewsubmission
-      movie_path_template: nuke_asset_render_movie
-      slate_logo: icons/review_submit_logo.png
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-shotgunpanel:
-      action_mappings:
-        PublishedFile:
-        - actions: [read_node]
-          filters: {published_file_type: Rendered Image}
-        - actions: [script_import]
-          filters: {published_file_type: Nuke Script}
-        Task:
-        - actions: [assign_task, task_to_ip]
-          filters: {}
-      location: '@common.apps.tk-multi-shotgunpanel.location'
-    tk-multi-snapshot:
-      location:
-        version: v0.7.3
-        type: app_store
-        name: tk-multi-snapshot
-      template_snapshot: nuke_asset_snapshot
-      template_work: nuke_asset_work
-    tk-multi-workfiles2:
-      location: '@common.apps.workfiles2.location'
-      template_publish: nuke_asset_publish
-      template_publish_area: asset_publish_area_nuke
-      template_work: nuke_asset_work
-      template_work_area: asset_work_area_nuke
-    tk-nuke-quickdailies:
-      current_scene_template: nuke_asset_work
-      height: 768
-      location:
-        version: v0.3.5
-        type: app_store
-        name: tk-nuke-quickdailies
-      movie_template: asset_quicktime_quick
-      post_hooks: [snapshot_history_post_quickdaily]
-      sg_version_name_template: nuke_quick_asset_version_name
-      width: 1024
-      upload_movie: false
-    tk-nuke-writenode:
-      location:
-        version: v1.2.0
-        type: app_store
-        name: tk-nuke-writenode
-      template_script_work: nuke_asset_work
-      write_nodes:
-      - file_type: exr
-        name: Exr
-        proxy_publish_template:
-        proxy_render_template:
-        publish_template: nuke_asset_render_pub
-        render_template: nuke_asset_render
-        settings: {}
-        tank_type: Rendered Image
-        tile_color: []
-        promote_write_knobs: []
-  location: '@common.engines.tk-nuke.location'
+      location: "@common.apps.tk-multi-breakdown.location"
+
+    # More complex configurations. These app configurations are included and
+    # referenced via env/includes/common/settings/{app_name}.yml
+    tk-multi-loader2: "@common.settings.tk-multi-loader2.nuke"
+    tk-multi-publish2: "@common.settings.tk-multi-publish2.nuke.asset_step"
+    tk-multi-reviewsubmission: "@common.settings.tk-multi-reviewsubmission.nuke.asset"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@common.settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-snapshot: "@common.settings.tk-multi-snapshot.nuke.asset_step"
+    tk-multi-workfiles2: "@common.settings.tk-multi-workfiles2.nuke.asset_step"
+
+    # ---- Nuke Apps
+
+    tk-nuke-quickdailies: "@common.settings.tk-nuke-quickdailies.asset"
+    tk-nuke-writenode: "@common.settings.tk-nuke-writenode.asset"
+
+  # engine settings
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  location: "@common.engines.tk-nuke.location"

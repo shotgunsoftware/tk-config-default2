@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -11,86 +11,40 @@
 
 description: Apps and Engines related to Shot based work.
 
-#################################################################################################
+################################################################################
 
 includes:
+
+# frameworks
+- ./includes/common/frameworks.yml
+
+# DCC-specific shot_step environments
+- ./includes/3dsmax/shot_step.yml
 - ./includes/houdini/shot_step.yml
 - ./includes/maya/shot_step.yml
+#- ./includes/motionbuilder/shot_step.yml
 - ./includes/nuke/shot_step.yml
+- ./includes/nukestudio/shot_step.yml
 - ./includes/photoshopcc/shot_step.yml
 - ./includes/shell/shot_step.yml
-- ./includes/3dsmax/shot_step.yml
 - ./includes/shotgun/shot_step.yml
-- ./includes/motionbuilder/shot_step.yml
-- ./includes/nukestudio/shot_step.yml
-- ./includes/softimage/shot_step.yml
 
-#################################################################################################
-# define all the items that should appear in this environment
+################################################################################
+# configuration for all engines to load in a shot step context
 
 engines:
-  #
-  # -------------------------------------------------
-  # 3dsmax plus
-  # -------------------------------------------------
-  tk-3dsmaxplus: '@3dsmax.shot_step'
-  #
-  # -------------------------------------------------
-  # houdini
-  # -------------------------------------------------
-  tk-houdini: '@houdini.shot_step'
-  #
-  # -------------------------------------------------
-  # maya
-  # -------------------------------------------------
-  tk-maya: '@maya.shot_step'
-  #
-  # -------------------------------------------------
-  # motionbuilder
-  # -------------------------------------------------
-  tk-motionbuilder: '@motionbuilder.shot_step'
-  #
-  # -------------------------------------------------
-  # Nuke
-  # -------------------------------------------------
-  tk-nuke: '@nuke.shot_step'
-  #
-  # -------------------------------------------------
-  # Nuke Studio
-  # -------------------------------------------------
-  tk-nukestudio: '@nukestudio.shot_step'
-  #
-  # -------------------------------------------------
-  # Photoshop CC
-  # -------------------------------------------------
-  tk-photoshopcc: '@photoshopcc.shot_step'
-  #
-  # -------------------------------------------------
-  # Shell (tank command)
-  # -------------------------------------------------
-  tk-shell: '@shell.shot_step'
-  #
-  # -------------------------------------------------
-  # Shell (tank command)
-  # -------------------------------------------------
-  tk-shotgun: '@shotgun.shot_step'
-  #
-  # -------------------------------------------------
-  # Softimage
-  # -------------------------------------------------
-  tk-softimage: '@softimage.shot_step'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
+  # referencing the DCC-specific shot_step environments included above
+  tk-3dsmaxplus: "@3dsmax.shot_step"
+  tk-houdini: "@houdini.shot_step"
+  tk-maya: "@maya.shot_step"
+  #tk-motionbuilder: "@motionbuilder.shot_step"
+  tk-nuke: "@nuke.shot_step"
+  tk-nukestudio: "@nukestudio.shot_step"
+  tk-photoshopcc: "@photoshopcc.shot_step"
+  tk-shell: "@shell.shot_step"
+  tk-shotgun: "@shotgun.shot_step"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@common.frameworks"

@@ -9,40 +9,39 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: This environment controls what items should be shown on the menu in Shotgun
-  for projects.
+description: This environment controls what items should be shown on the menu in
+  Shotgun for projects.
 
-#################################################################################################
-# include common definitions for all the launchers that are used to start maya, nuke etc.
+################################################################################
 
 includes:
-- ../app_launchers.yml
-- ../paths.yml
-- ../common/engines.yml
-- ../common/apps.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-launchapp.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-shotgun-launchfolder.yml
 
-#################################################################################################
+################################################################################
 # Define all the items that should appear in this environment
 #
 # Note! This environment is special and is only used by the Shotgun action
 # menu integration. It can only contain a Shotgun engine and the file name
 # reflects the entity type for which a menu will be generated in Shotgun.
-#
 
 shotgun.project:
   apps:
-    tk-multi-launchmari: '@launch_mari'
-    tk-multi-launchmotionbuilder: '@launch_motionbuilder'
-    tk-multi-launchsoftimage: '@launch_softimage'
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-launchapp: '@common.apps.launchapp-software'
-    tk-multi-launchhiero: '@launch_hiero'
-    tk-shotgun-launchfolder:
-      deny_permissions: []
-      deny_platforms: []
-      location:
-        name: tk-shotgun-launchfolder
-        type: app_store
-        version: v0.1.5
+
+    # --- Multi apps
+
+    # These app configurations are included and referenced via
+    # env/includes/common/settings/{app_name}.yml
+    tk-multi-launchapp: "@common.settings.tk-multi-launchapp"
+    tk-multi-launchhiero: "@common.settings.tk-multi-launchapp.hiero"
+    tk-multi-launchmari: "@common.settings.tk-multi-launchapp.mari"
+    tk-multi-launchmotionbuilder: "@common.settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-shotgun-launchfolder: "@common.settings.tk-shotgun-launchfolder"
+
+  # engine settings
   debug_logging: false
   location: "@common.engines.tk-shotgun.location"

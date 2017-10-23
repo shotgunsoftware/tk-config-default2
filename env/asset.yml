@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -9,96 +9,48 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when an Asset is loaded. Since std VFX config
-  template has a file system structure which is centered around pipeline steps, this
-  environment is largely empty. Most of the work takes place on a level in the file
-  system where both an asset and a pipeline step is available - e.g Asset Hero, modeling,
-  so all apps for loading, publishing etc. are located in the asset_step environment.
-  This environment mostly contains utility apps and the tank work files app, which
-  lets you choose a task to work on and load associated content into an application.
+description: Apps and engines loaded when an Asset is loaded. Since std VFX
+  config template has a file system structure which is centered around pipeline
+  steps, this environment is largely empty. Most of the work takes place on a
+  level in the file system where both an asset and a pipeline step is available
+  - e.g Asset Hero, modeling, so all apps for loading, publishing etc. are
+  located in the asset_step environment. This environment mostly contains
+  utility apps and the tank work files app, which lets you choose a task to work
+  on and load associated content into an application.
 
-#################################################################################################
+################################################################################
 
 includes:
+
+# frameworks
+- ./includes/common/frameworks.yml
+
+# DCC-specific asset environments
+- ./includes/3dsmax/asset.yml
 - ./includes/houdini/asset.yml
+#- ./includes/mari/asset.yml
 - ./includes/maya/asset.yml
+#- ./includes/motionbuilder/asset.yml
 - ./includes/nuke/asset.yml
 - ./includes/photoshopcc/asset.yml
 - ./includes/shell/asset.yml
 - ./includes/shotgun/asset.yml
-- ./includes/3dsmax/asset.yml
 
-- ./includes/mari/asset.yml
-- ./includes/motionbuilder/asset.yml
-- ./includes/softimage/asset.yml
-
-#################################################################################################
-# define all the items that should appear in this environment
-
+################################################################################
+# configuration for all engines to load in an asset context
 
 engines:
-  #
-  # -------------------------------------------------
-  # 3dsmax plus
-  # -------------------------------------------------
-  tk-3dsmaxplus: '@3dsmax.asset'
-  #
-  # -------------------------------------------------
-  # Houdini
-  # -------------------------------------------------
-  tk-houdini: '@houdini.asset'
-  #
-  # -------------------------------------------------
-  # Mari
-  # -------------------------------------------------
-  tk-mari: '@mari.asset'
-  #
-  # -------------------------------------------------
-  # Maya
-  # -------------------------------------------------
-  tk-maya: '@maya.asset'
-  #
-  # -------------------------------------------------
-  # Motionbuilder
-  # -------------------------------------------------
-  tk-motionbuilder: '@motionbuilder.asset'
-  #
-  # -------------------------------------------------
-  # Nuke
-  # -------------------------------------------------
-  tk-nuke: '@nuke.asset'
-  #
-  # -------------------------------------------------
-  # Photoshop CC
-  # -------------------------------------------------
-  tk-photoshopcc: '@photoshopcc.asset'
-  #
-  # -------------------------------------------------
-  # Shell
-  # -------------------------------------------------
-  tk-shell: '@shell.asset'
-  #
-  # -------------------------------------------------
-  # Shotgun
-  # -------------------------------------------------
-  tk-shotgun: '@shotgun.asset'
-  #
-  # -------------------------------------------------
-  # Softimage
-  # -------------------------------------------------
-  tk-softimage: '@softimage.asset'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
+  tk-3dsmaxplus: "@3dsmax.asset"
+  tk-houdini: "@houdini.asset"
+  #tk-mari: "@mari.asset"
+  tk-maya: "@maya.asset"
+  #tk-motionbuilder: "@motionbuilder.asset"
+  tk-nuke: "@nuke.asset"
+  tk-photoshopcc: "@photoshopcc.asset"
+  tk-shell: "@shell.asset"
+  tk-shotgun: "@shotgun.asset"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@common.frameworks"
