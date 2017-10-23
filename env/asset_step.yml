@@ -14,36 +14,31 @@ description: Apps and Engines related to Asset based work.
 ################################################################################
 
 includes:
-
-# frameworks
 - ./includes/common/frameworks.yml
-
-# DCC-specific asset_step environments
-- ./includes/3dsmax/asset_step.yml
-- ./includes/houdini/asset_step.yml
-#- ./includes/mari/asset_step.yml
-- ./includes/maya/asset_step.yml
-#- ./includes/motionbuilder/asset_step.yml
-- ./includes/nuke/asset_step.yml
-- ./includes/nukestudio/asset_step.yml
-- ./includes/photoshopcc/asset_step.yml
-- ./includes/shell/asset_step.yml
-- ./includes/shotgun/asset_step.yml
+- ./includes/common/settings/tk-3dsmaxplus.yml
+- ./includes/common/settings/tk-houdini.yml
+#- ./includes/common/settings/tk-mari.yml
+- ./includes/common/settings/tk-maya.yml
+#- ./includes/common/settings/tk-motionbuilder.yml
+- ./includes/common/settings/tk-nuke.yml
+- ./includes/common/settings/tk-photoshopcc.yml
+- ./includes/common/settings/tk-shell.yml
+- ./includes/common/settings/tk-shotgun.yml
 
 ################################################################################
 # configuration for all engines to load in an asset step context
 
 engines:
-  tk-3dsmaxplus: "@3dsmax.asset_step"
-  tk-houdini: "@houdini.asset_step"
-  #tk-mari: "@mari.asset_step"
-  tk-maya: "@maya.asset_step"
-  #tk-motionbuilder: "@motionbuilder.asset_step"
-  tk-nuke: "@nuke.asset_step"
-  tk-nukestudio: "@nukestudio.asset_step"
-  tk-photoshopcc: "@photoshopcc.asset_step"
-  tk-shell: "@shell.asset_step"
-  tk-shotgun: "@shotgun.asset_step"
+  tk-3dsmaxplus: "@common.settings.tk-3dsmaxplus.asset_step"
+  tk-houdini: "@common.settings.tk-houdini.asset_step"
+  #tk-mari: "@common.settings.tk-mari.asset_step"
+  tk-maya: "@common.settings.tk-maya.asset_step"
+  #tk-motionbuilder: "@common.settings.tk-motionbuilder.asset_step"
+  tk-nuke: "@common.settings.tk-nuke.asset_step"
+  tk-nukestudio: "@common.settings.tk-nuke.nukestudio.asset_step"
+  tk-photoshopcc: "@common.settings.tk-photoshopcc.asset_step"
+  tk-shell: "@common.settings.tk-shell.asset_step"
+  tk-shotgun: "@common.settings.tk-shotgun.asset_step"
 
 ################################################################################
 # reference all of the common frameworks

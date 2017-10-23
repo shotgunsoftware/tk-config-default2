@@ -21,34 +21,30 @@ description: Apps and engines loaded when an Asset is loaded. Since std VFX
 ################################################################################
 
 includes:
-
-# frameworks
 - ./includes/common/frameworks.yml
-
-# DCC-specific asset environments
-- ./includes/3dsmax/asset.yml
-- ./includes/houdini/asset.yml
-#- ./includes/mari/asset.yml
-- ./includes/maya/asset.yml
-#- ./includes/motionbuilder/asset.yml
-- ./includes/nuke/asset.yml
-- ./includes/photoshopcc/asset.yml
-- ./includes/shell/asset.yml
-- ./includes/shotgun/asset.yml
+- ./includes/common/settings/tk-3dsmaxplus.yml
+- ./includes/common/settings/tk-houdini.yml
+#- ./includes/common/settings/tk-mari.yml
+- ./includes/common/settings/tk-maya.yml
+#- ./includes/common/settings/tk-motionbuilder.yml
+- ./includes/common/settings/tk-nuke.yml
+- ./includes/common/settings/tk-photoshopcc.yml
+- ./includes/common/settings/tk-shell.yml
+- ./includes/common/settings/tk-shotgun.yml
 
 ################################################################################
 # configuration for all engines to load in an asset context
 
 engines:
-  tk-3dsmaxplus: "@3dsmax.asset"
-  tk-houdini: "@houdini.asset"
-  #tk-mari: "@mari.asset"
-  tk-maya: "@maya.asset"
-  #tk-motionbuilder: "@motionbuilder.asset"
-  tk-nuke: "@nuke.asset"
-  tk-photoshopcc: "@photoshopcc.asset"
-  tk-shell: "@shell.asset"
-  tk-shotgun: "@shotgun.asset"
+  tk-3dsmaxplus: "@common.settings.tk-3dsmaxplus.asset"
+  tk-houdini: "@common.settings.tk-houdini.asset"
+  #tk-mari: "@common.settings.tk-mari.asset"
+  tk-maya: "@common.settings.tk-maya.asset"
+  #tk-motionbuilder: "@common.settings.tk-motionbuilder.asset"
+  tk-nuke: "@common.settings.tk-nuke.asset"
+  tk-photoshopcc: "@common.settings.tk-photoshopcc.asset"
+  tk-shell: "@common.settings.tk-shell.asset"
+  tk-shotgun: "@common.settings.tk-shotgun.asset"
 
 ################################################################################
 # reference all of the common frameworks
