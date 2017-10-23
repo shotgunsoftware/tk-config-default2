@@ -29,7 +29,7 @@ includes:
 - ./includes/3dsmax/sequence.yml
 - ./includes/houdini/sequence.yml
 - ./includes/maya/sequence.yml
-#- ./includes/motionbuilder/sequence.yml
+- ./includes/motionbuilder/sequence.yml
 - ./includes/nuke/sequence.yml
 - ./includes/shell/sequence.yml
 - ./includes/shotgun/sequence.yml
@@ -41,7 +41,7 @@ engines:
   tk-3dsmaxplus: "@3dsmax.sequence"
   tk-houdini: "@houdini.sequence"
   tk-maya: "@maya.sequence"
-  #tk-motionbuilder: "@motionbuilder.sequence"
+  tk-motionbuilder: "@motionbuilder.sequence"
   tk-nuke: "@nuke.sequence"
   tk-shell: "@shell.sequence"
   tk-shotgun: "@shotgun.sequence"

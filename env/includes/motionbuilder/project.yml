@@ -13,16 +13,20 @@
 # is running in its project level configuration
 
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-workfiles2.yml
 
 motionbuilder.project:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
-    tk-multi-shotgunpanel: '@common.apps.tk-multi-shotgunpanel'
-    tk-multi-screeningroom: '@launch_screeningroom'
-    tk-multi-workfiles2: '@common.apps.workfiles2'
+    tk-multi-about:
+      location: '@common.apps.tk-multi-about.location'
+    tk-multi-shotgunpanel:
+      location: '@common.apps.tk-multi-shotgunpanel.location'
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
+    tk-multi-workfiles2:
+      location: '@common.apps.tk-multi-workfiles2.location'
   location: '@common.engines.tk-motionbuilder.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

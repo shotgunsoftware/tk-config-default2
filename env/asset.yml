@@ -30,7 +30,7 @@ includes:
 - ./includes/houdini/asset.yml
 #- ./includes/mari/asset.yml
 - ./includes/maya/asset.yml
-#- ./includes/motionbuilder/asset.yml
+- ./includes/motionbuilder/asset.yml
 - ./includes/nuke/asset.yml
 - ./includes/photoshopcc/asset.yml
 - ./includes/shell/asset.yml
@@ -44,7 +44,7 @@ engines:
   tk-houdini: "@houdini.asset"
   #tk-mari: "@mari.asset"
   tk-maya: "@maya.asset"
-  #tk-motionbuilder: "@motionbuilder.asset"
+  tk-motionbuilder: "@motionbuilder.asset"
   tk-nuke: "@nuke.asset"
   tk-photoshopcc: "@photoshopcc.asset"
   tk-shell: "@shell.asset"

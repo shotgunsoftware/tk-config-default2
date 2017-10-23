@@ -23,7 +23,7 @@ includes:
 - ./includes/houdini/asset_step.yml
 #- ./includes/mari/asset_step.yml
 - ./includes/maya/asset_step.yml
-#- ./includes/motionbuilder/asset_step.yml
+- ./includes/motionbuilder/asset_step.yml
 - ./includes/nuke/asset_step.yml
 - ./includes/nukestudio/asset_step.yml
 - ./includes/photoshopcc/asset_step.yml
@@ -38,7 +38,7 @@ engines:
   tk-houdini: "@houdini.asset_step"
   #tk-mari: "@mari.asset_step"
   tk-maya: "@maya.asset_step"
-  #tk-motionbuilder: "@motionbuilder.asset_step"
+  tk-motionbuilder: "@motionbuilder.asset_step"
   tk-nuke: "@nuke.asset_step"
   tk-nukestudio: "@nukestudio.asset_step"
   tk-photoshopcc: "@photoshopcc.asset_step"

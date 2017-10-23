@@ -13,13 +13,15 @@
 # is running in its shot step level configuration
 
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-workfiles2.yml
 
 motionbuilder.shot_step:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-about:
+      location: '@common.apps.tk-multi-about.location'
     tk-multi-loader2:
       entities:
       - caption: Assets
@@ -51,7 +53,7 @@ motionbuilder.shot_step:
       primary_publish_template: mobu_shot_publish
       primary_tank_type: Motion Builder FBX
       template_work: mobu_shot_work
-    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
     tk-multi-setframerange:
       location:
         version: v0.3.0
@@ -65,13 +67,13 @@ motionbuilder.shot_step:
       template_snapshot: mobu_shot_snapshot
       template_work: mobu_shot_work
     tk-multi-workfiles2:
-      location: '@common.apps.workfiles2.location'
+      location: '@common.apps.tk-multi-workfiles2.location'
       template_publish: mobu_shot_publish
       template_publish_area: shot_publish_area_mobu
       template_work: mobu_shot_work
       template_work_area: shot_work_area_mobu
     tk-multi-shotgunpanel:
-      location: '@common.apps.tk-multi-shotgunpanel.location'
+      location: "@common.apps.tk-multi-shotgunpanel.location"
   location: '@common.engines.tk-motionbuilder.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

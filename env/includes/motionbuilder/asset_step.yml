@@ -13,13 +13,16 @@
 # is running in its asset step level configuration
 
 includes:
-- ../app_launchers.yml
-- ../common/apps.yml
-- ../common/engines.yml
+- ../common/app_locations.yml
+- ../common/engine_locations.yml
+- ../common/settings/tk-multi-publish2.yml
+- ../common/settings/tk-multi-screeningroom.yml
+- ../common/settings/tk-multi-workfiles2.yml
 
 motionbuilder.asset_step:
   apps:
-    tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-about:
+      location: '@common.apps.tk-multi-about.location'
     tk-multi-loader2:
       entities:
       - caption: Assets
@@ -42,16 +45,8 @@ motionbuilder.asset_step:
         version: v1.17.3
         type: app_store
         name: tk-multi-loader2
-    tk-multi-publish:
-      location:
-        version: v0.10.4
-        type: app_store
-        name: tk-multi-publish
-      primary_icon: icons/publish_motionbuilder_main.png
-      primary_publish_template: mobu_asset_publish
-      primary_tank_type: Motion Builder FBX
-      template_work: mobu_asset_work
-    tk-multi-screeningroom: '@launch_screeningroom'
+    tk-multi-publish2: '@common.settings.tk-multi-publish2.motion_builder.asset_step'
+    tk-multi-screeningroom: "@common.settings.tk-multi-screeningroom.rv"
     tk-multi-snapshot:
       location:
         version: v0.7.3
@@ -60,16 +55,16 @@ motionbuilder.asset_step:
       template_snapshot: mobu_asset_snapshot
       template_work: mobu_asset_work
     tk-multi-workfiles2:
-      location: '@common.apps.workfiles2.location'
+      location: '@common.apps.tk-multi-workfiles2.location'
       template_publish: mobu_asset_publish
       template_publish_area: asset_publish_area_mobu
       template_work: mobu_asset_work
       template_work_area: asset_work_area_mobu
     tk-multi-shotgunpanel:
-      location: '@common.apps.tk-multi-shotgunpanel.location'
+      location: "@common.apps.tk-multi-shotgunpanel.location"
   location: '@common.engines.tk-motionbuilder.location'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish, name: Publish...}
+  - {app_instance: tk-multi-publish2, name: Publish...}

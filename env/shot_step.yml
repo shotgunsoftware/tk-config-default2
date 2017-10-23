@@ -22,7 +22,7 @@ includes:
 - ./includes/3dsmax/shot_step.yml
 - ./includes/houdini/shot_step.yml
 - ./includes/maya/shot_step.yml
-#- ./includes/motionbuilder/shot_step.yml
+- ./includes/motionbuilder/shot_step.yml
 - ./includes/nuke/shot_step.yml
 - ./includes/nukestudio/shot_step.yml
 - ./includes/photoshopcc/shot_step.yml
@@ -37,7 +37,7 @@ engines:
   tk-3dsmaxplus: "@3dsmax.shot_step"
   tk-houdini: "@houdini.shot_step"
   tk-maya: "@maya.shot_step"
-  #tk-motionbuilder: "@motionbuilder.shot_step"
+  tk-motionbuilder: "@motionbuilder.shot_step"
   tk-nuke: "@nuke.shot_step"
   tk-nukestudio: "@nukestudio.shot_step"
   tk-photoshopcc: "@photoshopcc.shot_step"

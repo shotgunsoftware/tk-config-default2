@@ -20,7 +20,7 @@ common.path.mac.mari: "/Applications/Mari3.3v1"
 common.path.windows.mari: C:\Program Files\Mari3.3v1\Bundle\bin\Mari3.3v1.exe
 
 # Motionbuilder
-common.path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2017\bin\x64\motionbuilder.exe
+common.path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2013\bin\x64\motionbuilder.exe
 
 # Hiero
 common.path.linux.hiero: "Nuke11.0v1"

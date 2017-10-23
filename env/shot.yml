@@ -30,7 +30,7 @@ includes:
 #- ./includes/flame/shot.yml
 - ./includes/houdini/shot.yml
 - ./includes/maya/shot.yml
-#- ./includes/motionbuilder/shot.yml
+- ./includes/motionbuilder/shot.yml
 - ./includes/nuke/shot.yml
 - ./includes/photoshopcc/shot.yml
 - ./includes/shell/shot.yml
@@ -44,7 +44,7 @@ engines:
   tk-3dsmaxplus: "@3dsmax.shot"
   tk-houdini: "@houdini.shot"
   tk-maya: "@maya.shot"
-  #tk-motionbuilder: "@motionbuilder.shot"
+  tk-motionbuilder: "@motionbuilder.shot"
   tk-nuke: "@nuke.shot"
   tk-photoshopcc: "@photoshopcc.shot"
   #tk-flame: "@flame.shot"
