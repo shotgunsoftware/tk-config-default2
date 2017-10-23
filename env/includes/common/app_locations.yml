@@ -51,9 +51,9 @@ common.apps.tk-multi-publish2.location:
   #name: tk-multi-publish2
   #version: v1.1.9
   type: git_branch
-  branch: 44077_defcon2
+  branch: 44077_defcon2_motionbuilder
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: f38a7f83d753a62a42ed93d375714e994ff0e82f
+  version: 7a01a94780cecc875e8241aee6ca860139b67ff7
 
 # pythonconsole
 common.apps.tk-multi-pythonconsole.location:
