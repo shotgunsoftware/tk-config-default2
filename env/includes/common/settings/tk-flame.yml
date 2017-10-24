@@ -9,7 +9,27 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and Engines related to Asset based work.
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-flame-export.yml
 
 ################################################################################
 
+# project
+common.settings.tk-flame.project:
+  apps:
+    tk-flame-review:
+      location: "@common.apps.tk-flame-review.location"
+    tk-flame-export: "@common.settings.tk-flame-export"
+  location: "@common.engines.tk-flame.location"
+
+# shot
+common.settings.tk-flame.shot:
+  apps:
+    tk-flame-review:
+      location: "@common.apps.tk-flame-review.location"
+    tk-flame-export: "@common.settings.tk-flame-export"
+  location: "@common.engines.tk-flame.location"

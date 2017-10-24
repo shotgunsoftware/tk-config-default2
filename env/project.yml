@@ -33,7 +33,7 @@ includes:
 engines:
   tk-3dsmaxplus: "@common.settings.tk-3dsmaxplus.project"
   tk-desktop: "@common.settings.tk-desktop.project"
-  #tk-flame: "@flame.project"
+  tk-flame: "@common.settings.tk-flame.project"
   tk-hiero: "@common.settings.tk-nuke.hiero.project"
   tk-houdini: "@common.settings.tk-houdini.project"
   #tk-mari: "@common.settings.tk-mari.project"

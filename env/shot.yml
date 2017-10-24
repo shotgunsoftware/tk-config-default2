@@ -36,9 +36,8 @@ includes:
 # configuration for all engines to load in a shot context
 
 engines:
-  # referencing the DCC-specific shot environments included above
   tk-3dsmaxplus: "@common.settings.tk-3dsmaxplus.shot"
-  #tk-flame: "@common.settings.tk-flame.shot"
+  tk-flame: "@common.settings.tk-flame.shot"
   tk-houdini: "@common.settings.tk-houdini.shot"
   tk-maya: "@common.settings.tk-maya.shot"
   #tk-motionbuilder: "@common.settings.tk-motionbuilder.shot"

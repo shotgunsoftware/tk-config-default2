@@ -170,3 +170,17 @@ common.apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
   version: v1.2.1
+
+# ---- Flame apps
+
+# flame export
+common.apps.tk-flame-export.location:
+  name: tk-flame-export
+  type: app_store
+  version: v1.7.9
+
+# flame review
+common.apps.tk-flame-review.location:
+  name: tk-flame-review
+  type: app_store
+  version: v1.1.4

@@ -9,8 +9,6 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and Engines related to Asset based work.
-
 ################################################################################
 
 includes:
@@ -96,7 +94,7 @@ common.settings.tk-maya.shot:
   location: "@common.engines.tk-maya.location"
 
 # shot_step
-maya.shot_step:
+common.settings.tk-maya.shot_step:
   apps:
     tk-multi-about:
       location: "@common.apps.tk-multi-about.location"
