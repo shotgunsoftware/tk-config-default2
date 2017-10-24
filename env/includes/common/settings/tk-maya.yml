@@ -96,7 +96,7 @@ common.settings.tk-maya.shot:
   location: "@common.engines.tk-maya.location"
 
 # shot_step
-maya.shot_step:
+common.settings.tk-maya.shot_step:
   apps:
     tk-multi-about:
       location: "@common.apps.tk-multi-about.location"
