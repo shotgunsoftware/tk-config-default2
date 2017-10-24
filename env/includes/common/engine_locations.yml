@@ -15,9 +15,13 @@
 
 # 3dsMax
 common.engines.tk-3dsmaxplus.location:
-    type: app_store
-    name: tk-3dsmaxplus
-    version: v0.4.1
+    #type: app_store
+    #name: tk-3dsmaxplus
+    #version: v0.4.1
+    type: git_branch
+    branch: 44077_defcon2
+    path: https://github.com/shotgunsoftware/tk-3dsmaxplus.git
+    version: acf8c82ba7980e6dbf751c28d2909119bf3a0b9e
 
 # Desktop
 common.engines.tk-desktop.location:
@@ -39,9 +43,7 @@ common.engines.tk-houdini.location:
     type: git_branch
     branch: 44077_defcon2
     path: https://github.com/shotgunsoftware/tk-houdini.git
-    version: 449265c7362b77f08bdd3cb248df7d48d57301a5
-    #type: dev
-    #path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini
+    version: 03c6169d967bfffaadc310bd92497acbc3e4ffc0
 
 # Mari
 common.engines.tk-mari.location:

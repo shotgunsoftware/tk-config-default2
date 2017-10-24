@@ -14,42 +14,36 @@ description: Apps and Engines when launching with a project only context.
 ################################################################################
 
 includes:
-
-# frameworks
 - ./includes/common/frameworks.yml
-
-# DCC-specific project environments
-- ./includes/3dsmax/project.yml
-- ./includes/desktop/project.yml
-#- ./includes/flame/project.yml
-- ./includes/hiero/project.yml
-- ./includes/houdini/project.yml
-#- ./includes/mari/project.yml
-- ./includes/maya/project.yml
-- ./includes/motionbuilder/project.yml
-- ./includes/nuke/project.yml
-- ./includes/nukestudio/project.yml
-- ./includes/photoshopcc/project.yml
-- ./includes/shell/project.yml
-- ./includes/shotgun/project.yml
+- ./includes/common/settings/tk-3dsmaxplus.yml
+- ./includes/common/settings/tk-desktop.yml
+- ./includes/common/settings/tk-flame.yml
+- ./includes/common/settings/tk-houdini.yml
+#- ./includes/common/settings/tk-mari.yml
+- ./includes/common/settings/tk-maya.yml
+- ./includes/common/settings/tk-motionbuilder.yml
+- ./includes/common/settings/tk-nuke.yml
+- ./includes/common/settings/tk-photoshopcc.yml
+- ./includes/common/settings/tk-shell.yml
+- ./includes/common/settings/tk-shotgun.yml
 
 ################################################################################
 # configuration for all engines to load in a project context
 
 engines:
-  tk-3dsmaxplus: "@3dsmax.project"
-  tk-desktop: "@desktop.project"
-  tk-hiero: "@hiero.project"
-  tk-houdini: "@houdini.project"
-  #tk-mari: "@mari.project"
-  tk-maya: "@maya.project"
-  tk-motionbuilder: "@motionbuilder.project"
-  tk-nuke: "@nuke.project"
-  tk-nukestudio: "@nukestudio.project"
-  tk-photoshopcc: "@photoshopcc.project"
+  tk-3dsmaxplus: "@common.settings.tk-3dsmaxplus.project"
+  tk-desktop: "@common.settings.tk-desktop.project"
   #tk-flame: "@flame.project"
-  tk-shell: "@shell.project"
-  tk-shotgun: "@shotgun.project"
+  tk-hiero: "@common.settings.tk-nuke.hiero.project"
+  tk-houdini: "@common.settings.tk-houdini.project"
+  #tk-mari: "@common.settings.tk-mari.project"
+  tk-maya: "@common.settings.tk-maya.project"
+  tk-motionbuilder: "@common.settings.tk-motionbuilder.project"
+  tk-nuke: "@common.settings.tk-nuke.project"
+  tk-nukestudio: "@common.settings.tk-nuke.nukestudio.project"
+  tk-photoshopcc: "@common.settings.tk-photoshopcc.project"
+  tk-shell: "@common.settings.tk-shell.project"
+  tk-shotgun: "@common.settings.tk-shotgun.project"
 
 ################################################################################
 # reference all of the common frameworks
