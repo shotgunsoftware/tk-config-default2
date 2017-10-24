@@ -99,4 +99,4 @@ common.engines.tk-mari.location:
     type: git_branch
     branch: 44077_defcon2
     path: https://github.com/shotgunsoftware/tk-mari.git
-    version: 2a623a1db90a676c2eb90dc169d0a24a1199a180
+    version: 4654a5139cd446d7bec590f8270ba464eb15056a

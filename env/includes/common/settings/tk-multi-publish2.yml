@@ -319,7 +319,7 @@ common.settings.tk-multi-publish2.mari.asset_step:
     hook: "{self}/publish_file.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_session.py"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
     settings: 
       Publish Template: asset_mari_texture_tif
   help_url: *help_url
