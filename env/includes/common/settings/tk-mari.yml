@@ -9,16 +9,32 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-# this configuration defines the behavior of the Mari Integration when it
-# is running in its asset step level configuration
+description: App configurations for each Mari context.
+
+################################################################################
 
 includes:
-- ../common/app_locations.yml
-- ../common/engine_locations.yml
-- ../common/settings/tk-multi-loader2.yml
-- ../common/settings/tk-multi-publish2.yml
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
 
-mari.asset_step:
+################################################################################
+
+# asset
+common.settings.tk-mari.asset:
+  apps:
+    tk-multi-about:
+      location: '@common.apps.tk-multi-about.location'
+    tk-multi-shotgunpanel:
+      location: '@common.apps.tk-multi-shotgunpanel.location'
+    tk-multi-workfiles:
+      location: '@common.apps.tk-multi-workfiles.location'
+      sg_entity_types: [Asset]
+  location: '@common.engines.tk-mari.location'
+
+# asset_step
+common.settings.tk-mari.asset_step:
   apps:
     tk-mari-projectmanager:
       location: '@common.apps.tk-mari-projectmanager.location'
@@ -34,4 +50,16 @@ mari.asset_step:
       sg_entity_types: [Asset]
     tk-multi-shotgunpanel:
       location: '@common.apps.tk-multi-shotgunpanel.location'
+  location: '@common.engines.tk-mari.location'
+
+# project
+common.settings.tk-mari.project:
+  apps:
+    tk-multi-about:
+      location: '@common.apps.tk-multi-about.location'
+    tk-multi-shotgunpanel: 
+      location: '@common.apps.tk-multi-shotgunpanel.location'
+    tk-multi-workfiles:
+      location: '@common.apps.tk-multi-workfiles.location'
+      sg_entity_types: [Asset]
   location: '@common.engines.tk-mari.location'
