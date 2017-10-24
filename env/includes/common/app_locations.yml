@@ -172,3 +172,11 @@ common.apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
   version: v1.2.1
+
+# ---- Mari apps
+
+# project manager
+common.apps.tk-mari-projectmanager.location:
+  name: tk-mari-projectmanager
+  type: app_store
+  version: v1.2.0

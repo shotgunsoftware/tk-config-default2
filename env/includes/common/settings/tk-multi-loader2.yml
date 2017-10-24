@@ -190,3 +190,22 @@ common.settings.tk-multi-loader2.photoshop:
     hierarchy: [entity, content]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@common.apps.tk-multi-loader2.location"
+
+# mari
+common.settings.tk-multi-loader2.mari:
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+    publish_filters: []
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+    publish_filters: []
+  location: '@common.apps.tk-multi-loader2.location'
+  title_name: Import
