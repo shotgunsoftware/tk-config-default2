@@ -33,57 +33,58 @@ settings.tk-multi-launchapp.shotgun:
 
 # app-specific launchapp configurations
 
+# flame
+settings.tk-multi-launchapp.flame:
+  engine: tk-flame
+  icon: "{target_engine}/flame_icon_256.png"
+  linux_path: "@path.linux.flame"
+  mac_path: "@path.mac.flame"
+  menu_name: Launch Flame
+  location: "@apps.tk-multi-launchapp.location"
+
+# flame assist
+settings.tk-multi-launchapp.flame_assist:
+  engine: tk-flame
+  icon: "{target_engine}/flame_assist_icon_256.png"
+  linux_path: "@path.linux.flame_assist"
+  mac_path: "@path.mac.flame_assist"
+  menu_name: Launch FlameAssist
+  location: "@apps.tk-multi-launchapp.location"
+
+# flare
+settings.tk-multi-launchapp.flare:
+  engine: tk-flare
+  icon: "{target_engine}/flare_icon_256.png"
+  linux_path: "@path.linux.flare"
+  mac_path: "@path.mac.flare"
+  menu_name: Launch Flare
+  location: "@apps.tk-multi-launchapp.location"
+
 # hiero
 settings.tk-multi-launchapp.hiero:
-  defer_keyword: ""
   engine: tk-hiero
-  extra: {}
-  hook_app_launch: default
-  hook_before_app_launch: default
   icon: "{target_engine}/icon_hiero_256.png"
-  linux_args: --hiero
   linux_path: "@path.linux.hiero"
-  location: "@apps.tk-multi-launchapp.location"
-  mac_args: ""
+  linux_args: --hiero
   mac_path: "@path.mac.hiero"
-  menu_name: Hiero
-  versions: []
-  windows_args: --hiero
   windows_path: "@path.windows.hiero"
+  windows_args: --hiero
+  menu_name: Hiero
+  location: "@apps.tk-multi-launchapp.location"
 
 # mari
 settings.tk-multi-launchapp.mari:
-  defer_keyword: ""
   engine: tk-mari
-  extra: {}
-  hook_app_launch: default
-  hook_before_app_launch: default
-  icon: "{target_engine}/icon_256.png"
-  linux_args: ""
   linux_path: "@path.linux.mari"
-  location: "@apps.tk-multi-launchapp.location"
-  mac_args: ""
   mac_path: "@path.mac.mari"
-  menu_name: Mari
-  versions: []
-  windows_args: ""
   windows_path: "@path.windows.mari"
+  menu_name: Mari
+  location: "@apps.tk-multi-launchapp.location"
 
 # motionbuilder
 settings.tk-multi-launchapp.motionbuilder:
-  defer_keyword: ""
   engine: tk-motionbuilder
-  extra: {}
-  hook_app_launch: default
-  hook_before_app_launch: default
-  icon: "{target_engine}/icon_256.png"
-  linux_args: ""
-  linux_path: ""
-  location: "@apps.tk-multi-launchapp.location"
-  mac_args: ""
-  mac_path: ""
-  menu_name: MotionBuilder
-  versions: []
-  windows_args: ""
   windows_path: "@path.windows.motionbuilder"
+  menu_name: MotionBuilder
+  location: "@apps.tk-multi-launchapp.location"
 

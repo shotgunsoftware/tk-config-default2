@@ -53,7 +53,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: 44077_defcon2
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: 2ea673e6983c0cbc9e39c53b229673bff4fb86c3
+  version: 101688bce3c744c199704d6ff473520c537a4bcc
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -90,6 +90,12 @@ apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
   version: v0.7.3
+
+# workfiles (required for Mari)
+apps.tk-multi-workfiles.location:
+  type: app_store
+  name: tk-multi-workfiles
+  version: v0.7.4
 
 # workfiles2
 apps.tk-multi-workfiles2.location:
@@ -138,24 +144,20 @@ apps.tk-houdini-alembicnode.location:
   #type: app_store
   #name: tk-houdini-alembicnode
   #version: v0.2.5
-  #type: git_branch
-  #branch: 44077_defcon2
-  #path: https://github.com/shotgunsoftware/tk-houdini-alembicnode.git
-  #version: 8cef8e50352b9a03ab06798ab2019321025ea02b
-  type: dev
-  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini-alembicnode
+  type: git_branch
+  branch: 44077_defcon2
+  path: https://github.com/shotgunsoftware/tk-houdini-alembicnode.git
+  version: b582506166df26ea46ff51a37ce0e2e7fadce1db
 
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
   #type: app_store
   #name: tk-houdini-mantranode
   #version: v0.2.7
-  #type: git_branch
-  #branch: 44077_defcon2
-  #path: https://github.com/shotgunsoftware/tk-houdini-mantranode.git
-  #version: b5a4aee65b0ecf8e2f88369ab3f82a009ff12e0b
-  type: dev
-  path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-houdini-mantranode
+  type: git_branch
+  branch: 44077_defcon2
+  path: https://github.com/shotgunsoftware/tk-houdini-mantranode.git
+  version: 93ea29f724d78d8d0c098533fbb0f5ba58a5a775
 
 # ---- Nuke apps
 
@@ -184,3 +186,11 @@ apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
   version: v1.1.4
+
+# ---- Mari apps
+
+# project manager
+apps.tk-mari-projectmanager.location:
+  name: tk-mari-projectmanager
+  type: app_store
+  version: v1.2.0

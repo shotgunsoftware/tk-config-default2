@@ -131,6 +131,24 @@ settings.tk-multi-publish2.houdini.shot_step:
 
 ################################################################################
 
+# ---- Mari
+
+# asset_step
+settings.tk-multi-publish2.mari.asset_step:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
+    settings:
+      Publish Template: asset_mari_texture_tif
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+################################################################################
+
 # ---- Maya
 
 # asset step
@@ -152,6 +170,10 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_asset_publish
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+    settings:
+        Publish Template: asset_alembic_cache
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

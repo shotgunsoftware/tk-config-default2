@@ -55,6 +55,8 @@ keys:
         type: int
     height:
         type: int
+    segment_name:
+        type: str
 
     # Represents the optional output name for frames written by the Shotgun Write Node
     nuke.output:
@@ -185,6 +187,31 @@ paths:
     # Shot level paths
     #
 
+    #
+    # Flame
+    #
+
+    flame_segment_clip:
+        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/sources/{segment_name}.clip'
+        root_name: 'primary'
+    flame_shot_clip:
+        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/{Shot}.clip'
+        root_name: 'primary'
+    flame_shot_batch:
+        definition: 'sequences/{Sequence}/{Shot}/finishing/batch/{Shot}.v{version}.batch'
+        root_name: 'primary'
+    flame_shot_render_dpx:
+        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{SEQ}.dpx'
+        root_name: 'primary'
+    flame_shot_render_exr:
+        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{SEQ}.exr'
+        root_name: 'primary'
+    flame_shot_comp_dpx:
+        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{SEQ}.dpx'
+        root_name: 'primary'
+    flame_shot_comp_exr:
+        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{SEQ}.exr'
+        root_name: 'primary'
 
     #
     # Photoshop
