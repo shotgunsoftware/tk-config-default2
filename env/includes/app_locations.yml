@@ -37,7 +37,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.9.10
+  version: v0.9.11
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -53,7 +53,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: 44077_defcon2
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: f38a7f83d753a62a42ed93d375714e994ff0e82f
+  version: 2ea673e6983c0cbc9e39c53b229673bff4fb86c3
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:

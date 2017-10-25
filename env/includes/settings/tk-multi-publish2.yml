@@ -53,7 +53,7 @@ settings.tk-multi-publish2.3dsmax.asset_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: max_asset_publish
   help_url: *help_url
@@ -101,7 +101,7 @@ settings.tk-multi-publish2.houdini.asset_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: houdini_asset_publish
   help_url: *help_url
@@ -149,7 +149,7 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_asset_publish
   help_url: *help_url

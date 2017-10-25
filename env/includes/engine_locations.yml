@@ -33,7 +33,7 @@ engines.tk-desktop.location:
 engines.tk-flame.location:
     type: app_store
     name: tk-flame
-    version: v1.9.9
+    version: v1.10.0
 
 # Houdini
 engines.tk-houdini.location:
