@@ -36,20 +36,20 @@ The structure of these files is as follows:
 ```yaml
 includes:
 # include all frameworks
-- ./includes/common/frameworks.yml
+- ./includes/frameworks.yml
 # include each of the engine configurations used in this environment
-- ./includes/common/settings/<engine>.yml
-- ./includes/common/settings/<engine>.yml
+- ./includes/settings/<engine>.yml
+- ./includes/settings/<engine>.yml
 ...
 
 engines:
   # reference each of the included engine environment configurations
-  <engine>: "@common.settings.<engine>.<environment>"
-  <engine>: "@common.settings.<engine>.<environment>"
+  <engine>: "@settings.<engine>.<environment>"
+  <engine>: "@settings.<engine>.<environment>"
   ...
   
 # reference all of the frameworks
-frameworks: "@common.frameworks"
+frameworks: "@frameworks.all"
 ```
 
 The `tk-config-default2` heavily relies on the Toolkit configuration includes
@@ -58,15 +58,15 @@ and references. The `includes` section references files that define regular
 syntax seen above. Have a look at one of the top-level environment files for a
 concrete example of how this works. 
 
-Common Engine Settings
-----------------------
+Engine Settings
+---------------
 
-The top-level environments include common engine settings from 
-`includes/common/settings/<engine>.yml` files. In `tk-config-default2`, all 
-engine-specific configurations live in that engine's common settings file. This
+The top-level environments include engine settings from 
+`includes/settings/<engine>.yml` files. In `tk-config-default2`, all 
+engine-specific configurations live in that engine's settings file. This
 makes it straight forward to know where to go to change how an engine is 
 configured. For example, if you need to change how the Maya engine is 
-configured, simply edit the `includes/common/settings/tk-maya.yml` file. 
+configured, simply edit the `includes/settings/tk-maya.yml` file. 
 
 The structure of these files is as follows:
 
@@ -82,35 +82,35 @@ includes:
 ...
 
 # <environment> specific configuration
-common.settings.<engine>.<environment>:
+settings.<engine>.<environment>:
   apps:
     # list of apps for this engine in the specific environment
     <app>: 
       # some simple apps only need to specify a location descriptor
-      location: "@common.apps.<app>.location"
+      location: "@apps.<app>.location"
     # other apps need more configuration, referenced from the included app file
-    <app>: "@common.settings.<app>.<engine>.<environment>"
+    <app>: "@settings.<app>.<engine>.<environment>"
     ...
   # engine settings are defined/edited here
-  location: "@common.engines.tk-maya.location"
+  location: "@engines.tk-maya.location"
   
 # other environment configurations
 ... 
 ```
 
 Here you can see where the engine-specific environment keys (
-`common.settings.<engine>.<environment>`) are defined and then included into the
+`settings.<engine>.<environment>`) are defined and then included into the
 top-level environment files. Take a look at one of the engine configuration 
 files for a concrete example. 
 
-Common App Settings
--------------------
+App Settings
+------------
 
 Similar to the engine configuration files, any apps that require more than a 
-location descriptor have a common settings file in `includes/common/settings`.
-For example, to make changes to the Nuke Write Node app, all of the different
-configurations (for all environments) are defined in the 
-`includes/common/settings/tk-nuke-writenode.yml` file. 
+location descriptor have a settings file in `includes/settings`. For example, to
+make changes to the Nuke Write Node app, all of the different configurations 
+(for all environments) are defined in the 
+`includes/settings/tk-nuke-writenode.yml` file. 
 
 The structure of these files is as follows:
 
@@ -121,14 +121,14 @@ includes:
 
 # define each of the different configurations for the app.
 # for an app that is built for a specific engine, it may be defined this way:
-common.settings.<app>.<environment>:
+settings.<app>.<environment>:
     # settings defined here...
-    location: "@common.apps.<app>.location"
+    location: "@apps.<app>.location"
 
 # for multi apps, the settings key may be defined with an engine name
-common.settings.<app>.<engine>.<environment>:
+settings.<app>.<engine>.<environment>:
     # settings defined here...
-    location: "@common.apps.<app>.location"
+    location: "@apps.<app>.location"
 ```
 
 The keys defined in this file are the ones referenced in the engine 
@@ -142,14 +142,14 @@ One of the changes made for `tk-config-basic2` was to centralize the location
 descriptors for apps and engines. By default, this configuration defines the 
 location for each app and engine being used in exactly one file. 
 
-For engines, the `includes/common/engine_locations.yml` file defines location
+For engines, the `includes/engine_locations.yml` file defines location
 descriptors for all engines. These location descriptors are then included and 
 referenced anywhere an engine is used. This can be overridden, of course, by 
 explicitly defining a location descriptor in one of the engine configuration
 files. 
 
 Similarly, all app location descriptors are defined in the
-`includes/common/app_locations.yml` file. This file is then included by any 
+`includes/app_locations.yml` file. This file is then included by any 
 engine or app configuration that need to define an app's location. 
 
 Centralizing these location descriptors makes it extremely easy to test and 
@@ -158,8 +158,8 @@ rollout new integrations onto production.
 Frameworks
 ----------
 
-Like the app and engine locations file, the `includes/common/frameworks.yml` 
-file defines a single, top-level `@common.frameworks` key that can be included 
+Like the app and engine locations file, the `includes/frameworks.yml` 
+file defines a single, top-level `@frameworks.all` key that can be included 
 and used wherever frameworks are required (typically in the top-level 
 enviornment configuration files). This is the only file that defines location 
 descriptors for frameworks. 
@@ -168,7 +168,7 @@ Software Paths
 --------------
 
 The `paths.yml` file found in older configurations has been renamed to 
-`software_paths.yml` and lives in the `includes/common` folder. This file has 
+`software_paths.yml` and lives in the `includes` folder. This file has 
 been significantly reduced in terms of content because of the new Software 
 entity and the ability of many of the latest Toolkit engines to scan the user's
 filesystem for installed software. What's left in this file is software that 
@@ -179,9 +179,9 @@ keys used has been modified for consistency. The file takes the form:
 
 ```yaml
 # <software>
-common.path.linux.<software>: "/path/to/the/software/on/linux/software"
-common.path.mac.<software>: "/Applications/<Software>.app"
-common.path.windows.<software>: C:\Path\to\the\Software.exe
+path.linux.<software>: "/path/to/the/software/on/linux/software"
+path.mac.<software>: "/Applications/<Software>.app"
+path.windows.<software>: C:\Path\to\the\Software.exe
 
 # <software>
 ...
@@ -189,7 +189,7 @@ common.path.windows.<software>: C:\Path\to\the\Software.exe
 
 These paths are typically included and used by apps like `tk-multi-launchapp`. 
 See the `software_paths.yml` and 
-`includes/common/settings/tk-multi-launchapp.yml` files to see concrete examples
+`includes/settings/tk-multi-launchapp.yml` files to see concrete examples
 of how this file is used.
 
 Questions?

@@ -1,0 +1,121 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-houdini-alembicnode.yml
+- ./tk-houdini-mantranode.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
+- ./tk-multi-screeningroom.yml
+- ./tk-multi-shotgunpanel.yml
+- ./tk-multi-snapshot.yml
+- ./tk-multi-workfiles2.yml
+
+################################################################################
+
+# asset
+settings.tk-houdini.asset:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-houdini.location"
+
+# asset_step
+settings.tk-houdini.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.houdini"
+    tk-multi-publish2: "@settings.tk-multi-publish2.houdini.asset_step"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.houdini"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.houdini.asset_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.asset_step"
+    tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
+    tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  location: '@engines.tk-houdini.location'
+
+# project
+settings.tk-houdini.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-houdini.location"
+
+# sequence
+settings.tk-houdini.sequence:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-houdini.location"
+
+# shot
+settings.tk-houdini.shot:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-houdini.location"
+
+# shot_step
+settings.tk-houdini.shot_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-setframerange:
+      location: "@apps.tk-multi-setframerange.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.houdini"
+    tk-multi-publish2: "@settings.tk-multi-publish2.houdini.shot_step"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.houdini"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.houdini.shot_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.shot_step"
+    tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.shot_step"
+    tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  location: '@engines.tk-houdini.location'
+

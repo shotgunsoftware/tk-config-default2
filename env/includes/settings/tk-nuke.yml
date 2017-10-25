@@ -1,0 +1,298 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-hiero-export.yml
+- ./tk-multi-breakdown.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
+- ./tk-multi-reviewsubmission.yml
+- ./tk-multi-screeningroom.yml
+- ./tk-multi-shotgunpanel.yml
+- ./tk-multi-snapshot.yml
+- ./tk-multi-workfiles2.yml
+- ./tk-nuke-quickdailies.yml
+- ./tk-nuke-writenode.yml
+
+################################################################################
+# Hiero
+
+settings.tk-nuke.hiero.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
+    tk-hiero-openinshotgun:
+      location: "@apps.tk-hiero-openinshotgun.location"
+    tk-hiero-export: "@settings.tk-hiero-export"
+  # engine settings
+  bin_context_menu:
+  - app_instance: tk-multi-workfiles2
+    keep_in_menu: false
+    name: "File Save..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot History..."
+    requires_selection: true
+  - app_instance: tk-multi-publish2
+    keep_in_menu: false
+    name: "Publish..."
+    requires_selection: true
+  spreadsheet_context_menu:
+  - app_instance: tk-hiero-openinshotgun
+    keep_in_menu: false
+    name: "Open in Shotgun"
+    requires_selection: true
+  timeline_context_menu:
+  - app_instance: tk-hiero-openinshotgun
+    keep_in_menu: false
+    name: "Open in Shotgun"
+    requires_selection: true
+  menu_favourites:
+  - app_instance: tk-multi-workfiles2
+    name: "File Open..."
+  location: "@engines.tk-nuke.location"
+
+################################################################################
+# Nuke
+
+# asset
+settings.tk-nuke.asset:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-nuke.location"
+
+# asset_step
+settings.tk-nuke.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nuke.asset_step"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.asset"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.nuke.asset_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.asset_step"
+    tk-nuke-quickdailies: "@settings.tk-nuke-quickdailies.asset"
+    tk-nuke-writenode: "@settings.tk-nuke-writenode.asset"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  location: "@engines.tk-nuke.location"
+
+# project
+settings.tk-nuke.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-nuke.location"
+
+# sequence
+settings.tk-nuke.sequence:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-nuke.location"
+
+# shot
+settings.tk-nuke.shot:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-nuke.location"
+
+# shot_step
+settings.tk-nuke.shot_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-setframerange:
+      location: "@apps.tk-multi-setframerange.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nuke.shot_step"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.shot"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.nuke.shot_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.shot_step"
+    tk-nuke-quickdailies: "@settings.tk-nuke-quickdailies.shot"
+    tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  location: "@engines.tk-nuke.location"
+
+################################################################################
+# NukeStudio
+
+# asset_step
+settings.tk-nuke.nukestudio.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-setframerange:
+      location: "@apps.tk-multi-setframerange.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.asset"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
+    tk-nuke-quickdailies: "@settings.tk-nuke-quickdailies.asset"
+    tk-nuke-writenode: "@settings.tk-nuke-writenode.asset"
+  bin_context_menu:
+  - app_instance: tk-multi-workfiles2
+    keep_in_menu: false
+    name: "File Save..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot History..."
+    requires_selection: true
+  - app_instance: tk-multi-publish2
+    keep_in_menu: false
+    name: "Publish..."
+    requires_selection: true
+  menu_favourites:
+  - app_instance: tk-multi-workfiles2
+    name: "File Open..."
+  location: '@engines.tk-nuke.location'
+
+# project
+settings.tk-nuke.nukestudio.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
+    tk-hiero-openinshotgun:
+      location: "@apps.tk-hiero-openinshotgun.location"
+    tk-hiero-export: "@settings.tk-hiero-export"
+  bin_context_menu:
+  - app_instance: tk-multi-workfiles2
+    keep_in_menu: false
+    name: "File Save..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot History..."
+    requires_selection: true
+  - app_instance: tk-multi-publish2
+    keep_in_menu: false
+    name: "Publish..."
+    requires_selection: true
+  spreadsheet_context_menu:
+  - app_instance: tk-hiero-openinshotgun
+    keep_in_menu: false
+    name: "Open in Shotgun"
+    requires_selection: true
+  timeline_context_menu:
+  - app_instance: tk-hiero-openinshotgun
+    keep_in_menu: false
+    name: "Open in Shotgun"
+    requires_selection: true
+  menu_favourites:
+  - app_instance: tk-multi-workfiles2
+    name: File Open...
+  location: '@engines.tk-nuke.location'
+
+# shot_step
+settings.tk-nuke.nukestudio.shot_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-setframerange:
+      location: "@apps.tk-multi-setframerange.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.shot"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
+    tk-nuke-quickdailies: "@settings.tk-nuke-quickdailies.shot"
+    tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
+  bin_context_menu:
+  - app_instance: tk-multi-workfiles2
+    keep_in_menu: false
+    name: "File Save..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot History..."
+    requires_selection: true
+  - app_instance: tk-multi-publish2
+    keep_in_menu: false
+    name: "Publish..."
+    requires_selection: true
+  menu_favourites:
+  - app_instance: tk-multi-workfiles2
+    name: "File Open..."
+  location: '@engines.tk-nuke.location'

@@ -17,16 +17,16 @@ description: Apps and engines loaded when a PublishedFile or Version is loaded.
 ################################################################################
 
 includes:
-- ./includes/common/frameworks.yml
-- ./includes/common/settings/tk-shotgun.yml
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
 
 ################################################################################
 # configuration for all engines to load in a publishedfile or version context
 
 engines:
-  tk-shotgun: "@common.settings.tk-shotgun.publishedfile_version"
+  tk-shotgun: "@settings.tk-shotgun.publishedfile_version"
 
 ################################################################################
 # reference all of the common frameworks
 
-frameworks: "@common.frameworks"
+frameworks: "@frameworks.all"

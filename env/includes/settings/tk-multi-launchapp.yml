@@ -1,0 +1,89 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../software_paths.yml
+
+################################################################################
+
+# auto discover DCCs for launch
+settings.tk-multi-launchapp:
+  use_software_entity: true
+  hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+  location: "@apps.tk-multi-launchapp.location"
+
+# shotgun
+settings.tk-multi-launchapp.shotgun:
+  use_software_entity: true
+  skip_engine_instances: ["tk-nukestudio"]
+  hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+  location: "@apps.tk-multi-launchapp.location"
+
+################################################################################
+
+# app-specific launchapp configurations
+
+# hiero
+settings.tk-multi-launchapp.hiero:
+  defer_keyword: ""
+  engine: tk-hiero
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  icon: "{target_engine}/icon_hiero_256.png"
+  linux_args: --hiero
+  linux_path: "@path.linux.hiero"
+  location: "@apps.tk-multi-launchapp.location"
+  mac_args: ""
+  mac_path: "@path.mac.hiero"
+  menu_name: Hiero
+  versions: []
+  windows_args: --hiero
+  windows_path: "@path.windows.hiero"
+
+# mari
+settings.tk-multi-launchapp.mari:
+  defer_keyword: ""
+  engine: tk-mari
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  icon: "{target_engine}/icon_256.png"
+  linux_args: ""
+  linux_path: "@path.linux.mari"
+  location: "@apps.tk-multi-launchapp.location"
+  mac_args: ""
+  mac_path: "@path.mac.mari"
+  menu_name: Mari
+  versions: []
+  windows_args: ""
+  windows_path: "@path.windows.mari"
+
+# motionbuilder
+settings.tk-multi-launchapp.motionbuilder:
+  defer_keyword: ""
+  engine: tk-motionbuilder
+  extra: {}
+  hook_app_launch: default
+  hook_before_app_launch: default
+  icon: "{target_engine}/icon_256.png"
+  linux_args: ""
+  linux_path: ""
+  location: "@apps.tk-multi-launchapp.location"
+  mac_args: ""
+  mac_path: ""
+  menu_name: MotionBuilder
+  versions: []
+  windows_args: ""
+  windows_path: "@path.windows.motionbuilder"
+

@@ -1,0 +1,161 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# generic
+settings.tk-multi-shotgunpanel:
+  action_mappings:
+    PublishedFile:
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# 3dsmax
+settings.tk-multi-shotgunpanel.3dsmax:
+  action_mappings:
+    PublishedFile:
+    - actions: [import]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [texture_node]
+      filters: {published_file_type: Image}
+    - actions: [reference, import]
+      filters: {published_file_type: 3dsmax Scene}
+    - actions: [texture_node]
+      filters: {published_file_type: Rendered Image}
+    - actions: [texture_node]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# houdini
+settings.tk-multi-shotgunpanel.houdini:
+  action_mappings:
+    PublishedFile:
+    - actions: [import]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [merge]
+      filters: {published_file_type: Houdini Scene}
+    - actions: [file_cop]
+      filters: {published_file_type: Image}
+    - actions: [file_cop]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [file_cop]
+      filters: {published_file_type: Rendered Image}
+    - actions: [file_cop]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# maya
+settings.tk-multi-shotgunpanel.maya:
+  action_mappings:
+    PublishedFile:
+    - actions: [reference, import]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [texture_node, image_plane]
+      filters: {published_file_type: Image}
+    - actions: [reference, import]
+      filters: {published_file_type: Maya Scene}
+    - actions: [texture_node, image_plane]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [texture_node, image_plane]
+      filters: {published_file_type: Rendered Image}
+    - actions: [texture_node, image_plane]
+      filters: {published_file_type: Texture}
+    - actions: [udim_texture_node]
+      filters: {published_file_type: UDIM Image}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# nuke
+settings.tk-multi-shotgunpanel.nuke:
+  action_mappings:
+    PublishedFile:
+    - actions: [read_node]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [read_node]
+      filters: {published_file_type: Image}
+    - actions: [read_node]
+      filters: {published_file_type: Movie}
+    - actions: [script_import]
+      filters: {published_file_type: Nuke Script}
+    - actions: [open_project]
+      filters: {published_file_type: NukeStudio Project}
+    - actions: [read_node]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [read_node]
+      filters: {published_file_type: Rendered Image}
+    - actions: [read_node]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# photoshop
+settings.tk-multi-shotgunpanel.photoshop:
+  actions_hook: "{self}/general_actions.py"
+  action_mappings:
+    PublishedFile:
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Rendered Image}
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Image}
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"

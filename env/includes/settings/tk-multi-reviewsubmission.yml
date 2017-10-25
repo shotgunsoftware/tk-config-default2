@@ -1,0 +1,30 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# ---- Nuke
+
+# asset
+settings.tk-multi-reviewsubmission.nuke.asset:
+  movie_path_template: nuke_asset_render_movie
+  slate_logo: icons/review_submit_logo.png
+  location: "@apps.tk-multi-reviewsubmission.location"
+
+# shot
+settings.tk-multi-reviewsubmission.nuke.shot:
+  movie_path_template: nuke_shot_render_movie
+  slate_logo: icons/review_submit_logo.png
+  location: "@apps.tk-multi-reviewsubmission.location"

@@ -21,28 +21,28 @@ description: Apps and engines loaded when a Sequence is loaded. Since std VFX
 ################################################################################
 
 includes:
-- ./includes/common/frameworks.yml
-- ./includes/common/settings/tk-3dsmaxplus.yml
-- ./includes/common/settings/tk-houdini.yml
-- ./includes/common/settings/tk-maya.yml
-#- ./includes/common/settings/tk-motionbuilder.yml
-- ./includes/common/settings/tk-nuke.yml
-- ./includes/common/settings/tk-shell.yml
-- ./includes/common/settings/tk-shotgun.yml
+- ./includes/frameworks.yml
+- ./includes/settings/tk-3dsmaxplus.yml
+- ./includes/settings/tk-houdini.yml
+- ./includes/settings/tk-maya.yml
+#- ./includes/settings/tk-motionbuilder.yml
+- ./includes/settings/tk-nuke.yml
+- ./includes/settings/tk-shell.yml
+- ./includes/settings/tk-shotgun.yml
 
 ################################################################################
 # configuration for all engines to load in a sequence context
 
 engines:
-  tk-3dsmaxplus: "@common.settings.tk-3dsmaxplus.sequence"
-  tk-houdini: "@common.settings.tk-houdini.sequence"
-  tk-maya: "@common.settings.tk-maya.sequence"
-  #tk-motionbuilder: "@common.settings.tk-motionbuilder.sequence"
-  tk-nuke: "@common.settings.tk-nuke.sequence"
-  tk-shell: "@common.settings.tk-shell.sequence"
-  tk-shotgun: "@common.settings.tk-shotgun.sequence"
+  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.sequence"
+  tk-houdini: "@settings.tk-houdini.sequence"
+  tk-maya: "@settings.tk-maya.sequence"
+  #tk-motionbuilder: "@settings.tk-motionbuilder.sequence"
+  tk-nuke: "@settings.tk-nuke.sequence"
+  tk-shell: "@settings.tk-shell.sequence"
+  tk-shotgun: "@settings.tk-shotgun.sequence"
 
 ################################################################################
 # reference all of the common frameworks
 
-frameworks: "@common.frameworks"
+frameworks: "@frameworks.all"
