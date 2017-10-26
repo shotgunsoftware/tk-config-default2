@@ -322,7 +322,7 @@ common.settings.tk-multi-publish2.motion_builder.asset_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_motionbuilder_session.py"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings: 
       Publish Template: mobu_asset_publish
   help_url: *help_url
@@ -341,7 +341,7 @@ common.settings.tk-multi-publish2.motion_builder.shot_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_motionbuilder_session.py"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings: 
       Publish Template: mobu_shot_publish
   help_url: *help_url
