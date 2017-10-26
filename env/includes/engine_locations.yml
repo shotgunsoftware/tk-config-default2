@@ -21,7 +21,7 @@ engines.tk-3dsmaxplus.location:
     type: git_branch
     branch: 44077_defcon2
     path: https://github.com/shotgunsoftware/tk-3dsmaxplus.git
-    version: acf8c82ba7980e6dbf751c28d2909119bf3a0b9e
+    version: 32ca6bf6380afee8bd59c7f9c9c978ed82217554
 
 # Desktop
 engines.tk-desktop.location:
