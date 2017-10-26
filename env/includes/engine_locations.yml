@@ -79,7 +79,7 @@ engines.tk-nuke.location:
     type: git_branch
     branch: 44077_defcon2
     path: https://github.com/shotgunsoftware/tk-nuke.git
-    version: 47e5d82e49e2f7fa370c7e6574641721c5e4cd90
+    version: 4840ad40731385aab53cdfb6e410e0bfb6c3a790
 
 # Photoshop
 engines.tk-photoshopcc.location:
