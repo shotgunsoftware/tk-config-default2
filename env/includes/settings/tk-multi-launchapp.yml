@@ -53,7 +53,7 @@ settings.tk-multi-launchapp.flame_assist:
 
 # flare
 settings.tk-multi-launchapp.flare:
-  engine: tk-flare
+  engine: tk-flame
   icon: "{target_engine}/flare_icon_256.png"
   linux_path: "@path.linux.flare"
   mac_path: "@path.mac.flare"

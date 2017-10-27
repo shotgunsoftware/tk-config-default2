@@ -51,9 +51,9 @@ apps.tk-multi-publish2.location:
   #name: tk-multi-publish2
   #version: v1.1.9
   type: git_branch
-  branch: 44077_defcon2
+  branch:   45377_context_change
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: 32d0e171a022030d865056c95b683be5386e8d0a
+  version: a8c078af65d5a35dad19684e1720a5c39e9556bf
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
