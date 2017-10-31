@@ -19,9 +19,9 @@ engines.tk-3dsmaxplus.location:
     #name: tk-3dsmaxplus
     #version: v0.4.1
     type: git_branch
-    branch: 44077_defcon2
+    branch: master
     path: https://github.com/shotgunsoftware/tk-3dsmaxplus.git
-    version: 700fdd0a031d68517532f35e40b92cd9f6469b88
+    version: 1462eaca88dff0292824c59d31ba1366ef09564d
 
 # Desktop
 engines.tk-desktop.location:
@@ -41,9 +41,9 @@ engines.tk-houdini.location:
     #name: tk-houdini
     #version: v1.2.2
     type: git_branch
-    branch: 44077_defcon2
+    branch: master
     path: https://github.com/shotgunsoftware/tk-houdini.git
-    version: a6c59f788d20541930ff50016b4e6ab63ee50d1e
+    version: f7c38d79b8871d8e83d435803cc9bd6814eecc4c
 
 # Mari
 engines.tk-mari.location:
@@ -61,9 +61,9 @@ engines.tk-maya.location:
     #name: tk-maya
     #version: v0.8.1
     type: git_branch
-    branch: 44077_def2_pub2_templates
+    branch: master
     path: https://github.com/shotgunsoftware/tk-maya.git
-    version: f4c2990b16470bd2366dbd27a6e54005060cf095
+    version: 1fa1e80d009665622f85a2a03beb3fa477aa1d5d
 
 # Motion Builder
 engines.tk-motionbuilder.location:
@@ -77,9 +77,9 @@ engines.tk-nuke.location:
     #name: tk-nuke
     #version: v0.7.2
     type: git_branch
-    branch: 44077_defcon2
+    branch: master
     path: https://github.com/shotgunsoftware/tk-nuke.git
-    version: de54751879ac972b14c8c449e3e3fda20ffe40cf
+    version: 98c4538997bcbd8b3a6e05ccabbfa09b462c2322
 
 # Photoshop
 engines.tk-photoshopcc.location:
@@ -87,9 +87,9 @@ engines.tk-photoshopcc.location:
     #name: tk-photoshopcc
     #version: v1.1.5
     type: git_branch
-    branch: 44077_defcon2
+    branch: master
     path: https://github.com/shotgunsoftware/tk-photoshopcc.git
-    version: 42d9cd1eb8a967908be0263079efe92468ab9539
+    version: 8033661bd2d0415a4e0cdfed5896c42e23ffabf7
 
 # Shell
 engines.tk-shell.location:
