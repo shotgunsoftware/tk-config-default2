@@ -25,14 +25,14 @@ frameworks.all:
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.2.0
+      version: v1.2.5
       type: app_store
       name: tk-framework-desktopserver
 
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.6.3
+      version: v2.6.5
       type: app_store
       name: tk-framework-qtwidgets
 
@@ -46,7 +46,7 @@ frameworks.all:
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.2.1
+      version: v5.2.3
       type: app_store
       name: tk-framework-shotgunutils
 

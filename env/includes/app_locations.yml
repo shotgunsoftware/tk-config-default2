@@ -171,7 +171,7 @@ apps.tk-nuke-quickdailies.location:
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.2.1
+  version: v1.2.0
 
 # ---- Flame apps
 
