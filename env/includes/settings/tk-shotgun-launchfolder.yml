@@ -18,4 +18,4 @@ includes:
 settings.tk-shotgun-launchfolder:
   deny_permissions: []
   deny_platforms: []
-  location: "@apps.tk-shotgun-folders.location"
+  location: "@apps.tk-shotgun-launchfolder.location"
