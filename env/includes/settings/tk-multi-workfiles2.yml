@@ -121,6 +121,7 @@ settings.tk-multi-workfiles2.hiero:
     entity_type: Project
     filters: []
     hierarchy: [name]
+  show_my_tasks: false
   template_publish: hiero_project_publish
   template_publish_area: hiero_project_publish_area
   template_work: hiero_project_work
