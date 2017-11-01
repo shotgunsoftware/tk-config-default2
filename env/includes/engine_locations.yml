@@ -63,7 +63,7 @@ engines.tk-maya.location:
     type: git_branch
     branch: master
     path: https://github.com/shotgunsoftware/tk-maya.git
-    version: 1fa1e80d009665622f85a2a03beb3fa477aa1d5d
+    version: fc1ebad8a0a1e1fc8a2bead95295c2297d3d75ef
 
 # Motion Builder
 engines.tk-motionbuilder.location:
