@@ -79,7 +79,7 @@ engines.tk-nuke.location:
     type: git_branch
     branch: master
     path: https://github.com/shotgunsoftware/tk-nuke.git
-    version: e1d5df9c7ba645e9b2b58ec64cd1a9d40d2e5c11
+    version: e0407b3860ddb194c8c7f080f8cdefb437a679c2
 
 # Photoshop
 engines.tk-photoshopcc.location:
@@ -89,7 +89,7 @@ engines.tk-photoshopcc.location:
     type: git_branch
     branch: master
     path: https://github.com/shotgunsoftware/tk-photoshopcc.git
-    version: 37d59f8c1d3af8f1ec1f6ad2ef1f103388cdf65d
+    version: 6b8a4d89acd03d689ac96b573c506d39d6a95e00
 
 # Shell
 engines.tk-shell.location:
