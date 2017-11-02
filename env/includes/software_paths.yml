@@ -25,7 +25,7 @@ path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2017\bin\x64
 # Hiero
 path.linux.hiero: "Nuke11.0v1"
 path.mac.hiero: "/Applications/Nuke11.0v1/Hiero11.0v1.app"
-path.windows.hiero: C:\Program Files\Nuke11.0v1\Nuke11.0v1.exe
+path.windows.hiero: C:\Program Files\Nuke11.0v1\Nuke11.0.exe
 
 # RV
 path.linux.rv: "rv"
