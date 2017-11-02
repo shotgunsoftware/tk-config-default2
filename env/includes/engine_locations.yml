@@ -51,9 +51,9 @@ engines.tk-mari.location:
     #type: app_store
     #name: tk-mari
     type: git_branch
-    branch: 44077_defcon2
+    branch: master
     path: https://github.com/shotgunsoftware/tk-mari.git
-    version: 4654a5139cd446d7bec590f8270ba464eb15056a
+    version: 8142d644752c7cf03ebff9731751c5e5cc346457
 
 # Maya
 engines.tk-maya.location:
@@ -93,14 +93,22 @@ engines.tk-photoshopcc.location:
 
 # Shell
 engines.tk-shell.location:
-    type: app_store
-    name: tk-shell
-    version: v0.5.4
+    #type: app_store
+    #name: tk-shell
+    #version: v0.5.4
+    type: git_branch
+    branch: master
+    path: https://github.com/shotgunsoftware/tk-shell.git
+    version: a3386c2f069b02a953bfffaba9fdb52e4d0bb53b
 
 # Shotgun
 engines.tk-shotgun.location:
-    type: app_store
-    name: tk-shotgun
-    version: v0.6.0
+    #type: app_store
+    #name: tk-shotgun
+    #version: v0.6.0
+    type: git_branch
+    branch: master
+    path: https://github.com/shotgunsoftware/tk-shell.git
+    version: 1de9dfba61d3eaf75241f24dfa31fb23781b3ee0
 
 
