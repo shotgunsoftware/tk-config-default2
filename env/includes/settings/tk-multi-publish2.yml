@@ -222,10 +222,9 @@ settings.tk-multi-publish2.nuke.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_script.py"
     settings:
         Publish Template: nuke_asset_publish
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_reviewsubmission.py"
-    settings:
-        Publish Template: nuke_asset_render_movie
+  - name: Submit for Review
+    hook: "{self}/submit_for_review.py:{engine}/tk-multi-publish2/basic/submit_for_review.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
