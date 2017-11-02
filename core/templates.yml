@@ -169,7 +169,7 @@ paths:
     hiero_project_snapshot:
         definition: 'editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
         root_name: 'primary'
-    # The location of published maya files
+    # The location of published hiero files
     hiero_project_publish:
         definition: 'editorial/publish/{name}_v{version}.hrox'
         root_name: 'primary'
@@ -331,7 +331,7 @@ paths:
     max_shot_snapshot:
         definition: '@shot_root/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max'
         root_name: 'primary'
-    # The location of published maya files
+    # The location of published max files
     max_shot_publish:
         definition: '@shot_root/publish/3dsmax/{name}.v{version}.max'
         root_name: 'primary'
@@ -357,7 +357,7 @@ paths:
     mobu_shot_snapshot:
         definition: '@shot_root/work/mobu/snapshots/{name}.v{version}.{timestamp}.fbx'
         root_name: 'primary'
-    # The location of published maya files
+    # The location of published mobu files
     mobu_shot_publish:
         definition: '@shot_root/publish/mobu/{name}.v{version}.fbx'
         root_name: 'primary'
@@ -558,7 +558,7 @@ paths:
     max_asset_snapshot:
         definition: '@asset_root/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max'
         root_name: 'primary'
-    # The location of published maya files
+    # The location of published max files
     max_asset_publish:
         definition: '@asset_root/publish/3dsmax/{name}.v{version}.max'
         root_name: 'primary'

@@ -39,7 +39,7 @@ settings.tk-multi-launchapp.flame:
   icon: "{target_engine}/flame_icon_256.png"
   linux_path: "@path.linux.flame"
   mac_path: "@path.mac.flame"
-  menu_name: Launch Flame
+  menu_name: Flame
   location: "@apps.tk-multi-launchapp.location"
 
 # flame assist
@@ -48,7 +48,7 @@ settings.tk-multi-launchapp.flame_assist:
   icon: "{target_engine}/flame_assist_icon_256.png"
   linux_path: "@path.linux.flame_assist"
   mac_path: "@path.mac.flame_assist"
-  menu_name: Launch FlameAssist
+  menu_name: FlameAssist
   location: "@apps.tk-multi-launchapp.location"
 
 # flare
@@ -57,7 +57,7 @@ settings.tk-multi-launchapp.flare:
   icon: "{target_engine}/flare_icon_256.png"
   linux_path: "@path.linux.flare"
   mac_path: "@path.mac.flare"
-  menu_name: Launch Flare
+  menu_name: Flare
   location: "@apps.tk-multi-launchapp.location"
 
 # hiero
