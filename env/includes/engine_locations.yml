@@ -108,7 +108,7 @@ engines.tk-shotgun.location:
     #version: v0.6.0
     type: git_branch
     branch: master
-    path: https://github.com/shotgunsoftware/tk-shell.git
+    path: https://github.com/shotgunsoftware/tk-shotgun.git
     version: 1de9dfba61d3eaf75241f24dfa31fb23781b3ee0
 
 
