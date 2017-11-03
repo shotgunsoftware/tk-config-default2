@@ -89,7 +89,7 @@ engines.tk-photoshopcc.location:
     type: git_branch
     branch: master
     path: https://github.com/shotgunsoftware/tk-photoshopcc.git
-    version: 6b8a4d89acd03d689ac96b573c506d39d6a95e00
+    version: 56f19874056b7c9af5cce51deddbc8c53c901b8e
 
 # Shell
 engines.tk-shell.location:
