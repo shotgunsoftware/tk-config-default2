@@ -43,7 +43,7 @@ engines.tk-houdini.location:
     type: git_branch
     branch: master
     path: https://github.com/shotgunsoftware/tk-houdini.git
-    version: f7c38d79b8871d8e83d435803cc9bd6814eecc4c
+    version: 2f84df1d8da5beb0a05123152af60a6a1eb90f54
 
 # Mari
 engines.tk-mari.location:
