@@ -50,12 +50,10 @@ engines.tk-mari.location:
     #version: v1.1.5
     #type: app_store
     #name: tk-mari
-    #type: git_branch
-    #branch: master
-    #path: https://github.com/shotgunsoftware/tk-mari.git
-    #version: 8142d644752c7cf03ebff9731751c5e5cc346457
-    type: dev
-    path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-mari
+    type: git_branch
+    branch: master
+    path: https://github.com/shotgunsoftware/tk-mari.git
+    version: 8142d644752c7cf03ebff9731751c5e5cc346457
 
 # Maya
 engines.tk-maya.location:
