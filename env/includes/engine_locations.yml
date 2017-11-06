@@ -50,10 +50,12 @@ engines.tk-mari.location:
     #version: v1.1.5
     #type: app_store
     #name: tk-mari
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-mari.git
-    version: 8142d644752c7cf03ebff9731751c5e5cc346457
+    #type: git_branch
+    #branch: master
+    #path: https://github.com/shotgunsoftware/tk-mari.git
+    #version: 8142d644752c7cf03ebff9731751c5e5cc346457
+    type: dev
+    path: /Users/josh/dev/sg/44077_def2_pub2_templates/tk-mari
 
 # Maya
 engines.tk-maya.location:
@@ -79,7 +81,7 @@ engines.tk-nuke.location:
     type: git_branch
     branch: master
     path: https://github.com/shotgunsoftware/tk-nuke.git
-    version: e0407b3860ddb194c8c7f080f8cdefb437a679c2
+    version: 2eb68bdc175adbcc420e1b986e19927b82079e0a
 
 # Photoshop
 engines.tk-photoshopcc.location:
@@ -89,7 +91,7 @@ engines.tk-photoshopcc.location:
     type: git_branch
     branch: master
     path: https://github.com/shotgunsoftware/tk-photoshopcc.git
-    version: 56f19874056b7c9af5cce51deddbc8c53c901b8e
+    version: b88ec1332801152c1b1bf8cc8f27c0fd4517a7a1
 
 # Shell
 engines.tk-shell.location:
