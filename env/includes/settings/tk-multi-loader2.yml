@@ -213,7 +213,7 @@ settings.tk-multi-loader2.photoshop:
   location: "@apps.tk-multi-loader2.location"
 
 # motion builder
-common.settings.tk-multi-loader2.motionbuilder:
+settings.tk-multi-loader2.motionbuilder:
   entities:
   - caption: Assets
     entity_type: Asset
