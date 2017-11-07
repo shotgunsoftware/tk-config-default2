@@ -53,7 +53,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: master
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: aa91eba28ca1eeed4985ba81211c342f296ec276
+  version: 8dd106104b5c73e106525b275313ec6dc6e04a8c
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
