@@ -305,5 +305,22 @@ common.settings.tk-multi-publish2.photoshop.shot_step:
   help_url: *help_url
   location: "@common.apps.tk-multi-publish2.location"
 
+################################################################################
+
+# ---- Mari
+
+# asset_step
+common.settings.tk-multi-publish2.mari.asset_step:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
+    settings: 
+      Publish Template: asset_mari_texture_tif
+  help_url: *help_url
+  location: "@common.apps.tk-multi-publish2.location"
 
 
