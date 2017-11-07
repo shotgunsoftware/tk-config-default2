@@ -23,14 +23,14 @@ path.windows.mari: C:\Program Files\Mari3.3v1\Bundle\bin\Mari3.3v1.exe
 path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2017\bin\x64\motionbuilder.exe
 
 # Hiero
-path.linux.hiero: "Nuke11.0v1"
+path.linux.hiero: "Nuke11.0"
 path.mac.hiero: "/Applications/Nuke11.0v1/Hiero11.0v1.app"
 path.windows.hiero: C:\Program Files\Nuke11.0v1\Nuke11.0.exe
 
 # RV
 path.linux.rv: "rv"
 path.mac.rv: "/Applications/RV64.app"
-path.windows.rv: C:\Program Files\RV\RV64.exe
+path.windows.rv: C:\Program Files\Shotgun\RV-7.2.1\bin\rv.exe
 
 # Flame
 path.linux.flame: "/opt/Autodesk/flame_2018.2/bin/startApplication"
