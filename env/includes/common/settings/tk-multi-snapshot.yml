@@ -103,4 +103,19 @@ common.settings.tk-multi-snapshot.photoshop.shot_step:
   template_work: photoshop_shot_work
   location: "@common.apps.tk-multi-snapshot.location"
 
+################################################################################
+
+# ---- Motion Builder
+
+# asset step
+common.settings.tk-multi-snapshot.motionbuilder.asset_step:
+  template_snapshot: mobu_asset_snapshot
+  template_work: mobu_asset_work
+  location: "@common.apps.tk-multi-snapshot.location"
+
+# shot step
+common.settings.tk-multi-snapshot.motionbuilder.shot_step:
+  template_snapshot: mobu_shot_snapshot
+  template_work: mobu_shot_work
+  location: "@common.apps.tk-multi-snapshot.location"
 

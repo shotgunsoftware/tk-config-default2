@@ -61,12 +61,6 @@ common.engines.tk-maya.location:
     path: https://github.com/shotgunsoftware/tk-maya.git
     version: 16934b660382ca2c2afff1344dc14c17cc912538
 
-# Motion Builder
-common.engines.tk-motionbuilder.location:
-    version: v0.3.1
-    type: app_store
-    name: tk-motionbuilder
-
 # Nuke
 common.engines.tk-nuke.location:
     #type: app_store
@@ -99,4 +93,13 @@ common.engines.tk-shotgun.location:
     name: tk-shotgun
     version: v0.6.0
 
+# Motion Builder
+common.engines.tk-motionbuilder.location:
+#    version: v0.3.1
+#    type: app_store
+#    name: tk-motionbuilder
+    type: git_branch
+    branch: 44077_defcon2
+    path: https://github.com/shotgunsoftware/tk-motionbuilder.git
+    version: b19b247dca5dc2846757758f8c9d97d6111cc21f
 
