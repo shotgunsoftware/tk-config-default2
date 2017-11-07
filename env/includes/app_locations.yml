@@ -157,7 +157,7 @@ apps.tk-houdini-mantranode.location:
   type: git_branch
   branch: master
   path: https://github.com/shotgunsoftware/tk-houdini-mantranode.git
-  version: 7fe61f24f8434ade04e868865258375794117f5c
+  version: 267f8796e88e1a0089997d6aca2ce236b9afe553
 
 # ---- Nuke apps
 
