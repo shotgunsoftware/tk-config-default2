@@ -207,3 +207,22 @@ settings.tk-multi-workfiles2.photoshop.shot_step:
   template_work: photoshop_shot_work
   template_work_area: shot_work_area_photoshop
   location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- motion builder
+
+common.settings.tk-multi-workfiles2.motionbuilder.asset_step:
+  template_publish: mobu_asset_publish
+  template_publish_area: asset_publish_area_mobu
+  template_work: mobu_asset_work
+  template_work_area: asset_work_area_mobu
+  location: "@common.apps.tk-multi-workfiles2.location"
+
+common.settings.tk-multi-workfiles2.motionbuilder.shot_step:
+  template_publish: mobu_shot_publish
+  template_publish_area: shot_publish_area_mobu
+  template_work: mobu_shot_work
+  template_work_area: shot_work_area_mobu
+  location: "@apps.tk-multi-workfiles2.location"
+

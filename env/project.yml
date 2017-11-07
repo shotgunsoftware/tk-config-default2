@@ -21,7 +21,7 @@ includes:
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
-#- ./includes/settings/tk-motionbuilder.yml
+- ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-shell.yml
@@ -38,7 +38,7 @@ engines:
   tk-houdini: "@settings.tk-houdini.project"
   tk-mari: "@settings.tk-mari.project"
   tk-maya: "@settings.tk-maya.project"
-  #tk-motionbuilder: "@settings.tk-motionbuilder.project"
+  tk-motionbuilder: "@settings.tk-motionbuilder.project"
   tk-nuke: "@settings.tk-nuke.project"
   tk-nukestudio: "@settings.tk-nuke.nukestudio.project"
   tk-photoshopcc: "@settings.tk-photoshopcc.project"

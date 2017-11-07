@@ -25,7 +25,7 @@ includes:
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-maya.yml
-#- ./includes/settings/tk-motionbuilder.yml
+- ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
@@ -37,7 +37,7 @@ engines:
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.sequence"
   tk-houdini: "@settings.tk-houdini.sequence"
   tk-maya: "@settings.tk-maya.sequence"
-  #tk-motionbuilder: "@settings.tk-motionbuilder.sequence"
+  tk-motionbuilder: "@settings.tk-motionbuilder.sequence"
   tk-nuke: "@settings.tk-nuke.sequence"
   tk-shell: "@settings.tk-shell.sequence"
   tk-shotgun: "@settings.tk-shotgun.sequence"

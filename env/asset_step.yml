@@ -19,7 +19,7 @@ includes:
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
-#- ./includes/settings/tk-motionbuilder.yml
+- ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-shell.yml
@@ -33,7 +33,7 @@ engines:
   tk-houdini: "@settings.tk-houdini.asset_step"
   tk-mari: "@settings.tk-mari.asset_step"
   tk-maya: "@settings.tk-maya.asset_step"
-  #tk-motionbuilder: "@settings.tk-motionbuilder.asset_step"
+  tk-motionbuilder: "@settings.tk-motionbuilder.asset_step"
   tk-nuke: "@settings.tk-nuke.asset_step"
   tk-nukestudio: "@settings.tk-nuke.nukestudio.asset_step"
   tk-photoshopcc: "@settings.tk-photoshopcc.asset_step"

@@ -211,3 +211,25 @@ settings.tk-multi-loader2.photoshop:
     hierarchy: [entity, content]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
+
+# motion builder
+common.settings.tk-multi-loader2.motionbuilder:
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  location: "@apps.tk-multi-loader2.location"
+
