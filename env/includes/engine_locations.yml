@@ -67,9 +67,13 @@ engines.tk-maya.location:
 
 # Motion Builder
 engines.tk-motionbuilder.location:
-    version: v0.3.1
-    type: app_store
-    name: tk-motionbuilder
+    #version: v0.3.1
+    #type: app_store
+    #name: tk-motionbuilder
+    type: git_branch
+    branch: master
+    path: https://github.com/shotgunsoftware/tk-motionbuilder.git
+    version: 4f6a56d095b53fdfd746f03a76166d72884727be
 
 # Nuke
 engines.tk-nuke.location:
