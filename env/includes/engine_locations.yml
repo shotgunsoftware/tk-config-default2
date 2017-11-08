@@ -15,13 +15,9 @@
 
 # 3dsMax
 engines.tk-3dsmaxplus.location:
-    #type: app_store
-    #name: tk-3dsmaxplus
-    #version: v0.4.1
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-3dsmaxplus.git
-    version: 16414d1dcff1d5be13e70f14d547e80c7bc905aa
+    type: app_store
+    name: tk-3dsmaxplus
+    version: v0.5.0
 
 # Desktop
 engines.tk-desktop.location:
@@ -37,13 +33,9 @@ engines.tk-flame.location:
 
 # Houdini
 engines.tk-houdini.location:
-    #type: app_store
-    #name: tk-houdini
-    #version: v1.2.2
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-houdini.git
-    version: 55ddd5efdeae9d87681d451f736db93fa122482c
+    type: app_store
+    name: tk-houdini
+    version: v1.3.0
 
 # Mari
 engines.tk-mari.location:
@@ -57,13 +49,9 @@ engines.tk-mari.location:
 
 # Maya
 engines.tk-maya.location:
-    #type: app_store
-    #name: tk-maya
-    #version: v0.8.1
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-maya.git
-    version: fc1ebad8a0a1e1fc8a2bead95295c2297d3d75ef
+    type: app_store
+    name: tk-maya
+    version: v0.9.0
 
 # Motion Builder
 engines.tk-motionbuilder.location:
@@ -77,13 +65,9 @@ engines.tk-motionbuilder.location:
 
 # Nuke
 engines.tk-nuke.location:
-    #type: app_store
-    #name: tk-nuke
-    #version: v0.7.2
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-nuke.git
-    version: 791dc83048822c2368e86534570e09200cd57a61
+    type: app_store
+    name: tk-nuke
+    version: v0.9.0
 
 # Photoshop
 engines.tk-photoshopcc.location:
@@ -97,22 +81,14 @@ engines.tk-photoshopcc.location:
 
 # Shell
 engines.tk-shell.location:
-    #type: app_store
-    #name: tk-shell
-    #version: v0.5.4
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-shell.git
-    version: a3386c2f069b02a953bfffaba9fdb52e4d0bb53b
+    type: app_store
+    name: tk-shell
+    version: v0.6.0
 
 # Shotgun
 engines.tk-shotgun.location:
-    #type: app_store
-    #name: tk-shotgun
-    #version: v0.6.0
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-shotgun.git
-    version: 1de9dfba61d3eaf75241f24dfa31fb23781b3ee0
+    type: app_store
+    name: tk-shotgun
+    version: v0.7.0
 
 
