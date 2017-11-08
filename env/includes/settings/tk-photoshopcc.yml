@@ -28,6 +28,8 @@ settings.tk-photoshopcc.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
@@ -40,6 +42,8 @@ settings.tk-photoshopcc.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.photoshop"
     tk-multi-publish2: "@settings.tk-multi-publish2.photoshop.asset_step"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -58,6 +62,8 @@ settings.tk-photoshopcc.project:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
@@ -71,6 +77,8 @@ settings.tk-photoshopcc.shot:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
@@ -84,6 +92,8 @@ settings.tk-photoshopcc.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.photoshop"
     tk-multi-publish2: "@settings.tk-multi-publish2.photoshop.shot_step"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"

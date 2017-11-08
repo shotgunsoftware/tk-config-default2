@@ -67,17 +67,13 @@ engines.tk-motionbuilder.location:
 engines.tk-nuke.location:
     type: app_store
     name: tk-nuke
-    version: v0.9.0
+    version: v0.9.1
 
 # Photoshop
 engines.tk-photoshopcc.location:
-    #type: app_store
-    #name: tk-photoshopcc
-    #version: v1.1.5
-    type: git_branch
-    branch: master
-    path: https://github.com/shotgunsoftware/tk-photoshopcc.git
-    version: b88ec1332801152c1b1bf8cc8f27c0fd4517a7a1
+    type: app_store
+    name: tk-photoshopcc
+    version: v1.2.0
 
 # Shell
 engines.tk-shell.location:
