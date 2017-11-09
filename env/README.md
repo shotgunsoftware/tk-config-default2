@@ -49,7 +49,7 @@ engines:
   ...
   
 # reference all of the frameworks
-frameworks: "@frameworks.all"
+frameworks: "@frameworks"
 ```
 
 The `tk-config-default2` heavily relies on the Toolkit configuration includes
@@ -159,7 +159,7 @@ Frameworks
 ----------
 
 Like the app and engine locations file, the `includes/frameworks.yml` 
-file defines a single, top-level `@frameworks.all` key that can be included 
+file defines a single, top-level `@frameworks` key that can be included 
 and used wherever frameworks are required (typically in the top-level 
 enviornment configuration files). This is the only file that defines location 
 descriptors for frameworks. 

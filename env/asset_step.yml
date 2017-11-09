@@ -43,4 +43,4 @@ engines:
 ################################################################################
 # reference all of the common frameworks
 
-frameworks: "@frameworks.all"
+frameworks: "@frameworks"

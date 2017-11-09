@@ -10,10 +10,10 @@
 #
 
 ################################################################################
-# A single, top-level setting is defined: "@frameworks.all". This setting can
+# A single, top-level setting is defined: "@frameworks". This setting can
 # be included and referenced wherever shared frameworks are required.
 
-frameworks.all:
+frameworks:
 
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
@@ -28,14 +28,12 @@ frameworks.all:
       version: v1.3.0
       type: app_store
       name: tk-framework-desktopserver
-
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
       version: v2.6.5
       type: app_store
       name: tk-framework-qtwidgets
-
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
