@@ -9,9 +9,13 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-# location descriptors for apps used in this configuration
+################################################################################
+
+includes:
+- ./frameworks.yml
 
 ################################################################################
+# location descriptors for apps used in this configuration
 
 # ---- Multi apps
 
@@ -186,3 +190,7 @@ apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
   version: v1.2.0
+
+################################################################################
+# reference all of the common frameworks
+frameworks: "@frameworks"
