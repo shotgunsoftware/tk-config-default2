@@ -63,6 +63,7 @@ settings.tk-shotgun.project:
 settings.tk-shotgun.publishedfile_version:
   apps:
     tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
   debug_logging: false
   location: "@engines.tk-shotgun.location"
 
