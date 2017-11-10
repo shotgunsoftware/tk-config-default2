@@ -57,7 +57,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: master
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: 94a42415cfb72076a023da327be23ed9118af58b
+  version: 7595eb76ec720aa7764598ed58898166a0f125ca
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -181,7 +181,7 @@ apps.tk-flame-export.location:
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.1.4
+  version: v1.1.5
 
 # ---- Mari apps
 
@@ -193,4 +193,4 @@ apps.tk-mari-projectmanager.location:
 
 ################################################################################
 # reference all of the common frameworks
-frameworks: "@frameworks"
+frameworks: '@frameworks'
