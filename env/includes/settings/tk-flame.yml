@@ -24,7 +24,6 @@ settings.tk-flame.project:
     tk-flame-review:
       location: "@apps.tk-flame-review.location"
     tk-flame-export: "@settings.tk-flame-export"
-  use_builtin_plugin: true
   location: "@engines.tk-flame.location"
 
 # shot
@@ -33,5 +32,4 @@ settings.tk-flame.shot:
     tk-flame-review:
       location: "@apps.tk-flame-review.location"
     tk-flame-export: "@settings.tk-flame-export"
-  use_builtin_plugin: true
   location: "@engines.tk-flame.location"

@@ -48,9 +48,6 @@ settings.tk-shotgun.asset_step:
 settings.tk-shotgun.project:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
-    tk-multi-launchflame: "@settings.tk-multi-launchapp.flame"
-    tk-multi-launchflameassist: "@settings.tk-multi-launchapp.flame_assist"
-    tk-multi-launchflare: "@settings.tk-multi-launchapp.flare"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
@@ -82,9 +79,6 @@ settings.tk-shotgun.sequence:
 settings.tk-shotgun.shot:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
-    tk-multi-launchflame: "@settings.tk-multi-launchapp.flame"
-    tk-multi-launchflameassist: "@settings.tk-multi-launchapp.flame_assist"
-    tk-multi-launchflare: "@settings.tk-multi-launchapp.flare"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
@@ -96,9 +90,6 @@ settings.tk-shotgun.shot:
 settings.tk-shotgun.shot_step:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
-    tk-multi-launchflame: "@settings.tk-multi-launchapp.flame"
-    tk-multi-launchflameassist: "@settings.tk-multi-launchapp.flame_assist"
-    tk-multi-launchflare: "@settings.tk-multi-launchapp.flare"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
