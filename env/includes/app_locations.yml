@@ -181,7 +181,7 @@ apps.tk-flame-export.location:
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.1.5
+  version: v1.1.4
 
 # ---- Mari apps
 
