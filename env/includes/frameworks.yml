@@ -28,12 +28,14 @@ frameworks:
       version: v1.3.0
       type: app_store
       name: tk-framework-desktopserver
+
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
       version: v2.6.5
       type: app_store
       name: tk-framework-qtwidgets
+
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
