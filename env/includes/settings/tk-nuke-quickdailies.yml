@@ -23,7 +23,6 @@ settings.tk-nuke-quickdailies.asset:
   movie_template: asset_quicktime_quick
   post_hooks: [snapshot_history_post_quickdaily]
   sg_version_name_template: nuke_quick_asset_version_name
-  upload_movie: false
   location: "@apps.tk-nuke-quickdailies.location"
 
 # nuke shot context
@@ -34,5 +33,4 @@ settings.tk-nuke-quickdailies.shot:
   movie_template: shot_quicktime_quick
   post_hooks: [snapshot_history_post_quickdaily]
   sg_version_name_template: nuke_quick_shot_version_name
-  upload_movie: false
   location: "@apps.tk-nuke-quickdailies.location"
