@@ -247,6 +247,9 @@ settings.tk-multi-publish2.nuke.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_script.py"
     settings:
         Publish Template: nuke_shot_publish
+  - name: Submit for Review
+    hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+    settings: {}
   - name: Update Flame Clip
     hook: "{engine}/tk-multi-publish2/basic/nuke_update_flame_clip.py"
     settings:
