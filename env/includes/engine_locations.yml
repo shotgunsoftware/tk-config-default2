@@ -45,7 +45,7 @@ engines.tk-mari.location:
   type: git_branch
   branch: master
   path: https://github.com/shotgunsoftware/tk-mari.git
-  version: 17bcaf490676686bceb026a7931ae22ddb7ba4cc
+  version: dd094a924b1329693949a9c07fe9fbd81135b84c
 
 # Maya
 engines.tk-maya.location:
