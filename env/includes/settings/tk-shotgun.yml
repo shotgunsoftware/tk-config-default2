@@ -96,14 +96,3 @@ settings.tk-shotgun.shot_step:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
-
-# task
-settings.tk-shotgun.task:
-  apps:
-    tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
-    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
-    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
-    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  location: "@engines.tk-shotgun.location"
