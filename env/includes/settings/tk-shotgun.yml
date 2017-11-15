@@ -14,6 +14,7 @@
 includes:
 - ../engine_locations.yml
 - ./tk-multi-launchapp.yml
+- ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
 - ./tk-shotgun-folders.yml
 - ./tk-shotgun-launchfolder.yml
@@ -27,10 +28,10 @@ settings.tk-shotgun.asset:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  debug_logging: false
   location: "@engines.tk-shotgun.location"
 
 # asset_step
@@ -39,9 +40,9 @@ settings.tk-shotgun.asset_step:
     tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  debug_logging: false
   location: "@engines.tk-shotgun.location"
 
 # project
@@ -51,17 +52,16 @@ settings.tk-shotgun.project:
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  debug_logging: false
   location: "@engines.tk-shotgun.location"
 
 # publishedfile_version
 settings.tk-shotgun.publishedfile_version:
   apps:
-    tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-  debug_logging: false
+    tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
   location: "@engines.tk-shotgun.location"
 
 # sequence
@@ -69,10 +69,10 @@ settings.tk-shotgun.sequence:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  debug_logging: false
   location: "@engines.tk-shotgun.location"
 
 # shot
@@ -80,10 +80,10 @@ settings.tk-shotgun.shot:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  debug_logging: false
   location: "@engines.tk-shotgun.location"
 
 # shot_step
@@ -92,7 +92,18 @@ settings.tk-shotgun.shot_step:
     tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  debug_logging: false
+  location: "@engines.tk-shotgun.location"
+
+# task
+settings.tk-shotgun.task:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
+    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
+    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
