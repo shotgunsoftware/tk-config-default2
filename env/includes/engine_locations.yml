@@ -39,13 +39,9 @@ engines.tk-houdini.location:
 
 # Mari
 engines.tk-mari.location:
-  #version: v1.1.5
-  #type: app_store
-  #name: tk-mari
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-mari.git
-  version: dd094a924b1329693949a9c07fe9fbd81135b84c
+  type: app_store
+  name: tk-mari
+  version: v1.2.0
 
 # Maya
 engines.tk-maya.location:
@@ -55,9 +51,9 @@ engines.tk-maya.location:
 
 # Motion Builder
 engines.tk-motionbuilder.location:
-  #version: v0.3.1
   #type: app_store
   #name: tk-motionbuilder
+  #version: v0.3.1
   type: git_branch
   branch: master
   path: https://github.com/shotgunsoftware/tk-motionbuilder.git
