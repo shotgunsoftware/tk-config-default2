@@ -16,7 +16,7 @@
 
 # Mari
 path.linux.mari: "Mari3.3"
-path.mac.mari: "/Applications/Mari3.3v1"
+path.mac.mari: "/Applications/Mari3.3v1/Mari3.3v1.app"
 path.windows.mari: C:\Program Files\Mari3.3v1\Bundle\bin\Mari3.3v1.exe
 
 # Motionbuilder
