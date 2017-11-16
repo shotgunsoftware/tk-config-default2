@@ -57,7 +57,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: 44077_defcon2_mobu_fixes
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: 115fc49f76460473b7b5d3ca1dfbc3d1551d8f85
+  version: 7df2d6b132a0c1fcfb59eea35592ac06a9e220ff
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
