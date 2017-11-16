@@ -144,6 +144,9 @@ settings.tk-multi-publish2.mari.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
     settings:
       Publish Template: asset_mari_texture_tif
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
