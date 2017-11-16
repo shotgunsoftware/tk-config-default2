@@ -349,6 +349,9 @@ settings.tk-multi-publish2.motion_builder.asset_step:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -367,6 +370,9 @@ settings.tk-multi-publish2.motion_builder.shot_step:
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
     settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
