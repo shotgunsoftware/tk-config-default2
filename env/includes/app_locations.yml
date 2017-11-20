@@ -51,13 +51,9 @@ apps.tk-multi-loader2.location:
 
 # publish2
 apps.tk-multi-publish2.location:
-  #type: app_store
-  #name: tk-multi-publish2
-  #version: v2.0.1
-  type: git_branch
-  branch: 44077_defcon2_mobu_fixes
-  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: 7df2d6b132a0c1fcfb59eea35592ac06a9e220ff
+  type: app_store
+  name: tk-multi-publish2
+  version: v2.0.2
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -71,17 +67,17 @@ apps.tk-multi-reviewsubmission.location:
   name: tk-multi-reviewsubmission
   version: v0.3.2
 
-# setframerange
-apps.tk-multi-setframerange.location:
-  type: app_store
-  name: tk-multi-setframerange
-  version: v0.3.0
-
 # screeningroom
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
   version: v0.3.2
+
+# setframerange
+apps.tk-multi-setframerange.location:
+  type: app_store
+  name: tk-multi-setframerange
+  version: v0.3.0
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:

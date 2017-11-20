@@ -15,13 +15,9 @@
 
 # 3dsMax
 engines.tk-3dsmaxplus.location:
-  #type: app_store
-  #name: tk-3dsmaxplus
-  #version: v0.5.0
-  type: git_branch
-  path: https://github.com/shotgunsoftware/tk-3dsmaxplus.git
-  branch: geo_pub
-  version: 0523ba1afeb2c0f85d82ba0938d3690072b51933
+  type: app_store
+  name: tk-3dsmaxplus
+  version: v0.5.1
 
 # Desktop
 engines.tk-desktop.location:
@@ -55,13 +51,9 @@ engines.tk-maya.location:
 
 # Motion Builder
 engines.tk-motionbuilder.location:
-  #type: app_store
-  #name: tk-motionbuilder
-  #version: v0.3.1
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-motionbuilder.git
-  version: 4f6a56d095b53fdfd746f03a76166d72884727be
+  type: app_store
+  name: tk-motionbuilder
+  version: v0.4.0
 
 # Nuke
 engines.tk-nuke.location:
