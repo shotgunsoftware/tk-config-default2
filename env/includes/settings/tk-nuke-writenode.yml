@@ -1,0 +1,70 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# asset
+settings.tk-nuke-writenode.asset:
+  template_script_work: nuke_asset_work
+  write_nodes:
+  - file_type: exr
+    name: Exr
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_asset_render_pub
+    render_template: nuke_asset_render
+    settings: {}
+    tank_type: Rendered Image
+    tile_color: []
+    promote_write_knobs: []
+  location: "@apps.tk-nuke-writenode.location"
+
+# shot
+settings.tk-nuke-writenode.shot:
+  template_script_work: nuke_shot_work
+  write_nodes:
+  - file_type: exr
+    name: Stereo Exr, 32 bit
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_pub_stereo
+    render_template: nuke_shot_render_stereo
+    settings:
+      datatype: 32 bit float
+    tank_type: Rendered Image
+    tile_color: []
+    promote_write_knobs: []
+  - file_type: exr
+    name: Stereo Exr, 16 bit
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_pub_stereo
+    render_template: nuke_shot_render_stereo
+    settings:
+      datatype: 16 bit half
+    tank_type: Rendered Image
+    tile_color: []
+  - file_type: dpx
+    name: Mono Dpx
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_pub_mono_dpx
+    render_template: nuke_shot_render_mono_dpx
+    settings: {}
+    tank_type: Rendered Image
+    tile_color: []
+  location: "@apps.tk-nuke-writenode.location"

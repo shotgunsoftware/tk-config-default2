@@ -1,0 +1,27 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../software_paths.yml
+
+################################################################################
+
+# screeningroom
+settings.tk-multi-screeningroom.rv:
+  enable_rv_mode: true
+  enable_web_mode: true
+  location: "@apps.tk-multi-screeningroom.location"
+  rv_path_linux: "@path.linux.rv"
+  rv_path_mac: "@path.mac.rv"
+  rv_path_windows: "@path.windows.rv"
+  init_hook: "{self}/init.py"

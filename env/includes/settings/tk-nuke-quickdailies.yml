@@ -1,0 +1,36 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# nuke asset context
+settings.tk-nuke-quickdailies.asset:
+  current_scene_template: nuke_asset_work
+  width: 1024
+  height: 768
+  movie_template: asset_quicktime_quick
+  post_hooks: [snapshot_history_post_quickdaily]
+  sg_version_name_template: nuke_quick_asset_version_name
+  location: "@apps.tk-nuke-quickdailies.location"
+
+# nuke shot context
+settings.tk-nuke-quickdailies.shot:
+  current_scene_template: nuke_shot_work
+  width: 1024
+  height: 768
+  movie_template: shot_quicktime_quick
+  post_hooks: [snapshot_history_post_quickdaily]
+  sg_version_name_template: nuke_quick_shot_version_name
+  location: "@apps.tk-nuke-quickdailies.location"

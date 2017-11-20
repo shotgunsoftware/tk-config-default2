@@ -1,0 +1,192 @@
+# Copyright (c) 2016 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ./frameworks.yml
+
+################################################################################
+# location descriptors for apps used in this configuration
+
+# ---- Multi apps
+
+# about
+apps.tk-multi-about.location:
+  type: app_store
+  name: tk-multi-about
+  version: v0.2.5
+
+# breakdown
+apps.tk-multi-breakdown.location:
+  type: app_store
+  name: tk-multi-breakdown
+  version: v1.4.6
+
+# demo
+apps.tk-multi-demo.location:
+  type: app_store
+  name: tk-multi-demo
+  version: v1.0.0
+
+# launchapp
+apps.tk-multi-launchapp.location:
+  type: app_store
+  name: tk-multi-launchapp
+  version: v0.9.13
+
+# loader2
+apps.tk-multi-loader2.location:
+  type: app_store
+  name: tk-multi-loader2
+  version: v1.18.0
+
+# publish2
+apps.tk-multi-publish2.location:
+  type: app_store
+  name: tk-multi-publish2
+  version: v2.0.2
+
+# pythonconsole
+apps.tk-multi-pythonconsole.location:
+  type: app_store
+  name: tk-multi-pythonconsole
+  version: v1.1.1
+
+# reviewsubmission
+apps.tk-multi-reviewsubmission.location:
+  type: app_store
+  name: tk-multi-reviewsubmission
+  version: v0.3.2
+
+# screeningroom
+apps.tk-multi-screeningroom.location:
+  type: app_store
+  name: tk-multi-screeningroom
+  version: v0.3.2
+
+# setframerange
+apps.tk-multi-setframerange.location:
+  type: app_store
+  name: tk-multi-setframerange
+  version: v0.3.0
+
+# shotgun panel
+apps.tk-multi-shotgunpanel.location:
+  type: app_store
+  name: tk-multi-shotgunpanel
+  version: v1.4.8
+
+# snapshot
+apps.tk-multi-snapshot.location:
+  type: app_store
+  name: tk-multi-snapshot
+  version: v0.7.3
+
+# workfiles (required for Mari)
+apps.tk-multi-workfiles.location:
+  type: app_store
+  name: tk-multi-workfiles
+  version: v0.7.4
+
+# workfiles2
+apps.tk-multi-workfiles2.location:
+  type: app_store
+  name: tk-multi-workfiles2
+  version: v0.9.7
+
+# ---- Shotgun apps
+
+# shotgun folders
+apps.tk-shotgun-folders.location:
+  type: app_store
+  name: tk-shotgun-folders
+  version: v0.1.6
+
+# shotgun launchfolder
+apps.tk-shotgun-launchfolder.location:
+  type: app_store
+  name: tk-shotgun-launchfolder
+  version: v0.1.5
+
+# shotgun launchpublish
+apps.tk-shotgun-launchpublish.location:
+  type: app_store
+  name: tk-shotgun-launchpublish
+  version: v0.3.0
+
+# ---- Hiero apps
+
+# hiero export
+apps.tk-hiero-export.location:
+  type: app_store
+  name: tk-hiero-export
+  version: v0.4.3
+
+# hiero openinshotgun
+apps.tk-hiero-openinshotgun.location:
+  type: app_store
+  name: tk-hiero-openinshotgun
+  version: v0.3.4
+
+# ---- Houdini apps
+
+# houdini alembicnode
+apps.tk-houdini-alembicnode.location:
+  type: app_store
+  name: tk-houdini-alembicnode
+  version: v0.3.0
+
+# houdini mantranode
+apps.tk-houdini-mantranode.location:
+  type: app_store
+  name: tk-houdini-mantranode
+  version: v0.3.0
+
+# ---- Nuke apps
+
+# quickdailies
+apps.tk-nuke-quickdailies.location:
+  type: app_store
+  name: tk-nuke-quickdailies
+  version: v0.3.5
+
+# writenode
+apps.tk-nuke-writenode.location:
+  name: tk-nuke-writenode
+  type: app_store
+  version: v1.2.0
+
+# ---- Flame apps
+
+# flame export
+apps.tk-flame-export.location:
+  name: tk-flame-export
+  type: app_store
+  version: v1.7.9
+
+# flame review
+apps.tk-flame-review.location:
+  name: tk-flame-review
+  type: app_store
+  version: v1.1.4
+
+# ---- Mari apps
+
+# project manager
+apps.tk-mari-projectmanager.location:
+  name: tk-mari-projectmanager
+  type: app_store
+  version: v1.2.0
+
+################################################################################
+# reference all of the common frameworks
+frameworks: '@frameworks'

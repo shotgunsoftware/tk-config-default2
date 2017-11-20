@@ -1,0 +1,44 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# asset step
+settings.tk-houdini-mantranode.asset_step:
+  work_file_template: houdini_asset_work
+  default_node_name: sg_mantra_out
+  output_profiles:
+  - name: Default Render
+    settings: {}
+    color: []
+    output_render_template: houdini_asset_render
+    output_ifd_template: houdini_asset_ifd
+    output_dcm_template: houdini_asset_dcm
+    output_extra_plane_template: houdini_asset_extra_plane
+  location: "@apps.tk-houdini-mantranode.location"
+
+# shot step
+settings.tk-houdini-mantranode.shot_step:
+  work_file_template: houdini_shot_work
+  default_node_name: sg_mantra_out
+  output_profiles:
+  - name: Default Render
+    settings: {}
+    color: []
+    output_render_template: houdini_shot_render
+    output_ifd_template: houdini_shot_ifd
+    output_dcm_template: houdini_shot_dcm
+    output_extra_plane_template: houdini_shot_extra_plane
+  location: "@apps.tk-houdini-mantranode.location"

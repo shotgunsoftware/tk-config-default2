@@ -1,0 +1,45 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+settings.tk-flame-export:
+  batch_template: flame_shot_batch
+  segment_clip_template: flame_segment_clip
+  shot_clip_template: flame_shot_clip
+  plate_presets:
+  - template: flame_shot_render_dpx
+    publish_type: Flame Render
+    name: 10 bit DPX
+    upload_quicktime: true
+    quicktime_publish_type: Flame Quicktime
+    quicktime_template:
+    batch_quicktime_template:
+    batch_render_template: flame_shot_comp_dpx
+    start_frame: 100
+    frame_handles: 10
+    cut_type: ""
+  - template: flame_shot_render_exr
+    publish_type: Flame Render
+    name: 16 bit OpenEXR
+    upload_quicktime: true
+    quicktime_publish_type: Flame Quicktime
+    quicktime_template:
+    batch_quicktime_template:
+    batch_render_template: flame_shot_comp_exr
+    start_frame: 100
+    frame_handles: 10
+    cut_type: ""
+  location: "@apps.tk-flame-export.location"

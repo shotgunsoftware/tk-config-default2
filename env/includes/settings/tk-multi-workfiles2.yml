@@ -1,0 +1,228 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# This configuration is used whenever a general file manager
+# is needed. This configuration doesn't look for files,
+# but only lets you switch to a valid work area. When a user
+# switches (by selecting a task), the engine is restarted, and
+# another environment is loaded in. This environment will
+# have another file manager app running, with different settings,
+# allowing files to be loaded and saved.
+#
+# References to this @workfiles2 include typically appears at
+# 'transit' levels in the configuration, where work normally
+# doesn't happen, but you just want the user to jump to their
+# work area. The work area is typically a task or pipeline step
+# and these 'transit' areas can be project, shot, or sequence level.
+settings.tk-multi-workfiles2:
+  allow_task_creation: true
+  create_new_task_hook: "{self}/create_new_task.py"
+  custom_actions_hook: "{self}/custom_actions.py"
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+  file_extensions: []
+  hook_copy_file: "{self}/copy_file.py"
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: default
+  launch_at_startup: false
+  my_tasks_extra_display_fields: []
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  show_my_tasks: true
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
+  location: "@apps.tk-multi-workfiles2.location"
+
+# launches at startup.
+settings.tk-multi-workfiles2.launch_at_startup:
+  allow_task_creation: true
+  create_new_task_hook: "{self}/create_new_task.py"
+  custom_actions_hook: "{self}/custom_actions.py"
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+  file_extensions: []
+  hook_copy_file: "{self}/copy_file.py"
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: default
+  launch_at_startup: true
+  my_tasks_extra_display_fields: []
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  show_my_tasks: true
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
+  location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- 3dsmax
+
+settings.tk-multi-workfiles2.3dsmax.asset_step:
+  template_publish: max_asset_publish
+  template_publish_area: asset_publish_area_max
+  template_work: max_asset_work
+  template_work_area: asset_work_area_max
+  location: "@apps.tk-multi-workfiles2.location"
+
+settings.tk-multi-workfiles2.3dsmax.shot_step:
+  template_publish: max_shot_publish
+  template_publish_area: shot_publish_area_max
+  template_work: max_shot_work
+  template_work_area: shot_work_area_max
+  location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- hiero/nukestudio
+
+settings.tk-multi-workfiles2.hiero:
+  entities:
+  - caption: Projects
+    entity_type: Project
+    filters: []
+    hierarchy: [name]
+  show_my_tasks: false
+  template_publish: hiero_project_publish
+  template_publish_area: hiero_project_publish_area
+  template_work: hiero_project_work
+  template_work_area: hiero_project_work_area
+  location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- Houdini
+
+# asset_step
+settings.tk-multi-workfiles2.houdini.asset_step:
+  template_publish: houdini_asset_publish
+  template_publish_area: asset_publish_area_houdini
+  template_work: houdini_asset_work
+  template_work_area: asset_work_area_houdini
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.houdini.shot_step:
+  template_publish: houdini_shot_publish
+  template_publish_area: shot_publish_area_houdini
+  template_work: houdini_shot_work
+  template_work_area: shot_work_area_houdini
+  location: '@apps.tk-multi-workfiles2.location'
+
+################################################################################
+
+# ---- Maya
+
+# asset_step
+settings.tk-multi-workfiles2.maya.asset_step:
+  template_publish: maya_asset_publish
+  template_publish_area: asset_publish_area_maya
+  template_work: maya_asset_work
+  template_work_area: asset_work_area_maya
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.maya.shot_step:
+  template_publish: maya_shot_publish
+  template_publish_area: shot_publish_area_maya
+  template_work: maya_shot_work
+  template_work_area: shot_work_area_maya
+  location: '@apps.tk-multi-workfiles2.location'
+
+################################################################################
+
+# ---- nuke
+
+# asset_step
+settings.tk-multi-workfiles2.nuke.asset_step:
+  template_publish: nuke_asset_publish
+  template_publish_area: asset_publish_area_nuke
+  template_work: nuke_asset_work
+  template_work_area: asset_work_area_nuke
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.nuke.shot_step:
+  template_publish: nuke_shot_publish
+  template_publish_area: shot_publish_area_nuke
+  template_work: nuke_shot_work
+  template_work_area: shot_work_area_nuke
+  location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- photoshop
+
+# asset_step
+settings.tk-multi-workfiles2.photoshop.asset_step:
+  template_publish: photoshop_asset_publish
+  template_publish_area: asset_publish_area_photoshop
+  template_work: photoshop_asset_work
+  template_work_area: asset_work_area_photoshop
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.photoshop.shot_step:
+  template_publish: photoshop_shot_publish
+  template_publish_area: shot_publish_area_photoshop
+  template_work: photoshop_shot_work
+  template_work_area: shot_work_area_photoshop
+  location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- motion builder
+
+settings.tk-multi-workfiles2.motionbuilder.asset_step:
+  template_publish: mobu_asset_publish
+  template_publish_area: asset_publish_area_mobu
+  template_work: mobu_asset_work
+  template_work_area: asset_work_area_mobu
+  location: "@apps.tk-multi-workfiles2.location"
+
+settings.tk-multi-workfiles2.motionbuilder.shot_step:
+  template_publish: mobu_shot_publish
+  template_publish_area: shot_publish_area_mobu
+  template_work: mobu_shot_work
+  template_work_area: shot_work_area_mobu
+  location: "@apps.tk-multi-workfiles2.location"
+

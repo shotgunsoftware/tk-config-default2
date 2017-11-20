@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -8,12 +8,14 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-# Metadata defining the behaviour and requirements for this configuration
+################################################################################
 
-# More verbose description of this item
-display_name: "Default Config"
-description: "A VFX Example Config and our default configuration."
+includes:
+- ../app_locations.yml
 
-# Required minimum versions for this item to run
-requires_shotgun_version: "v7.2.0"
-requires_core_version: "v0.18.116"
+################################################################################
+
+# mari
+settings.tk-multi-workfiles.mari:
+  sg_entity_types: [Asset]
+  location: "@apps.tk-multi-workfiles.location"

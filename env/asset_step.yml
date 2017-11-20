@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -8,95 +8,39 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
-#
+
 description: Apps and Engines related to Asset based work.
 
-#################################################################################################
+################################################################################
 
 includes:
-- ./includes/houdini/asset_step.yml
-- ./includes/maya/asset_step.yml
-- ./includes/nuke/asset_step.yml
-- ./includes/photoshopcc/asset_step.yml
-- ./includes/shell/asset_step.yml
-- ./includes/3dsmax/asset_step.yml
-- ./includes/shotgun/asset_step.yml
-- ./includes/mari/asset_step.yml
-- ./includes/motionbuilder/asset_step.yml
-- ./includes/nukestudio/asset_step.yml
-- ./includes/softimage/asset_step.yml
+- ./includes/frameworks.yml
+- ./includes/settings/tk-3dsmaxplus.yml
+- ./includes/settings/tk-houdini.yml
+- ./includes/settings/tk-mari.yml
+- ./includes/settings/tk-maya.yml
+- ./includes/settings/tk-motionbuilder.yml
+- ./includes/settings/tk-nuke.yml
+- ./includes/settings/tk-photoshopcc.yml
+- ./includes/settings/tk-shell.yml
+- ./includes/settings/tk-shotgun.yml
 
-#################################################################################################
-# define all the items that should appear in this environment
+################################################################################
+# configuration for all engines to load in an asset step context
 
 engines:
-  #
-  # -------------------------------------------------
-  # 3dsmax Plus
-  # -------------------------------------------------
-  tk-3dsmaxplus: '@3dsmax.asset_step'
-  #
-  # -------------------------------------------------
-  # Houdini
-  # -------------------------------------------------
-  tk-houdini: '@houdini.asset_step'
-  #
-  # -------------------------------------------------
-  # Mari
-  # -------------------------------------------------
-  tk-mari: '@mari.asset_step'
-  #
-  # -------------------------------------------------
-  # Maya
-  # -------------------------------------------------
-  tk-maya: '@maya.asset_step'
-  #
-  # -------------------------------------------------
-  # Motionbuilder
-  # -------------------------------------------------
-  tk-motionbuilder: '@motionbuilder.asset_step'
-  #
-  # -------------------------------------------------
-  # Nuke
-  # -------------------------------------------------
-  tk-nuke: '@nuke.asset_step'
-  #
-  # -------------------------------------------------
-  # Nuke Studio
-  # -------------------------------------------------
-  tk-nukestudio: '@nukestudio.asset_step'
-  #
-  # -------------------------------------------------
-  # Photoshop CC
-  # -------------------------------------------------
-  tk-photoshopcc: '@photoshopcc.asset_step'
-  #
-  # -------------------------------------------------
-  # Shell Engine (tank command)
-  # -------------------------------------------------
-  tk-shell: '@shell.asset_step'
-  #
-  # -------------------------------------------------
-  # Shell Engine (tank command)
-  # -------------------------------------------------
-  tk-shotgun: '@shotgun.asset_step'
-  #
-  # -------------------------------------------------
-  # Softimage
-  # -------------------------------------------------
-  tk-softimage: '@softimage.asset_step'
-#
-###############################################################################
-#
-# Framework includes.
-#
-# Frameworks are libraries that are shared between apps and that contain
-# common functionality for building UIs and communicating with Shotgun.
-# Frameworks are automatically installed when apps are installed and udpated.
-#
-frameworks:
-  tk-framework-softimageqt_v1.0.1:
-    location:
-      name: tk-framework-softimageqt
-      type: app_store
-      version: v1.0.1
+  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset_step"
+  tk-houdini: "@settings.tk-houdini.asset_step"
+  tk-mari: "@settings.tk-mari.asset_step"
+  tk-maya: "@settings.tk-maya.asset_step"
+  tk-motionbuilder: "@settings.tk-motionbuilder.asset_step"
+  tk-nuke: "@settings.tk-nuke.asset_step"
+  tk-nukestudio: "@settings.tk-nuke.nukestudio.asset_step"
+  tk-photoshopcc: "@settings.tk-photoshopcc.asset_step"
+  tk-shell: "@settings.tk-shell.asset_step"
+  tk-shotgun: "@settings.tk-shotgun.asset_step"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

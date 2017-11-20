@@ -1,0 +1,27 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+settings.tk-hiero-export:
+  nuke_script_toolkit_write_nodes:
+  - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
+  - {channel: stereoexr16, name: 'Stereo Exr, 16 bit'}
+  - {channel: monodpx, name: Mono Dpx}
+  template_nuke_script_path: nuke_shot_work
+  template_plate_path: hiero_plate_path
+  template_render_path: hiero_render_path
+  template_version: hiero_version
+  location: "@apps.tk-hiero-export.location"

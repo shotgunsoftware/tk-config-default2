@@ -1,0 +1,119 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# ---- 3dsMax
+
+settings.tk-multi-snapshot.3dsmax.asset_step:
+  template_snapshot: max_asset_snapshot
+  template_work: max_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+settings.tk-multi-snapshot.3dsmax.shot_step:
+  template_snapshot: max_shot_snapshot
+  template_work: max_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+
+
+################################################################################
+
+# ---- Hiero
+
+settings.tk-multi-snapshot.hiero:
+  template_snapshot: hiero_project_snapshot
+  template_work: hiero_project_work
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Houdini
+
+# asset step
+settings.tk-multi-snapshot.houdini.asset_step:
+  template_snapshot: houdini_asset_snapshot
+  template_work: houdini_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.houdini.shot_step:
+  template_snapshot: houdini_shot_snapshot
+  template_work: houdini_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Maya
+
+# asset step
+settings.tk-multi-snapshot.maya.asset_step:
+  template_snapshot: maya_asset_snapshot
+  template_work: maya_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.maya.shot_step:
+  template_snapshot: maya_shot_snapshot
+  template_work: maya_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Nuke
+
+# asset step
+settings.tk-multi-snapshot.nuke.asset_step:
+  template_snapshot: nuke_asset_snapshot
+  template_work: nuke_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.nuke.shot_step:
+  template_snapshot: nuke_shot_snapshot
+  template_work: nuke_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Photoshop
+
+# asset step
+settings.tk-multi-snapshot.photoshop.asset_step:
+  template_snapshot: photoshop_asset_snapshot
+  template_work: photoshop_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.photoshop.shot_step:
+  template_snapshot: photoshop_shot_snapshot
+  template_work: photoshop_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Motion Builder
+
+# asset step
+settings.tk-multi-snapshot.motionbuilder.asset_step:
+  template_snapshot: mobu_asset_snapshot
+  template_work: mobu_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.motionbuilder.shot_step:
+  template_snapshot: mobu_shot_snapshot
+  template_work: mobu_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+

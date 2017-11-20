@@ -1,0 +1,33 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# Software path configuration. Typically consumed by the launchapp
+# configurations for software that is not auto-discovered
+
+################################################################################
+
+# Mari
+path.linux.mari: "Mari3.3"
+path.mac.mari: "/Applications/Mari3.3v1/Mari3.3v1.app"
+path.windows.mari: C:\Program Files\Mari3.3v1\Bundle\bin\Mari3.3v1.exe
+
+# Motionbuilder
+path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2017\bin\x64\motionbuilder.exe
+
+# Hiero
+path.linux.hiero: "Nuke11.0"
+path.mac.hiero: "/Applications/Nuke11.0v1/Hiero11.0v1.app"
+path.windows.hiero: C:\Program Files\Nuke11.0v1\Nuke11.0.exe
+
+# RV
+path.linux.rv: "rv"
+path.mac.rv: "/Applications/RV64.app"
+path.windows.rv: C:\Program Files\Shotgun\RV-7.2.1\bin\rv.exe

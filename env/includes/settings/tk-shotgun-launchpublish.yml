@@ -1,0 +1,27 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../software_paths.yml
+
+################################################################################
+
+settings.tk-shotgun-launchpublish:
+  deny_permissions: []
+  deny_platforms: []
+  hook_launch_publish: default
+  viewer_extensions: [exr, dpx, cin]
+  viewer_path_linux: "@path.linux.rv"
+  viewer_path_mac: "@path.mac.rv"
+  viewer_path_windows: "@path.windows.rv"
+  location: "@apps.tk-shotgun-launchpublish.location"

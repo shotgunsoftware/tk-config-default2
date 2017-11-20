@@ -1,0 +1,120 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
+- ./tk-multi-screeningroom.yml
+- ./tk-multi-snapshot.yml
+- ./tk-multi-workfiles2.yml
+
+################################################################################
+
+# asset
+settings.tk-motionbuilder.asset:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-shotgunpanel:
+      location: "@apps.tk-multi-shotgunpanel.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-workfiles2:
+      location: '@apps.tk-multi-workfiles2.location'
+  location: '@engines.tk-motionbuilder.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+
+# asset_step
+settings.tk-motionbuilder.asset_step:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-loader2: '@settings.tk-multi-loader2.motionbuilder'
+    tk-multi-publish2: '@settings.tk-multi-publish2.motion_builder.asset_step'
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-snapshot: '@settings.tk-multi-snapshot.motionbuilder.asset_step'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.motionbuilder.asset_step'
+    tk-multi-shotgunpanel:
+      location: "@apps.tk-multi-shotgunpanel.location"
+  location: '@engines.tk-motionbuilder.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+
+# project
+settings.tk-motionbuilder.project:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-shotgunpanel:
+      location: '@apps.tk-multi-shotgunpanel.location'
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-workfiles2:
+      location: '@apps.tk-multi-workfiles2.location'
+  location: '@engines.tk-motionbuilder.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  template_project:
+
+# sequence
+settings.tk-motionbuilder.sequence:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-shotgunpanel:
+      location: '@apps.tk-multi-shotgunpanel.location'
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-workfiles2:
+      location: '@apps.tk-multi-workfiles2.location'
+  location: '@engines.tk-motionbuilder.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+
+# shot
+settings.tk-motionbuilder.shot:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-shotgunpanel: 
+      location: '@apps.tk-multi-shotgunpanel.location'
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-workfiles2:
+      location: '@apps.tk-multi-workfiles2.location'
+  location: '@engines.tk-motionbuilder.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+
+# shot_step
+settings.tk-motionbuilder.shot_step:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-loader2: '@settings.tk-multi-loader2.motionbuilder'
+    tk-multi-publish2: '@settings.tk-multi-publish2.motion_builder.shot_step'
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-setframerange:
+      location: '@apps.tk-multi-setframerange.location'
+    tk-multi-snapshot: '@settings.tk-multi-snapshot.motionbuilder.shot_step'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.motionbuilder.shot_step'
+    tk-multi-shotgunpanel:
+      location: "@apps.tk-multi-shotgunpanel.location"
+  location: '@engines.tk-motionbuilder.location'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
