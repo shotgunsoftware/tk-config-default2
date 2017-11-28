@@ -11,8 +11,9 @@
 # Metadata defining the behaviour and requirements for this configuration
 
 # More verbose description of this item
-display_name: "Default Config"
-description: "A VFX Example Config and our default configuration."
+display_name: "Toolkit Config (LEVEL)"
+version: "HEAD"
+description: "Our toolkit configuration for Digital Domain."
 
 # Required minimum versions for this item to run
 requires_shotgun_version: "v7.2.0"

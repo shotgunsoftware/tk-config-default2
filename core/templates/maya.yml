@@ -1,0 +1,69 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+keys:
+    maya_extension:
+        type: str
+        choices:
+            ma: Maya Ascii (.ma)
+            mb: Maya Binary (.mb)
+        default: ma
+        alias: extension
+
+
+paths:
+
+    # SNAPSHOTS
+    tk-maya_project_work_snapshot:          '@project_work_area/scenes/snapshots/@project_version_name.{timestamp}.{maya_extension}'
+    tk-maya_sequence_work_snapshot:         '@sequence_work_area/scenes/snapshots/@sequence_version_name.{timestamp}.{maya_extension}'
+    tk-maya_shot_work_snapshot:             '@shot_work_area/scenes/snapshots/@shot_version_name.{timestamp}.{maya_extension}'
+
+    tk-maya_project_asset_work_snapshot:    '@project_asset_work_area/scenes/snapshots/@project_asset_version_name.{timestamp}.{maya_extension}'
+    tk-maya_sequence_asset_work_snapshot:   '@sequence_asset_work_area/scenes/snapshots/@sequence_asset_version_name.{timestamp}.{maya_extension}'
+    tk-maya_shot_asset_work_snapshot:       '@shot_asset_work_area/scenes/snapshots/@shot_asset_version_name.{timestamp}.{maya_extension}'
+
+
+aliases:
+
+    # WORK AREAS
+    tk-maya_project_work_area:              'project_work_area'
+    tk-maya_sequence_work_area:             'sequence_work_area'
+    tk-maya_shot_work_area:                 'shot_work_area'
+
+    tk-maya_project_asset_work_area:        'project_asset_work_area'
+    tk-maya_sequence_asset_work_area:       'sequence_asset_work_area'
+    tk-maya_shot_asset_work_area:           'shot_asset_work_area'
+
+    # WORK FILES
+    tk-maya_project_work_file:              'project_work_scene'
+    tk-maya_sequence_work_file:             'sequence_work_scene'
+    tk-maya_shot_work_file:                 'shot_work_scene'
+
+    tk-maya_project_asset_work_file:        'project_asset_work_scene'
+    tk-maya_sequence_asset_work_file:       'sequence_asset_work_scene'
+    tk-maya_shot_asset_work_file:           'shot_asset_work_scene'
+
+    # PUBLISH AREAS
+    tk-maya_project_publish_area:           'project_publish_area_scene'
+    tk-maya_sequence_publish_area:          'sequence_publish_area_scene'
+    tk-maya_shot_publish_area:              'shot_publish_area_scene'
+
+    tk-maya_project_asset_publish_area:     'project_asset_publish_area_scene'
+    tk-maya_sequence_asset_publish_area:    'sequence_asset_publish_area_scene'
+    tk-maya_shot_asset_publish_area:        'shot_asset_publish_area_scene'
+
+    # PUBLISH FILES
+    tk-maya_project_publish_file:           'project_publish_scene'
+    tk-maya_sequence_publish_file:          'sequence_publish_scene'
+    tk-maya_shot_publish_file:              'shot_publish_scene'
+
+    tk-maya_project_asset_publish_file:     'project_asset_publish_scene'
+    tk-maya_sequence_asset_publish_file:    'sequence_asset_publish_scene'
+    tk-maya_shot_asset_publish_file:        'shot_asset_publish_scene'

@@ -8,12 +8,16 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-# this file defines all the different disk locations that this config uses.
-# these paths can be altered at project creation time to ensure that they map
-# to the correct location.
+# the type of dynamic content
+type: "shotgun_list_field"
 
-primary:
-    description: "A top-level root folder where all production data lives.  Project folders will be created beneath this location."
-    mac_path:
-    linux_path: $DD_SHOWS_ROOT
-    windows_path:
+# the shotgun entity type to connect to
+entity_type: "Asset"
+
+# switch this to true if you only want to make folders for
+# values that are being used. Note that evaluating this is
+# expensive and may potentially slow down folder creation.
+skip_unused: false
+
+# the shotgun field to use for the folder name
+field_name: "sg_asset_type"

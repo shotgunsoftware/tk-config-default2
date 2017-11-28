@@ -1,0 +1,4 @@
+# the type of dynamic content
+type: "static"
+
+create_with_parent: true
