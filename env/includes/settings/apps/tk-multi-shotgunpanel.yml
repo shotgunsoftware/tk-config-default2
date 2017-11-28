@@ -11,7 +11,7 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+- ../../app_locations.yml
 
 ################################################################################
 
@@ -19,56 +19,6 @@ includes:
 settings.tk-multi-shotgunpanel:
   action_mappings:
     PublishedFile:
-    - actions: [publish_clipboard]
-      filters: {}
-    Task:
-    - actions: [assign_task, task_to_ip]
-      filters: {}
-    Version:
-    - actions: [quicktime_clipboard, sequence_clipboard]
-      filters: {}
-  location: "@apps.tk-multi-shotgunpanel.location"
-
-# 3dsmax
-settings.tk-multi-shotgunpanel.3dsmax:
-  action_mappings:
-    PublishedFile:
-    - actions: [import]
-      filters: {published_file_type: Alembic Cache}
-    - actions: [texture_node]
-      filters: {published_file_type: Image}
-    - actions: [reference, import]
-      filters: {published_file_type: 3dsmax Scene}
-    - actions: [texture_node]
-      filters: {published_file_type: Rendered Image}
-    - actions: [texture_node]
-      filters: {published_file_type: Texture}
-    - actions: [publish_clipboard]
-      filters: {}
-    Task:
-    - actions: [assign_task, task_to_ip]
-      filters: {}
-    Version:
-    - actions: [quicktime_clipboard, sequence_clipboard]
-      filters: {}
-  location: "@apps.tk-multi-shotgunpanel.location"
-
-# houdini
-settings.tk-multi-shotgunpanel.houdini:
-  action_mappings:
-    PublishedFile:
-    - actions: [import]
-      filters: {published_file_type: Alembic Cache}
-    - actions: [merge]
-      filters: {published_file_type: Houdini Scene}
-    - actions: [file_cop]
-      filters: {published_file_type: Image}
-    - actions: [file_cop]
-      filters: {published_file_type: Photoshop Image}
-    - actions: [file_cop]
-      filters: {published_file_type: Rendered Image}
-    - actions: [file_cop]
-      filters: {published_file_type: Texture}
     - actions: [publish_clipboard]
       filters: {}
     Task:
@@ -105,6 +55,8 @@ settings.tk-multi-shotgunpanel.maya:
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard]
       filters: {}
+  actions_hook: '{self}/general_actions.py:{self}/{engine_name}_actions.py'
+  enable_context_switch: true
   location: "@apps.tk-multi-shotgunpanel.location"
 
 # nuke
@@ -135,27 +87,6 @@ settings.tk-multi-shotgunpanel.nuke:
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard]
       filters: {}
-  location: "@apps.tk-multi-shotgunpanel.location"
-
-# photoshop
-settings.tk-multi-shotgunpanel.photoshop:
-  actions_hook: "{self}/general_actions.py"
-  action_mappings:
-    PublishedFile:
-    - actions: [add_as_a_layer, open_file]
-      filters: {published_file_type: Photoshop Image}
-    - actions: [add_as_a_layer, open_file]
-      filters: {published_file_type: Rendered Image}
-    - actions: [add_as_a_layer, open_file]
-      filters: {published_file_type: Image}
-    - actions: [add_as_a_layer, open_file]
-      filters: {published_file_type: Texture}
-    - actions: [publish_clipboard]
-      filters: {}
-    Task:
-    - actions: [assign_task, task_to_ip]
-      filters: {}
-    Version:
-    - actions: [quicktime_clipboard, sequence_clipboard]
-      filters: {}
+  actions_hook: '{self}/general_actions.py:{config}/{engine_name}_actions.py'
+  enable_context_switch: true
   location: "@apps.tk-multi-shotgunpanel.location"

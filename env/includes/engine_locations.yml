@@ -13,70 +13,32 @@
 
 ################################################################################
 
-# 3dsMax
-engines.tk-3dsmaxplus.location:
-  type: app_store
-  name: tk-3dsmaxplus
-  version: v0.5.1
-
 # Desktop
 engines.tk-desktop.location:
-  type: app_store
+  type: manual
   name: tk-desktop
-  version: v2.4.0
-
-# Flame
-engines.tk-flame.location:
-  type: app_store
-  name: tk-flame
-  version: v1.10.0
-
-# Houdini
-engines.tk-houdini.location:
-  type: app_store
-  name: tk-houdini
-  version: v1.3.0
-
-# Mari
-engines.tk-mari.location:
-  type: app_store
-  name: tk-mari
-  version: v1.2.0
+  version: v2.4.x
 
 # Maya
 engines.tk-maya.location:
-  type: app_store
+  type: manual
   name: tk-maya
-  version: v0.9.1
-
-# Motion Builder
-engines.tk-motionbuilder.location:
-  type: app_store
-  name: tk-motionbuilder
-  version: v0.4.0
+  version: v0.9.x
 
 # Nuke
 engines.tk-nuke.location:
-  type: app_store
+  type: manual
   name: tk-nuke
-  version: v0.9.4
-
-# Photoshop
-engines.tk-photoshopcc.location:
-  type: app_store
-  name: tk-photoshopcc
-  version: v1.2.0
+  version: v0.9.x
 
 # Shell
 engines.tk-shell.location:
-  type: app_store
+  type: manual
   name: tk-shell
-  version: v0.6.0
+  version: v0.6.x
 
 # Shotgun
 engines.tk-shotgun.location:
-  type: app_store
+  type: manual
   name: tk-shotgun
-  version: v0.7.0
-
-
+  version: v0.7.x

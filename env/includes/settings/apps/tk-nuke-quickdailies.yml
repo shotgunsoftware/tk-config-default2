@@ -11,26 +11,17 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+- ../../app_locations.yml
 
 ################################################################################
 
 # nuke asset context
-settings.tk-nuke-quickdailies.asset:
-  current_scene_template: nuke_asset_work
-  width: 1024
-  height: 768
-  movie_template: asset_quicktime_quick
+settings.tk-nuke-quickdailies:
+  width: 'hook:get_preference:1920'
+  height: 'hook:get_preference:1080'
+  codec_settings_hook: '{config}/codec_settings.py'
   post_hooks: [snapshot_history_post_quickdaily]
-  sg_version_name_template: nuke_quick_asset_version_name
-  location: "@apps.tk-nuke-quickdailies.location"
-
-# nuke shot context
-settings.tk-nuke-quickdailies.shot:
-  current_scene_template: nuke_shot_work
-  width: 1024
-  height: 768
-  movie_template: shot_quicktime_quick
-  post_hooks: [snapshot_history_post_quickdaily]
-  sg_version_name_template: nuke_quick_shot_version_name
+  current_scene_template: '{engine_name}_{env_name}_work_file'
+  movie_template: '{engine_name}_{env_name}_publish_quick'
+  sg_version_name_template: 'quick_{env_name}_version_name'
   location: "@apps.tk-nuke-quickdailies.location"

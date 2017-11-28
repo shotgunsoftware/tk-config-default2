@@ -11,10 +11,11 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+- ../../app_locations.yml
 
 ################################################################################
 
-settings.tk-mari-projectmanager:
-  template_new_project_name: mari_asset_project_name
-  location: "@apps.tk-mari-projectmanager.location"
+settings.tk-shotgun-launchfolder:
+  deny_permissions: []
+  deny_platforms: []
+  location: "@apps.tk-shotgun-launchfolder.location"

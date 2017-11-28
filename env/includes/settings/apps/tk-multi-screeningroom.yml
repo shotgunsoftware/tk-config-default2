@@ -11,11 +11,17 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+- ../../app_locations.yml
+- ../../software_paths.yml
 
 ################################################################################
 
-settings.tk-shotgun-folders:
-  deny_permissions: []
-  deny_platforms: []
-  location: "@apps.tk-shotgun-folders.location"
+# screeningroom
+settings.tk-multi-screeningroom.rv:
+  enable_rv_mode: true
+  enable_web_mode: true
+  location: "@apps.tk-multi-screeningroom.location"
+  rv_path_linux: "@path.linux.rv"
+  rv_path_mac: "@path.mac.rv"
+  rv_path_windows: "@path.windows.rv"
+  init_hook: "{self}/init.py"

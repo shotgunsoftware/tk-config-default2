@@ -9,42 +9,25 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when an Asset is loaded. Since std VFX
-  config template has a file system structure which is centered around pipeline
-  steps, this environment is largely empty. Most of the work takes place on a
-  level in the file system where both an asset and a pipeline step is available
-  - e.g Asset Hero, modeling, so all apps for loading, publishing etc. are
-  located in the asset_step environment. This environment mostly contains
-  utility apps and the tank work files app, which lets you choose a task to work
-  on and load associated content into an application.
+description: Apps and Engines related to Asset based work.
 
 ################################################################################
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-3dsmaxplus.yml
-- ./includes/settings/tk-houdini.yml
-- ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
-- ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
-- ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
 ################################################################################
-# configuration for all engines to load in an asset context
+# configuration for all engines to load in an asset step context
 
 engines:
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset"
-  tk-houdini: "@settings.tk-houdini.asset"
-  tk-mari: "@settings.tk-mari.asset"
   tk-maya: "@settings.tk-maya.asset"
-  tk-motionbuilder: "@settings.tk-motionbuilder.asset"
   tk-nuke: "@settings.tk-nuke.asset"
-  tk-photoshopcc: "@settings.tk-photoshopcc.asset"
-  tk-shell: "@settings.tk-shell.asset"
-  tk-shotgun: "@settings.tk-shotgun.asset"
+  tk-shell: "@settings.tk-shell"
+  tk-shotgun: "@settings.tk-shotgun.step"
 
 ################################################################################
 # reference all of the common frameworks

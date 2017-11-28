@@ -11,11 +11,15 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+- ../../app_locations.yml
 
 ################################################################################
 
-# mari
-settings.tk-multi-workfiles.mari:
-  sg_entity_types: [Asset]
-  location: "@apps.tk-multi-workfiles.location"
+settings.tk-multi-reviewsubmission:
+  movie_width: 'hook:get_preference:1920'
+  movie_height: 'hook:get_preference:1080'
+  movie_path_template: '{env_name}_publish_movie'
+  sg_version_name_template: '{env_name}_version_name'
+  slate_logo: 'icons/review_submit_logo.png'
+  codec_settings_hook: '{config}/codec_settings.py'
+  location: "@apps.tk-multi-reviewsubmission.location"

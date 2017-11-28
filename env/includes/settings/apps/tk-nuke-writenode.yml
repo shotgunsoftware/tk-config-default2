@@ -11,10 +11,11 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+- ../../app_locations.yml
 
 ################################################################################
 
-settings.tk-multi-breakdown.nukestudio:
-  hook_scene_operations: '{self}/tk-nuke_scene_operations.py'
-  location: "@apps.tk-multi-breakdown.location"
+settings.tk-nuke-writenode:
+  template_script_work: '{engine_name}_{env_name}_work_file'
+  write_nodes: 'hook:get_preference'
+  location: "@apps.tk-nuke-writenode.location"

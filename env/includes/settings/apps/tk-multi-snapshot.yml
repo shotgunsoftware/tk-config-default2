@@ -11,17 +11,12 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
-- ../software_paths.yml
+- ../../app_locations.yml
 
 ################################################################################
 
-# screeningroom
-settings.tk-multi-screeningroom.rv:
-  enable_rv_mode: true
-  enable_web_mode: true
-  location: "@apps.tk-multi-screeningroom.location"
-  rv_path_linux: "@path.linux.rv"
-  rv_path_mac: "@path.mac.rv"
-  rv_path_windows: "@path.windows.rv"
-  init_hook: "{self}/init.py"
+settings.tk-multi-snapshot:
+  hook_copy_file: '{config}/copy_file.py'
+  template_snapshot: '{engine_name}_{env_name}_work_snapshot'
+  template_work: '{engine_name}_{env_name}_work_file'
+  location: "@apps.tk-multi-snapshot.location"

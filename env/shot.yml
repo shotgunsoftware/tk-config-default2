@@ -9,42 +9,26 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when a Shot is loaded. Since std VFX config
-  template has a file system structure which is centered around pipeline steps,
-  this environment is largely empty. Most of the work takes place on a level in
-  the file system where both a shot and a pipeline step is available - e.g Shot
-  ABC, modeling, so all apps for loading, publishing etc. are located in the
-  shot_step environment. This environment mostly contains utility apps and the
-  tank work files app, which lets you choose a task to work on and load
-  associated content into an application.
+description: Apps and Engines related to Shot based work.
 
 ################################################################################
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-3dsmaxplus.yml
-- ./includes/settings/tk-flame.yml
-- ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-maya.yml
-- ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
-- ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
 ################################################################################
-# configuration for all engines to load in a shot context
+# configuration for all engines to load in a shot step context
 
 engines:
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.shot"
-  tk-flame: "@settings.tk-flame.shot"
-  tk-houdini: "@settings.tk-houdini.shot"
+  # referencing the DCC-specific shot environments included above
   tk-maya: "@settings.tk-maya.shot"
-  tk-motionbuilder: "@settings.tk-motionbuilder.shot"
   tk-nuke: "@settings.tk-nuke.shot"
-  tk-photoshopcc: "@settings.tk-photoshopcc.shot"
-  tk-shell: "@settings.tk-shell.shot"
-  tk-shotgun: "@settings.tk-shotgun.shot"
+  tk-shell: "@settings.tk-shell"
+  tk-shotgun: "@settings.tk-shotgun.step"
 
 ################################################################################
 # reference all of the common frameworks

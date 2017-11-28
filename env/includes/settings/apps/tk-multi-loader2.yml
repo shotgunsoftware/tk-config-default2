@@ -1,0 +1,75 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../../app_locations.yml
+
+################################################################################
+
+settings.tk-multi-loader2.entities: &loader2_entities
+# Uncomment after https://support.shotgunsoftware.com/hc/en-us/requests/83441 is resolved.
+#  - caption: Current Project
+#    type: Hierarchy
+#    root: '{context.project}'
+#    publish_filters: []
+  - caption: My Tasks
+    type: Query
+    entity_type: Task
+    filters:
+      - [project, is, '{context.project}']
+      - [task_assignees, is, '{context.user}']
+    hierarchy: [entity, content]
+  - caption: Assets
+    type: Query
+    entity_type: Asset
+    filters:
+      - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, sg_sequence, sg_shot, code]
+  - caption: Plates
+    type: Query
+    entity_type: Element
+    filters:
+      - [project, is, '{context.project}']
+    hierarchy: [sg_shot.Shot.sg_sequence, sg_shot, code]
+  - caption: Shots
+    type: Query
+    entity_type: Shot
+    filters:
+      - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+
+# maya
+settings.tk-multi-loader2.maya:
+  action_mappings:
+    Alembic Cache: [reference, import]
+    Image: [texture_node, image_plane]
+    Maya Scene: [reference, import]
+    Photoshop Image: [texture_node, image_plane]
+    Rendered Image: [texture_node, image_plane]
+    Texture: [texture_node, image_plane]
+  entities: *loader2_entities
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
+# nuke
+settings.tk-multi-loader2.nuke:
+  action_mappings:
+    Alembic Cache: [read_node]
+    Image: [read_node]
+    Movie: [read_node]
+    Nuke Script: [script_import]
+    Photoshop Image: [read_node]
+    Rendered Image: [read_node]
+    Texture: [read_node]
+  entities: *loader2_entities
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"

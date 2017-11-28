@@ -11,20 +11,13 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+- ../../app_locations.yml
+- ../../software_paths.yml
 
 ################################################################################
 
-# ---- Nuke
-
-# asset
-settings.tk-multi-reviewsubmission.nuke.asset:
-  movie_path_template: nuke_asset_render_movie
-  slate_logo: icons/review_submit_logo.png
-  location: "@apps.tk-multi-reviewsubmission.location"
-
-# shot
-settings.tk-multi-reviewsubmission.nuke.shot:
-  movie_path_template: nuke_shot_render_movie
-  slate_logo: icons/review_submit_logo.png
-  location: "@apps.tk-multi-reviewsubmission.location"
+# auto discover DCCs for launch
+settings.tk-multi-launchapp:
+  use_software_entity: true
+  hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+  location: "@apps.tk-multi-launchapp.location"
