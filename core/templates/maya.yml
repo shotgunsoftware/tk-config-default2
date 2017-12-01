@@ -20,35 +20,35 @@ keys:
 
 paths:
 
-    # SNAPSHOTS
-    tk-maya_project_work_snapshot:          '@project_work_area/scenes/snapshots/@project_version_name.{timestamp}.{maya_extension}'
-    tk-maya_sequence_work_snapshot:         '@sequence_work_area/scenes/snapshots/@sequence_version_name.{timestamp}.{maya_extension}'
-    tk-maya_shot_work_snapshot:             '@shot_work_area/scenes/snapshots/@shot_version_name.{timestamp}.{maya_extension}'
+    # WORK AREAS
+    tk-maya_project_work_area:              '@project_work_area/maya'
+    tk-maya_sequence_work_area:             '@sequence_work_area/maya'
+    tk-maya_shot_work_area:                 '@shot_work_area/maya'
 
-    tk-maya_project_asset_work_snapshot:    '@project_asset_work_area/scenes/snapshots/@project_asset_version_name.{timestamp}.{maya_extension}'
-    tk-maya_sequence_asset_work_snapshot:   '@sequence_asset_work_area/scenes/snapshots/@sequence_asset_version_name.{timestamp}.{maya_extension}'
-    tk-maya_shot_asset_work_snapshot:       '@shot_asset_work_area/scenes/snapshots/@shot_asset_version_name.{timestamp}.{maya_extension}'
+    tk-maya_project_asset_work_area:        '@project_asset_work_area/maya'
+    tk-maya_sequence_asset_work_area:       '@sequence_asset_work_area/maya'
+    tk-maya_shot_asset_work_area:           '@shot_asset_work_area/maya'
+
+    # WORK FILES
+    tk-maya_project_work_file:              '@tk-maya_project_work_area/scenes/@project_version_name.{maya_extension}'
+    tk-maya_sequence_work_file:             '@tk-maya_sequence_work_area/scenes/@sequence_version_name.{maya_extension}'
+    tk-maya_shot_work_file:                 '@tk-maya_shot_work_area/scenes/@shot_version_name.{maya_extension}'
+
+    tk-maya_project_asset_work_file:        '@tk-maya_project_asset_work_area/scenes/@project_asset_version_name.{maya_extension}'
+    tk-maya_sequence_asset_work_file:       '@tk-maya_sequence_asset_work_area/scenes/@sequence_asset_version_name.{maya_extension}'
+    tk-maya_shot_asset_work_file:           '@tk-maya_shot_asset_work_area/scenes/@shot_asset_version_name.{maya_extension}'
+
+    # SNAPSHOTS
+    tk-maya_project_work_snapshot:          '@tk-maya_project_work_area/scenes/snapshots/@project_version_name.{timestamp}.{maya_extension}'
+    tk-maya_sequence_work_snapshot:         '@tk-maya_sequence_work_area/scenes/snapshots/@sequence_version_name.{timestamp}.{maya_extension}'
+    tk-maya_shot_work_snapshot:             '@tk-maya_shot_work_area/scenes/snapshots/@shot_version_name.{timestamp}.{maya_extension}'
+
+    tk-maya_project_asset_work_snapshot:    '@tk-maya_project_asset_work_area/scenes/snapshots/@project_asset_version_name.{timestamp}.{maya_extension}'
+    tk-maya_sequence_asset_work_snapshot:   '@tk-maya_sequence_asset_work_area/scenes/snapshots/@sequence_asset_version_name.{timestamp}.{maya_extension}'
+    tk-maya_shot_asset_work_snapshot:       '@tk-maya_shot_asset_work_area/scenes/snapshots/@shot_asset_version_name.{timestamp}.{maya_extension}'
 
 
 aliases:
-
-    # WORK AREAS
-    tk-maya_project_work_area:              'project_work_area'
-    tk-maya_sequence_work_area:             'sequence_work_area'
-    tk-maya_shot_work_area:                 'shot_work_area'
-
-    tk-maya_project_asset_work_area:        'project_asset_work_area'
-    tk-maya_sequence_asset_work_area:       'sequence_asset_work_area'
-    tk-maya_shot_asset_work_area:           'shot_asset_work_area'
-
-    # WORK FILES
-    tk-maya_project_work_file:              'project_work_scene'
-    tk-maya_sequence_work_file:             'sequence_work_scene'
-    tk-maya_shot_work_file:                 'shot_work_scene'
-
-    tk-maya_project_asset_work_file:        'project_asset_work_scene'
-    tk-maya_sequence_asset_work_file:       'sequence_asset_work_scene'
-    tk-maya_shot_asset_work_file:           'shot_asset_work_scene'
 
     # PUBLISH AREAS
     tk-maya_project_publish_area:           'project_publish_area_scene'
