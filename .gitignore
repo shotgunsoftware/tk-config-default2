@@ -1,10 +1,10 @@
 # ---- ignore special files written during config setup
 
-core/app_store.yml
-core/install_location.yml
-core/interpreter_*.cfg
-core/pipeline_configuration.yml
-core/shotgun.yml
+#core/app_store.yml
+#core/install_location.yml
+#core/interpreter_*.cfg
+#core/pipeline_configuration.yml
+#core/shotgun.yml
 
 # compiled python files
 *.py[co]
