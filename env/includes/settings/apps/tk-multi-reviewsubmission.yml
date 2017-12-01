@@ -12,12 +12,13 @@
 
 includes:
 - ../../app_locations.yml
+- '{preferences}/sgtk_config_preferences.yaml'
 
 ################################################################################
 
 settings.tk-multi-reviewsubmission:
-  movie_width: 'hook:get_preference:1920'
-  movie_height: 'hook:get_preference:1080'
+  movie_width: '@settings.tk-multi-reviewsubmission.width'
+  movie_height: '@settings.tk-multi-reviewsubmission.height'
   movie_path_template: '{env_name}_publish_movie'
   sg_version_name_template: '{env_name}_version_name'
   slate_logo: 'icons/review_submit_logo.png'

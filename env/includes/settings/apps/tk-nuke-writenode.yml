@@ -12,10 +12,11 @@
 
 includes:
 - ../../app_locations.yml
+- '{preferences}/sgtk_config_preferences.yaml'
 
 ################################################################################
 
 settings.tk-nuke-writenode:
   template_script_work: '{engine_name}_{env_name}_work_file'
-  write_nodes: 'hook:get_preference'
+  write_nodes: "@settings.tk-nuke-writenode.write_nodes"
   location: "@apps.tk-nuke-writenode.location"

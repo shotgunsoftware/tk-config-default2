@@ -29,8 +29,3 @@ engines:
   tk-nuke: "@settings.tk-nuke.shot"
   tk-shell: "@settings.tk-shell"
   tk-shotgun: "@settings.tk-shotgun.step"
-
-################################################################################
-# reference all of the common frameworks
-
-frameworks: "@frameworks"

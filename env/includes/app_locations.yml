@@ -130,7 +130,3 @@ apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: manual
   version: v1.2.x
-
-################################################################################
-# reference all of the common frameworks
-frameworks: '@frameworks'

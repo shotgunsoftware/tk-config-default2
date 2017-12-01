@@ -12,13 +12,14 @@
 
 includes:
 - ../../app_locations.yml
+- '{preferences}/sgtk_config_preferences.yaml'
 
 ################################################################################
 
 # nuke asset context
 settings.tk-nuke-quickdailies:
-  width: 'hook:get_preference:1920'
-  height: 'hook:get_preference:1080'
+  width: '@settings.tk-nuke-quickdailies.width'
+  height: '@settings.tk-nuke-quickdailies.height'
   codec_settings_hook: '{config}/codec_settings.py'
   post_hooks: [snapshot_history_post_quickdaily]
   current_scene_template: '{engine_name}_{env_name}_work_file'
