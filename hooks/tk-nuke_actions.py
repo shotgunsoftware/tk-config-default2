@@ -150,12 +150,12 @@ class NukeActions(HookBaseClass):
     ##############################################################################################################
     # helper methods which can be subclassed in custom hooks to fine tune the behavior of things
     
-    def _import_script(self, path, sg_publish_data):
+    def _import_script(self, path, sg_data):
         """
         Import contents of the given file into the scene.
         
         :param path: Path to file.
-        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        :param sg_data: Shotgun data dictionary with all the standard publish fields.
         """
         import nuke
         if not os.path.exists(path):
@@ -163,12 +163,12 @@ class NukeActions(HookBaseClass):
 
         nuke.nodePaste(path)
 
-    def _open_project(self, path, sg_publish_data):
+    def _open_project(self, path, sg_data):
         """
         Open the nuke studio project.
 
         :param path: Path to file.
-        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        :param sg_data: Shotgun data dictionary with all the standard publish fields.
         """
 
         if not os.path.exists(path):
@@ -183,12 +183,12 @@ class NukeActions(HookBaseClass):
         import hiero
         hiero.core.openProject(path)
 
-    def _create_read_node(self, path, sg_publish_data):
+    def _create_read_node(self, path, sg_data):
         """
         Create a read node representing the publish.
         
         :param path: Path to file.
-        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.        
+        :param sg_data: Shotgun data dictionary with all the standard publish fields.        
         """        
         import nuke
         
