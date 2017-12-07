@@ -17,7 +17,13 @@ HookBaseClass = sgtk.get_hook_baseclass()
 
 from dd.runtime import api
 api.load("preferences")
-from preferences import Preferences
+import preferences
+
+# Explicitly set the effective level for the preferences module logger to INFO
+# as the debug output is overly verbose and not relevant
+import logging
+preferences.logger.setLevel(logging.INFO)
+
 
 class GetPreference(HookBaseClass):
 
@@ -27,7 +33,7 @@ class GetPreference(HookBaseClass):
         """
         key = '%s.%s' % (bundle_obj.name, setting)
         default = dict(enumerate(extra_params)).get(0, None)
-        prefs = Preferences(package="sgtk_config")
+        prefs = preferences.Preferences(package="sgtk_config")
 
         value = prefs.get(key, default)
         if settings_type == "int":

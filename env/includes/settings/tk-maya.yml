@@ -35,6 +35,8 @@ settings.tk-maya:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: 'Shotgun Panel...'}
   location: "@engines.tk-maya.location"
 
 # asset
@@ -55,7 +57,9 @@ settings.tk-maya.asset:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  template_project: asset_work_area_maya
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: 'Shotgun Panel...'}
+  template_project: '{engine_name}_{env_name}_work_area'
   location: "@engines.tk-maya.location"
 
 # shot
@@ -78,5 +82,7 @@ settings.tk-maya.shot:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  template_project: shot_work_area_maya
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: 'Shotgun Panel...'}
+  template_project: '{engine_name}_{env_name}_work_area'
   location: "@engines.tk-maya.location"
