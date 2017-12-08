@@ -87,6 +87,6 @@ settings.tk-multi-shotgunpanel.nuke:
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard]
       filters: {}
-  actions_hook: '{self}/general_actions.py:{config}/{engine_name}_actions.py'
+  actions_hook: '{self}/general_actions.py:{config}/tk-multi-shotgunpanel/{engine_name}_actions.py'
   enable_context_switch: true
   location: "@apps.tk-multi-shotgunpanel.location"

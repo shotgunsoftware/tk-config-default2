@@ -56,6 +56,7 @@ settings.tk-multi-loader2.maya:
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
+  actions_hook: '{self}/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
@@ -70,7 +71,7 @@ settings.tk-multi-loader2.nuke:
     Photoshop Image: [read_node]
     Rendered Image: [read_node]
     Texture: [read_node]
-  actions_hook: '{config}/{engine_name}_actions.py'
+  actions_hook: '{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"

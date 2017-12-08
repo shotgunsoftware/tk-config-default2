@@ -40,8 +40,9 @@ class NukeActions(HookBaseClass):
         
         - If it will be shown in the main browsing area, "main" is passed. 
         - If it will be shown in the details area, "details" is passed.
+        - If it will be shown in the history area, "history" is passed.
                 
-        :param sg_data: Shotgun data dictionary.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
         :param actions: List of action strings which have been defined in the app configuration.
         :param ui_area: String denoting the UI Area (see above).
         :returns List of dictionaries, each with keys name, params, caption and description
@@ -120,7 +121,8 @@ class NukeActions(HookBaseClass):
         :param sg_data: Shotgun data dictionary
         :returns: No return value expected.
         """
-        app = self.parent        
+        app = self.parent
+
         app.log_debug("Execute action called for action %s. "
                       "Parameters: %s. Shotgun Data: %s" % (name, params, sg_data))
         
