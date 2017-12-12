@@ -23,7 +23,7 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.2.5
+  version: v0.2.7
 
 # breakdown
 apps.tk-multi-breakdown.location:
@@ -41,19 +41,19 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.9.13
+  version: v0.9.15
 
 # loader2
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.18.0
+  version: v1.18.1
 
 # publish2
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.0.2
+  version: v2.0.6
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -83,7 +83,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.4.8
+  version: v1.4.9
 
 # snapshot
 apps.tk-multi-snapshot.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.9.7
+  version: v0.9.9
 
 # ---- Shotgun apps
 
@@ -177,7 +177,7 @@ apps.tk-flame-export.location:
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.1.4
+  version: v1.1.5
 
 # ---- Mari apps
 

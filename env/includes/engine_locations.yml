@@ -23,13 +23,13 @@ engines.tk-3dsmaxplus.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.4.0
+  version: v2.4.2
 
 # Flame
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.10.0
+  version: v1.11.4
 
 # Houdini
 engines.tk-houdini.location:
@@ -65,7 +65,7 @@ engines.tk-nuke.location:
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.2.0
+  version: v1.2.1
 
 # Shell
 engines.tk-shell.location:
