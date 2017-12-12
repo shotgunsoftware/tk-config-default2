@@ -53,7 +53,7 @@ settings.tk-multi-workfiles2:
   hook_scene_operation: default
   launch_at_startup: true
   my_tasks_extra_display_fields: [entity.Shot.sg_sequence.Sequence.code]
-  saveas_default_name: 'main'
+  saveas_default_name: 'hook:get_default_saveas_name'
   saveas_prefer_version_up: false
   show_my_tasks: true
   template_publish:
@@ -76,7 +76,7 @@ settings.tk-multi-workfiles2.step:
   hook_scene_operation: default
   launch_at_startup: true
   my_tasks_extra_display_fields: [entity.Shot.sg_sequence.Sequence.code]
-  saveas_default_name: 'main'
+  saveas_default_name: 'hook:get_default_saveas_name'
   saveas_prefer_version_up: false
   show_my_tasks: true
   template_publish_area: '{engine_name}_{env_name}_publish_area'
