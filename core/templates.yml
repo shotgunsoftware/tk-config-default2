@@ -82,6 +82,13 @@ keys:
         format_spec: '04'
     eye:
         type: str
+    img_extension:
+        type: str
+        choices:
+            exr: EXR
+            jpg: JPEG
+        default: exr
+        alias: extension
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -132,38 +139,6 @@ paths:
     project_publish_area:                   './SHARED'
     sequence_publish_area:                  './{Sequence}/SHARED'
     shot_publish_area:                      './{Sequence}/{Shot}/SHARED'
-
-
-    #################################
-    # COMMON WORK paths
-    #
-
-    # RENDERS
-    project_work_render:                    '@project_work_area/images/{Step}/@image_subdirs/@project_version_name.{SEQ}.exr'
-    sequence_work_render:                   '@sequence_work_area/images/{Step}/@image_subdirs/@sequence_version_name.{SEQ}.exr'
-    shot_work_render:                       '@shot_work_area/images/{Step}/@image_subdirs/@shot_version_name.{SEQ}.exr'
-
-    project_asset_work_render:              '@project_asset_work_area/images/{Step}/@image_subdirs/@project_asset_version_name.{SEQ}.exr'
-    sequence_asset_work_render:             '@sequence_asset_work_area/images/{Step}/@image_subdirs/@sequence_asset_version_name.{SEQ}.exr'
-    shot_asset_work_render:                 '@shot_asset_work_area/images/{Step}/@image_subdirs/@shot_asset_version_name.{SEQ}.exr'
-
-    # MOVIES
-    project_work_movie:                     '@project_work_area/movies/@project_version_name.mov'
-    sequence_work_movie:                    '@sequence_work_area/movies/@sequence_version_name.mov'
-    shot_work_movie:                        '@shot_work_area/movies/@shot_version_name.mov'
-
-    project_asset_work_movie:               '@project_asset_work_area/movies/@project_asset_version_name.mov'
-    sequence_asset_work_movie:              '@sequence_asset_work_area/movies/@sequence_asset_version_name.mov'
-    shot_asset_work_movie:                  '@shot_asset_work_area/movies/@shot_asset_version_name.mov'
-
-    # CACHE
-    project_work_cache:                     '@project_work_area/cache/@project_version_name.abc'
-    sequence_work_cache:                    '@sequence_work_area/cache/@sequence_version_name.abc'
-    shot_work_cache:                        '@shot_work_area/cache/@shot_version_name.abc'
-
-    project_asset_work_cache:               '@project_asset_work_area/cache/@project_asset_version_name.abc'
-    sequence_asset_work_cache:              '@sequence_asset_work_area/cache/@sequence_asset_version_name.abc'
-    shot_asset_work_cache:                  '@shot_asset_work_area/cache/@shot_asset_version_name.abc'
 
 
     #################################
@@ -227,13 +202,13 @@ paths:
     shot_asset_publish_script:              '@shot_asset_publish_area_script/@shot_asset_version_name.nk'
 
     # RENDERS
-    project_publish_render:                 '@project_publish_area_image/@image_subdirs/@project_version_name.{SEQ}.exr'
-    sequence_publish_render:                '@sequence_publish_area_image/@image_subdirs/@sequence_version_name.{SEQ}.exr'
-    shot_publish_render:                    '@shot_publish_area_image/@image_subdirs/@shot_version_name.{SEQ}.exr'
+    project_publish_render:                 '@project_publish_area_image/@image_subdirs/@project_version_name.{SEQ}.{img_extension}'
+    sequence_publish_render:                '@sequence_publish_area_image/@image_subdirs/@sequence_version_name.{SEQ}.{img_extension}'
+    shot_publish_render:                    '@shot_publish_area_image/@image_subdirs/@shot_version_name.{SEQ}.{img_extension}'
 
-    project_asset_publish_render:           '@project_asset_publish_area_image/@image_subdirs/@project_asset_version_name.{SEQ}.exr'
-    sequence_asset_publish_render:          '@sequence_asset_publish_area_image/@image_subdirs/@sequence_asset_version_name.{SEQ}.exr'
-    shot_asset_publish_render:              '@shot_asset_publish_area_image/@image_subdirs/@shot_asset_version_name.{SEQ}.exr'
+    project_asset_publish_render:           '@project_asset_publish_area_image/@image_subdirs/@project_asset_version_name.{SEQ}.{img_extension}'
+    sequence_asset_publish_render:          '@sequence_asset_publish_area_image/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img_extension}'
+    shot_asset_publish_render:              '@shot_asset_publish_area_image/@image_subdirs/@shot_asset_version_name.{SEQ}.{img_extension}'
 
     # MOVIES
     project_publish_movie:                  '@project_publish_area_movie/@project_version_name.mov'
@@ -259,24 +234,6 @@ paths:
 # will internally resolve the original template and return that instead.
 #
 aliases:
-
-    # WORK SCENES
-    project_work_scene:                     'tk-maya_project_work_file'
-    sequence_work_scene:                    'tk-maya_sequence_work_file'
-    shot_work_scene:                        'tk-maya_shot_work_file'
-
-    project_asset_work_scene:               'tk-maya_project_asset_work_file'
-    sequence_asset_work_scene:              'tk-maya_sequence_asset_work_file'
-    shot_asset_work_scene:                  'tk-maya_shot_asset_work_file'
-
-    # WORK SCRIPTS
-    project_work_script:                    'tk-nuke_project_work_file'
-    sequence_work_script:                   'tk-nuke_sequence_work_file'
-    shot_work_script:                       'tk-nuke_shot_work_file'
-
-    project_asset_work_script:              'tk-nuke_project_asset_work_file'
-    sequence_asset_work_script:             'tk-nuke_sequence_asset_work_file'
-    shot_asset_work_script:                 'tk-nuke_shot_asset_work_file'
 
 
 #
