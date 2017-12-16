@@ -17,30 +17,24 @@ includes:
 
 settings.tk-multi-publish2.collector_settings.default: default
 settings.tk-multi-publish2.plugin_settings.default:
-  file.alembic:
-    publish_type: 'Alembic Cache'
-    work_path_template: '{env_name}_work_cache'
-    publish_path_template: '{env_name}_publish_cache'
   file.maya:
     publish_type: 'Maya Scene'
-    work_path_template: '{env_name}_work_scene'
     publish_path_template: '{env_name}_publish_scene'
   file.nuke:
     publish_type: 'Nuke Script'
-    work_path_template: '{env_name}_work_script'
     publish_path_template: '{env_name}_publish_script'
+  file.alembic:
+    publish_type: 'Alembic Cache'
+    publish_path_template: '{env_name}_publish_cache'
   file.render.sequence:
     publish_type: 'Rendered Image'
-    work_path_template: '{env_name}_work_render'
     publish_path_template: '{env_name}_publish_render'
   file.video:
     publish_type: 'Movie'
-    work_path_template: '{env_name}_work_movie'
     publish_path_template: '{env_name}_publish_movie'
 
 settings.tk-multi-publish2.path_info.default:         '{self}/path_info.py'
 settings.tk-multi-publish2.collector.default:         '{self}/basic/collector.py'
-settings.tk-multi-publish2.plugin.conform_work_files: '{self}/basic/conform_work_files.py'
 settings.tk-multi-publish2.plugin.publish_asset:      '{self}/basic/publish_asset.py'
 settings.tk-multi-publish2.plugin.publish_files:      '{self}/basic/publish_files.py'
 settings.tk-multi-publish2.plugin.upload_version:     '{self}/basic/upload_version.py'
@@ -56,10 +50,6 @@ settings.tk-multi-publish2.standalone:
   collector_settings: '@settings.tk-multi-publish2.collector_settings.default'
   path_info: '@settings.tk-multi-publish2.path_info.default'
   publish_plugins:
-    - name: Conform Work File(s)
-      hook: '@settings.tk-multi-publish2.plugin.conform_work_files'
-      settings:
-        Item Type Settings: '@settings.tk-multi-publish2.plugin_settings.default'
     - name: Publish File(s)
       hook: '@settings.tk-multi-publish2.plugin.publish_files'
       settings:
@@ -84,10 +74,6 @@ settings.tk-multi-publish2.maya.asset:
   collector_settings: '@settings.tk-multi-publish2.collector_settings.default'
   path_info: '@settings.tk-multi-publish2.path_info.default'
   publish_plugins:
-    - name: Conform Work File(s)
-      hook: '@settings.tk-multi-publish2.plugin.conform_work_files:{self}/maya/conform_work_files.py'
-      settings:
-        Item Type Settings: '@settings.tk-multi-publish2.plugin_settings.default'
     - name: Publish Asset
       hook: '@settings.tk-multi-publish2.plugin.publish_asset:{self}/maya/publish_asset.py'
       settings:
@@ -112,10 +98,6 @@ settings.tk-multi-publish2.maya.shot:
   collector_settings: '@settings.tk-multi-publish2.collector_settings.default'
   path_info: '@settings.tk-multi-publish2.path_info.default'
   publish_plugins:
-    - name: Conform Work File(s)
-      hook: '@settings.tk-multi-publish2.plugin.conform_work_files:{self}/maya/conform_work_files.py'
-      settings:
-        Item Type Settings: '@settings.tk-multi-publish2.plugin_settings.default'
     - name: Publish File(s)
       hook: '@settings.tk-multi-publish2.plugin.publish_files:{self}/maya/publish_files.py'
       settings:
@@ -140,10 +122,6 @@ settings.tk-multi-publish2.nuke.asset:
   collector_settings: '@settings.tk-multi-publish2.collector_settings.default'
   path_info: '@settings.tk-multi-publish2.path_info.default'
   publish_plugins:
-    - name: Conform Work File(s)
-      hook: '@settings.tk-multi-publish2.plugin.conform_work_files:{self}/nuke/conform_work_files.py'
-      settings:
-        Item Type Settings: '@settings.tk-multi-publish2.plugin_settings.default'
     - name: Publish Asset
       hook: '@settings.tk-multi-publish2.plugin.publish_asset:{self}/nuke/publish_asset.py'
       settings:
@@ -168,10 +146,6 @@ settings.tk-multi-publish2.nuke.shot:
   collector_settings: '@settings.tk-multi-publish2.collector_settings.default'
   path_info: '@settings.tk-multi-publish2.path_info.default'
   publish_plugins:
-    - name: Conform Work File(s)
-      hook: '@settings.tk-multi-publish2.plugin.conform_work_files:{self}/nuke/conform_work_files.py'
-      settings:
-        Item Type Settings: '@settings.tk-multi-publish2.plugin_settings.default'
     - name: Publish File(s)
       hook: '@settings.tk-multi-publish2.plugin.publish_files:{self}/nuke/publish_files.py'
       settings:
