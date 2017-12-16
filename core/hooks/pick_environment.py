@@ -51,6 +51,6 @@ class PickEnvironment(HookBaseClass):
                     return "shot_asset"
                 if "Sequence" in entities_by_type:
                     return "sequence_asset"
-                return "asset"
+                return "project_asset"
 
         return None
