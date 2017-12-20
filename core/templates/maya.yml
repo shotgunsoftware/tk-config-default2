@@ -66,13 +66,13 @@ paths:
     tk-maya_shot_asset_work_movie:          '@tk-maya_shot_asset_work_area/movies/@shot_asset_version_name.mov'
 
     # CACHE
-    tk-maya_project_work_cache:             '@tk-maya_project_work_area/cache/@project_version_name.abc'
-    tk-maya_sequence_work_cache:            '@tk-maya_sequence_work_area/cache/@sequence_version_name.abc'
-    tk-maya_shot_work_cache:                '@tk-maya_shot_work_area/cache/@shot_version_name.abc'
+    tk-maya_project_work_cache:             '@tk-maya_project_work_area/data/@project_version_name.abc'
+    tk-maya_sequence_work_cache:            '@tk-maya_sequence_work_area/data/@sequence_version_name.abc'
+    tk-maya_shot_work_cache:                '@tk-maya_shot_work_area/data/@shot_version_name.abc'
 
-    tk-maya_project_asset_work_cache:       '@tk-maya_project_asset_work_area/cache/@project_asset_version_name.abc'
-    tk-maya_sequence_asset_work_cache:      '@tk-maya_sequence_asset_work_area/cache/@sequence_asset_version_name.abc'
-    tk-maya_shot_asset_work_cache:          '@tk-maya_shot_asset_work_area/cache/@shot_asset_version_name.abc'
+    tk-maya_project_asset_work_cache:       '@tk-maya_project_asset_work_area/data/@project_asset_version_name.abc'
+    tk-maya_sequence_asset_work_cache:      '@tk-maya_sequence_asset_work_area/data/@sequence_asset_version_name.abc'
+    tk-maya_shot_asset_work_cache:          '@tk-maya_shot_asset_work_area/data/@shot_asset_version_name.abc'
 
 
 aliases:
