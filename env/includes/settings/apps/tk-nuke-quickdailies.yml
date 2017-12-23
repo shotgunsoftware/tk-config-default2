@@ -12,7 +12,7 @@
 
 includes:
 - ../../app_locations.yml
-- '{preferences}/sgtk_config_preferences.yaml'
+- '{preferences}/sgtk_config_environments.yaml'
 
 ################################################################################
 
