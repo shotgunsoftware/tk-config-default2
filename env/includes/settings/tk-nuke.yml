@@ -32,7 +32,7 @@ settings.tk-nuke:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-loader2: '@settings.tk-multi-loader2.nuke'
-    tk-multi-publish2: '@settings.tk-multi-publish2.nuke.asset'
+    tk-multi-publish2: '@settings.tk-multi-publish2.nuke'
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
@@ -42,7 +42,7 @@ settings.tk-nuke:
   - {app_instance: tk-multi-shotgunpanel, name: 'Shotgun Panel...'}
   location: "@engines.tk-nuke.location"
 
-# asset
+# asset task
 settings.tk-nuke.asset:
   apps:
     tk-multi-about:
@@ -50,12 +50,12 @@ settings.tk-nuke.asset:
     tk-multi-breakdown:
       location: "@apps.tk-multi-breakdown.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
-    tk-multi-publish2: "@settings.tk-multi-publish2.nuke.asset"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nuke"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
     tk-multi-snapshot: "@settings.tk-multi-snapshot"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.task"
     tk-nuke-quickdailies: "@settings.tk-nuke-quickdailies"
     tk-nuke-writenode: "@settings.tk-nuke-writenode"
   menu_favourites:
@@ -67,7 +67,7 @@ settings.tk-nuke.asset:
   - {app_instance: tk-multi-shotgunpanel, name: 'Shotgun Panel...'}
   location: "@engines.tk-nuke.location"
 
-# shot
+# shot task
 settings.tk-nuke.shot:
   apps:
     tk-multi-about:
@@ -77,12 +77,12 @@ settings.tk-nuke.shot:
     tk-multi-setframerange:
       location: "@apps.tk-multi-setframerange.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
-    tk-multi-publish2: "@settings.tk-multi-publish2.nuke.shot"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nuke"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
     tk-multi-snapshot: "@settings.tk-multi-snapshot"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.task"
     tk-nuke-quickdailies: "@settings.tk-nuke-quickdailies"
     tk-nuke-writenode: "@settings.tk-nuke-writenode"
   menu_favourites:

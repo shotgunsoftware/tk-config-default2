@@ -63,8 +63,8 @@ settings.tk-multi-workfiles2:
   version_compare_ignore_fields: []
   location: "@apps.tk-multi-workfiles2.location"
 
-# step
-settings.tk-multi-workfiles2.step:
+# task
+settings.tk-multi-workfiles2.task:
   allow_task_creation: true
   create_new_task_hook: "{self}/create_new_task.py"
   custom_actions_hook: "{self}/custom_actions.py"

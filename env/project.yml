@@ -27,6 +27,7 @@ includes:
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- '{preferences}/sgtk_config_environments.yaml'
 
 ################################################################################
 # configuration for all engines to load in a project context

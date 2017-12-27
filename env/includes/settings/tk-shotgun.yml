@@ -32,8 +32,8 @@ settings.tk-shotgun:
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 
-# step
-settings.tk-shotgun.step:
+# task
+settings.tk-shotgun.task:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"

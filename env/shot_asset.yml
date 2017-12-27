@@ -19,12 +19,13 @@ includes:
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- '{preferences}/sgtk_config_environments.yaml'
 
 ################################################################################
-# configuration for all engines to load in an asset step context
+# configuration for all engines to load in an asset task context
 
 engines:
   tk-maya: "@settings.tk-maya.asset"
   tk-nuke: "@settings.tk-nuke.asset"
   tk-shell: "@settings.tk-shell"
-  tk-shotgun: "@settings.tk-shotgun.step"
+  tk-shotgun: "@settings.tk-shotgun.task"

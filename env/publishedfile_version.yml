@@ -19,6 +19,7 @@ description: Apps and engines loaded when a PublishedFile or Version is loaded.
 includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-shotgun.yml
+- '{preferences}/sgtk_config_environments.yaml'
 
 ################################################################################
 # configuration for all engines to load in a publishedfile or version context

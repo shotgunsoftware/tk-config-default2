@@ -12,8 +12,9 @@
 
 includes:
 - ../../app_locations.yml
-- '{preferences}/sgtk_config_environments.yaml'
 
+################################################################################
+# NOTE: Reviewsubmission settings have been moved to {preferences}/sgtk_config_environments.yaml
 ################################################################################
 
 settings.tk-multi-reviewsubmission:
