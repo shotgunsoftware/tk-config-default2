@@ -81,9 +81,10 @@ apps.tk-multi-setframerange.location:
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:
-  type: app_store
+  type: dev
   name: tk-multi-shotgunpanel
   version: v1.4.9
+  path: /Users/manne/Documents/work_dev/toolkit/tk-multi-shotgunpanel
 
 # snapshot
 apps.tk-multi-snapshot.location:
@@ -153,11 +154,12 @@ apps.tk-houdini-mantranode.location:
 
 # ---- Nuke apps
 
-# quickdailies
-apps.tk-nuke-quickdailies.location:
-  type: app_store
-  name: tk-nuke-quickdailies
-  version: v0.3.6
+# quickreview
+apps.tk-nuke-quickreview.location:
+  type: dev
+  path: /Users/manne/Documents/work_dev/toolkit/tk-nuke-quickreview
+  name: tk-nuke-quickreview
+  version: v0.0.0
 
 # writenode
 apps.tk-nuke-writenode.location:
