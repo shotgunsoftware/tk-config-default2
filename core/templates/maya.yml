@@ -57,13 +57,13 @@ paths:
     tk-maya_shot_asset_work_render:         '@tk-maya_shot_asset_work_area/images/{Step}/@image_subdirs/@shot_asset_version_name.{SEQ}.{img_extension}'
 
     # PLAYBLASTS
-    tk-maya_project_work_playblast:         '@tk-maya_project_work_area/images/{Step}/playblasts/@project_version_name.{SEQ}.jpg'
-    tk-maya_sequence_work_playblast:        '@tk-maya_sequence_work_area/images/{Step}/playblasts/@sequence_version_name.{SEQ}.jpg'
-    tk-maya_shot_work_playblast:            '@tk-maya_shot_work_area/images/{Step}/playblasts/@shot_version_name.{SEQ}.jpg'
+    tk-maya_project_work_playblast:         '@tk-maya_project_work_area/images/{Step}/@playblast_subdirs/@project_version_name.{SEQ}.jpg'
+    tk-maya_sequence_work_playblast:        '@tk-maya_sequence_work_area/images/{Step}/@playblast_subdirs/@sequence_version_name.{SEQ}.jpg'
+    tk-maya_shot_work_playblast:            '@tk-maya_shot_work_area/images/{Step}/@playblast_subdirs/@shot_version_name.{SEQ}.jpg'
 
-    tk-maya_project_asset_work_playblast:   '@tk-maya_project_asset_work_area/images/{Step}/playblasts/@project_asset_version_name.{SEQ}.jpg'
-    tk-maya_sequence_asset_work_playblast:  '@tk-maya_sequence_asset_work_area/images/{Step}/playblasts/@sequence_asset_version_name.{SEQ}.jpg'
-    tk-maya_shot_asset_work_playblast:      '@tk-maya_shot_asset_work_area/images/{Step}/playblasts/@shot_asset_version_name.{SEQ}.jpg'
+    tk-maya_project_asset_work_playblast:   '@tk-maya_project_asset_work_area/images/{Step}/@playblast_subdirs/@project_asset_version_name.{SEQ}.jpg'
+    tk-maya_sequence_asset_work_playblast:  '@tk-maya_sequence_asset_work_area/images/{Step}/@playblast_subdirs/@sequence_asset_version_name.{SEQ}.jpg'
+    tk-maya_shot_asset_work_playblast:      '@tk-maya_shot_asset_work_area/images/{Step}/@playblast_subdirs/@shot_asset_version_name.{SEQ}.jpg'
 
     # MOVIES
     tk-maya_project_work_movie:             '@tk-maya_project_work_area/movies/@project_version_name.mov'
@@ -103,3 +103,7 @@ aliases:
     tk-maya_project_asset_publish_file:     'project_asset_publish_scene'
     tk-maya_sequence_asset_publish_file:    'sequence_asset_publish_scene'
     tk-maya_shot_asset_publish_file:        'shot_asset_publish_scene'
+
+strings:
+
+    playblast_subdirs:                      'playblasts/{name}/v{version}'
