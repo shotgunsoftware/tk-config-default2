@@ -8,12 +8,21 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-# this file defines all the different disk locations that this config uses.
-# these paths can be altered at project creation time to ensure that they map
-# to the correct location.
+# This file defines all the different disk locations that this config uses.
+# Root definitions are referenced from the toolkit configuration's templates.yml
+# file and folder creation schema.
+
+# At setup time, each defined root is looked up against the local storages defined
+# in shotgun. For each root defined in this file, a local storage with the same name
+# needs to exist in Shotgun. During setup, the paths defined for each local storage
+# are transferred across to this file.
+
+# Note: In toolkit core versions prior to 0.18.121, configurations using a single
+# root required this root to be named 'primary'. In later versions of core, this
+# requirement has been lifted and the root can be named anything.
 
 primary:
-    description: "A top-level root folder where all production data lives.  Project folders will be created beneath this location."
+    description: "A top-level root folder for production data. Project folders will be created beneath this location."
     mac_path:
     linux_path:
     windows_path:
