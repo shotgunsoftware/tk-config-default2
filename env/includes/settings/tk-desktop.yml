@@ -33,6 +33,7 @@ settings.tk-desktop.project:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
   groups:
   - matches:
+    - "*Fla*"
     - "*Houdini*"
     - "*Mari*"
     - "*Max*"
@@ -44,7 +45,4 @@ settings.tk-desktop.project:
   - matches:
     - "*Hiero*"
     name: Editorial Tools
-  - matches:
-    - "*Fla*"
-    name: Finishing Tools
   location: "@engines.tk-desktop.location"
