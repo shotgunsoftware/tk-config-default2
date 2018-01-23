@@ -114,6 +114,10 @@ settings.tk-multi-shotgunpanel.nuke:
     - actions: [read_node]
       filters: {published_file_type: Alembic Cache}
     - actions: [read_node]
+      filters: {published_file_type: Flame Render}
+    - actions: [read_node]
+      filters: {published_file_type: Flame Quicktime}
+    - actions: [read_node]
       filters: {published_file_type: Image}
     - actions: [read_node]
       filters: {published_file_type: Movie}
