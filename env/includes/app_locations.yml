@@ -95,7 +95,7 @@ apps.tk-multi-snapshot.location:
 apps.tk-multi-workfiles2.location:
   type: manual
   name: tk-multi-workfiles2
-  version: v0.9.x
+  version: v0.10.x
 
 # ---- Shotgun apps
 
@@ -129,4 +129,4 @@ apps.tk-nuke-quickdailies.location:
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: manual
-  version: v1.2.x
+  version: v1.3.x
