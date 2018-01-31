@@ -41,7 +41,7 @@ settings.tk-multi-workfiles2.entities: &workfiles2_entities
       - [entity, type_is, Shot]
     hierarchy: [entity.Shot.sg_sequence, entity, step, content]
 
-settings.tk-multi-workfiles2:
+settings.tk-multi-workfiles2: &default_workfiles2_settings
   allow_task_creation: true
   create_new_task_hook: "{self}/create_new_task.py"
   custom_actions_hook: "{self}/custom_actions.py"
@@ -64,7 +64,7 @@ settings.tk-multi-workfiles2:
   location: "@apps.tk-multi-workfiles2.location"
 
 # task
-settings.tk-multi-workfiles2.task:
+settings.tk-multi-workfiles2.task: &default_workfiles2_task_settings
   allow_task_creation: true
   create_new_task_hook: "{self}/create_new_task.py"
   custom_actions_hook: "{self}/custom_actions.py"
@@ -84,3 +84,12 @@ settings.tk-multi-workfiles2.task:
   template_work_area: '{engine_name}_{env_name}_work_area'
   template_work: '{engine_name}_{env_name}_work_file'
   location: "@apps.tk-multi-workfiles2.location"
+
+# maya task
+settings.tk-multi-workfiles2.maya.task:
+  <<: *default_workfiles2_task_settings
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
+
+settings.tk-multi-workfiles2.maya:
+  <<: *default_workfiles2_settings
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
