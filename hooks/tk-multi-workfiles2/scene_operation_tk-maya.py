@@ -84,17 +84,18 @@ class SceneOperation(HookClass):
             frame_sq_key = context.sgtk.template_keys['SEQ']    # Can 'SEQ' change?
 
             # set fps
-            indiapipeline_prefs = preferences.Preferences(package="indiapipeline")
+            show_prefs = preferences.Preferences(pref_file_name="show_preferences.yaml",
+                                                 role=os.getenv("DD_ROLE"))
             try:
-                cmds.currentUnit(time="{}fps".format(indiapipeline_prefs["show_settings"]["fps"]))
+                cmds.currentUnit(time="{}fps".format(show_prefs["show_settings"]["fps"]))
             except KeyError as ke:
                 self.parent.logger.warning("Unable to find {} in indiapipeline preferences. "
                                            "Not setting fps.".format(ke))
 
             # get resolution and set render defaults
             try:
-                fields.update({"width": indiapipeline_prefs["show_settings"]["resolution"]["width"],
-                               "height": indiapipeline_prefs["show_settings"]["resolution"]["height"],
+                fields.update({"width": show_prefs["show_settings"]["resolution"]["width"],
+                               "height": show_prefs["show_settings"]["resolution"]["height"],
                                "output": "LAYERPLACEHOLDER"})   # output is alphanumeric
                                                                 # replace with token <Layer>
             except KeyError as ke:
