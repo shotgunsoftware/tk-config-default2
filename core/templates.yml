@@ -60,6 +60,11 @@ keys:
         type: str
         shotgun_entity_type: HumanUser
         shotgun_field_name: login
+    custom_key_example:
+        type: str
+        validate_hook: 'templatekey_custom'
+        value_from_str_hook: 'templatekey_custom'
+        str_from_value_hook: 'templatekey_custom'
 
     # Application-provided keys
     name:
