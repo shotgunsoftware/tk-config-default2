@@ -66,6 +66,24 @@ keys:
         value_from_str_hook: 'templatekey_custom'
         str_from_value_hook: 'templatekey_custom'
 
+    # use this key for converting a client sequence name to dd sequence name
+    client_to_dd_name:
+        type: str
+        shotgun_entity_type: Sequence
+        shotgun_field_name: sg_client_name
+        validate_hook: 'name_converter'
+        value_from_str_hook: 'name_converter'
+        str_from_value_hook: 'name_converter'
+
+    # use this key for converting a dd sequence name to client sequence name
+    dd_to_client_name:
+        type: str
+        shotgun_entity_type: Sequence
+        shotgun_field_name: code
+        validate_hook: 'name_converter'
+        value_from_str_hook: 'name_converter'
+        str_from_value_hook: 'name_converter'
+
     # Application-provided keys
     name:
         type: str
