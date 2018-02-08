@@ -34,15 +34,22 @@ settings.tk-multi-workfiles2:
   custom_actions_hook: "{self}/custom_actions.py"
   entities:
   - caption: Assets
-    entity_type: Task
-    filters:
-    - [entity, type_is, Asset]
-    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    sub_hierarchy:
+        entity_type: Task
+        filters:
+        link_field: entity
+        hierarchy: [step]
   - caption: Shots
-    entity_type: Task
+    entity_type: Shot
     filters:
-    - [entity, type_is, Shot]
-    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+        entity_type: Task
+        filters:
+        link_field: entity
+        hierarchy: [step]
   file_extensions: []
   hook_copy_file: "{self}/copy_file.py"
   hook_filter_publishes: default
@@ -67,15 +74,22 @@ settings.tk-multi-workfiles2.launch_at_startup:
   custom_actions_hook: "{self}/custom_actions.py"
   entities:
   - caption: Assets
-    entity_type: Task
-    filters:
-    - [entity, type_is, Asset]
-    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    sub_hierarchy:
+        entity_type: Task
+        filters:
+        link_field: entity
+        hierarchy: [step]
   - caption: Shots
-    entity_type: Task
+    entity_type: Shot
     filters:
-    - [entity, type_is, Shot]
-    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+        entity_type: Task
+        filters:
+        link_field: entity
+        hierarchy: [step]
   file_extensions: []
   hook_copy_file: "{self}/copy_file.py"
   hook_filter_publishes: default
