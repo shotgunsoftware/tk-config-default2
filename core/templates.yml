@@ -254,14 +254,14 @@ strings:
     image_subdirs:                          '{name}/v{version}/{width}x{height}'
 
     # SCENE
-    project_version_name:                   '{Step}_{name}[_{output}].v{version}'
-    sequence_version_name:                  '{Sequence}_{Step}_{name}[_{output}].v{version}'
-    shot_version_name:                      '{Sequence}_{Shot}_{Step}_{name}[_{output}].v{version}'
+    project_version_name:                   '{Step}_{name}[-{output}].v{version}'
+    sequence_version_name:                  '{Sequence}_{Step}_{name}[-{output}].v{version}'
+    shot_version_name:                      '{Sequence}_{Shot}_{Step}_{name}[-{output}].v{version}'
 
     # ASSET
-    project_asset_version_name:             '{Step}_{sg_asset_type}_{Asset}_{name}[_{output}].v{version}'
-    sequence_asset_version_name:            '{Sequence}_{Step}_{sg_asset_type}_{Asset}_{name}[_{output}].v{version}'
-    shot_asset_version_name:                '{Sequence}_{Shot}_{Step}_{sg_asset_type}_{Asset}_{name}[_{output}].v{version}'
+    project_asset_version_name:             '{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
+    sequence_asset_version_name:            '{Sequence}_{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
+    shot_asset_version_name:                '{Sequence}_{Shot}_{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
 
 
 includes:
