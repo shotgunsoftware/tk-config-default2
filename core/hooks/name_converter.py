@@ -13,11 +13,15 @@ Hook which chooses an environment file to use based on the current context.
 
 """
 import os
+import copy
 
 import sgtk
 from tank.util.shotgun import get_sg_connection
 
 HookBaseClass = sgtk.get_hook_baseclass()
+
+EDIT_TYPE = "EDIT"
+VALID_EDITS = ["replace", "lower_case", "upper_case", "underscore_to_camelcase"]
 
 class TemplateKeyCustom(HookBaseClass):
 
@@ -30,30 +34,47 @@ class TemplateKeyCustom(HookBaseClass):
                                     such as a subset calculation
         :returns: Bool
         """
-        return self.parent._validate(value, validate_transforms)
+        # to avoid the validation to fail, if the value is not defined in choices!!
+        return True
+
+    @staticmethod
+    def _underscore_to_camelcase(value):
+        def camelcase():
+            yield str.lower
+            while True:
+                yield str.capitalize
+
+        c = camelcase()
+        return "".join(c.next()(x) if x else '_' for x in value.split("_"))
 
     def value_from_str(self, str_value, **kwargs):
         """
         Translates a string into an appropriate value for this key.
 
-        If the queried field name is sg_client_name, this will return the corresponding DD name(code).
-        If the queried field name is code, this will return the corresponding Client name(sg_client_name).
+        If the EDIT_TYPE in the choices of this template is a valid, it will apply the required "edit" on str_value.
 
         :param str_value: The string to translate.
         :returns: The translated value.
         """
 
-        keys = set(["code", "sg_client_name"])
-        return_key = keys.difference([self.parent.shotgun_field_name]).pop()
+        choices = copy.deepcopy(self.parent.labelled_choices)
+        edit = choices.pop(EDIT_TYPE)
 
-        sg = get_sg_connection()
+        # removed "pad" type edit, since that is already taken care of by 'format_spec'
 
-        proj_filter = sg.find_one(entity_type='Project', filters=[['name', 'is', os.getenv('DD_SHOW')]])
-        filters = [['project', 'is', proj_filter], [self.parent.shotgun_field_name, "is", str_value]]
+        if edit in VALID_EDITS:
+            if edit == "replace":
+                relevant_replaces = [replace for replace in choices if replace in str_value]
+                for replace in relevant_replaces:
+                    str_value = str_value.replace(replace, choices[replace])
+            elif edit == "lower_case":
+                str_value = str_value.lower()
+            elif edit == "upper_case":
+                str_value = str_value.upper()
+            elif edit == "underscore_to_camelcase":
+                str_value = self._underscore_to_camelcase(str_value)
 
-        return_entity = sg.find_one(self.parent.shotgun_entity_type, filters, [return_key])
-
-        return return_entity[return_key]
+        return str_value
 
     def str_from_value(self, value, **kwargs):
         """
@@ -64,4 +85,5 @@ class TemplateKeyCustom(HookBaseClass):
 
         :returns: A string representing the formatted value.
         """
+
         return self.parent._as_string(value)

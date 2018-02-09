@@ -60,29 +60,62 @@ keys:
         type: str
         shotgun_entity_type: HumanUser
         shotgun_field_name: login
+
     custom_key_example:
         type: str
         validate_hook: 'templatekey_custom'
         value_from_str_hook: 'templatekey_custom'
         str_from_value_hook: 'templatekey_custom'
 
-    # use this key for converting a client sequence name to dd sequence name
-    client_to_dd_name:
+    # examples for name_converter hook!
+    client_output_key:
         type: str
-        shotgun_entity_type: Sequence
-        shotgun_field_name: sg_client_name
+        filter_by: alphanumeric
+        choices:
+            EDIT: replace
+            main: ""
+            grey: "_grey"
+            overlay: "_overlay"
+            cam: "camera"
+        default: main
         validate_hook: 'name_converter'
         value_from_str_hook: 'name_converter'
         str_from_value_hook: 'name_converter'
 
-    # use this key for converting a dd sequence name to client sequence name
-    dd_to_client_name:
+    client_sequence_key:
         type: str
         shotgun_entity_type: Sequence
         shotgun_field_name: code
+        filter_by: alphanumeric
+        choices:
+            EDIT: lower_case
+        default: EDIT
         validate_hook: 'name_converter'
         value_from_str_hook: 'name_converter'
         str_from_value_hook: 'name_converter'
+
+    client_step_key:
+        type: str
+        shotgun_entity_type: Step
+        shotgun_field_name: short_name
+        filter_by: alphanumeric
+        choices:
+            EDIT: upper_case
+        default: EDIT
+        validate_hook: 'name_converter'
+        value_from_str_hook: 'name_converter'
+        str_from_value_hook: 'name_converter'
+
+    client_name_key:
+        type: str
+        filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
+        choices:
+            EDIT: underscore_to_camelcase
+        default: EDIT
+        validate_hook: 'name_converter'
+        value_from_str_hook: 'name_converter'
+        str_from_value_hook: 'name_converter'
+    # can be removed if not needed
 
     # Application-provided keys
     name:
@@ -251,6 +284,9 @@ paths:
     sequence_asset_publish_cache:           '@sequence_asset_publish_area_anim/@sequence_asset_version_name.abc'
     shot_asset_publish_cache:               '@shot_asset_publish_area_anim/@shot_asset_version_name.abc'
 
+    # sample template for name_converter
+    client_shot_publish_cache:              './{client_sequence_key}/{Shot}/SHARED/ANIM/{client_step_key}/@client_shot_version_name.abc'
+
 #
 # The aliases section allows you to map one template to another without worrying
 # about Toolkit complaining about collisions. When an alias is requested, Toolkit
@@ -280,6 +316,9 @@ strings:
     project_asset_version_name:             '{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
     sequence_asset_version_name:            '{Sequence}_{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
     shot_asset_version_name:                '{Sequence}_{Shot}_{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
+
+    # sample string for name_converter
+    client_shot_version_name:               '{client_sequence_key}_{Shot}_{client_step_key}_{client_name_key}[-{client_output_key}].v{version}'
 
 
 includes:
