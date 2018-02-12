@@ -262,6 +262,10 @@ paths:
         definition: '@shot_root/publish/maya/{name}.v{version}.{maya_extension}'
         root_name: 'primary'
 
+    # The location of published maya cameras
+    maya_shot_camera_publish:
+        definition: '@shot_root/publish/maya/cameras/{name}.v{version}.fbx'
+        root_name: 'primary'
 
     #
     # Houdini
@@ -487,6 +491,11 @@ paths:
     # The location of published maya files
     maya_asset_publish:
         definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
+        root_name: 'primary'
+
+    # The location where maya shader networks are written/published
+    maya_shader_network_publish:
+        definition: '@asset_root/publish/maya/surfacing/{name}.v{version}.ma'
         root_name: 'primary'
 
 

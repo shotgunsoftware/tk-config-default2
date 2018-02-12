@@ -94,10 +94,13 @@ settings.tk-multi-loader2.mari:
 
 # maya
 settings.tk-multi-loader2.maya:
+  actions_hook: '{config}/tk-multi-loader2/tk-maya_actions.py'
   action_mappings:
     Alembic Cache: [reference, import]
+    FBX Camera: [reference, import]
     Image: [texture_node, image_plane]
     Maya Scene: [reference, import]
+    Maya Shader Network: [reference]
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
