@@ -71,42 +71,7 @@ class SceneOperation(HookClass):
             cmds.file(new=True, force=True)
             cmds.file(file_path, open=True, force=True)
 
-            # getting fields from file path because
-            # context.as_template_fields() doesn't contain {name}, {version}
-            file_template = context.sgtk.template_from_path(file_path)
-            if not file_template:
-                self.parent.logger.warning("Current file path doesn't conform to Shotgun template. "
-                                           "Not setting render defaults.")
-                return
-
-            fields = file_template.get_fields(file_path)
-            render_temp = self.get_render_template(context)
-            frame_sq_key = context.sgtk.template_keys['SEQ']    # Can 'SEQ' change?
-
-            # set fps
-            show_prefs = preferences.Preferences(pref_file_name="show_preferences.yaml",
-                                                 role=os.getenv("DD_ROLE"))
-            try:
-                cmds.currentUnit(time="{}fps".format(show_prefs["show_settings"]["fps"]))
-            except KeyError as ke:
-                self.parent.logger.warning("Unable to find {} in indiapipeline preferences. "
-                                           "Not setting fps.".format(ke))
-
-            # get resolution and set render defaults
-            try:
-                fields.update({"width": show_prefs["show_settings"]["resolution"]["width"],
-                               "height": show_prefs["show_settings"]["resolution"]["height"],
-                               "output": "LAYERPLACEHOLDER"})   # output is alphanumeric
-                                                                # replace with token <Layer>
-            except KeyError as ke:
-                self.parent.logger.warning("Unable to find {} in indiapipeline preferences. "
-                                           "Not setting render defaults.".format(ke))
-            else:
-                fields.pop("extension")                         # remove ma as extension
-                                                                # to apply default img ext
-                render_path = render_temp.apply_fields(fields).replace("LAYERPLACEHOLDER", "<Layer>")
-                self.set_render_defaults(fields, render_path, frame_sq_key)
-                self.set_vray_settings(fields, render_path, frame_sq_key)
+            self.set_show_preferences(file_path, context)
 
         elif operation == "save":
             # save the current scene:
@@ -114,6 +79,7 @@ class SceneOperation(HookClass):
         elif operation == "save_as":
             # first rename the scene as file_path:
             cmds.file(rename=file_path)
+            self.set_show_preferences(file_path, context)
 
             # Maya can choose the wrong file type so
             # we should set it here explicitly based
@@ -155,6 +121,45 @@ class SceneOperation(HookClass):
             # do new file:
             cmds.file(newFile=True, force=True)
             return True
+
+    def set_show_preferences(self, file_path, context):
+        # getting fields from file path because
+        # context.as_template_fields() doesn't contain {name}, {version}
+        file_template = context.sgtk.template_from_path(file_path)
+        if not file_template:
+            self.parent.logger.warning("Current file path doesn't conform to Shotgun template. "
+                                       "Not setting show default settings.")
+            return
+
+        fields = file_template.get_fields(file_path)
+        render_temp = self.get_render_template(context)
+        frame_sq_key = context.sgtk.template_keys['SEQ']  # Can 'SEQ' change?
+
+        show_prefs = preferences.Preferences(pref_file_name="show_preferences.yaml",
+                                             role=os.getenv("DD_ROLE"),
+                                             seq_override=fields.get("Sequence"),
+                                             shot_override=fields.get("Shot"))
+        # set fps
+        try:
+            cmds.currentUnit(time="{}fps".format(show_prefs["show_settings"]["fps"]))
+        except KeyError as ke:
+            self.parent.logger.warning("Unable to find {} in show preferences. "
+                                       "Not setting fps.".format(ke))
+
+        # get resolution and set render defaults
+        try:
+            fields.update({"width": show_prefs["show_settings"]["resolution"]["width"],
+                           "height": show_prefs["show_settings"]["resolution"]["height"],
+                           "output": "LAYERPLACEHOLDER"})   # output is alphanumeric
+                                                            # replace with token <Layer>
+        except KeyError as ke:
+            self.parent.logger.warning("Unable to find {} in show preferences. "
+                                       "Not setting render defaults.".format(ke))
+        else:
+            fields.pop("extension")  # remove ma as extension to apply default img ext
+            render_path = render_temp.apply_fields(fields).replace("LAYERPLACEHOLDER", "<Layer>")
+            self.set_render_defaults(fields, render_path, frame_sq_key)
+            self.set_vray_settings(fields, render_path, frame_sq_key)
 
     def get_render_template(self, context):
         """
