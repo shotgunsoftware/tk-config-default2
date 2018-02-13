@@ -28,8 +28,8 @@ class PickEnvironment(HookBaseClass):
 
         if context.project is None:
             # our context is completely empty!
-            # don't know how to handle this case.
-            return None
+            # return the "site" configuration.
+            return "site"
 
         if context.entity is None:
             # we have a project but not an entity

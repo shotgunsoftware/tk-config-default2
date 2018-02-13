@@ -25,7 +25,8 @@ settings.tk-desktop:
   apps:
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
-    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-multi-launchnuke: "@settings.tk-multi-launchapp.nuke"
+    tk-multi-launchmaya: "@settings.tk-multi-launchapp.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
   groups:

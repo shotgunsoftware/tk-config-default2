@@ -25,7 +25,8 @@ includes:
 # generic
 settings.tk-shotgun:
   apps:
-    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-multi-launchnuke: "@settings.tk-multi-launchapp.nuke"
+    tk-multi-launchmaya: "@settings.tk-multi-launchapp.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
@@ -35,7 +36,8 @@ settings.tk-shotgun:
 # task
 settings.tk-shotgun.task:
   apps:
-    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-multi-launchnuke: "@settings.tk-multi-launchapp.nuke"
+    tk-multi-launchmaya: "@settings.tk-multi-launchapp.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"

@@ -7,25 +7,23 @@
 # By accessing, using, copying or modifying this work you indicate your
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+description: Apps and engines loaded when working outside a Project.
 
 ################################################################################
 
 includes:
-- ../../app_locations.yml
-- ../../software_paths.yml
+- ./includes/frameworks.yml
+- ./includes/settings/tk-desktop.yml
+- ./includes/settings/tk-shell.yml
+- ./includes/settings/tk-shotgun.yml
+- '{preferences}/sgtk_config_environments.yaml'
 
 ################################################################################
+# configuration for all engines to load in a project context
 
-# nuke
-settings.tk-multi-launchapp.nuke:
-  engine: tk-nuke
-  linux_path: "@path.linux.nuke"
-  menu_name: Nuke
-  location: "@apps.tk-multi-launchapp.location"
-
-# maya
-settings.tk-multi-launchapp.maya:
-  engine: tk-maya
-  linux_path: "@path.linux.maya"
-  menu_name: Maya
-  location: "@apps.tk-multi-launchapp.location"
+engines:
+  tk-desktop: "@settings.tk-desktop"
+  tk-shell: "@settings.tk-shell"
+  tk-shotgun: "@settings.tk-shotgun"
