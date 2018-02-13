@@ -16,12 +16,12 @@ import os
 import copy
 
 import sgtk
-from tank.util.shotgun import get_sg_connection
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 EDIT_TYPE = "EDIT"
 VALID_EDITS = ["replace", "lower_case", "upper_case", "underscore_to_camelcase"]
+
 
 class TemplateKeyCustom(HookBaseClass):
 
@@ -35,6 +35,7 @@ class TemplateKeyCustom(HookBaseClass):
         :returns: Bool
         """
         # to avoid the validation to fail, if the value is not defined in choices!!
+        # return self.parent._validate(value, validate_transforms)
         return True
 
     @staticmethod
