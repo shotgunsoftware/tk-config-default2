@@ -3,46 +3,35 @@ keys:
     client_output:
         type: str
         filter_by: alphanumeric
-        choices:
-            EDIT: replace
+        value_from_str_hook: 'name_converter'
+        edit_type: replace
+        edits:
             main: ""
             grey: "_grey"
             overlay: "_overlay"
             cam: "camera"
-        default: main
-        validate_hook: 'name_converter'
-        value_from_str_hook: 'name_converter'
 
     client_sequence:
         type: str
         shotgun_entity_type: Sequence
         shotgun_field_name: code
         filter_by: alphanumeric
-        choices:
-            EDIT: lower_case
-        default: EDIT
-        validate_hook: 'name_converter'
         value_from_str_hook: 'name_converter'
+        edit_type: lower_case
 
     client_step:
         type: str
         shotgun_entity_type: Step
         shotgun_field_name: short_name
         filter_by: alphanumeric
-        choices:
-            EDIT: upper_case
-        default: EDIT
-        validate_hook: 'name_converter'
         value_from_str_hook: 'name_converter'
+        edit_type: upper_case
 
     client_name:
         type: str
         filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
-        choices:
-            EDIT: underscore_to_camelcase
-        default: EDIT
-        validate_hook: 'name_converter'
         value_from_str_hook: 'name_converter'
+        edit_type: underscore_to_camelcase
 
 paths:
 
