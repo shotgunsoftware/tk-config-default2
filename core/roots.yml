@@ -43,8 +43,8 @@
 
 primary:
 
-    description: "A top-level root folder for production data. Project folders "
-                 "will be created beneath this location."
+    description: A top-level root folder for production data. Project folders
+        will be created beneath this location.
 
     # these paths will be populated by the associated local storage in Shotgun
     # at setup time.
