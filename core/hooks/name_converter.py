@@ -52,7 +52,8 @@ class TemplateKeyCustom(HookBaseClass):
         Translates a string into an appropriate value for this key.
 
         If the EDIT_TYPE_KEY(edit_type) in the TemplateKey is valid, it will apply the required "edit" on str_value.
-        You can also define a set of EDITS_KEY(edits) in the TemplateKey, to use them for "replace" type "edit".
+        You can also define a set of EDITS_KEY(edits) in the TemplateKey.
+        eg. use "edits" to store the replacement mapping for "replace" type "edit".
 
         :param str_value: The string to translate.
         :returns: The translated value.
@@ -60,10 +61,13 @@ class TemplateKeyCustom(HookBaseClass):
         choices = kwargs
         if isinstance(self.parent, StringKey):
             edits = dict()
+            edit = None
+
             if EDITS_KEY in choices:
                 edits = choices[EDITS_KEY]
 
-            edit = choices[EDIT_TYPE_KEY]
+            if EDIT_TYPE_KEY in choices:
+                edit = choices[EDIT_TYPE_KEY]
 
             # removed "pad" type edit, since that is already taken care of by 'format_spec'
             if edit in VALID_EDITS:
