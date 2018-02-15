@@ -29,32 +29,10 @@ includes:
 # work area. The work area is typically a task or pipeline step
 # and these 'transit' areas can be project, shot, or sequence level.
 settings.tk-multi-workfiles2:
-  entities:
-  - caption: Assets
-    entity_type: Task
-    filters:
-    - [entity, type_is, Asset]
-    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
-  - caption: Shots
-    entity_type: Task
-    filters:
-    - [entity, type_is, Shot]
-    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
   location: "@apps.tk-multi-workfiles2.location"
 
 # launches at startup.
 settings.tk-multi-workfiles2.launch_at_startup:
-  entities:
-  - caption: Assets
-    entity_type: Task
-    filters:
-    - [entity, type_is, Asset]
-    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
-  - caption: Shots
-    entity_type: Task
-    filters:
-    - [entity, type_is, Shot]
-    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
   launch_at_startup: true
   location: "@apps.tk-multi-workfiles2.location"
 
