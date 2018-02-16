@@ -15,7 +15,6 @@ Hook which chooses an environment file to use based on the current context.
 import os
 
 import sgtk
-from tank.templatekey import StringKey
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -59,31 +58,33 @@ class TemplateKeyCustom(HookBaseClass):
         :returns: The translated value.
         """
         choices = kwargs
-        if isinstance(self.parent, StringKey):
-            edits = dict()
-            edit = None
+        value = self._parent._as_string(str_value)
 
-            if EDITS_KEY in choices:
-                edits = choices[EDITS_KEY]
+        # apply the edits on the value of the key
+        edits = dict()
+        edit = None
 
-            if EDIT_TYPE_KEY in choices:
-                edit = choices[EDIT_TYPE_KEY]
+        if EDITS_KEY in choices:
+            edits = choices[EDITS_KEY]
 
-            # removed "pad" type edit, since that is already taken care of by 'format_spec'
-            if edit in VALID_EDITS:
-                if edit == "replace":
-                    if edits:
-                        relevant_replaces = [replace for replace in edits if replace in str_value]
-                        for replace in relevant_replaces:
-                            str_value = str_value.replace(replace, edits[replace])
-                elif edit == "lower_case":
-                    str_value = str_value.lower()
-                elif edit == "upper_case":
-                    str_value = str_value.upper()
-                elif edit == "underscore_to_camelcase":
-                    str_value = self._underscore_to_camelcase(str_value)
+        if EDIT_TYPE_KEY in choices:
+            edit = choices[EDIT_TYPE_KEY]
 
-        return str_value
+        # removed "pad" type edit, since that is already taken care of by 'format_spec'
+        if edit in VALID_EDITS:
+            if edit == "replace":
+                if edits:
+                    relevant_replaces = [replace for replace in edits if replace in value]
+                    for replace in relevant_replaces:
+                        value = value.replace(replace, edits[replace])
+            elif edit == "lower_case":
+                value = str_value.lower()
+            elif edit == "upper_case":
+                value = value.upper()
+            elif edit == "underscore_to_camelcase":
+                value = self._underscore_to_camelcase(value)
+
+        return value
 
     def str_from_value(self, value, **kwargs):
         """
