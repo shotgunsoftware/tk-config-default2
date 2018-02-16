@@ -4,12 +4,14 @@ keys:
         type: str
         filter_by: alphanumeric
         value_from_str_hook: 'name_converter'
-        edit_type: replace
+        edit_types:
+          - replace
         edits:
-            main: ""
-            grey: "_grey"
-            overlay: "_overlay"
-            cam: "camera"
+            replace:
+              main: ""
+              grey: "_grey"
+              overlay: "_overlay"
+              cam: "camera"
 
     client_sequence:
         type: str
@@ -17,7 +19,8 @@ keys:
         shotgun_field_name: code
         filter_by: alphanumeric
         value_from_str_hook: 'name_converter'
-        edit_type: lower_case
+        edit_types:
+          - lower_case
 
     client_step:
         type: str
@@ -25,13 +28,15 @@ keys:
         shotgun_field_name: short_name
         filter_by: alphanumeric
         value_from_str_hook: 'name_converter'
-        edit_type: upper_case
+        edit_types:
+          - upper_case
 
     client_name:
         type: str
         filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
         value_from_str_hook: 'name_converter'
-        edit_type: underscore_to_camelcase
+        edit_types:
+          - underscore_to_camelcase
 
 paths:
 

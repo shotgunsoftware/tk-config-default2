@@ -18,7 +18,7 @@ import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-EDIT_TYPE_KEY = "edit_type"
+EDIT_TYPES_KEY = "edit_types"
 EDITS_KEY = "edits"
 VALID_EDITS = ["replace", "lower_case", "upper_case", "underscore_to_camelcase"]
 
@@ -58,31 +58,36 @@ class TemplateKeyCustom(HookBaseClass):
         :returns: The translated value.
         """
         choices = kwargs
-        value = self._parent._as_string(str_value)
+        value = self.parent._as_string(str_value)
 
         # apply the edits on the value of the key
         edits = dict()
-        edit = None
+        edit_types = list()
 
         if EDITS_KEY in choices:
             edits = choices[EDITS_KEY]
 
-        if EDIT_TYPE_KEY in choices:
-            edit = choices[EDIT_TYPE_KEY]
+        if EDIT_TYPES_KEY in choices:
+            edit_types = choices[EDIT_TYPES_KEY]
 
-        # removed "pad" type edit, since that is already taken care of by 'format_spec'
-        if edit in VALID_EDITS:
-            if edit == "replace":
-                if edits:
-                    relevant_replaces = [replace for replace in edits if replace in value]
-                    for replace in relevant_replaces:
-                        value = value.replace(replace, edits[replace])
-            elif edit == "lower_case":
-                value = str_value.lower()
-            elif edit == "upper_case":
-                value = value.upper()
-            elif edit == "underscore_to_camelcase":
-                value = self._underscore_to_camelcase(value)
+        for edit in edit_types:
+            # removed "pad" type edit, since that is already taken care of by 'format_spec'
+            relevant_edits = dict()
+            if edit in edits:
+                relevant_edits = edits[edit]
+
+            if edit in VALID_EDITS:
+                if edit == "replace":
+                    if relevant_edits:
+                        relevant_replaces = [replace for replace in relevant_edits if replace in value]
+                        for replace in relevant_replaces:
+                            value = value.replace(replace, relevant_edits[replace])
+                elif edit == "lower_case":
+                    value = str_value.lower()
+                elif edit == "upper_case":
+                    value = value.upper()
+                elif edit == "underscore_to_camelcase":
+                    value = self._underscore_to_camelcase(value)
 
         return value
 
