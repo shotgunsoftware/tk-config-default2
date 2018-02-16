@@ -61,13 +61,13 @@ paths:
     tk-nuke_shot_asset_work_movie:          '@tk-nuke_shot_asset_work_area/movies/@shot_asset_version_name.mov'
 
     # CACHE
-    tk-nuke_project_work_cache:             '@tk-nuke_project_work_area/cache/@project_version_name.abc'
-    tk-nuke_sequence_work_cache:            '@tk-nuke_sequence_work_area/cache/@sequence_version_name.abc'
-    tk-nuke_shot_work_cache:                '@tk-nuke_shot_work_area/cache/@shot_version_name.abc'
+    tk-nuke_project_work_cache:             '@tk-nuke_project_work_area/cache/@project_version_name.{geo_extension}'
+    tk-nuke_sequence_work_cache:            '@tk-nuke_sequence_work_area/cache/@sequence_version_name.{geo_extension}'
+    tk-nuke_shot_work_cache:                '@tk-nuke_shot_work_area/cache/@shot_version_name.{geo_extension}'
 
-    tk-nuke_project_asset_work_cache:       '@tk-nuke_project_asset_work_area/cache/@project_asset_version_name.abc'
-    tk-nuke_sequence_asset_work_cache:      '@tk-nuke_sequence_asset_work_area/cache/@sequence_asset_version_name.abc'
-    tk-nuke_shot_asset_work_cache:          '@tk-nuke_shot_asset_work_area/cache/@shot_asset_version_name.abc'
+    tk-nuke_project_asset_work_cache:       '@tk-nuke_project_asset_work_area/cache/@project_asset_version_name.{geo_extension}'
+    tk-nuke_sequence_asset_work_cache:      '@tk-nuke_sequence_asset_work_area/cache/@sequence_asset_version_name.{geo_extension}'
+    tk-nuke_shot_asset_work_cache:          '@tk-nuke_shot_asset_work_area/cache/@shot_asset_version_name.{geo_extension}'
 
     # QUICK-DAILIES
     tk-nuke_project_publish_quick:          '@project_publish_area_movie/quick/@quick_project_version_name.mov'

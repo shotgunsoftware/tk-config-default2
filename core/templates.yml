@@ -94,6 +94,14 @@ keys:
             jpg: JPEG
         default: exr
         alias: extension
+    geo_extension:
+        type: str
+        choices:
+            abc: ABC
+            obj: OBJ
+        default: abc
+        alias: extension
+
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -225,13 +233,13 @@ paths:
     shot_asset_publish_movie:               '@shot_asset_publish_area_movie/@shot_asset_version_name.mov'
 
     # CACHE
-    project_publish_cache:                  '@project_publish_area_anim/@project_version_name.abc'
-    sequence_publish_cache:                 '@sequence_publish_area_anim/@sequence_version_name.abc'
-    shot_publish_cache:                     '@shot_publish_area_anim/@shot_version_name.abc'
+    project_publish_cache:                  '@project_publish_area_anim/@project_version_name.{geo_extension}'
+    sequence_publish_cache:                 '@sequence_publish_area_anim/@sequence_version_name.{geo_extension}'
+    shot_publish_cache:                     '@shot_publish_area_anim/@shot_version_name.{geo_extension}'
 
-    project_asset_publish_cache:            '@project_asset_publish_area_anim/@project_asset_version_name.abc'
-    sequence_asset_publish_cache:           '@sequence_asset_publish_area_anim/@sequence_asset_version_name.abc'
-    shot_asset_publish_cache:               '@shot_asset_publish_area_anim/@shot_asset_version_name.abc'
+    project_asset_publish_cache:            '@project_asset_publish_area_anim/@project_asset_version_name.{geo_extension}'
+    sequence_asset_publish_cache:           '@sequence_asset_publish_area_anim/@sequence_asset_version_name.{geo_extension}'
+    shot_asset_publish_cache:               '@shot_asset_publish_area_anim/@shot_asset_version_name.{geo_extension}'
 
 #
 # The aliases section allows you to map one template to another without worrying

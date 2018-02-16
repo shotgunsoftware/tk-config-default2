@@ -179,7 +179,7 @@ class NukeActions(HookBaseClass):
         (_, ext) = os.path.splitext(path)
 
         # If this is an Alembic cache, use a ReadGeo2 and we're done.
-        if ext.lower() == '.abc':
+        if ext.lower() == '.abc' or ext.lower() == '.obj':
             read_geo = nuke.createNode('ReadGeo2')
             read_geo.knob('file').setValue(path)
             return
