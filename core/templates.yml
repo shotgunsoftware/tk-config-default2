@@ -94,6 +94,14 @@ keys:
             jpg: JPEG
         default: exr
         alias: extension
+    geo_extension:
+        type: str
+        choices:
+            abc: ABC
+            obj: OBJ
+        default: abc
+        alias: extension
+
 
 #
 # The paths section contains all the the key locations where files are to be stored

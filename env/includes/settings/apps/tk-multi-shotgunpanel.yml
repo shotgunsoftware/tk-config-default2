@@ -34,7 +34,7 @@ settings.tk-multi-shotgunpanel.maya:
   action_mappings:
     PublishedFile:
     - actions: [reference, import]
-      filters: {published_file_type: Alembic Cache}
+      filters: {published_file_type: Geometry Cache}
     - actions: [texture_node, image_plane]
       filters: {published_file_type: Image}
     - actions: [reference, import]
@@ -64,7 +64,7 @@ settings.tk-multi-shotgunpanel.nuke:
   action_mappings:
     PublishedFile:
     - actions: [read_node]
-      filters: {published_file_type: Alembic Cache}
+      filters: {published_file_type: Geometry Cache}
     - actions: [read_node]
       filters: {published_file_type: Image}
     - actions: [read_node]
