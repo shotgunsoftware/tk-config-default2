@@ -43,6 +43,8 @@ settings.tk-multi-shotgunpanel.maya:
       filters: {published_file_type: Photoshop Image}
     - actions: [texture_node, image_plane]
       filters: {published_file_type: Rendered Image}
+    - actions: [reference, import]
+      filters: {published_file_type: Static Geometry}
     - actions: [texture_node, image_plane]
       filters: {published_file_type: Texture}
     - actions: [udim_texture_node]
