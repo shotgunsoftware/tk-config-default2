@@ -38,6 +38,11 @@ keys:
         shotgun_entity_type: Sequence
         shotgun_field_name: code
         filter_by: alphanumeric
+    SeqClientName:
+        type: str
+        shotgun_entity_type: Sequence
+        shotgun_field_name: sg_client_name
+        filter_by: alphanumeric
     Shot:
         type: str
         shotgun_entity_type: Shot
@@ -60,6 +65,7 @@ keys:
         type: str
         shotgun_entity_type: HumanUser
         shotgun_field_name: login
+
     custom_key_example:
         type: str
         validate_hook: 'templatekey_custom'
@@ -275,4 +281,5 @@ strings:
 includes:
   - templates/nuke.yml
   - templates/maya.yml
+  - templates/ingest.yml
   - '{preferences}/sgtk_config_templates.yaml'

@@ -1,0 +1,49 @@
+keys:
+    # examples for name_converter hook!
+    client_output:
+        type: str
+        filter_by: alphanumeric
+        value_from_str_hook: 'name_converter'
+        edit_types:
+          - replace
+        edits:
+            replace:
+              main: ""
+              grey: "_grey"
+              overlay: "_overlay"
+              cam: "camera"
+
+    client_sequence:
+        type: str
+        shotgun_entity_type: Sequence
+        shotgun_field_name: code
+        filter_by: alphanumeric
+        value_from_str_hook: 'name_converter'
+        edit_types:
+          - lower_case
+
+    client_step:
+        type: str
+        shotgun_entity_type: Step
+        shotgun_field_name: short_name
+        filter_by: alphanumeric
+        value_from_str_hook: 'name_converter'
+        edit_types:
+          - upper_case
+
+    client_name:
+        type: str
+        filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
+        value_from_str_hook: 'name_converter'
+        edit_types:
+          - underscore_to_camelcase
+
+paths:
+
+    # sample template for name_converter
+    client_shot_publish_cache:              './{client_sequence}/{Shot}/SHARED/ANIM/{client_step}/@client_shot_version_name.abc'
+
+strings:
+
+    # sample string for name_converter
+    client_shot_version_name:               '{client_sequence}_{Shot}_{client_step}_{client_name}[-{client_output}].v{version}'
