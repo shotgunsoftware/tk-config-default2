@@ -90,8 +90,9 @@ keys:
     img_extension:
         type: str
         choices:
-            exr: EXR
-            jpg: JPEG
+            exr: exr
+            jpg: jpeg
+            tiff: tiff
         default: exr
         alias: extension
     geo_extension:
