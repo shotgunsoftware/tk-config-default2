@@ -93,3 +93,12 @@ settings.tk-multi-workfiles2.maya.task:
 settings.tk-multi-workfiles2.maya:
   <<: *default_workfiles2_settings
   hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
+
+# nuke
+settings.tk-multi-workfiles2.nuke.task:
+  <<: *default_workfiles2_task_settings
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
+
+settings.tk-multi-workfiles2.nuke:
+  <<: *default_workfiles2_settings
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
