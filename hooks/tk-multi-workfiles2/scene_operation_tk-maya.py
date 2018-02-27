@@ -136,7 +136,7 @@ class SceneOperation(HookClass):
         frame_sq_key = context.sgtk.template_keys['SEQ']  # Can 'SEQ' change?
 
         show_prefs = preferences.Preferences(pref_file_name="show_preferences.yaml",
-                                             role=os.getenv("DD_ROLE"),
+                                             role=fields.get("Step"),
                                              seq_override=fields.get("Sequence"),
                                              shot_override=fields.get("Shot"))
         # set fps

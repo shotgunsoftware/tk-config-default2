@@ -23,6 +23,7 @@ from dd.runtime import api
 api.load("preferences")
 import preferences
 
+SHOW_FORMAT_NAME = 'SHOW_FORMAT'
 
 class SceneOperation(HookClass):
     """
@@ -77,7 +78,6 @@ class SceneOperation(HookClass):
         # conditional could be broken up between hiero_enabled and
         # studio_enabled cases that call through to Nuke Studio and Hiero
         # specific methods.
-        print "In Nuke scene operation hook"
         engine = self.parent.engine
         if hasattr(engine, "hiero_enabled") and (engine.hiero_enabled or engine.studio_enabled):
             return self._scene_operation_hiero_nukestudio(
@@ -150,7 +150,6 @@ class SceneOperation(HookClass):
             # now clear the script:
             nuke.scriptClear()
             if parent_action == "new_file":
-                # set res etc.
                 self.set_show_preferences(context)
 
             return True
@@ -165,15 +164,15 @@ class SceneOperation(HookClass):
 
         format_string = "{0} {1} {2}".format(show_prefs["show_settings"]["resolution"]["width"],
                                              show_prefs["show_settings"]["resolution"]["height"],
-                                             'FORMAT')
+                                             SHOW_FORMAT_NAME)
 
-        frmt = nuke.formats()
-        for f in frmt:
-            if f.name() == "FORMAT":
-                f.setName('')
+        formats = nuke.formats()
+        for nuke_format in formats:
+            if nuke_format.name() == SHOW_FORMAT_NAME:
+                nuke_format.setName('')
 
         nuke.addFormat(format_string)
-        nuke.root().knob('format').setValue('FORMAT')
+        nuke.root().knob('format').setValue(SHOW_FORMAT_NAME)
         nuke.root().knob('fps').setValue(show_prefs["show_settings"]["fps"])
 
     def _get_current_hiero_project(self):
