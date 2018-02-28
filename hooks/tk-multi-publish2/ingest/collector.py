@@ -67,7 +67,7 @@ class IngestCollectorPlugin(HookBaseClass):
             properties["work_path_template"] = work_path_template
 
         # build the context of the item
-        context = self._get_item_context_from_path(properties, os.path.basename(path))
+        context = self._get_item_context_from_path(parent_item, properties, os.path.basename(path))
 
         # create and populate the item
         file_item = parent_item.create_item(
@@ -134,8 +134,11 @@ class IngestCollectorPlugin(HookBaseClass):
         """
 
         path = item.properties["path"]
+        is_sequence = item.properties["is_sequence"]
 
-        item.properties["work_path_template"] = self._resolve_work_path_template(item.properties,
+        item_info = self._get_item_info(settings, path, is_sequence)
+
+        item.properties["work_path_template"] = self._resolve_work_path_template(item_info,
                                                                                  os.path.basename(path))
 
         # Set the item's fields property

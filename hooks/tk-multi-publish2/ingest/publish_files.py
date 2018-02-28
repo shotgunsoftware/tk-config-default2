@@ -232,13 +232,18 @@ class IngestPublishFilesPlugin(HookBaseClass):
         item.properties["sg_publish_data"] = sgtk.util.register_publish(
             **publish_data)
 
-        if item.type.startswith("file.image") or item.type.startswith("file.render"):
-            # create a plate entity after the publish has went through successfully.
-            plate_entity = self._create_plate_entity(item)
-            self._link_published_files_to_plate_entity(plate_entity, item)
-            self.logger.info("Plate entity registered and Publish file is linked!")
-        else:
-            self.logger.info("Publish registered!")
+
+        # create a plate entity after the publish has went through successfully.
+        plate_entity = self._create_plate_entity(item)
+
+        # let's create ingest_plate_data within item properties,
+        # so that we can link the version created to plate entity as well.
+        item.properties["ingest_plate_data"] = plate_entity
+
+        # link the publish file to our plate entity.
+        self._link_published_files_to_plate_entity(plate_entity, item)
+        self.logger.info("Plate entity registered and Publish file is linked!")
+
 
 
     @staticmethod
@@ -261,13 +266,33 @@ class IngestPublishFilesPlugin(HookBaseClass):
         )
         return result
 
+
+    def _get_frame_range(self, item):
+        publisher = self.parent
+
+        # Determine if this is a sequence of paths
+        if item.properties["is_sequence"]:
+            first_frame = publisher.util.get_frame_number(item.properties["sequence_paths"][0])
+            last_frame = publisher.util.get_frame_number(item.properties["sequence_paths"][-1])
+        else:
+            first_frame = last_frame = 0
+
+        return first_frame, last_frame
+
+
     def _create_plate_entity(self, item):
         sg = get_sg_connection()
         plate_entity = self._validate_plate_entity(item)
+        frange = self._get_frame_range(item)
+
         data = dict(
             code=item.properties["publish_name"],
-            sg_client_name=item.name
+            sg_client_name=item.name,
         )
+
+        data["cut_in"] = frange[0]
+        data["cut_out"] = frange[1]
+
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
                 data["shots"] = [item.context.entity]
@@ -282,7 +307,8 @@ class IngestPublishFilesPlugin(HookBaseClass):
                 data=data,
                 multi_entity_update_modes=dict(shots='add'),
             )
-            self.logger.info(
+            self.logger.info("Updated Plate entity...")
+            self.logger.debug(
                 "Updated Plate entity...",
                 extra={
                     "action_show_more_info": {
@@ -293,8 +319,11 @@ class IngestPublishFilesPlugin(HookBaseClass):
                 }
             )
         else:
+
             data["project"] = item.context.project
-            self.logger.info(
+            plate_entity = sg.create(entity_type='Element', data=data)
+            self.logger.info("Created Plate entity...")
+            self.logger.debug(
                 "Created Plate entity...",
                 extra={
                     "action_show_more_info": {
@@ -304,7 +333,6 @@ class IngestPublishFilesPlugin(HookBaseClass):
                     }
                 }
             )
-            plate_entity = sg.create(entity_type='Element', data=data)
 
         return plate_entity
 
