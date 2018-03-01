@@ -28,11 +28,7 @@ includes:
 # doesn't happen, but you just want the user to jump to their
 # work area. The work area is typically a task or pipeline step
 # and these 'transit' areas can be project, shot, or sequence level.
-settings.tk-multi-workfiles2:
-  allow_task_creation: true
-  create_new_task_hook: "{self}/create_new_task.py"
-  custom_actions_hook: "{self}/custom_actions.py"
-  entities:
+deferred_asset_shot: &default_entities
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
@@ -50,61 +46,17 @@ settings.tk-multi-workfiles2:
         filters:
         link_field: entity
         hierarchy: [step]
-  file_extensions: []
-  hook_copy_file: "{self}/copy_file.py"
-  hook_filter_publishes: default
-  hook_filter_work_files: default
-  hook_scene_operation: default
-  launch_at_startup: false
-  my_tasks_extra_display_fields: []
-  saveas_default_name: scene
-  saveas_prefer_version_up: false
-  show_my_tasks: true
-  template_publish:
-  template_publish_area:
-  template_work:
-  template_work_area:
-  version_compare_ignore_fields: []
+
+settings.tk-multi-workfiles2:
+  entities:
+    *default_entities
   location: "@apps.tk-multi-workfiles2.location"
 
 # launches at startup.
 settings.tk-multi-workfiles2.launch_at_startup:
-  allow_task_creation: true
-  create_new_task_hook: "{self}/create_new_task.py"
-  custom_actions_hook: "{self}/custom_actions.py"
   entities:
-  - caption: Assets
-    entity_type: Asset
-    hierarchy: [sg_asset_type, code]
-    sub_hierarchy:
-        entity_type: Task
-        filters:
-        link_field: entity
-        hierarchy: [step]
-  - caption: Shots
-    entity_type: Shot
-    filters:
-    hierarchy: [sg_sequence, code]
-    sub_hierarchy:
-        entity_type: Task
-        filters:
-        link_field: entity
-        hierarchy: [step]
-  file_extensions: []
-  hook_copy_file: "{self}/copy_file.py"
-  hook_filter_publishes: default
-  hook_filter_work_files: default
-  hook_scene_operation: default
+    *default_entities
   launch_at_startup: true
-  my_tasks_extra_display_fields: []
-  saveas_default_name: scene
-  saveas_prefer_version_up: false
-  show_my_tasks: true
-  template_publish:
-  template_publish_area:
-  template_work:
-  template_work_area:
-  version_compare_ignore_fields: []
   location: "@apps.tk-multi-workfiles2.location"
 
 ################################################################################
@@ -135,7 +87,6 @@ settings.tk-multi-workfiles2.hiero:
     entity_type: Project
     filters: []
     hierarchy: [name]
-  show_my_tasks: false
   template_publish: hiero_project_publish
   template_publish_area: hiero_project_publish_area
   template_work: hiero_project_work
