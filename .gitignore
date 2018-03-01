@@ -5,6 +5,8 @@ core/install_location.yml
 core/interpreter_*.cfg
 core/pipeline_configuration.yml
 core/shotgun.yml
+core/roots.yml
+tk-medata
 
 # compiled python files
 *.py[co]
