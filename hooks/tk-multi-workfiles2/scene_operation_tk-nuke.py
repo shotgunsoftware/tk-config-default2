@@ -162,18 +162,25 @@ class SceneOperation(HookClass):
                                              seq_override=fields.get("Sequence"),
                                              shot_override=fields.get("Shot"))
 
-        format_string = "{0} {1} {2}".format(show_prefs["show_settings"]["resolution"]["width"],
-                                             show_prefs["show_settings"]["resolution"]["height"],
-                                             SHOW_FORMAT_NAME)
+        try:
+            format_string = "{0} {1} {2}".format(show_prefs["show_settings"]["resolution"]["width"],
+                                                 show_prefs["show_settings"]["resolution"]["height"],
+                                                 SHOW_FORMAT_NAME)
+            formats = nuke.formats()
+            for nuke_format in formats:
+                if nuke_format.name() == SHOW_FORMAT_NAME:
+                    nuke_format.setName('')
+            nuke.addFormat(format_string)
+            nuke.root().knob('format').setValue(SHOW_FORMAT_NAME)
+        except KeyError as ke:
+            self.parent.logger.warning("Unable to find {} in show preferences. "
+                                       "Not setting root format.".format(ke))
 
-        formats = nuke.formats()
-        for nuke_format in formats:
-            if nuke_format.name() == SHOW_FORMAT_NAME:
-                nuke_format.setName('')
-
-        nuke.addFormat(format_string)
-        nuke.root().knob('format').setValue(SHOW_FORMAT_NAME)
-        nuke.root().knob('fps').setValue(show_prefs["show_settings"]["fps"])
+        try:
+            nuke.root().knob('fps').setValue(show_prefs["show_settings"]["fps"])
+        except KeyError as ke:
+            self.parent.logger.warning("Unable to find {} in show preferences. "
+                                       "Not setting fps.".format(ke))
 
     def _get_current_hiero_project(self):
         """
