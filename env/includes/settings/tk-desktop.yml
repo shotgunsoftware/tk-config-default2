@@ -20,6 +20,12 @@ includes:
 
 ################################################################################
 
+# site
+settings.tk-desktop.site:
+  apps:
+  location: "@engines.tk-desktop.location"
+
+
 # project
 settings.tk-desktop.project:
   apps:
