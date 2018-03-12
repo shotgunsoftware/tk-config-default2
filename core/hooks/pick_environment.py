@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2018 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -10,10 +10,10 @@
 
 """
 Hook which chooses an environment file to use based on the current context.
-
 """
 
 from tank import Hook
+
 
 class PickEnvironment(Hook):
 
@@ -27,16 +27,15 @@ class PickEnvironment(Hook):
                 return "publishedfile_version"
 
         if context.project is None:
-            # our context is completely empty!
-            # don't know how to handle this case.
-            return None
+            # Our context is completely empty. We're going into the site context.
+            return "site"
 
         if context.entity is None:
-            # we have a project but not an entity
+            # We have a project but not an entity.
             return "project"
 
         if context.entity and context.step is None:
-            # we have an entity but no step!
+            # We have an entity but no step.
             if context.entity["type"] == "Shot":
                 return "shot"
             if context.entity["type"] == "Asset":
@@ -45,7 +44,7 @@ class PickEnvironment(Hook):
                 return "sequence"
 
         if context.entity and context.step:
-            # we have a step and an entity
+            # We have a step and an entity.
             if context.entity["type"] == "Shot":
                 return "shot_step"
             if context.entity["type"] == "Asset":
