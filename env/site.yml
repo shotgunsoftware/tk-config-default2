@@ -15,7 +15,7 @@ description: Apps and Engines when launching with a site level context.
 
 includes:
 - ./includes/frameworks.yml
-- includes/settings/tk-desktop.yml
+- ./includes/settings/tk-desktop.yml
 
 ################################################################################
 # configuration for all engines to load in a project context
