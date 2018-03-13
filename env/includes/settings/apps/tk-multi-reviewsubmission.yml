@@ -27,3 +27,5 @@ settings.tk-multi-reviewsubmission:
   codec_settings_hook: '{config}/codec_settings.py'
   location: "@apps.tk-multi-reviewsubmission.location"
   nuke_linux_path: "@path.linux.nuke"
+  burnin_path_template: 'reviewsubmission_burnin_nuke_file'
+  slate_logo_template: 'reviewsubmission_slate_logo_file'

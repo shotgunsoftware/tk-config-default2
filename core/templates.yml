@@ -238,6 +238,10 @@ paths:
     sequence_asset_publish_cache:           '@sequence_asset_publish_area_anim/@sequence_asset_version_name.{geo_extension}'
     shot_asset_publish_cache:               '@shot_asset_publish_area_anim/@shot_asset_version_name.{geo_extension}'
 
+    # REVIEW SUBMISSION
+    reviewsubmission_burnin_nuke_file:      '@project_publish_area/SCRIPT/slate/burnin.nk'
+    reviewsubmission_slate_logo_file:       '@project_publish_area/SCRIPT/slate/logo.png'
+
 #
 # The aliases section allows you to map one template to another without worrying
 # about Toolkit complaining about collisions. When an alias is requested, Toolkit
