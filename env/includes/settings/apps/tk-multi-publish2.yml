@@ -36,8 +36,8 @@ settings.tk-multi-publish2.nuke.create_version:     '@settings.tk-multi-publish2
 settings.tk-multi-publish2.nuke.upload_version:     '@settings.tk-multi-publish2.basic.upload_version'
 
 settings.tk-multi-publish2.ingest.collector:        '@settings.tk-multi-publish2.basic.collector:{config}/tk-multi-publish2/ingest/collector.py'
-settings.tk-multi-publish2.ingest.publish_files:    '@settings.tk-multi-publish2.basic.publish_files:{config}/tk-multi-publish2/ingest/publish_files.py'
-settings.tk-multi-publish2.ingest.create_version:   '@settings.tk-multi-publish2.basic.create_version:{config}/tk-multi-publish2/ingest/create_version.py'
+settings.tk-multi-publish2.ingest.publish_files:    '@settings.tk-multi-publish2.basic.publish_files:{config}/tk-multi-publish2/ingest/ingest_files.py'
+settings.tk-multi-publish2.ingest.create_version:   '@settings.tk-multi-publish2.basic.create_version'
 settings.tk-multi-publish2.ingest.upload_version:   '@settings.tk-multi-publish2.basic.upload_version'
 
 
