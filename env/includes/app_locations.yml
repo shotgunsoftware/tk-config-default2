@@ -59,7 +59,7 @@ apps.tk-multi-publish2.location:
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.1.1
+  version: v1.1.2
 
 # reviewsubmission
 apps.tk-multi-reviewsubmission.location:
