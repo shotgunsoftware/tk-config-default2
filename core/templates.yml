@@ -28,20 +28,10 @@
 #
 keys:
     # Shotgun Entity keys
-    Project:
-        type: str
-        shotgun_entity_type: Project
-        shotgun_field_name: name
-        filter_by: alphanumeric
     Sequence:
         type: str
         shotgun_entity_type: Sequence
         shotgun_field_name: code
-        filter_by: alphanumeric
-    SeqClientName:
-        type: str
-        shotgun_entity_type: Sequence
-        shotgun_field_name: sg_client_name
         filter_by: alphanumeric
     Shot:
         type: str
