@@ -8,16 +8,12 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-import mimetypes
 import os
 import datetime
-import glob
 import pprint
 import urllib
-import sgtk
-from sgtk import TankError
 
-from tank import context
+import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -28,122 +24,36 @@ class IngestCollectorPlugin(HookBaseClass):
     inherit from the basic collector hook.
     """
 
-    def _add_file_item(self, settings, parent_item, path, is_sequence=False, seq_files=None):
+    def _resolve_work_path_template(self, properties, path):
         """
-        Creates a file item
+        Resolve work_path_template from the properties.
+        The signature uses properties, so that it can resolve the template even if the item object hasn't been created.
 
-        :param dict settings: Configured settings for this collector
-        :param parent_item: parent item instance
-        :param path: Path to analyze
-        :param is_sequence: Bool as to whether to treat the path as a part of a sequence
-        :param seq_files: A list of files in the sequence
-
-        :returns: The item that was created
-        """
-        publisher = self.parent
-
-        # get info for the extension
-        item_info = self._get_item_info(settings, path, is_sequence)
-
-        icon_path = item_info["icon_path"]
-        item_type = item_info["item_type"]
-        type_display = item_info["type_display"]
-        work_path_template = item_info["work_path_template"]
-
-        display_name = publisher.util.get_publish_name(path)
-
-        # Define the item's properties
-        properties = {}
-
-        # set the path and is_sequence properties for the plugins to use
-        properties["path"] = path
-        properties["is_sequence"] = is_sequence
-
-        # If a sequence, add the sequence path
-        if is_sequence:
-            properties["sequence_paths"] = seq_files
-
-        if work_path_template:
-            properties["work_path_template"] = work_path_template
-
-        # build the context of the item
-        context = self._get_item_context_from_path(parent_item, properties, os.path.basename(path))
-
-        # create and populate the item
-        file_item = parent_item.create_item(
-            item_type,
-            type_display,
-            display_name,
-            collector=self.plugin,
-            context=context,
-            properties=properties
-        )
-
-        # resolve work_path_template for the item
-        file_item.properties["work_path_template"] = self._resolve_work_path_template(file_item.properties,
-                                                                                      os.path.basename(path))
-
-        # Set the icon path
-        file_item.set_icon_from_path(icon_path)
-
-        # if the supplied path is an image, use the path as the thumbnail.
-        if (item_type.startswith("file.image") or
-            item_type.startswith("file.texture") or
-            item_type.startswith("file.render")):
-
-            if is_sequence:
-                file_item.set_thumbnail_from_path(seq_files[0])
-            else:
-                file_item.set_thumbnail_from_path(path)
-
-            # disable thumbnail creation since we get it for free
-            file_item.thumbnail_enabled = False
-
-        if is_sequence:
-            # include an indicator that this is an image sequence and the known
-            # file that belongs to this sequence
-            file_info = (
-                "The following files were collected:<br>"
-                "<pre>%s</pre>" % (pprint.pformat(seq_files),)
-            )
-        else:
-            file_info = (
-                "The following file was collected:<br>"
-                "<pre>%s</pre>" % (path,)
-            )
-
-        self.logger.info(
-            "Collected item: %s" % display_name,
-            extra={
-                "action_show_more_info": {
-                    "label": "Show File(s)",
-                    "tooltip": "Show the collected file(s)",
-                    "text": file_info
-                }
-            }
-        )
-
-        return file_item
-
-    def on_context_changed(self, settings, item):
-        """
-        Callback to update the item on context changes.
-
-        :param dict settings: Configured settings for this collector
-        :param item: The Item instance
+        :param properties: properties that have/will be used to build item object.
+        :param path: path to be used to get the templates, using template_from_path,
+         in this class we use os.path.basename of the path.
+        :return: Name of the template.
         """
 
-        path = item.properties["path"]
-        is_sequence = item.properties["is_sequence"]
 
-        item_info = self._get_item_info(settings, path, is_sequence)
+        # using file name for resolving templates
+        path = os.path.basename(path)
 
-        item.properties["work_path_template"] = self._resolve_work_path_template(item_info,
-                                                                                 os.path.basename(path))
+        work_path_template = super(IngestCollectorPlugin, self)._resolve_work_path_template(properties, path)
+        return work_path_template
 
-        # Set the item's fields property
-        item.properties["fields"] = self._resolve_item_fields(item)
+    def _get_item_context_from_path(self, parent_item, properties, path):
+        """Updates the context of the item from the work_path_template/template, if needed.
 
+        :param properties: properties of the item.
+        :param path: path to build the context from, in this class we use os.path.basename of the path.
+        """
+
+        # using file name for resolving templates and context
+        path = os.path.basename(path)
+
+        item_context = super(IngestCollectorPlugin, self)._get_item_context_from_path(parent_item, properties, path)
+        return item_context
 
     def _resolve_item_fields(self, item):
         """
@@ -241,6 +151,8 @@ class IngestCollectorPlugin(HookBaseClass):
         fields["YYYY"] = today.year
         fields["MM"] = today.month
         fields["DD"] = today.day
+
+        item.description = "Created by shotgun_ingest on %s" % str(today)
 
         # Try to set the name field if not defined
         if "name" not in fields:

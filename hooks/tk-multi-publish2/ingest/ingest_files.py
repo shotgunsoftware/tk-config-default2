@@ -8,16 +8,10 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-import os
-import copy
-import glob
 import pprint
-import traceback
 
 import sgtk
-from sgtk import TankError
 
-from tank.util.shotgun import get_sg_connection
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -34,10 +28,14 @@ class IngestFilesPlugin(HookBaseClass):
         contain simple html for formatting.
         """
 
-        desc = super(IngestFilesPlugin, self).description
+        return """
+        Ingests the file to the location specified by the templates and
+        creates a <b>PublishedFile</b> entity in Shotgun, which will include a
+        reference to the file's published path on disk.
 
-        return desc + "<br><br>" + """
-        After Ingesting the file a publishedFile gets created. The publishedFile will also be linked to a Plate entity.
+        After the <b>PublishFile</b> is created successfully, an <b>Element/Plate</b> entity is also created.
+        The PublishFile is then linked to it's corresponding Element entity for other users to use.
+        Other users will be able to access the published file via the plates.
         """
 
     def publish(self, task_settings, item):
@@ -52,16 +50,27 @@ class IngestFilesPlugin(HookBaseClass):
 
         super(IngestFilesPlugin, self).publish(task_settings, item)
 
-        # create a plate entity after the publish has went through successfully.
-        plate_entity = self._create_plate_entity(item)
+        if "sg_publish_data" in item.properties:
 
-        # let's create ingest_plate_data within item properties,
-        # so that we can link the version created to plate entity as well.
-        item.properties["ingest_plate_data"] = plate_entity
+            # create a plate entity after the publish has gone through successfully.
+            plate_entity = self._create_plate_entity(item)
 
-        # link the publish file to our plate entity.
-        self._link_published_files_to_plate_entity(plate_entity, item)
-        self.logger.info("Plate entity registered and Publish file is linked!")
+            # let's create ingest_plate_data within item properties,
+            # so that we can link the version created to plate entity as well.
+            item.properties["ingest_plate_data"] = plate_entity
+
+            if item.properties.get("ingest_plate_data"):
+                # link the publish file to our plate entity.
+                updated_plate = self._link_published_files_to_plate_entity(item)
+
+                if updated_plate:
+                    self.logger.info("Plate entity registered and Publish file is linked to it!")
+                else:
+                    self.logger.error("Failed to link the Publish file and the Plate entity!")
+            else:
+                self.logger.error("Failed to create a plate entity!")
+        else:
+            self.logger.error("Publish File not created successfully!")
 
     def finalize(self, task_settings, item):
         """
@@ -93,20 +102,26 @@ class IngestFilesPlugin(HookBaseClass):
             }
         )
 
-    @staticmethod
-    def _validate_plate_entity(item):
-        sg = get_sg_connection()
+    def _find_plate_entity(self, item):
+        """
+        Finds a plate entity corresponding to the item's context.
+        Name of the Element Entity is governed by "publish_name" of the item.
+        Further filters it down if the context is from shot/sequence.
+
+        :param item: item to find the plate entity for.
+        :return: plate entity or None if not found.
+        """
         sg_filters = [
             ['project', 'is', item.context.project],
             ['code', 'is', item.properties["publish_name"]]
         ]
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
-                sg_filters.append(['shots', 'is', item.context.entity])
+                sg_filters.append(['sg_shot', 'is', item.context.entity])
             elif item.context.entity["type"] == "Sequence":
                 sg_filters.append(['sg_sequence', 'is', item.context.entity])
 
-        result = sg.find_one(
+        result = self.sgtk.shotgun.find_one(
             entity_type='Element',
             filters=sg_filters,
             fields=['shots', 'code', 'id']
@@ -114,6 +129,12 @@ class IngestFilesPlugin(HookBaseClass):
         return result
 
     def _get_frame_range(self, item):
+        """
+        Frame range for the item.
+
+        :param item: item to get the frame range for.
+        :return: A tuple of first_frame, last_frame
+        """
         publisher = self.parent
 
         # Determine if this is a sequence of paths
@@ -126,8 +147,13 @@ class IngestFilesPlugin(HookBaseClass):
         return first_frame, last_frame
 
     def _create_plate_entity(self, item):
-        sg = get_sg_connection()
-        plate_entity = self._validate_plate_entity(item)
+        """
+        Creates a plate entity if it doesn't exist for a given item, or updates it if it already exists.
+
+        :param item: item to create the plate entity for.
+        :return: Plate entity for the given item.
+        """
+        plate_entity = self._find_plate_entity(item)
         frange = self._get_frame_range(item)
 
         data = dict(
@@ -140,20 +166,19 @@ class IngestFilesPlugin(HookBaseClass):
 
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
-                data["shots"] = [item.context.entity]
+                # data["shots"] = [item.context.entity]
                 data["sg_shot"] = item.context.entity
             elif item.context.entity["type"] == "Sequence":
                 data["sg_sequence"] = item.context.entity
 
         if plate_entity:
-            plate_entity = sg.update(
+            plate_entity = self.sgtk.shotgun.update(
                 entity_type='Element',
                 entity_id=plate_entity['id'],
                 data=data,
                 multi_entity_update_modes=dict(shots='add'),
             )
-            self.logger.info("Updated Plate entity...")
-            self.logger.debug(
+            self.logger.info(
                 "Updated Plate entity...",
                 extra={
                     "action_show_more_info": {
@@ -166,9 +191,8 @@ class IngestFilesPlugin(HookBaseClass):
         else:
 
             data["project"] = item.context.project
-            plate_entity = sg.create(entity_type='Element', data=data)
-            self.logger.info("Created Plate entity...")
-            self.logger.debug(
+            plate_entity = self.sgtk.shotgun.create(entity_type='Element', data=data)
+            self.logger.info(
                 "Created Plate entity...",
                 extra={
                     "action_show_more_info": {
@@ -181,18 +205,16 @@ class IngestFilesPlugin(HookBaseClass):
 
         return plate_entity
 
-    @staticmethod
-    def _link_published_files_to_plate_entity(plate_entity, item):
+    def _link_published_files_to_plate_entity(self, item):
         """
-        Create a plate entity for the corresponding publish and link the publish files
-        :param plate_entity:
-        :param item:
-        :return:
+        Link the plate entity to its corresponding publish files.
+
+        :param item: item to get the publish files(sg_publish_data) and plate entity(ingest_plate_data)
+        :return: Updated plate entity.
         """
-        sg = get_sg_connection()
-        result = sg.update(
+        result = self.sgtk.shotgun.update(
             entity_type='Element',
-            entity_id=plate_entity['id'],
+            entity_id=item.properties["ingest_plate_data"]["id"],
             data=dict(sg_published_files=[item.properties["sg_publish_data"]]),
         )
         return result
