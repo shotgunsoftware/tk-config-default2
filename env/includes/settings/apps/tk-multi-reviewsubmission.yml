@@ -12,6 +12,7 @@
 
 includes:
 - ../../app_locations.yml
+- ../../software_paths.yml
 
 ################################################################################
 # NOTE: Reviewsubmission settings have been moved to {preferences}/sgtk_config_environments.yaml
@@ -25,3 +26,4 @@ settings.tk-multi-reviewsubmission:
   slate_logo: 'icons/review_submit_logo.png'
   codec_settings_hook: '{config}/codec_settings.py'
   location: "@apps.tk-multi-reviewsubmission.location"
+  nuke_linux_path: "@path.linux.nuke"
