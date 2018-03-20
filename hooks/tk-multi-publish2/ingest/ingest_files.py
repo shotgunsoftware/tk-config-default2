@@ -33,9 +33,9 @@ class IngestFilesPlugin(HookBaseClass):
         creates a <b>PublishedFile</b> entity in Shotgun, which will include a
         reference to the file's published path on disk.
 
-        After the <b>PublishFile</b> is created successfully, an <b>Element/Plate</b> entity is also created.
-        The PublishFile is then linked to it's corresponding Element entity for other users to use.
-        Other users will be able to access the published file via the plates.
+        After the <b>PublishedFile</b> is created successfully, a <b>Plate</b> entity is also created.
+        The <b>PublishedFile</b> is then linked to it's corresponding <b>Plate</b> entity for other users to use.
+        Once the ingestion is complete these files can be accessed by the loader window within each DCC.
         """
 
     def publish(self, task_settings, item):
@@ -64,13 +64,13 @@ class IngestFilesPlugin(HookBaseClass):
                 updated_plate = self._link_published_files_to_plate_entity(item)
 
                 if updated_plate:
-                    self.logger.info("Plate entity registered and Publish file is linked to it!")
+                    self.logger.info("Plate entity registered and PublishedFile is linked to it!")
                 else:
-                    self.logger.error("Failed to link the Publish file and the Plate entity!")
+                    self.logger.error("Failed to link the PublishedFile and the Plate entity!")
             else:
-                self.logger.error("Failed to create a plate entity!")
+                self.logger.error("Failed to create a Plate entity!")
         else:
-            self.logger.error("Publish File not created successfully!")
+            self.logger.error("PublishedFile not created successfully!")
 
     def finalize(self, task_settings, item):
         """
@@ -161,8 +161,8 @@ class IngestFilesPlugin(HookBaseClass):
             sg_client_name=item.name,
         )
 
-        data["cut_in"] = frange[0]
-        data["cut_out"] = frange[1]
+        data["head_in"] = frange[0]
+        data["head_out"] = frange[1]
 
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
