@@ -25,7 +25,7 @@ frameworks:
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.3.1
+      version: v1.3.3
       type: app_store
       name: tk-framework-desktopserver
 
