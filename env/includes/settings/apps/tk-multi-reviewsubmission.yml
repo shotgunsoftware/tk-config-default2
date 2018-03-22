@@ -23,9 +23,8 @@ settings.tk-multi-reviewsubmission:
   movie_height: '@settings.tk-multi-reviewsubmission.height'
   movie_path_template: '{env_name}_publish_movie'
   sg_version_name_template: '{env_name}_version_name'
-  slate_logo: 'icons/review_submit_logo.png'
+  slate_logo: 'reviewsubmission_slate_logo_file'
   codec_settings_hook: '{config}/codec_settings.py'
   location: "@apps.tk-multi-reviewsubmission.location"
   nuke_linux_path: "@path.linux.nuke"
-  burnin_path_template: 'reviewsubmission_burnin_nuke_file'
-  slate_logo_template: 'reviewsubmission_slate_logo_file'
+  burnin_path: 'reviewsubmission_burnin_nuke_file'
