@@ -36,6 +36,7 @@ settings.tk-nuke:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke"
+    tk-nuke-writenode: "@settings.tk-nuke-writenode"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   run_at_startup:
