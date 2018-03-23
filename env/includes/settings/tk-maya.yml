@@ -16,6 +16,7 @@ includes:
 - ../engine_locations.yml
 - ./apps/tk-multi-loader2.yml
 - ./apps/tk-multi-publish2.yml
+- ./apps/tk-multi-reviewsubmission.yml
 - ./apps/tk-multi-screeningroom.yml
 - ./apps/tk-multi-shotgunpanel.yml
 - ./apps/tk-multi-snapshot.yml
@@ -30,6 +31,7 @@ settings.tk-maya:
       location: "@apps.tk-multi-about.location"
     tk-multi-loader2: '@settings.tk-multi-loader2.maya'
     tk-multi-publish2: '@settings.tk-multi-publish2.maya'
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya"
@@ -48,6 +50,7 @@ settings.tk-maya.asset:
       location: "@apps.tk-multi-breakdown.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.maya"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.maya"
     tk-multi-snapshot: "@settings.tk-multi-snapshot"
@@ -73,6 +76,7 @@ settings.tk-maya.shot:
       location: "@apps.tk-multi-setframerange.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.maya"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.maya"
     tk-multi-snapshot: "@settings.tk-multi-snapshot"
