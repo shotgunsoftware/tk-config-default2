@@ -20,7 +20,7 @@ HookBaseClass = sgtk.get_hook_baseclass()
 
 EDIT_TYPES_KEY = "edit_types"
 EDITS_KEY = "edits"
-VALID_EDITS = ["replace", "lower_case", "upper_case", "underscore_to_camelcase"]
+VALID_EDITS = ["replace", "lower_case", "upper_case", "underscore_to_camelcase", "pad"]
 
 
 class TemplateKeyCustom(HookBaseClass):
@@ -70,8 +70,8 @@ class TemplateKeyCustom(HookBaseClass):
         if EDIT_TYPES_KEY in choices:
             edit_types = choices[EDIT_TYPES_KEY]
 
+        # don't forget to add a new edit to VALID_EDITS
         for edit in edit_types:
-            # removed "pad" type edit, since that is already taken care of by 'format_spec'
             relevant_edits = dict()
             if edit in edits:
                 relevant_edits = edits[edit]
@@ -83,11 +83,16 @@ class TemplateKeyCustom(HookBaseClass):
                         for replace in relevant_replaces:
                             value = value.replace(replace, relevant_edits[replace])
                 elif edit == "lower_case":
-                    value = str_value.lower()
+                    value = value.lower()
                 elif edit == "upper_case":
                     value = value.upper()
                 elif edit == "underscore_to_camelcase":
                     value = self._underscore_to_camelcase(value)
+                elif edit == "pad":
+                    if relevant_edits:
+                        if "value" in relevant_edits:
+                            padding = relevant_edits["value"]
+                            value = value.zfill(padding)
 
         return value
 
