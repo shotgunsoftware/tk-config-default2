@@ -5,9 +5,6 @@ core/install_location.yml
 core/interpreter_*.cfg
 core/pipeline_configuration.yml
 core/shotgun.yml
-# Please note that this file is controlled by git, so ignoring it is not enough
-# and a `git update-index --assume-unchanged core/roots.yml` is needed.
-core/roots.yml
 tk-metadata
 
 
