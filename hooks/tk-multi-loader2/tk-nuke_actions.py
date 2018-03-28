@@ -211,6 +211,7 @@ class NukeActions(HookBaseClass):
         read_node["file"].fromUserText(path)
 
         # find the sequence range if it has one:
+
         seq_range = self._find_sequence_range(path, sg_publish_data)
 
         # to fetch the nuke prefs from pipeline
@@ -278,9 +279,11 @@ class NukeActions(HookBaseClass):
 
         if sg_publish_data["entity"].get("type") == "Element":
             filters = [["id", "is", sg_publish_data["entity"].get("id")]]
-            fields = ["cut_in", "cut_out"]
+            fields = ["cut_in", "cut_out", "head_in", "head_out"]
             item = self.sgtk.shotgun.find_one("Element", filters, fields)
 
+            if item.get("head_in") and item.get("head_out"):
+                return (item.get("head_in", 1001), item.get("head_out", 1001))
             return (item.get("cut_in", 1001), item.get("cut_out", 1001))
         else:
             if sg_publish_data["version"]:
