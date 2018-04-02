@@ -16,6 +16,7 @@ includes:
 - ../engine_locations.yml
 - ./apps/tk-multi-launchapp.yml
 - ./apps/tk-multi-publish2.yml
+- ./apps/tk-multi-reviewsubmission.yml
 - ./apps/tk-multi-screeningroom.yml
 
 ################################################################################
@@ -28,5 +29,6 @@ settings.tk-shell:
     tk-multi-launchnuke: "@settings.tk-multi-launchapp.nuke"
     tk-multi-launchmaya: "@settings.tk-multi-launchapp.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
     tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
   location: '@engines.tk-shell.location'
