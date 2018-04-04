@@ -151,8 +151,19 @@ class SceneOperation(HookClass):
             nuke.scriptClear()
             if parent_action == "new_file":
                 self.set_show_preferences(context)
+                self.sync_frame_range()
 
             return True
+
+    def sync_frame_range(self):
+        engine = self.parent.engine
+        try:
+            # get app
+            frame_range_app = engine.apps["tk-multi-setframerange"]
+            frame_range_app.run_app()
+        except KeyError as ke:
+             self.parent.logger.error("Unable to find {} in {} at this time. "
+                                      "Not syncing frame range automatically.".format(ke, engine.name))
 
     def set_show_preferences(self, context):
         fields = context.as_template_fields()
