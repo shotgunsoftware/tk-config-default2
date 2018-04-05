@@ -157,13 +157,29 @@ class SceneOperation(HookClass):
 
     def sync_frame_range(self):
         engine = self.parent.engine
+        if engine.context.entity is None:
+            # tk-multi-setframerange needs a context entity to work
+            warning_message = "Your current context does not have an entity " \
+                              "(e.g. a current Shot, current Asset etc). \nNot syncing frame range."
+            self.parent.logger.warning(warning_message)
+            QtGui.QMessageBox.warning(None, "Context has no entity", warning_message)
+            return
+
         try:
             # get app
             frame_range_app = engine.apps["tk-multi-setframerange"]
-            frame_range_app.run_app()
         except KeyError as ke:
-             self.parent.logger.error("Unable to find {} in {} at this time. "
-                                      "Not syncing frame range automatically.".format(ke, engine.name))
+            error_message = "Unable to find {} in {} at this time. " \
+                            "Not syncing frame range automatically.".format(ke, engine.name)
+            self.parent.logger.error(error_message)
+            QtGui.QMessageBox.error(None, "Set Frame Range App unavailable", error_message)
+        else:
+            try:
+                frame_range_app.run_app()
+            except TankError as te:
+                warning_message = "{}. Not syncing frame range.".format(te)
+                self.parent.logger.warning(warning_message)
+                QtGui.QMessageBox.warning(None, "Entity has no in/out frame", warning_message)
 
     def set_show_preferences(self, context):
         fields = context.as_template_fields()
