@@ -127,8 +127,10 @@ class SceneOperation(HookClass):
         # context.as_template_fields() doesn't contain {name}, {version}
         file_template = context.sgtk.template_from_path(file_path)
         if not file_template:
-            self.parent.logger.warning("Current file path doesn't conform to Shotgun template. "
-                                       "Not setting show default settings.")
+            warning_message = "Current file path doesn't conform to Shotgun template. " \
+                              "Not setting show default settings."
+            self.parent.logger.warning(warning_message)
+            QtGui.QMessageBox.warning(None, "Show defaults not set", warning_message)
             return
 
         fields = file_template.get_fields(file_path)
@@ -143,8 +145,10 @@ class SceneOperation(HookClass):
         try:
             cmds.currentUnit(time="{}fps".format(show_prefs["show_settings"]["fps"]))
         except KeyError as ke:
-            self.parent.logger.warning("Unable to find {} in show preferences. "
-                                       "Not setting fps.".format(ke))
+            warning_message = "Unable to find {} in show preferences. " \
+                              "Not setting fps.".format(ke)
+            self.parent.logger.warning(warning_message)
+            QtGui.QMessageBox.warning(None, "FPS not set", warning_message)
 
         # get resolution and set render defaults
         try:
@@ -153,8 +157,10 @@ class SceneOperation(HookClass):
                            "output": "LAYERPLACEHOLDER"})   # output is alphanumeric
                                                             # replace with token <Layer>
         except KeyError as ke:
-            self.parent.logger.warning("Unable to find {} in show preferences. "
-                                       "Not setting render defaults.".format(ke))
+            warning_message = "Unable to find {} in show preferences. " \
+                              "Not setting render defaults.".format(ke)
+            self.parent.logger.warning(warning_message)
+            QtGui.QMessageBox.warning(None, "Render defaults not set", warning_message)
         else:
             fields.pop("extension")  # remove ma as extension to apply default img ext
             render_path = render_temp.apply_fields(fields).replace("LAYERPLACEHOLDER", "<Layer>")
