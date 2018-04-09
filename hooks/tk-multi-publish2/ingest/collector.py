@@ -12,6 +12,7 @@ import os
 import datetime
 
 import sgtk
+import tank
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -33,23 +34,48 @@ class IngestCollectorPlugin(HookBaseClass):
         :return: Name of the template.
         """
 
-        # using file name for resolving templates
-        path = os.path.basename(path)
+        # try using file name for resolving templates
+        work_path_template = super(IngestCollectorPlugin, self)._resolve_work_path_template(properties,
+                                                                                            os.path.basename(path))
+        # try using the full path for resolving templates
+        if not work_path_template:
+            work_path_template = super(IngestCollectorPlugin, self)._resolve_work_path_template(properties, path)
 
-        work_path_template = super(IngestCollectorPlugin, self)._resolve_work_path_template(properties, path)
         return work_path_template
 
-    def _get_item_context_from_path(self, parent_item, properties, path):
+    def _get_item_context_from_path(self, parent_item, properties, path, default_entities=list()):
         """Updates the context of the item from the work_path_template/template, if needed.
 
         :param properties: properties of the item.
         :param path: path to build the context from, in this class we use os.path.basename of the path.
         """
 
-        # using file name for resolving templates and context
-        path = os.path.basename(path)
+        sg_filters = [
+            ['short_name', 'is', "vendor"]
+        ]
 
-        item_context = super(IngestCollectorPlugin, self)._get_item_context_from_path(parent_item, properties, path)
+        fields = ['entity_type', 'code', 'id']
+
+        step_entity = self.sgtk.shotgun.find_one(
+            entity_type='Step',
+            filters=sg_filters,
+            fields=fields
+        )
+        default_entities = [step_entity]
+
+        work_path_template = self._resolve_work_path_template(properties, path)
+
+        if work_path_template:
+            work_tmpl = self.parent.get_template_by_name(work_path_template)
+            if work_tmpl and isinstance(work_tmpl, tank.template.TemplateString):
+                # use file name if we got TemplateString
+                path = os.path.basename(path)
+
+        item_context = super(IngestCollectorPlugin, self)._get_item_context_from_path(parent_item,
+                                                                                      properties,
+                                                                                      path,
+                                                                                      default_entities)
+
         return item_context
 
     def _get_template_fields_from_path(self, item, template_name, path):
@@ -58,11 +84,17 @@ class IngestCollectorPlugin(HookBaseClass):
         the input template name.
         """
 
-        # using file name for resolving templates and context
-        path = os.path.basename(path)
+        work_path_template = item.properties.get("work_path_template")
 
-        fields = super(IngestCollectorPlugin, self)._get_template_fields_from_path(item, template_name, path)
+        if work_path_template:
+            work_tmpl = self.parent.get_template_by_name(work_path_template)
+            if work_tmpl and isinstance(work_tmpl, tank.template.TemplateString):
+                # use file name if the path was parsed using TemplateString
+                path = os.path.basename(path)
 
+        fields = super(IngestCollectorPlugin, self)._get_template_fields_from_path(item,
+                                                                                   template_name,
+                                                                                   path)
         # adding a description to item
         item.description = "Created by shotgun_ingest on %s" % str(datetime.date.today())
         return fields
