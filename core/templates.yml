@@ -241,7 +241,7 @@ paths:
     # REVIEW SUBMISSION
     reviewsubmission_burnin_nuke_file:      '@project_publish_area/SCRIPT/slate/burnin.nk'
     reviewsubmission_slate_logo_file:       '@project_publish_area/SCRIPT/slate/logo.png'
-
+    reviewsubmission_render_script_path:    '@project_publish_area/SCRIPT/slate/nuke_batch_render_movie.py'
 #
 # The aliases section allows you to map one template to another without worrying
 # about Toolkit complaining about collisions. When an alias is requested, Toolkit
