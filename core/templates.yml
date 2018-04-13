@@ -89,8 +89,8 @@ keys:
             exr: exr
             jpg: jpeg
             tiff: tiff
-            png: PNG
-            dpx: DPX
+            png: png
+            dpx: dpx
         default: exr
         alias: extension
     geo_extension:

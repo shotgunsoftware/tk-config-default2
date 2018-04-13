@@ -1,10 +1,13 @@
+#  copy of /tools/package/sgtk_config/2.5.0/config/core/templates/ingest.yml
 keys:
     ingestImgExtension:
         type: str
         choices:
-            exr: EXR
-            dpx: DPX
-            jpg: JPEG
+            exr: exr
+            dpx: dpx
+            jpg: jpeg
+            png: png
+            tiff: tiff
         default: exr
         alias: extension
 
@@ -20,14 +23,11 @@ keys:
     ingestShot:
         type: str
         shotgun_entity_type: Shot
-        shotgun_field_name: code
-        filter_by: '^([0-9]{5,})$'
+        shotgun_field_name: sg_client_name
+        filter_by: '^([A-Za-z]{3})([0-9]{6})$'
         value_from_str_hook: 'name_converter'
         edit_types:
-          - pad
-        edits:
-          pad:
-            value: 6
+          - upper_case
 
     ingestStep:
         type: str
@@ -37,64 +37,89 @@ keys:
 
     ingestVersion:
         type: int
-        format_spec: '02'
+        # we have different version specs coming from LA sometimes 2 or 3
+        # format_spec: '02'
 
-    # ================================= #
-    # examples for name_converter hook! #
-    # ================================= #
-    #    client_output:
-    #        type: str
-    #        filter_by: alphanumeric
-    #        value_from_str_hook: 'name_converter'
-    #        edit_types:
-    #          - replace
-    #        edits:
-    #            replace:
-    #              main: ""
-    #              grey: "_grey"
-    #              overlay: "_overlay"
-    #              cam: "camera"
-    #
-    #    client_step:
-    #        type: str
-    #        shotgun_entity_type: Step
-    #        shotgun_field_name: short_name
-    #        filter_by: alphanumeric
-    #        value_from_str_hook: 'name_converter'
-    #        edit_types:
-    #          - upper_case
-    #
-    #    client_name:
-    #        type: str
-    #        filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
-    #        value_from_str_hook: 'name_converter'
-    #        edit_types:
-    #          - underscore_to_camelcase
-    # ================================= #
-    # examples for name_converter hook! #
-    # ================================= #
+    ingestDateFolder:
+        type: timestamp
+        format_spec: '%Y%m%d'
+
+    # cdl specific keys
+    cdl_extension:
+        type: str
+        choices:
+            cc: cc
+        default: cc
+        alias: extension
+
+    cdl_name:
+        type: str
+        choices:
+            avid_grade: avid_grade
+            neutral_grade: neutral_grade
+        default: avid_grade
+        alias: name
+
+    ingestCdlName:
+        type: str
+        choices:
+            avidgrade: avidgrades
+            grade: grades
+        default: avidgrade
+
+    asperaFolderName:
+        type: str
+
+    packageName:
+        type: str
+
+    vendorStep:
+        type: str
+
+    subcontext:
+        type: str
 
 paths:
 
-    ingest_folder:                          './REF/CLIENT_VAULT/incoming'
+    ingest_folder:                          './REF/CLIENT_VAULT/incoming/{ingestDateFolder}/{asperaFolderName}/{packageName}'
+
+    # template for parsing paths
+    ingest_shot_area:                       '@ingest_folder/{ingestSequence}/{Shot}/SHARED'
+    ingest_sequence_area:                   '@ingest_folder/{ingestSequence}/SHARED'
+    ingest_project_area:                    '@ingest_folder/SHARED'
+
+    # cdl paths
+    ingest_shot_area_cdl:                   '@ingest_shot_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
+    ingest_sequence_area_cdl:               '@ingest_sequence_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
+    ingest_project_area_cdl:                '@ingest_project_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
+
+    # image paths
+    ingest_shot_area_image:                 '@ingest_shot_area/IMG/{vendorStep}/{ingestShot}_{name}_v{ingestVersion}.{subcontext}'
+    ingest_sequence_area_image:             '@ingest_sequence_area/IMG/{vendorStep}/{ingestSequence}_{name}_v{ingestVersion}.{subcontext}'
+    ingest_project_area_image:              '@ingest_project_area/IMG/{vendorStep}/{name}_v{ingestVersion}.{subcontext}'
+
+    # templates for parsing files
+    ingest_shot_cdl:                        '@ingest_shot_area_cdl/{cdl_name}.{cdl_extension}'
+    ingest_sequence_cdl:                    '@ingest_sequence_area_cdl/{cdl_name}.{cdl_extension}'
+    ingest_project_cdl:                     '@ingest_project_area_cdl/{cdl_name}.{cdl_extension}'
+
+    ingest_shot_render:                     '@ingest_shot_area_image/@ingest_shot_input_name.{SEQ}.{ingestImgExtension}'
+    ingest_sequence_render:                 '@ingest_sequence_area_image/@ingest_sequence_input_name.{SEQ}.{ingestImgExtension}'
+    ingest_project_render:                  '@ingest_project_area_image/@ingest_project_input_name.{SEQ}.{ingestImgExtension}'
 
 strings:
 
     # strings for input names
-    ingest_shot_input_name:                 '{ingestSequence}0{ingestShot}_{ingestStep}_{name}[-{output}]_v{ingestVersion}'
-    ingest_sequence_input_name:             '{ingestSequence}_{ingestStep}_{name}[-{output}]_v{ingestVersion}'
-    ingest_project_input_name:              '{ingestStep}_{name}[-{output}]_v{ingestVersion}'
+    ingest_shot_input_name:                 '{ingestShot}_{name}_v{ingestVersion}'
+    ingest_sequence_input_name:             '{ingestSequence}_{name}_v{ingestVersion}'
+    ingest_project_input_name:              '{ingestStep}_{name}_v{ingestVersion}'
 
     # strings for output names
     ingest_shot_output_name:                '{Sequence}_{Shot}_{Step}_{name}[-{output}]'
     ingest_sequence_output_name:            '{Sequence}_{Step}_{name}[-{output}]'
     ingest_project_output_name:             '{Step}_{name}[-{output}]'
 
-    # templates for parsing files
-    ingest_shot_render:                     '@ingest_shot_input_name.{SEQ}.{ingestImgExtension}'
-    ingest_sequence_render:                 '@ingest_sequence_input_name.{SEQ}.{ingestImgExtension}'
-    ingest_project_render:                  '@ingest_project_input_name.{SEQ}.{ingestImgExtension}'
-
+    # strings for parsing files
     ingest_shot_script:                     '@ingest_shot_input_name.nk'
     ingest_sequence_script:                 '@ingest_sequence_input_name.nk'
     ingest_project_script:                  '@ingest_project_input_name.nk'
