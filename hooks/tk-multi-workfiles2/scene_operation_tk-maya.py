@@ -142,19 +142,18 @@ class SceneOperation(HookClass):
                                              seq_override=fields.get("Sequence"),
                                              shot_override=fields.get("Shot"))
         # set fps
+        time_units = {15: 'game',
+                      24: 'film',
+                      25: 'pal',
+                      30: 'ntsc',
+                      48: 'show',
+                      50: 'palf',
+                      60: 'ntscf'}
         try:
-            time_units = {'game': 15,
-                          'film': 24,
-                          'pal': 25,
-                          'ntsc': 30,
-                          'show': 48,
-                          'palf': 50,
-                          'ntscf': 60}
-
-            for name, val in time_units.iteritems():
-                if val == show_prefs["show_settings"]["fps"]:
-                    cmds.currentUnit(time=name)
-
+            try:
+                cmds.currentUnit(time=time_units[show_prefs["show_settings"]["fps"]])
+            except KeyError:
+                cmds.currentUnit(time=show_prefs["show_settings"]["fps"])
         except KeyError as ke:
             warning_message = "Unable to find {} in show preferences. " \
                               "Not setting fps.".format(ke)
