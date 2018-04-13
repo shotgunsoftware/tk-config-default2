@@ -89,6 +89,8 @@ keys:
             exr: exr
             jpg: jpeg
             tiff: tiff
+            png: PNG
+            dpx: DPX
         default: exr
         alias: extension
     geo_extension:
@@ -98,6 +100,22 @@ keys:
             obj: OBJ
         default: abc
         alias: extension
+
+    # cdl specific keys
+    cdl_extension:
+        type: str
+        choices:
+            cc: cc
+        default: cc
+        alias: extension
+
+    cdl_name:
+        type: str
+        choices:
+            avid_grade: avid_grade
+            neutral_grade: neutral_grade
+        default: avid_grade
+        alias: name
 
 
 #
@@ -149,6 +167,10 @@ paths:
     project_publish_area:                   './SHARED'
     sequence_publish_area:                  './{Sequence}/SHARED'
     shot_publish_area:                      './{Sequence}/{Shot}/SHARED'
+
+    project_publish_area_cdl:               '@project_publish_area/SCRIPTS/nuke'
+    sequence_publish_area_cdl:              '@sequence_publish_area/SCRIPTS/nuke'
+    shot_publish_area_cdl:                  '@shot_publish_area/SCRIPTS/nuke'
 
 
     #################################
@@ -242,6 +264,17 @@ paths:
     reviewsubmission_burnin_nuke_file:      '@project_publish_area/SCRIPT/slate/burnin.nk'
     reviewsubmission_slate_logo_file:       '@project_publish_area/SCRIPT/slate/logo.png'
     reviewsubmission_render_script_path:    '@project_publish_area/SCRIPT/slate/nuke_batch_render_movie.py'
+
+    # CDL PUBLISHING
+
+    project_publish_cdl:                    '@project_publish_area_cdl/grades/grade_v{version}/{cdl_name}.{cdl_extension}'
+    sequence_publish_cdl:                   '@sequence_publish_area_cdl/grades/grade_v{version}/{cdl_name}.{cdl_extension}'
+    shot_publish_cdl:                       '@shot_publish_area_cdl/grades/grade_v{version}/{cdl_name}.{cdl_extension}'
+
+    project_publish_cdl_symlink:            '@project_publish_area_cdl/grades/grade/{cdl_name}.{cdl_extension}'
+    sequence_publish_cdl_symlink:           '@sequence_publish_area_cdl/grades/grade/{cdl_name}.{cdl_extension}'
+    shot_publish_cdl_symlink:               '@shot_publish_area_cdl/grades/grade/{cdl_name}.{cdl_extension}'
+
 #
 # The aliases section allows you to map one template to another without worrying
 # about Toolkit complaining about collisions. When an alias is requested, Toolkit
