@@ -153,7 +153,7 @@ class SceneOperation(HookClass):
             try:
                 cmds.currentUnit(time=time_units[show_prefs["show_settings"]["fps"]])
             except KeyError:
-                cmds.currentUnit(time=show_prefs["show_settings"]["fps"])
+                cmds.currentUnit(time="{}fps".format(show_prefs["show_settings"]["fps"]))
         except KeyError as ke:
             warning_message = "Unable to find {} in show preferences. " \
                               "Not setting fps.".format(ke)
