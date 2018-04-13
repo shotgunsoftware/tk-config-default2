@@ -351,6 +351,7 @@ class IngestFilesPlugin(HookBaseClass):
                 entity_type='Element',
                 entity_id=item.properties["ingest_plate_data"]["id"],
                 data=dict(sg_published_files=[item.properties["sg_publish_data"]]),
+                multi_entity_update_modes=dict(sg_published_files='add'),
             )
             return result
         except Exception:
