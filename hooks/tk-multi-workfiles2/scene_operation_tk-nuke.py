@@ -172,7 +172,7 @@ class SceneOperation(HookClass):
             error_message = "Unable to find {} in {} at this time. " \
                             "Not syncing frame range automatically.".format(ke, engine.name)
             self.parent.logger.error(error_message)
-            QtGui.QMessageBox.error(None, "Set Frame Range App unavailable", error_message)
+            QtGui.QMessageBox.warning(None, "Set Frame Range App unavailable", error_message)
         else:
             try:
                 frame_range_app.run_app()
