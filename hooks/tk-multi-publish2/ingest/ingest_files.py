@@ -24,6 +24,42 @@ class IngestFilesPlugin(HookBaseClass):
     """
 
     @property
+    def settings_schema(self):
+        """
+        Dictionary defining the settings that this plugin expects to receive
+        through the settings parameter in the accept, validate, publish and
+        finalize methods.
+
+        A dictionary on the following form::
+
+            {
+                "Settings Name": {
+                    "type": "settings_type",
+                    "default_value": "default_value",
+                    "description": "One line description of the setting"
+            }
+
+        The type string should be one of the data types that toolkit accepts
+        as part of its environment configuration.
+        """
+        schema = super(IngestFilesPlugin, self).settings_schema
+
+        ingest_schema = {
+            "additional_publish_fields": {
+                "default_value": {"name": "sg_element", "output": "sg_output",
+                                  "tags": "tags", "sg_snapshot_id": "sg_snapshot_id"}
+            },
+            "snapshot_type_settings": {
+                "default_value": {"work_plate": "Element", "*": "Asset"}
+            }
+        }
+
+        # add tags also to publish files
+        schema["Item Type Settings"]["values"]["items"].update(ingest_schema)
+
+        return schema
+
+    @property
     def description(self):
         """
         Verbose, multi-line description of what the plugin does. This can
@@ -35,8 +71,8 @@ class IngestFilesPlugin(HookBaseClass):
         creates a <b>PublishedFile</b> entity in Shotgun, which will include a
         reference to the file's published path on disk.
 
-        After the <b>PublishedFile</b> is created successfully, a <b>Plate</b> entity is also created.
-        The <b>PublishedFile</b> is then linked to it's corresponding <b>Plate</b> entity for other users to use.
+        After the <b>PublishedFile</b> is created successfully, a <b>Plate/Asset</b> entity is also created.
+        The <b>PublishedFile</b> is then linked to it's corresponding <b>Plate/Asset</b> entity for other users to use.
         Once the ingestion is complete these files can be accessed using the Loader window within each DCC.
         """
 
@@ -53,30 +89,35 @@ class IngestFilesPlugin(HookBaseClass):
         """
 
         # this has to run first so that item properties are populated.
-        # Properties are used to find a plate entity.
+        # Properties are used to find a linked entity.
         status = super(IngestFilesPlugin, self).validate(task_settings, item)
 
         # ---- this check will only run if the status of the published files is true.
-        # ---- check for matching plate of this path with a status.
+        # ---- check for matching linked_entity of this path with a status.
 
-        plate_fields = ["sg_status_list"]
-        plate = self._find_plate_entity(item, plate_fields)
+        linked_entity_fields = ["sg_status_list"]
+        linked_entity = self._find_linked_entity(item, task_settings, linked_entity_fields)
 
-        if plate and status and plate["sg_status_list"] is not None:
+        if linked_entity and status and linked_entity["sg_status_list"] is not None:
             conflict_info = (
-                "If you continue, this matching plate will be updated to use a new PublishedFile"
-                "<pre>%s</pre>" % (pprint.pformat(plate),)
+                "If you continue, this matching linked_entity will be updated to use a new PublishedFile"
+                "<pre>%s</pre>" % (pprint.pformat(linked_entity),)
             )
             self.logger.warning(
-                "Found a matching plate entity in Shotgun for item %s" % item.name,
+                "Found a matching %s in Shotgun for item %s" % (item.properties["linked_entity_type"], item.name),
                 extra={
                     "action_show_more_info": {
-                        "label": "Show Plate",
-                        "tooltip": "Show the matching plate in Shotgun",
+                        "label": "Show %s" % item.properties["linked_entity_type"],
+                        "tooltip": "Show the matching linked_entity in Shotgun",
                         "text": conflict_info
                     }
                 }
             )
+
+        from dd.runtime import api
+        api.load("ipython")
+        from IPython import embed
+        embed()
 
         return status
 
@@ -90,35 +131,38 @@ class IngestFilesPlugin(HookBaseClass):
         :param item: Item to process
         """
 
-        # create a plate entity after the publish has gone through successfully.
-        plate_entity = self._create_plate_entity(item)
+        # create a linked_entity entity after the publish has gone through successfully.
+        linked_entity = self._create_linked_entity(item, task_settings)
 
-        # let's create ingest_plate_data within item properties,
-        # so that we can link the version created to plate entity as well.
-        item.properties["ingest_plate_data"] = plate_entity
+        # let's create ingest_entity_data within item properties,
+        # so that we can link the version created to linked entity as well.
+        item.properties["ingest_entity_data"] = linked_entity
 
-        if item.properties.get("ingest_plate_data"):
+        if item.properties.get("ingest_entity_data"):
             # publish the file
             super(IngestFilesPlugin, self).publish(task_settings, item)
 
             if item.properties.get("sg_publish_data"):
-                # link the publish file to our plate entity.
-                updated_plate = self._link_published_files_to_plate_entity(item)
+                # link the publish file to our linked entity.
+                updated_linked_entity = self._link_published_files_to_entity(item, task_settings)
 
-                if updated_plate:
-                    # clear the status list of the plate
-                    self._clear_plate_status_list(item)
-                    self.logger.info("Plate entity registered and PublishedFile linked for %s" % item.name)
+                if updated_linked_entity:
+                    # clear the status list of the linked_entity
+                    self._clear_linked_entity_status_list(item, task_settings)
+                    self.logger.info("%s entity registered and PublishedFile linked for %s" %
+                                     (item.properties["linked_entity_type"], item.name))
                 else:
-                    # undo the plate creation
+                    # undo the linked_entity creation
                     self.undo(task_settings, item)
                     # undo the parent publish
                     super(IngestFilesPlugin, self).undo(task_settings, item)
-                    self.logger.error("Failed to link the PublishedFile and the Plate entity for %s!" % item.name)
+                    self.logger.error("Failed to link the PublishedFile and the %s entity for %s!" %
+                                      (item.properties["linked_entity_type"], item.name))
             else:
                 self.logger.error("PublishedFile not created successfully for %s!" % item.name)
         else:
-            self.logger.error("Failed to create a Plate entity for %s!" % item.name)
+            self.logger.error("Failed to create a %s entity for %s!" %
+                              (item.properties["linked_entity_type"], item.name))
 
     def finalize(self, task_settings, item):
         """
@@ -134,19 +178,19 @@ class IngestFilesPlugin(HookBaseClass):
 
         super(IngestFilesPlugin, self).finalize(task_settings, item)
 
-        if "ingest_plate_data" in item.properties:
-            # get the data for the plate that was just created in SG
-            plate_data = item.properties["ingest_plate_data"]
+        if "ingest_entity_data" in item.properties:
+            # get the data for the linked_entity that was just created in SG
+            linked_entity_data = item.properties["ingest_entity_data"]
 
             path = item.properties["path"]
 
             self.logger.info(
-                "Plate created for file: %s" % (path,),
+                "%s created for file: %s" % (item.properties["linked_entity_type"], path),
                 extra={
                     "action_show_in_shotgun": {
-                        "label": "Show Plate",
+                        "label": "Show %s" % item.properties["linked_entity_type"],
                         "tooltip": "Open the Publish in Shotgun.",
-                        "entity": plate_data
+                        "entity": linked_entity_data
                     }
                 }
             )
@@ -154,7 +198,7 @@ class IngestFilesPlugin(HookBaseClass):
     def undo(self, task_settings, item):
         """
         Execute the undo method. This method will
-        delete the plate entity that got created due to the publish.
+        delete the linked_entity entity that got created due to the publish.
 
         :param task_settings: Dictionary of Settings. The keys are strings, matching
             the keys returned in the task_settings property. The values are `Setting`
@@ -162,14 +206,14 @@ class IngestFilesPlugin(HookBaseClass):
         :param item: Item to process
         """
 
-        plate_data = item.properties.get("ingest_plate_data")
+        linked_entity_data = item.properties.get("ingest_entity_data")
 
-        if plate_data:
+        if linked_entity_data:
             try:
-                self.sgtk.shotgun.delete(plate_data["type"], plate_data["id"])
+                self.sgtk.shotgun.delete(linked_entity_data["type"], linked_entity_data["id"])
             except Exception:
                 self.logger.error(
-                    "Failed to delete Plate Entity for %s" % item.name,
+                    "Failed to delete %s Entity for %s" % (item.properties["linked_entity_type"], item.name),
                     extra={
                         "action_show_more_info": {
                             "label": "Show Error Log",
@@ -179,22 +223,52 @@ class IngestFilesPlugin(HookBaseClass):
                     }
                 )
 
-    def _clear_plate_status_list(self, item):
+    def _resolve_linked_entity_type(self, item, task_settings):
         """
-        Sets the status list on the plate to None.
-        Once the plate has been completely linked to it's PublishedFile entity.
+        Resolve the entity that needs to be created for the item.
 
-        :param item:  item to get the plate entity from
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the task_settings property. The values are `Setting`
+            instances.
+        :param item: Item to get the snapshot_type from
+        :return: If a mapped snapshot_type is found in the snapshot_type_settings it returns that entity type
+        else it returns the value against "*" in snapshot_type_settings.
+        If snapshot_type is not defined in item fields, it returns the entity set on app settings "default_entity_type".
+        """
+
+        snapshot_settings = task_settings['snapshot_type_settings']
+
+        default_entity_type = self.parent.settings["default_entity_type"]
+
+        item_fields = item.properties["fields"]
+
+        if "snapshot_type" in item_fields:
+            if item_fields["snapshot_type"] in snapshot_settings:
+                return snapshot_settings[item_fields["snapshot_type"]]
+            else:
+                return snapshot_settings["*"]
+        else:
+            return default_entity_type
+
+    def _clear_linked_entity_status_list(self, item, task_settings):
+        """
+        Sets the status list on the linked_entity to None.
+        Once the linked_entity has been completely linked to it's PublishedFile entity.
+
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the task_settings property. The values are `Setting`
+            instances.
+        :param item:  item to get the linked entity from
         """
         try:
             self.sgtk.shotgun.update(
-                entity_type=item.properties["ingest_plate_data"]["type"],
-                entity_id=item.properties["ingest_plate_data"]["id"],
+                entity_type=item.properties["ingest_entity_data"]["type"],
+                entity_id=item.properties["ingest_entity_data"]["id"],
                 data={"sg_status_list": None},
             )
         except Exception:
             self.logger.error(
-                "clear_plate_status_list failed for item: %s" % item.name,
+                "clear_linked_entity_status_list failed for item: %s" % item.name,
                 extra={
                     "action_show_more_info": {
                         "label": "Show Error Log",
@@ -204,18 +278,21 @@ class IngestFilesPlugin(HookBaseClass):
                 }
             )
 
-    def _find_plate_entity(self, item, fields=list()):
+    def _find_linked_entity(self, item, task_settings, fields=list()):
         """
-        Finds a plate entity corresponding to the item's context.
-        Name of the Element Entity is governed by "publish_name" of the item.
+        Finds a linked entity corresponding to the item's context.
+        Name of the New Entity is governed by "publish_linked_entity_name" of the item.
         Further filters it down if the context is from shot/sequence.
 
-        :param item: item to find the plate entity for.
-        :return: plate entity or None if not found.
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the task_settings property. The values are `Setting`
+            instances.
+        :param item: item to find the linked entity for.
+        :return: linked entity or None if not found.
         """
         sg_filters = [
             ['project', 'is', item.context.project],
-            ['code', 'is', item.properties["publish_name"]]
+            ['code', 'is', item.properties["publish_linked_entity_name"]]
         ]
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
@@ -225,8 +302,11 @@ class IngestFilesPlugin(HookBaseClass):
 
         fields.extend(['shots', 'code', 'id'])
 
+        # add the linked_entity_type to item properties
+        item.properties["linked_entity_type"] = self._resolve_linked_entity_type(item, task_settings)
+
         result = self.sgtk.shotgun.find_one(
-            entity_type='Element',
+            entity_type=item.properties["linked_entity_type"],
             filters=sg_filters,
             fields=fields
         )
@@ -250,19 +330,22 @@ class IngestFilesPlugin(HookBaseClass):
 
         return first_frame, last_frame
 
-    def _create_plate_entity(self, item):
+    def _create_linked_entity(self, item, task_settings):
         """
-        Creates a plate entity if it doesn't exist for a given item, or updates it if it already exists.
-        Sets the status of the plate entity to "ip"
+        Creates a linked entity if it doesn't exist for a given item, or updates it if it already exists.
+        Sets the status of the linked entity to "ip"
 
-        :param item: item to create the plate entity for.
-        :return: Plate entity for the given item.
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the task_settings property. The values are `Setting`
+            instances.
+        :param item: item to create the linked entity for.
+        :return: Linked entity for the given item.
         """
         try:
-            plate_entity = self._find_plate_entity(item)
+            linked_entity = self._find_linked_entity(item, task_settings)
         except Exception:
             self.logger.error(
-                "find_plate_entity failed for item: %s" % item.name,
+                "find_linked_entity failed for item: %s" % item.name,
                 extra={
                     "action_show_more_info": {
                         "label": "Show Error Log",
@@ -273,16 +356,16 @@ class IngestFilesPlugin(HookBaseClass):
             )
             return
 
-        frange = self._get_frame_range(item)
-
         data = dict(
-            code=item.properties["publish_name"],
+            code=item.properties["publish_linked_entity_name"],
             sg_client_name=item.name,
             sg_status_list="ip"
         )
 
-        data["head_in"] = frange[0]
-        data["head_out"] = frange[1]
+        # all this is being handled by Version entity for the file types that need frame ranges!
+        # frange = self._get_frame_range(item)
+        # data["head_in"] = frange[0]
+        # data["head_out"] = frange[1]
 
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
@@ -291,20 +374,23 @@ class IngestFilesPlugin(HookBaseClass):
             elif item.context.entity["type"] == "Sequence":
                 data["sg_sequence"] = item.context.entity
 
+        # add the linked_entity_type to item properties
+        item.properties["linked_entity_type"] = self._resolve_linked_entity_type(item, task_settings)
+
         try:
-            if plate_entity:
-                plate_entity = self.sgtk.shotgun.update(
-                    entity_type='Element',
-                    entity_id=plate_entity['id'],
+            if linked_entity:
+                linked_entity = self.sgtk.shotgun.update(
+                    entity_type=item.properties["linked_entity_type"],
+                    entity_id=linked_entity['id'],
                     data=data,
                     multi_entity_update_modes=dict(shots='add'),
                 )
                 self.logger.info(
-                    "Updated Plate entity...",
+                    "Updated %s entity..." % item.properties["linked_entity_type"],
                     extra={
                         "action_show_more_info": {
-                            "label": "Plate Data",
-                            "tooltip": "Show the complete Plate data dictionary",
+                            "label": "%s Data" % item.properties["linked_entity_type"],
+                            "tooltip": "Show the complete %s data dictionary" % item.properties["linked_entity_type"],
                             "text": "<pre>%s</pre>" % (pprint.pformat(data),)
                         }
                     }
@@ -312,22 +398,25 @@ class IngestFilesPlugin(HookBaseClass):
             else:
 
                 data["project"] = item.context.project
-                plate_entity = self.sgtk.shotgun.create(entity_type='Element', data=data)
+                linked_entity = self.sgtk.shotgun.create(
+                    entity_type=item.properties["linked_entity_type"],
+                    data=data
+                )
                 self.logger.info(
-                    "Created Plate entity...",
+                    "Created %s entity..." % item.properties["linked_entity_type"],
                     extra={
                         "action_show_more_info": {
-                            "label": "Plate Data",
-                            "tooltip": "Show the complete Plate data dictionary",
+                            "label": "%s Data" % item.properties["linked_entity_type"],
+                            "tooltip": "Show the complete %s data dictionary" % item.properties["linked_entity_type"],
                             "text": "<pre>%s</pre>" % (pprint.pformat(data),)
                         }
                     }
                 )
 
-            return plate_entity
+            return linked_entity
         except Exception:
             self.logger.error(
-                "create_plate_entity failed for item: %s" % item.name,
+                "create_linked_entity failed for item: %s" % item.name,
                 extra={
                     "action_show_more_info": {
                         "label": "Show Error Log",
@@ -338,25 +427,28 @@ class IngestFilesPlugin(HookBaseClass):
             )
             return
 
-    def _link_published_files_to_plate_entity(self, item):
+    def _link_published_files_to_entity(self, item, task_settings):
         """
-        Link the plate entity to its corresponding publish files.
+        Link the new entity to its corresponding publish files.
 
-        :param item: item to get the publish files(sg_publish_data) and plate entity(ingest_plate_data)
-        :return: Updated plate entity.
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the task_settings property. The values are `Setting`
+            instances.
+        :param item: item to get the publish files(sg_publish_data) and linked entity(ingest_entity_data)
+        :return: Updated linked entity.
         """
 
         try:
             result = self.sgtk.shotgun.update(
-                entity_type='Element',
-                entity_id=item.properties["ingest_plate_data"]["id"],
+                entity_type=item.properties["ingest_entity_data"]["type"],
+                entity_id=item.properties["ingest_entity_data"]["id"],
                 data=dict(sg_published_files=[item.properties["sg_publish_data"]]),
                 multi_entity_update_modes=dict(sg_published_files='add'),
             )
             return result
         except Exception:
             self.logger.error(
-                "link_published_files_to_plate_entity failed for item: %s" % item.name,
+                "link_published_files_to_entity failed for item: %s" % item.name,
                 extra={
                     "action_show_more_info": {
                         "label": "Show Error Log",
