@@ -69,6 +69,7 @@ settings.tk-multi-publish2.nuke:
 
 # Ingest
 settings.tk-multi-publish2.ingest:
+  display_name: 'Ingest'
   collector: '@settings.tk-multi-publish2.ingest.collector'
   collector_settings: '@settings.tk-multi-publish2.ingest.collector.settings'
   path_info: '@settings.tk-multi-publish2.path_info'
