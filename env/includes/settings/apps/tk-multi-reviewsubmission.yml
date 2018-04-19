@@ -28,3 +28,4 @@ settings.tk-multi-reviewsubmission:
   location: "@apps.tk-multi-reviewsubmission.location"
   nuke_linux_path: "@path.linux.nuke"
   burnin_path: 'reviewsubmission_burnin_nuke_file'
+  render_script: 'reviewsubmission_render_script_path'
