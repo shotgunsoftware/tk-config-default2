@@ -79,6 +79,11 @@ keys:
     subcontext:
         type: str
 
+    # relevant fields from manifest
+    snapshot_type:
+        type: str
+        filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
+
 paths:
 
     ingest_folder:                          './REF/CLIENT_VAULT/incoming/{ingestDateFolder}/{asperaFolderName}/{packageName}'
@@ -114,10 +119,15 @@ strings:
     ingest_sequence_input_name:             '{ingestSequence}_{name}_v{ingestVersion}'
     ingest_project_input_name:              '{ingestStep}_{name}_v{ingestVersion}'
 
-    # strings for output names
-    ingest_shot_output_name:                '{Sequence}_{Shot}_{Step}_{name}[-{output}]'
-    ingest_sequence_output_name:            '{Sequence}_{Step}_{name}[-{output}]'
-    ingest_project_output_name:             '{Step}_{name}[-{output}]'
+    # strings for publish names
+    ingest_shot_publish_name:               '{Sequence}_{Shot}_{Step}_{snapshot_type}_{name}[-{output}]'
+    ingest_sequence_publish_name:           '{Sequence}_{Step}_{snapshot_type}_{name}[-{output}]'
+    ingest_project_publish_name:            '{Step}_{snapshot_type}_{name}[-{output}]'
+
+    # strings for entity names
+    ingest_shot_entity_name:                '{Sequence}_{Shot}_{Step}_{snapshot_type}'
+    ingest_sequence_entity_name:            '{Sequence}_{Step}_{snapshot_type}'
+    ingest_project_entity_name:             '{Step}_{snapshot_type}'
 
     # strings for parsing files
     ingest_shot_script:                     '@ingest_shot_input_name.nk'

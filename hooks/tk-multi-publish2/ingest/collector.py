@@ -19,14 +19,13 @@ from tank_vendor import yaml
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-# This is a dictionary of file type info that allows the basic collector to
-# identify common production file types and associate them with a display name,
-# item type, and config icon.
+# This is a dictionary of fields in snapshot from manifest and it's corresponding field on the item.
 DEFAULT_MANIFEST_SG_MAPPINGS = {
     "id": "sg_snapshot_id",
     "notes": "description",
     "name": "snapshot_name",
     "user": "snapshot_user",
+    "version": "snapshot_version",
 }
 
 
@@ -35,8 +34,7 @@ class IngestCollectorPlugin(HookBaseClass):
     Collector that operates on the current set of ingestion files. Should
     inherit from the basic collector hook.
 
-    This instance of the hook uses manifest_file_name from app_settings.
-
+    This instance of the hook uses manifest_file_name, default_entity_type, default_snapshot_type from app_settings.
 
     """
 
@@ -106,15 +104,42 @@ class IngestCollectorPlugin(HookBaseClass):
 
         publisher = self.parent
 
-        # handle files and folders differently
+        file_items = list()
+
+        # handle Manifest files, Normal files and folders differently
         if os.path.isdir(path):
-            return self._collect_folder(settings, parent_item, path)
+            items = self._collect_folder(settings, parent_item, path)
+            if items:
+                file_items.extend(items)
         else:
             if os.path.basename(path) == publisher.settings["manifest_file_name"]:
-                return self._collect_manifest_file(settings, parent_item, path)
+                items = self._collect_manifest_file(settings, parent_item, path)
+                if items:
+                    file_items.extend(items)
             else:
                 item = self._collect_file(settings, parent_item, path)
-                return [item] if item else []
+                if item:
+                    file_items.append(item)
+
+        # make sure we have snapshot_type field in all the items!
+        # this is to make sure that on publish we retain this field to figure out asset creation is needed or not.
+        for file_item in file_items:
+            fields = file_item.properties["fields"]
+            if "snapshot_type" not in fields:
+                fields["snapshot_type"] = self.parent.settings["default_snapshot_type"]
+                self.logger.info(
+                    "Injected snapshot_type field for item: %s" % file_item.name,
+                    extra={
+                        "action_show_more_info": {
+                            "label": "Show Info",
+                            "tooltip": "Show more info",
+                            "text": "Updated fields:\n%s" %
+                                    (pprint.pformat(file_item.properties["fields"]))
+                        }
+                    }
+                )
+
+        return file_items
 
     def _process_manifest_file(self, settings, path):
         """
@@ -128,13 +153,13 @@ class IngestCollectorPlugin(HookBaseClass):
                     'description': 'n/a',
                     'instance_name': None,
                     'level': None,
-                    'name': 'egypt_riser_a',
-                    'sg_asset_type': 'maya_model',
+                    'snapshot_name': 'egypt_riser_a',
+                    'snapshot_type': 'maya_model',
                     'sg_snapshot_id': 1002060803L,
                     'subcontext': 'hi',
                     'type': 'asset',
-                    'user': 'rsariel',
-                    'version': 1},
+                    'snapshot_user': 'rsariel',
+                    'snapshot_version': 1},
          'files': {'/dd/home/gverma/work/SHARED/MODEL/enviro/egypt_riser_a/hi/maya_model/egypt_riser_a_hi_tag_v001.xml': ['tag_xml'],
                    '/dd/home/gverma/work/SHARED/MODEL/enviro/egypt_riser_a/hi/maya_model/egypt_riser_a_hi_transform_v001.xml': ['transform_xml'],
                    '/dd/home/gverma/work/SHARED/MODEL/enviro/egypt_riser_a/hi/maya_model/egypt_riser_a_hi_v001.mb': ['main', 'mayaBinary']}
@@ -180,10 +205,9 @@ class IngestCollectorPlugin(HookBaseClass):
                     append_path = os.path.dirname(p_file)
                 # not a file sequence store the file name, to run _collect_file
                 else:
-                    # list of tags
                     append_path = p_file
 
-                # list of tags
+                # list of tag names
                 if append_path not in data["files"]:
                     data["files"][append_path] = list()
                 data["files"][append_path].append(file_type)
@@ -192,17 +216,51 @@ class IngestCollectorPlugin(HookBaseClass):
 
         return processed_snapshots
 
+    def _query_associated_tags(self, tags):
+        """
+        Queries/Creates tag entities given a list of tag names.
+
+        :param tags: List of tag names.
+        :return: List of created/existing tag entities.
+        """
+
+        tag_entities = list()
+
+        fields = ["name", "id", "code", "type"]
+        for tag_name in tags:
+            tag_entity = self.sgtk.shotgun.find_one(entity_type="Tag", filters=[["name", "is", tag_name]], fields=fields)
+            if tag_entity:
+                tag_entities.append(tag_entity)
+            else:
+                try:
+                    new_entity = self.sgtk.shotgun.create(entity_type="Tag", data=dict(name=tag_name))
+                    tag_entities.append(new_entity)
+                except Exception:
+                    self.logger.error(
+                        "Failed to create Tag: %s" % tag_name,
+                        extra={
+                            "action_show_more_info": {
+                                "label": "Show Error log",
+                                "tooltip": "Show the error log",
+                                "text": traceback.format_exc()
+                            }
+                        }
+                    )
+        return tag_entities
+
     def _collect_manifest_file(self, settings, parent_item, path):
         """
         Process the supplied manifest file.
 
         :param dict settings: Configured settings for this collector
         :param parent_item: parent item instance
-        :param folder: Path to analyze
+        :param path: Path to analyze
 
         :returns: The item that was created
         """
 
+        # process the manifest file first, replace the fields to relevant names.
+        # collect the tags a file has too.
         snapshots = self._process_manifest_file(settings, path)
 
         file_items = list()
@@ -211,7 +269,9 @@ class IngestCollectorPlugin(HookBaseClass):
             files = snapshot["files"]
             for p_file, tags in files.iteritems():
                 fields = snapshot["fields"].copy()
-                fields["tags"] = tags
+                # we need to add tag entities to this field.
+                # let's query/create those first.
+                fields["tags"] = self._query_associated_tags(tags)
                 new_items = list()
                 if os.path.isdir(p_file):
                     items = self._collect_folder(settings, parent_item, p_file)
@@ -239,7 +299,7 @@ class IngestCollectorPlugin(HookBaseClass):
                         }
                     )
 
-                    # we can't let the user change the context of the ingested file
+                    # we can't let the user change the context of the file being ingested using manifest files
                     new_item.context_change_allowed = False
 
                 # put the new items back in collector
@@ -254,17 +314,29 @@ class IngestCollectorPlugin(HookBaseClass):
         :param path: path to build the context from, in this class we use os.path.basename of the path.
         """
 
+
         sg_filters = [
             ['short_name', 'is', "vendor"]
         ]
 
+        # TODO-- this is not needed right now, since our keys only depend on short_name key of the Step
+        # make sure we get the correct Step!
+        # if base_context.entity:
+        #     # this should handle whether the Step is from Sequence/Shot/Asset
+        #     sg_filters.append(["entity_type", "is", base_context.entity["type"]])
+        # elif base_context.project:
+        #     # this should handle pro
+        #     sg_filters.append(["entity_type", "is", base_context.project["type"]])
+
         fields = ['entity_type', 'code', 'id']
 
+        # add a vendor step to all ingested files
         step_entity = self.sgtk.shotgun.find_one(
             entity_type='Step',
             filters=sg_filters,
             fields=fields
         )
+
         default_entities = [step_entity]
 
         work_path_template = self._resolve_work_path_template(properties, path)

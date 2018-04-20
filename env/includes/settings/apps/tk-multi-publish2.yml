@@ -74,6 +74,7 @@ settings.tk-multi-publish2.ingest:
   collector_settings: '@settings.tk-multi-publish2.ingest.collector.settings'
   manifest_file_name: 'contents.yaml'
   default_entity_type: 'Element'
+  default_snapshot_type: 'ingest'
   path_info: '@settings.tk-multi-publish2.path_info'
   publish_plugins: '@settings.tk-multi-publish2.ingest.publish_plugins'
   location: '@apps.tk-multi-publish2.location'

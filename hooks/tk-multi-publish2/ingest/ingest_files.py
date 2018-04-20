@@ -50,7 +50,9 @@ class IngestFilesPlugin(HookBaseClass):
                                   "tags": "tags", "sg_snapshot_id": "sg_snapshot_id"}
             },
             "snapshot_type_settings": {
-                "default_value": {"work_plate": "Element", "*": "Asset"}
+                "default_value": {"work_plate": "Element", "*": "Asset",
+                                  self.parent.settings["default_snapshot_type"]:
+                                      self.parent.settings["default_entity_type"]}
             }
         }
 
@@ -98,12 +100,12 @@ class IngestFilesPlugin(HookBaseClass):
         linked_entity_fields = ["sg_status_list"]
         linked_entity = self._find_linked_entity(item, task_settings, linked_entity_fields)
 
-        if linked_entity and status and linked_entity["sg_status_list"] is not None:
+        if linked_entity and status:
             conflict_info = (
-                "If you continue, this matching linked_entity will be updated to use a new PublishedFile"
-                "<pre>%s</pre>" % (pprint.pformat(linked_entity),)
+                "This matching %s Entity will be updated and also linked to a new PublishedFile"
+                "<pre>%s</pre>" % (item.properties["linked_entity_type"], pprint.pformat(linked_entity),)
             )
-            self.logger.warning(
+            self.logger.info(
                 "Found a matching %s in Shotgun for item %s" % (item.properties["linked_entity_type"], item.name),
                 extra={
                     "action_show_more_info": {
@@ -114,10 +116,23 @@ class IngestFilesPlugin(HookBaseClass):
                 }
             )
 
-        from dd.runtime import api
-        api.load("ipython")
-        from IPython import embed
-        embed()
+        elif status:
+            if item.properties["linked_entity_type"] == "Asset":
+                asset_type_status = self._create_asset_type(item, task_settings)
+                if asset_type_status:
+                    self.logger.info("Created %s asset type!" % item.properties["fields"]["snapshot_type"])
+
+                if asset_type_status is None:
+                    # failed to create the asset_type abort!
+                    return False
+
+                self.logger.info("%s entity will be created of type %s for item %s"
+                                 % (item.properties["linked_entity_type"],
+                                    item.properties["fields"]["snapshot_type"],
+                                    item.name))
+            else:
+                self.logger.info("%s entity will be created for item %s"
+                                 % (item.properties["linked_entity_type"], item.name))
 
         return status
 
@@ -159,6 +174,8 @@ class IngestFilesPlugin(HookBaseClass):
                     self.logger.error("Failed to link the PublishedFile and the %s entity for %s!" %
                                       (item.properties["linked_entity_type"], item.name))
             else:
+                # undo the linked_entity creation
+                self.undo(task_settings, item)
                 self.logger.error("PublishedFile not created successfully for %s!" % item.name)
         else:
             self.logger.error("Failed to create a %s entity for %s!" %
@@ -211,6 +228,8 @@ class IngestFilesPlugin(HookBaseClass):
         if linked_entity_data:
             try:
                 self.sgtk.shotgun.delete(linked_entity_data["type"], linked_entity_data["id"])
+                # pop the ingest_entity_data too!
+                item.properties.pop("ingest_entity_data")
             except Exception:
                 self.logger.error(
                     "Failed to delete %s Entity for %s" % (item.properties["linked_entity_type"], item.name),
@@ -222,6 +241,45 @@ class IngestFilesPlugin(HookBaseClass):
                         }
                     }
                 )
+
+    def _create_asset_type(self, item, task_settings):
+        """Updates the sg_asset_type schema on SG to add the snapshot_type, if it doesn't already exist.
+
+        :param item: Item to get the snapshot_type from
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the task_settings property. The values are `Setting`
+            instances.
+        :return: Status if the sg_asset_type schema got successfully updated or not.
+        """
+
+        if item.properties["linked_entity_type"] == "Asset":
+            sg_asset_type_schema = self.sgtk.shotgun.schema_field_read("Asset", "sg_asset_type")
+            existing_asset_types = sg_asset_type_schema["sg_asset_type"]["properties"]["valid_values"]["value"]
+            item_fields = item.properties["fields"]
+
+            snapshot_type = item_fields["snapshot_type"]
+
+            if snapshot_type not in existing_asset_types:
+                existing_asset_types.append(snapshot_type)
+                try:
+                    # update the schema for sg_asset_type
+                    return self.sgtk.shotgun.schema_field_update("Asset", "sg_asset_type",
+                                                                 {"valid_values": existing_asset_types})
+                except Exception as e:
+                    self.logger.error(
+                        "failed to updated sg_asset_type schema for item: %s" % item.name,
+                        extra={
+                            "action_show_more_info": {
+                                "label": "Show Error Log",
+                                "tooltip": "Show the error log",
+                                "text": traceback.format_exc()
+                            }
+                        }
+                    )
+                    return None
+            else:
+                return False
+
 
     def _resolve_linked_entity_type(self, item, task_settings):
         """
@@ -238,17 +296,12 @@ class IngestFilesPlugin(HookBaseClass):
 
         snapshot_settings = task_settings['snapshot_type_settings']
 
-        default_entity_type = self.parent.settings["default_entity_type"]
-
         item_fields = item.properties["fields"]
 
-        if "snapshot_type" in item_fields:
-            if item_fields["snapshot_type"] in snapshot_settings:
-                return snapshot_settings[item_fields["snapshot_type"]]
-            else:
-                return snapshot_settings["*"]
+        if item_fields["snapshot_type"] in snapshot_settings:
+            return snapshot_settings[item_fields["snapshot_type"]]
         else:
-            return default_entity_type
+            return snapshot_settings["*"]
 
     def _clear_linked_entity_status_list(self, item, task_settings):
         """
@@ -294,6 +347,7 @@ class IngestFilesPlugin(HookBaseClass):
             ['project', 'is', item.context.project],
             ['code', 'is', item.properties["publish_linked_entity_name"]]
         ]
+
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
                 sg_filters.append(['sg_shot', 'is', item.context.entity])
@@ -304,6 +358,13 @@ class IngestFilesPlugin(HookBaseClass):
 
         # add the linked_entity_type to item properties
         item.properties["linked_entity_type"] = self._resolve_linked_entity_type(item, task_settings)
+
+        item_fields = item.properties["fields"]
+
+        snapshot_type = item_fields["snapshot_type"]
+
+        if item.properties["linked_entity_type"] == "Asset":
+            sg_filters.append(['sg_asset_type', 'is', snapshot_type])
 
         result = self.sgtk.shotgun.find_one(
             entity_type=item.properties["linked_entity_type"],
@@ -358,9 +419,17 @@ class IngestFilesPlugin(HookBaseClass):
 
         data = dict(
             code=item.properties["publish_linked_entity_name"],
-            sg_client_name=item.name,
+            # TODO-- disabling this since this makes more sense on PublishedFile Now!
+            # sg_client_name=item.name,
             sg_status_list="ip"
         )
+
+        item_fields = item.properties["fields"]
+
+        snapshot_type = item_fields["snapshot_type"]
+
+        if item.properties["linked_entity_type"] == "Asset":
+            data["sg_asset_type"] = snapshot_type
 
         # all this is being handled by Version entity for the file types that need frame ranges!
         # frange = self._get_frame_range(item)
@@ -369,13 +438,14 @@ class IngestFilesPlugin(HookBaseClass):
 
         if item.context.entity:
             if item.context.entity["type"] == "Shot":
-                # data["shots"] = [item.context.entity]
                 data["sg_shot"] = item.context.entity
+                # search the corresponding sequence entity in additional entities
+                sequence_entity = [entity for entity in item.context.additional_entities
+                                   if entity["type"] == "Sequence"]
+                if sequence_entity:
+                    data["sg_sequence"] = sequence_entity[0]
             elif item.context.entity["type"] == "Sequence":
                 data["sg_sequence"] = item.context.entity
-
-        # add the linked_entity_type to item properties
-        item.properties["linked_entity_type"] = self._resolve_linked_entity_type(item, task_settings)
 
         try:
             if linked_entity:
