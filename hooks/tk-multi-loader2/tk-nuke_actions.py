@@ -275,7 +275,7 @@ class NukeActions(HookBaseClass):
         :returns: None if no range could be determined, otherwise (min, max)
         """
         # find a template that matches the path:
-
+        '''
         if sg_publish_data["entity"].get("type") == "Element":
             filters = [["id", "is", sg_publish_data["entity"].get("id")]]
             fields = ["cut_in", "cut_out"]
@@ -293,40 +293,41 @@ class NukeActions(HookBaseClass):
             else:
                 # last fallback method to read frames for a render
                 # by getting the frame numbers from the template fields
-                template = None
-                try:
-                    template = self.parent.sgtk.template_from_path(path)
-                except sgtk.TankError:
-                    pass
-                
-                if not template:
-                    return None
-                    
-                # get the fields and find all matching files:
-                fields = template.get_fields(path)
+                '''
+        template = None
+        try:
+            template = self.parent.sgtk.template_from_path(path)
+        except sgtk.TankError:
+            pass
 
-                # find frame numbers from these files:
-                frames = []
+        if not template:
+            return None
 
-                if "SEQ" in fields:
-                    files = self.parent.sgtk.paths_from_template(template, fields, ["SEQ", "eye"])
-                else:
-                    return None
-                
-                for file in files:
-                    fields = template.get_fields(file)
-                    if "SEQ" in fields:
-                        frame = fields.get("SEQ")
-                    else:
-                        frame = None
-                    
-                    if frame != None:
-                        frames.append(frame)
+        # get the fields and find all matching files:
+        fields = template.get_fields(path)
 
-                if not frames:
-                    return None
-                
-                # return the range
-                return (min(frames), max(frames))
+        # find frame numbers from these files:
+        frames = []
+
+        if "SEQ" in fields:
+            files = self.parent.sgtk.paths_from_template(template, fields, ["SEQ", "eye"])
+        else:
+            return None
+
+        for file in files:
+            fields = template.get_fields(file)
+            if "SEQ" in fields:
+                frame = fields.get("SEQ")
+            else:
+                frame = None
+
+            if frame != None:
+                frames.append(frame)
+
+        if not frames:
+            return None
+
+        # return the range
+        return (min(frames), max(frames))
 
 
