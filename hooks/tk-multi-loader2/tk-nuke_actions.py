@@ -213,6 +213,7 @@ class NukeActions(HookBaseClass):
         read_node["file"].fromUserText(path)
 
         # find the sequence range if it has one:
+
         seq_range = self._find_sequence_range(path, sg_publish_data)
 
         # to fetch the nuke prefs from pipeline

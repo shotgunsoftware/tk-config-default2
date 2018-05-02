@@ -1,49 +1,179 @@
+#  copy of /tools/package/sgtk_config/2.5.0/config/core/templates/ingest.yml
 keys:
-    # Shotgun Entity keys
-    Sequence.sg_client_name:
+    ingestImgExtension:
+        type: str
+        choices:
+            exr: exr
+            dpx: dpx
+            jpg: jpeg
+            png: png
+            tiff: tiff
+        default: exr
+        alias: extension
+
+    ingestSequence:
         type: str
         shotgun_entity_type: Sequence
         shotgun_field_name: sg_client_name
-        filter_by: alphanumeric
-        value_from_str_hook: 'name_converter'
-        edit_types:
-          - lower_case
-    Step.short_name:
-        type: str
-        shotgun_entity_type: Step
-        shotgun_field_name: short_name
-        filter_by: alphanumeric
+        filter_by: '^([A-Za-z]{3})$'
         value_from_str_hook: 'name_converter'
         edit_types:
           - upper_case
 
-    # Application-provided keys
-    ingest_name:
+    ingestShot:
+        type: str
+        shotgun_entity_type: Shot
+        shotgun_field_name: sg_client_name
+        filter_by: '^([A-Za-z]{3})([0-9]{6})$'
+        value_from_str_hook: 'name_converter'
+        edit_types:
+          - upper_case
+
+    ingestStep:
+        type: str
+        shotgun_entity_type: Step
+        shotgun_field_name: short_name
+        filter_by: '^([A-Za-z]+)$'
+
+    ingestVersion:
+        type: int
+        # we have different version specs coming from LA sometimes 2 or 3
+        # format_spec: '02'
+
+    ingestDateFolder:
+        type: timestamp
+        format_spec: '%Y%m%d'
+
+    # cdl specific keys
+    cdl_extension:
+        type: str
+        choices:
+            cc: cc
+        default: cc
+        alias: extension
+
+    cdl_name:
+        type: str
+        choices:
+            avid_grade: avid_grade
+            neutral_grade: neutral_grade
+        default: avid_grade
+        alias: name
+
+    ingestCdlName:
+        type: str
+        choices:
+            avidgrade: avidgrades
+            grade: grades
+        default: avidgrade
+
+    asperaFolderName:
+        type: str
+
+    packageName:
+        type: str
+
+    vendorStep:
+        type: str
+
+    subcontext:
+        type: str
+
+    # relevant fields from manifest
+    snapshot_type:
         type: str
         filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
-        value_from_str_hook: 'name_converter'
-        edit_types:
-          - underscore_to_camelcase
-    ingest_output:
-        type: str
-        filter_by: alphanumeric
-        value_from_str_hook: 'name_converter'
-        edit_types:
-          - replace
-        edits:
-            replace:
-              main: ""
-              grey: "_grey"
-              overlay: "_overlay"
-              cam: "camera"
 
 paths:
 
-    # sample template for name_converter
-    ingest_shot_publish_cache:              './{Sequence.sg_client_name}/{Shot}/SHARED/ANIM/{Step.short_name}/@ingest_shot_version_name.abc'
+    ingest_folder:                          './REF/CLIENT_VAULT/incoming/{ingestDateFolder}/{asperaFolderName}/{packageName}'
 
+    # template for parsing paths
+    ingest_shot_area:                       '@ingest_folder/{ingestSequence}/{Shot}/SHARED'
+    ingest_sequence_area:                   '@ingest_folder/{ingestSequence}/SHARED'
+    ingest_project_area:                    '@ingest_folder/SHARED'
+
+    # cdl paths
+    ingest_shot_area_cdl:                   '@ingest_shot_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
+    ingest_sequence_area_cdl:               '@ingest_sequence_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
+    ingest_project_area_cdl:                '@ingest_project_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
+
+    # image paths
+    ingest_shot_area_image:                 '@ingest_shot_area/IMG/{vendorStep}/{ingestShot}_{name}_v{ingestVersion}.{subcontext}'
+    ingest_sequence_area_image:             '@ingest_sequence_area/IMG/{vendorStep}/{ingestSequence}_{name}_v{ingestVersion}.{subcontext}'
+    ingest_project_area_image:              '@ingest_project_area/IMG/{vendorStep}/{name}_v{ingestVersion}.{subcontext}'
+
+    # templates for parsing files
+    ingest_shot_cdl:                        '@ingest_shot_area_cdl/{cdl_name}.{cdl_extension}'
+    ingest_sequence_cdl:                    '@ingest_sequence_area_cdl/{cdl_name}.{cdl_extension}'
+    ingest_project_cdl:                     '@ingest_project_area_cdl/{cdl_name}.{cdl_extension}'
+
+    ingest_shot_render:                     '@ingest_shot_area_image/@ingest_shot_input_name.{SEQ}.{ingestImgExtension}'
+    ingest_sequence_render:                 '@ingest_sequence_area_image/@ingest_sequence_input_name.{SEQ}.{ingestImgExtension}'
+    ingest_project_render:                  '@ingest_project_area_image/@ingest_project_input_name.{SEQ}.{ingestImgExtension}'
+
+    # templates for output files
+
+    # SCENES
+    ingest_project_output_scene:            '@project_publish_area_scene/{snapshot_type}/@ingest_project_output_name.{maya_extension}'
+    ingest_sequence_output_scene:           '@sequence_publish_area_scene/{snapshot_type}/@ingest_sequence_output_name.{maya_extension}'
+    ingest_shot_output_scene:               '@shot_publish_area_scene/{snapshot_type}/@ingest_shot_output_name.{maya_extension}'
+
+    # SCRIPTS
+    ingest_project_output_script:           '@project_publish_area_script/{snapshot_type}/@ingest_project_output_name.nk'
+    ingest_sequence_output_script:          '@sequence_publish_area_script/{snapshot_type}/@ingest_sequence_output_name.nk'
+    ingest_shot_output_script:              '@shot_publish_area_script/{snapshot_type}/@ingest_shot_output_name.nk'
+
+    # RENDERS
+    ingest_project_output_render:           '@project_publish_area_image/{snapshot_type}/@image_subdirs/@ingest_project_output_name.{SEQ}.{img_extension}'
+    ingest_sequence_output_render:          '@sequence_publish_area_image/{snapshot_type}/@image_subdirs/@ingest_sequence_output_name.{SEQ}.{img_extension}'
+    ingest_shot_output_render:              '@shot_publish_area_image/{snapshot_type}/@image_subdirs/@ingest_shot_output_name.{SEQ}.{img_extension}'
+
+    # MOVIES
+    ingest_project_output_movie:            '@project_publish_area_movie/{snapshot_type}/@ingest_project_output_name.mov'
+    ingest_sequence_output_movie:           '@sequence_publish_area_movie/{snapshot_type}/@ingest_sequence_output_name.mov'
+    ingest_shot_output_movie:               '@shot_publish_area_movie/{snapshot_type}/@ingest_shot_output_name.mov'
+
+    # CACHE
+    ingest_project_output_cache:            '@project_publish_area_anim/{snapshot_type}/@ingest_project_output_name.{geo_extension}'
+    ingest_sequence_output_cache:           '@sequence_publish_area_anim/{snapshot_type}/@ingest_sequence_output_name.{geo_extension}'
+    ingest_shot_output_cache:               '@shot_publish_area_anim/{snapshot_type}/@ingest_shot_output_name.{geo_extension}'
 
 strings:
 
-    # sample string for name_converter
-    ingest_shot_version_name:               '{Sequence.sg_client_name}_{Shot}_{Step.short_name}_{ingest_name}[-{ingest_output}].v{version}'
+    # strings for input names
+    ingest_shot_input_name:                 '{ingestShot}_{name}_v{ingestVersion}'
+    ingest_sequence_input_name:             '{ingestSequence}_{name}_v{ingestVersion}'
+    ingest_project_input_name:              '{ingestStep}_{name}_v{ingestVersion}'
+
+    # strings for publish names
+    ingest_shot_publish_name:               '{Sequence}_{Shot}_{Step}_{snapshot_type}_{name}[-{output}]'
+    ingest_sequence_publish_name:           '{Sequence}_{Step}_{snapshot_type}_{name}[-{output}]'
+    ingest_project_publish_name:            '{Step}_{snapshot_type}_{name}[-{output}]'
+
+    # strings for entity names
+    ingest_shot_entity_name:                '{Sequence}_{Shot}_{Step}_{snapshot_type}'
+    ingest_sequence_entity_name:            '{Sequence}_{Step}_{snapshot_type}'
+    ingest_project_entity_name:             '{Step}_{snapshot_type}'
+
+    # strings for output names
+    ingest_shot_output_name:                '@ingest_shot_publish_name.v{version}'
+    ingest_sequence_output_name:            '@ingest_sequence_publish_name.v{version}'
+    ingest_project_output_name:             '@ingest_project_publish_name.v{version}'
+
+    # strings for parsing files
+    ingest_shot_script:                     '@ingest_shot_input_name.nk'
+    ingest_sequence_script:                 '@ingest_sequence_input_name.nk'
+    ingest_project_script:                  '@ingest_project_input_name.nk'
+
+    ingest_shot_scene:                      '@ingest_shot_input_name.{maya_extension}'
+    ingest_sequence_scene:                  '@ingest_sequence_input_name.{maya_extension}'
+    ingest_project_scene:                   '@ingest_project_input_name.{maya_extension}'
+
+    ingest_shot_cache:                      '@ingest_shot_input_name.{geo_extension}'
+    ingest_sequence_cache:                  '@ingest_sequence_input_name.{geo_extension}'
+    ingest_project_cache:                   '@ingest_project_input_name.{geo_extension}'
+
+    ingest_shot_movie:                      '@ingest_shot_input_name.mov'
+    ingest_sequence_movie:                  '@ingest_sequence_input_name.mov'
+    ingest_project_movie:                   '@ingest_project_input_name.mov'
