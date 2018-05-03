@@ -13,6 +13,8 @@ Hook that defines all the available actions, broken down by publish type.
 """
 import sgtk
 import os
+import re
+import glob
 
 from code.nuke_preferences import NukePreferences
 
@@ -263,6 +265,57 @@ class NukeActions(HookBaseClass):
                 else:
                     return None
 
+    def _sequence_range_from_path(self, path):
+        """
+        Parses the file name in an attempt to determine the first and last
+        frame number of a sequence. This assumes some sort of common convention
+        for the file names, where the frame number is an integer at the end of
+        the basename, just ahead of the file extension, such as
+        file.0001.jpg, or file_001.jpg. We also check for input file names with
+        abstracted frame number tokens, such as file.####.jpg, or file.%04d.jpg.
+
+        :param str path: The file path to parse.
+
+        :returns: None if no range could be determined, otherwise (min, max)
+        :rtype: tuple or None
+        """
+        # This pattern will match the following at the end of a string and
+        # retain the frame number or frame token as group(1) in the resulting
+        # match object:
+        #
+        # 0001
+        # ####
+        # %04d
+        #
+        # The number of digits or hashes does not matter; we match as many as
+        # exist.
+        frame_pattern = re.compile(r"([0-9#]+|[%]0\dd)$")
+        root, ext = os.path.splitext(path)
+        match = re.search(frame_pattern, root)
+
+        # If we did not match, we don't know how to parse the file name, or there
+        # is no frame number to extract.
+        if not match:
+            return None
+
+        # We need to get all files that match the pattern from disk so that we
+        # can determine what the min and max frame number is.
+        glob_path = "%s%s" % (
+            re.sub(frame_pattern, "*", root),
+            ext,
+        )
+        files = glob.glob(glob_path)
+
+        # Our pattern from above matches against the file root, so we need
+        # to chop off the extension at the end.
+        file_roots = [os.path.splitext(f)[0] for f in files]
+
+        # We know that the search will result in a match at this point, otherwise
+        # the glob wouldn't have found the file. We can search and pull group 1
+        # to get the integer frame number from the file root name.
+        frames = [int(re.search(frame_pattern, f).group(1)) for f in file_roots]
+        return (min(frames), max(frames))
+
     def _find_sequence_range(self, path, sg_publish_data):
         """
         Helper method attempting to extract sequence information.
@@ -276,60 +329,43 @@ class NukeActions(HookBaseClass):
         :returns: None if no range could be determined, otherwise (min, max)
         """
         # find a template that matches the path:
+        template = None
+        try:
+            template = self.parent.sgtk.template_from_path(path)
+        except sgtk.TankError:
+            pass
 
-        if sg_publish_data["entity"].get("type") == "Element":
-            filters = [["id", "is", sg_publish_data["entity"].get("id")]]
-            fields = ["cut_in", "cut_out", "head_in", "head_out"]
-            item = self.sgtk.shotgun.find_one("Element", filters, fields)
+        if not template:
+            # If we don't have a template to take advantage of, then
+            # we are forced to do some rough parsing ourself to try
+            # to determine the frame range.
+            return self._sequence_range_from_path(path)
 
-            if item.get("head_in") and item.get("head_out"):
-                return (item.get("head_in", 1001), item.get("head_out", 1001))
-            return (item.get("cut_in", 1001), item.get("cut_out", 1001))
+        # get the fields and find all matching files:
+        fields = template.get_fields(path)
+
+        # find frame numbers from these files:
+        frames = []
+
+        if "SEQ" in fields:
+            files = self.parent.sgtk.paths_from_template(template, fields, ["SEQ", "eye"])
         else:
-            if sg_publish_data["version"]:
-                entity_type = sg_publish_data["version"].get("type")
-                filters = [["id", "is", sg_publish_data["version"].get("id")]]
-                fields = ["sg_first_frame", "sg_last_frame"]
-                item = self.sgtk.shotgun.find_one(entity_type, filters, fields)
+            return None
 
-                return (item.get("sg_first_frame", 1001), item.get("sg_last_frame", 1001))
+        for file in files:
+            fields = template.get_fields(file)
+            if "SEQ" in fields:
+                frame = fields.get("SEQ")
             else:
-                # last fallback method to read frames for a render
-                # by getting the frame numbers from the template fields
-                template = None
-                try:
-                    template = self.parent.sgtk.template_from_path(path)
-                except sgtk.TankError:
-                    pass
-                
-                if not template:
-                    return None
-                    
-                # get the fields and find all matching files:
-                fields = template.get_fields(path)
+                frame = None
 
-                # find frame numbers from these files:
-                frames = []
+            if frame != None:
+                frames.append(frame)
 
-                if "SEQ" in fields:
-                    files = self.parent.sgtk.paths_from_template(template, fields, ["SEQ", "eye"])
-                else:
-                    return None
-                
-                for file in files:
-                    fields = template.get_fields(file)
-                    if "SEQ" in fields:
-                        frame = fields.get("SEQ")
-                    else:
-                        frame = None
-                    
-                    if frame != None:
-                        frames.append(frame)
+        if not frames:
+            return None
 
-                if not frames:
-                    return None
-                
-                # return the range
-                return (min(frames), max(frames))
+        # return the range
+        return (min(frames), max(frames))
 
 
