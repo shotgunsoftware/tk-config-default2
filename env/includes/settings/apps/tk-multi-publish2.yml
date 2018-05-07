@@ -31,7 +31,7 @@ settings.tk-multi-publish2.maya.create_version:     '@settings.tk-multi-publish2
 settings.tk-multi-publish2.maya.upload_version:     '@settings.tk-multi-publish2.basic.upload_version'
 
 settings.tk-multi-publish2.nuke.collector:          '@settings.tk-multi-publish2.basic.collector:{self}/nuke/collector.py'
-settings.tk-multi-publish2.nuke.publish_files:      '@settings.tk-multi-publish2.basic.publish_files:{self}/nuke/publish_files.py'
+settings.tk-multi-publish2.nuke.publish_files:      '@settings.tk-multi-publish2.basic.publish_files:{self}/nuke/publish_files.py:{config}/tk-multi-publish2/nuke/publish_files.py'
 settings.tk-multi-publish2.nuke.create_version:     '@settings.tk-multi-publish2.basic.create_version:{self}/nuke/create_version.py'
 settings.tk-multi-publish2.nuke.upload_version:     '@settings.tk-multi-publish2.basic.upload_version'
 
