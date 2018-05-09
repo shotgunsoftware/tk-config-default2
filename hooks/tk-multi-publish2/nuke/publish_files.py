@@ -54,13 +54,13 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         # If there are no missing frames, then checking if the first and last frames match with root first and last
         # Checking with root because _sync_frame_range() will ensure root is up to date with shotgun
         if missing_frames:
-            self.logger.error("Incomplete renders! All the frames are not rendered.")
+            self.logger.warning("Incomplete renders! All the frames are not rendered.")
             return False
         else:
             first_rendered_frame = info_by_path.get(lss_path)['frame_range'][0]
             last_rendered_frame = info_by_path.get(lss_path)['frame_range'][1]
             if (first_rendered_frame != root.firstFrame()) or (last_rendered_frame != root.lastFrame()):
-                self.logger.error("Incomplete renders! All the frames are not rendered.")
+                self.logger.warning("Incomplete renders! All the frames are not rendered.")
                 return False
             return True
 
@@ -96,7 +96,7 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
             # compare if the frame range set at root level is same as the shotgun cut_in, cut_out
             root = nuke.Root()
             if root.firstFrame() != data[in_field] or root.lastFrame() != data[out_field]:
-                self.logger.error("Frame range not synced with Shotgun.")
+                self.logger.warning("Frame range not synced with Shotgun.")
                 return False
             return True
         return True
