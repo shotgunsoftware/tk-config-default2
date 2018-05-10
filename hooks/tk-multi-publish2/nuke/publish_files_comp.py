@@ -54,13 +54,16 @@ class NukePublishFilesDDCompValidationPlugin(HookBaseClass):
         # If there are no missing frames, then checking if the first and last frames match with root first and last
         # Checking with root because _sync_frame_range() will ensure root is up to date with shotgun
         if missing_frames:
-            self.logger.error("Incomplete renders! All the frames are not rendered.")
+            self.logger.error("Renders Mismatch! Incomplete renders on disk.")
             return False
         else:
             first_rendered_frame = info_by_path.get(lss_path)['frame_range'][0]
             last_rendered_frame = info_by_path.get(lss_path)['frame_range'][1]
             if (first_rendered_frame != root.firstFrame()) or (last_rendered_frame != root.lastFrame()):
-                self.logger.error("Incomplete renders! All the frames are not rendered.")
+                self.logger.error("Renders Mismatch! Incomplete renders on disk.")
+                return False
+            elif (first_rendered_frame > root.firstFrame()) or (last_rendered_frame > root.lastFrame()):
+                self.logger.error("Renders Mismatch! Extra renders on disk.")
                 return False
             return True
 
@@ -101,6 +104,30 @@ class NukePublishFilesDDCompValidationPlugin(HookBaseClass):
             return True
         return True
 
+    def _bbsize(self, item):
+        """
+        Checks for oversized bounding box for shotgun write nodes.
+
+        :param item: Item to process
+        :return:True if all the write nodes have bounding boxes within limits
+        """
+        node = item.properties['node']
+
+        bb = node.bbox()  # write node bbox
+        bb_height = bb.h()  # bbox height
+        bb_width = bb.w()  # bbox width
+
+        node_h = node.height()  # write node height
+        node_w = node.width()  # write node width
+        tolerance_h = (bb_height - node_h) / node_h * 100
+        tolerance_w = (bb_width - node_w) / node_w * 100
+
+        # Check if the size if over 5%(tolerance limit)
+        if tolerance_h > 5 or tolerance_w > 5:
+            self.logger.error(
+                "Bounding Box resolution over the tolerance limit for write node.")
+            return False
+        return True
 
     def validate(self, task_settings, item):
         """
@@ -115,10 +142,11 @@ class NukePublishFilesDDCompValidationPlugin(HookBaseClass):
         """
         status = True
         # Segregating the checks, specifically for write nodes and for general nuke script
-        if item.type == 'file.nuke':
-            status = self._sync_frame_range(item) and status
-        else:
+        if item.type != 'file.nuke':
+            status = self._bbsize(item) and status
             status = self._framerange_to_be_published(item) and status
+            if item.properties['node']['tank_channel'].value() == 'main':
+                status = self._sync_frame_range(item) and status
 
         if not status:
             return status

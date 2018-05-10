@@ -54,15 +54,18 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         # If there are no missing frames, then checking if the first and last frames match with root first and last
         # Checking with root because _sync_frame_range() will ensure root is up to date with shotgun
         if missing_frames:
-            self.logger.warning("Incomplete renders! All the frames are not rendered.")
-            return False
+            self.logger.warning("Renders Mismatch! Incomplete renders on disk.")
+            nuke.message("WARNING!  ---->  "+item.properties['node'].name()+"\nRenders Mismatch! Incomplete renders on disk.")
         else:
             first_rendered_frame = info_by_path.get(lss_path)['frame_range'][0]
             last_rendered_frame = info_by_path.get(lss_path)['frame_range'][1]
-            if (first_rendered_frame != root.firstFrame()) or (last_rendered_frame != root.lastFrame()):
-                self.logger.warning("Incomplete renders! All the frames are not rendered.")
-                return False
-            return True
+            if (first_rendered_frame < root.firstFrame()) or (last_rendered_frame < root.lastFrame()):
+                self.logger.warning("Renders Mismatch! Incomplete renders on disk.")
+                nuke.message("WARNING!  ---->  "+item.properties['node'].name()+"\nRenders Mismatch! Incomplete renders on disk.")
+            elif (first_rendered_frame > root.firstFrame()) or (last_rendered_frame > root.lastFrame()):
+                self.logger.warning("Renders Mismatch! Extra renders on disk.")
+                nuke.message("WARNING!  ---->  "+item.properties['node'].name()+"\nRenders Mismatch! Extra renders on disk.")
+        return True
 
 
     def _sync_frame_range(self, item):
@@ -97,8 +100,7 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
             root = nuke.Root()
             if root.firstFrame() != data[in_field] or root.lastFrame() != data[out_field]:
                 self.logger.warning("Frame range not synced with Shotgun.")
-                return False
-            return True
+                nuke.message("WARNING! Frame range not synced with Shotgun.")
         return True
 
 
@@ -217,30 +219,6 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
             return False
         return True
 
-    def _bbsize(self, item):
-        """
-        Checks for oversized bounding box for shotgun write nodes.
-
-        :param item: Item to process
-        :return:True if all the write nodes have bounding boxes within limits
-        """
-        node = item.properties['node']
-
-        bb = node.bbox()  # write node bbox
-        bb_height = bb.h()  # bbox height
-        bb_width = bb.w()  # bbox width
-
-        node_h = node.height()  # write node height
-        node_w = node.width()  # write node width
-        tolerance_h = (bb_height - node_h) / node_h * 100
-        tolerance_w = (bb_width - node_w) / node_w * 100
-
-        # Check if the size if over 5%(tolerance limit)
-        if tolerance_h > 5 or tolerance_w > 5:
-            self.logger.error(
-                "Bounding Box resolution over the tolerance limit for write node.")
-            return False
-        return True
 
     def validate(self, task_settings, item):
         """
@@ -259,7 +237,6 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
             status = self._non_sgtk_writes() and status
             status = self._sync_frame_range(item) and status
         else:
-            status = self._bbsize(item) and status
             status = self._read_and_camera_file_paths(item) and status
             status = self._framerange_to_be_published(item) and status
 
