@@ -350,7 +350,9 @@ class NukeActions(HookBaseClass):
         if "SEQ" in fields:
             files = self.parent.sgtk.paths_from_template(template, fields, ["SEQ", "eye"])
         else:
-            return None
+            # Ticket #655: older paths match wrong templates,
+            # so fall back on path parsing
+            return self._sequence_range_from_path(path)
 
         for file in files:
             fields = template.get_fields(file)
