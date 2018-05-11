@@ -233,6 +233,8 @@ settings.tk-nuke.nukestudio.project:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
+    tk-nuke-quickreview:
+      location: "@apps.tk-nuke-quickreview.location"
     tk-hiero-openinshotgun:
       location: "@apps.tk-hiero-openinshotgun.location"
     tk-hiero-export: "@settings.tk-hiero-export"
