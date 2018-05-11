@@ -44,21 +44,7 @@ keys:
         type: timestamp
         format_spec: '%Y%m%d'
 
-    # cdl specific keys
-    cdl_extension:
-        type: str
-        choices:
-            cc: cc
-        default: cc
-        alias: extension
-
-    cdl_name:
-        type: str
-        choices:
-            avid_grade: avid_grade
-            neutral_grade: neutral_grade
-        default: avid_grade
-        alias: name
+    # removed duplicate cdl keys, moved to templates.yml
 
     ingestCdlName:
         type: str
@@ -104,9 +90,9 @@ paths:
     ingest_project_area_image:              '@ingest_project_area/IMG/{vendorStep}/{name}_v{ingestVersion}.{subcontext}'
 
     # templates for parsing files
-    ingest_shot_cdl:                        '@ingest_shot_area_cdl/{cdl_name}.{cdl_extension}'
-    ingest_sequence_cdl:                    '@ingest_sequence_area_cdl/{cdl_name}.{cdl_extension}'
-    ingest_project_cdl:                     '@ingest_project_area_cdl/{cdl_name}.{cdl_extension}'
+    ingest_shot_cdl:                        '@ingest_shot_area_cdl/{name}.{cdl_extension}'
+    ingest_sequence_cdl:                    '@ingest_sequence_area_cdl/{name}.{cdl_extension}'
+    ingest_project_cdl:                     '@ingest_project_area_cdl/{name}.{cdl_extension}'
 
     ingest_shot_render:                     '@ingest_shot_area_image/@ingest_shot_input_name.{SEQ}.{ingestImgExtension}'
     ingest_sequence_render:                 '@ingest_sequence_area_image/@ingest_sequence_input_name.{SEQ}.{ingestImgExtension}'
