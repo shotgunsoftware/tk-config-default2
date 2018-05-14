@@ -47,13 +47,13 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.18.3
+  version: v1.18.4
 
 # publish2
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.1.0
+  version: v2.1.4
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.4
+  version: v0.11.5
 
 # ---- Shotgun apps
 
