@@ -39,6 +39,8 @@ settings.tk-nuke.hiero.project:
     tk-hiero-openinshotgun:
       location: "@apps.tk-hiero-openinshotgun.location"
     tk-hiero-export: "@settings.tk-hiero-export"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio.project"
   # engine settings
   bin_context_menu:
   - app_instance: tk-multi-workfiles2
@@ -238,6 +240,8 @@ settings.tk-nuke.nukestudio.project:
     tk-hiero-openinshotgun:
       location: "@apps.tk-hiero-openinshotgun.location"
     tk-hiero-export: "@settings.tk-hiero-export"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio.project"
   bin_context_menu:
   - app_instance: tk-multi-workfiles2
     keep_in_menu: false
