@@ -30,3 +30,4 @@ settings.tk-multi-reviewsubmission:
   burnin_path: 'reviewsubmission_burnin_nuke_file'
   render_script: 'reviewsubmission_render_script_path'
   preprocess_nuke_hook: '{config}/tk-multi-reviewsubmission/preprocess_nuke.py'
+  mov_has_slate: '@settings.tk-multi-reviewsubmission.mov_has_slate'
