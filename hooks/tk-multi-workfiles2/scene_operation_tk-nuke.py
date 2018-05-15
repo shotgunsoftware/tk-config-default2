@@ -171,8 +171,8 @@ class SceneOperation(HookClass):
         except KeyError as ke:
             error_message = "Unable to find {} in {} at this time. " \
                             "Not syncing frame range automatically.".format(ke, engine.name)
-            self.parent.logger.error(error_message)
-            QtGui.QMessageBox.warning(None, "Set Frame Range App unavailable", error_message)
+            # assume it is sequence/asset entity and do not give a pop-up warning
+            self.parent.logger.warning(error_message)
         else:
             try:
                 frame_range_app.run_app()

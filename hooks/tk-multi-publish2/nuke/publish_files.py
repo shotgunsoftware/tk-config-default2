@@ -81,6 +81,11 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         # checking entity validity since it can be invalid/empty in case of Project Level item
         if entity:
             frame_range_app = self.parent.engine.apps.get("tk-multi-setframerange")
+            if not frame_range_app:
+                # return valid for asset/sequence entities
+                self.logger.warning("Unable to find tk-multi-setframerange app. "
+                                    "Not validating frame range.")
+                return True
 
             sg_entity_type = entity["type"]
             sg_filters = [["id", "is", entity["id"]]]
