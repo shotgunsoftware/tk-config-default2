@@ -106,17 +106,9 @@ keys:
         type: str
         choices:
             cc: cc
+            ccc: ccc
         default: cc
         alias: extension
-
-    cdl_name:
-        type: str
-        choices:
-            avid_grade: avid_grade
-            neutral_grade: neutral_grade
-        default: avid_grade
-        alias: name
-
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -267,13 +259,15 @@ paths:
 
     # CDL PUBLISHING
 
-    project_publish_cdl:                    '@project_publish_area_cdl/grades/grade_v{version}/{cdl_name}.{cdl_extension}'
-    sequence_publish_cdl:                   '@sequence_publish_area_cdl/grades/grade_v{version}/{cdl_name}.{cdl_extension}'
-    shot_publish_cdl:                       '@shot_publish_area_cdl/grades/grade_v{version}/{cdl_name}.{cdl_extension}'
+    # since we only support cc publishing currently
 
-    project_publish_cdl_symlink:            '@project_publish_area_cdl/grades/grade/{cdl_name}.{cdl_extension}'
-    sequence_publish_cdl_symlink:           '@sequence_publish_area_cdl/grades/grade/{cdl_name}.{cdl_extension}'
-    shot_publish_cdl_symlink:               '@shot_publish_area_cdl/grades/grade/{cdl_name}.{cdl_extension}'
+    project_publish_cdl:                    '@project_publish_area_cdl/grades/grade_v{version}/{name}.cc'
+    sequence_publish_cdl:                   '@sequence_publish_area_cdl/grades/grade_v{version}/{name}.cc'
+    shot_publish_cdl:                       '@shot_publish_area_cdl/grades/grade_v{version}/{name}.cc'
+
+    project_publish_cdl_symlink:            '@project_publish_area_cdl/grades/grade/{name}.cc'
+    sequence_publish_cdl_symlink:           '@sequence_publish_area_cdl/grades/grade/{name}.cc'
+    shot_publish_cdl_symlink:               '@shot_publish_area_cdl/grades/grade/{name}.cc'
 
 #
 # The aliases section allows you to map one template to another without worrying

@@ -127,6 +127,12 @@ class IngestCollectorPlugin(HookBaseClass):
             fields = file_item.properties["fields"]
             if "snapshot_type" not in fields:
                 fields["snapshot_type"] = self.parent.settings["default_snapshot_type"]
+
+                # CDL files should always be published as Asset entity with nuke_avidgrade asset_type
+                # this is to match organic, and also for Avid grade lookup on shotgun
+                if file_item.type == "file.cdl":
+                    fields["snapshot_type"] = "nuke_avidgrade"
+
                 self.logger.info(
                     "Injected snapshot_type field for item: %s" % file_item.name,
                     extra={

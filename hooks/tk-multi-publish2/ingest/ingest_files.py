@@ -78,6 +78,37 @@ class IngestFilesPlugin(HookBaseClass):
         Once the ingestion is complete these files can be accessed using the Loader window within each DCC.
         """
 
+    def accept(self, task_settings, item):
+        """
+        Method called by the publisher to determine if an item is of any
+        interest to this plugin. Only items matching the filters defined via the
+        item_filters property will be presented to this method.
+
+        A publish task will be generated for each item accepted here. Returns a
+        dictionary with the following booleans:
+
+            - accepted: Indicates if the plugin is interested in this value at
+                all. Required.
+            - enabled: If True, the plugin will be enabled in the UI, otherwise
+                it will be disabled. Optional, True by default.
+            - visible: If True, the plugin will be visible in the UI, otherwise
+                it will be hidden. Optional, True by default.
+            - checked: If True, the plugin will be checked in the UI, otherwise
+                it will be unchecked. Optional, True by default.
+
+        :param item: Item to process
+
+        :returns: dictionary with boolean keys accepted, required and enabled
+        """
+
+        accept_data = super(IngestFilesPlugin, self).accept(task_settings, item)
+
+        # this plugin shouldn't accept CDL files! Ever!
+        if item.type == "file.cdl":
+            accept_data["accepted"] = False
+
+        return accept_data
+
     def validate(self, task_settings, item):
         """
         Validates the given item to check that it is ok to publish.
