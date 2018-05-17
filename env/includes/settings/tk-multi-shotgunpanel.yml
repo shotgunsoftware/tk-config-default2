@@ -141,6 +141,66 @@ settings.tk-multi-shotgunpanel.nuke:
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
 
+# nuke studio
+
+settings.tk-multi-shotgunpanel.nukestudio:
+  action_mappings:
+    PublishedFile:
+    - actions: [read_node]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [read_node, clip_import]
+      filters: {published_file_type: Flame Render}
+    - actions: [read_node, clip_import]
+      filters: {published_file_type: Flame Quicktime}
+    - actions: [read_node, clip_import]
+      filters: {published_file_type: Image}
+    - actions: [read_node, clip_import]
+      filters: {published_file_type: Movie}
+    - actions: [script_import]
+      filters: {published_file_type: Nuke Script}
+    - actions: [open_project]
+      filters: {published_file_type: NukeStudio Project}
+    - actions: [read_node]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [read_node, clip_import]
+      filters: {published_file_type: Rendered Image}
+    - actions: [read_node]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# hiero
+
+settings.tk-multi-shotgunpanel.hiero:
+  action_mappings:
+    PublishedFile:
+    - actions: [clip_import]
+      filters: {published_file_type: Flame Render}
+    - actions: [clip_import]
+      filters: {published_file_type: Flame Quicktime}
+    - actions: [clip_import]
+      filters: {published_file_type: Image}
+    - actions: [clip_import]
+      filters: {published_file_type: Movie}
+    - actions: [clip_import]
+      filters: {published_file_type: Rendered Image}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
 # photoshop
 settings.tk-multi-shotgunpanel.photoshop:
   actions_hook: "{self}/general_actions.py"
