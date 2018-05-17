@@ -12,6 +12,8 @@ import os
 import maya.cmds as cmds
 import maya.mel as mel
 import sgtk
+from sgtk.platform.qt import QtGui
+
 from dd.runtime import api
 api.load('frangetools')
 import frangetools
@@ -132,11 +134,15 @@ class MayaPublishFilesDDIntegValidationPlugin(HookBaseClass):
             animation_start = pm.playbackOptions(q=True, animationStartTime=True)
             animation_end = pm.playbackOptions(q=True, animationEndTime=True)
             if playback_start != data[in_field] or playback_end != data[out_field]:
-                self.logger.error("Frame range not synced with Shotgun.")
-                return False
+                self.logger.warning("Frame range not synced with Shotgun.")
+                QtGui.QMessageBox.warning(None, "Frame range mismatch!",
+                                          "WARNING! Frame range not synced with Shotgun.")
+                return True
             if animation_start != data[in_field] or animation_end != data[out_field]:
-                self.logger.error("Frame range not synced with Shotgun.")
-                return False
+                self.logger.warning("Frame range not synced with Shotgun.")
+                QtGui.QMessageBox.warning(None, "Frame range mismatch!",
+                                          "WARNING! Frame range not synced with Shotgun.")
+                return True
             return True
         return True
 
