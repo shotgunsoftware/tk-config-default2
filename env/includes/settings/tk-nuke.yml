@@ -33,12 +33,14 @@ settings.tk-nuke.hiero.project:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.hiero"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
     tk-hiero-openinshotgun:
       location: "@apps.tk-hiero-openinshotgun.location"
     tk-hiero-export: "@settings.tk-hiero-export"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio.project"
   # engine settings
   bin_context_menu:
   - app_instance: tk-multi-workfiles2
@@ -196,7 +198,7 @@ settings.tk-nuke.nukestudio.asset_step:
     tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.asset"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nukestudio"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
     tk-nuke-quickreview:
@@ -230,7 +232,7 @@ settings.tk-nuke.nukestudio.project:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nukestudio"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
     tk-nuke-quickreview:
@@ -238,6 +240,8 @@ settings.tk-nuke.nukestudio.project:
     tk-hiero-openinshotgun:
       location: "@apps.tk-hiero-openinshotgun.location"
     tk-hiero-export: "@settings.tk-hiero-export"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio.project"
   bin_context_menu:
   - app_instance: tk-multi-workfiles2
     keep_in_menu: false
@@ -282,7 +286,7 @@ settings.tk-nuke.nukestudio.shot_step:
     tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.shot"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nukestudio"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
     tk-nuke-quickreview:
