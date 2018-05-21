@@ -150,15 +150,26 @@ class SceneOperation(HookClass):
                       50: 'palf',
                       60: 'ntscf'}
         try:
-            try:
-                cmds.currentUnit(time=time_units[show_prefs["show_settings"]["fps"]])
-            except KeyError:
-                cmds.currentUnit(time="{}fps".format(show_prefs["show_settings"]["fps"]))
+            fps = show_prefs["show_settings"]["fps"]
         except KeyError as ke:
             warning_message = "Unable to find {} in show preferences. " \
                               "Not setting fps.".format(ke)
             self.parent.logger.warning(warning_message)
             QtGui.QMessageBox.warning(None, "FPS not set", warning_message)
+        else:
+            try:
+                try:
+                    cmds.currentUnit(time=time_units[fps])
+                except KeyError:
+                    # unable to find the fps value in our lookup dict.
+                    # try setting the actual value itself, in case Maya version is >=2017
+                    cmds.currentUnit(time="{}fps".format(fps))
+            except RuntimeError as runtime_error:
+                self.parent.logger.error(runtime_error)
+                QtGui.QMessageBox.warning(None,
+                                          "FPS not set",
+                                          "RuntimeError: {}.\n"
+                                          "See script editor for details.".format(runtime_error))
 
         # get resolution and set render defaults
         try:
