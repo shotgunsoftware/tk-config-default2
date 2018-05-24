@@ -23,6 +23,14 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
     """
     Inherits from NukePublishFilesPlugin
     """
+    def __init__(self, parent, **kwargs):
+        """
+        Construction
+        """
+        # call base init
+        super(NukePublishFilesDDValidationPlugin, self).__init__(parent, **kwargs)
+        self.visited_dict = {}
+
     def _build_dict(self, seq, key):
         """
         Creating a dictionary based on a key.
@@ -145,22 +153,46 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
             return True
 
 
-    def _collect_nodes_in_graph(self, nodes):
-        """
-        For each WriteTank node, traverse the node graph and get the associated nodes.
+    # def _collect_nodes_in_graph(self, nodes):
+    #     """
+    #     For each WriteTank node, traverse the node graph and get the associated nodes.
+    #
+    #     :param nodes: WriteTank node
+    #     :return: list of associated nodes
+    #     """
+    #     dependency_list = list(itertools.chain(*(node.dependencies() for node in nodes)))
+    #     if not dependency_list:
+    #         return list(set(nodes))
+    #     else:
+    #         depend = self._collect_nodes_in_graph(dependency_list)
+    #         for item in depend:
+    #             nodes.append(item)
+    #         return list(set(nodes))
 
-        :param nodes: WriteTank node
-        :return: list of associated nodes
-        """
-        dependency_list = list(itertools.chain(*(node.dependencies() for node in nodes)))
-        if not dependency_list:
-            return list(set(nodes))
-        else:
-            depend = self._collect_nodes_in_graph(dependency_list)
-            for item in depend:
-                nodes.append(item)
-            return list(set(nodes))
+    def _collect_nodes_in_graph(self, node, file_paths, valid_paths, show_path):
+        if self.visited_dict[node] == 0:
+            # check for file parameter in the node if its neither a dot nor disabled
+            # get the file path if exists
+            # validate the file path
+            if (node.Class() != 'Dot') and (node['disable'].value() == 0):
+                if self._check_for_knob(node, 'file'):
+                    node_file_path = node['file'].value()
+                    if node_file_path:
+                        sg_data = sgtk.util.find_publish(self.parent.sgtk, [node_file_path])
+                        # if the file is in the show location but not at SHARED or on shotgun, unpublished
+                        # if the file is not in show location as well, invalid
+                        if (show_path in node_file_path) and not sg_data and not (any(path in node_file_path for path in valid_paths)):
+                            file_paths['unpublished'].append(node)
+                        elif show_path not in node_file_path:
+                            file_paths['invalid'].append(node)
+            # set visited to 1 for the node so as not to revisit
+            self.visited_dict[node] = 1
+            dep = node.dependencies()
+            if dep:
+                for item in dep:
+                    self._collect_nodes_in_graph(item, file_paths, valid_paths, show_path)
 
+        return file_paths
 
     def _read_and_camera_file_paths(self, item):
         """
@@ -172,46 +204,48 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         :param item: Item to process
         :return: True if paths are published or valid false otherwise
         """
-        show = os.path.join(os.environ['DD_SHOWS_ROOT'], os.environ['DD_SHOW'])
-        valid_paths = [show, os.path.join(os.environ['DD_ROOT'], 'library')]
-        paths = ""
+        context = item.context
+        fields = context.as_template_fields()
 
-        publisher = self.parent
-        unpublished = ""
+        show = os.path.join(os.environ['DD_SHOWS_ROOT'], os.environ['DD_SHOW'])
+        valid_paths = {
+            'dd_library': os.path.join(os.environ['DD_ROOT'], 'library'),           # dd library path
+            'show_pub': os.path.join(show, 'SHARED'),                               # show published location
+            }
+        if 'Sequence' in fields:
+            valid_paths['seq'] = os.path.join(show, fields['Sequence'])             # seq published location
+        if 'Shot' in fields:
+            valid_paths['shot'] = os.path.join(valid_paths['seq'], fields['Shot'])  # shot published location
 
         # Collect all the nodes associated with a write node
         # For all the read, readgeo and camera nodes present in the write node graph, check for 'file' knob.
         # If its populated, get the file path.
-        related_nodes = self._collect_nodes_in_graph([item.properties['node']])
-        node_type_list = ["Read", "ReadGeo2", "Camera2"]
+        file_paths = {'unpublished': [],
+                      'invalid': [],
+                      }
 
-        for index, fileNode in enumerate(related_nodes, 0):
-            if (fileNode.Class() in node_type_list) and self._check_for_knob(fileNode, 'file'):
-                node_name = related_nodes[index].name()
-                node_file_path = fileNode['file'].value()
-                sg_data = sgtk.util.find_publish(publisher.sgtk, [node_file_path])
-                if node_file_path:
-                    # Check if the file(s) loaded are published
-                    # If they are not published, they should at least be from valid locations
-                    if sg_data:
-                        continue
-                    elif any(path in node_file_path for path in valid_paths):
-                        unpublished += "\n" + node_name + "  --->  " + node_file_path
-                    else:
-                        paths += "\n" + node_name + "  --->  " + node_file_path
+        self._collect_nodes_in_graph(item.properties['node'], file_paths, valid_paths, show)
 
-        if unpublished:
-            self.logger.warning(
-                "Unpublished files found.",
-                extra={
-                    "action_show_more_info": {
-                        "label": "Show Info",
-                        "tooltip": "Show unpublished files",
-                        "text": "Unpublished files.\n{}".format(unpublished)
-                    }
-                }
-            )
-        if paths:
+        # node_type_list = ["Read", "ReadGeo2", "Camera2"]
+        # for index, fileNode in enumerate(related_nodes, 0):
+        #     if (fileNode.Class() in node_type_list) and self._check_for_knob(fileNode, 'file'):
+        #         node_name = related_nodes[index].name()
+        #         node_file_path = fileNode['file'].value()
+        #         sg_data = sgtk.util.find_publish(publisher.sgtk, [node_file_path])
+        #         if node_file_path:
+        #             # Check if the file(s) loaded are published
+        #             # If they are not published, they should at least be from valid locations
+        #             if sg_data:
+        #                 continue
+        #             elif any(path in node_file_path for path in valid_paths):
+        #                 unpublished += "\n" + node_name + "  --->  " + node_file_path
+        #             else:
+        #                 paths += "\n" + node_name + "  --->  " + node_file_path
+
+        if file_paths['invalid']:
+            paths = ""
+            for item in file_paths['invalid']:
+                paths += "\n" + item.name() + "  --->  " + item['file'].value()
             self.logger.error("Invalid paths! Try loading from shotgun.",
                               extra={
                                   "action_show_more_info": {
@@ -222,6 +256,23 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
                               }
                               )
             return False
+
+        if file_paths['unpublished']:
+            unpublished = ""
+            for path in file_paths['unpublished']:
+                unpublished += "\n" + path.name() + "  --->  " + path['file'].value()
+            self.logger.warning(
+                "Unpublished files found.",
+                extra={
+                    "action_show_more_info": {
+                        "label": "Show Info",
+                        "tooltip": "Show unpublished files",
+                        "text": "Unpublished files.\n{}".format(unpublished)
+                    }
+                }
+            )
+            nuke.message("WARNING!  ---->  {} node".format(item.properties[
+                'node'].name()) + "\nUnpublished files found.\n{}".format(unpublished))
         return True
 
 
@@ -239,6 +290,10 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         status = True
         # Segregating the checks, specifically for write nodes and for general nuke script
         if item.type == 'file.nuke':
+
+            allnodes = nuke.allNodes()
+            self.visited_dict = {node: 0 for node in allnodes}
+
             status = self._non_sgtk_writes() and status
             status = self._sync_frame_range(item) and status
         else:
