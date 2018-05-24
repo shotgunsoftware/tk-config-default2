@@ -50,7 +50,7 @@ class IngestFilesPlugin(HookBaseClass):
                                   "tags": "tags", "sg_snapshot_id": "sg_snapshot_id"}
             },
             "snapshot_type_settings": {
-                "default_value": {"work_plate": "Element", "*": "Asset",
+                "default_value": {"work_plate": "Element", "avidref_qt": "Element", "*": "Asset",
                                   self.parent.settings["default_snapshot_type"]:
                                       self.parent.settings["default_entity_type"]}
             }

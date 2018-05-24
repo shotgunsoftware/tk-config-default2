@@ -58,6 +58,13 @@ class IngestCollectorPlugin(HookBaseClass):
         part of its environment configuration.
         """
         schema = super(IngestCollectorPlugin, self).settings_schema
+        items_schema = schema["Item Types"]["values"]["items"]
+        items_schema["default_snapshot_type"] = {
+            "type": "str",
+            "description": "",
+            "allows_empty": True,
+            "default_value": self.parent.settings["default_snapshot_type"],
+        }
         schema["Manifest SG Mappings"] = {
             "type": "dict",
             "values": {
@@ -68,6 +75,48 @@ class IngestCollectorPlugin(HookBaseClass):
             "description": "Mapping of keys in Manifest to SG template keys."
         }
         return schema
+
+    def _get_item_info(self, settings, path, is_sequence):
+        """
+        Return a tuple of display name, item type, and icon path for the given
+        filename.
+
+        The method will try to identify the file as a common file type. If not,
+        it will use the mimetype category. If the file still cannot be
+        identified, it will fallback to a generic file type.
+
+        :param dict settings: Configured settings for this collector
+        :param path: The file path to identify type info for
+
+        :return: A dictionary of information about the item to create::
+
+            # path = "/path/to/some/file.0001.exr"
+
+            {
+                "item_type": "file.image.sequence",
+                "type_display": "Rendered Image Sequence",
+                "icon_path": "/path/to/some/icons/folder/image_sequence.png",
+            }
+
+        The item type will be of the form `file.<type>` where type is a specific
+        common type or a generic classification of the file.
+        """
+
+        item_info = super(IngestCollectorPlugin, self)._get_item_info(settings, path, is_sequence)
+
+        # from the above item_type, check if default_snapshot_type is parent settings default_snapshot_type
+        item_type = item_info["item_type"]
+
+        item_settings = settings["Item Types"].value.get(item_type)
+        if item_settings:
+            default_snapshot_type = item_settings.get("default_snapshot_type")
+
+            item_info["default_snapshot_type"] = default_snapshot_type
+        # item not found in our settings
+        else:
+            item_info["default_snapshot_type"] = self.parent.settings["default_snapshot_type"]
+
+        return item_info
 
     def _resolve_work_path_template(self, properties, path):
         """
@@ -112,7 +161,7 @@ class IngestCollectorPlugin(HookBaseClass):
             if items:
                 file_items.extend(items)
         else:
-            if os.path.basename(path) == publisher.settings["manifest_file_name"]:
+            if publisher.settings["manifest_file_name"] in os.path.basename(path):
                 items = self._collect_manifest_file(settings, parent_item, path)
                 if items:
                     file_items.extend(items)
@@ -126,12 +175,16 @@ class IngestCollectorPlugin(HookBaseClass):
         for file_item in file_items:
             fields = file_item.properties["fields"]
             if "snapshot_type" not in fields:
-                fields["snapshot_type"] = self.parent.settings["default_snapshot_type"]
+                item_info = self._get_item_info(settings=settings,
+                                                path=file_item.properties["path"],
+                                                is_sequence=file_item.properties["is_sequence"])
 
+                fields["snapshot_type"] = item_info["default_snapshot_type"]
                 # CDL files should always be published as Asset entity with nuke_avidgrade asset_type
                 # this is to match organic, and also for Avid grade lookup on shotgun
-                if file_item.type == "file.cdl":
-                    fields["snapshot_type"] = "nuke_avidgrade"
+                # this logic has been moved to _get_item_info by defining default_snapshot_type for each item type
+                # if file_item.type == "file.cdl":
+                #     fields["snapshot_type"] = "nuke_avidgrade"
 
                 self.logger.info(
                     "Injected snapshot_type field for item: %s" % file_item.name,
@@ -203,20 +256,26 @@ class IngestCollectorPlugin(HookBaseClass):
             data["files"] = dict()
             file_types = data["fields"].pop("file_types")
             for file_type, files in file_types.iteritems():
-                p_file = files["files"][0]["path"]
-                p_file = os.path.join(base_dir, p_file)
-                # let's pick the first file and let the collector run _collect_folder on this
-                # since this is already a file sequence
                 if "frame_range" in files:
+                    p_file = files["files"][0]["path"]
+                    p_file = os.path.join(base_dir, p_file)
+                    # let's pick the first file and let the collector run _collect_folder on this
+                    # since this is already a file sequence
                     append_path = os.path.dirname(p_file)
-                # not a file sequence store the file name, to run _collect_file
+                    # list of tag names
+                    if append_path not in data["files"]:
+                        data["files"][append_path] = list()
+                    data["files"][append_path].append(file_type)
+                # not a file sequence store the file names, to run _collect_file
                 else:
-                    append_path = p_file
+                    p_files = files["files"]
+                    for p_file in p_files:
+                        append_path = os.path.join(base_dir, p_file["path"])
 
-                # list of tag names
-                if append_path not in data["files"]:
-                    data["files"][append_path] = list()
-                data["files"][append_path].append(file_type)
+                        # list of tag names
+                        if append_path not in data["files"]:
+                            data["files"][append_path] = list()
+                        data["files"][append_path].append(file_type)
 
             processed_snapshots.append(data)
 
