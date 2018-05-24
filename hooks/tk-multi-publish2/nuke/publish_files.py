@@ -174,16 +174,16 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
             # check for file parameter in the node if its neither a dot nor disabled
             # get the file path if exists
             # validate the file path
-            if (node.Class() != 'Dot') and (node['disable'].value() == 0):
+            if (self._check_for_knob(node, 'disable')) and (node['disable'].value() == 0):
                 if self._check_for_knob(node, 'file'):
                     node_file_path = node['file'].value()
                     if node_file_path:
                         sg_data = sgtk.util.find_publish(self.parent.sgtk, [node_file_path])
                         # if the file is in the show location but not at SHARED or on shotgun, unpublished
                         # if the file is not in show location as well, invalid
-                        if (show_path in node_file_path) and not sg_data and not (any(path in node_file_path for path in valid_paths)):
+                        if (show_path in node_file_path) and not sg_data and not (any(path in node_file_path for path in valid_paths.itervalues())):
                             file_paths['unpublished'].append(node)
-                        elif show_path not in node_file_path:
+                        elif show_path not in node_file_path and not (any(path in node_file_path for path in valid_paths.itervalues())):
                             file_paths['invalid'].append(node)
             # set visited to 1 for the node so as not to revisit
             self.visited_dict[node] = 1
