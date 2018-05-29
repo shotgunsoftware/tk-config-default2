@@ -41,7 +41,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: manual
   name: tk-multi-launchapp
-  version: v0.9.x
+  version: v0.10.x
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -53,7 +53,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: manual
   name: tk-multi-publish2
-  version: v2.0.x
+  version: v2.1.x
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -83,7 +83,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: manual
   name: tk-multi-shotgunpanel
-  version: v1.4.x
+  version: v1.5.x
 
 # snapshot
 apps.tk-multi-snapshot.location:
@@ -95,7 +95,7 @@ apps.tk-multi-snapshot.location:
 apps.tk-multi-workfiles2.location:
   type: manual
   name: tk-multi-workfiles2
-  version: v0.10.x
+  version: v0.11.x
 
 # ---- Shotgun apps
 
