@@ -155,9 +155,10 @@ strings:
     ingest_sequence_script:                 '@ingest_sequence_input_name.nk'
     ingest_project_script:                  '@ingest_project_input_name.nk'
 
-    ingest_shot_scene:                      '@ingest_shot_input_name.{maya_extension}'
-    ingest_sequence_scene:                  '@ingest_sequence_input_name.{maya_extension}'
-    ingest_project_scene:                   '@ingest_project_input_name.{maya_extension}'
+# since we now have asset based maya setup... wait for samples of these
+#    ingest_shot_scene:                      '@ingest_shot_input_name.{maya_extension}'
+#    ingest_sequence_scene:                  '@ingest_sequence_input_name.{maya_extension}'
+#    ingest_project_scene:                   '@ingest_project_input_name.{maya_extension}'
 
     ingest_shot_cache:                      '@ingest_shot_input_name.{geo_extension}'
     ingest_sequence_cache:                  '@ingest_sequence_input_name.{geo_extension}'
