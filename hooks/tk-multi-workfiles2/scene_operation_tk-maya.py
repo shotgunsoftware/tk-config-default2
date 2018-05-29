@@ -123,6 +123,8 @@ class SceneOperation(HookClass):
             return True
 
     def set_show_preferences(self, file_path, context):
+        fields = context.as_template_fields()
+
         # getting fields from file path because
         # context.as_template_fields() doesn't contain {name}, {version}
         file_template = context.sgtk.template_from_path(file_path)
@@ -133,7 +135,7 @@ class SceneOperation(HookClass):
             QtGui.QMessageBox.warning(None, "Show defaults not set", warning_message)
             return
 
-        fields = file_template.get_fields(file_path)
+        fields.update(file_template.get_fields(file_path))
         render_temp = self.get_render_template(context)
         frame_sq_key = context.sgtk.template_keys['SEQ']  # Can 'SEQ' change?
 
