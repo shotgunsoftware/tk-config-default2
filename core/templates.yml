@@ -288,6 +288,7 @@ strings:
     # COMMON
     user_work:                              'work.{login}'
     image_subdirs:                          '{name}/v{version}/{width}x{height}'
+    proxy_subdirs:                          '{name}/v{version}/PROXY'
 
     # SCENE
     project_version_name:                   '{Step}_{name}[-{output}].v{version}'

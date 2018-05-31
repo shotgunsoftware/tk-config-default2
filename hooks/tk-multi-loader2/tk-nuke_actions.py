@@ -204,16 +204,18 @@ class NukeActions(HookBaseClass):
         if ext.lower() not in valid_extensions:
             raise Exception("Unsupported file extension for '%s'!" % path)
 
-        # `nuke.createNode()` will extract the format and frame range from the
+        # `nuke.createNode()` will extract the format from the
         # file itself (if possible), whereas `nuke.nodes.Read()` won't. We'll
         # also check to see if there's a matching template and override the
         # frame range, but this should handle the zero config case. This will
         # also automatically extract the format and frame range for movie files.
         read_node = nuke.createNode("Read")
+        # this detects frame range automatically only if it is explicitly passed
+        # (i.e. if the argument to fromUserText() is of the format
+        # "<img_seq_path> <start>-<end>")
         read_node["file"].fromUserText(path)
 
         # find the sequence range if it has one:
-
         seq_range = self._find_sequence_range(path, sg_publish_data)
 
         # to fetch the nuke prefs from pipeline
@@ -228,6 +230,47 @@ class NukeActions(HookBaseClass):
             # override the detected frame range.
             read_node["first"].setValue(seq_range[0])
             read_node["last"].setValue(seq_range[1])
+        else:
+            self.parent.logger.warning("{}: Not setting frame range.".format(read_node.name()))
+
+        # try to fetch a proxy path using templates
+        proxy_path = self._get_proxy_path(path)
+
+        if proxy_path:
+            read_node["proxy"].fromUserText(proxy_path)
+        else:
+            self.parent.logger.warning("{}: Not setting proxy path.".format(read_node.name()))
+
+    def _get_proxy_path(self, path):
+        # TODO: use sg_publish_data to find associated file tagged as "proxy" instead
+        # find a template that matches the path:
+        template = None
+        try:
+            template = self.parent.sgtk.template_from_path(path)
+        except sgtk.TankError:
+            pass
+        if not template:
+            return None
+
+        # get the fields
+        fields = template.get_fields(path)
+
+        # get proxy template
+        proxy_template_exp = "{env_name}_proxy_image"
+        proxy_template_name = self.parent.resolve_setting_expression(proxy_template_exp)
+        proxy_template = self.parent.sgtk.templates.get(proxy_template_name)
+
+        if not proxy_template:
+            self.parent.logger.warning("Unable to find proxy template: {}".format(proxy_template_name))
+            return None
+
+        try:
+            proxy_path = proxy_template.apply_fields(fields)
+            return proxy_path
+        except sgtk.TankError:
+            self.parent.logger.warning("Unable to apply fields: {}"
+                                       "\nto proxy template: {}".format(fields, proxy_template_name))
+            return None
 
     def _find_pipe_step(self, path, sg_publish_data):
         """Helper method to extract pipeline step from renders.
