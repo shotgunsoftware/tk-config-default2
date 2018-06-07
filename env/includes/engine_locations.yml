@@ -29,13 +29,13 @@ engines.tk-desktop.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.12.3
+  version: v1.13.0
 
 # Houdini
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.5.4
+  version: v1.5.5
 
 # Mari
 engines.tk-mari.location:
@@ -65,7 +65,7 @@ engines.tk-nuke.location:
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.5.3
+  version: v1.6.0
 
 # Shell
 engines.tk-shell.location:
