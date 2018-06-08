@@ -79,8 +79,10 @@ keys:
     vendorStep:
         type: str
 
+    # subcontext should not contain and non-character strings
     subcontext:
         type: str
+        filter_by: '^(\w+)$'
 
     # relevant fields from manifest
     snapshot_type:
