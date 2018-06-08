@@ -78,6 +78,14 @@ paths:
     ingest_sequence_area:                   '@ingest_folder/{ingestSequence}/SHARED'
     ingest_project_area:                    '@ingest_folder/SHARED'
 
+    ingest_shot_asset_area:                 '@ingest_folder/{ingestSequence}/{Shot}/SHARED/{vendorDepartment}/{ingestAssetType}/{Asset}'
+    ingest_sequence_asset_area:             '@ingest_folder/{ingestSequence}/SHARED/{vendorDepartment}/{ingestAssetType}/{Asset}'
+    ingest_project_asset_area:              '@ingest_folder/SHARED/{vendorDepartment}/{ingestAssetType}/{Asset}'
+
+    ingest_shot_asset_area_scene:           '@ingest_shot_asset_area/{snapshot_type}/{subcontext}'
+    ingest_sequence_asset_area_scene:       '@ingest_sequence_asset_area/{snapshot_type}/{subcontext}'
+    ingest_project_asset_area_scene:        '@ingest_project_asset_area/{snapshot_type}/{subcontext}'
+
     # cdl paths
     ingest_shot_area_cdl:                   '@ingest_shot_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
     ingest_sequence_area_cdl:               '@ingest_sequence_area/SCRIPTS/nuke/{ingestCdlName}s/{ingestCdlName}_v{ingestVersion}'
@@ -96,6 +104,11 @@ paths:
     ingest_shot_render:                     '@ingest_shot_area_image/@ingest_shot_input_name.{SEQ}.{ingestImgExtension}'
     ingest_sequence_render:                 '@ingest_sequence_area_image/@ingest_sequence_input_name.{SEQ}.{ingestImgExtension}'
     ingest_project_render:                  '@ingest_project_area_image/@ingest_project_input_name.{SEQ}.{ingestImgExtension}'
+
+    # parsing asset maya files
+    ingest_shot_asset_scene:                '@ingest_shot_asset_area_scene/@ingest_shot_asset_input_name.{maya_extension}'
+    ingest_sequence_asset_scene:            '@ingest_sequence_asset_area_scene/@ingest_sequence_asset_input_name.{maya_extension}'
+    ingest_project_asset_scene:             '@ingest_project_asset_area_scene/@ingest_project_asset_input_name.{maya_extension}'
 
     # templates for output files
 
@@ -135,29 +148,45 @@ strings:
     ingest_sequence_input_name:             '{ingestSequence}_{name}_v{ingestVersion}'
     ingest_project_input_name:              '{ingestStep}_{name}_v{ingestVersion}'
 
+    # strings for input asset names
+    ingest_shot_asset_input_name:           '{ingestShot}_{Asset}_{name}_v{ingestVersion}'
+    ingest_sequence_asset_input_name:       '{ingestSequence}_{Asset}_{name}_v{ingestVersion}'
+    ingest_project_asset_input_name:        '{Asset}_{name}_v{ingestVersion}'
+
     # strings for publish names
     ingest_shot_publish_name:               '{Sequence}_{Shot}_{Step}_{snapshot_type}_{name}[-{output}]'
     ingest_sequence_publish_name:           '{Sequence}_{Step}_{snapshot_type}_{name}[-{output}]'
     ingest_project_publish_name:            '{Step}_{snapshot_type}_{name}[-{output}]'
+
+    # strings for publish names of assets
+    ingest_shot_asset_publish_name:         '{Sequence}_{Shot}_{Step}_{sg_asset_type}_{Asset}_{snapshot_type}_{name}[-{output}]'
+    ingest_sequence_asset_publish_name:     '{Sequence}_{Step}_{sg_asset_type}_{Asset}_{snapshot_type}_{name}[-{output}]'
+    ingest_project_asset_publish_name:      '{Step}_{sg_asset_type}_{Asset}_{snapshot_type}_{name}[-{output}]'
 
     # strings for entity names
     ingest_shot_entity_name:                '{Sequence}_{Shot}_{Step}_{snapshot_type}'
     ingest_sequence_entity_name:            '{Sequence}_{Step}_{snapshot_type}'
     ingest_project_entity_name:             '{Step}_{snapshot_type}'
 
+    # strings for entity names of assets
+    ingest_shot_asset_entity_name:          '{Sequence}_{Shot}_{Step}_{sg_asset_type}_{Asset}_{snapshot_type}'
+    ingest_sequence_asset_entity_name:      '{Sequence}_{Step}_{sg_asset_type}_{Asset}_{snapshot_type}'
+    ingest_project_asset_entity_name:       '{Step}_{sg_asset_type}_{Asset}_{snapshot_type}'
+
     # strings for output names
     ingest_shot_output_name:                '@ingest_shot_publish_name.v{version}'
     ingest_sequence_output_name:            '@ingest_sequence_publish_name.v{version}'
     ingest_project_output_name:             '@ingest_project_publish_name.v{version}'
 
+    # strings for output names of assets
+    ingest_shot_asset_output_name:          '@ingest_shot_asset_publish_name.v{version}'
+    ingest_sequence_asset_output_name:      '@ingest_sequence_asset_publish_name.v{version}'
+    ingest_project_asset_output_name:       '@ingest_project_asset_publish_name.v{version}'
+
     # strings for parsing files
     ingest_shot_script:                     '@ingest_shot_input_name.nk'
     ingest_sequence_script:                 '@ingest_sequence_input_name.nk'
     ingest_project_script:                  '@ingest_project_input_name.nk'
-
-    ingest_shot_scene:                      '@ingest_shot_input_name.{maya_extension}'
-    ingest_sequence_scene:                  '@ingest_sequence_input_name.{maya_extension}'
-    ingest_project_scene:                   '@ingest_project_input_name.{maya_extension}'
 
     ingest_shot_cache:                      '@ingest_shot_input_name.{geo_extension}'
     ingest_sequence_cache:                  '@ingest_sequence_input_name.{geo_extension}'

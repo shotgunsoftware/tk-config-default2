@@ -384,6 +384,8 @@ class IngestFilesPlugin(HookBaseClass):
                 sg_filters.append(['sg_shot', 'is', item.context.entity])
             elif item.context.entity["type"] == "Sequence":
                 sg_filters.append(['sg_sequence', 'is', item.context.entity])
+            elif item.context.entity["type"] == "Asset":
+                sg_filters.append(['parents', 'is', item.context.entity])
 
         fields.extend(['shots', 'code', 'id'])
 
@@ -468,6 +470,7 @@ class IngestFilesPlugin(HookBaseClass):
         # data["head_out"] = frange[1]
 
         if item.context.entity:
+            # link the new entity to a Sequence and Shot
             if item.context.entity["type"] == "Shot":
                 data["sg_shot"] = item.context.entity
                 # search the corresponding sequence entity in additional entities
@@ -475,8 +478,24 @@ class IngestFilesPlugin(HookBaseClass):
                                    if entity["type"] == "Sequence"]
                 if sequence_entity:
                     data["sg_sequence"] = sequence_entity[0]
+            # link the new entity to a Sequence
             elif item.context.entity["type"] == "Sequence":
                 data["sg_sequence"] = item.context.entity
+            # link the new entity to an Asset
+            elif item.context.entity["type"] == "Asset" and item.properties["linked_entity_type"] == "Asset":
+                # add the context asset entity as the parent asset
+                data["parents"] = [item.context.entity]
+
+                # if it's a sequence based asset
+                sequence_entity = [entity for entity in item.context.additional_entities
+                                   if entity["type"] == "Sequence"]
+                if sequence_entity:
+                    data["sg_sequence"] = sequence_entity[0]
+
+                # if it's a shot based asset
+                shot_entity = [entity for entity in item.context.additional_entities if entity["type"] == "Shot"]
+                if shot_entity:
+                    data["sg_shot"] = shot_entity[0]
 
         try:
             if linked_entity:
@@ -484,7 +503,7 @@ class IngestFilesPlugin(HookBaseClass):
                     entity_type=item.properties["linked_entity_type"],
                     entity_id=linked_entity['id'],
                     data=data,
-                    multi_entity_update_modes=dict(shots='add'),
+                    multi_entity_update_modes=dict(shots='add', parents='add'),
                 )
                 self.logger.info(
                     "Updated %s entity..." % item.properties["linked_entity_type"],
