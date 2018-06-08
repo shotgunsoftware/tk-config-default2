@@ -44,6 +44,23 @@ keys:
         type: timestamp
         format_spec: '%Y%m%d'
 
+    ingestAssetType:
+      type: str
+      shotgun_entity_type: Asset
+      shotgun_field_name: sg_asset_type
+      value_from_str_hook: 'name_converter'
+      edit_types:
+        - replace
+      edits:
+        replace:
+          char: "Character"
+
+    vendorDepartment:
+      type: str
+      value_from_str_hook: 'name_converter'
+      edit_types:
+        - lower_case
+
     # removed duplicate cdl keys, moved to templates.yml
 
     ingestCdlName:
