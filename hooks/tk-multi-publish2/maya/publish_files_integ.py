@@ -367,20 +367,26 @@ class MayaPublishFilesDDIntegValidationPlugin(HookBaseClass):
         :param item: Item to process
         :returns: True if item is valid, False otherwise.
         """
-        all_dag_nodes = cmds.ls(dag=True, sn=True)
-        groups = [g for g in all_dag_nodes if self._is_group(g)]
 
         status = True
+        
         # Checks for the scene file, i.e if the item is not a sequence or a cache file
         if item.type == "file.maya":
-            nodes = self._node_naming(groups) and \
-                    self._check_hierarchy(groups) and \
-                    self._track_geo_child_naming() and \
-                    self._track_geo_locked_channels()and \
-                    self._extra_nodes_outside_track_geo() and \
-                    self._sync_frame_range_with_shotgun(item)
-            cam = self._camera_naming() and self._connected_image_plane()
-            status = nodes and cam and status
+            task_name = item.context.task['name']
+            if task_name.split("_")[-1] == "mm":
+                status = self._sync_frame_range_with_shotgun(item)
+            else:
+                all_dag_nodes = cmds.ls(dag=True, sn=True)
+                groups = [g for g in all_dag_nodes if self._is_group(g)]
+
+                nodes = self._node_naming(groups) and \
+                        self._check_hierarchy(groups) and \
+                        self._track_geo_child_naming() and \
+                        self._track_geo_locked_channels()and \
+                        self._extra_nodes_outside_track_geo() and \
+                        self._sync_frame_range_with_shotgun(item)
+                cam = self._camera_naming() and self._connected_image_plane()
+                status = nodes and cam and status
         elif item.properties['is_sequence']:
             sequences = self._framerange_of_sequence(item)
             status = sequences and status
