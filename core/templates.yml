@@ -304,5 +304,7 @@ strings:
 includes:
   - templates/nuke.yml
   - templates/maya.yml
+  - templates/mari.yml
+  - templates/3dequalizer.yml
   - templates/ingest.yml
   - '{preferences}/sgtk_config_templates.yaml'

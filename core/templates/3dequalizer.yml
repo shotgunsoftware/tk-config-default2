@@ -1,0 +1,36 @@
+paths:
+    # WORK AREAS
+    3de_project_work_area:              '@project_work_area/3de'
+    3de_sequence_work_area:             '@sequence_work_area/3de'
+    3de_shot_work_area:                 '@shot_work_area/3de'
+
+    3de_project_asset_work_area:        '@project_asset_work_area/3de'
+    3de_sequence_asset_work_area:       '@sequence_asset_work_area/3de'
+    3de_shot_asset_work_area:           '@shot_asset_work_area/3de'
+
+    # WORK FILES
+    3de_project_work_file:              '@3de_project_work_area/scenes/@project_version_name.3de'
+    3de_sequence_work_file:             '@3de_sequence_work_area/scenes/@sequence_version_name.3de'
+    3de_shot_work_file:                 '@3de_shot_work_area/scenes/@shot_version_name.3de'
+
+    3de_project_asset_work_file:        '@3de_project_asset_work_area/scenes/@project_asset_version_name.3de'
+    3de_sequence_asset_work_file:       '@3de_sequence_asset_work_area/scenes/@sequence_asset_version_name.3de'
+    3de_shot_asset_work_file:           '@3de_shot_asset_work_area/scenes/@shot_asset_version_name.3de'
+    
+    # MEL exports
+    3de_project_mel_export:             '@3de_project_work_area/export/@project_version_name.mel'
+    3de_sequence_mel_export:            '@3de_sequence_work_area/export/@sequence_version_name.mel'
+    3de_shot_mel_export:                '@3de_shot_work_area/export/@shot_version_name.mel'
+
+    3de_project_asset_mel_export:       '@3de_project_asset_work_area/export/@project_asset_version_name.mel'
+    3de_sequence_asset_mel_export:      '@3de_sequence_asset_work_area/export/@sequence_asset_version_name.mel'
+    3de_shot_asset_mel_export:          '@3de_shot_asset_work_area/export/@shot_asset_version_name.mel'
+    
+    # Nuke lens exports
+    3de_project_nuke_export:            '@3de_project_work_area/export/@project_version_name.nk'
+    3de_sequence_nuke_export:           '@3de_sequence_work_area/export/@sequence_version_name.nk'
+    3de_shot_nuke_export:               '@3de_shot_work_area/export/@shot_version_name.nk'
+
+    3de_project_asset_nuke_export:      '@3de_project_asset_work_area/export/@project_asset_version_name.nk'
+    3de_sequence_asset_nuke_export:     '@3de_sequence_asset_work_area/export/@sequence_asset_version_name.nk'
+    3de_shot_asset_nuke_export:         '@3de_shot_asset_work_area/export/@shot_asset_version_name.nk'
