@@ -95,14 +95,16 @@ class SceneOperation(HookClass):
         if file_path:
             file_path = file_path.replace("/", os.path.sep)
 
+        fields = context.as_template_fields()
         if operation == "current_path":
             # return the current script path
             return nuke.root().name().replace("/", os.path.sep)
 
         elif operation == "open":
             # open the specified script
-            self.set_show_preferences(context)
+            self.set_show_preferences(fields)
             nuke.scriptOpen(file_path)
+            self.set_ocio_context(fields)
 
             # reset any write node render paths:
             if self._reset_write_node_render_paths():
@@ -150,7 +152,7 @@ class SceneOperation(HookClass):
             # now clear the script:
             nuke.scriptClear()
             if parent_action == "new_file":
-                self.set_show_preferences(context)
+                self.set_show_preferences(fields)
                 self.sync_frame_range()
 
             return True
@@ -181,9 +183,7 @@ class SceneOperation(HookClass):
                 self.parent.logger.warning(warning_message)
                 QtGui.QMessageBox.warning(None, "Entity has no in/out frame", warning_message)
 
-    def set_show_preferences(self, context):
-        fields = context.as_template_fields()
-
+    def set_show_preferences(self, fields):
         show_prefs = preferences.Preferences(pref_file_name="show_preferences.yaml",
                                              role=fields.get("Step"),
                                              seq_override=fields.get("Sequence"),
@@ -208,6 +208,21 @@ class SceneOperation(HookClass):
         except KeyError as ke:
             self.parent.logger.warning("Unable to find {} in show preferences. "
                                        "Not setting fps.".format(ke))
+
+    def set_ocio_context(self, fields):
+        """
+        Set OCIO context for current OCIODisplay node
+        """
+        sequence = fields.get("Sequence")
+        shot = fields.get("Shot")
+
+        ocio_display_node = nuke.ViewerProcess.node()
+        if ocio_display_node:
+            ocio_display_node["key1"].setValue("DD_SEQ")
+            ocio_display_node["value1"].setValue(sequence)
+            ocio_display_node["key2"].setValue("DD_SHOT")
+            ocio_display_node["value2"].setValue(shot)
+
 
     def _get_current_hiero_project(self):
         """
