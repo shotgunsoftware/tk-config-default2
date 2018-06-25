@@ -243,7 +243,6 @@ class LibraryIngestCollectorPlugin(HookBaseClass):
         add_fields = self.folder_crawl(settings, path)
         tags = [self.invalid_char_to_underscore(each.strip()) for each in valid_library_elements]
         add_fields["tags"] = self._query_associated_tags(tags)
-        print add_fields
         try:
             new_items.extend(item)
         except TypeError:
@@ -253,7 +252,6 @@ class LibraryIngestCollectorPlugin(HookBaseClass):
         for new_item in new_items:
             item_fields = new_item.properties["fields"]
             item_fields.update(add_fields)
-            # print item_fields
             self.logger.info(
                 "Updated fields from snapshot for item: %s" % new_item.name,
                 extra={
