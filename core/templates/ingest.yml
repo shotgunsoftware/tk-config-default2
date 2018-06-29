@@ -151,6 +151,11 @@ paths:
     sequence_proxy_image:                   '@sequence_publish_area_image/{snapshot_type}/@proxy_subdirs/@ingest_sequence_output_name.{SEQ}.{img_extension}'
     shot_proxy_image:                       '@shot_publish_area_image/{snapshot_type}/@proxy_subdirs/@ingest_shot_output_name.{SEQ}.{img_extension}'
 
+    # 2K
+    project_2k_image:                    '@project_publish_area_image/{snapshot_type}/@2k_subdirs/@ingest_project_output_name.{SEQ}.{img_extension}'
+    sequence_2k_image:                   '@sequence_publish_area_image/{snapshot_type}/@2k_subdirs/@ingest_sequence_output_name.{SEQ}.{img_extension}'
+    shot_2k_image:                       '@shot_publish_area_image/{snapshot_type}/@2k_subdirs/@ingest_shot_output_name.{SEQ}.{img_extension}'
+
     # MOVIES
     ingest_project_output_movie:            '@project_publish_area_movie/{snapshot_type}/@ingest_project_output_name.mov'
     ingest_sequence_output_movie:           '@sequence_publish_area_movie/{snapshot_type}/@ingest_sequence_output_name.mov'
