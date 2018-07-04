@@ -8,6 +8,7 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
+import os
 import copy
 import pprint
 import traceback
@@ -154,8 +155,8 @@ class ColorProcessFilesPlugin(HookBaseClass):
         # If the parent item has publish data, include those ids in the
         # list of dependencies as well
         dependency_ids = []
-        if "sg_publish_data" in item.parent.properties:
-            dependency_ids = [item.parent.properties["sg_publish_data"]["id"]]
+        if "sg_publish_data_list" in item.parent.properties:
+            [dependency_ids.append(sg_publish_data["id"]) for sg_publish_data in item.parent.properties["sg_publish_data_list"]]
 
         # get any additional_publish_fields that have been defined
         sg_fields = {}
@@ -201,12 +202,6 @@ class ColorProcessFilesPlugin(HookBaseClass):
         try:
             sg_publish_data = sgtk.util.register_publish(**publish_data)
 
-            if "sg_publish_data_list" not in item.properties:
-                item.properties.sg_publish_data_list = []
-
-            # add the publish data to item properties
-            item.properties.sg_publish_data_list.append(sg_publish_data)
-
             self.logger.info("Publish registered for %s" % publish_path)
         except Exception as e:
             exception = e
@@ -223,6 +218,12 @@ class ColorProcessFilesPlugin(HookBaseClass):
 
         if not sg_publish_data:
             self.undo(task_settings, item)
+        else:
+            if "sg_publish_data_list" not in item.properties:
+                item.properties.sg_publish_data_list = []
+
+            # add the publish data to item properties
+            item.properties.sg_publish_data_list.append(sg_publish_data)
 
         if exception:
             raise exception
@@ -271,7 +272,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
 
             diff_list = list(set(pre_processed_paths) - set(resolved_identifiers.keys()))
 
-            # review submit hook should return the exact amount of paths for which the color processing hook is configured.
+            # review submit hook should return exact amount of paths for which the color processing hook is configured.
             if diff_list:
                 error_message = "Processed paths: %s\nResolved identifiers: %s\nDon't match.\nDifferences: %s" % \
                                 ('\n'.join(pre_processed_paths), '\n'.join(resolved_identifiers), '\n'.join(diff_list))
@@ -368,26 +369,30 @@ class ColorProcessFilesPlugin(HookBaseClass):
         self.logger.info("Cleaning up rendered files...")
 
         pre_processed_paths = item.properties.get("pre_processed_paths")
+        movie_path = self._get_movie_path(task_settings, item)
 
         if pre_processed_paths:
             for processed_path in pre_processed_paths:
-                self._delete_files(processed_path, item)
+                if processed_path == movie_path:
+                    os.unlink(processed_path)
+                else:
+                    self._delete_files(processed_path, item)
 
         sg_publish_data_list = item.properties.get("sg_publish_data_list")
 
         if sg_publish_data_list:
             for publish_data in sg_publish_data_list:
-                self.logger.info("Cleaning up published file...",
-                                 extra={
-                                     "action_show_more_info": {
-                                         "label": "Publish Data",
-                                         "tooltip": "Show the publish data.",
-                                         "text": "%s" % publish_data
-                                     }
-                                 }
-                                 )
                 try:
                     self.sgtk.shotgun.delete(publish_data["type"], publish_data["id"])
+                    self.logger.info("Cleaning up published file...",
+                                     extra={
+                                         "action_show_more_info": {
+                                             "label": "Publish Data",
+                                             "tooltip": "Show the publish data.",
+                                             "text": "%s" % publish_data
+                                         }
+                                     }
+                                     )
                 except Exception:
                     self.logger.error(
                         "Failed to delete PublishedFile Entity for %s" % item.name,
@@ -399,44 +404,8 @@ class ColorProcessFilesPlugin(HookBaseClass):
                             }
                         }
                     )
-            # pop the sg_publish_data too
+            # pop the sg_publish_data_list too
             item.properties.pop("sg_publish_data_list")
-
-    def finalize(self, task_settings, item):
-        """
-        Execute the finalization pass. This pass executes once
-        all the publish tasks have completed, and can for example
-        be used to version up files.
-
-        :param task_settings: Dictionary of Settings. The keys are strings, matching
-            the keys returned in the task_settings property. The values are `Setting`
-            instances.
-        :param item: Item to process
-        """
-
-        super(ColorProcessFilesPlugin, self).finalize(task_settings, item)
-
-        if "sg_publish_data_list" in item.properties:
-            publisher = self.parent
-
-            # get the data for the publish that was just created in SG
-            sg_publish_data_list = item.properties.sg_publish_data_list
-
-            for publish_data in sg_publish_data_list:
-                # ensure conflicting publishes have their status cleared
-                publisher.util.clear_status_for_conflicting_publishes(
-                    item.context, publish_data)
-
-                self.logger.info(
-                    "Publish created for file: %s" % (publish_data["path"]["local_path"],),
-                    extra={
-                        "action_show_in_shotgun": {
-                            "label": "Show Publish",
-                            "tooltip": "Open the Publish in Shotgun.",
-                            "entity": publish_data
-                        }
-                    }
-                )
 
     def _progress_cb(self, msg=None, stage=None):
         """

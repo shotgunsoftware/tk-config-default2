@@ -202,7 +202,7 @@ class IngestFilesPlugin(HookBaseClass):
             # run the actual publish file creation
             self.create_published_files(task_settings, item)
 
-            if item.properties.get("sg_publish_data") or item.properties.get("sg_publish_data_list"):
+            if item.properties.get("sg_publish_data_list"):
                 # link the publish file to our linked entity.
                 updated_linked_entity = self._link_published_files_to_entity(item, task_settings)
 
@@ -572,23 +572,20 @@ class IngestFilesPlugin(HookBaseClass):
         :param task_settings: Dictionary of Settings. The keys are strings, matching
             the keys returned in the task_settings property. The values are `Setting`
             instances.
-        :param item: item to get the publish files(sg_publish_data) and linked entity(ingest_entity_data)
+        :param item: item to get the publish files(sg_publish_data_list) and linked entity(ingest_entity_data)
         :return: Updated linked entity.
         """
 
-        sg_publish_data = []
-
-        if "sg_publish_data" in item.properties:
-            sg_publish_data.append(item.properties.sg_publish_data)
+        sg_publish_data_list = []
 
         if "sg_publish_data_list" in item.properties:
-            sg_publish_data.extend(item.properties.sg_publish_data_list)
+            sg_publish_data_list.extend(item.properties.sg_publish_data_list)
 
         try:
             result = self.sgtk.shotgun.update(
                 entity_type=item.properties["ingest_entity_data"]["type"],
                 entity_id=item.properties["ingest_entity_data"]["id"],
-                data=dict(sg_published_files=sg_publish_data),
+                data=dict(sg_published_files=sg_publish_data_list),
                 multi_entity_update_modes=dict(sg_published_files='add'),
             )
             return result
