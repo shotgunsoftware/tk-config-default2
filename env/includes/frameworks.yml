@@ -44,7 +44,7 @@ frameworks:
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.4.3
+      version: v5.4.5
       type: app_store
       name: tk-framework-shotgunutils
 

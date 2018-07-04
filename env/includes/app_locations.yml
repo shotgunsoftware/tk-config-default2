@@ -47,7 +47,7 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.19.0
+  version: v1.19.1
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.5
+  version: v0.11.6
 
 # ---- Shotgun apps
 
@@ -163,7 +163,7 @@ apps.tk-nuke-quickreview.location:
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.3.1
+  version: v1.3.2
 
 # ---- Flame apps
 
