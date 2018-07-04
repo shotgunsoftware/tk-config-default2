@@ -79,9 +79,10 @@ class NukeActions(HookBaseClass):
         seq_range = self._find_sequence_range(path)
 
         # to fetch the nuke prefs from pipeline
-        nuke_prefs = NukePreferences()
+        step = self._find_pipe_step(path, sg_publish_data)
+        nuke_prefs = NukePreferences(step)
 
-        for knob_name, knob_value in nuke_prefs.getKnobOverridesGenerator(self._find_pipe_step(path, sg_publish_data)):
+        for knob_name, knob_value in nuke_prefs.getKnobOverridesGenerator(step):
             if read_node.Class() in knob_name:
                 knob_name = knob_name.replace(read_node.Class(), read_node.name())
                 nuke.knob(knob_name, knob_value)
