@@ -32,8 +32,8 @@ class ColorProcessFilesPlugin(HookBaseClass):
         # call base init
         super(ColorProcessFilesPlugin, self).__init__(parent, **kwargs)
 
-        # cache the review submission app
-        self.__review_submission_app = self.parent.engine.apps.get("tk-multi-reviewsubmission")
+        # cache the color process files app, which is an instance of review submission app.
+        self.__color_process_files_app = self.parent.engine.apps.get("tk-multi-colorprocessfiles")
 
     @property
     def settings_schema(self):
@@ -256,12 +256,12 @@ class ColorProcessFilesPlugin(HookBaseClass):
             fields.update(item.context.as_template_fields())
 
             # set review_submission app's env/context based on item (ingest)
-            self.__review_submission_app.change_context(item.context)
+            self.__color_process_files_app.change_context(item.context)
 
-            extra_write_node_mapping = self.__review_submission_app.resolve_extra_write_nodes(fields)
+            extra_write_node_mapping = self.__color_process_files_app.resolve_extra_write_nodes(fields)
 
-            # potential pre processed paths
-            pre_processed_paths = extra_write_node_mapping.values()
+            # potential processed paths
+            processed_paths = extra_write_node_mapping.values()
 
             # resolve the templates to figure out what they are before we start publishing
             for identifier, template in task_settings.get("publish_file_identifiers").iteritems():
@@ -270,12 +270,12 @@ class ColorProcessFilesPlugin(HookBaseClass):
                 if resolved_template and resolved_template != item.properties.publish_path:
                     resolved_identifiers[resolved_template] = identifier
 
-            diff_list = list(set(pre_processed_paths) - set(resolved_identifiers.keys()))
+            diff_list = list(set(processed_paths) - set(resolved_identifiers.keys()))
 
             # review submit hook should return exact amount of paths for which the color processing hook is configured.
             if diff_list:
                 error_message = "Processed paths: %s\nResolved identifiers: %s\nDon't match.\nDifferences: %s" % \
-                                ('\n'.join(pre_processed_paths), '\n'.join(resolved_identifiers), '\n'.join(diff_list))
+                                ('\n'.join(processed_paths), '\n'.join(resolved_identifiers), '\n'.join(diff_list))
                 self.logger.error(
                     "Can't Publish %s! Review Submission plugin not setup." % item.name,
                     extra={
@@ -341,19 +341,41 @@ class ColorProcessFilesPlugin(HookBaseClass):
 
         self.logger.info("Processing the frames...")
         # run the render hook
-        pre_processed_paths = self.__review_submission_app.render(item.properties.path, fields, first_frame, last_frame,
-                                                                  sg_publish_data_list, item.context.task,
-                                                                  item.description, item.get_thumbnail_as_path(),
-                                                                  self._progress_cb, colorspace=None)
+        pre_processed_paths = self.__color_process_files_app.render(item.properties.path, fields, first_frame,
+                                                                    last_frame,
+                                                                    sg_publish_data_list, item.context.task,
+                                                                    item.description, item.get_thumbnail_as_path(),
+                                                                    self._progress_cb, colorspace=None)
 
         # add these paths to item properties
         item.properties.pre_processed_paths = pre_processed_paths
 
-        # register publishes
-        # for registering publishes we use resolved identifiers because
-        # those are the extra write nodes that are being rendered just for the color processing being published.
-        for processed_path, identifier in item.properties.resolved_identifiers.iteritems():
-            self.register_publish(task_settings, item, processed_path)
+        resolved_identifiers = item.properties.resolved_identifiers
+
+        # validate the renders, so that we have identifiers for all the paths that came out of the render.
+        diff_list = list(set(pre_processed_paths) - set(resolved_identifiers.keys()))
+
+        # review submit hook should return exact amount of paths for which the color processing hook is configured.
+        if diff_list:
+            error_message = "Processed paths: %s\nResolved identifiers: %s\nDon't match.\nDifferences: %s" % \
+                            ('\n'.join(pre_processed_paths), '\n'.join(resolved_identifiers), '\n'.join(diff_list))
+            self.logger.error(
+                "Can't Publish %s! Review Submission plugin not setup correctly." % item.name,
+                extra={
+                    "action_show_more_info": {
+                        "label": "Show Error Log",
+                        "tooltip": "Show the error log",
+                        "text": error_message
+                    }
+                }
+            )
+
+            # delete the rendered files
+            self.undo(task_settings, item)
+        else:
+            # register publishes
+            for processed_path in item.properties.pre_processed_paths:
+                self.register_publish(task_settings, item, processed_path)
 
     def undo(self, task_settings, item):
         """
@@ -366,17 +388,20 @@ class ColorProcessFilesPlugin(HookBaseClass):
         :param item: Item to process
         """
 
-        self.logger.info("Cleaning up rendered files...")
-
         pre_processed_paths = item.properties.get("pre_processed_paths")
-        movie_path = self._get_movie_path(task_settings, item)
 
         if pre_processed_paths:
+            self.logger.info("Cleaning up rendered files for %s..." % item.name,
+                             extra={
+                                 "action_show_more_info": {
+                                     "label": "Show Error Log",
+                                     "tooltip": "Show the error log",
+                                     "text": "Rendered frames:\n%s" % '\n'.join(pre_processed_paths)
+                                 }
+                             }
+                             )
             for processed_path in pre_processed_paths:
-                if processed_path == movie_path:
-                    os.unlink(processed_path)
-                else:
-                    self._delete_files(processed_path, item)
+                self._delete_files(processed_path, item)
 
         sg_publish_data_list = item.properties.get("sg_publish_data_list")
 
@@ -433,13 +458,13 @@ class ColorProcessFilesPlugin(HookBaseClass):
         fields.update(item.context.as_template_fields())
 
         # Movie output width and height
-        width = self.__review_submission_app.get_setting("movie_width")
-        height = self.__review_submission_app.get_setting("movie_height")
+        width = self.__color_process_files_app.get_setting("movie_width")
+        height = self.__color_process_files_app.get_setting("movie_height")
         fields["width"] = width
         fields["height"] = height
 
         # Get an output path for the movie.
-        output_path_template = self.__review_submission_app.get_template("movie_path_template")
+        output_path_template = self.__color_process_files_app.get_template("movie_path_template")
         output_path = output_path_template.apply_fields(fields)
 
         return output_path

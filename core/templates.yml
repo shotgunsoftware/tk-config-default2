@@ -257,6 +257,11 @@ paths:
     reviewsubmission_slate_logo_file:       '@project_publish_area/etc/reviewsubmit_presets/logo.png'
     reviewsubmission_render_script_path:    '@project_publish_area/etc/reviewsubmit_presets/nuke_batch_render_movie.py'
 
+    # COLOR PROCESSING
+    colorprocessfiles_burnin_nuke_file:      '@project_publish_area/etc/reviewsubmit_presets/color_process_files.nk'
+    colorprocessfiles_slate_logo_file:       '@project_publish_area/etc/reviewsubmit_presets/color_process_files_logo.png'
+    colorprocessfiles_render_script_path:    '@project_publish_area/etc/reviewsubmit_presets/nuke_batch_color_process_files.py'
+
     # CDL PUBLISHING
 
     # since we only support cc publishing currently
