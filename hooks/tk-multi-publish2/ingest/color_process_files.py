@@ -10,6 +10,7 @@
 
 import os
 import copy
+import glob
 import pprint
 import traceback
 
@@ -195,6 +196,28 @@ class ColorProcessFilesPlugin(HookBaseClass):
                 }
             }
         )
+
+        # try to freeze file permissions
+        if item.properties.is_sequence:
+            seq_pattern = publisher.util.get_path_for_frame(publish_path, "*")
+            published_files = [f for f in glob.iglob(seq_pattern) if os.path.isfile(f)]
+        else:
+            published_files = [publish_path]
+
+        for published_file in published_files:
+            try:
+                sgtk.util.filesystem.freeze_permissions(published_file)
+            except OSError:
+                self.logger.warning(
+                    "Unable to make file '{}' read-only.".format(published_file),
+                    extra={
+                        "action_show_more_info": {
+                            "label": "Show Error Log",
+                            "tooltip": "Show the error log",
+                            "text": traceback.format_exc()
+                        }
+                    }
+                )
 
         exception = None
         # create the publish and stash it in the item properties for other
