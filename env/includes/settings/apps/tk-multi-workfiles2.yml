@@ -85,6 +85,13 @@ settings.tk-multi-workfiles2.task: &default_workfiles2_task_settings
   template_work: '{engine_name}_{env_name}_work_file'
   location: "@apps.tk-multi-workfiles2.location"
 
+# houdini task
+settings.tk-multi-workfiles2.houdini.task:
+  <<: *default_workfiles2_task_settings
+
+settings.tk-multi-workfiles2.houdini:
+  <<: *default_workfiles2_settings
+
 # maya task
 settings.tk-multi-workfiles2.maya.task:
   <<: *default_workfiles2_task_settings

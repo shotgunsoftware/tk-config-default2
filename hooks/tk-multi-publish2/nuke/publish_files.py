@@ -31,6 +31,7 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         super(NukePublishFilesDDValidationPlugin, self).__init__(parent, **kwargs)
         self.visited_dict = {}
 
+
     def _build_dict(self, seq, key):
         """
         Creating a dictionary based on a key.
@@ -76,73 +77,6 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         return True
 
 
-    def _sync_frame_range(self, item):
-        """
-        Checks whether frame range is in sync with shotgun.
-
-        :param item: Item to process
-        :return: True if yes false otherwise
-        """
-        context = item.context
-        entity = context.entity
-
-        # checking entity validity since it can be invalid/empty in case of Project Level item
-        if entity:
-            frame_range_app = self.parent.engine.apps.get("tk-multi-setframerange")
-            if not frame_range_app:
-                # return valid for asset/sequence entities
-                self.logger.warning("Unable to find tk-multi-setframerange app. "
-                                    "Not validating frame range.")
-                return True
-
-            sg_entity_type = entity["type"]
-            sg_filters = [["id", "is", entity["id"]]]
-            in_field = frame_range_app.get_setting("sg_in_frame_field")
-            out_field = frame_range_app.get_setting("sg_out_frame_field")
-            fields = [in_field, out_field]
-
-            # get the field information from shotgun based on Shot
-            # sg_cut_in and sg_cut_out info will be on Shot entity, so skip in case this info is not present
-            data = self.sgtk.shotgun.find_one(sg_entity_type, filters=sg_filters, fields=fields)
-            if in_field not in data or out_field not in data:
-                return True
-            elif data[in_field] is None or data[out_field] is None:
-                return True
-
-            # compare if the frame range set at root level is same as the shotgun cut_in, cut_out
-            root = nuke.Root()
-            if root.firstFrame() != data[in_field] or root.lastFrame() != data[out_field]:
-                self.logger.warning("Frame range not synced with Shotgun.")
-                nuke.message("WARNING! Frame range not synced with Shotgun.")
-        return True
-
-
-    def _non_sgtk_writes(self):
-        """
-        Checks for non SGTK write nodes present in the scene.
-
-        :return: True if yes false otherwise
-        """
-        write_nodes = ""
-        # get all write and write geo nodes
-        write = nuke.allNodes('Write') + nuke.allNodes('WriteGeo')
-
-        if write:
-            for item in range(len(write)):
-                write_nodes += "\n" + write[item].name()
-            self.logger.error("Non SGTK write nodes detected here.",
-                              extra={
-                                  "action_show_more_info": {
-                                      "label": "Show Info",
-                                      "tooltip": "Show non sgtk write node(s)",
-                                      "text": "Non SGTK write nodes:\n{}".format(write_nodes)
-                                  }
-                              }
-                              )
-            return False
-        return True
-
-
     @staticmethod
     def _check_for_knob(node, knob):
         try:
@@ -170,6 +104,9 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
     #         return list(set(nodes))
 
     def _collect_nodes_in_graph(self, node, file_paths, valid_paths, show_path):
+        """
+        TODO: Write a docstring
+        """
         if self.visited_dict[node] == 0:
             # check for file parameter in the node if its neither a dot nor disabled
             # get the file path if exists
@@ -185,6 +122,7 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
                             file_paths['unpublished'].append(node)
                         elif show_path not in node_file_path and not (any(path in node_file_path for path in valid_paths.itervalues())):
                             file_paths['invalid'].append(node)
+
             # set visited to 1 for the node so as not to revisit
             self.visited_dict[node] = 1
             dep = node.dependencies()
@@ -193,6 +131,7 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
                     self._collect_nodes_in_graph(item, file_paths, valid_paths, show_path)
 
         return file_paths
+
 
     def _read_and_camera_file_paths(self, item):
         """
@@ -288,15 +227,13 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
         :returns: True if item is valid, False otherwise.
         """
         status = True
-        # Segregating the checks, specifically for write nodes and for general nuke script
-        if item.type == 'file.nuke':
+        # Segregating the checks, specifically for write nodes
+        if item.properties.get("node"):
+            # Initialize the visited dict
+            if not self.visited_dict:
+                allnodes = nuke.allNodes()
+                self.visited_dict = {node: 0 for node in allnodes}
 
-            allnodes = nuke.allNodes()
-            self.visited_dict = {node: 0 for node in allnodes}
-
-            status = self._non_sgtk_writes() and status
-            status = self._sync_frame_range(item) and status
-        else:
             status = self._read_and_camera_file_paths(item) and status
             status = self._framerange_to_be_published(item) and status
 
@@ -304,4 +241,3 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
             return status
 
         return super(NukePublishFilesDDValidationPlugin, self).validate(task_settings, item)
-

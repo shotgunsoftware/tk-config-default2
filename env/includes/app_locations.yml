@@ -23,79 +23,85 @@ includes:
 apps.tk-multi-about.location:
   type: manual
   name: tk-multi-about
-  version: v0.2.x
+  version: v0.x.x
 
 # breakdown
 apps.tk-multi-breakdown.location:
   type: manual
   name: tk-multi-breakdown
-  version: v1.4.x
+  version: v1.x.x
 
 # demo
 apps.tk-multi-demo.location:
   type: manual
   name: tk-multi-demo
-  version: v1.0.x
+  version: v1.x.x
 
 # launchapp
 apps.tk-multi-launchapp.location:
   type: manual
   name: tk-multi-launchapp
-  version: v0.10.x
+  version: v0.x.x
 
 # loader2
 apps.tk-multi-loader2.location:
   type: manual
   name: tk-multi-loader2
-  version: v1.18.x
+  version: v1.x.x
 
 # publish2
 apps.tk-multi-publish2.location:
   type: manual
   name: tk-multi-publish2
-  version: v2.1.x
+  version: v2.x.x
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
   type: manual
   name: tk-multi-pythonconsole
-  version: v1.1.x
+  version: v1.x.x
 
 # reviewsubmission
 apps.tk-multi-reviewsubmission.location:
   type: manual
   name: tk-multi-reviewsubmission
-  version: v0.3.x
+  version: v0.x.x
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
   type: manual
   name: tk-multi-screeningroom
-  version: v0.3.x
+  version: v0.x.x
+
+# setcontext
+apps.tk-multi-setcontext.location:
+  type: manual
+  name: tk-multi-setcontext
+  version: v0.x.x
 
 # setframerange
 apps.tk-multi-setframerange.location:
   type: manual
   name: tk-multi-setframerange
-  version: v0.3.x
+  version: v0.x.x
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:
   type: manual
   name: tk-multi-shotgunpanel
-  version: v1.5.x
+  version: v1.x.x
 
 # snapshot
 apps.tk-multi-snapshot.location:
   type: manual
   name: tk-multi-snapshot
-  version: v0.7.x
+  version: v0.x.x
 
 # workfiles2
 apps.tk-multi-workfiles2.location:
   type: manual
   name: tk-multi-workfiles2
-  version: v0.11.x
+  version: v0.x.x
 
 # ---- Shotgun apps
 
@@ -103,19 +109,41 @@ apps.tk-multi-workfiles2.location:
 apps.tk-shotgun-folders.location:
   type: manual
   name: tk-shotgun-folders
-  version: v0.1.x
+  version: v0.x.x
 
 # shotgun launchfolder
 apps.tk-shotgun-launchfolder.location:
   type: manual
   name: tk-shotgun-launchfolder
-  version: v0.1.x
+  version: v0.x.x
 
 # shotgun launchpublish
 apps.tk-shotgun-launchpublish.location:
   type: manual
   name: tk-shotgun-launchpublish
-  version: v0.3.x
+  version: v0.x.x
+
+# ---- Houdini apps
+
+# alembicnode
+apps.tk-houdini-alembicnode.location:
+  type: manual
+  name: tk-houdini-alembicnode
+  version: v0.x.x
+
+# mantranode
+apps.tk-houdini-mantranode.location:
+  type: manual
+  name: tk-houdini-mantranode
+  version: v0.x.x
+
+# ---- Mari apps
+
+# projectmanager
+apps.tk-mari-projectmanager.location:
+  type: manual
+  name: tk-mari-projectmanager
+  version: v1.x.x
 
 # ---- Nuke apps
 
@@ -123,10 +151,10 @@ apps.tk-shotgun-launchpublish.location:
 apps.tk-nuke-quickdailies.location:
   type: manual
   name: tk-nuke-quickdailies
-  version: v0.3.x
+  version: v0.x.x
 
 # writenode
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: manual
-  version: v1.3.x
+  version: v1.x.x

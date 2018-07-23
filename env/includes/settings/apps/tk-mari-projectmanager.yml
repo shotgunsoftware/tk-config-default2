@@ -7,24 +7,16 @@
 # By accessing, using, copying or modifying this work you indicate your
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
-#
-
-# Software path configuration. Typically consumed by the launchapp
-# configurations for software that is not auto-discovered
 
 ################################################################################
 
-# Houdini
-path.linux.houdini: "/tools/bin/houdini"
+includes:
+- ../../app_locations.yml
 
-# Mari
-path.linux.mari: "/tools/bin/mari"
+################################################################################
 
-# Maya
-path.linux.maya: "/tools/bin/maya"
-
-# Nuke
-path.linux.nuke: "/tools/bin/nuke"
-
-# RV
-path.linux.rv: "/tools/bin/rv"
+settings.tk-mari-projectmanager:
+  default_project_name: 'hook:get_default_saveas_name'
+  template_new_project_name: '{engine_name}_{env_name}_project_name'
+  link_entity_types: ['Asset']
+  location: "@apps.tk-mari-projectmanager.location"

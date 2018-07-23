@@ -147,7 +147,7 @@ class NukePublishFilesDDCompValidationPlugin(HookBaseClass):
         """
         status = True
         # Segregating the checks, specifically for write nodes and for general nuke script
-        if item.type != 'file.nuke':
+        if item.properties.get("node"):
             status = self._bbsize(item) and status
             status = self._framerange_to_be_published(item) and status
             if item.properties['node']['tank_channel'].value() == 'main':

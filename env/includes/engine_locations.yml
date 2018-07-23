@@ -17,28 +17,40 @@
 engines.tk-desktop.location:
   type: manual
   name: tk-desktop
-  version: v2.4.x
+  version: v2.x.x
+
+# Houdini
+engines.tk-houdini.location:
+  type: manual
+  name: tk-houdini
+  version: v1.x.x
+
+# Mari
+engines.tk-mari.location:
+  type: manual
+  name: tk-mari
+  version: v1.x.x
 
 # Maya
 engines.tk-maya.location:
   type: manual
   name: tk-maya
-  version: v0.9.x
+  version: v0.x.x
 
 # Nuke
 engines.tk-nuke.location:
   type: manual
   name: tk-nuke
-  version: v0.10.x
+  version: v0.x.x
 
 # Shell
 engines.tk-shell.location:
   type: manual
   name: tk-shell
-  version: v0.6.x
+  version: v0.x.x
 
 # Shotgun
 engines.tk-shotgun.location:
   type: manual
   name: tk-shotgun
-  version: v0.8.x
+  version: v0.x.x

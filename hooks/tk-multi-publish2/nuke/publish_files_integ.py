@@ -59,7 +59,7 @@ class NukePublishFilesDDIntegValidationPlugin(HookBaseClass):
         """
         status = True
         # Segregating the checks, specifically for write nodes and for general nuke script
-        if item.type != 'file.nuke':
+        if item.properties.get("node"):
             status = self._bbsize(item) and status
 
         if not status:

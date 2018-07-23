@@ -1,0 +1,34 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../../app_locations.yml
+
+################################################################################
+
+settings.tk-multi-setcontext:
+  display_name: 'Select Task'
+  require_task_selection: true
+  location: "@apps.tk-multi-setcontext.location"
+
+settings.tk-multi-setcontext.asset:
+  display_name: 'Select Task'
+  require_task_selection: true
+  link_entity_types: ['Asset']
+  location: "@apps.tk-multi-setcontext.location"
+
+settings.tk-multi-setcontext.shot:
+  display_name: 'Select Task'
+  require_task_selection: true
+  link_entity_types: ['Shot']
+  location: "@apps.tk-multi-setcontext.location"

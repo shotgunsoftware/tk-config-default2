@@ -15,6 +15,8 @@ description: Apps and Engines related to Sequence based work.
 
 includes:
 - ./includes/frameworks.yml
+- ./includes/settings/tk-houdini.yml
+- ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-shell.yml
@@ -26,6 +28,8 @@ includes:
 
 engines:
   # referencing the DCC-specific shot environments included above
+  tk-houdini: "@settings.tk-houdini.shot"
+  tk-mari: "@settings.tk-mari"
   tk-maya: "@settings.tk-maya.shot"
   tk-nuke: "@settings.tk-nuke.shot"
   tk-shell: "@settings.tk-shell"

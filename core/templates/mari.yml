@@ -1,4 +1,25 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+keys:
+    mari.project_name:
+        type: str
+        filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
+        alias: name
+
+
 paths:
+
     # WORK AREAS
     tk-mari_project_work_area:              '@project_work_area/mari'
     tk-mari_sequence_work_area:             '@sequence_work_area/mari'
@@ -8,21 +29,63 @@ paths:
     tk-mari_sequence_asset_work_area:       '@sequence_asset_work_area/mari'
     tk-mari_shot_asset_work_area:           '@shot_asset_work_area/mari'
 
-    # WORK FILES
-    tk-mari_project_work_file:              '@tk-mari_project_work_area/archives/@project_version_name.mra'
-    tk-mari_sequence_work_file:             '@tk-mari_sequence_work_area/archives/@sequence_version_name.mra'
-    tk-mari_shot_work_file:                 '@tk-mari_shot_work_area/archives/@shot_version_name.mra'
+    # SESSION DIRS
+    tk-mari_project_work_file:              '@tk-mari_project_work_area/sessions/@project_version_name'
+    tk-mari_sequence_work_file:             '@tk-mari_sequence_work_area/sessions/@sequence_version_name'
+    tk-mari_shot_work_file:                 '@tk-mari_shot_work_area/sessions/@shot_version_name'
 
-    tk-mari_project_asset_work_file:        '@tk-mari_project_asset_work_area/archives/@project_asset_version_name.mra'
-    tk-mari_sequence_asset_work_file:       '@tk-mari_sequence_asset_work_area/archives/@sequence_asset_version_name.mra'
-    tk-mari_shot_asset_work_file:           '@tk-mari_shot_asset_work_area/archives/@shot_asset_version_name.mra'
+    tk-mari_project_asset_work_file:        '@tk-mari_project_asset_work_area/sessions/@project_asset_version_name'
+    tk-mari_sequence_asset_work_file:       '@tk-mari_sequence_asset_work_area/sessions/@sequence_asset_version_name'
+    tk-mari_shot_asset_work_file:           '@tk-mari_shot_asset_work_area/sessions/@shot_asset_version_name'
 
-    # TEXTURE FILES
-    # TODO: what about textures that do not have udim?
-    tk-mari_project_work_render:            '@tk-mari_project_work_area/images/{Step}/@image_subdirs/@project_version_name.{SEQ}.{img_extension}'
-    tk-mari_sequence_work_render:           '@tk-mari_sequence_work_area/images/{Step}/@image_subdirs/@sequence_version_name.{SEQ}.{img_extension}'
-    tk-mari_shot_work_render:               '@tk-mari_shot_work_area/images/{Step}/@image_subdirs/@shot_version_name.{SEQ}.{img_extension}'
+    # RENDERS
+    tk-mari_project_work_render:            '@tk-mari_project_work_area/images/{Step}/@image_subdirs/@project_version_name.{SEQ}.{img.ext}'
+    tk-mari_sequence_work_render:           '@tk-mari_sequence_work_area/images/{Step}/@image_subdirs/@sequence_version_name.{SEQ}.{img.ext}'
+    tk-mari_shot_work_render:               '@tk-mari_shot_work_area/images/{Step}/@image_subdirs/@shot_version_name.{SEQ}.{img.ext}'
 
-    tk-mari_project_asset_work_render:      '@tk-mari_project_asset_work_area/images/{Step}/@image_subdirs/@project_asset_version_name.{SEQ}.{img_extension}'
-    tk-mari_sequence_asset_work_render:     '@tk-mari_sequence_asset_work_area/images/{Step}/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img_extension}'
-    tk-mari_shot_asset_work_render:         '@tk-mari_shot_asset_work_area/images/{Step}/@image_subdirs/@shot_asset_version_name.{SEQ}.{img_extension}'
+    tk-mari_project_asset_work_render:      '@tk-mari_project_asset_work_area/images/{Step}/@image_subdirs/@project_asset_version_name.{SEQ}.{img.ext}'
+    tk-mari_sequence_asset_work_render:     '@tk-mari_sequence_asset_work_area/images/{Step}/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img.ext}'
+    tk-mari_shot_asset_work_render:         '@tk-mari_shot_asset_work_area/images/{Step}/@image_subdirs/@shot_asset_version_name.{SEQ}.{img.ext}'
+
+    # MOVIES
+    tk-mari_project_work_movie:             '@tk-mari_project_work_area/movies/@project_version_name.mov'
+    tk-mari_sequence_work_movie:            '@tk-mari_sequence_work_area/movies/@sequence_version_name.mov'
+    tk-mari_shot_work_movie:                '@tk-mari_shot_work_area/movies/@shot_version_name.mov'
+
+    tk-mari_project_asset_work_movie:       '@tk-mari_project_asset_work_area/movies/@project_asset_version_name.mov'
+    tk-mari_sequence_asset_work_movie:      '@tk-mari_sequence_asset_work_area/movies/@sequence_asset_version_name.mov'
+    tk-mari_shot_asset_work_movie:          '@tk-mari_shot_asset_work_area/movies/@shot_asset_version_name.mov'
+
+
+aliases:
+
+    # PUBLISH AREAS
+    tk-mari_project_publish_area:           'project_publish_area_scene'
+    tk-mari_sequence_publish_area:          'sequence_publish_area_scene'
+    tk-mari_shot_publish_area:              'shot_publish_area_scene'
+
+    tk-mari_project_asset_publish_area:     'project_asset_publish_area_scene'
+    tk-mari_sequence_asset_publish_area:    'sequence_asset_publish_area_scene'
+    tk-mari_shot_asset_publish_area:        'shot_asset_publish_area_scene'
+
+    # PUBLISH FILES
+    tk-mari_project_publish_file:           'project_publish_mari_session'
+    tk-mari_sequence_publish_file:          'sequence_publish_mari_session'
+    tk-mari_shot_publish_file:              'shot_publish_mari_session'
+
+    tk-mari_project_asset_publish_file:     'project_asset_publish_mari_session'
+    tk-mari_sequence_asset_publish_file:    'sequence_asset_publish_mari_session'
+    tk-mari_shot_asset_publish_file:        'shot_asset_publish_mari_session'
+
+
+strings:
+
+    # SHOT PROJECT NAME
+    tk-mari_project_project_name:           '{mari.project_name}'
+    tk-mari_sequence_project_name:          '{Sequence}_{Step}_{mari.project_name}'
+    tk-mari_shot_project_name:              '{Sequence}_{Shot}_{Step}_{mari.project_name}'
+
+    # ASSET PROJECT NAME
+    tk-mari_project_asset_project_name:     '{Step}_{AssetType}-{Asset}-{mari.project_name}'
+    tk-mari_sequence_asset_project_name:    '{Sequence}_{Step}_{AssetType}-{Asset}-{mari.project_name}'
+    tk-mari_shot_asset_project_name:        '{Sequence}_{Shot}_{Step}_{AssetType}-{Asset}-{mari.project_name}'
