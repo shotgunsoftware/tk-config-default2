@@ -50,7 +50,7 @@ class IngestFilesPlugin(HookBaseClass):
                                   "tags": "tags", "sg_snapshot_id": "sg_snapshot_id"}
             },
             "snapshot_type_settings": {
-                "default_value": {"work_plate": "Element", "avidref_qt": "Element", "*": "Asset",
+                "default_value": {"work_plate": "Element", "match_qt": "Element", "*": "Asset",
                                   self.parent.settings["default_snapshot_type"]:
                                       self.parent.settings["default_entity_type"]}
             }
@@ -167,6 +167,20 @@ class IngestFilesPlugin(HookBaseClass):
 
         return status
 
+    def create_published_files(self, task_settings, item):
+        """
+        Publishes the files for the given item and task_settings.
+        This can call super or implement it's own.
+
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the task_settings property. The values are `Setting`
+            instances.
+        :param item: Item to process
+        """
+
+        # publish the file
+        super(IngestFilesPlugin, self).publish(task_settings, item)
+
     def publish(self, task_settings, item):
         """
         Executes the publish logic for the given item and task_settings.
@@ -185,10 +199,10 @@ class IngestFilesPlugin(HookBaseClass):
         item.properties["ingest_entity_data"] = linked_entity
 
         if item.properties.get("ingest_entity_data"):
-            # publish the file
-            super(IngestFilesPlugin, self).publish(task_settings, item)
+            # run the actual publish file creation
+            self.create_published_files(task_settings, item)
 
-            if item.properties.get("sg_publish_data"):
+            if item.properties.get("sg_publish_data_list"):
                 # link the publish file to our linked entity.
                 updated_linked_entity = self._link_published_files_to_entity(item, task_settings)
 
@@ -256,7 +270,11 @@ class IngestFilesPlugin(HookBaseClass):
 
         linked_entity_data = item.properties.get("ingest_entity_data")
 
-        if linked_entity_data:
+        linked_entity_fields = ["sg_published_files"]
+        linked_entity = self._find_linked_entity(item, task_settings, linked_entity_fields)
+
+        # only delete the entity if the entity has no published files linked to it.
+        if linked_entity_data and len(linked_entity["sg_published_files"]) == 0:
             try:
                 self.sgtk.shotgun.delete(linked_entity_data["type"], linked_entity_data["id"])
                 # pop the ingest_entity_data too!
@@ -554,15 +572,20 @@ class IngestFilesPlugin(HookBaseClass):
         :param task_settings: Dictionary of Settings. The keys are strings, matching
             the keys returned in the task_settings property. The values are `Setting`
             instances.
-        :param item: item to get the publish files(sg_publish_data) and linked entity(ingest_entity_data)
+        :param item: item to get the publish files(sg_publish_data_list) and linked entity(ingest_entity_data)
         :return: Updated linked entity.
         """
+
+        sg_publish_data_list = []
+
+        if "sg_publish_data_list" in item.properties:
+            sg_publish_data_list.extend(item.properties.sg_publish_data_list)
 
         try:
             result = self.sgtk.shotgun.update(
                 entity_type=item.properties["ingest_entity_data"]["type"],
                 entity_id=item.properties["ingest_entity_data"]["id"],
-                data=dict(sg_published_files=[item.properties["sg_publish_data"]]),
+                data=dict(sg_published_files=sg_publish_data_list),
                 multi_entity_update_modes=dict(sg_published_files='add'),
             )
             return result

@@ -22,6 +22,7 @@ settings.tk-multi-reviewsubmission:
   movie_width: '@settings.tk-multi-reviewsubmission.width'
   movie_height: '@settings.tk-multi-reviewsubmission.height'
   movie_path_template: '@settings.tk-multi-reviewsubmission.movie_path_template'
+  extra_write_nodes_path_info: '@settings.tk-multi-reviewsubmission.extra_write_nodes_path_info'
   sg_version_name_template: '@settings.tk-multi-reviewsubmission.sg_version_name_template'
   slate_logo: 'reviewsubmission_slate_logo_file'
   codec_settings_hook: '{config}/codec_settings.py'
@@ -31,3 +32,19 @@ settings.tk-multi-reviewsubmission:
   render_script: 'reviewsubmission_render_script_path'
   preprocess_nuke_hook: '{config}/tk-multi-reviewsubmission/preprocess_nuke.py'
   mov_has_slate: '@settings.tk-multi-reviewsubmission.mov_has_slate'
+
+settings.tk-multi-colorprocessfiles:
+  movie_width: '@settings.tk-multi-colorprocessfiles.width'
+  movie_height: '@settings.tk-multi-colorprocessfiles.height'
+  movie_path_template: '@settings.tk-multi-colorprocessfiles.movie_path_template'
+  extra_write_nodes_path_info: '@settings.tk-multi-colorprocessfiles.extra_write_nodes_path_info'
+  sg_version_name_template: '@settings.tk-multi-colorprocessfiles.sg_version_name_template'
+  slate_logo: 'colorprocessfiles_slate_logo_file'
+  codec_settings_hook: '{config}/codec_settings.py'
+  # app location is same as review submit :)
+  location: "@apps.tk-multi-reviewsubmission.location"
+  nuke_linux_path: "@path.linux.nuke"
+  burnin_path: 'colorprocessfiles_burnin_nuke_file'
+  render_script: 'colorprocessfiles_render_script_path'
+  preprocess_nuke_hook: '{config}/tk-multi-colorprocessfiles/preprocess_nuke.py'
+  mov_has_slate: '@settings.tk-multi-colorprocessfiles.mov_has_slate'

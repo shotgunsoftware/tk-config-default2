@@ -15,8 +15,12 @@ includes:
 
 ################################################################################
 
-settings.tk-multi-snapshot:
+settings.tk-multi-snapshot: &default_settings
   hook_copy_file: '{config}/copy_file.py'
   template_snapshot: '{engine_name}_{env_name}_work_snapshot'
   template_work: '{engine_name}_{env_name}_work_file'
   location: "@apps.tk-multi-snapshot.location"
+
+settings.tk-multi-snapshot.maya:
+  <<: *default_settings
+  hook_scene_operation: '{self}/scene_operation_{engine_name}.py:{config}/tk-multi-snapshot/scene_operation_{engine_name}.py'

@@ -337,9 +337,14 @@ paths:
     shot_asset_publish_texture:             '@shot_asset_publish_area_texture/@texture_subdirs/@shot_asset_version_name[.{UDIM}].{tex.ext}'
 
     # REVIEW SUBMISSION
-    reviewsubmission_burnin_nuke_file:      '@project_publish_area/SCRIPT/slate/burnin.nk'
-    reviewsubmission_slate_logo_file:       '@project_publish_area/SCRIPT/slate/logo.png'
-    reviewsubmission_render_script_path:    '@project_publish_area/SCRIPT/slate/nuke_batch_render_movie.py'
+    reviewsubmission_burnin_nuke_file:      '@project_publish_area/etc/reviewsubmit_presets/burnin.nk'
+    reviewsubmission_slate_logo_file:       '@project_publish_area/etc/reviewsubmit_presets/logo.png'
+    reviewsubmission_render_script_path:    '@project_publish_area/etc/reviewsubmit_presets/nuke_batch_render_movie.py'
+
+    # COLOR PROCESSING
+    colorprocessfiles_burnin_nuke_file:      '@project_publish_area/etc/reviewsubmit_presets/color_process_files.nk'
+    colorprocessfiles_slate_logo_file:       '@project_publish_area/etc/reviewsubmit_presets/color_process_files_logo.png'
+    colorprocessfiles_render_script_path:    '@project_publish_area/etc/reviewsubmit_presets/nuke_batch_color_process_files.py'
 
     # CDL PUBLISHING
     # TODO: we only support cc publishing currently
