@@ -29,7 +29,7 @@ engines.tk-maya.location:
 engines.tk-nuke.location:
   type: manual
   name: tk-nuke
-  version: v0.10.x
+  version: v0.11.x
 
 # Shell
 engines.tk-shell.location:
