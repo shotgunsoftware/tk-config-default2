@@ -42,6 +42,24 @@ settings.tk-multi-loader2.3dsmax:
     hierarchy: [entity, content]
   location: "@apps.tk-multi-loader2.location"
 
+# flame
+settings.tk-multi-loader2.flame:
+  actions_hook: '{engine}/tk-multi-loader2/flame_loader_actions.py'
+  action_mappings:
+    Flame Batch File: [load_setup]
+    Flame Quicktime: [load_clip]
+    Flame Render: [load_clip]
+    Flame OpenClip: [load_clip]
+    Photoshop Image: [load_clip]
+    Rendered Image: [load_clip]
+    Image: [load_clip]
+    Movie: [load_clip]
+    Texture: [load_clip]
+  entity_mappings:
+    Shot: [load_batch]
+    CutItem: [load_batch]
+  location: "@apps.tk-multi-loader2.location"
+
 # houdini
 settings.tk-multi-loader2.houdini:
   action_mappings:

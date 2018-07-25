@@ -15,6 +15,7 @@ includes:
 - ../app_locations.yml
 - ../engine_locations.yml
 - ./tk-flame-export.yml
+- ./tk-multi-loader2.yml
 
 ################################################################################
 
@@ -24,8 +25,7 @@ settings.tk-flame.project:
     tk-flame-review:
       location: "@apps.tk-flame-review.location"
     tk-flame-export: "@settings.tk-flame-export"
-    tk-multi-loader2:
-      location: "@apps.tk-multi-loader2.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.flame"
   location: "@engines.tk-flame.location"
 
 # shot
@@ -34,6 +34,5 @@ settings.tk-flame.shot:
     tk-flame-review:
       location: "@apps.tk-flame-review.location"
     tk-flame-export: "@settings.tk-flame-export"
-    tk-multi-loader2:
-      location: "@apps.tk-multi-loader2.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.flame"
   location: "@engines.tk-flame.location"
