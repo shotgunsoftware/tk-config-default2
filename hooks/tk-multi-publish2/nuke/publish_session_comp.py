@@ -19,9 +19,9 @@ import frangetools
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class NukePublishFilesDDCompValidationPlugin(HookBaseClass):
+class NukePublishSessionDDCompValidationPlugin(HookBaseClass):
     """
-    Inherits from NukePublishFilesPlugin
+    Inherits from NukePublishSessionPlugin
     """
     def _build_dict(self, seq, key):
         """
@@ -156,5 +156,5 @@ class NukePublishFilesDDCompValidationPlugin(HookBaseClass):
         if not status:
             return status
 
-        return super(NukePublishFilesDDCompValidationPlugin, self).validate(task_settings, item)
+        return super(NukePublishSessionDDCompValidationPlugin, self).validate(task_settings, item)
 

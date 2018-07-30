@@ -28,27 +28,24 @@ settings.tk-multi-publish2.basic.upload_version:        '{self}/basic/upload_ver
 settings.tk-multi-publish2.basic.publish_files:         '@settings.tk-multi-publish2.basic.publish:{self}/basic/publish_files.py'
 
 settings.tk-multi-publish2.houdini.collector:           '@settings.tk-multi-publish2.basic.collector:{self}/houdini/collector.py'
-settings.tk-multi-publish2.houdini.publish_files:       '@settings.tk-multi-publish2.basic.publish_files'
-settings.tk-multi-publish2.houdini.publish_session:     '@settings.tk-multi-publish2.basic.publish:{self}/houdini/publish_session.py'
+settings.tk-multi-publish2.houdini.publish_session:     '@settings.tk-multi-publish2.basic.publish_files:{self}/houdini/publish_session.py'
 settings.tk-multi-publish2.houdini.create_version:      '@settings.tk-multi-publish2.basic.create_version:{self}/houdini/create_version.py'
 settings.tk-multi-publish2.houdini.upload_version:      '@settings.tk-multi-publish2.basic.upload_version'
 
 settings.tk-multi-publish2.mari.collector:              '@settings.tk-multi-publish2.basic.collector:{self}/mari/collector.py'
-settings.tk-multi-publish2.mari.publish_files:          '@settings.tk-multi-publish2.basic.publish_files'
-settings.tk-multi-publish2.mari.publish_session:        '@settings.tk-multi-publish2.basic.publish:{self}/mari/publish_session.py'
+settings.tk-multi-publish2.mari.publish_session:        '@settings.tk-multi-publish2.basic.publish_files:{self}/mari/publish_session.py'
 settings.tk-multi-publish2.mari.publish_textures:       '@settings.tk-multi-publish2.basic.publish:{self}/mari/publish_textures.py'
 settings.tk-multi-publish2.mari.create_version:         '@settings.tk-multi-publish2.basic.create_version'
 settings.tk-multi-publish2.mari.upload_version:         '@settings.tk-multi-publish2.basic.upload_version'
+
 settings.tk-multi-publish2.maya.collector:              '@settings.tk-multi-publish2.basic.collector:{self}/maya/collector.py'
-settings.tk-multi-publish2.maya.publish_files:          '@settings.tk-multi-publish2.basic.publish_files'
-settings.tk-multi-publish2.maya.publish_session:        '@settings.tk-multi-publish2.basic.publish:{self}/maya/publish_session.py'
+settings.tk-multi-publish2.maya.publish_session:        '@settings.tk-multi-publish2.basic.publish_files:{self}/maya/publish_session.py'
 settings.tk-multi-publish2.maya.publish_geometry:       '@settings.tk-multi-publish2.basic.publish:{self}/maya/publish_geometry.py'
 settings.tk-multi-publish2.maya.create_version:         '@settings.tk-multi-publish2.basic.create_version:{self}/maya/create_version.py'
 settings.tk-multi-publish2.maya.upload_version:         '@settings.tk-multi-publish2.basic.upload_version'
 
 settings.tk-multi-publish2.nuke.collector:              '@settings.tk-multi-publish2.basic.collector:{self}/nuke/collector.py'
-settings.tk-multi-publish2.nuke.publish_files:          '@settings.tk-multi-publish2.basic.publish_files:{self}/nuke/publish_files.py'#:{config}/tk-multi-publish2/nuke/publish_files.py'
-settings.tk-multi-publish2.nuke.publish_session:        '@settings.tk-multi-publish2.basic.publish:{self}/nuke/publish_session.py'#:{config}/tk-multi-publish2/nuke/publish_session.py'
+settings.tk-multi-publish2.nuke.publish_session:        '@settings.tk-multi-publish2.basic.publish_files:{self}/nuke/publish_session.py:{config}/tk-multi-publish2/nuke/publish_session.py'
 settings.tk-multi-publish2.nuke.create_version:         '@settings.tk-multi-publish2.basic.create_version:{self}/nuke/create_version.py'
 settings.tk-multi-publish2.nuke.upload_version:         '@settings.tk-multi-publish2.basic.upload_version'
 

@@ -16,9 +16,9 @@ import sgtk
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class NukePublishFilesDDIntegValidationPlugin(HookBaseClass):
+class NukePublishSessionDDIntegValidationPlugin(HookBaseClass):
     """
-    Inherits from NukePublishFilesPlugin
+    Inherits from NukePublishSessionPlugin
     """
 
     def _bbsize(self, item):
@@ -65,5 +65,5 @@ class NukePublishFilesDDIntegValidationPlugin(HookBaseClass):
         if not status:
             return status
 
-        return super(NukePublishFilesDDIntegValidationPlugin, self).validate(task_settings, item)
+        return super(NukePublishSessionDDIntegValidationPlugin, self).validate(task_settings, item)
 
