@@ -86,7 +86,7 @@ class TemplateKeyCustom(HookBaseClass):
                             padding = relevant_edits["value"]
                             value = value.zfill(padding)
                 elif edit == "path_safe":
-                    value = urllib.quote(value.replace(" ", "_").lower(), safe='')
+                    value = urllib.quote(value.replace(" ", "_"), safe='')
 
         return value
         
