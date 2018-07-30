@@ -187,7 +187,7 @@ class MayaPublishFilesDDIntegValidationPlugin(HookBaseClass):
                 # For each node, list out attributes which are locked
                 lock_per_node = cmds.listAttr(node, l=True)
                 if lock_per_node:
-                    locked += "\n" + node + "  --->  " + ", ".join(lock_per_node)
+                    locked += "\n" + node + ": " + ", ".join(lock_per_node)
             # If there are locked channels, error message with node name and locked attribute name(s).
             if locked:
                 self.logger.error("Locked channels detected.",
