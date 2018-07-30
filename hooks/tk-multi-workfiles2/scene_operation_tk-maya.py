@@ -187,8 +187,12 @@ class SceneOperation(HookClass):
         else:
             fields.pop("extension")  # remove ma as extension to apply default img ext
             render_path = render_temp.apply_fields(fields).replace("LAYERPLACEHOLDER", "<Layer>")
-            self.set_render_defaults(fields, render_path, frame_sq_key)
-            self.set_vray_settings(fields, render_path, frame_sq_key)
+            maya_prefs = preferences.Preferences(pref_file_name="maya_preferences.yaml",
+                                                 role=fields.get("Step"),
+                                                 seq_override=fields.get("Sequence"),
+                                                 shot_override=fields.get("Shot"))
+            self.set_render_defaults(fields, render_path, frame_sq_key, maya_prefs)
+            self.set_vray_settings(fields, render_path, frame_sq_key, maya_prefs)
 
     def get_render_template(self, context):
         """
@@ -208,18 +212,18 @@ class SceneOperation(HookClass):
 
         return render_temp
 
-    def set_render_defaults(self, fields, render_path, frame_sq_key):
+    def set_render_defaults(self, fields, render_path, frame_sq_key, prefs):
         """
         Set render file name and path, image format and image resolution for default Maya renderers.
 
         :param fields:          dict
                                 Template fields used to create the final render path
-
         :param render_path:     String
                                 Complete path to the rendered image
-
         :param frame_sq_key:    SequenceKey
                                 Object containing the number format for the frame sequence
+        :param prefs:           Preferences
+                                Object containing configurable overrides for any attribute
 
         :returns:               None
         """
@@ -246,19 +250,29 @@ class SceneOperation(HookClass):
                                  int(frame_sq_key.format_spec), lock=True)
         self.set_enum_attr("defaultRenderGlobals.periodInExt", "Period in Extension", lock=True)
 
-    def set_vray_settings(self, fields, render_path, frame_sq_key):
+        # set overrides from preferences, if any exist
+        enum_overrides = prefs.get("ddhb_render_settings", {}).get("default", {}).get("enum_attr", {})
+        other_overrides = prefs.get("ddhb_render_settings", {}).get("default", {}).get("other", {})
+
+        for key, value in enum_overrides.items():
+            self.set_enum_attr("defaultRenderGlobals.{}".format(key), value, lock=True)
+        for attr_name, value_dict in other_overrides.items():
+            self.unlock_and_set_attr("defaultRenderGlobals.{}".format(attr_name), value_dict.get("value"),
+                                         attribute_type=value_dict.get("type"), lock=True)
+
+    def set_vray_settings(self, fields, render_path, frame_sq_key, prefs):
         """
         Set render file name and path, image format and image resolution
         for any vray nodes in the maya file.
 
         :param fields:          dict
                                 Template fields used to create the final render path
-
         :param render_path:     String
                                 Complete path to the rendered image
-
         :param frame_sq_key:    SequenceKey
                                 Object containing the number format for the frame sequence
+        :param prefs:           Preferences
+                                Object containing configurable overrides for any attribute
 
         :returns:               None
         """
@@ -267,6 +281,11 @@ class SceneOperation(HookClass):
         vray_nodes = cmds.ls(type="VRaySettingsNode")
         if not vray_nodes:
             return
+
+        # get overrides from preferences, if any exist
+        enum_overrides = prefs.get("ddhb_render_settings", {}).get("vray", {}).get("enum_attr", {})
+        other_overrides = prefs.get("ddhb_render_settings", {}).get("vray", {}).get("other", {})
+
         for node in vray_nodes:
             # set resolution
             self.unlock_and_set_attr("{}.aspectLock".format(node), False, lock=True)
@@ -284,6 +303,13 @@ class SceneOperation(HookClass):
             self.set_enum_attr("{}.animType".format(node), "Standard", lock=True)
             self.unlock_and_set_attr("{}.fileNamePadding".format(node),
                                      int(frame_sq_key.format_spec), lock=True)
+
+            # set prefs overrides
+            for key, value in enum_overrides.items():
+                self.set_enum_attr("{}.{}".format(node, key), value, lock=True)
+            for attr_name, value_dict in other_overrides.items():
+                self.unlock_and_set_attr("{}.{}".format(node, attr_name), value_dict.get("value"),
+                                         attribute_type=value_dict.get("type"), lock=True)
 
     # move to a maya utils location?
     @staticmethod
