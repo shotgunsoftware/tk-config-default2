@@ -27,6 +27,9 @@ settings.tk-flame.project:
     tk-flame-export: "@settings.tk-flame-export"
     tk-multi-loader2: "@settings.tk-multi-loader2.flame"
   location: "@engines.tk-flame.location"
+  context_menu: [
+    { name : "Load...", app_instance: "tk-multi-loader2", display_name: "Shotgun Loader..."}
+  ]
 
 # shot
 settings.tk-flame.shot:
@@ -34,5 +37,4 @@ settings.tk-flame.shot:
     tk-flame-review:
       location: "@apps.tk-flame-review.location"
     tk-flame-export: "@settings.tk-flame-export"
-    tk-multi-loader2: "@settings.tk-multi-loader2.flame"
   location: "@engines.tk-flame.location"
