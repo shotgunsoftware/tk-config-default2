@@ -251,8 +251,8 @@ class SceneOperation(HookClass):
         self.set_enum_attr("defaultRenderGlobals.periodInExt", "Period in Extension", lock=True)
 
         # set overrides from preferences, if any exist
-        enum_overrides = prefs.get("ddhb_render_settings", {}).get("default", {}).get("enum_attr", {})
-        other_overrides = prefs.get("ddhb_render_settings", {}).get("default", {}).get("other", {})
+        enum_overrides = prefs.get("sgtk_render_settings", {}).get("default", {}).get("enum_attr", {})
+        other_overrides = prefs.get("sgtk_render_settings", {}).get("default", {}).get("other", {})
 
         for key, value in enum_overrides.items():
             self.set_enum_attr("defaultRenderGlobals.{}".format(key), value, lock=True)
@@ -283,8 +283,8 @@ class SceneOperation(HookClass):
             return
 
         # get overrides from preferences, if any exist
-        enum_overrides = prefs.get("ddhb_render_settings", {}).get("vray", {}).get("enum_attr", {})
-        other_overrides = prefs.get("ddhb_render_settings", {}).get("vray", {}).get("other", {})
+        enum_overrides = prefs.get("sgtk_render_settings", {}).get("vray", {}).get("enum_attr", {})
+        other_overrides = prefs.get("sgtk_render_settings", {}).get("vray", {}).get("other", {})
 
         for node in vray_nodes:
             # set resolution
