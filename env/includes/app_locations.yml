@@ -83,7 +83,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.6.1
+  version: v1.6.2
 
 # snapshot
 apps.tk-multi-snapshot.location:
@@ -109,7 +109,7 @@ apps.tk-multi-workfiles2.location:
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
-  version: v0.1.6
+  version: v0.1.7
 
 # shotgun launchfolder
 apps.tk-shotgun-launchfolder.location:
@@ -143,13 +143,13 @@ apps.tk-hiero-openinshotgun.location:
 apps.tk-houdini-alembicnode.location:
   type: app_store
   name: tk-houdini-alembicnode
-  version: v0.3.0
+  version: v0.3.1
 
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
   type: app_store
   name: tk-houdini-mantranode
-  version: v0.3.0
+  version: v0.3.1
 
 # ---- Nuke apps
 
