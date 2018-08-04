@@ -182,14 +182,14 @@ strings:
     ingest_project_asset_input_name:        '{Asset}_{name}_v{ingestVersion}'
 
     # strings for publish names
-    ingest_shot_publish_name:               '{Sequence}_{Shot}_{Step}_{snapshot_type}_{name}[-{output}]'
-    ingest_sequence_publish_name:           '{Sequence}_{Step}_{snapshot_type}_{name}[-{output}]'
-    ingest_project_publish_name:            '{Step}_{snapshot_type}_{name}[-{output}]'
+    ingest_shot_publish_name:               '{Sequence}_{Shot}_{Step}_{snapshot_type}_{name}[-{node}]'
+    ingest_sequence_publish_name:           '{Sequence}_{Step}_{snapshot_type}_{name}[-{node}]'
+    ingest_project_publish_name:            '{Step}_{snapshot_type}_{name}[-{node}]'
 
     # strings for publish names of assets
-    ingest_shot_asset_publish_name:         '{Sequence}_{Shot}_{Step}_{AssetType}_{Asset}_{snapshot_type}_{name}[-{output}]'
-    ingest_sequence_asset_publish_name:     '{Sequence}_{Step}_{AssetType}_{Asset}_{snapshot_type}_{name}[-{output}]'
-    ingest_project_asset_publish_name:      '{Step}_{AssetType}_{Asset}_{snapshot_type}_{name}[-{output}]'
+    ingest_shot_asset_publish_name:         '{Sequence}_{Shot}_{Step}_{AssetType}_{Asset}_{snapshot_type}_{name}[-{node}]'
+    ingest_sequence_asset_publish_name:     '{Sequence}_{Step}_{AssetType}_{Asset}_{snapshot_type}_{name}[-{node}]'
+    ingest_project_asset_publish_name:      '{Step}_{AssetType}_{Asset}_{snapshot_type}_{name}[-{node}]'
 
     # strings for entity names
     ingest_shot_entity_name:                '{Sequence}_{Shot}_{Step}_{snapshot_type}'

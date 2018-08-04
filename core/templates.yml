@@ -73,6 +73,9 @@ keys:
     name:
         type: str
         filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
     version:
         type: int
         format_spec: '03'
@@ -82,11 +85,12 @@ keys:
         type: int
     height:
         type: int
-    output:
-        type: str
-        filter_by: alphanumeric
     node:
         type: str
+        alias: output
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
     channel:
         type: str
     layer:
@@ -381,14 +385,14 @@ strings:
     texture_subdirs:                        '{name}/v{version}[/{node}]/{channel}[/{layer}]'
 
     # SCENE PUBLISH NAMES
-    project_publish_name:                   '{Step}_{name}[-{output}][-{node}]'
-    sequence_publish_name:                  '{Sequence}_{Step}_{name}[-{output}][-{node}]'
-    shot_publish_name:                      '{Sequence}_{Shot}_{Step}_{name}[-{output}][-{node}]'
+    project_publish_name:                   '{Step}_{name}[-{node}]'
+    sequence_publish_name:                  '{Sequence}_{Step}_{name}[-{node}]'
+    shot_publish_name:                      '{Sequence}_{Shot}_{Step}_{name}[-{node}]'
 
     # ASSET PUBLISH NAMES
-    project_asset_publish_name:             '{Step}_{AssetType}-{Asset}-{name}[-{output}][-{node}]'
-    sequence_asset_publish_name:            '{Sequence}_{Step}_{AssetType}-{Asset}-{name}[-{output}][-{node}]'
-    shot_asset_publish_name:                '{Sequence}_{Shot}_{Step}_{AssetType}-{Asset}-{name}[-{output}][-{node}]'
+    project_asset_publish_name:             '{Step}_{AssetType}-{Asset}-{name}[-{node}]'
+    sequence_asset_publish_name:            '{Sequence}_{Step}_{AssetType}-{Asset}-{name}[-{node}]'
+    shot_asset_publish_name:                '{Sequence}_{Shot}_{Step}_{AssetType}-{Asset}-{name}[-{node}]'
 
     # SCENE VERSION NAMES
     project_version_name:                   '@project_publish_name.v{version}'
