@@ -17,31 +17,36 @@ includes:
 # NOTE: Plugin settings have been moved to {preferences}/sgtk_config_environments.yaml
 ################################################################################
 
-settings.tk-multi-publish2.path_info:                     '{self}/path_info.py'
+settings.tk-multi-publish2.path_info:               '{self}/path_info.py'
+settings.tk-multi-publish2.library.path_info:       '{self}/path_info.py:{config}/path_info.py'
 
-settings.tk-multi-publish2.basic.collector:               '{self}/basic/collector.py'
-settings.tk-multi-publish2.basic.publish_files:           '{self}/basic/publish_files.py'
-settings.tk-multi-publish2.basic.create_version:          '{self}/basic/create_version.py'
-settings.tk-multi-publish2.basic.upload_version:          '{self}/basic/upload_version.py'
+settings.tk-multi-publish2.basic.collector:         '{self}/basic/collector.py'
+settings.tk-multi-publish2.basic.publish_files:     '{self}/basic/publish_files.py'
+settings.tk-multi-publish2.basic.create_version:    '{self}/basic/create_version.py'
+settings.tk-multi-publish2.basic.upload_version:    '{self}/basic/upload_version.py'
 
-settings.tk-multi-publish2.maya.collector:                '@settings.tk-multi-publish2.basic.collector:{self}/maya/collector.py'
-settings.tk-multi-publish2.maya.publish_files:            '@settings.tk-multi-publish2.basic.publish_files:{self}/maya/publish_files.py'
-settings.tk-multi-publish2.maya.publish_geometry:         '@settings.tk-multi-publish2.basic.publish_files:{self}/maya/publish_geometry.py'
-settings.tk-multi-publish2.maya.create_version:           '@settings.tk-multi-publish2.basic.create_version:{self}/maya/create_version.py'
-settings.tk-multi-publish2.maya.upload_version:           '@settings.tk-multi-publish2.basic.upload_version'
+settings.tk-multi-publish2.maya.collector:          '@settings.tk-multi-publish2.basic.collector:{self}/maya/collector.py'
+settings.tk-multi-publish2.maya.publish_files:      '@settings.tk-multi-publish2.basic.publish_files:{self}/maya/publish_files.py'
+settings.tk-multi-publish2.maya.publish_geometry:   '@settings.tk-multi-publish2.basic.publish_files:{self}/maya/publish_geometry.py'
+settings.tk-multi-publish2.maya.create_version:     '@settings.tk-multi-publish2.basic.create_version:{self}/maya/create_version.py'
+settings.tk-multi-publish2.maya.upload_version:     '@settings.tk-multi-publish2.basic.upload_version'
 
-settings.tk-multi-publish2.nuke.collector:                '@settings.tk-multi-publish2.basic.collector:{self}/nuke/collector.py'
-settings.tk-multi-publish2.nuke.publish_files:            '@settings.tk-multi-publish2.basic.publish_files:{self}/nuke/publish_files.py:{config}/tk-multi-publish2/nuke/publish_files.py'
-settings.tk-multi-publish2.nuke.create_version:           '@settings.tk-multi-publish2.basic.create_version:{self}/nuke/create_version.py'
-settings.tk-multi-publish2.nuke.upload_version:           '@settings.tk-multi-publish2.basic.upload_version'
+settings.tk-multi-publish2.nuke.collector:          '@settings.tk-multi-publish2.basic.collector:{self}/nuke/collector.py'
+settings.tk-multi-publish2.nuke.publish_files:      '@settings.tk-multi-publish2.basic.publish_files:{self}/nuke/publish_files.py:{config}/tk-multi-publish2/nuke/publish_files.py'
+settings.tk-multi-publish2.nuke.create_version:     '@settings.tk-multi-publish2.basic.create_version:{self}/nuke/create_version.py'
+settings.tk-multi-publish2.nuke.upload_version:     '@settings.tk-multi-publish2.basic.upload_version'
 
-settings.tk-multi-publish2.ingest.collector:              '@settings.tk-multi-publish2.basic.collector:{config}/tk-multi-publish2/ingest/collector.py'
-settings.tk-multi-publish2.ingest.publish_files:          '@settings.tk-multi-publish2.basic.publish_files:{config}/tk-multi-publish2/ingest/ingest_files.py'
-settings.tk-multi-publish2.ingest.color_process_files:    '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/ingest/color_process_files.py'
-settings.tk-multi-publish2.ingest.publish_cdl_files:      '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/ingest/ingest_cdl_files.py'
-settings.tk-multi-publish2.ingest.create_version:         '@settings.tk-multi-publish2.basic.create_version'
-settings.tk-multi-publish2.ingest.upload_version:         '@settings.tk-multi-publish2.basic.upload_version'
+settings.tk-multi-publish2.ingest.collector:        '@settings.tk-multi-publish2.basic.collector:{config}/tk-multi-publish2/ingest/collector.py'
+settings.tk-multi-publish2.ingest.publish_files:    '@settings.tk-multi-publish2.basic.publish_files:{config}/tk-multi-publish2/ingest/ingest_files.py'
+settings.tk-multi-publish2.ingest.publish_cdl_files: '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/ingest/ingest_cdl_files.py'
+settings.tk-multi-publish2.ingest.create_version:   '@settings.tk-multi-publish2.basic.create_version'
+settings.tk-multi-publish2.ingest.upload_version:   '@settings.tk-multi-publish2.basic.upload_version'
 
+
+settings.tk-multi-publish2.library.collector:        '@settings.tk-multi-publish2.ingest.collector:{config}/tk-multi-publish2/library/collector.py'
+settings.tk-multi-publish2.library.publish_files:    '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/library/ingest_files.py'
+settings.tk-multi-publish2.library.create_version:   '@settings.tk-multi-publish2.ingest.create_version'
+settings.tk-multi-publish2.library.upload_version:   '@settings.tk-multi-publish2.ingest.upload_version'
 
 ################################################################################
 
@@ -79,4 +84,17 @@ settings.tk-multi-publish2.ingest:
   default_snapshot_type: 'ingest'
   path_info: '@settings.tk-multi-publish2.path_info'
   publish_plugins: '@settings.tk-multi-publish2.ingest.publish_plugins'
+  location: '@apps.tk-multi-publish2.location'
+
+  # Library
+settings.tk-multi-publish2.library:
+  display_name: 'Ingest'
+  collector: '@settings.tk-multi-publish2.library.collector'
+  collector_settings: '@settings.tk-multi-publish2.library.collector.settings'
+  manifest_file_name: '.mxp'
+  library_base_path: '\/dd\/library\/(\w+)\/.*'
+  default_entity_type: 'Element'
+  default_snapshot_type: 'ingest'
+  path_info: '@settings.tk-multi-publish2.library.path_info'
+  publish_plugins: '@settings.tk-multi-publish2.library.publish_plugins'
   location: '@apps.tk-multi-publish2.location'

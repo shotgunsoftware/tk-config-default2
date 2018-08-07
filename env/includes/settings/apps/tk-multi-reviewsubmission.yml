@@ -21,6 +21,7 @@ includes:
 settings.tk-multi-reviewsubmission:
   movie_width: '@settings.tk-multi-reviewsubmission.width'
   movie_height: '@settings.tk-multi-reviewsubmission.height'
+  store_on_disk: '@settings.tk-multi-reviewsubmission.store_on_disk'
   movie_path_template: '@settings.tk-multi-reviewsubmission.movie_path_template'
   extra_write_nodes_path_info: '@settings.tk-multi-reviewsubmission.extra_write_nodes_path_info'
   sg_version_name_template: '@settings.tk-multi-reviewsubmission.sg_version_name_template'
