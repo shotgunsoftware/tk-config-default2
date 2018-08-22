@@ -32,7 +32,7 @@ DEFAULT_CAMERAS = ['persp',
                    'side']
 
 
-class MayaPublishSessionDDIntegValidationPlugin(HookBaseClass):
+class MayaPublishDDIntegValidationPlugin(HookBaseClass):
     """
     Inherits from MayaPublishPlugin
     """
@@ -44,7 +44,7 @@ class MayaPublishSessionDDIntegValidationPlugin(HookBaseClass):
         contain simple html for formatting.
         """
 
-        desc = super(MayaPublishSessionDDIntegValidationPlugin, self).description
+        desc = super(MayaPublishDDIntegValidationPlugin, self).description
 
         return desc + "<br><br>" + """
         Validation checks before a file is published.
@@ -398,4 +398,4 @@ class MayaPublishSessionDDIntegValidationPlugin(HookBaseClass):
         if not status:
             return status
 
-        return super(MayaPublishSessionDDIntegValidationPlugin, self).validate(task_settings, item)
+        return super(MayaPublishDDIntegValidationPlugin, self).validate(task_settings, item)

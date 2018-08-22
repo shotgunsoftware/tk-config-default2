@@ -1,0 +1,113 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+keys:
+    # Defined by tk-hiero-export
+    nukestudio.project:
+        type: str
+        alias: project
+    nukestudio.sequence:
+        type: str
+        alias: sequence
+    nukestudio.shot:
+        type: str
+        alias: shot
+    department:
+        type: str
+        shotgun_entity_type: Step
+        shotgun_field_name: short_name
+        filter_by: alphanumeric
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - upper_case
+
+paths:
+
+    # WORK AREAS
+    tk-nukestudio_project_work_area:            './{department}/user/@user_work'
+    tk-nukestudio_sequence_work_area:           './{department}/{Sequence}/user/@user_work'
+    tk-nukestudio_shot_work_area:               './{department}/{Sequence}/{Shot}/user/@user_work'
+
+    # WORK FILES
+    tk-nukestudio_project_work_file:            '@tk-nukestudio_project_work_area/projects/@project_version_name.hrox'
+    tk-nukestudio_sequence_work_file:           '@tk-nukestudio_sequence_work_area/projects/@sequence_version_name.hrox'
+    tk-nukestudio_shot_work_file:               '@tk-nukestudio_shot_work_area/projects/@shot_version_name.hrox'
+
+    # SNAPSHOTS
+    tk-nukestudio_project_work_snapshot:        '@tk-nukestudio_project_work_area/projects/snapshots/@project_version_name.{timestamp}.hrox'
+    tk-nukestudio_sequence_work_snapshot:       '@tk-nukestudio_sequence_work_area/projects/snapshots/@sequence_version_name.{timestamp}.hrox'
+    tk-nukestudio_shot_work_snapshot:           '@tk-nukestudio_shot_work_area/projects/snapshots/@shot_version_name.{timestamp}.hrox'
+
+    # EXPORT RENDERS
+    tk-nukestudio_project_work_render:          '@tk-nukestudio_project_work_area/renders/@tk-nukestudio_work_subdirs/v{version}/@tk-nukestudio_version_name.{SEQ}.{img.ext}'
+    tk-nukestudio_sequence_work_render:         '@tk-nukestudio_sequence_work_area/renders/@tk-nukestudio_work_subdirs/v{version}/@tk-nukestudio_version_name.{SEQ}.{img.ext}'
+    tk-nukestudio_shot_work_render:             '@tk-nukestudio_shot_work_area/renders/@tk-nukestudio_work_subdirs/v{version}/@tk-nukestudio_version_name.{SEQ}.{img.ext}'
+
+    # EXPORT PLATES
+    tk-nukestudio_project_work_movie:           '@tk-nukestudio_project_work_area/movies/@tk-nukestudio_work_subdirs/@tk-nukestudio_version_name.mov'
+    tk-nukestudio_sequence_work_movie:          '@tk-nukestudio_sequence_work_area/movies/@tk-nukestudio_work_subdirs/@tk-nukestudio_version_name.mov'
+    tk-nukestudio_shot_work_movie:              '@tk-nukestudio_shot_work_area/movies/@tk-nukestudio_work_subdirs/@tk-nukestudio_version_name.mov'
+
+    # QUICK-DAILIES
+    tk-nukestudio_project_publish_quick:        '@project_publish_area_movie/quick/@tk-nukestudio_quick_version_name.mov'
+    tk-nukestudio_sequence_publish_quick:       '@sequence_publish_area_movie/quick/@tk-nukestudio_quick_version_name.mov'
+    tk-nukestudio_shot_publish_quick:           '@shot_publish_area_movie/quick/@tk-nukestudio_quick_version_name.mov'
+
+    # PUBLISH AREAS
+    tk-nukestudio_publish_area:                 './{nukestudio.sequence}[/{nukestudio.shot}]/SHARED'
+    tk-nukestudio_publish_area_render:          '@tk-nukestudio_publish_area/IMG/{Step}'
+    tk-nukestudio_publish_area_plate:           '@tk-nukestudio_publish_area/MOV/{Step}'
+ 
+    # PUBLISH FILES
+    tk-nukestudio_publish_render:               '@tk-nukestudio_publish_area_render/@image_subdirs/@tk-nukestudio_version_name.{SEQ}.{img.ext}'
+    tk-nukestudio_publish_plate:                '@tk-nukestudio_publish_area_plate/@tk-nukestudio_version_name.mov'
+
+
+aliases:
+
+    # PUBLISH AREAS
+    tk-nukestudio_project_publish_area:         'project_publish_area_script'
+    tk-nukestudio_sequence_publish_area:        'sequence_publish_area_script'
+    tk-nukestudio_shot_publish_area:            'shot_publish_area_script'
+
+    # PUBLISH FILES
+    tk-nukestudio_project_publish_file:         'project_publish_nukestudio_project'
+    tk-nukestudio_sequence_publish_file:        'sequence_publish_nukestudio_project'
+    tk-nukestudio_shot_publish_file:            'shot_publish_nukestudio_project'
+
+    # PUBLISH PLATE RENDERS
+    tk-nukestudio_project_publish_render:       'tk-nukestudio_publish_render'
+    tk-nukestudio_sequence_publish_render:      'tk-nukestudio_publish_render'
+    tk-nukestudio_shot_publish_render:          'tk-nukestudio_publish_render'
+
+    # PUBLISH PLATE MOVIES
+    tk-nukestudio_project_publish_movie:        'tk-nukestudio_publish_plate'
+    tk-nukestudio_sequence_publish_movie:       'tk-nukestudio_publish_plate'
+    tk-nukestudio_shot_publish_movie:           'tk-nukestudio_publish_plate'
+
+    # QUICK-DAILIES
+    tk-nukestudio_quick_project_version_name:   'tk-nukestudio_quick_version_name'
+    tk-nukestudio_quick_sequence_version_name:  'tk-nukestudio_quick_version_name'
+    tk-nukestudio_quick_shot_version_name:      'tk-nukestudio_quick_version_name'
+
+
+strings:
+
+    # defines how the {tk_version} token in NukeStudio gets formatted back to tk.
+    tk-nukestudio_version:                      '{version}'
+
+    # WORK SUBDIRS
+    tk-nukestudio_work_subdirs:                 '{nukestudio.sequence}[/{nukestudio.shot}]'
+
+    # WORK FILENAME
+    tk-nukestudio_version_name:                 '{nukestudio.sequence}[_{nukestudio.shot}]_{Step}_{name}[-{node}].v{version}'
+
+    # QUICK-DAILIES
+    tk-nukestudio_quick_version_name:           '@tk-nukestudio_version_name.{iteration}'

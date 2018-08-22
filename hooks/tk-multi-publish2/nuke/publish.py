@@ -19,7 +19,7 @@ import frangetools
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class NukePublishSessionDDValidationPlugin(HookBaseClass):
+class NukePublishDDValidationPlugin(HookBaseClass):
     """
     Inherits from NukePublishFilesPlugin
     """
@@ -28,7 +28,7 @@ class NukePublishSessionDDValidationPlugin(HookBaseClass):
         Construction
         """
         # call base init
-        super(NukePublishSessionDDValidationPlugin, self).__init__(parent, **kwargs)
+        super(NukePublishDDValidationPlugin, self).__init__(parent, **kwargs)
         self.visited_dict = {}
 
 
@@ -312,4 +312,4 @@ class NukePublishSessionDDValidationPlugin(HookBaseClass):
         if not status:
             return status
 
-        return super(NukePublishSessionDDValidationPlugin, self).validate(task_settings, item)
+        return super(NukePublishDDValidationPlugin, self).validate(task_settings, item)

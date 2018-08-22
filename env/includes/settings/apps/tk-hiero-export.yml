@@ -1,0 +1,28 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../../app_locations.yml
+
+################################################################################
+
+################################################################################
+# NOTE: Export settings have been moved to {preferences}/sgtk_config_environments.yaml
+################################################################################
+
+settings.tk-hiero-export:
+  nuke_script_toolkit_write_nodes: "@settings.tk-hiero-export.write_nodes"
+  template_nuke_script_path: 'tk-nuke_{env_name}_work_file'
+  template_plate_path: '{engine_name}_{env_name}_work_movie'
+  template_render_path: '{engine_name}_{env_name}_work_render'
+  template_version: '{engine_name}_version'
+  location: "@apps.tk-hiero-export.location"

@@ -19,6 +19,7 @@ includes:
 - ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
 - ./includes/settings/tk-nuke.yml
+- ./includes/settings/tk-nukestudio.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - '{preferences}/sgtk_config_environments.yaml'
@@ -27,10 +28,10 @@ includes:
 # configuration for all engines to load in a shot task context
 
 engines:
-  # referencing the DCC-specific shot environments included above
   tk-houdini: "@settings.tk-houdini.shot"
   tk-mari: "@settings.tk-mari"
   tk-maya: "@settings.tk-maya.shot"
   tk-nuke: "@settings.tk-nuke.shot"
+  tk-nukestudio: "@settings.tk-nukestudio.shot"
   tk-shell: "@settings.tk-shell"
   tk-shotgun: "@settings.tk-shotgun.task"

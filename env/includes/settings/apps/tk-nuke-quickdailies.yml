@@ -17,7 +17,7 @@ includes:
 # NOTE: Quickdailies settings have been moved to {preferences}/sgtk_config_environments.yaml
 ################################################################################
 
-# nuke asset context
+# default
 settings.tk-nuke-quickdailies:
   width: '@settings.tk-nuke-quickdailies.width'
   height: '@settings.tk-nuke-quickdailies.height'
@@ -25,5 +25,5 @@ settings.tk-nuke-quickdailies:
   post_hooks: [snapshot_history_post_quickdaily]
   current_scene_template: '{engine_name}_{env_name}_work_file'
   movie_template: '{engine_name}_{env_name}_publish_quick'
-  sg_version_name_template: 'quick_{env_name}_version_name'
+  sg_version_name_template: '{engine_name}_quick_{env_name}_version_name'
   location: "@apps.tk-nuke-quickdailies.location"

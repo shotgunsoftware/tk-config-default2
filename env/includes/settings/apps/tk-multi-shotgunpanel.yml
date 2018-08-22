@@ -99,6 +99,34 @@ settings.tk-multi-shotgunpanel.nuke:
       filters: {published_file_type: Movie}
     - actions: [script_import]
       filters: {published_file_type: Nuke Script}
+    - actions: [read_node]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [read_node]
+      filters: {published_file_type: Rendered Image}
+    - actions: [read_node]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  actions_hook: '{self}/general_actions.py:{config}/tk-multi-shotgunpanel/{engine_name}_actions.py'
+  enable_context_switch: true
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# nukestudio
+settings.tk-multi-shotgunpanel.nukestudio:
+  action_mappings:
+    PublishedFile:
+    - actions: [read_node]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [read_node]
+      filters: {published_file_type: Image}
+    - actions: [read_node]
+      filters: {published_file_type: Movie}
     - actions: [open_project]
       filters: {published_file_type: NukeStudio Project}
     - actions: [read_node]
@@ -115,6 +143,6 @@ settings.tk-multi-shotgunpanel.nuke:
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
-  actions_hook: '{self}/general_actions.py:{config}/tk-multi-shotgunpanel/{engine_name}_actions.py'
+  actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
   enable_context_switch: true
   location: "@apps.tk-multi-shotgunpanel.location"

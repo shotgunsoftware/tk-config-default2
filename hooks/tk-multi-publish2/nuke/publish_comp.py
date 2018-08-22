@@ -19,7 +19,7 @@ import frangetools
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class NukePublishSessionDDCompValidationPlugin(HookBaseClass):
+class NukePublishDDCompValidationPlugin(HookBaseClass):
     """
     Inherits from NukePublishSessionPlugin
     """
@@ -156,5 +156,5 @@ class NukePublishSessionDDCompValidationPlugin(HookBaseClass):
         if not status:
             return status
 
-        return super(NukePublishSessionDDCompValidationPlugin, self).validate(task_settings, item)
+        return super(NukePublishDDCompValidationPlugin, self).validate(task_settings, item)
 

@@ -81,7 +81,7 @@ aliases:
 strings:
 
     # SHOT PROJECT NAME
-    tk-mari_project_project_name:           '{mari.project_name}'
+    tk-mari_project_project_name:           '{Step}_{mari.project_name}'
     tk-mari_sequence_project_name:          '{Sequence}_{Step}_{mari.project_name}'
     tk-mari_shot_project_name:              '{Sequence}_{Shot}_{Step}_{mari.project_name}'
 

@@ -123,6 +123,20 @@ apps.tk-shotgun-launchpublish.location:
   name: tk-shotgun-launchpublish
   version: v0.x.x
 
+# ---- Hiero apps
+
+# hiero export
+apps.tk-hiero-export.location:
+  type: manual
+  name: tk-hiero-export
+  version: v0.x.x
+
+# hiero openinshotgun
+apps.tk-hiero-openinshotgun.location:
+  type: manual
+  name: tk-hiero-openinshotgun
+  version: v0.x.x
+
 # ---- Houdini apps
 
 # alembicnode
@@ -152,6 +166,12 @@ apps.tk-nuke-quickdailies.location:
   type: manual
   name: tk-nuke-quickdailies
   version: v0.x.x
+
+# quickreview
+apps.tk-nuke-quickreview.location:
+  type: manual
+  name: tk-nuke-quickreview
+  version: v1.x.x
 
 # writenode
 apps.tk-nuke-writenode.location:

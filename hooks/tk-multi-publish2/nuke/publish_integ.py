@@ -16,7 +16,7 @@ import sgtk
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class NukePublishSessionDDIntegValidationPlugin(HookBaseClass):
+class NukePublishDDIntegValidationPlugin(HookBaseClass):
     """
     Inherits from NukePublishSessionPlugin
     """
@@ -65,5 +65,5 @@ class NukePublishSessionDDIntegValidationPlugin(HookBaseClass):
         if not status:
             return status
 
-        return super(NukePublishSessionDDIntegValidationPlugin, self).validate(task_settings, item)
+        return super(NukePublishDDIntegValidationPlugin, self).validate(task_settings, item)
 

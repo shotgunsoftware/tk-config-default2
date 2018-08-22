@@ -16,11 +16,10 @@ includes:
 ################################################################################
 
 settings.tk-multi-loader2.entities: &loader2_entities
-# Uncomment after https://support.shotgunsoftware.com/hc/en-us/requests/83441 is resolved.
-#  - caption: Current Project
-#    type: Hierarchy
-#    root: '{context.project}'
-#    publish_filters: []
+  - caption: Current Project
+    type: Hierarchy
+    root: '{context.project}'
+    publish_filters: []
   - caption: My Tasks
     type: Query
     entity_type: Task
@@ -95,6 +94,22 @@ settings.tk-multi-loader2.nuke:
     Rendered Image: [read_node]
     Texture: [read_node]
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
+  entities: *loader2_entities
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
+# nuke studio
+settings.tk-multi-loader2.nukestudio:
+  action_mappings:
+    Geometry Cache: [read_node]
+    Image: [read_node]
+    Movie: [read_node]
+    Nuke Script: [script_import]
+    NukeStudio Project: [open_project]
+    Photoshop Image: [read_node]
+    Rendered Image: [read_node]
+    Texture: [read_node]
+  actions_hook: '{self}/tk-nuke_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"

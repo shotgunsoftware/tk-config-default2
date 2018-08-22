@@ -295,6 +295,11 @@ paths:
     sequence_asset_publish_nuke_script:     '@sequence_asset_publish_area_script/@sequence_asset_version_name.nk'
     shot_asset_publish_nuke_script:         '@shot_asset_publish_area_script/@shot_asset_version_name.nk'
 
+    # NUKESTUDIO PROJECTS
+    project_publish_nukestudio_project:     '@project_publish_area_script/@project_version_name.hrox'
+    sequence_publish_nukestudio_project:    '@sequence_publish_area_script/@sequence_version_name.hrox'
+    shot_publish_nukestudio_project:        '@shot_publish_area_script/@shot_version_name.hrox'
+
     # RENDERS
     project_publish_render:                 '@project_publish_area_image/@image_subdirs/@project_version_name.{SEQ}.{img.ext}'
     sequence_publish_render:                '@sequence_publish_area_image/@image_subdirs/@sequence_version_name.{SEQ}.{img.ext}'
@@ -413,4 +418,5 @@ includes:
   - templates/mari.yml
   - templates/maya.yml
   - templates/nuke.yml
+  - templates/nukestudio.yml
   - '{preferences}/sgtk_config_templates.yaml'
