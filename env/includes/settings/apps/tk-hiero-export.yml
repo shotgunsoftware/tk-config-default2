@@ -21,8 +21,8 @@ includes:
 
 settings.tk-hiero-export:
   nuke_script_toolkit_write_nodes: "@settings.tk-hiero-export.write_nodes"
-  template_nuke_script_path: 'tk-nuke_{env_name}_work_file'
-  template_plate_path: '{engine_name}_{env_name}_work_movie'
-  template_render_path: '{engine_name}_{env_name}_work_render'
+  template_nuke_script_path: '{engine_name}_{env_name}_publish_nuke_script'
+  template_plate_path: '{engine_name}_{env_name}_publish_movie'
+  template_render_path: '{engine_name}_{env_name}_publish_render'
   template_version: '{engine_name}_version'
   location: "@apps.tk-hiero-export.location"
