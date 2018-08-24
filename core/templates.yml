@@ -102,6 +102,7 @@ keys:
         format_spec: '04'
     UDIM:
         type: sequence
+        format_spec: '04'
         default: '<UDIM>'
     eye:
         type: str

@@ -44,7 +44,7 @@ settings.tk-mari.asset:
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-mari-projectmanager: "@settings.tk-mari-projectmanager"
+    tk-mari-projectmanager: "@settings.tk-mari-projectmanager.task"
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: 'Shotgun Panel...'}
   location: "@engines.tk-mari.location"
