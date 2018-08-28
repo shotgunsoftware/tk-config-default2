@@ -379,30 +379,30 @@ class IngestCollectorPlugin(HookBaseClass):
         :param path: path to build the context from, in this class we use os.path.basename of the path.
         """
 
-        if not default_entities:
-            sg_filters = [
-                ['short_name', 'is', "vendor"]
-            ]
 
-            # TODO-- this is not needed right now, since our keys only depend on short_name key of the Step
-            # make sure we get the correct Step!
-            # if base_context.entity:
-            #     # this should handle whether the Step is from Sequence/Shot/Asset
-            #     sg_filters.append(["entity_type", "is", base_context.entity["type"]])
-            # elif base_context.project:
-            #     # this should handle pro
-            #     sg_filters.append(["entity_type", "is", base_context.project["type"]])
+        sg_filters = [
+            ['short_name', 'is', "vendor"]
+        ]
 
-            fields = ['entity_type', 'code', 'id']
+        # TODO-- this is not needed right now, since our keys only depend on short_name key of the Step
+        # make sure we get the correct Step!
+        # if base_context.entity:
+        #     # this should handle whether the Step is from Sequence/Shot/Asset
+        #     sg_filters.append(["entity_type", "is", base_context.entity["type"]])
+        # elif base_context.project:
+        #     # this should handle pro
+        #     sg_filters.append(["entity_type", "is", base_context.project["type"]])
 
-            # add a vendor step to all ingested files
-            step_entity = self.sgtk.shotgun.find_one(
-                entity_type='Step',
-                filters=sg_filters,
-                fields=fields
-            )
+        fields = ['entity_type', 'code', 'id']
 
-            default_entities = [step_entity]
+        # add a vendor step to all ingested files
+        step_entity = self.sgtk.shotgun.find_one(
+            entity_type='Step',
+            filters=sg_filters,
+            fields=fields
+        )
+
+        default_entities = [step_entity]
 
         work_path_template = self._resolve_work_path_template(properties, path)
 
