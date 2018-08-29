@@ -34,7 +34,7 @@ DEFAULT_CAMERAS = ['persp',
 
 class MayaPublishDDIntegValidationPlugin(HookBaseClass):
     """
-    Inherits from MayaPublishPlugin
+    Inherits from MayaPublishFilesPlugin
     """
 
     @property
