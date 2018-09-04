@@ -221,7 +221,7 @@ class NukePublishFilesDDValidationPlugin(HookBaseClass):
                                   "action_show_more_info": {
                                       "label": "Show Info",
                                       "tooltip": "Show invalid path(s)",
-                                      "text": "Paths not in SHARED location/DDLIBRARY:{}".format(paths)
+                                      "text": "Paths not in {}:\n{}".format(valid_paths, paths)
                                   }
                               }
                               )
