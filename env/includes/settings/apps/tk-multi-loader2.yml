@@ -40,6 +40,7 @@ settings.tk-multi-loader2.houdini:
     Alembic Cache: [import]
     Houdini Scene: [merge]
     Image: [file_cop]
+    Model File: [import]
     Photoshop Image: [file_cop]
     Rendered Image: [file_cop]
     Texture: [file_cop]
@@ -52,6 +53,7 @@ settings.tk-multi-loader2.houdini:
 settings.tk-multi-loader2.mari:
   action_mappings:
     Alembic Cache: [geometry_import]
+    Model File: [geometry_import]
   actions_hook: '{self}/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
@@ -60,12 +62,14 @@ settings.tk-multi-loader2.mari:
 # maya
 settings.tk-multi-loader2.maya:
   action_mappings:
-    Geometry Cache: [reference, import]
-    Image: [texture_node, image_plane]
+    ALembic Cache: [reference, import]
+    Image: [image_plane, texture_node_with_frames]
     Maya Scene: [reference, import]
-    Photoshop Image: [texture_node, image_plane]
-    Rendered Image: [texture_node, image_plane]
-    Texture: [texture_node, image_plane]
+    Model File: [reference, import]
+    Photoshop Image: [image_plane, texture_node_with_frames]
+    Rendered Image: [image_plane, texture_node_with_frames]
+    Texture: [texture_node, image_plane, texture_node_with_frames]
+    UDIM Image: [udim_texture_node]
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
@@ -74,13 +78,16 @@ settings.tk-multi-loader2.maya:
 # nuke
 settings.tk-multi-loader2.nuke:
   action_mappings:
-    Geometry Cache: [read_node]
+    Alembic Cache: [read_node]
     Image: [read_node]
+    Model File: [read_node]
     Movie: [read_node]
     Nuke Script: [script_import]
     Photoshop Image: [read_node]
     Rendered Image: [read_node]
+    Deep Rendered Image: [deep_read_node, read_node]
     Texture: [read_node]
+    UDIM Image: [read_node]
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
@@ -89,8 +96,9 @@ settings.tk-multi-loader2.nuke:
 # nuke studio
 settings.tk-multi-loader2.nukestudio:
   action_mappings:
-    Geometry Cache: [read_node]
+    Alembic Cache: [read_node]
     Image: [read_node]
+    Model File: [read_node]
     Movie: [read_node]
     Nuke Script: [script_import]
     NukeStudio Project: [open_project]

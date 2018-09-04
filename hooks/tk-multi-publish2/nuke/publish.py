@@ -64,16 +64,16 @@ class NukePublishDDValidationPlugin(HookBaseClass):
         # Checking with root because _sync_frame_range() will ensure root is up to date with shotgun
         if missing_frames:
             self.logger.warning("Renders Mismatch! Incomplete renders on disk.")
-            nuke.message("WARNING!  ---->  "+item.properties['node'].name()+"\nRenders Mismatch! Incomplete renders on disk.")
+            nuke.message("WARNING!\n"+item.properties['node'].name()+"\nRenders Mismatch! Incomplete renders on disk.")
         else:
             first_rendered_frame = info_by_path.get(lss_path)['frame_range'][0]
             last_rendered_frame = info_by_path.get(lss_path)['frame_range'][1]
             if (first_rendered_frame < root.firstFrame()) or (last_rendered_frame < root.lastFrame()):
                 self.logger.warning("Renders Mismatch! Incomplete renders on disk.")
-                nuke.message("WARNING!  ---->  "+item.properties['node'].name()+"\nRenders Mismatch! Incomplete renders on disk.")
+                nuke.message("WARNING!\n"+item.properties['node'].name()+"\nRenders Mismatch! Incomplete renders on disk.")
             elif (first_rendered_frame > root.firstFrame()) or (last_rendered_frame > root.lastFrame()):
                 self.logger.warning("Renders Mismatch! Extra renders on disk.")
-                nuke.message("WARNING!  ---->  "+item.properties['node'].name()+"\nRenders Mismatch! Extra renders on disk.")
+                nuke.message("WARNING!\n"+item.properties['node'].name()+"\nRenders Mismatch! Extra renders on disk.")
         return True
 
 
@@ -86,22 +86,6 @@ class NukePublishDDValidationPlugin(HookBaseClass):
         else:
             return True
 
-
-    # def _collect_nodes_in_graph(self, nodes):
-    #     """
-    #     For each WriteTank node, traverse the node graph and get the associated nodes.
-    #
-    #     :param nodes: WriteTank node
-    #     :return: list of associated nodes
-    #     """
-    #     dependency_list = list(itertools.chain(*(node.dependencies() for node in nodes)))
-    #     if not dependency_list:
-    #         return list(set(nodes))
-    #     else:
-    #         depend = self._collect_nodes_in_graph(dependency_list)
-    #         for item in depend:
-    #             nodes.append(item)
-    #         return list(set(nodes))
 
     def _collect_nodes_in_graph(self, node, file_paths, valid_paths, show_path):
         """
@@ -159,38 +143,23 @@ class NukePublishDDValidationPlugin(HookBaseClass):
         # Collect all the nodes associated with a write node
         # For all the read, readgeo and camera nodes present in the write node graph, check for 'file' knob.
         # If its populated, get the file path.
-        file_paths = {'unpublished': [],
-                      'invalid': [],
-                      }
+        file_paths = {
+            'unpublished': [],
+            'invalid': [],
+        }
 
         self._collect_nodes_in_graph(item.properties['node'], file_paths, valid_paths, show)
-
-        # node_type_list = ["Read", "ReadGeo2", "Camera2"]
-        # for index, fileNode in enumerate(related_nodes, 0):
-        #     if (fileNode.Class() in node_type_list) and self._check_for_knob(fileNode, 'file'):
-        #         node_name = related_nodes[index].name()
-        #         node_file_path = fileNode['file'].value()
-        #         sg_data = sgtk.util.find_publish(publisher.sgtk, [node_file_path])
-        #         if node_file_path:
-        #             # Check if the file(s) loaded are published
-        #             # If they are not published, they should at least be from valid locations
-        #             if sg_data:
-        #                 continue
-        #             elif any(path in node_file_path for path in valid_paths):
-        #                 unpublished += "\n" + node_name + "  --->  " + node_file_path
-        #             else:
-        #                 paths += "\n" + node_name + "  --->  " + node_file_path
 
         if file_paths['invalid']:
             paths = ""
             for item in file_paths['invalid']:
-                paths += "\n" + item.name() + "  --->  " + item['file'].value()
-            self.logger.error("Invalid paths! Try loading from shotgun.",
+                paths += "\n" + item.name() + ": " + item['file'].value()
+            self.logger.error("Invalid paths! Try loading from Shotgun menu -> Load.",
                               extra={
                                   "action_show_more_info": {
                                       "label": "Show Info",
                                       "tooltip": "Show invalid path(s)",
-                                      "text": "Invalid paths!\n{}".format(paths)
+                                      "text": "Paths not in {}:\n{}".format(valid_paths, paths)
                                   }
                               }
                               )
@@ -199,19 +168,19 @@ class NukePublishDDValidationPlugin(HookBaseClass):
         if file_paths['unpublished']:
             unpublished = ""
             for path in file_paths['unpublished']:
-                unpublished += "\n" + path.name() + "  --->  " + path['file'].value()
+                unpublished += "\n" + path.name() + ":  " + path['file'].value()
             self.logger.warning(
                 "Unpublished files found.",
                 extra={
                     "action_show_more_info": {
                         "label": "Show Info",
                         "tooltip": "Show unpublished files",
-                        "text": "Unpublished files.\n{}".format(unpublished)
+                        "text": "Unpublished files.{}".format(unpublished)
                     }
                 }
             )
-            nuke.message("WARNING!  ---->  {} node".format(item.properties[
-                'node'].name()) + "\nUnpublished files found.\n{}".format(unpublished))
+            nuke.message("WARNING!\n{} node".format(item.properties[
+                'node'].name()) + "\nUnpublished files found.{}".format(unpublished))
         return True
 
 
