@@ -22,7 +22,7 @@ settings.tk-multi-shotgunpanel:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
@@ -46,7 +46,7 @@ settings.tk-multi-shotgunpanel.3dsmax:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
@@ -72,7 +72,7 @@ settings.tk-multi-shotgunpanel.houdini:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
@@ -100,7 +100,7 @@ settings.tk-multi-shotgunpanel.maya:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
@@ -134,7 +134,7 @@ settings.tk-multi-shotgunpanel.nuke:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
@@ -169,7 +169,7 @@ settings.tk-multi-shotgunpanel.nukestudio:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
@@ -194,7 +194,7 @@ settings.tk-multi-shotgunpanel.hiero:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
@@ -217,7 +217,7 @@ settings.tk-multi-shotgunpanel.photoshop:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-    - actions: [assign_task, task_to_ip]
+    - actions: [assign_task, task_to_ip, task_to_rev]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
