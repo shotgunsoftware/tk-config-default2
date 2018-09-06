@@ -36,13 +36,13 @@ class HieroGetQuicktimeSettings(Hook):
             file_type = "mov"
             properties = {
                 "encoder": "mov64",
-                "format" = "default"
-                "codec" = "jpeg"
-                "write_timecode" = True
-                "bitrate" = 400000
-                "bitrate_tolerance" = 28000
-                "quality_min" = 1
-                "quality_max" = 2
+                "format": "default",
+                "codec": "jpeg",
+                "write_timecode": True,
+                "bitrate": 400000,
+                "bitrate_tolerance": 28000,
+                "quality_min": 1,
+                "quality_max": 2,
             }
         else:
             file_type = "mov"
