@@ -75,13 +75,13 @@ paths:
     tk-maya_shot_asset_work_movie:          '@tk-maya_shot_asset_work_area/movies/@shot_asset_version_name.mov'
 
     # MODELS
-    tk-maya_project_work_model:             '@tk-maya_project_work_area/data/{geo.ext}/@geom_subdirs/@project_version_name.{geo.ext}'
-    tk-maya_sequence_work_model:            '@tk-maya_sequence_work_area/data/{geo.ext}/@geom_subdirs/@sequence_version_name.{geo.ext}'
-    tk-maya_shot_work_model:                '@tk-maya_shot_work_area/data/{geo.ext}/@geom_subdirs/@shot_version_name.{geo.ext}'
+    tk-maya_project_work_model:             '@tk-maya_project_work_area/data/{geo.ext}/@geom_subdirs/@project_version_name[.{SEQ}].{geo.ext}'
+    tk-maya_sequence_work_model:            '@tk-maya_sequence_work_area/data/{geo.ext}/@geom_subdirs/@sequence_version_name[.{SEQ}].{geo.ext}'
+    tk-maya_shot_work_model:                '@tk-maya_shot_work_area/data/{geo.ext}/@geom_subdirs/@shot_version_name[.{SEQ}].{geo.ext}'
 
-    tk-maya_project_asset_work_model:       '@tk-maya_project_asset_work_area/data/{geo.ext}/@geom_subdirs/@project_asset_version_name.{geo.ext}'
-    tk-maya_sequence_asset_work_model:      '@tk-maya_sequence_asset_work_area/data/{geo.ext}/@geom_subdirs/@sequence_asset_version_name.{geo.ext}'
-    tk-maya_shot_asset_work_model:          '@tk-maya_shot_asset_work_area/data/{geo.ext}/@geom_subdirs/@shot_asset_version_name.{geo.ext}'
+    tk-maya_project_asset_work_model:       '@tk-maya_project_asset_work_area/data/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
+    tk-maya_sequence_asset_work_model:      '@tk-maya_sequence_asset_work_area/data/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
+    tk-maya_shot_asset_work_model:          '@tk-maya_shot_asset_work_area/data/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
 
     # ANIM CACHE
     tk-maya_project_work_cache:             '@tk-maya_project_work_area/cache/alembic/@geom_subdirs/@project_version_name.abc'

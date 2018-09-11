@@ -320,13 +320,13 @@ paths:
     shot_asset_publish_movie:               '@shot_asset_publish_area_movie/@shot_asset_version_name.mov'
 
     # MODELS
-    project_publish_model:                  '@project_publish_area_model/{geo.ext}/@geom_subdirs/@project_version_name.{geo.ext}'
-    sequence_publish_model:                 '@sequence_publish_area_model/{geo.ext}/@geom_subdirs/@sequence_version_name.{geo.ext}'
-    shot_publish_model:                     '@shot_publish_area_model/{geo.ext}/@geom_subdirs/@shot_version_name.{geo.ext}'
+    project_publish_model:                  '@project_publish_area_model/{geo.ext}/@geom_subdirs/@project_version_name[.{SEQ}].{geo.ext}'
+    sequence_publish_model:                 '@sequence_publish_area_model/{geo.ext}/@geom_subdirs/@sequence_version_name[.{SEQ}].{geo.ext}'
+    shot_publish_model:                     '@shot_publish_area_model/{geo.ext}/@geom_subdirs/@shot_version_name[.{SEQ}].{geo.ext}'
 
-    project_asset_publish_model:            '@project_asset_publish_area_model/{geo.ext}/@geom_subdirs/@project_asset_version_name.{geo.ext}'
-    sequence_asset_publish_model:           '@sequence_asset_publish_area_model/{geo.ext}/@geom_subdirs/@sequence_asset_version_name.{geo.ext}'
-    shot_asset_publish_model:               '@shot_asset_publish_area_model/{geo.ext}/@geom_subdirs/@shot_asset_version_name.{geo.ext}'
+    project_asset_publish_model:            '@project_asset_publish_area_model/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
+    sequence_asset_publish_model:           '@sequence_asset_publish_area_model/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
+    shot_asset_publish_model:               '@shot_asset_publish_area_model/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
 
     # ANIM CACHE
     project_publish_cache:                  '@project_publish_area_anim/alembic/@geom_subdirs/@project_version_name.abc'

@@ -57,13 +57,13 @@ paths:
     tk-shell_shot_asset_work_cache:         '@tk-shell_shot_asset_work_area/cache/alembic/@geom_subdirs/@shot_asset_version_name.abc'
 
     # WORK MODELS
-    tk-shell_project_work_model:            '@tk-shell_project_work_area/cache/{geo.ext}/@geom_subdirs/@project_version_name.{geo.ext}'
-    tk-shell_sequence_work_model:           '@tk-shell_sequence_work_area/cache/{geo.ext}/@geom_subdirs/@sequence_version_name.{geo.ext}'
-    tk-shell_shot_work_model:               '@tk-shell_shot_work_area/cache/{geo.ext}/@geom_subdirs/@shot_version_name.{geo.ext}'
+    tk-shell_project_work_model:            '@tk-shell_project_work_area/cache/{geo.ext}/@geom_subdirs/@project_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_sequence_work_model:           '@tk-shell_sequence_work_area/cache/{geo.ext}/@geom_subdirs/@sequence_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_shot_work_model:               '@tk-shell_shot_work_area/cache/{geo.ext}/@geom_subdirs/@shot_version_name[.{SEQ}].{geo.ext}'
 
-    tk-shell_project_asset_work_model:      '@tk-shell_project_asset_work_area/cache/{geo.ext}/@geom_subdirs/@project_asset_version_name.{geo.ext}'
-    tk-shell_sequence_asset_work_model:     '@tk-shell_sequence_asset_work_area/cache/{geo.ext}/@geom_subdirs/@sequence_asset_version_name.{geo.ext}'
-    tk-shell_shot_asset_work_model:         '@tk-shell_shot_asset_work_area/cache/{geo.ext}/@geom_subdirs/@shot_asset_version_name.{geo.ext}'
+    tk-shell_project_asset_work_model:      '@tk-shell_project_asset_work_area/cache/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_sequence_asset_work_model:     '@tk-shell_sequence_asset_work_area/cache/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_shot_asset_work_model:         '@tk-shell_shot_asset_work_area/cache/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
 
     # WORK RENDERS
     tk-shell_project_work_render:           '@tk-shell_project_work_area/images/{Step}/@image_subdirs/@project_version_name.{SEQ}.{img.ext}'
