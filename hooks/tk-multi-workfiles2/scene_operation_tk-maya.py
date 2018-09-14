@@ -21,6 +21,14 @@ from dd.runtime import api
 api.load("preferences")
 import preferences
 
+MAYA_TIME_UNITS = {15: 'game',
+                   24: 'film',
+                   25: 'pal',
+                   30: 'ntsc',
+                   48: 'show',
+                   50: 'palf',
+                   60: 'ntscf'}
+
 class SceneOperation(HookClass):
     """
     Hook called to perform an operation with the
@@ -144,13 +152,6 @@ class SceneOperation(HookClass):
                                              seq_override=fields.get("Sequence"),
                                              shot_override=fields.get("Shot"))
         # set fps
-        time_units = {15: 'game',
-                      24: 'film',
-                      25: 'pal',
-                      30: 'ntsc',
-                      48: 'show',
-                      50: 'palf',
-                      60: 'ntscf'}
         try:
             fps = show_prefs["show_settings"]["fps"]
         except KeyError as ke:
@@ -161,7 +162,7 @@ class SceneOperation(HookClass):
         else:
             try:
                 try:
-                    cmds.currentUnit(time=time_units[fps])
+                    cmds.currentUnit(time=MAYA_TIME_UNITS[fps])
                 except KeyError:
                     # unable to find the fps value in our lookup dict.
                     # try setting the actual value itself, in case Maya version is >=2017
@@ -186,13 +187,21 @@ class SceneOperation(HookClass):
             QtGui.QMessageBox.warning(None, "Render defaults not set", warning_message)
         else:
             fields.pop("extension")  # remove ma as extension to apply default img ext
-            render_path = render_temp.apply_fields(fields).replace("LAYERPLACEHOLDER", "<Layer>")
+            render_path = render_temp.apply_fields(fields)
             maya_prefs = preferences.Preferences(pref_file_name="maya_preferences.yaml",
                                                  role=fields.get("Step"),
                                                  seq_override=fields.get("Sequence"),
                                                  shot_override=fields.get("Shot"))
-            self.set_render_defaults(fields, render_path, frame_sq_key, maya_prefs)
-            self.set_vray_settings(fields, render_path, frame_sq_key, maya_prefs)
+            self.set_render_settings(fields=fields,
+                                     placeholder_render_path=render_path,
+                                     frame_sq_key=frame_sq_key,
+                                     prefs=maya_prefs)
+
+    def set_render_settings(self, **kwargs):
+        renderers = ['default', 'vray', 'arnold']
+        for renderer in renderers:
+            setter_func = getattr(self, "set_{}_render_settings".format(renderer))
+            setter_func(**kwargs)
 
     def get_render_template(self, context):
         """
@@ -212,9 +221,32 @@ class SceneOperation(HookClass):
 
         return render_temp
 
-    def set_render_defaults(self, fields, render_path, frame_sq_key, prefs):
+    def apply_overrides(self, node, enum_overrides, other_overrides):
+        """
+        Helper function to set attribute overrides for a maya node.
+
+        :param node:            String
+                                Name of maya node
+        :param enum_overrides:  dict
+                                Should contain items of the form
+                                    <attribute_name>: <value>
+                                for only enum attributes
+        :param other_overrides: dict
+                                Should contain items of the form
+                                    <attribute_name>: {"value": <value>,
+                                                       "type": <type_recognised_by_maya>}
+                                for any non-enum attributes
+        """
+        for key, value in enum_overrides.items():
+            self.set_enum_attr("{}.{}".format(node, key), value, lock=True)
+        for attr_name, value_dict in other_overrides.items():
+            self.unlock_and_set_attr("{}.{}".format(node, attr_name), value_dict.get("value"),
+                                     attribute_type=value_dict.get("type"), lock=True)
+
+    def set_default_render_settings(self, fields, placeholder_render_path, frame_sq_key, prefs):
         """
         Set render file name and path, image format and image resolution for default Maya renderers.
+        Also, apply any overrides passed in prefs.
 
         :param fields:          dict
                                 Template fields used to create the final render path
@@ -227,6 +259,7 @@ class SceneOperation(HookClass):
 
         :returns:               None
         """
+        render_path = placeholder_render_path.replace("LAYERPLACEHOLDER", "<RenderLayer>")
         # set resolution
         self.unlock_and_set_attr("defaultResolution.aspectLock", False, lock=True)
         self.unlock_and_set_attr("defaultResolution.width", fields["width"], lock=True)
@@ -253,17 +286,13 @@ class SceneOperation(HookClass):
         # set overrides from preferences, if any exist
         enum_overrides = prefs.get("sgtk_render_settings", {}).get("default", {}).get("enum_attr", {})
         other_overrides = prefs.get("sgtk_render_settings", {}).get("default", {}).get("other", {})
+        self.apply_overrides("defaultRenderGlobals", enum_overrides, other_overrides)
 
-        for key, value in enum_overrides.items():
-            self.set_enum_attr("defaultRenderGlobals.{}".format(key), value, lock=True)
-        for attr_name, value_dict in other_overrides.items():
-            self.unlock_and_set_attr("defaultRenderGlobals.{}".format(attr_name), value_dict.get("value"),
-                                         attribute_type=value_dict.get("type"), lock=True)
-
-    def set_vray_settings(self, fields, render_path, frame_sq_key, prefs):
+    def set_vray_render_settings(self, fields, placeholder_render_path, frame_sq_key, prefs):
         """
         Set render file name and path, image format and image resolution
-        for any vray nodes in the maya file.
+        and some other default settings for any vray nodes in the maya file.
+        Also, apply any overrides passed in prefs.
 
         :param fields:          dict
                                 Template fields used to create the final render path
@@ -282,6 +311,7 @@ class SceneOperation(HookClass):
         if not vray_nodes:
             return
 
+        render_path = placeholder_render_path.replace("LAYERPLACEHOLDER", "<Layer>")
         # get overrides from preferences, if any exist
         enum_overrides = prefs.get("sgtk_render_settings", {}).get("vray", {}).get("enum_attr", {})
         other_overrides = prefs.get("sgtk_render_settings", {}).get("vray", {}).get("other", {})
@@ -305,11 +335,42 @@ class SceneOperation(HookClass):
                                      int(frame_sq_key.format_spec), lock=True)
 
             # set prefs overrides
-            for key, value in enum_overrides.items():
-                self.set_enum_attr("{}.{}".format(node, key), value, lock=True)
-            for attr_name, value_dict in other_overrides.items():
-                self.unlock_and_set_attr("{}.{}".format(node, attr_name), value_dict.get("value"),
-                                         attribute_type=value_dict.get("type"), lock=True)
+            self.apply_overrides(node, enum_overrides, other_overrides)
+
+    def set_arnold_render_settings(self, fields, placeholder_render_path, frame_sq_key, prefs):
+        """
+        Set render file name and path, image resolution, format and compression,
+        and some other default settings for any arnold driver nodes in the maya file.
+
+        Also, apply any overrides passed in prefs.
+        """
+        if not cmds.pluginInfo("mtoa", query=True, loaded=True):
+            return
+        arnold_aov_driver_nodes = cmds.ls(type="aiAOVDriver")
+        if not arnold_aov_driver_nodes:
+            return
+
+        # get overrides from preferences, if any exist
+        enum_overrides = prefs.get("sgtk_render_settings", {}).get("arnold", {}).get("enum_attr", {})
+        other_overrides = prefs.get("sgtk_render_settings", {}).get("arnold", {}).get("other", {})
+
+        for node in arnold_aov_driver_nodes:
+            # forcefully inherit file path from render globals
+            self.unlock_and_set_attr("{}.prefix".format(node), '',
+                                     attribute_type="string", lock=True)
+
+            prefix, ext = self.split_prefix_ext(placeholder_render_path, frame_sq_key)
+            # apply default settings
+            self.unlock_and_set_attr("{}.ai_translator".format(node), ext,
+                                     attribute_type="string", lock=True)
+            if ext == "exr":
+                # if not exr, assume other settings are specified as overrides
+                self.set_enum_attr("{}.exrCompression".format(node), "zips", lock=True)
+            self.unlock_and_set_attr("{}.mergeAOVs".format(node), True, lock=True)
+            self.unlock_and_set_attr("{}.tiled".format(node), False, lock=True)
+
+            # apply overrides from prefs
+            self.apply_overrides(node, enum_overrides, other_overrides)
 
     # move to a maya utils location?
     @staticmethod
@@ -319,10 +380,8 @@ class SceneOperation(HookClass):
 
         :param attribute_full:  String
                                 Full name of the attribute of format <node_name>.<attribute_name>
-
         :param value:           String
                                 Value that should be assigned to the attribute passed
-
         :param lock:            Boolean
                                 Whether the attribute should be locked after it is set.
 
@@ -349,13 +408,10 @@ class SceneOperation(HookClass):
 
         :param attribute:       String
                                 Full name of the attribute of format <node_name>.<attribute_name>
-
         :param value:           Value that should be assigned to the attribute passed
-
         :param attribute_type:  String
                                 Type of passed value (according to Maya)
                                 Needs to be specified if non-numeric
-
         :param lock:            Boolean
                                 Whether the attribute should be locked after it is set.
 
@@ -375,7 +431,6 @@ class SceneOperation(HookClass):
 
         :param render_path:     String
                                 Path where the renders should be saved.
-
         :param frame_sq_key:    SequenceKey
                                 Object containing the number format for the frame sequence
 

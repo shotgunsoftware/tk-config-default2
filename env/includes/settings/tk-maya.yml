@@ -26,6 +26,7 @@ includes:
 
 # generic
 settings.tk-maya:
+  automatic_context_switch: '@settings.tk-maya.automatic_context_switch'
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -41,6 +42,7 @@ settings.tk-maya:
 
 # asset task
 settings.tk-maya.asset:
+  automatic_context_switch: '@settings.tk-maya.automatic_context_switch'
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -65,6 +67,7 @@ settings.tk-maya.asset:
 
 # shot task
 settings.tk-maya.shot:
+  automatic_context_switch: '@settings.tk-maya.automatic_context_switch'
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
