@@ -14,6 +14,6 @@ includes:
 - ../../app_locations.yml
 
 ################################################################################
-settings.tk-multi-breakdown:
+settings.tk-multi-breakdown.maya:
   hook_scene_operations: '{self}/{engine_name}_scene_operations.py:{config}/tk-multi-breakdown/{engine_name}_scene_operations.py'
   location: "@apps.tk-multi-breakdown.location"
