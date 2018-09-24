@@ -28,6 +28,7 @@ MAYA_TIME_UNITS = {15: 'game',
                    48: 'show',
                    50: 'palf',
                    60: 'ntscf'}
+LAYER_PLACEHOLDER = "LAYERPLACEHOLDER"
 
 class SceneOperation(HookClass):
     """
@@ -178,7 +179,7 @@ class SceneOperation(HookClass):
         try:
             fields.update({"width": show_prefs["show_settings"]["resolution"]["width"],
                            "height": show_prefs["show_settings"]["resolution"]["height"],
-                           "output": "LAYERPLACEHOLDER"})   # output is alphanumeric
+                           "output": LAYER_PLACEHOLDER})    # output is alphanumeric
                                                             # replace with token <Layer>
         except KeyError as ke:
             warning_message = "Unable to find {} in show preferences. " \
@@ -259,7 +260,7 @@ class SceneOperation(HookClass):
 
         :returns:               None
         """
-        render_path = placeholder_render_path.replace("LAYERPLACEHOLDER", "<RenderLayer>")
+        render_path = placeholder_render_path.replace(LAYER_PLACEHOLDER, "<RenderLayer>")
         # set resolution
         self.unlock_and_set_attr("defaultResolution.aspectLock", False, lock=True)
         self.unlock_and_set_attr("defaultResolution.width", fields["width"], lock=True)
@@ -311,7 +312,7 @@ class SceneOperation(HookClass):
         if not vray_nodes:
             return
 
-        render_path = placeholder_render_path.replace("LAYERPLACEHOLDER", "<Layer>")
+        render_path = placeholder_render_path.replace(LAYER_PLACEHOLDER, "<Layer>")
         # get overrides from preferences, if any exist
         enum_overrides = prefs.get("sgtk_render_settings", {}).get("vray", {}).get("enum_attr", {})
         other_overrides = prefs.get("sgtk_render_settings", {}).get("vray", {}).get("other", {})
@@ -355,17 +356,23 @@ class SceneOperation(HookClass):
         other_overrides = prefs.get("sgtk_render_settings", {}).get("arnold", {}).get("other", {})
 
         for node in arnold_aov_driver_nodes:
-            # forcefully inherit file path from render globals
-            self.unlock_and_set_attr("{}.prefix".format(node), '',
-                                     attribute_type="string", lock=True)
-
+            current_ext = cmds.getAttr("{}.ai_translator".format(node))
             prefix, ext = self.split_prefix_ext(placeholder_render_path, frame_sq_key)
-            # apply default settings
-            self.unlock_and_set_attr("{}.ai_translator".format(node), ext,
-                                     attribute_type="string", lock=True)
-            if ext == "exr":
-                # if not exr, assume other settings are specified as overrides
-                self.set_enum_attr("{}.exrCompression".format(node), "zips", lock=True)
+
+            if current_ext != "deepexr":
+                # forcefully inherit file path from render globals
+                self.unlock_and_set_attr("{}.prefix".format(node), '',
+                                         attribute_type="string", lock=True)
+                # apply default settings
+                self.unlock_and_set_attr("{}.ai_translator".format(node), ext,
+                                         attribute_type="string", lock=True)
+                if ext == "exr":
+                    # if not exr, assume other settings are specified as overrides
+                    self.set_enum_attr("{}.exrCompression".format(node), "zips", lock=True)
+            else:
+                self.unlock_and_set_attr("{}.prefix".format(node),
+                                         prefix.replace(LAYER_PLACEHOLDER, "<RenderLayer>Deep"),
+                                         attribute_type="string", lock=True)
             self.unlock_and_set_attr("{}.mergeAOVs".format(node), True, lock=True)
             self.unlock_and_set_attr("{}.tiled".format(node), False, lock=True)
 
