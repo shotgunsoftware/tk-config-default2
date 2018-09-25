@@ -29,6 +29,7 @@ MAYA_TIME_UNITS = {15: 'game',
                    50: 'palf',
                    60: 'ntscf'}
 LAYER_PLACEHOLDER = "LAYERPLACEHOLDER"
+ARNOLD_DISPLAY_DRIVER = "defaultArnoldDisplayDriver"
 
 class SceneOperation(HookClass):
     """
@@ -350,6 +351,8 @@ class SceneOperation(HookClass):
         arnold_aov_driver_nodes = cmds.ls(type="aiAOVDriver")
         if not arnold_aov_driver_nodes:
             return
+        if ARNOLD_DISPLAY_DRIVER in arnold_aov_driver_nodes:
+            arnold_aov_driver_nodes.remove(ARNOLD_DISPLAY_DRIVER)
 
         # get overrides from preferences, if any exist
         enum_overrides = prefs.get("sgtk_render_settings", {}).get("arnold", {}).get("enum_attr", {})
