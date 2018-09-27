@@ -35,25 +35,25 @@ apps.tk-multi-breakdown.location:
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.0.2
+  version: v1.1.0
 
 # launchapp
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.10.0
+  version: v0.10.1
 
 # loader2
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.19.1
+  version: v1.19.2
 
 # publish2
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.1.6
+  version: v2.1.7
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -83,7 +83,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.6.2
+  version: v1.6.3
 
 # snapshot
 apps.tk-multi-snapshot.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.6
+  version: v0.11.8
 
 # ---- Shotgun apps
 
@@ -163,7 +163,7 @@ apps.tk-nuke-quickreview.location:
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.3.2
+  version: v1.4.1
 
 # ---- Flame apps
 
