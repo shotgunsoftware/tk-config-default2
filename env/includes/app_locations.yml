@@ -108,7 +108,7 @@ apps.tk-multi-devutils.location:
   type: git_branch
   branch: SG-8048-devtools
   path: git@github.com:shotgunsoftware/tk-multi-devutils.git
-  version: 180b1fe80a61105abb9c22ccc65cb54f2590bc36
+  version: f8e2b6cb957723bd3ceb6ef055ae7cf16563558a
 
 # ---- Shotgun apps
 
