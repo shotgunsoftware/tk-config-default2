@@ -103,6 +103,13 @@ apps.tk-multi-workfiles2.location:
   name: tk-multi-workfiles2
   version: v0.11.8
 
+# dev utils
+apps.tk-multi-devutils.location:
+  type: git_branch
+  branch: SG-8048-devtools
+  path: git@github.com:shotgunsoftware/tk-multi-devutils.git
+  version: 180b1fe80a61105abb9c22ccc65cb54f2590bc36
+
 # ---- Shotgun apps
 
 # shotgun folders

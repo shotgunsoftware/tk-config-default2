@@ -12,6 +12,7 @@
 # core API that should be used at runtime.
 
 location:
-  type: app_store
-  name: tk-core
-  version: v0.18.153
+  type: git_branch
+  branch: SG-8474-devutils
+  path: git@github.com:shotgunsoftware/tk-core.git
+  version: 53edebec2539efe161a5b6728a3103f2f413fb4b
