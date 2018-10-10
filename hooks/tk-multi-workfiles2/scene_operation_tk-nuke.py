@@ -190,9 +190,18 @@ class SceneOperation(HookClass):
                                              shot_override=fields.get("Shot"))
 
         try:
-            format_string = "{0} {1} {2}".format(show_prefs["show_settings"]["resolution"]["width"],
-                                                 show_prefs["show_settings"]["resolution"]["height"],
-                                                 SHOW_FORMAT_NAME)
+            pixel_aspect_ratio = show_prefs["show_settings"]["resolution"].get("pixel_aspect_ratio")
+
+            if not pixel_aspect_ratio:
+                format_string = "{0} {1} {2}".format(show_prefs["show_settings"]["resolution"]["width"],
+                                                     show_prefs["show_settings"]["resolution"]["height"],
+                                                     SHOW_FORMAT_NAME)
+            else:
+                format_string = "{0} {1} {2} {3}".format(show_prefs["show_settings"]["resolution"]["width"],
+                                                         show_prefs["show_settings"]["resolution"]["height"],
+                                                         pixel_aspect_ratio,
+                                                         SHOW_FORMAT_NAME)
+
             formats = nuke.formats()
             for nuke_format in formats:
                 if nuke_format.name() == SHOW_FORMAT_NAME:
