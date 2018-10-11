@@ -44,6 +44,7 @@ class HieroTranslateTemplate(Hook):
             "{name}": "{project}",
             "{output}": "{clip}",
             "{version}": "{tk_version}",
+            "{extension}": "{ext}"
         }
 
         # see if we have a value to use for Step
@@ -51,7 +52,7 @@ class HieroTranslateTemplate(Hook):
             task_filter = self.parent.get_setting("default_task_filter", "[]")
             task_filter = ast.literal_eval(task_filter)
             for (field, op, value) in task_filter:
-                if field == "step.Step.code":
+                if field == "step.Step.short_name":
                     mapping["{Step}"] = value
         except ValueError:
             # continue without Step

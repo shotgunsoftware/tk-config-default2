@@ -68,7 +68,7 @@ paths:
  
     # PUBLISH FILES
     tk-nukestudio_publish_nuke_script:          '@tk-nukestudio_publish_area_script/@tk-nukestudio_version_name.nk'
-    tk-nukestudio_publish_render:               '@tk-nukestudio_publish_area_render/@image_subdirs/@tk-nukestudio_version_name.{SEQ}.{img.ext}'
+    tk-nukestudio_publish_render:               '@tk-nukestudio_publish_area_render/@plate_subdirs/@tk-nukestudio_version_name.{SEQ}.{img.ext}'
     tk-nukestudio_publish_plate:                '@tk-nukestudio_publish_area_plate/@tk-nukestudio_version_name.mov'
 
 
