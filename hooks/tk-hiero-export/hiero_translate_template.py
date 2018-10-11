@@ -37,26 +37,19 @@ class HieroTranslateTemplate(Hook):
         :returns: A Hiero-compatible path.
         :rtype: str
         """
-        # first convert basic fields
-        mapping = {
+        # First add in any relevant fields from the context
+        fields = self.parent.context.as_template_fields(template)
+        mapping = dict([("{%s}" % k, v) for k, v in fields.iteritems()])
+        
+        # Next update the mapping with variables from the session
+        mapping.update({
             "{Sequence}": "{sequence}",
             "{Shot}": "{shot}",
             "{name}": "{project}",
             "{output}": "{clip}",
             "{version}": "{tk_version}",
             "{extension}": "{ext}"
-        }
-
-        # see if we have a value to use for Step
-        try:
-            task_filter = self.parent.get_setting("default_task_filter", "[]")
-            task_filter = ast.literal_eval(task_filter)
-            for (field, op, value) in task_filter:
-                if field == "step.Step.short_name":
-                    mapping["{Step}"] = value
-        except ValueError:
-            # continue without Step
-            self.parent.log_error("Invalid value for 'default_task_filter'")
+        })
 
         # get the string representation of the template object
         template_str = template.definition
