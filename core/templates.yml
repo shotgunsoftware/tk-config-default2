@@ -217,6 +217,7 @@ paths:
     project_publish_area_scene:             '@project_publish_area/SCENE/{Step}'
     project_publish_area_script:            '@project_publish_area/SCRIPT/{Step}'
     project_publish_area_texture:           '@project_publish_area/TEXTURE/{Step}'
+    project_publish_area_fx:                '@project_publish_area/FX/{Step}'
 
     sequence_publish_area_anim:             '@sequence_publish_area/ANIM/{Step}'
     sequence_publish_area_image:            '@sequence_publish_area/IMG/{Step}'
@@ -225,6 +226,7 @@ paths:
     sequence_publish_area_scene:            '@sequence_publish_area/SCENE/{Step}'
     sequence_publish_area_script:           '@sequence_publish_area/SCRIPT/{Step}'
     sequence_publish_area_texture:          '@sequence_publish_area/TEXTURE/{Step}'
+    sequence_publish_area_fx:               '@sequence_publish_area/FX/{Step}'
 
     shot_publish_area_anim:                 '@shot_publish_area/ANIM/{Step}'
     shot_publish_area_image:                '@shot_publish_area/IMG/{Step}'
@@ -233,6 +235,7 @@ paths:
     shot_publish_area_scene:                '@shot_publish_area/SCENE/{Step}'
     shot_publish_area_script:               '@shot_publish_area/SCRIPT/{Step}'
     shot_publish_area_texture:              '@shot_publish_area/TEXTURE/{Step}'
+    shot_publish_area_fx:                   '@shot_publish_area/FX/{Step}'
 
     # ASSET PUBLISH PATHS
     project_asset_publish_area_anim:        '@project_publish_area_anim/{AssetType}/{Asset}'
@@ -242,6 +245,7 @@ paths:
     project_asset_publish_area_scene:       '@project_publish_area_scene/{AssetType}/{Asset}'
     project_asset_publish_area_script:      '@project_publish_area_script/{AssetType}/{Asset}'
     project_asset_publish_area_texture:     '@project_publish_area_texture/{AssetType}/{Asset}'
+    project_asset_publish_area_fx:          '@project_publish_area_fx/{AssetType}/{Asset}'
 
     sequence_asset_publish_area_anim:       '@sequence_publish_area_anim/{AssetType}/{Asset}'
     sequence_asset_publish_area_image:      '@sequence_publish_area_image/{AssetType}/{Asset}'
@@ -250,6 +254,7 @@ paths:
     sequence_asset_publish_area_scene:      '@sequence_publish_area_scene/{AssetType}/{Asset}'
     sequence_asset_publish_area_script:     '@sequence_publish_area_script/{AssetType}/{Asset}'
     sequence_asset_publish_area_texture:    '@sequence_publish_area_texture/{AssetType}/{Asset}'
+    sequence_asset_publish_area_fx:         '@sequence_publish_area_fx/{AssetType}/{Asset}'
 
     shot_asset_publish_area_anim:           '@shot_publish_area_anim/{AssetType}/{Asset}'
     shot_asset_publish_area_image:          '@shot_publish_area_image/{AssetType}/{Asset}'
@@ -258,6 +263,7 @@ paths:
     shot_asset_publish_area_scene:          '@shot_publish_area_scene/{AssetType}/{Asset}'
     shot_asset_publish_area_script:         '@shot_publish_area_script/{AssetType}/{Asset}'
     shot_asset_publish_area_texture:        '@shot_publish_area_texture/{AssetType}/{Asset}'
+    shot_asset_publish_area_fx:             '@shot_publish_area_fx/{AssetType}/{Asset}'
 
 
     # HOUDINI SCENES
@@ -327,6 +333,24 @@ paths:
     project_asset_publish_model:            '@project_asset_publish_area_model/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
     sequence_asset_publish_model:           '@sequence_asset_publish_area_model/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
     shot_asset_publish_model:               '@shot_asset_publish_area_model/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
+
+    # FX GEO CACHE
+    project_publish_fx_geo_cache:            '@project_publish_area_fx/{geo.ext}/@geom_subdirs/@project_version_name[.{SEQ}].{geo.ext}'
+    sequence_publish_fx_geo_cache:           '@sequence_publish_area_fx/{geo.ext}/@geom_subdirs/@sequence_version_name[.{SEQ}].{geo.ext}'
+    shot_publish_fx_geo_cache:               '@shot_publish_area_fx/{geo.ext}/@geom_subdirs/@shot_version_name[.{SEQ}].{geo.ext}'
+
+    project_asset_publish_fx_geo_cache:      '@project_asset_publish_area_fx/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
+    sequence_asset_publish_fx_geo_cache:     '@sequence_asset_publish_area_fx/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
+    shot_asset_publish_fx_geo_cache:         '@shot_asset_publish_area_fx/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
+
+    # FX ABC CACHE
+    project_publish_fx_abc_cache:            '@project_publish_area_fx/alembic/@geom_subdirs/@project_version_name.abc'
+    sequence_publish_fx_abc_cache:           '@sequence_publish_area_fx/alembic/@geom_subdirs/@sequence_version_name.abc'
+    shot_publish_fx_abc_cache:               '@shot_publish_area_fx/alembic/@geom_subdirs/@shot_version_name.abc'
+
+    project_asset_publish_fx_abc_cache:      '@project_asset_publish_area_fx/alembic/@geom_subdirs/@project_asset_version_name.abc'
+    sequence_asset_publish_fx_abc_cache:     '@sequence_asset_publish_area_fx/alembic/@geom_subdirs/@sequence_asset_version_name.abc'
+    shot_asset_publish_fx_abc_cache:         '@shot_asset_publish_area_fx/alembic/@geom_subdirs/@shot_asset_version_name.abc'
 
     # ANIM CACHE
     project_publish_cache:                  '@project_publish_area_anim/alembic/@geom_subdirs/@project_version_name.abc'
