@@ -22,10 +22,14 @@ includes:
 settings.tk-hiero-export:
   default_task_filter: "[['step.Step.short_name', 'is', 'conform']]"
   nuke_script_toolkit_write_nodes: "@settings.tk-hiero-export.write_nodes"
-  template_nuke_script_path: '{engine_name}_{env_name}_publish_nuke_script'
-  template_plate_path: '{engine_name}_{env_name}_publish_movie'
-  template_render_path: '{engine_name}_{env_name}_publish_render'
+  template_nuke_script_path: 'shot_publish_nuke_script'
+  template_plate_path: 'shot_publish_movie'
+  template_render_path: 'shot_publish_render'
   template_version: '{engine_name}_version'
   hook_translate_template: '{config}/tk-hiero-export/hiero_translate_template.py'
   hook_get_quicktime_settings: '{config}/tk-hiero-export/hiero_get_quicktime_settings.py'
+  hook_resolve_custom_strings: '{config}/tk-hiero-export/hiero_resolve_custom_strings.py'
+  custom_template_fields:
+    - {description: 'Clip Width', keyword: width}
+    - {description: 'Clip Height', keyword: height}
   location: "@apps.tk-hiero-export.location"
