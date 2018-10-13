@@ -36,10 +36,15 @@ paths:
     tk-nukestudio_sequence_work_snapshot:       '@tk-nukestudio_sequence_work_area/projects/snapshots/@sequence_version_name.{timestamp}.hrox'
     tk-nukestudio_shot_work_snapshot:           '@tk-nukestudio_shot_work_area/projects/snapshots/@shot_version_name.{timestamp}.hrox'
 
-    # QUICK-DAILIES
-    tk-nukestudio_project_publish_quick:        '@project_publish_area_movie/quick/@tk-nukestudio_quick_project_version_name.mov'
-    tk-nukestudio_sequence_publish_quick:       '@sequence_publish_area_movie/quick/@tk-nukestudio_quick_sequence_version_name.mov'
-    tk-nukestudio_shot_publish_quick:           '@shot_publish_area_movie/quick/@tk-nukestudio_quick_shot_version_name.mov'
+    # EXPORT RENDERS
+    tk-nukestudio_project_work_render:          '@tk-nukestudio_project_work_area/renders/{Sequence}/{Shot}/v{version}/@shot_version_name.{SEQ}.{img.ext}'
+    tk-nukestudio_sequence_work_render:         '@tk-nukestudio_sequence_work_area/renders/{Sequence}/{Shot}/v{version}/@shot_version_name.{SEQ}.{img.ext}'
+    tk-nukestudio_shot_work_render:             '@tk-nukestudio_shot_work_area/renders/{Sequence}/{Shot}/v{version}/@shot_version_name.{SEQ}.{img.ext}'
+
+    # EXPORT PLATES
+    tk-nukestudio_project_work_movie:           '@tk-nukestudio_project_work_area/movies/{Sequence}/{Shot}/@shot_version_name.mov'
+    tk-nukestudio_sequence_work_movie:          '@tk-nukestudio_sequence_work_area/movies/{Sequence}/{Shot}/@shot_version_name.mov'
+    tk-nukestudio_shot_work_movie:              '@tk-nukestudio_shot_work_area/movies/{Sequence}/{Shot}/@shot_version_name.mov'
 
 
 aliases:
@@ -55,9 +60,13 @@ aliases:
     tk-nukestudio_shot_publish_file:            'shot_publish_nukestudio_project'
 
     # QUICK-DAILIES
-    tk-nukestudio_quick_project_version_name:   'tk-nuke_quick_project_version_name'
-    tk-nukestudio_quick_sequence_version_name:  'tk-nuke_quick_sequence_version_name'
+    tk-nukestudio_quick_project_version_name:   'tk-nuke_quick_shot_version_name'
+    tk-nukestudio_quick_sequence_version_name:  'tk-nuke_quick_shot_version_name'
     tk-nukestudio_quick_shot_version_name:      'tk-nuke_quick_shot_version_name'
+
+    tk-nukestudio_project_publish_quick:        'tk-nuke_shot_publish_quick'
+    tk-nukestudio_sequence_publish_quick:       'tk-nuke_shot_publish_quick'
+    tk-nukestudio_shot_publish_quick:           'tk-nuke_shot_publish_quick'
 
 
 strings:
