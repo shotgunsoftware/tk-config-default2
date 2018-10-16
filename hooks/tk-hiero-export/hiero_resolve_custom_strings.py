@@ -9,6 +9,7 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 from tank import Hook
+import hiero
 
 
 class HieroResolveCustomStrings(Hook):
@@ -16,7 +17,7 @@ class HieroResolveCustomStrings(Hook):
     This class implements a hook that is used to resolve custom tokens into
     their concrete value when paths are being processed during the export.
     """
-    RESOLUTION_TOKEN_NAMES = ("{width}", "{height}")
+    RESOLUTION_TOKEN_NAMES = ("width", "height")
 
     # Cache of shots that have already been pulled from shotgun
     _sg_lookup_cache = {}
@@ -35,9 +36,12 @@ class HieroResolveCustomStrings(Hook):
             associated string.
         :rtype: str
         """
+        # strip off the leading and trailing curly brackets
+        keyword = keyword[1:-1]
+
         self.parent.log_debug("Attempting to resolve custom keyword: %s" % keyword)
         if keyword in self.RESOLUTION_TOKEN_NAMES:
-            result = self._clip_resolution_string(task, keyword)
+            result = getattr(self, "get_{}".format(keyword))(task)
             self.parent.log_debug("Custom resolver: %s -> %s" % (keyword, result))
 
         else:
@@ -61,32 +65,37 @@ class HieroResolveCustomStrings(Hook):
             if sg_shot is None:
                 raise RuntimeError("Could not find shot for custom resolver: %s" % keyword)
 
-            # strip off the leading and trailing curly brackets
-            keyword = keyword[1:-1]
             result = sg_shot.get(keyword, "")
-
             self.parent.log_debug("Custom resolver: %s[%s] -> %s" % (shot_code, keyword, result))
 
         return result
 
-    # Handle the {resolution_fs} token 
-    def _clip_resolution_string(self, task, keyword): 
-        """ returns sequence resolution or task format override""" 
-        width = "" 
-        height = ""
+    def get_height(self, task):
+        """
+        """
+        # First check if a reformat has been defined
+        if "reformat" in task._preset.properties():
+            if "height" in task._preset.properties()["reformat"]:
+                return task._preset.properties()["reformat"]["height"]
 
-        sequence_format = task._sequence.format()
+        # Next check if there is a sequence format definition
+        if isinstance(task._item, hiero.core.Sequence):
+            return task._sequence.format().height()
 
-        width = sequence_format.width() 
-        height = sequence_format.height()
+        # Else get the source height
+        return task._source.height()
 
-        if "reformat" in task._preset.properties(): 
-            task_reformat_settings = task._preset.properties()["reformat"] 
-            if task_reformat_settings['to_type'] != "None": 
-                width = task_reformat_settings['width'] 
-                height = task_reformat_settings['height']
+    def get_width(self, task):
+        """
+        """
+        # First check if a reformat has been defined
+        if "reformat" in task._preset.properties():
+            if "width" in task._preset.properties()["reformat"]:
+                return task._preset.properties()["reformat"]["width"]
 
-        if keyword == "{width}":
-            return width
-        elif keyword == "{height}":
-            return height
+        # Next check if there is a sequence format definition
+        if isinstance(task._item, hiero.core.Sequence):
+            return task._sequence.format().width()
+
+        # Else get the source width
+        return task._source.width()

@@ -21,6 +21,7 @@ includes:
 
 settings.tk-hiero-export:
   default_task_filter: "[['step.Step.short_name', 'is', 'conform']]"
+  disable_version_spinner: True
   nuke_script_toolkit_write_nodes: "@settings.tk-hiero-export.write_nodes"
   template_nuke_script_path: 'shot_publish_nuke_script'
   template_plate_path: 'shot_publish_movie'
