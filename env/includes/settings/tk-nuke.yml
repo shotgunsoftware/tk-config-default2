@@ -23,6 +23,7 @@ includes:
 - ./apps/tk-multi-workfiles2.yml
 - ./apps/tk-nuke-quickdailies.yml
 - ./apps/tk-nuke-writenode.yml
+- ./apps/tk-multi-breakdown.yml
 
 ################################################################################
 
@@ -46,8 +47,7 @@ settings.tk-nuke.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
     tk-multi-publish2: "@settings.tk-multi-publish2.nuke"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
@@ -71,8 +71,7 @@ settings.tk-nuke.shot:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown"
     tk-multi-setframerange: "@settings.tk-multi-setframerange"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
     tk-multi-publish2: "@settings.tk-multi-publish2.nuke"

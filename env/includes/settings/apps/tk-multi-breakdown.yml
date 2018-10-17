@@ -14,9 +14,8 @@ includes:
 - ../../app_locations.yml
 
 ################################################################################
-
-settings.tk-multi-breakdown.nukestudio:
-  hook_scene_operations: '{self}/{engine_name}_scene_operations.py'
+settings.tk-multi-breakdown:
+  hook_scene_operations: '{self}/{engine_name}_scene_operations.py:{config}/tk-multi-breakdown/{engine_name}_scene_operations.py'
   location: "@apps.tk-multi-breakdown.location"
 
 settings.tk-multi-breakdown.houdini:
