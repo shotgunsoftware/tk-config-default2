@@ -139,6 +139,12 @@ apps.tk-hiero-openinshotgun.location:
 
 # ---- Houdini apps
 
+# geometrynode
+apps.tk-houdini-geometrynode.location:
+  type: manual
+  name: tk-houdini-geometrynode
+  version: v0.x.x
+
 # alembicnode
 apps.tk-houdini-alembicnode.location:
   type: manual

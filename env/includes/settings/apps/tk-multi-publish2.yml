@@ -27,8 +27,8 @@ settings.tk-multi-publish2.basic.upload_version:        '{self}/basic/upload_ver
 # Generic file publishing used across contexts
 settings.tk-multi-publish2.basic.publish_files:         '@settings.tk-multi-publish2.basic.publish:{self}/basic/publish_files.py'
 
-settings.tk-multi-publish2.houdini.collector:           '@settings.tk-multi-publish2.basic.collector:{self}/houdini/collector.py'
 settings.tk-multi-publish2.houdini.publish_files:       '@settings.tk-multi-publish2.basic.publish_files:{self}/houdini/publish_files.py'
+settings.tk-multi-publish2.houdini.collector:           '@settings.tk-multi-publish2.basic.collector:{self}/houdini/collector.py:{config}/tk-multi-publish2/houdini/collector.py'
 settings.tk-multi-publish2.houdini.publish_session:     '@settings.tk-multi-publish2.basic.publish:{self}/houdini/publish_session.py'
 settings.tk-multi-publish2.houdini.create_version:      '@settings.tk-multi-publish2.basic.create_version:{self}/houdini/create_version.py'
 settings.tk-multi-publish2.houdini.upload_version:      '@settings.tk-multi-publish2.basic.upload_version'
