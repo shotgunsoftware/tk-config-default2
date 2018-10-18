@@ -122,6 +122,9 @@ keys:
             bgeo: bgeo
             obj: obj
             fbx: fbx
+            bgeo.sc: bgeo.sc
+            sim: sim
+            vdb: vdb
         default: fbx
         alias: extension
     tex.ext:

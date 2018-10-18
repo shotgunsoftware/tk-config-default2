@@ -14,10 +14,14 @@ includes:
 - ../../app_locations.yml
 
 ################################################################################
-settings.tk-multi-breakdown:
-  hook_scene_operations: '{self}/{engine_name}_scene_operations.py:{config}/tk-multi-breakdown/{engine_name}_scene_operations.py'
-  location: "@apps.tk-multi-breakdown.location"
 
-settings.tk-multi-breakdown.houdini:
-  hook_scene_operations: '{self}/{engine_name}_scene_operations.py:{config}/tk-multi-breakdown/tk-houdini_scene_operations.py'
-  location: "@apps.tk-multi-breakdown.location"
+settings.tk-houdini-geometrynode:
+  work_file_template: '{engine_name}_{env_name}_work_file'
+  default_node_name: sg_geometry_out
+  output_profiles:
+  - name: Shot Work Cache
+    settings: {}
+    color: []
+    output_cache_template: '{engine_name}_{env_name}_work_model'
+    output_cache_shared_template: '{env_name}_publish_fx_geo_cache'
+  location: "@apps.tk-houdini-geometrynode.location"

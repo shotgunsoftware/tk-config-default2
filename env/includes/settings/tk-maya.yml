@@ -21,6 +21,7 @@ includes:
 - ./apps/tk-multi-shotgunpanel.yml
 - ./apps/tk-multi-snapshot.yml
 - ./apps/tk-multi-workfiles2.yml
+- ./apps/tk-multi-breakdown.yml
 
 ################################################################################
 
@@ -46,8 +47,7 @@ settings.tk-maya.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown"
     tk-multi-loader2: "@settings.tk-multi-loader2.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.maya"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
@@ -71,8 +71,7 @@ settings.tk-maya.shot:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown"
     tk-multi-loader2: "@settings.tk-multi-loader2.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.maya"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
