@@ -68,7 +68,7 @@ class HieroResolveCustomStrings(Hook):
             result = sg_shot.get(keyword, "")
             self.parent.log_debug("Custom resolver: %s[%s] -> %s" % (shot_code, keyword, result))
 
-        return result
+        return str(result)
 
     def get_height(self, task):
         """
