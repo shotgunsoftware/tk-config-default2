@@ -108,7 +108,7 @@ apps.tk-multi-devutils.location:
   type: git_branch
   branch: master
   path: https://github.com/shotgunsoftware/tk-multi-devutils.git
-  version: ac31f36c6e96b2abece2ce6f45546b1fd876e615
+  version: f1afcfa4de75bf7343f85f9ab655a5f506985547
 
 # ---- Shotgun apps
 
