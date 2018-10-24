@@ -15,4 +15,4 @@ location:
   type: git_branch
   branch: SG-8474-devutils
   path: https://github.com/shotgunsoftware/tk-core.git
-  version: b34e28b8b86822420c7722f434785ba9d78557cd
+  version: ff83dfd4083edb886a3ab5abc5a5f42964339cf7
