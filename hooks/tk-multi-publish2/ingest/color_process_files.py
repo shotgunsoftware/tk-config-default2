@@ -219,6 +219,13 @@ class ColorProcessFilesPlugin(HookBaseClass):
                     }
                 )
 
+            try:
+                sgtk.util.filesystem.seal_file(published_file)
+            except Exception as e:
+                # primary function is to copy. Do not raise exception if sealing fails.
+                self.logger.warning("File '%s' could not be sealed, skipping: %s" % (published_file, e))
+                self.logger.warning(traceback.format_exc())
+
         exception = None
         # create the publish and stash it in the item properties for other
         # plugins to use.
