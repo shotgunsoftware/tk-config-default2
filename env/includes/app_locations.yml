@@ -106,7 +106,7 @@ apps.tk-multi-workfiles2.location:
 # dev utils
 apps.tk-multi-devutils.location:
   type: app_store
-  branch: tk-multi-devutils
+  name: tk-multi-devutils
   version: v1.0.0
 
 # ---- Shotgun apps
