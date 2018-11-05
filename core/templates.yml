@@ -127,6 +127,11 @@ keys:
         default: ma
         alias: extension
 
+    user:
+        type: str
+        shotgun_entity_type: HumanUser
+        shotgun_field_name: login
+
 #
 # The paths section contains all the the key locations where files are to be stored
 # by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
@@ -144,9 +149,9 @@ paths:
     #
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
-    shot_root: sequences/{Sequence}/{Shot}/{Step}
-    asset_root: assets/{sg_asset_type}/{Asset}/{Step}
     sequence_root: sequences/{Sequence}
+    shot_root: sequences/{Sequence}/{Shot}/{Step}/{user}
+    asset_root: assets/{sg_asset_type}/{Asset}/{Step}/{user}
 
 
     ##########################################################################################
