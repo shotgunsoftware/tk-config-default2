@@ -150,8 +150,8 @@ paths:
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
     sequence_root: sequences/{Sequence}
-    shot_root: sequences/{Sequence}/{Shot}/{Step}/{user}
-    asset_root: assets/{sg_asset_type}/{Asset}/{Step}/{user}
+    shot_root: sequences/{Sequence}/{Shot}/{Step}
+    asset_root: assets/{sg_asset_type}/{Asset}/{Step}
 
 
     ##########################################################################################
@@ -230,16 +230,16 @@ paths:
 
     # define the location of a work area
     shot_work_area_maya:
-        definition: '@shot_root/work/maya'
+        definition: '@shot_root/work/{user}/maya'
     # define the location of a publish area
     shot_publish_area_maya:
         definition: '@shot_root/publish/maya'
     # The location of WIP files
     maya_shot_work:
-        definition: '@shot_root/work/maya/{name}.v{version}.{maya_extension}'
+        definition: '@shot_root/work/{user}/maya/{name}.v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_shot_snapshot:
-        definition: '@shot_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+        definition: '@shot_root/work/{user}/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_shot_publish:
         definition: '@shot_root/publish/maya/{name}.v{version}.{maya_extension}'
