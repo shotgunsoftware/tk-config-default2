@@ -412,16 +412,16 @@ paths:
 
     # define the location of a work area
     asset_work_area_maya:
-        definition: '@asset_root/work/maya'
+        definition: '@asset_root/work/{user}/maya'
     # define the location of a publish area
     asset_publish_area_maya:
         definition: '@asset_root/publish/maya'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/work/maya/{name}.v{version}.{maya_extension}'
+        definition: '@asset_root/work/{user}/maya/{name}.v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+        definition: '@asset_root/work/{user}/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_asset_publish:
         definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
