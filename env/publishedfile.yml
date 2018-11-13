@@ -24,7 +24,7 @@ includes:
 # configuration for all engines to load in a publishedfile or version context
 
 engines:
-  tk-shotgun: "@settings.tk-shotgun.publishedfile_version"
+  tk-shotgun: "@settings.tk-shotgun.publishedfile"
 
 ################################################################################
 # reference all of the common frameworks

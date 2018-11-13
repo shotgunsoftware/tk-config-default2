@@ -58,10 +58,17 @@ settings.tk-shotgun.project:
   location: "@engines.tk-shotgun.location"
 
 # publishedfile_version
-settings.tk-shotgun.publishedfile_version:
+settings.tk-shotgun.version:
   apps:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
+  location: "@engines.tk-shotgun.location"
+
+settings.tk-shotgun.publishedfile:
+  apps:
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 
 # sequence
