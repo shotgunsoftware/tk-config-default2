@@ -21,7 +21,7 @@ includes:
 - ./includes/settings/tk-shotgun.yml
 
 ################################################################################
-# configuration for all engines to load in a publishedfile or version context
+# configuration for all engines to load in a publishedfile context
 
 engines:
   tk-shotgun: "@settings.tk-shotgun.publishedfile"
