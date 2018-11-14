@@ -75,6 +75,19 @@ class BreakdownSceneOperations(Hook):
                 "path": file_path,
             })
 
+        cam_nodes = hou.nodeType(hou.objNodeTypeCategory(),
+                                  "cam").instances()
+
+        for cam_node in cam_nodes:
+            file_parm = cam_node.parm("vm_background")
+            file_path = os.path.normpath(file_parm.eval())
+
+            items.append({
+                "node": cam_node.path(),
+                "type": "cam",
+                "path": file_path,
+            })
+
         return items
 
     def update(self, items):
@@ -113,4 +126,9 @@ class BreakdownSceneOperations(Hook):
                 engine.log_debug(
                     "Updating file node '%s' to: %s" % (node_path, file_path))
                 file_node.parm("file").set(file_path)
+            elif node_type == "cam":
+                cam_node = hou.node(node_path)
+                engine.log_debug(
+                    "Updating camera node '%s' to: %s" % (node_path, file_path))
+                cam_node.parm("vm_background").set(file_path)
 

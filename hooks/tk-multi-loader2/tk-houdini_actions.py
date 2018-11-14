@@ -188,7 +188,11 @@ class CustomHoudiniActions(HookBaseClass):
                     (node_name, camera_node.path(), path)
                 )
         else:
-            camera_node = obj_context.createNode("cam", name)
+            try:
+                camera_node = obj_context.createNode("cam", name)
+            except hou.OperationFailed:
+                obj_context = hou.node("/obj")
+                camera_node = obj_context.createNode("cam", name)
             camera_node.parm("vm_background").set(path)
 
             node_name = hou.nodeType(camera_node.path()).name()
