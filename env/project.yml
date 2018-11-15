@@ -9,32 +9,29 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when an Project, Sequence, or Shot is loaded.
-  Since std VFX config template has a file system structure which is centered around
-  pipeline steps, this environment is largely empty. Most of the work takes place on
-  a level in the file system where both an asset and a pipeline step are available
-  - e.g Shot Hero, modeling, so all apps for loading, publishing etc. are
-  located in the asset environment. This environment mostly contains
-  utility apps and the tank work files app, which lets you choose a task to work
-  on and load associated content into an application.
+description: Apps and Engines related to Project based work.
 
 ################################################################################
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-desktop.yml
+- ./includes/settings/tk-houdini.yml
+- ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
 - ./includes/settings/tk-nuke.yml
+- ./includes/settings/tk-nukestudio.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - '{preferences}/sgtk_config_environments.yaml'
 
 ################################################################################
-# configuration for all engines to load in a project context
+# configuration for all engines to load in a shot task context
 
 engines:
-  tk-desktop: "@settings.tk-desktop"
-  tk-maya: "@settings.tk-maya"
-  tk-nuke: "@settings.tk-nuke"
+  tk-houdini: "@settings.tk-houdini.shot"
+  tk-mari: "@settings.tk-mari"
+  tk-maya: "@settings.tk-maya.shot"
+  tk-nuke: "@settings.tk-nuke.shot"
+  tk-nukestudio: "@settings.tk-nukestudio.shot"
   tk-shell: "@settings.tk-shell"
-  tk-shotgun: "@settings.tk-shotgun"
+  tk-shotgun: "@settings.tk-shotgun.task"

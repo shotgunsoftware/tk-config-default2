@@ -31,26 +31,26 @@ class PickEnvironment(HookBaseClass):
             # return the "site" configuration.
             return "site"
 
+        if context.step is None:
+            # we aren't in a Task context so return the base env
+            return "base"
+
         if context.entity is None:
             # we have a project but not an entity
             return "project"
-
-        if context.entity and context.step is None:
-            # we have an entity but no step!
-            return "project"
-
-        if context.entity and context.step:
-            # we have a step and an entity
-            if context.entity["type"] == "Sequence":
+        else:
+            # we have an entity
+            entity_type = context.entity["type"]
+            if entity_type == "Sequence":
                 return "sequence"
-            if context.entity["type"] == "Shot":
+            elif entity_type == "Shot":
                 return "shot"
-            if context.entity["type"] == "Asset":
-                entities_by_type = dict([(x["type"], x) for x in context.additional_entities])
-                if "Shot" in entities_by_type:
-                    return "shot_asset"
-                if "Sequence" in entities_by_type:
-                    return "sequence_asset"
-                return "project_asset"
+            else:
+                addl_entity_types = [x["type"] for x in context.additional_entities]
+                if "Shot" in addl_entity_types:
+                    return "shot_%s" % entity_type.lower()
+                if "Sequence" in addl_entity_types:
+                    return "sequence_%s" % entity_type.lower()
+                return "project_%s" % entity_type.lower()
 
         return None

@@ -25,8 +25,38 @@ settings.tk-multi-shotgunpanel:
     - actions: [assign_task, task_to_ip]
       filters: {}
     Version:
-    - actions: [quicktime_clipboard, sequence_clipboard]
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# houdini
+settings.tk-multi-shotgunpanel.houdini:
+  action_mappings:
+    PublishedFile:
+    - actions: [import]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [merge]
+      filters: {published_file_type: Houdini Scene}
+    - actions: [file_cop]
+      filters: {published_file_type: Image}
+    - actions: [import]
+      filters: {published_file_type: Model File}
+    - actions: [file_cop]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [file_cop]
+      filters: {published_file_type: Rendered Image}
+    - actions: [file_cop]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  actions_hook: '{self}/general_actions.py:{self}/{engine_name}_actions.py'
+  enable_context_switch: true
   location: "@apps.tk-multi-shotgunpanel.location"
 
 # maya
@@ -34,17 +64,17 @@ settings.tk-multi-shotgunpanel.maya:
   action_mappings:
     PublishedFile:
     - actions: [reference, import]
-      filters: {published_file_type: Geometry Cache}
+      filters: {published_file_type: Alembic Cache}
     - actions: [image_plane, texture_node_with_frames]
       filters: {published_file_type: Image}
     - actions: [reference, import]
       filters: {published_file_type: Maya Scene}
+    - actions: [reference, import]
+      filters: {published_file_type: Model File}
     - actions: [image_plane, texture_node_with_frames]
       filters: {published_file_type: Photoshop Image}
     - actions: [image_plane, texture_node_with_frames]
       filters: {published_file_type: Rendered Image}
-    - actions: [reference, import]
-      filters: {published_file_type: Static Geometry}
     - actions: [texture_node, image_plane, texture_node_with_frames]
       filters: {published_file_type: Texture}
     - actions: [udim_texture_node]
@@ -55,7 +85,7 @@ settings.tk-multi-shotgunpanel.maya:
     - actions: [assign_task, task_to_ip]
       filters: {}
     Version:
-    - actions: [quicktime_clipboard, sequence_clipboard]
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
   actions_hook: '{self}/general_actions.py:{self}/{engine_name}_actions.py:{config}/tk-multi-shotgunpanel/{engine_name}_actions.py'
   enable_context_switch: true
@@ -66,15 +96,15 @@ settings.tk-multi-shotgunpanel.nuke:
   action_mappings:
     PublishedFile:
     - actions: [read_node]
-      filters: {published_file_type: Geometry Cache}
+      filters: {published_file_type: Alembic Cache}
     - actions: [read_node]
       filters: {published_file_type: Image}
+    - actions: [read_node]
+      filters: {published_file_type: Model File}
     - actions: [read_node]
       filters: {published_file_type: Movie}
     - actions: [script_import]
       filters: {published_file_type: Nuke Script}
-    - actions: [open_project]
-      filters: {published_file_type: NukeStudio Project}
     - actions: [read_node]
       filters: {published_file_type: Photoshop Image}
     - actions: [read_node]
@@ -89,8 +119,40 @@ settings.tk-multi-shotgunpanel.nuke:
     - actions: [assign_task, task_to_ip]
       filters: {}
     Version:
-    - actions: [quicktime_clipboard, sequence_clipboard]
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
   actions_hook: '{self}/general_actions.py:{self}/{engine_name}_actions.py:{config}/tk-multi-shotgunpanel/{engine_name}_actions.py'
+  enable_context_switch: true
+  location: "@apps.tk-multi-shotgunpanel.location"
+
+# nukestudio
+settings.tk-multi-shotgunpanel.nukestudio:
+  action_mappings:
+    PublishedFile:
+    - actions: [read_node]
+      filters: {published_file_type: Alembic Cache}
+    - actions: [read_node]
+      filters: {published_file_type: Image}
+    - actions: [read_node]
+      filters: {published_file_type: Model File}
+    - actions: [read_node]
+      filters: {published_file_type: Movie}
+    - actions: [open_project]
+      filters: {published_file_type: NukeStudio Project}
+    - actions: [read_node]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [read_node]
+      filters: {published_file_type: Rendered Image}
+    - actions: [read_node]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  actions_hook: '{self}/general_actions.py:{self}/tk-nuke_actions.py'
   enable_context_switch: true
   location: "@apps.tk-multi-shotgunpanel.location"

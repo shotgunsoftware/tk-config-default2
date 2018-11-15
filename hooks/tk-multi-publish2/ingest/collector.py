@@ -76,67 +76,26 @@ class IngestCollectorPlugin(HookBaseClass):
         }
         return schema
 
-    def _get_item_info(self, settings, path, is_sequence):
+    def _resolve_work_path_template(self, settings, item):
         """
-        Return a tuple of display name, item type, and icon path for the given
-        filename.
-
-        The method will try to identify the file as a common file type. If not,
-        it will use the mimetype category. If the file still cannot be
-        identified, it will fallback to a generic file type.
+        Resolve work_path_template from the collector settings for the specified item.
 
         :param dict settings: Configured settings for this collector
-        :param path: The file path to identify type info for
-
-        :return: A dictionary of information about the item to create::
-
-            # path = "/path/to/some/file.0001.exr"
-
-            {
-                "item_type": "file.image.sequence",
-                "type_display": "Rendered Image Sequence",
-                "icon_path": "/path/to/some/icons/folder/image_sequence.png",
-            }
-
-        The item type will be of the form `file.<type>` where type is a specific
-        common type or a generic classification of the file.
-        """
-
-        item_info = super(IngestCollectorPlugin, self)._get_item_info(settings, path, is_sequence)
-
-        # from the above item_type, check if default_snapshot_type is parent settings default_snapshot_type
-        item_type = item_info["item_type"]
-
-        item_settings = settings["Item Types"].value.get(item_type)
-        if item_settings:
-            default_snapshot_type = item_settings.get("default_snapshot_type")
-
-            item_info["default_snapshot_type"] = default_snapshot_type
-        # item not found in our settings
-        else:
-            item_info["default_snapshot_type"] = self.parent.settings["default_snapshot_type"]
-
-        return item_info
-
-    def _resolve_work_path_template(self, properties, path):
-        """
-        Resolve work_path_template from the properties.
-        The signature uses properties, so that it can resolve the template even if the item object hasn't been created.
-
-        :param properties: properties that have/will be used to build item object.
-        :param path: path to be used to get the templates, using template_from_path,
-         in this class we use os.path.basename of the path.
+        :param item: The Item instance
         :return: Name of the template.
         """
+        path = item.properties.get("path")
+        if not path:
+            return None
 
-        # try using file name for resolving templates
-        work_path_template = super(IngestCollectorPlugin, self)._resolve_work_path_template(properties,
-                                                                                            os.path.basename(path))
-        # try using the full path for resolving templates
-        if not work_path_template:
-            work_path_template = super(IngestCollectorPlugin, self)._resolve_work_path_template(properties, path)
+        # try using the basename for resolving the template
+        work_path_template = self.__get_work_path_template_from_settings(settings,
+                                                                         item.type,
+                                                                         os.path.basename(path))
+        if work_path_template:
+            return work_path_template
 
-        return work_path_template
+        return super(IngestCollectorPlugin, self)._resolve_work_path_template(settings, item)
 
     def process_file(self, settings, parent_item, path):
         """
@@ -175,14 +134,12 @@ class IngestCollectorPlugin(HookBaseClass):
         for file_item in file_items:
             fields = file_item.properties["fields"]
             if "snapshot_type" not in fields:
-                item_info = self._get_item_info(settings=settings,
-                                                path=file_item.properties["path"],
-                                                is_sequence=file_item.properties["is_sequence"])
+                item_info = self._get_item_type_info(settings, item.type)
 
                 fields["snapshot_type"] = item_info["default_snapshot_type"]
                 # CDL files should always be published as Asset entity with nuke_avidgrade asset_type
                 # this is to match organic, and also for Avid grade lookup on shotgun
-                # this logic has been moved to _get_item_info by defining default_snapshot_type for each item type
+                # this logic has been moved to _get_item_type_info by defining default_snapshot_type for each item type
                 # if file_item.type == "file.cdl":
                 #     fields["snapshot_type"] = "nuke_avidgrade"
 
@@ -372,13 +329,16 @@ class IngestCollectorPlugin(HookBaseClass):
 
         return file_items
 
-    def _get_item_context_from_path(self, parent_item, properties, path, default_entities=list()):
+    def _get_item_context_from_path(self, work_path_template, path, parent_item, default_entities=list()):
         """Updates the context of the item from the work_path_template/template, if needed.
 
-        :param properties: properties of the item.
-        :param path: path to build the context from, in this class we use os.path.basename of the path.
+        :param work_path_template: The work_path template name
+        :param item: item to build the context for
+        :param parent_item: parent item instance
+        :param default_entities: a list of default entities to use during the creation of the
+        :class:`sgtk.Context` if not found in the path
         """
-
+        publisher = self.parent
 
         sg_filters = [
             ['short_name', 'is', "vendor"]
@@ -404,20 +364,15 @@ class IngestCollectorPlugin(HookBaseClass):
 
         default_entities = [step_entity]
 
-        work_path_template = self._resolve_work_path_template(properties, path)
+        work_tmpl = publisher.get_template_by_name(work_path_template)
+        if work_tmpl and isinstance(work_tmpl, tank.template.TemplateString):
+            # use file name if we got TemplateString
+            path = os.path.basename(path)
 
-        if work_path_template:
-            work_tmpl = self.parent.get_template_by_name(work_path_template)
-            if work_tmpl and isinstance(work_tmpl, tank.template.TemplateString):
-                # use file name if we got TemplateString
-                path = os.path.basename(path)
-
-        item_context = super(IngestCollectorPlugin, self)._get_item_context_from_path(parent_item,
-                                                                                      properties,
-                                                                                      path,
-                                                                                      default_entities)
-
-        return item_context
+        return super(IngestCollectorPlugin, self)._get_item_context_from_path(work_path_template,
+                                                                              path,
+                                                                              parent_item,
+                                                                              default_entities)
 
     def _get_template_fields_from_path(self, item, template_name, path):
         """

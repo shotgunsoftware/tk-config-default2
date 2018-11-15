@@ -16,11 +16,10 @@ includes:
 ################################################################################
 
 settings.tk-multi-loader2.entities: &loader2_entities
-# Uncomment after https://support.shotgunsoftware.com/hc/en-us/requests/83441 is resolved.
-#  - caption: Current Project
-#    type: Hierarchy
-#    root: '{context.project}'
-#    publish_filters: []
+  - caption: Current Project
+    type: Hierarchy
+    root: '{context.project}'
+    publish_filters: []
   - caption: My Tasks
     type: Query
     entity_type: Task
@@ -28,31 +27,46 @@ settings.tk-multi-loader2.entities: &loader2_entities
       - [project, is, '{context.project}']
       - [task_assignees, is, '{context.user}']
     hierarchy: [entity, content]
-  - caption: Assets
-    type: Query
-    entity_type: Asset
-    filters:
-      - [project, is, '{context.project}']
-    hierarchy: [sg_asset_type, sg_sequence, sg_shot, code]
   - caption: Plates
     type: Query
     entity_type: Element
     filters:
       - [project, is, '{context.project}']
     hierarchy: [sg_shot.Shot.sg_sequence, sg_shot, code]
-  - caption: Shots
-    type: Query
-    entity_type: Shot
-    filters:
-      - [project, is, '{context.project}']
-    hierarchy: [sg_sequence, code]
+
+# houdini
+settings.tk-multi-loader2.houdini:
+  action_mappings:
+    Alembic Cache: [import]
+    Houdini Scene: [merge]
+    Image: [file_cop]
+    Model Sequence: [import]
+    Model File: [import]
+    Photoshop Image: [file_cop]
+    Rendered Image: [file_cop]
+    Texture: [file_cop]
+  actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
+  entities: *loader2_entities
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
+# mari
+settings.tk-multi-loader2.mari:
+  action_mappings:
+    Alembic Cache: [geometry_import]
+    Model File: [geometry_import]
+  actions_hook: '{self}/{engine_name}_actions.py'
+  entities: *loader2_entities
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
 
 # maya
 settings.tk-multi-loader2.maya:
   action_mappings:
-    Geometry Cache: [reference, import]
+    ALembic Cache: [reference, import]
     Image: [image_plane, texture_node_with_frames]
     Maya Scene: [reference, import]
+    Model File: [reference, import]
     Photoshop Image: [image_plane, texture_node_with_frames]
     Rendered Image: [image_plane, texture_node_with_frames]
     Texture: [texture_node, image_plane, texture_node_with_frames]
@@ -65,8 +79,9 @@ settings.tk-multi-loader2.maya:
 # nuke
 settings.tk-multi-loader2.nuke:
   action_mappings:
-    Geometry Cache: [read_node]
+    Alembic Cache: [read_node]
     Image: [read_node]
+    Model File: [read_node]
     Movie: [read_node]
     Nuke Script: [script_import]
     Photoshop Image: [read_node]
@@ -75,6 +90,23 @@ settings.tk-multi-loader2.nuke:
     Texture: [read_node]
     UDIM Image: [read_node]
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
+  entities: *loader2_entities
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
+# nuke studio
+settings.tk-multi-loader2.nukestudio:
+  action_mappings:
+    Alembic Cache: [read_node]
+    Image: [read_node]
+    Model File: [read_node]
+    Movie: [read_node]
+    Nuke Script: [script_import]
+    NukeStudio Project: [open_project]
+    Photoshop Image: [read_node]
+    Rendered Image: [read_node]
+    Texture: [read_node]
+  actions_hook: '{self}/tk-nuke_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"

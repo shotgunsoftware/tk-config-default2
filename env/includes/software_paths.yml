@@ -14,11 +14,17 @@
 
 ################################################################################
 
-# Nuke
-path.linux.nuke: "/tools/bin/nuke"
+# Houdini
+path.linux.houdini: "/tools/bin/houdini"
+
+# Mari
+path.linux.mari: "/tools/bin/mari"
 
 # Maya
 path.linux.maya: "/tools/bin/maya"
+
+# Nuke
+path.linux.nuke: "/tools/bin/nuke"
 
 # RV
 path.linux.rv: "/tools/bin/rv"

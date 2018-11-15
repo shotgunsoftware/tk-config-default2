@@ -1,0 +1,26 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../../app_locations.yml
+
+################################################################################
+
+settings.tk-houdini-alembicnode:
+  work_file_template: '{engine_name}_{env_name}_work_file'
+  default_node_name: sg_alembic_out
+  output_profiles:
+  - name: Shot Work Cache
+    settings: {}
+    color: []
+    output_cache_template: '{engine_name}_{env_name}_work_cache'
+  location: "@apps.tk-houdini-alembicnode.location"

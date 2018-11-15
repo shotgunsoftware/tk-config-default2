@@ -58,8 +58,8 @@ settings.tk-multi-workfiles2: &default_workfiles2_settings
   show_my_tasks: true
   template_publish:
   template_publish_area:
-  template_work_area: '{engine_name}_{env_name}_work_area'
-  template_work: '{engine_name}_{env_name}_work_file'
+  template_work_area:
+  template_work:
   version_compare_ignore_fields: []
   location: "@apps.tk-multi-workfiles2.location"
 
@@ -85,6 +85,15 @@ settings.tk-multi-workfiles2.task: &default_workfiles2_task_settings
   template_work: '{engine_name}_{env_name}_work_file'
   location: "@apps.tk-multi-workfiles2.location"
 
+# houdini task
+settings.tk-multi-workfiles2.houdini.task:
+  <<: *default_workfiles2_task_settings
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
+
+settings.tk-multi-workfiles2.houdini:
+  <<: *default_workfiles2_settings
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
+
 # maya task
 settings.tk-multi-workfiles2.maya.task:
   <<: *default_workfiles2_task_settings
@@ -102,3 +111,28 @@ settings.tk-multi-workfiles2.nuke.task:
 settings.tk-multi-workfiles2.nuke:
   <<: *default_workfiles2_settings
   hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_{engine_name}.py'
+
+# nukestudio
+settings.tk-multi-workfiles2.entities.nukestudio:
+  - caption: 'Conform Tasks'
+    entity_type: Task
+    filters:
+      - [step.Step.short_name, is, "conform"]
+    hierarchy: [entity, content]
+  - caption: 'Editorial Tasks'
+    entity_type: Task
+    filters:
+      - [step.Step.short_name, is, "editorial"]
+    hierarchy: [entity, content]
+
+settings.tk-multi-workfiles2.nukestudio.task:
+  <<: *default_workfiles2_task_settings
+  file_extensions: ['hrox']
+  entities: '@settings.tk-multi-workfiles2.entities.nukestudio'
+  my_tasks_extra_display_fields: []
+
+settings.tk-multi-workfiles2.nukestudio:
+  <<: *default_workfiles2_settings
+  file_extensions: ['hrox']
+  entities: '@settings.tk-multi-workfiles2.entities.nukestudio'
+  my_tasks_extra_display_fields: []

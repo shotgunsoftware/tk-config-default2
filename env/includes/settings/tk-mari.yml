@@ -1,0 +1,50 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./apps/tk-multi-loader2.yml
+- ./apps/tk-multi-publish2.yml
+- ./apps/tk-multi-reviewsubmission.yml
+- ./apps/tk-multi-screeningroom.yml
+- ./apps/tk-multi-shotgunpanel.yml
+- ./apps/tk-mari-projectmanager.yml
+
+################################################################################
+
+# generic
+settings.tk-mari:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.mari"
+    tk-mari-projectmanager: "@settings.tk-mari-projectmanager"
+  location: "@engines.tk-mari.location"
+
+# asset task
+settings.tk-mari.asset:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.mari"
+    tk-multi-publish2: "@settings.tk-multi-publish2.mari"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-mari-projectmanager: "@settings.tk-mari-projectmanager.task"
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: 'Shotgun Panel...'}
+  location: "@engines.tk-mari.location"

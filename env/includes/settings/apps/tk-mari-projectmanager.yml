@@ -1,0 +1,28 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../../app_locations.yml
+
+################################################################################
+
+settings.tk-mari-projectmanager:
+  default_project_name: 'hook:get_default_saveas_name'
+  template_new_project_name:
+  link_entity_types: ['Asset']
+  location: "@apps.tk-mari-projectmanager.location"
+
+settings.tk-mari-projectmanager.task:
+  default_project_name: 'hook:get_default_saveas_name'
+  template_new_project_name: '{engine_name}_{env_name}_project_name'
+  link_entity_types: ['Asset']
+  location: "@apps.tk-mari-projectmanager.location"

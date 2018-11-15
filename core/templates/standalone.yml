@@ -1,0 +1,93 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+keys:
+    workarea_dir:
+        type: str
+        choices:
+            maya: maya
+            nuke: nuke
+            mari: mari
+            houdini: houdini
+        default: maya
+
+    workfile_subdir:
+        type: str
+        choices:
+            scenes: scenes
+            scripts: scripts
+            sessions: sessions
+        default: scenes
+
+
+paths:
+
+    # WORK AREAS
+    tk-shell_project_work_area:             '@project_work_area/{workarea_dir}'
+    tk-shell_sequence_work_area:            '@sequence_work_area/{workarea_dir}'
+    tk-shell_shot_work_area:                '@shot_work_area/{workarea_dir}'
+
+    tk-shell_project_asset_work_area:       '@project_asset_work_area/{workarea_dir}'
+    tk-shell_sequence_asset_work_area:      '@sequence_asset_work_area/{workarea_dir}'
+    tk-shell_shot_asset_work_area:          '@shot_asset_work_area/{workarea_dir}'
+
+    # WORK FILES
+    tk-shell_project_work_file:             '@tk-shell_project_work_area/{workfile_subdir}/@project_version_name'
+    tk-shell_sequence_work_file:            '@tk-shell_sequence_work_area/{workfile_subdir}/@sequence_version_name'
+    tk-shell_shot_work_file:                '@tk-shell_shot_work_area/{workfile_subdir}/@shot_version_name'
+
+    tk-shell_project_asset_work_file:       '@tk-shell_project_asset_work_area/{workfile_subdir}/@project_asset_version_name'
+    tk-shell_sequence_asset_work_file:      '@tk-shell_sequence_asset_work_area/{workfile_subdir}/@sequence_asset_version_name'
+    tk-shell_shot_asset_work_file:          '@tk-shell_shot_asset_work_area/{workfile_subdir}/@shot_asset_version_name'
+
+    # WORK CACHES
+    tk-shell_project_work_cache:            '@tk-shell_project_work_area/cache/alembic/@geom_subdirs/@project_version_name.abc'
+    tk-shell_sequence_work_cache:           '@tk-shell_sequence_work_area/cache/alembic/@geom_subdirs/@sequence_version_name.abc'
+    tk-shell_shot_work_cache:               '@tk-shell_shot_work_area/cache/alembic/@geom_subdirs/@shot_version_name.abc'
+
+    tk-shell_project_asset_work_cache:      '@tk-shell_project_asset_work_area/cache/alembic/@geom_subdirs/@project_asset_version_name.abc'
+    tk-shell_sequence_asset_work_cache:     '@tk-shell_sequence_asset_work_area/cache/alembic/@geom_subdirs/@sequence_asset_version_name.abc'
+    tk-shell_shot_asset_work_cache:         '@tk-shell_shot_asset_work_area/cache/alembic/@geom_subdirs/@shot_asset_version_name.abc'
+
+    # WORK MODELS
+    tk-shell_project_work_model:            '@tk-shell_project_work_area/cache/{geo.ext}/@geom_subdirs/@project_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_sequence_work_model:           '@tk-shell_sequence_work_area/cache/{geo.ext}/@geom_subdirs/@sequence_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_shot_work_model:               '@tk-shell_shot_work_area/cache/{geo.ext}/@geom_subdirs/@shot_version_name[.{SEQ}].{geo.ext}'
+
+    tk-shell_project_asset_work_model:      '@tk-shell_project_asset_work_area/cache/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_sequence_asset_work_model:     '@tk-shell_sequence_asset_work_area/cache/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
+    tk-shell_shot_asset_work_model:         '@tk-shell_shot_asset_work_area/cache/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
+
+    # WORK RENDERS
+    tk-shell_project_work_render:           '@tk-shell_project_work_area/images/{Step}/@image_subdirs/@project_version_name.{SEQ}.{img.ext}'
+    tk-shell_sequence_work_render:          '@tk-shell_sequence_work_area/images/{Step}/@image_subdirs/@sequence_version_name.{SEQ}.{img.ext}'
+    tk-shell_shot_work_render:              '@tk-shell_shot_work_area/images/{Step}/@image_subdirs/@shot_version_name.{SEQ}.{img.ext}'
+
+    tk-shell_project_asset_work_render:     '@tk-shell_project_asset_work_area/images/{Step}/@image_subdirs/@project_asset_version_name.{SEQ}.{img.ext}'
+    tk-shell_sequence_asset_work_render:    '@tk-shell_sequence_asset_work_area/images/{Step}/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img.ext}'
+    tk-shell_shot_asset_work_render:        '@tk-shell_shot_asset_work_area/images/{Step}/@image_subdirs/@shot_asset_version_name.{SEQ}.{img.ext}'
+
+    # WORK TEXTURES
+    tk-shell_project_work_texture:          '@tk-shell_project_work_area/textures/{Step}/@texture_subdirs/@project_version_name[.{UDIM}].{tex.ext}'
+    tk-shell_sequence_work_texture:         '@tk-shell_sequence_work_area/textures/{Step}/@texture_subdirs/@sequence_version_name[.{UDIM}].{tex.ext}'
+    tk-shell_shot_work_texture:             '@tk-shell_shot_work_area/textures/{Step}/@texture_subdirs/@shot_version_name[.{UDIM}].{tex.ext}'
+
+    tk-shell_project_asset_work_texture:    '@tk-shell_project_asset_work_area/textures/{Step}/@texture_subdirs/@project_asset_version_name[.{UDIM}].{tex.ext}'
+    tk-shell_sequence_asset_work_texture:   '@tk-shell_sequence_asset_work_area/textures/{Step}/@texture_subdirs/@sequence_asset_version_name[.{UDIM}].{tex.ext}'
+    tk-shell_shot_asset_work_texture:       '@tk-shell_shot_asset_work_area/textures/{Step}/@texture_subdirs/@shot_asset_version_name[.{UDIM}].{tex.ext}'
+
+    # WORK MOVIES
+    tk-shell_project_work_movie:            '@tk-shell_project_work_area/movies/@project_version_name.mov'
+    tk-shell_sequence_work_movie:           '@tk-shell_sequence_work_area/movies/@sequence_version_name.mov'
+    tk-shell_shot_work_movie:               '@tk-shell_shot_work_area/movies/@shot_version_name.mov'
+
+    tk-shell_project_asset_work_movie:      '@tk-shell_project_asset_work_area/movies/@project_asset_version_name.mov'
+    tk-shell_sequence_asset_work_movie:     '@tk-shell_sequence_asset_work_area/movies/@sequence_asset_version_name.mov'
+    tk-shell_shot_asset_work_movie:         '@tk-shell_shot_asset_work_area/movies/@shot_asset_version_name.mov'

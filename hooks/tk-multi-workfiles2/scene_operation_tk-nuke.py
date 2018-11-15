@@ -226,7 +226,7 @@ class SceneOperation(HookClass):
         shot = fields.get("Shot")
 
         ocio_display_node = nuke.ViewerProcess.node()
-        if ocio_display_node:
+        if ocio_display_node and ocio_display_node.Class() == "OCIODisplay":
             ocio_display_node["key1"].setValue("DD_SEQ")
             ocio_display_node["value1"].setValue(sequence)
             ocio_display_node["key2"].setValue("DD_SHOT")

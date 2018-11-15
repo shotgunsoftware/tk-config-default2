@@ -27,7 +27,7 @@
 # {Shot}. The section below tells Sgtk which data types and formats to expect for each key.
 #
 keys:
-    # Shotgun Entity keys
+    # Shotgun Entity keys (CamelCase)
     Sequence:
         type: str
         shotgun_entity_type: Sequence
@@ -42,30 +42,40 @@ keys:
         type: str
         shotgun_entity_type: Asset
         shotgun_field_name: code
-    sg_asset_type:
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
+    AssetType:
         type: str
         shotgun_entity_type: Asset
         shotgun_field_name: sg_asset_type
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
     Step:
         type: str
         shotgun_entity_type: Step
         shotgun_field_name: short_name
         filter_by: alphanumeric
-    login:
+    Task:
+        type: str
+        shotgun_entity_type: Task
+        shotgun_field_name: content
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
+    User:
         type: str
         shotgun_entity_type: HumanUser
         shotgun_field_name: login
 
-    custom_key_example:
-        type: str
-        validate_hook: 'templatekey_custom'
-        value_from_str_hook: 'templatekey_custom'
-        str_from_value_hook: 'templatekey_custom'
-
-    # Application-provided keys
+    # Application-provided keys (snake_case)
     name:
         type: str
         filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
     version:
         type: int
         format_spec: '03'
@@ -75,40 +85,73 @@ keys:
         type: int
     height:
         type: int
-    output:
+    node:
         type: str
-        filter_by: alphanumeric
+        alias: output
+        str_from_value_hook: 'name_converter'
+        edit_types:
+          - path_safe
+    channel:
+        type: str
+    layer:
+        type: str
+    aov_name:
+        type: str
     SEQ:
         type: sequence
         format_spec: '04'
+    UDIM:
+        type: sequence
+        format_spec: '04'
+        default: '<UDIM>'
     eye:
         type: str
-    img_extension:
+    img.ext:
         type: str
         choices:
             exr: exr
             jpg: jpeg
-            tiff: tiff
+            tif: tiff
             png: png
             dpx: dpx
         default: exr
         alias: extension
-    geo_extension:
+    geo.ext:
         type: str
         choices:
-            abc: ABC
-            obj: OBJ
-        default: abc
+            bgeo: bgeo
+            obj: obj
+            fbx: fbx
+            bgeo.sc: bgeo.sc
+            sim: sim
+            vdb: vdb
+        default: fbx
         alias: extension
-
-    # cdl specific keys
-    cdl_extension:
+    tex.ext:
+        type: str
+        choices:
+            tif: tiff
+            tx: tx
+            tga: tga
+            dds: dds
+            rat: rat
+        default: tif
+        alias: extension
+    cdl.ext:
         type: str
         choices:
             cc: cc
             ccc: ccc
         default: cc
         alias: extension
+
+    # Hook-modified keys (camelCase)
+    customKeyExample:
+        type: str
+        validate_hook: 'templatekey_custom'
+        value_from_str_hook: 'templatekey_custom'
+        str_from_value_hook: 'templatekey_custom'
+
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -148,9 +191,9 @@ paths:
     sequence_work_area:                     './{Sequence}/user/@user_work'
     shot_work_area:                         './{Sequence}/{Shot}/user/@user_work'
 
-    project_asset_work_area:                '@project_work_area/{sg_asset_type}/{Asset}'
-    sequence_asset_work_area:               '@sequence_work_area/{sg_asset_type}/{Asset}'
-    shot_asset_work_area:                   '@shot_work_area/{sg_asset_type}/{Asset}'
+    project_asset_work_area:                '@project_work_area/{AssetType}/{Asset}'
+    sequence_asset_work_area:               '@sequence_work_area/{AssetType}/{Asset}'
+    shot_asset_work_area:                   '@shot_work_area/{AssetType}/{Asset}'
 
 
     #################################
@@ -170,69 +213,111 @@ paths:
     #
 
     # SHOT PUBLISH PATHS
+    project_publish_area_anim:              '@project_publish_area/ANIM/{Step}'
+    project_publish_area_image:             '@project_publish_area/IMG/{Step}'
+    project_publish_area_model:             '@project_publish_area/MODEL/{Step}'
+    project_publish_area_movie:             '@project_publish_area/MOV/{Step}'
     project_publish_area_scene:             '@project_publish_area/SCENE/{Step}'
     project_publish_area_script:            '@project_publish_area/SCRIPT/{Step}'
-    project_publish_area_image:             '@project_publish_area/IMG/{Step}'
-    project_publish_area_movie:             '@project_publish_area/MOV/{Step}'
-    project_publish_area_anim:              '@project_publish_area/ANIM/{Step}'
+    project_publish_area_texture:           '@project_publish_area/TEXTURE/{Step}'
+    project_publish_area_fx:                '@project_publish_area/FX/{Step}'
 
+    sequence_publish_area_anim:             '@sequence_publish_area/ANIM/{Step}'
+    sequence_publish_area_image:            '@sequence_publish_area/IMG/{Step}'
+    sequence_publish_area_model:            '@sequence_publish_area/MODEL/{Step}'
+    sequence_publish_area_movie:            '@sequence_publish_area/MOV/{Step}'
     sequence_publish_area_scene:            '@sequence_publish_area/SCENE/{Step}'
     sequence_publish_area_script:           '@sequence_publish_area/SCRIPT/{Step}'
-    sequence_publish_area_image:            '@sequence_publish_area/IMG/{Step}'
-    sequence_publish_area_movie:            '@sequence_publish_area/MOV/{Step}'
-    sequence_publish_area_anim:             '@sequence_publish_area/ANIM/{Step}'
+    sequence_publish_area_texture:          '@sequence_publish_area/TEXTURE/{Step}'
+    sequence_publish_area_fx:               '@sequence_publish_area/FX/{Step}'
 
+    shot_publish_area_anim:                 '@shot_publish_area/ANIM/{Step}'
+    shot_publish_area_image:                '@shot_publish_area/IMG/{Step}'
+    shot_publish_area_model:                '@shot_publish_area/MODEL/{Step}'
+    shot_publish_area_movie:                '@shot_publish_area/MOV/{Step}'
     shot_publish_area_scene:                '@shot_publish_area/SCENE/{Step}'
     shot_publish_area_script:               '@shot_publish_area/SCRIPT/{Step}'
-    shot_publish_area_image:                '@shot_publish_area/IMG/{Step}'
-    shot_publish_area_movie:                '@shot_publish_area/MOV/{Step}'
-    shot_publish_area_anim:                 '@shot_publish_area/ANIM/{Step}'
+    shot_publish_area_texture:              '@shot_publish_area/TEXTURE/{Step}'
+    shot_publish_area_fx:                   '@shot_publish_area/FX/{Step}'
 
     # ASSET PUBLISH PATHS
-    project_asset_publish_area_scene:       '@project_publish_area_scene/{sg_asset_type}/{Asset}'
-    project_asset_publish_area_script:      '@project_publish_area_script/{sg_asset_type}/{Asset}'
-    project_asset_publish_area_image:       '@project_publish_area_image/{sg_asset_type}/{Asset}'
-    project_asset_publish_area_movie:       '@project_publish_area_movie/{sg_asset_type}/{Asset}'
-    project_asset_publish_area_anim:        '@project_publish_area_anim/{sg_asset_type}/{Asset}'
+    project_asset_publish_area_anim:        '@project_publish_area_anim/{AssetType}/{Asset}'
+    project_asset_publish_area_image:       '@project_publish_area_image/{AssetType}/{Asset}'
+    project_asset_publish_area_model:       '@project_publish_area_model/{AssetType}/{Asset}'
+    project_asset_publish_area_movie:       '@project_publish_area_movie/{AssetType}/{Asset}'
+    project_asset_publish_area_scene:       '@project_publish_area_scene/{AssetType}/{Asset}'
+    project_asset_publish_area_script:      '@project_publish_area_script/{AssetType}/{Asset}'
+    project_asset_publish_area_texture:     '@project_publish_area_texture/{AssetType}/{Asset}'
+    project_asset_publish_area_fx:          '@project_publish_area_fx/{AssetType}/{Asset}'
 
-    sequence_asset_publish_area_scene:      '@sequence_publish_area_scene/{sg_asset_type}/{Asset}'
-    sequence_asset_publish_area_script:     '@sequence_publish_area_script/{sg_asset_type}/{Asset}'
-    sequence_asset_publish_area_image:      '@sequence_publish_area_image/{sg_asset_type}/{Asset}'
-    sequence_asset_publish_area_movie:      '@sequence_publish_area_movie/{sg_asset_type}/{Asset}'
-    sequence_asset_publish_area_anim:       '@sequence_publish_area_anim/{sg_asset_type}/{Asset}'
+    sequence_asset_publish_area_anim:       '@sequence_publish_area_anim/{AssetType}/{Asset}'
+    sequence_asset_publish_area_image:      '@sequence_publish_area_image/{AssetType}/{Asset}'
+    sequence_asset_publish_area_model:      '@sequence_publish_area_model/{AssetType}/{Asset}'
+    sequence_asset_publish_area_movie:      '@sequence_publish_area_movie/{AssetType}/{Asset}'
+    sequence_asset_publish_area_scene:      '@sequence_publish_area_scene/{AssetType}/{Asset}'
+    sequence_asset_publish_area_script:     '@sequence_publish_area_script/{AssetType}/{Asset}'
+    sequence_asset_publish_area_texture:    '@sequence_publish_area_texture/{AssetType}/{Asset}'
+    sequence_asset_publish_area_fx:         '@sequence_publish_area_fx/{AssetType}/{Asset}'
 
-    shot_asset_publish_area_scene:          '@shot_publish_area_scene/{sg_asset_type}/{Asset}'
-    shot_asset_publish_area_script:         '@shot_publish_area_script/{sg_asset_type}/{Asset}'
-    shot_asset_publish_area_image:          '@shot_publish_area_image/{sg_asset_type}/{Asset}'
-    shot_asset_publish_area_movie:          '@shot_publish_area_movie/{sg_asset_type}/{Asset}'
-    shot_asset_publish_area_anim:           '@shot_publish_area_anim/{sg_asset_type}/{Asset}'
+    shot_asset_publish_area_anim:           '@shot_publish_area_anim/{AssetType}/{Asset}'
+    shot_asset_publish_area_image:          '@shot_publish_area_image/{AssetType}/{Asset}'
+    shot_asset_publish_area_model:          '@shot_publish_area_model/{AssetType}/{Asset}'
+    shot_asset_publish_area_movie:          '@shot_publish_area_movie/{AssetType}/{Asset}'
+    shot_asset_publish_area_scene:          '@shot_publish_area_scene/{AssetType}/{Asset}'
+    shot_asset_publish_area_script:         '@shot_publish_area_script/{AssetType}/{Asset}'
+    shot_asset_publish_area_texture:        '@shot_publish_area_texture/{AssetType}/{Asset}'
+    shot_asset_publish_area_fx:             '@shot_publish_area_fx/{AssetType}/{Asset}'
 
-    # SCENES
-    project_publish_scene:                  '@project_publish_area_scene/@project_version_name.{maya_extension}'
-    sequence_publish_scene:                 '@sequence_publish_area_scene/@sequence_version_name.{maya_extension}'
-    shot_publish_scene:                     '@shot_publish_area_scene/@shot_version_name.{maya_extension}'
 
-    project_asset_publish_scene:            '@project_asset_publish_area_scene/@project_asset_version_name.{maya_extension}'
-    sequence_asset_publish_scene:           '@sequence_asset_publish_area_scene/@sequence_asset_version_name.{maya_extension}'
-    shot_asset_publish_scene:               '@shot_asset_publish_area_scene/@shot_asset_version_name.{maya_extension}'
+    # HOUDINI SCENES
+    project_publish_houdini_scene:          '@project_publish_area_scene/@project_version_name.{houdini.ext}'
+    sequence_publish_houdini_scene:         '@sequence_publish_area_scene/@sequence_version_name.{houdini.ext}'
+    shot_publish_houdini_scene:             '@shot_publish_area_scene/@shot_version_name.{houdini.ext}'
 
-    # SCRIPTS
-    project_publish_script:                 '@project_publish_area_script/@project_version_name.nk'
-    sequence_publish_script:                '@sequence_publish_area_script/@sequence_version_name.nk'
-    shot_publish_script:                    '@shot_publish_area_script/@shot_version_name.nk'
+    project_asset_publish_houdini_scene:    '@project_asset_publish_area_scene/@project_asset_version_name.{houdini.ext}'
+    sequence_asset_publish_houdini_scene:   '@sequence_asset_publish_area_scene/@sequence_asset_version_name.{houdini.ext}'
+    shot_asset_publish_houdini_scene:       '@shot_asset_publish_area_scene/@shot_asset_version_name.{houdini.ext}'
 
-    project_asset_publish_script:           '@project_asset_publish_area_script/@project_asset_version_name.nk'
-    sequence_asset_publish_script:          '@sequence_asset_publish_area_script/@sequence_asset_version_name.nk'
-    shot_asset_publish_script:              '@shot_asset_publish_area_script/@shot_asset_version_name.nk'
+    # MARI SESSIONS
+    project_publish_mari_session:           '@project_publish_area_scene/@project_version_name'
+    sequence_publish_mari_session:          '@sequence_publish_area_scene/@sequence_version_name'
+    shot_publish_mari_session:              '@shot_publish_area_scene/@shot_version_name'
+
+    project_asset_publish_mari_session:     '@project_asset_publish_area_scene/@project_asset_version_name'
+    sequence_asset_publish_mari_session:    '@sequence_asset_publish_area_scene/@sequence_asset_version_name'
+    shot_asset_publish_mari_session:        '@shot_asset_publish_area_scene/@shot_asset_version_name'
+
+    # MAYA SCENES
+    project_publish_maya_scene:             '@project_publish_area_scene/@project_version_name.{maya.ext}'
+    sequence_publish_maya_scene:            '@sequence_publish_area_scene/@sequence_version_name.{maya.ext}'
+    shot_publish_maya_scene:                '@shot_publish_area_scene/@shot_version_name.{maya.ext}'
+
+    project_asset_publish_maya_scene:       '@project_asset_publish_area_scene/@project_asset_version_name.{maya.ext}'
+    sequence_asset_publish_maya_scene:      '@sequence_asset_publish_area_scene/@sequence_asset_version_name.{maya.ext}'
+    shot_asset_publish_maya_scene:          '@shot_asset_publish_area_scene/@shot_asset_version_name.{maya.ext}'
+
+    # NUKE SCRIPTS
+    project_publish_nuke_script:            '@project_publish_area_script/@project_version_name.nk'
+    sequence_publish_nuke_script:           '@sequence_publish_area_script/@sequence_version_name.nk'
+    shot_publish_nuke_script:               '@shot_publish_area_script/@shot_version_name.nk'
+
+    project_asset_publish_nuke_script:      '@project_asset_publish_area_script/@project_asset_version_name.nk'
+    sequence_asset_publish_nuke_script:     '@sequence_asset_publish_area_script/@sequence_asset_version_name.nk'
+    shot_asset_publish_nuke_script:         '@shot_asset_publish_area_script/@shot_asset_version_name.nk'
+
+    # NUKESTUDIO PROJECTS
+    project_publish_nukestudio_project:     '@project_publish_area_script/@project_version_name.hrox'
+    sequence_publish_nukestudio_project:    '@sequence_publish_area_script/@sequence_version_name.hrox'
+    shot_publish_nukestudio_project:        '@shot_publish_area_script/@shot_version_name.hrox'
 
     # RENDERS
-    project_publish_render:                 '@project_publish_area_image/@image_subdirs/@project_version_name.{SEQ}.{img_extension}'
-    sequence_publish_render:                '@sequence_publish_area_image/@image_subdirs/@sequence_version_name.{SEQ}.{img_extension}'
-    shot_publish_render:                    '@shot_publish_area_image/@image_subdirs/@shot_version_name.{SEQ}.{img_extension}'
+    project_publish_render:                 '@project_publish_area_image/@image_subdirs/@project_version_name.{SEQ}.{img.ext}'
+    sequence_publish_render:                '@sequence_publish_area_image/@image_subdirs/@sequence_version_name.{SEQ}.{img.ext}'
+    shot_publish_render:                    '@shot_publish_area_image/@image_subdirs/@shot_version_name.{SEQ}.{img.ext}'
 
-    project_asset_publish_render:           '@project_asset_publish_area_image/@image_subdirs/@project_asset_version_name.{SEQ}.{img_extension}'
-    sequence_asset_publish_render:          '@sequence_asset_publish_area_image/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img_extension}'
-    shot_asset_publish_render:              '@shot_asset_publish_area_image/@image_subdirs/@shot_asset_version_name.{SEQ}.{img_extension}'
+    project_asset_publish_render:           '@project_asset_publish_area_image/@image_subdirs/@project_asset_version_name.{SEQ}.{img.ext}'
+    sequence_asset_publish_render:          '@sequence_asset_publish_area_image/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img.ext}'
+    shot_asset_publish_render:              '@shot_asset_publish_area_image/@image_subdirs/@shot_asset_version_name.{SEQ}.{img.ext}'
 
     # MOVIES
     project_publish_movie:                  '@project_publish_area_movie/@project_version_name.mov'
@@ -243,14 +328,50 @@ paths:
     sequence_asset_publish_movie:           '@sequence_asset_publish_area_movie/@sequence_asset_version_name.mov'
     shot_asset_publish_movie:               '@shot_asset_publish_area_movie/@shot_asset_version_name.mov'
 
-    # CACHE
-    project_publish_cache:                  '@project_publish_area_anim/@project_version_name.{geo_extension}'
-    sequence_publish_cache:                 '@sequence_publish_area_anim/@sequence_version_name.{geo_extension}'
-    shot_publish_cache:                     '@shot_publish_area_anim/@shot_version_name.{geo_extension}'
+    # MODELS
+    project_publish_model:                  '@project_publish_area_model/{geo.ext}/@geom_subdirs/@project_version_name[.{SEQ}].{geo.ext}'
+    sequence_publish_model:                 '@sequence_publish_area_model/{geo.ext}/@geom_subdirs/@sequence_version_name[.{SEQ}].{geo.ext}'
+    shot_publish_model:                     '@shot_publish_area_model/{geo.ext}/@geom_subdirs/@shot_version_name[.{SEQ}].{geo.ext}'
 
-    project_asset_publish_cache:            '@project_asset_publish_area_anim/@project_asset_version_name.{geo_extension}'
-    sequence_asset_publish_cache:           '@sequence_asset_publish_area_anim/@sequence_asset_version_name.{geo_extension}'
-    shot_asset_publish_cache:               '@shot_asset_publish_area_anim/@shot_asset_version_name.{geo_extension}'
+    project_asset_publish_model:            '@project_asset_publish_area_model/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
+    sequence_asset_publish_model:           '@sequence_asset_publish_area_model/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
+    shot_asset_publish_model:               '@shot_asset_publish_area_model/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
+
+    # FX GEO CACHE
+    project_publish_fx_geo_cache:            '@project_publish_area_fx/{geo.ext}/@geom_subdirs/@project_version_name[.{SEQ}].{geo.ext}'
+    sequence_publish_fx_geo_cache:           '@sequence_publish_area_fx/{geo.ext}/@geom_subdirs/@sequence_version_name[.{SEQ}].{geo.ext}'
+    shot_publish_fx_geo_cache:               '@shot_publish_area_fx/{geo.ext}/@geom_subdirs/@shot_version_name[.{SEQ}].{geo.ext}'
+
+    project_asset_publish_fx_geo_cache:      '@project_asset_publish_area_fx/{geo.ext}/@geom_subdirs/@project_asset_version_name[.{SEQ}].{geo.ext}'
+    sequence_asset_publish_fx_geo_cache:     '@sequence_asset_publish_area_fx/{geo.ext}/@geom_subdirs/@sequence_asset_version_name[.{SEQ}].{geo.ext}'
+    shot_asset_publish_fx_geo_cache:         '@shot_asset_publish_area_fx/{geo.ext}/@geom_subdirs/@shot_asset_version_name[.{SEQ}].{geo.ext}'
+
+    # FX ABC CACHE
+    project_publish_fx_abc_cache:            '@project_publish_area_fx/alembic/@geom_subdirs/@project_version_name.abc'
+    sequence_publish_fx_abc_cache:           '@sequence_publish_area_fx/alembic/@geom_subdirs/@sequence_version_name.abc'
+    shot_publish_fx_abc_cache:               '@shot_publish_area_fx/alembic/@geom_subdirs/@shot_version_name.abc'
+
+    project_asset_publish_fx_abc_cache:      '@project_asset_publish_area_fx/alembic/@geom_subdirs/@project_asset_version_name.abc'
+    sequence_asset_publish_fx_abc_cache:     '@sequence_asset_publish_area_fx/alembic/@geom_subdirs/@sequence_asset_version_name.abc'
+    shot_asset_publish_fx_abc_cache:         '@shot_asset_publish_area_fx/alembic/@geom_subdirs/@shot_asset_version_name.abc'
+
+    # ANIM CACHE
+    project_publish_cache:                  '@project_publish_area_anim/alembic/@geom_subdirs/@project_version_name.abc'
+    sequence_publish_cache:                 '@sequence_publish_area_anim/alembic/@geom_subdirs/@sequence_version_name.abc'
+    shot_publish_cache:                     '@shot_publish_area_anim/alembic/@geom_subdirs/@shot_version_name.abc'
+
+    project_asset_publish_cache:            '@project_asset_publish_area_anim/alembic/@geom_subdirs/@project_asset_version_name.abc'
+    sequence_asset_publish_cache:           '@sequence_asset_publish_area_anim/alembic/@geom_subdirs/@sequence_asset_version_name.abc'
+    shot_asset_publish_cache:               '@shot_asset_publish_area_anim/alembic/@geom_subdirs/@shot_asset_version_name.abc'
+
+    # TEXTURES
+    project_publish_texture:                '@project_publish_area_texture/@texture_subdirs/@project_version_name[.{UDIM}].{tex.ext}'
+    sequence_publish_texture:               '@sequence_publish_area_texture/@texture_subdirs/@sequence_version_name[.{UDIM}].{tex.ext}'
+    shot_publish_texture:                   '@shot_publish_area_texture/@texture_subdirs/@shot_version_name[.{UDIM}].{tex.ext}'
+
+    project_asset_publish_texture:          '@project_asset_publish_area_texture/@texture_subdirs/@project_asset_version_name[.{UDIM}].{tex.ext}'
+    sequence_asset_publish_texture:         '@sequence_asset_publish_area_texture/@texture_subdirs/@sequence_asset_version_name[.{UDIM}].{tex.ext}'
+    shot_asset_publish_texture:             '@shot_asset_publish_area_texture/@texture_subdirs/@shot_asset_version_name[.{UDIM}].{tex.ext}'
 
     # REVIEW SUBMISSION
     reviewsubmission_burnin_nuke_file:      '@project_publish_area/etc/reviewsubmit_presets/burnin.nk'
@@ -263,9 +384,7 @@ paths:
     colorprocessfiles_render_script_path:    '@project_publish_area/etc/reviewsubmit_presets/nuke_batch_color_process_files.py'
 
     # CDL PUBLISHING
-
-    # since we only support cc publishing currently
-
+    # TODO: we only support cc publishing currently
     project_publish_cdl:                    '@project_publish_area_cdl/grades/grade_v{version}/{name}.cc'
     sequence_publish_cdl:                   '@sequence_publish_area_cdl/grades/grade_v{version}/{name}.cc'
     shot_publish_cdl:                       '@shot_publish_area_cdl/grades/grade_v{version}/{name}.cc'
@@ -291,26 +410,41 @@ aliases:
 strings:
 
     # COMMON
-    user_work:                              'work.{login}'
+    user_work:                              'work.{User}'
     image_subdirs:                          '{name}/v{version}/{width}x{height}'
     proxy_subdirs:                          '{name}/v{version}/PROXY'
     2k_subdirs:                             '{name}/v{version}/2K'
+    geom_subdirs:                           '{name}/v{version}[/{node}]'
+    texture_subdirs:                        '{name}/v{version}[/{node}]/{channel}[/{layer}]'
 
-    # SCENE
-    project_version_name:                   '{Step}_{name}[-{output}].v{version}'
-    sequence_version_name:                  '{Sequence}_{Step}_{name}[-{output}].v{version}'
-    shot_version_name:                      '{Sequence}_{Shot}_{Step}_{name}[-{output}].v{version}'
+    # SCENE PUBLISH NAMES
+    project_publish_name:                   '{Step}_{name}[-{node}]'
+    sequence_publish_name:                  '{Sequence}_{Step}_{name}[-{node}]'
+    shot_publish_name:                      '{Sequence}_{Shot}_{Step}_{name}[-{node}]'
 
-    # ASSET
-    project_asset_version_name:             '{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
-    sequence_asset_version_name:            '{Sequence}_{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
-    shot_asset_version_name:                '{Sequence}_{Shot}_{Step}_{sg_asset_type}_{Asset}_{name}[-{output}].v{version}'
+    # ASSET PUBLISH NAMES
+    project_asset_publish_name:             '{Step}_{AssetType}-{Asset}-{name}[-{node}]'
+    sequence_asset_publish_name:            '{Sequence}_{Step}_{AssetType}-{Asset}-{name}[-{node}]'
+    shot_asset_publish_name:                '{Sequence}_{Shot}_{Step}_{AssetType}-{Asset}-{name}[-{node}]'
+
+    # SCENE VERSION NAMES
+    project_version_name:                   '@project_publish_name.v{version}'
+    sequence_version_name:                  '@sequence_publish_name.v{version}'
+    shot_version_name:                      '@shot_publish_name.v{version}'
+
+    # ASSET VERSION NAMES
+    project_asset_version_name:             '@project_asset_publish_name.v{version}'
+    sequence_asset_version_name:            '@sequence_asset_publish_name.v{version}'
+    shot_asset_version_name:                '@shot_asset_publish_name.v{version}'
 
 
 includes:
-  - templates/nuke.yml
-  - templates/maya.yml
-  - templates/mari.yml
+  - templates/standalone.yml
   - templates/3dequalizer.yml
+  - templates/houdini.yml
   - templates/ingest.yml
+  - templates/mari.yml
+  - templates/maya.yml
+  - templates/nuke.yml
+  - templates/nukestudio.yml
   - '{preferences}/sgtk_config_templates.yaml'

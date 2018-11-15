@@ -17,41 +17,41 @@ frameworks:
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.3.x
+      version: v0.x.x
       type: manual
       name: tk-framework-adminui
 
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.3.x
+      version: v1.x.x
       type: manual
       name: tk-framework-desktopserver
 
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.8.x
+      version: v2.x.x
       type: manual
       name: tk-framework-qtwidgets
 
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
-      version: v4.5.x
+      version: v4.x.x
       type: manual
       name: tk-framework-shotgunutils
 
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.4.x
+      version: v5.x.x
       type: manual
       name: tk-framework-shotgunutils
 
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
-      version: v0.2.x
+      version: v0.x.x
       type: manual
       name: tk-framework-widget

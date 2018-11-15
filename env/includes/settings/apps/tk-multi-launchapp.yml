@@ -16,11 +16,18 @@ includes:
 
 ################################################################################
 
-# nuke
-settings.tk-multi-launchapp.nuke:
-  engine: tk-nuke
-  linux_path: "@path.linux.nuke"
-  menu_name: Nuke
+# houdini
+settings.tk-multi-launchapp.houdini:
+  engine: tk-houdini
+  linux_path: "@path.linux.houdini"
+  menu_name: Houdini
+  location: "@apps.tk-multi-launchapp.location"
+
+# mari
+settings.tk-multi-launchapp.mari:
+  engine: tk-mari
+  linux_path: "@path.linux.mari"
+  menu_name: Mari
   location: "@apps.tk-multi-launchapp.location"
 
 # maya
@@ -28,4 +35,11 @@ settings.tk-multi-launchapp.maya:
   engine: tk-maya
   linux_path: "@path.linux.maya"
   menu_name: Maya
+  location: "@apps.tk-multi-launchapp.location"
+
+# nuke
+settings.tk-multi-launchapp.nuke:
+  engine: tk-nuke
+  linux_path: "@path.linux.nuke"
+  menu_name: Nuke
   location: "@apps.tk-multi-launchapp.location"

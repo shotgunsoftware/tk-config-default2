@@ -16,98 +16,97 @@ keys:
 paths:
 
     # WORK AREAS
-    tk-nuke_project_work_area:              '@project_work_area/nuke'
-    tk-nuke_sequence_work_area:             '@sequence_work_area/nuke'
-    tk-nuke_shot_work_area:                 '@shot_work_area/nuke'
+    tk-nuke_project_work_area:                  '@project_work_area/nuke'
+    tk-nuke_sequence_work_area:                 '@sequence_work_area/nuke'
+    tk-nuke_shot_work_area:                     '@shot_work_area/nuke'
 
-    tk-nuke_project_asset_work_area:        '@project_asset_work_area/nuke'
-    tk-nuke_sequence_asset_work_area:       '@sequence_asset_work_area/nuke'
-    tk-nuke_shot_asset_work_area:           '@shot_asset_work_area/nuke'
+    tk-nuke_project_asset_work_area:            '@project_asset_work_area/nuke'
+    tk-nuke_sequence_asset_work_area:           '@sequence_asset_work_area/nuke'
+    tk-nuke_shot_asset_work_area:               '@shot_asset_work_area/nuke'
 
     # WORK FILES
-    tk-nuke_project_work_file:              '@tk-nuke_project_work_area/scripts/@project_version_name.nk'
-    tk-nuke_sequence_work_file:             '@tk-nuke_sequence_work_area/scripts/@sequence_version_name.nk'
-    tk-nuke_shot_work_file:                 '@tk-nuke_shot_work_area/scripts/@shot_version_name.nk'
+    tk-nuke_project_work_file:                  '@tk-nuke_project_work_area/scripts/@project_version_name.nk'
+    tk-nuke_sequence_work_file:                 '@tk-nuke_sequence_work_area/scripts/@sequence_version_name.nk'
+    tk-nuke_shot_work_file:                     '@tk-nuke_shot_work_area/scripts/@shot_version_name.nk'
 
-    tk-nuke_project_asset_work_file:        '@tk-nuke_project_asset_work_area/scripts/@project_asset_version_name.nk'
-    tk-nuke_sequence_asset_work_file:       '@tk-nuke_sequence_asset_work_area/scripts/@sequence_asset_version_name.nk'
-    tk-nuke_shot_asset_work_file:           '@tk-nuke_shot_asset_work_area/scripts/@shot_asset_version_name.nk'
+    tk-nuke_project_asset_work_file:            '@tk-nuke_project_asset_work_area/scripts/@project_asset_version_name.nk'
+    tk-nuke_sequence_asset_work_file:           '@tk-nuke_sequence_asset_work_area/scripts/@sequence_asset_version_name.nk'
+    tk-nuke_shot_asset_work_file:               '@tk-nuke_shot_asset_work_area/scripts/@shot_asset_version_name.nk'
 
     # SNAPSHOTS
-    tk-nuke_project_work_snapshot:          '@tk-nuke_project_work_area/scripts/snapshots/@project_version_name.{timestamp}.nk'
-    tk-nuke_sequence_work_snapshot:         '@tk-nuke_sequence_work_area/scripts/snapshots/@sequence_version_name.{timestamp}.nk'
-    tk-nuke_shot_work_snapshot:             '@tk-nuke_shot_work_area/scripts/snapshots/@shot_version_name.{timestamp}.nk'
+    tk-nuke_project_work_snapshot:              '@tk-nuke_project_work_area/scripts/snapshots/@project_version_name.{timestamp}.nk'
+    tk-nuke_sequence_work_snapshot:             '@tk-nuke_sequence_work_area/scripts/snapshots/@sequence_version_name.{timestamp}.nk'
+    tk-nuke_shot_work_snapshot:                 '@tk-nuke_shot_work_area/scripts/snapshots/@shot_version_name.{timestamp}.nk'
 
-    tk-nuke_project_asset_work_snapshot:    '@tk-nuke_project_asset_work_area/scripts/snapshots/@project_asset_version_name.{timestamp}.nk'
-    tk-nuke_sequence_asset_work_snapshot:   '@tk-nuke_sequence_asset_work_area/scripts/snapshots/@sequence_asset_version_name.{timestamp}.nk'
-    tk-nuke_shot_asset_work_snapshot:       '@tk-nuke_shot_asset_work_area/scripts/snapshots/@shot_asset_version_name.{timestamp}.nk'
+    tk-nuke_project_asset_work_snapshot:        '@tk-nuke_project_asset_work_area/scripts/snapshots/@project_asset_version_name.{timestamp}.nk'
+    tk-nuke_sequence_asset_work_snapshot:       '@tk-nuke_sequence_asset_work_area/scripts/snapshots/@sequence_asset_version_name.{timestamp}.nk'
+    tk-nuke_shot_asset_work_snapshot:           '@tk-nuke_shot_asset_work_area/scripts/snapshots/@shot_asset_version_name.{timestamp}.nk'
 
     # RENDERS
-    tk-nuke_project_work_render:            '@tk-nuke_project_work_area/images/{Step}/@image_subdirs/@project_version_name.{SEQ}.{img_extension}'
-    tk-nuke_sequence_work_render:           '@tk-nuke_sequence_work_area/images/{Step}/@image_subdirs/@sequence_version_name.{SEQ}.{img_extension}'
-    tk-nuke_shot_work_render:               '@tk-nuke_shot_work_area/images/{Step}/@image_subdirs/@shot_version_name.{SEQ}.{img_extension}'
+    tk-nuke_project_work_render:                '@tk-nuke_project_work_area/images/{Step}/@image_subdirs/@project_version_name.{SEQ}.{img.ext}'
+    tk-nuke_sequence_work_render:               '@tk-nuke_sequence_work_area/images/{Step}/@image_subdirs/@sequence_version_name.{SEQ}.{img.ext}'
+    tk-nuke_shot_work_render:                   '@tk-nuke_shot_work_area/images/{Step}/@image_subdirs/@shot_version_name.{SEQ}.{img.ext}'
 
-    tk-nuke_project_asset_work_render:      '@tk-nuke_project_asset_work_area/images/{Step}/@image_subdirs/@project_asset_version_name.{SEQ}.{img_extension}'
-    tk-nuke_sequence_asset_work_render:     '@tk-nuke_sequence_asset_work_area/images/{Step}/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img_extension}'
-    tk-nuke_shot_asset_work_render:         '@tk-nuke_shot_asset_work_area/images/{Step}/@image_subdirs/@shot_asset_version_name.{SEQ}.{img_extension}'
+    tk-nuke_project_asset_work_render:          '@tk-nuke_project_asset_work_area/images/{Step}/@image_subdirs/@project_asset_version_name.{SEQ}.{img.ext}'
+    tk-nuke_sequence_asset_work_render:         '@tk-nuke_sequence_asset_work_area/images/{Step}/@image_subdirs/@sequence_asset_version_name.{SEQ}.{img.ext}'
+    tk-nuke_shot_asset_work_render:             '@tk-nuke_shot_asset_work_area/images/{Step}/@image_subdirs/@shot_asset_version_name.{SEQ}.{img.ext}'
 
     # MOVIES
-    tk-nuke_project_work_movie:             '@tk-nuke_project_work_area/movies/@project_version_name.mov'
-    tk-nuke_sequence_work_movie:            '@tk-nuke_sequence_work_area/movies/@sequence_version_name.mov'
-    tk-nuke_shot_work_movie:                '@tk-nuke_shot_work_area/movies/@shot_version_name.mov'
+    tk-nuke_project_work_movie:                 '@tk-nuke_project_work_area/movies/@project_version_name.mov'
+    tk-nuke_sequence_work_movie:                '@tk-nuke_sequence_work_area/movies/@sequence_version_name.mov'
+    tk-nuke_shot_work_movie:                    '@tk-nuke_shot_work_area/movies/@shot_version_name.mov'
 
-    tk-nuke_project_asset_work_movie:       '@tk-nuke_project_asset_work_area/movies/@project_asset_version_name.mov'
-    tk-nuke_sequence_asset_work_movie:      '@tk-nuke_sequence_asset_work_area/movies/@sequence_asset_version_name.mov'
-    tk-nuke_shot_asset_work_movie:          '@tk-nuke_shot_asset_work_area/movies/@shot_asset_version_name.mov'
+    tk-nuke_project_asset_work_movie:           '@tk-nuke_project_asset_work_area/movies/@project_asset_version_name.mov'
+    tk-nuke_sequence_asset_work_movie:          '@tk-nuke_sequence_asset_work_area/movies/@sequence_asset_version_name.mov'
+    tk-nuke_shot_asset_work_movie:              '@tk-nuke_shot_asset_work_area/movies/@shot_asset_version_name.mov'
 
-    # CACHE
-    tk-nuke_project_work_cache:             '@tk-nuke_project_work_area/cache/@project_version_name.{geo_extension}'
-    tk-nuke_sequence_work_cache:            '@tk-nuke_sequence_work_area/cache/@sequence_version_name.{geo_extension}'
-    tk-nuke_shot_work_cache:                '@tk-nuke_shot_work_area/cache/@shot_version_name.{geo_extension}'
+    # ANIM CACHE
+    tk-nuke_project_work_cache:                 '@tk-nuke_project_work_area/cache/alembic/@geom_subdirs/@project_version_name.abc'
+    tk-nuke_sequence_work_cache:                '@tk-nuke_sequence_work_area/cache/alembic/@geom_subdirs/@sequence_version_name.abc'
+    tk-nuke_shot_work_cache:                    '@tk-nuke_shot_work_area/cache/alembic/@geom_subdirs/@shot_version_name.abc'
 
-    tk-nuke_project_asset_work_cache:       '@tk-nuke_project_asset_work_area/cache/@project_asset_version_name.{geo_extension}'
-    tk-nuke_sequence_asset_work_cache:      '@tk-nuke_sequence_asset_work_area/cache/@sequence_asset_version_name.{geo_extension}'
-    tk-nuke_shot_asset_work_cache:          '@tk-nuke_shot_asset_work_area/cache/@shot_asset_version_name.{geo_extension}'
+    tk-nuke_project_asset_work_cache:           '@tk-nuke_project_asset_work_area/cache/alembic/@geom_subdirs/@project_asset_version_name.abc'
+    tk-nuke_sequence_asset_work_cache:          '@tk-nuke_sequence_asset_work_area/cache/alembic/@geom_subdirs/@sequence_asset_version_name.abc'
+    tk-nuke_shot_asset_work_cache:              '@tk-nuke_shot_asset_work_area/cache/alembic/@geom_subdirs/@shot_asset_version_name.abc'
 
     # QUICK-DAILIES
-    tk-nuke_project_publish_quick:          '@project_publish_area_movie/quick/@quick_project_version_name.mov'
-    tk-nuke_sequence_publish_quick:         '@sequence_publish_area_movie/quick/@quick_sequence_version_name.mov'
-    tk-nuke_shot_publish_quick:             '@shot_publish_area_movie/quick/@quick_shot_version_name.mov'
+    tk-nuke_project_publish_quick:              '@project_publish_area_movie/quick/@tk-nuke_quick_project_version_name.mov'
+    tk-nuke_sequence_publish_quick:             '@sequence_publish_area_movie/quick/@tk-nuke_quick_sequence_version_name.mov'
+    tk-nuke_shot_publish_quick:                 '@shot_publish_area_movie/quick/@tk-nuke_quick_shot_version_name.mov'
 
-    tk-nuke_project_asset_publish_quick:    '@project_asset_publish_area_movie/quick/@quick_project_asset_version_name.mov'
-    tk-nuke_sequence_asset_publish_quick:   '@sequence_asset_publish_area_movie/quick/@quick_sequence_asset_version_name.mov'
-    tk-nuke_shot_asset_publish_quick:       '@shot_asset_publish_area_movie/quick/@quick_shot_asset_version_name.mov'
+    tk-nuke_project_asset_publish_quick:        '@project_asset_publish_area_movie/quick/@tk-nuke_quick_project_asset_version_name.mov'
+    tk-nuke_sequence_asset_publish_quick:       '@sequence_asset_publish_area_movie/quick/@tk-nuke_quick_sequence_asset_version_name.mov'
+    tk-nuke_shot_asset_publish_quick:           '@shot_asset_publish_area_movie/quick/@tk-nuke_quick_shot_asset_version_name.mov'
 
 
 aliases:
 
     # PUBLISH AREAS
-    tk-nuke_project_publish_area:           'project_publish_area_script'
-    tk-nuke_sequence_publish_area:          'sequence_publish_area_script'
-    tk-nuke_shot_publish_area:              'shot_publish_area_script'
+    tk-nuke_project_publish_area:               'project_publish_area_script'
+    tk-nuke_sequence_publish_area:              'sequence_publish_area_script'
+    tk-nuke_shot_publish_area:                  'shot_publish_area_script'
 
-    tk-nuke_project_asset_publish_area:     'project_asset_publish_area_script'
-    tk-nuke_sequence_asset_publish_area:    'sequence_asset_publish_area_script'
-    tk-nuke_shot_asset_publish_area:        'shot_asset_publish_area_script'
+    tk-nuke_project_asset_publish_area:         'project_asset_publish_area_script'
+    tk-nuke_sequence_asset_publish_area:        'sequence_asset_publish_area_script'
+    tk-nuke_shot_asset_publish_area:            'shot_asset_publish_area_script'
 
     # PUBLISH FILES
-    tk-nuke_project_publish_file:           'project_publish_script'
-    tk-nuke_sequence_publish_file:          'sequence_publish_script'
-    tk-nuke_shot_publish_file:              'shot_publish_script'
+    tk-nuke_project_publish_file:               'project_publish_nuke_script'
+    tk-nuke_sequence_publish_file:              'sequence_publish_nuke_script'
+    tk-nuke_shot_publish_file:                  'shot_publish_nuke_script'
 
-    tk-nuke_project_asset_publish_file:     'project_asset_publish_script'
-    tk-nuke_sequence_asset_publish_file:    'sequence_asset_publish_script'
-    tk-nuke_shot_asset_publish_file:        'shot_asset_publish_script'
+    tk-nuke_project_asset_publish_file:         'project_asset_publish_nuke_script'
+    tk-nuke_sequence_asset_publish_file:        'sequence_asset_publish_nuke_script'
+    tk-nuke_shot_asset_publish_file:            'shot_asset_publish_nuke_script'
 
 
 strings:
 
     # QUICK-DAILIES
-    quick_project_version_name:             '@project_version_name.{iteration}'
-    quick_project_asset_version_name:       '@project_asset_version_name.{iteration}'
+    tk-nuke_quick_project_version_name:         '@project_version_name.{iteration}'
+    tk-nuke_quick_sequence_version_name:        '@sequence_version_name.{iteration}'
+    tk-nuke_quick_shot_version_name:            '@shot_version_name.{iteration}'
 
-    quick_sequence_version_name:            '@sequence_version_name.{iteration}'
-    quick_sequence_asset_version_name:      '@sequence_asset_version_name.{iteration}'
-
-    quick_shot_version_name:                '@shot_version_name.{iteration}'
-    quick_shot_asset_version_name:          '@shot_asset_version_name.{iteration}'
+    tk-nuke_quick_project_asset_version_name:   '@project_asset_version_name.{iteration}'
+    tk-nuke_quick_sequence_asset_version_name:  '@sequence_asset_version_name.{iteration}'
+    tk-nuke_quick_shot_asset_version_name:      '@shot_asset_version_name.{iteration}'
