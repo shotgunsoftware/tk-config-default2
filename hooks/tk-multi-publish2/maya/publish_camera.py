@@ -357,7 +357,7 @@ class MayaCameraPublishPlugin(HookBaseClass):
         publish_folder = os.path.dirname(publish_path)
         self.parent.ensure_folder_exists(publish_folder)
 
-        fbx_export_cmd = 'FBXExport -f "%s" -s' % (publish_path,)
+        fbx_export_cmd = 'FBXExport -f "%s" -s' % (publish_path.replace(os.path.sep, "/"),)
 
         # ...and execute it:
         try:
