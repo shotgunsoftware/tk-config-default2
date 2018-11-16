@@ -39,11 +39,11 @@ settings.tk-multi-loader2.houdini:
   action_mappings:
     Alembic Cache: [import]
     Houdini Scene: [merge]
-    Image: [file_cop]
+    Image: [image_plane]
     Model Sequence: [import]
     Model File: [import]
-    Photoshop Image: [file_cop]
-    Rendered Image: [file_cop]
+    Photoshop Image: [image_plane]
+    Rendered Image: [image_plane]
     Texture: [file_cop]
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
