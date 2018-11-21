@@ -53,6 +53,9 @@ settings.tk-multi-workfiles2: &default_workfiles2_settings
   hook_scene_operation: default
   launch_at_startup: true
   my_tasks_extra_display_fields: [entity.Shot.sg_sequence.Sequence.code]
+  my_tasks_filters:
+    - [task_assignees, is, '{context.user}']
+    - [entity, is_not, null]
   saveas_default_name: 'hook:get_default_saveas_name'
   saveas_prefer_version_up: false
   show_my_tasks: true
