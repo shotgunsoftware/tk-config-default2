@@ -89,7 +89,7 @@ class IngestCollectorPlugin(HookBaseClass):
             return None
 
         # try using the basename for resolving the template
-        work_path_template = self.__get_work_path_template_from_settings(settings,
+        work_path_template = self._get_work_path_template_from_settings(settings,
                                                                          item.type,
                                                                          os.path.basename(path))
         if work_path_template:
@@ -134,7 +134,7 @@ class IngestCollectorPlugin(HookBaseClass):
         for file_item in file_items:
             fields = file_item.properties["fields"]
             if "snapshot_type" not in fields:
-                item_info = self._get_item_type_info(settings, item.type)
+                item_info = self._get_item_type_info(settings, file_item.type)
 
                 fields["snapshot_type"] = item_info["default_snapshot_type"]
                 # CDL files should always be published as Asset entity with nuke_avidgrade asset_type
