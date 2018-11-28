@@ -45,8 +45,8 @@ class BreakdownSceneOperations(Hook):
         items = []
 
         # get a list of all regular alembic nodes in the file
-        alembic_nodes = hou.nodeType(hou.sopNodeTypeCategory(),
-            "alembic").instances()
+        alembic_nodes = hou.nodeType(hou.objNodeTypeCategory(),
+            "alembicarchive").instances()
 
         # return an item for each alembic node found. the breakdown app will check
         # the paths of each looking for a template match and a newer version.
@@ -114,13 +114,14 @@ class BreakdownSceneOperations(Hook):
 
             file_path = file_path.replace("\\", "/")
 
-            # update the alembic fileName parm to the new path
+            # update the alembic archive fileName parm to the new path
             if node_type == "alembic":
 
                 alembic_node = hou.node(node_path)
                 engine.log_debug(
-                    "Updating alembic node '%s' to: %s" % (node_path, file_path))
+                    "Updating alembic archive node '%s' to: %s" % (node_path, file_path))
                 alembic_node.parm("fileName").set(file_path)
+                alembic_node.parm("buildHierarchy").pressButton()
             elif node_type == "file":
                 file_node = hou.node(node_path)
                 engine.log_debug(

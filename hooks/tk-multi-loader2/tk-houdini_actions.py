@@ -111,21 +111,19 @@ class CustomHoudiniActions(HookBaseClass):
 
         obj_context = parent_module._get_current_context("/obj")
 
-        try:
-            geo_node = obj_context.createNode("geo", name)
-        except hou.OperationFailed:
-            # failed to create the node in this context, create at top-level
-            obj_context = hou.node("/obj")
-            geo_node = obj_context.createNode("geo", name)
-
-        app.log_debug("Created geo node: %s" % (geo_node.path(),))
-
-        # delete the default nodes created in the geo
-        for child in geo_node.children():
-            child.destroy()
-
         published_file_type = sg_publish_data["published_file_type"].get("name")
         if published_file_type == "Model File" or published_file_type == "Model Sequence":
+            try:
+                geo_node = obj_context.createNode("geo", name)
+            except hou.OperationFailed:
+                # failed to create the node in this context, create at top-level
+                obj_context = hou.node("/obj")
+                geo_node = obj_context.createNode("geo", name)
+            app.log_debug("Created geo node: %s" % (geo_node.path(),))
+            # delete the default nodes created in the geo
+            for child in geo_node.children():
+                child.destroy()
+
             file_sop = geo_node.createNode("file", name)
             # replace any %0#d format string with the corresponding houdini frame
             # env variable. example %04d => $F4
@@ -138,16 +136,21 @@ class CustomHoudiniActions(HookBaseClass):
             file_sop.parm("file").set(path)
             node = file_sop
         else:
-            alembic_sop = geo_node.createNode("alembic", name)
-            alembic_sop.parm("fileName").set(path)
-            node = alembic_sop
+            try:
+                alembic_node = obj_context.createNode("alembicarchive", name)
+            except hou.OperationFailed:
+                # failed to create the node in this context, create at top-level
+                obj_context = hou.node("/obj")
+                alembic_node = obj_context.createNode("alembicarchive", name)
+            alembic_node.parm("fileName").set(path)
+            alembic_node.parm("buildHierarchy").pressButton()
+            node = alembic_node
 
         node_name = hou.nodeType(node.path()).name()
         app.log_debug(
             "Creating %s node: %s\n  path: '%s' " %
             (node_name, node.path(), path)
         )
-        node.parm("reload").pressButton()
 
         parent_module._show_node(node)
 
