@@ -16,12 +16,14 @@ description: Apps and Engines when launching with a site level context.
 includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-desktop.yml
+- ./includes/settings/tk-desktop2.yml
 
 ################################################################################
 # configuration for all engines to load in a project context
 
 engines:
   tk-desktop: '@settings.tk-desktop.site'
+  tk-desktop2: '@settings.tk-desktop2.site'
 
 ################################################################################
 # reference all of the common frameworks
