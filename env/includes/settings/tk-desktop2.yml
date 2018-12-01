@@ -16,7 +16,6 @@ includes:
 - ../engine_locations.yml
 - ./tk-multi-launchapp.yml
 - ./tk-multi-publish2.yml
-- ./tk-multi-screeningroom.yml
 
 ################################################################################
 
@@ -27,30 +26,11 @@ settings.tk-desktop2.site:
 
 
 # project
-settings.tk-desktop2.project:
+settings.tk-desktop2.all:
   apps:
-    tk-multi-pythonconsole:
-      location: "@apps.tk-multi-pythonconsole.location"
-    tk-multi-devutils:
-      location: "@apps.tk-multi-devutils.location"
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
-    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-  groups:
-  - matches:
-    - "*Fla*"
-    - "*Houdini*"
-    - "*Mari*"
-    - "*Max*"
-    - "*Maya*"
-    - "*Motion*"
-    - "*Nuke*"
-    - "*Photoshop*"
-    name: Creative Tools
-  - matches:
-    - "*Hiero*"
-    name: Editorial Tools
   location: "@engines.tk-desktop2.location"

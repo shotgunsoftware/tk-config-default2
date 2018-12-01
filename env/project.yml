@@ -17,7 +17,6 @@ includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-desktop.yml
-- ./includes/settings/tk-desktop2.yml
 - ./includes/settings/tk-flame.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-mari.yml
@@ -34,7 +33,6 @@ includes:
 engines:
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.project"
   tk-desktop: "@settings.tk-desktop.project"
-  tk-desktop2: "@settings.tk-desktop2.project"
   tk-flame: "@settings.tk-flame.project"
   tk-hiero: "@settings.tk-nuke.hiero.project"
   tk-houdini: "@settings.tk-houdini.project"
