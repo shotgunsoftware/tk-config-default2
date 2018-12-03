@@ -98,15 +98,49 @@ settings.tk-multi-loader2.nuke:
 settings.tk-multi-loader2.nukestudio:
   action_mappings:
     Alembic Cache: [read_node]
-    Image: [read_node]
+    Image: [read_node, clip_img_mov, clip_img_seq]
     Model File: [read_node]
-    Movie: [read_node]
+    Movie: [clip_import_bin]
     Nuke Script: [script_import]
     NukeStudio Project: [open_project]
     Photoshop Image: [read_node]
     Rendered Image: [read_node]
     Texture: [read_node]
-  actions_hook: '{self}/tk-nuke_actions.py'
-  entities: *loader2_entities
+  actions_hook: '{self}/tk-nuke_actions.py:{config}/tk-multi-loader2/tk-nuke_actions.py'
+  entities:
+    - caption: Current Project
+      type: Hierarchy
+      root: '{context.project}'
+      publish_filters: []
+    - caption: Dept. Media Publish
+      type: Query
+      entity_type: Version
+      filters:
+        - [project, is, '{context.project}']
+        - ["sg_task.Task.step.Step.short_name", in, ["layout", "anim", "light", "fx", "comp"]]
+        - ["sg_path_to_movie", "is_not", ""]
+      hierarchy: [entity.Shot.sg_sequence, sg_task.Task.step, entity.Shot.code, code]
+    - caption: Playlists
+      type: Query
+      entity_type: Version
+      filters:
+        - [project, "is", '{context.project}']
+        - ["playlists", "is_not", null]
+        - ["sg_task.Task.step.Step.short_name", in, ["layout", "anim", "light", "fx", "comp"]]
+        - ["sg_path_to_movie", "is_not", ""]
+      hierarchy: [playlists, entity.Shot.code, code]
+    - caption: My Tasks
+      type: Query
+      entity_type: Task
+      filters:
+        - [project, is, '{context.project}']
+        - [task_assignees, is, '{context.user}']
+      hierarchy: [entity, content]
+    - caption: Plates
+      type: Query
+      entity_type: Element
+      filters:
+        - [project, is, '{context.project}']
+      hierarchy: [sg_shot.Shot.sg_sequence, sg_shot, code]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"

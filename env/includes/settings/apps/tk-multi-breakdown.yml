@@ -15,7 +15,7 @@ includes:
 
 ################################################################################
 settings.tk-multi-breakdown.nukestudio:
-  hook_scene_operations: '{self}/tk-nuke_scene_operations.py'
+  hook_scene_operations: '{self}/tk-nuke_scene_operations.py:{config}/tk-multi-breakdown/tk-nuke_scene_operations.py'
   location: "@apps.tk-multi-breakdown.location"
 
 settings.tk-multi-breakdown.config:

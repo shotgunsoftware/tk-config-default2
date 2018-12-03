@@ -9,12 +9,15 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import ast
+import sgtk
 
-from tank import Hook
-import tank.templatekey
+import hiero.core
+import hiero.ui
+
+HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class HieroTranslateTemplate(Hook):
+class HieroTranslateTemplate(HookBaseClass):
     """
     This class implements a hook that's responsible for translating a Toolkit
     template object into a Hiero export string.
@@ -39,34 +42,63 @@ class HieroTranslateTemplate(Hook):
         """
         # First add in any relevant fields from the context
         fields = self.parent.context.as_template_fields(template)
-        mapping = dict([("{%s}" % k, v) for k, v in fields.iteritems()])
-        
-        # Next update the mapping with variables from the session
-        mapping.update({
-            "{Sequence}": "{sequence}",
-            "{Shot}": "{shot}",
-            "{name}": "{project}",
-            "{output}": "{clip}",
-            "{version}": "{tk_version}",
-            "{extension}": "{ext}"
-        })
+        # Substitute the variables that Hiero will inject during export
+        hiero_fields = {
+            "Sequence": "{sequence}",
+            "Shot": "{shot}",
+            "name": "{project}",
+            "output": "{clip}",
+            "width": "{width}",
+            "height": "{height}",
+            "version": "{tk_version}",
+            "extension": "{ext}"
+        }
+        fields.update(hiero_fields)
 
-        # get the string representation of the template object
-        template_str = template.definition
+        # Update field name from work_template in tk-multi-workfiles2 app
+        workfiles_app = self.parent.engine.apps.get("tk-multi-workfiles2")
+        if not workfiles_app:
+            self.parent.logger.error("Unable to get the 'name' field. The tk-multi-workfiles2 app isn't loaded!")
+        else:
+            work_template = workfiles_app.get_work_template()
+
+            # from selected project
+            view = hiero.ui.activeView()
+            if hasattr(view, 'selection'):
+                selection = view.selection()
+
+                if isinstance(view, hiero.ui.BinView):
+                    item = selection[0]
+
+                    # iterate until you get project
+                    while hasattr(item, 'parentBin') and item != isinstance(item.parentBin(), hiero.core.Project):
+                        item = item.parentBin()
+
+                project_path = item.path()
+                if not work_template.get_fields(project_path):
+                    self.parent.logger.error("Unable to get the 'name' field. The selected Project '%s' does not match the work template '%s'" % (item.name(), str(work_template)))
+                else:
+                    tmpl_fields = work_template.get_fields(project_path)
+                    if "name" in tmpl_fields:
+                        fields["name"] = tmpl_fields["name"]
+
+        for name, key in template.keys.iteritems():
+            if isinstance(key, sgtk.templatekey.SequenceKey):
+                fields[name] = "FORMAT:#"
 
         # simple string to string replacement
         # the nuke script name is hard coded to ensure a valid template
         if output_type == 'script':
-            template_str = template_str.replace('{output}', 'scene')
+            fields["output"] = "scene"
 
-        for (orig, repl) in mapping.iteritems():
-            template_str = template_str.replace(orig, repl)
+        # Nuke Studio project string has version number which is an issue when we have to resolve template by path
+        # so replacing {name} with 'plate' string
+        # and stripping {output} to simplify template to {Sequence}_{Shot}_{Step}_{name}.v{tk_version}.mov
+        # engine specific template would have been useful here (as could update only for nuke studio)
+        if output_type == "plate":
+            fields["name"] = "plate"
+            del fields['output']
 
-        # replace {SEQ} style keys with their translated string value
-        for (name, key) in template.keys.iteritems():
-            if isinstance(key, tank.templatekey.SequenceKey):
-                # this is a sequence template, for example {SEQ}
-                # replace it with ####
-                template_str = template_str.replace("{%s}" % name, key.str_from_value("FORMAT:#"))
+        template_str = template.apply_fields(fields, ignore_types=hiero_fields.keys())
 
         return template_str

@@ -16,6 +16,18 @@ import os
 import re
 import glob
 
+import hiero
+from hiero.core import (
+    projects,
+    BinItem,
+    MediaSource,
+    Clip,
+    Bin,
+    findItems,
+    findItemsInBin,
+    VideoTrack
+)
+
 from code.nuke_preferences import NukePreferences
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -72,7 +84,25 @@ class CustomNukeActions(HookBaseClass):
             action_instances.append( {"name": "deep_read_node",
                                       "params": None,
                                       "caption": "Create Deep Read Node",
-                                      "description": "This will add a read node to the current scene."} )
+                                      "description": "This will add a read node to the current scene."})
+
+        if "clip_img_mov" in actions:
+            action_instances.append( {"name": "clip_img_mov",
+                                      "params": None,
+                                      "caption": "Import as Movie Clip",
+                                      "description": "Add the image sequence as movie clip into the departament bin."})
+
+        if "clip_img_seq" in actions:
+            action_instances.append( {"name": "clip_img_seq",
+                                      "params": None,
+                                      "caption": "Import as Sequence Clip",
+                                      "description": "Add the image sequence as sequence clip into the departament bin."})
+
+        if "clip_import_bin" in actions:
+            action_instances.append({"name": "clip_import_bin",
+                                     "params": None,
+                                     "caption": "Import Clip to Bin",
+                                     "description": "Add the movie as clip into the departament bin."})
 
         return action_instances
 
@@ -100,8 +130,133 @@ class CustomNukeActions(HookBaseClass):
         if name == "deep_read_node":
             self._create_deep_read_node(path, sg_publish_data)
 
+        if name == "clip_img_mov":
+            self._import_img_mov(path, sg_publish_data)
+
+        if name == "clip_img_seq":
+            self._import_img_seq(path, sg_publish_data)
+
+        # the code is same as adding an image sequence
+        if name == "clip_import_bin":
+            self._import_img_seq(path, sg_publish_data)
+
     ##############################################################################################################
     # helper methods which can be subclassed in custom hooks to fine tune the behavior of things
+
+    def _import_img_mov(self, path, sg_publish_data):
+        """
+        Imports the given publish data into Nuke Studio or Hiero as a clip.
+
+        :param str path: Path to the file(s) to import.
+        :param dict sg_publish_data: Shotgun data dictionary with all of the standard publish
+            fields.
+        """
+        if not self.parent.engine.studio_enabled and not self.parent.engine.hiero_enabled:
+            raise Exception("Importing shot clips is only supported in Hiero and Nuke Studio.")
+
+        if not hiero.core.projects():
+            raise Exception("An active project must exist to import clips into.")
+
+        # get pipeline step from path
+        template = self.parent.sgtk.template_from_path(path)
+        fields = template.get_fields(path)
+        department = str(fields["Step"])
+
+        # get project dict from path
+        project = self.parent.sgtk.context_from_path(path).project
+
+        # get version code from publish data
+        version_code = sg_publish_data['version']['name']
+
+        # query 'sg_path_to_movie'
+        version_filters = [
+            ["project", "is", project],
+            ["code", "is", version_code],
+            ["sg_path_to_movie", "is_not", ""]
+        ]
+        version_fields = ["sg_path_to_movie"]
+
+        result = self.parent.sgtk.shotgun.find_one("Version", version_filters, version_fields)
+        movie_path = result['sg_path_to_movie']
+
+        # set department bin
+        project = hiero.core.projects()[-1]
+        bins = project.clipsBin().bins()
+
+        bin_exists = False
+        for i, bin in enumerate(bins):
+            if department == bin.name():
+                self.parent.logger.info( "%s already exists" % department)
+                bin_exists = True
+                department_bin = bins[i]
+                break
+
+        if not bin_exists:
+            department_bin = Bin(department)
+            project.clipsBin().addItem(department_bin)
+            self.parent.logger.info("%s added." % department_bin.name())
+
+        # add clip to bin
+        media_source = MediaSource(movie_path)
+        items = findItemsInBin(department_bin)
+        for i, item in enumerate(items):
+            print "item.name()", item.name()
+            if item.name() in media_source.filename():
+                self.parent.logger.info("%s already exists." % item.name())
+                return
+
+        clip = Clip(media_source)
+        department_bin.addItem(BinItem(clip))
+        self.parent.logger.info("%s added." % clip.name())
+
+    def _import_img_seq(self, path, sg_publish_data):
+        """
+        Imports the given publish data into Nuke Studio or Hiero as a clip.
+
+        :param str path: Path to the file(s) to import.
+        :param dict sg_publish_data: Shotgun data dictionary with all of the standard publish
+            fields.
+        """
+        if not self.parent.engine.studio_enabled and not self.parent.engine.hiero_enabled:
+            raise Exception("Importing shot clips is only supported in Hiero and Nuke Studio.")
+
+        if not hiero.core.projects():
+            raise Exception("An active project must exist to import clips into.")
+
+        # get pipeline step from path
+        template = self.parent.sgtk.template_from_path(path)
+        fields = template.get_fields(path)
+        department = str(fields["Step"])
+
+        # set department bin
+        project = hiero.core.projects()[-1]
+        bins = project.clipsBin().bins()
+
+        bin_exists = False
+        for i, bin in enumerate(bins):
+            if department == bin.name():
+                print "%s already exists" % department
+                bin_exists = True
+                department_bin = bins[i]
+                break
+
+        if not bin_exists:
+            department_bin = Bin(department)
+            project.clipsBin().addItem(department_bin)
+            print "%s added." % department_bin.name()
+
+        # add clip to bin
+        media_source = MediaSource(path)
+        items = findItemsInBin(department_bin)
+        for i, item in enumerate(items):
+            print "item.name()", item.name()
+            if item.name() in media_source.filename():
+                print "%s already exists." % item.name()
+                return
+
+        clip = Clip(media_source)
+        department_bin.addItem(BinItem(clip))
+        print "%s added." % clip.name()
 
     def _create_deep_read_node(self, path, sg_publish_data):
         """

@@ -27,9 +27,13 @@ settings.tk-hiero-export:
   template_plate_path: 'shot_publish_movie'
   template_render_path: 'shot_publish_render'
   template_version: '{engine_name}_version'
-  hook_translate_template: '{config}/tk-hiero-export/hiero_translate_template.py'
-  hook_get_quicktime_settings: '{config}/tk-hiero-export/hiero_get_quicktime_settings.py'
-  hook_resolve_custom_strings: '{config}/tk-hiero-export/hiero_resolve_custom_strings.py'
+  hook_translate_template: '{self}/hiero_translate_template.py:{config}/tk-hiero-export/hiero_translate_template.py'
+  hook_get_quicktime_settings: '{self}/hiero_get_quicktime_settings.py:{config}/tk-hiero-export/hiero_get_quicktime_settings.py'
+  hook_resolve_custom_strings: '{self}/hiero_resolve_custom_strings.py:{config}/tk-hiero-export/hiero_resolve_custom_strings.py'
+  hook_customize_export_ui: '{self}/hiero_customize_export_ui.py:{config}/tk-hiero-export/hiero_customize_export_ui.py'
+  hook_update_shot: '{self}/hiero_update_shot.py:{config}/tk-hiero-export/hiero_update_shot.py'
+  hook_update_version_data: '{self}/hiero_update_version_data.py:{config}/tk-hiero-export/hiero_update_version_data.py'
+  hook_get_extra_publish_data: '{self}/hiero_get_extra_publish_data.py:{config}/tk-hiero-export/hiero_get_extra_publish_data.py'
   custom_template_fields:
     - {description: 'Clip Width', keyword: width}
     - {description: 'Clip Height', keyword: height}

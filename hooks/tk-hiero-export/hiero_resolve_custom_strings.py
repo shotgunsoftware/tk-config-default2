@@ -8,11 +8,13 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-from tank import Hook
 import hiero
+import sgtk
+
+HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class HieroResolveCustomStrings(Hook):
+class HieroResolveCustomStrings(HookBaseClass):
     """
     This class implements a hook that is used to resolve custom tokens into
     their concrete value when paths are being processed during the export.
