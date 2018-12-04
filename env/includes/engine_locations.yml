@@ -25,11 +25,17 @@ engines.tk-desktop.location:
   name: tk-desktop
   version: v2.4.12
 
+# Desktop2
+engines.tk-desktop2.location:
+  type: app_store
+  name: tk-desktop2
+  version: v0.3.1
+
 # Flame
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.14.6
+  version: v1.14.7
 
 # Houdini
 engines.tk-houdini.location:
