@@ -15,6 +15,8 @@ import itertools
 from dd.runtime import api
 api.load("frangetools")
 import frangetools
+api.load("preferences")
+import preferences
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -127,10 +129,18 @@ class NukePublishDDCompValidationPlugin(HookBaseClass):
         tolerance_h = (bb_height - node_h) / node_h * 100
         tolerance_w = (bb_width - node_w) / node_w * 100
 
-        # Check if the size if over 5%(tolerance limit)
-        if tolerance_h > 5 or tolerance_w > 5:
+        nuke_prefs = preferences.Preferences(pref_file_name="nuke_preferences.yaml")
+
+        if nuke_prefs.get('bb_size'):
+            bbsize = nuke_prefs['bb_size']
+        else:
+            # Setting the limit to 5% if not specified in the preferences
+            bbsize = 5
+
+        # Check if the size if over provide tolerance limit
+        if tolerance_h > bbsize or tolerance_w > bbsize:
             self.logger.error(
-                "Bounding Box resolution over the tolerance limit for write node.")
+                "Bounding Box resolution over {}% tolerance limit for write node.".format(bbsize))
             return False
         return True
 
