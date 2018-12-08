@@ -29,7 +29,7 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v0.3.1
+  version: v1.0.1
 
 # Flame
 engines.tk-flame.location:
