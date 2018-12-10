@@ -51,8 +51,8 @@ class IngestFilesPlugin(HookBaseClass):
             },
             "snapshot_type_settings": {
                 "default_value": {"work_plate": "Element", "match_qt": "Element", "*": "Asset",
-                                  self.parent.settings["default_snapshot_type"]:
-                                      self.parent.settings["default_entity_type"]}
+                                  self.parent.settings["default_snapshot_type"].value:
+                                      self.parent.settings["default_entity_type"].value}
             }
         }
 
@@ -343,7 +343,7 @@ class IngestFilesPlugin(HookBaseClass):
         If snapshot_type is not defined in item fields, it returns the entity set on app settings "default_entity_type".
         """
 
-        snapshot_settings = task_settings['snapshot_type_settings']
+        snapshot_settings = task_settings['snapshot_type_settings'].value
 
         item_fields = item.properties["fields"]
 
