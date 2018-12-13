@@ -22,6 +22,9 @@ import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
+# LOOKDEV group name
+SHADER_GROUP_NAME = "LOOKDEV"
+
 
 class CustomMayaActions(HookBaseClass):
 
@@ -67,11 +70,35 @@ class CustomMayaActions(HookBaseClass):
         # get the existing action instances
         action_instances = super(CustomMayaActions, self).generate_actions(sg_publish_data, actions, ui_area)
 
-        if "texture_node_with_frames" in actions:
+        action_names = [action_instance["name"] for action_instance in action_instances]
+
+        if "replace_reference" in actions and "replace_reference" not in action_names:
+            action_instances.append({"name": "replace_reference",
+                                     "params": None,
+                                     "caption": "Replace Reference",
+                                     "description": "Replaces the selected reference in your maya scene with the one "
+                                                    "from loader."})
+
+        if "create_reference_with_shaders" in actions and "create_reference_with_shaders" not in action_names:
+            action_instances.append({"name": "create_reference_with_shaders",
+                                     "params": None,
+                                     "caption": "Create Reference (With Shaders)",
+                                     "description": "Tries to connect the referenced files to the 'LOOKDEV' group in "
+                                                    "the maya scene."})
+
+        if "replace_reference_with_shaders" in actions and "replace_reference_with_shaders" not in action_names:
+            action_instances.append({"name": "replace_reference_with_shaders",
+                                     "params": None,
+                                     "caption": "Replace Reference (With Shaders)",
+                                     "description": "Tries to connect the referenced files to the 'LOOKDEV' group in "
+                                                    "the maya scene."})
+
+        if "texture_node_with_frames" in actions and "texture_node_with_frames" not in action_names:
             action_instances.append({"name": "texture_node_with_frames",
                                      "params": None,
                                      "caption": "Create Texture Node (Frames)",
-                                     "description": "Creates a file texture node, which reads the frames as per timeline for the selected item.."})
+                                     "description": "Creates a file texture node, which reads the frames as per "
+                                                    "timeline for the selected item.."})
 
         return action_instances
 
@@ -95,6 +122,15 @@ class CustomMayaActions(HookBaseClass):
         # toolkit uses utf-8 encoded strings internally and Maya API expects unicode
         # so convert the path to ensure filenames containing complex characters are supported
         path = self.get_publish_path(sg_publish_data).decode("utf-8")
+
+        if name == "replace_reference":
+            self._replace_reference(path, sg_publish_data)
+
+        if name == "create_reference_with_shaders":
+            self._create_reference_with_shaders(path, sg_publish_data)
+
+        if name == "replace_reference_with_shaders":
+            self._replace_reference_with_shaders(path, sg_publish_data)
 
         if name == "texture_node_with_frames":
             self._create_texture_node_with_frames(path, sg_publish_data)
@@ -123,7 +159,7 @@ class CustomMayaActions(HookBaseClass):
             # the current frame.
             cmds.setAttr("%s.useFrameExtension" % (file_node,), 1)
         return file_node
-            
+
     def _create_texture_node(self, path, sg_publish_data):
         """
         Create a file texture node for a texture
@@ -210,3 +246,195 @@ class CustomMayaActions(HookBaseClass):
             # setting the frame extension flag will create an expression to use
             # the current frame.
             cmds.setAttr("%s.useFrameExtension" % (img_plane_shape,), 1)
+
+    def _create_reference(self, path, sg_publish_data):
+        """
+        Create a reference with the same settings Maya would use
+        if you used the create settings dialog.
+
+        :param path: Path to file.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        """
+        if not os.path.exists(path):
+            raise Exception("File not found on disk - '%s'" % path)
+
+        # make a name space out of entity name + publish name
+        # e.g. bunny_upperbody
+        namespace = "%s %s" % (sg_publish_data.get("entity").get("name"), sg_publish_data.get("name"))
+        namespace = namespace.replace(" ", "_")
+
+        created_ref = pm.system.createReference(path, loadReferenceDepth="all", mergeNamespacesOnClash=False,
+                                                namespace=namespace)
+
+        return created_ref
+
+    def _replace_reference(self, path, sg_publish_data):
+        """
+        Create a reference with the same settings Maya would use
+        if you used the create settings dialog.
+
+        :param path: Path to file.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        """
+        if not os.path.exists(path):
+            raise Exception("File not found on disk - '%s'" % path)
+
+        selected_objects = cmds.ls(sl=True, long=True)
+        if not selected_objects:
+            raise Exception("No Objects selected in the outliner.")
+
+        # get unique references from the selection
+        references_selected = list(set(
+            [cmds.referenceQuery(selected_object, referenceNode=True, topReference=True) for selected_object in
+             selected_objects]))
+        if not references_selected:
+            raise Exception("Selected objects are not referenced!")
+
+        reference_object_mapping = dict(zip(references_selected, selected_objects))
+
+        # make a name space out of entity name + publish name
+        # e.g. bunny_upperbody
+        namespace = "%s %s" % (sg_publish_data.get("entity").get("name"), sg_publish_data.get("name"))
+        namespace = namespace.replace(" ", "_")
+
+        # get the resolved file paths so it can be used to rename the correct Reference Node
+        for selected_reference, selected_object in reference_object_mapping.iteritems():
+            print 'file -loadReference "%s" "%s"' % (selected_reference, path)
+
+            # reference the new file
+            mel.eval('file -loadReference "%s" "%s"' % (selected_reference, path))
+
+            # required to replace the namespace correctly, get the updated resolved path to update the RN
+            resolved_file_path = cmds.referenceQuery(selected_reference, f=True)
+
+            print 'file -e -namespace "%s" -referenceNode "%s" "%s"' % (
+                namespace, selected_reference, resolved_file_path)
+
+            # update the namespace of the file reference node
+            mel.eval('file -e -namespace "%s" -referenceNode "%s" "%s"' % (
+                namespace, selected_reference, resolved_file_path))
+
+        print references_selected
+        # return the references that the user modified.
+        return references_selected
+
+    def _create_reference_with_shaders(self, path, sg_publish_data):
+        """
+        Create a reference with the same settings Maya would use
+        if you used the create settings dialog.
+
+        :param path: Path to file.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        """
+
+        created_ref = self._create_reference(path, sg_publish_data)
+        self._connect_shaders_with_objects(created_ref, path, sg_publish_data)
+
+    def _replace_reference_with_shaders(self, path, sg_publish_data):
+        """
+        re a reference with the same settings Maya would use
+        if you used the create settings dialog.
+
+        :param path: Path to file.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        """
+
+        replaced_ref_list = self._replace_reference(path, sg_publish_data)
+        self._connect_shaders_with_objects(replaced_ref_list, path, sg_publish_data)
+
+    def _connect_shaders_with_objects(self, ref_node_or_list, path, sg_publish_data):
+        # get the shader shader_group
+        shader_group = cmds.ls(SHADER_GROUP_NAME, long=True)
+        if not shader_group:
+            raise Exception("There is no %s group in the scene" % SHADER_GROUP_NAME)
+
+
+        # this dict is mapping of {asset_id: {namespace_stripped_mesh_name: [shaders]}}
+        src_mtl_mapping = dict()
+
+        [src_mtl_mapping.update(self._get_mtl_mapping(lookdev_asset)) for lookdev_asset in
+         cmds.listRelatives(shader_group, children=True, path=True)]
+
+        if isinstance(ref_node_or_list, list):
+            # process this as a list of references
+            for ref_node in ref_node_or_list:
+                self._assign_shaders_to_objects(src_mtl_mapping, ref_node)
+        else:
+            # this is a single reference just use it as it is
+            self._assign_shaders_to_objects(src_mtl_mapping, ref_node_or_list)
+
+    def _get_relevant_objects_from_ref_node(self, src_mtl_mapping, ref_node):
+
+        child_nodes = cmds.referenceQuery(ref_node, nodes=True)
+
+        relevant_nodes = list()
+        # we need the object that matches objects from src_mtl_mapping
+        for child in child_nodes:
+            ns_stripped_object_name = pm.PyNode(child).stripNamespace()
+
+            if ns_stripped_object_name in src_mtl_mapping:
+                relevant_nodes.append(child)
+            # if not cmds.listRelatives(child, parent=True):
+            #     return child
+
+        return relevant_nodes
+
+    def _get_mtl_mapping(self, object_name, strip_mesh_namespace=True):
+        src_mtl_mapping = dict()
+
+        ns_stripped_object_name = pm.PyNode(object_name).stripNamespace()
+
+        src_mtl_mapping[ns_stripped_object_name] = dict()
+
+        # meshes contained inside the given object
+        asset_meshes = cmds.listRelatives(object_name, ad=1, type=["mesh"])
+        # this is the mapping of ns_stripped_mesh_name <-> shaders
+        mesh_mtl_mapping = {
+            pm.PyNode(asset_mesh).stripNamespace() if strip_mesh_namespace else asset_mesh: cmds.listConnections(
+                asset_mesh,
+                et=True,
+                t='shadingEngine')
+            for asset_mesh in asset_meshes}
+
+        src_mtl_mapping[ns_stripped_object_name].update(mesh_mtl_mapping)
+
+        return src_mtl_mapping
+
+    def _assign_shaders_to_objects(self, src_mtl_mapping, ref_node):
+        # get the base object of the ref node to query the current assignments.
+        relevant_objects = self._get_relevant_objects_from_ref_node(src_mtl_mapping, ref_node)
+
+        if not relevant_objects:
+            raise Exception("No objects found in the reference that need shaders from Lookdev assets in the scene.")
+
+        for relevant_object in relevant_objects:
+
+            ns_stripped_object_name = pm.PyNode(relevant_object).stripNamespace()
+
+            relevant_shaders = src_mtl_mapping[ns_stripped_object_name]
+
+            # preserve the mesh full names since we need to assign the shader to these
+            # current_assignments = self._get_mtl_mapping(relevant_object, strip_mesh_namespace=False).values()[0]
+
+            # meshes contained inside the given object
+            relevant_meshes = cmds.listRelatives(relevant_object, ad=1, type=["mesh"])
+            # this is the mapping of ns_stripped_mesh_name <-> shaders
+            mesh_identifier_mapping = {pm.PyNode(relevant_mesh).stripNamespace(): relevant_mesh for relevant_mesh in
+                                       relevant_meshes}
+
+            new_assignments = {relevant_mesh: relevant_shaders[identifier] for identifier, relevant_mesh in
+                               mesh_identifier_mapping.iteritems()}
+            # below method could give us wrong results since it's not an ordereddict
+            # new_assignments = dict(zip(mesh_identifier_mapping.values(), relevant_shaders.values()))
+
+            # do the assignments
+            # https://forum.highend3d.com/t/python-how-to-assign-shader-to-an-object/48778/3
+
+            for mesh_name, shader_list in new_assignments.iteritems():
+                # mc.sets(objList, e=True, forceElement=shaderSG)
+                print "Assigning %s with %s" % (mesh_name, shader_list)
+                for shader in shader_list:
+                    try:
+                        cmds.sets(mesh_name, e=True, forceElement=shader)
+                    except:
+                        print "%s Shader assignment failed for %s" % (shader, mesh_name)

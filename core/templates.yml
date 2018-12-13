@@ -111,7 +111,7 @@ keys:
         choices:
             exr: exr
             jpg: jpeg
-            tif: tiff
+            tiff: tiff
             png: png
             dpx: dpx
         default: exr
@@ -130,12 +130,12 @@ keys:
     tex.ext:
         type: str
         choices:
-            tif: tiff
+            tiff: tiff
             tx: tx
             tga: tga
             dds: dds
             rat: rat
-        default: tif
+        default: tiff
         alias: extension
     cdl.ext:
         type: str
