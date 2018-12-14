@@ -43,6 +43,7 @@ keys:
         shotgun_entity_type: Asset
         shotgun_field_name: code
         str_from_value_hook: 'name_converter'
+        filter_by: '^[a-zA-Z](\w+)?[a-zA-Z0-9]$'
         edit_types:
           - path_safe
     AssetType:
