@@ -119,8 +119,6 @@ settings.tk-multi-publish2.nukestudio:
   location: '@apps.tk-multi-publish2.location'
 
 # Ingest
-settings.tk-multi-publish2.ingest.ignore_extensions: ["log", "icc"]
-settings.tk-multi-publish2.ingest.ignore_filename: ["lens"]
 settings.tk-multi-publish2.ingest:
   display_name: 'Ingest'
   collector: '@settings.tk-multi-publish2.ingest.collector'
@@ -131,5 +129,3 @@ settings.tk-multi-publish2.ingest:
   path_info: '@settings.tk-multi-publish2.path_info'
   publish_plugins: '@settings.tk-multi-publish2.ingest.publish_plugins'
   location: '@apps.tk-multi-publish2.location'
-  ignore_extensions: '@settings.tk-multi-publish2.ingest.ignore_extensions'
-  ignore_filename: '@settings.tk-multi-publish2.ingest.ignore_filename'
