@@ -551,6 +551,21 @@ class IngestCollectorPlugin(HookBaseClass):
                                                                               parent_item,
                                                                               default_entities)
 
+    def _get_work_path_template_from_settings(self, settings, item_type, path):
+        """
+        Helper method to get the work_path_template from the collector settings object.
+        """
+        # first try with filename
+        work_path_template = super(IngestCollectorPlugin, self)._get_work_path_template_from_settings(settings,
+                                                                                                      item_type,
+                                                                                                      os.path.basename(path))
+        if work_path_template:
+            return work_path_template
+
+        return super(IngestCollectorPlugin, self)._get_work_path_template_from_settings(settings,
+                                                                                        item_type,
+                                                                                        path)
+
     def _get_template_fields_from_path(self, item, template_name, path):
         """
         Get the fields by parsing the input path using the template derived from
