@@ -140,7 +140,7 @@ class IngestCDLFilesPlugin(HookBaseClass):
 
         return status
 
-    def _copy_files(self, dest_path, item):
+    def publish_files(self, task_settings, item, publish_path):
         """
         Overriding this method to process cdl files, instead of simply copying it to the publish location.
 
@@ -149,10 +149,12 @@ class IngestCDLFilesPlugin(HookBaseClass):
         cc_dict = item.properties["cc_data"]
 
         # ensure that the folder actually exists!
-        dest_folder = os.path.dirname(dest_path)
+        dest_folder = os.path.dirname(publish_path)
         ensure_folder_exists(dest_folder)
 
-        self.write_cc(cc_path=dest_path, **cc_dict)
+        self.write_cc(cc_path=publish_path, **cc_dict)
+
+        return [publish_path]
 
     def read_cdl(self, item):
         """
