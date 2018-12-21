@@ -417,6 +417,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
             instances.
         :param item: Item to process
         """
+        publisher = self.parent
 
         pre_processed_paths = item.properties.get("pre_processed_paths")
 
@@ -431,7 +432,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
                              }
                              )
             for processed_path in pre_processed_paths:
-                self._delete_files(processed_path, item)
+                publisher.util.delete_files(processed_path, item)
 
         sg_publish_data_list = item.properties.get("sg_publish_data_list")
 
