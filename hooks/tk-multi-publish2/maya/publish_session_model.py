@@ -98,4 +98,4 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
                     else:
                         self.logger.warning("Failed modelpublish validation: {}".format(check))
 
-        return super(MayaPublishFilesModelPlugin, self).validate(task_settings, item)
+        return super(MayaPublishSessionModelPlugin, self).validate(task_settings, item)
