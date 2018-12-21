@@ -41,9 +41,9 @@ validation_action_ret_value = {
     "CleanUpScene": False,
 }
 
-class MayaPublishFilesModelPlugin(HookBaseClass):
+class MayaPublishSessionModelPlugin(HookBaseClass):
     """
-    Inherits from MayaPublishFilesPlugin
+    Inherits from MayaPublishSessionPlugin
     """
     def validate(self, task_settings, item):
         """
