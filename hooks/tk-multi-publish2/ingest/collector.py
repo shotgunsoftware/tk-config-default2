@@ -154,12 +154,12 @@ class IngestCollectorPlugin(HookBaseClass):
 
         if manifest_note_type not in note_type_mappings:
             self.logger.error(
-                "Note type not recognized" % manifest_note_type,
+                "Note type not recognized %s" % manifest_note_type,
                 extra={
                     "action_show_more_info": {
                         "label": "Valid Types",
                         "tooltip": "Show Valid Note Types",
-                        "text": "Valid Note Type Mappings: %s" % (pprint.pprint(note_type_mappings),)
+                        "text": "Valid Note Type Mappings: %s" % (pprint.pformat(note_type_mappings),)
                     }
                 }
             )
@@ -177,6 +177,7 @@ class IngestCollectorPlugin(HookBaseClass):
         # type_display = relevant_item_settings.get("type_display", "File")
         # work_path_template = None
         # icon_path = relevant_item_settings.get("icon", "{self}/hooks/icons/file.png")
+        work_path_template = None
 
         template_names_per_env = [
             sgtk.platform.resolve_setting_expression(raw_template_name, self.parent.engine.instance_name, env_name) for
@@ -189,13 +190,18 @@ class IngestCollectorPlugin(HookBaseClass):
                 # we have a match!
                 work_path_template = template.name
 
-        # calculate the context and give to the item
-        context = self._get_item_context_from_path(work_path_template, path, parent_item)
+        if work_path_template:
+            # calculate the context and give to the item
+            context = self._get_item_context_from_path(work_path_template, path, parent_item)
 
-        file_item = self._add_file_item(settings, parent_item, path, item_name=display_name,
-                                        item_type=item_type, context=context)
+            file_item = self._add_file_item(settings, parent_item, path, item_name=display_name,
+                                            item_type=item_type, context=context)
 
-        return file_item
+            return file_item
+        else:
+            self.logger.warning("No matching template found for %s with raw template %s" % (path,
+                                                                                            raw_template_name))
+            return
 
     def process_file(self, settings, parent_item, path):
         """
@@ -256,10 +262,9 @@ class IngestCollectorPlugin(HookBaseClass):
                     }
                 )
 
-            # check for default fields those are only present on notes item currently.
-            if "note_item_settings" in item_info:
-                default_fields = item_info["note_item_settings"]["default_fields"]
-                for key, value in default_fields.iteritems():
+            # check for default fields those and add those fields if not already present on item.
+            if "default_fields" in item_info:
+                for key, value in item_info["default_fields"].iteritems():
                     if key not in fields:
                         fields[key] = value
 
@@ -358,12 +363,16 @@ class IngestCollectorPlugin(HookBaseClass):
 
         for note in notes:
             # first replace all the snapshot with the Manifest SG Mappings
+
             data = dict()
             snapshot_data = dict()
             data["fields"] = {note_item_manifest_mappings[k] if k in note_item_manifest_mappings else k: v
                               for k, v in note.iteritems()}
 
             # every note item has a corresponding snapshot associated with it
+            if notes_index >= len(snapshots):
+                break
+
             note_snapshot = snapshots[notes_index]
             snapshot_data["fields"] = {file_item_manifest_mappings[k] if k in file_item_manifest_mappings else k: v
                                        for k, v in note_snapshot.iteritems()}
@@ -472,9 +481,10 @@ class IngestCollectorPlugin(HookBaseClass):
                     elif hook_type == "note":
                         # create a note item
                         item = self._add_note_item(settings, parent_item, fields=fields)
-                        if "snapshot_name" in fields:
-                            item.description = fields["snapshot_name"]
                         if item:
+                            if "snapshot_name" in fields:
+                                item.description = fields["snapshot_name"]
+
                             new_items.append(item)
 
                     # inject the new fields into the item

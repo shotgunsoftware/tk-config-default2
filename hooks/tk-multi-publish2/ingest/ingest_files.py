@@ -601,3 +601,16 @@ class IngestFilesPlugin(HookBaseClass):
                 }
             )
             return
+
+    def _get_publish_version(self, item, task_settings):
+        """
+        Get the publish version for the supplied item.
+
+        :param item: The item to determine the publish version for
+
+        Extracts the publish version from the item's "version" field
+        """
+
+        # TODO: push this method back to basic/publish.py
+        # The get the version number from the path, if defined
+        return int(item.properties.fields.get("version", 1))

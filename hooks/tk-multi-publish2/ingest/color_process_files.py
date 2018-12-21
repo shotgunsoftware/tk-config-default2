@@ -161,7 +161,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
 
         # get any additional_publish_fields that have been defined
         sg_fields = {}
-        additional_fields = task_settings.get("additional_publish_fields").value
+        additional_fields = task_settings.get("additional_publish_fields").value or {}
         for template_key, sg_field in additional_fields.iteritems():
             if template_key in item.properties.fields:
                 sg_fields[sg_field] = item.properties.fields[template_key]
