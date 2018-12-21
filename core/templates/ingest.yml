@@ -176,6 +176,14 @@ strings:
     ingest_sequence_input_name:             '{ingestSequence}_{name}_v{ingestVersion}'
     ingest_project_input_name:              '{ingestStep}_{name}_v{ingestVersion}'
 
+    # strings for annotation names
+    ingest_shot_annotation_name:            '{ingestShot}_{ingestStep}_{name}_v{ingestVersion}.annotation'
+    ingest_shot_kickoff_name:               '{ingestShot}_{name}_v{ingestVersion}.kickoff'
+
+    # output for re-constructing back our pipeline name.
+    ingest_shot_output_annotation_name:     '{Sequence}_{Shot}_{Step}_{Step}_{name}[-{node}].v{version}'
+    ingest_shot_output_kickoff_name:        '{Sequence}_{Shot}_{Step}_{snapshot_type}_{name}[-{node}].v{version}'
+
     # strings for input asset names
     ingest_shot_asset_input_name:           '{ingestShot}_{Asset}_{name}_v{ingestVersion}'
     ingest_sequence_asset_input_name:       '{ingestSequence}_{Asset}_{name}_v{ingestVersion}'

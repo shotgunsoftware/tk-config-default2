@@ -161,7 +161,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
 
         # get any additional_publish_fields that have been defined
         sg_fields = {}
-        additional_fields = task_settings.get("additional_publish_fields", {})
+        additional_fields = task_settings.get("additional_publish_fields").value or {}
         for template_key, sg_field in additional_fields.iteritems():
             if template_key in item.properties.fields:
                 sg_fields[sg_field] = item.properties.fields[template_key]
@@ -294,7 +294,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
             processed_paths = extra_write_node_mapping.values()
 
             # resolve the templates to figure out what they are before we start publishing
-            for identifier, template in task_settings.get("publish_file_identifiers").iteritems():
+            for identifier, template in task_settings.get("publish_file_identifiers").value.iteritems():
                 resolved_template = self._get_resolved_path(item, task_settings, template)
                 # these paths should never be the same as publish path
                 if resolved_template and resolved_template != item.properties.publish_path:

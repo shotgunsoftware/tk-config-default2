@@ -51,8 +51,8 @@ class IngestFilesPlugin(HookBaseClass):
             },
             "snapshot_type_settings": {
                 "default_value": {"work_plate": "Element", "match_qt": "Element", "*": "Asset",
-                                  self.parent.settings["default_snapshot_type"]:
-                                      self.parent.settings["default_entity_type"]}
+                                  self.parent.settings["default_snapshot_type"].value:
+                                      self.parent.settings["default_entity_type"].value}
             }
         }
 
@@ -343,7 +343,7 @@ class IngestFilesPlugin(HookBaseClass):
         If snapshot_type is not defined in item fields, it returns the entity set on app settings "default_entity_type".
         """
 
-        snapshot_settings = task_settings['snapshot_type_settings']
+        snapshot_settings = task_settings['snapshot_type_settings'].value
 
         item_fields = item.properties["fields"]
 
@@ -601,3 +601,16 @@ class IngestFilesPlugin(HookBaseClass):
                 }
             )
             return
+
+    def _get_publish_version(self, item, task_settings):
+        """
+        Get the publish version for the supplied item.
+
+        :param item: The item to determine the publish version for
+
+        Extracts the publish version from the item's "version" field
+        """
+
+        # TODO: push this method back to basic/publish.py
+        # The get the version number from the path, if defined
+        return int(item.properties.fields.get("version", 1))

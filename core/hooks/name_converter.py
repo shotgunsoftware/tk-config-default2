@@ -35,7 +35,7 @@ class TemplateKeyCustom(HookBaseClass):
                                     such as a subset calculation
         :returns: Bool
         """
-        return  self.parent._validate(value, validate_transforms)
+        return self.parent._validate(value, validate_transforms)
 
 
     @staticmethod
@@ -48,9 +48,7 @@ class TemplateKeyCustom(HookBaseClass):
         c = camelcase()
         return "".join(c.next()(x) if x else '_' for x in value.split("_"))
 
-
-    @staticmethod
-    def _run_edits(edit_types, edits, value):
+    def _run_edits(self, edit_types, edits, value):
         """
         Runs the specified edits on this value.
 
