@@ -99,6 +99,6 @@ class HieroTranslateTemplate(HookBaseClass):
             fields["name"] = "plate"
             del fields['output']
 
-        template_str = template.apply_fields(fields, ignore_types=hiero_fields.keys())
+        template_str = template.apply_fields(fields, ignore_types=hiero_fields.keys()).replace(template.root_path, "")
 
         return template_str

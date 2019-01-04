@@ -33,7 +33,7 @@ class HieroGetQuicktimeSettings(HookBaseClass):
         """
         import nuke
 
-        if sys.platform.startswith("linux") and nuke.NUKE_VERSION_MAJOR < 11:
+        if sys.platform.startswith("linux") and nuke.NUKE_VERSION_MAJOR < 12:
 
             file_type = "mov"
             properties = {
