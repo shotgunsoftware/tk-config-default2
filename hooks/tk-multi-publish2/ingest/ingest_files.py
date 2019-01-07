@@ -51,8 +51,7 @@ class IngestFilesPlugin(HookBaseClass):
             },
             "snapshot_type_settings": {
                 "default_value": {"work_plate": "Element", "match_qt": "Element", "*": "Asset",
-                                  self.parent.settings["default_snapshot_type"].value:
-                                      self.parent.settings["default_entity_type"].value}
+                                  "ingest": "Element"}
             }
         }
 
@@ -340,12 +339,15 @@ class IngestFilesPlugin(HookBaseClass):
         :param item: Item to get the snapshot_type from
         :return: If a mapped snapshot_type is found in the snapshot_type_settings it returns that entity type
         else it returns the value against "*" in snapshot_type_settings.
-        If snapshot_type is not defined in item fields, it returns the entity set on app settings "default_entity_type".
+        snapshot_type should always be defined in item fields, for this to work.
         """
 
         snapshot_settings = task_settings['snapshot_type_settings'].value
 
         item_fields = item.properties["fields"]
+
+        if "snapshot_type" not in item_fields:
+            raise Exception("snapshot_type not found in item fields!\n %s" % pprint.pformat(item_fields))
 
         if item_fields["snapshot_type"] in snapshot_settings:
             return snapshot_settings[item_fields["snapshot_type"]]

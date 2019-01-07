@@ -12,6 +12,7 @@ import os
 import datetime
 import traceback
 import pprint
+import re
 
 import sgtk
 import tank
@@ -49,7 +50,7 @@ class IngestCollectorPlugin(HookBaseClass):
     Collector that operates on the current set of ingestion files. Should
     inherit from the basic collector hook.
 
-    This instance of the hook uses manifest_file_name, default_entity_type, default_snapshot_type from app_settings.
+    This instance of the hook uses default_fields, default_snapshot_type from item settings.
 
     """
 
@@ -76,9 +77,9 @@ class IngestCollectorPlugin(HookBaseClass):
         items_schema = schema["Item Types"]["values"]["items"]
         items_schema["default_snapshot_type"] = {
             "type": "str",
-            "description": "",
+            "description": "Specifies the default snapshot type to be used for an ingested item.",
             "allows_empty": True,
-            "default_value": self.parent.settings["default_snapshot_type"].value,
+            "default_value": "ingest",
         }
         items_schema["default_fields"] = {
             "type": dict,
@@ -110,6 +111,30 @@ class IngestCollectorPlugin(HookBaseClass):
             "allows_empty": True,
             "description": "Mapping of keys in Manifest to SG template keys."
         }
+        schema["Ignore Extensions"] = {
+            "type": "list",
+            "values": {
+                "type": "str"
+            },
+            "allows_empty": True,
+            "default_value": [],
+            "description": "List of extensions to be ignored by the collector."
+        }
+        schema["Ignore Filename"] = {
+            "type": "list",
+            "values": {
+                "type": "str"
+            },
+            "allows_empty": True,
+            "default_value": [],
+            "description": "List of strings to ignore a filename by the collector."
+        }
+        schema["Manifest File Name"] = {
+            "type": "str",
+            "allows_empty": True,
+            "default_value": "contents.yaml",
+            "description": "Name of the file to look for, as a source for processing files to be ingested."
+        }
         return schema
 
     def _resolve_work_path_template(self, settings, item):
@@ -132,6 +157,71 @@ class IngestCollectorPlugin(HookBaseClass):
             return work_path_template
 
         return super(IngestCollectorPlugin, self)._resolve_work_path_template(settings, item)
+
+    def _add_file_item(self, settings, parent_item, path, is_sequence=False, seq_files=None,
+                    item_name=None, item_type=None, context=None, properties=None):
+        """
+        Creates a file item
+
+        :param dict settings: Configured settings for this collector
+        :param parent_item: parent item instance
+        :param path: Path to analyze
+        :param is_sequence: Bool as to whether to treat the path as a part of a sequence
+        :param seq_files: A list of files in the sequence
+        :param item_name: The name of the item instance
+        :param item_type: The type of the item instance
+        :param context: The :class:`sgtk.Context` to set for the item
+        :param properties: The dict of initial properties for the item
+
+        :returns: The item that was created
+        """
+
+        publisher = self.parent
+
+        if settings["Ignore Extensions"].value or settings["Ignore Filename"].value:
+            ignored_extensions = settings["Ignore Extensions"].value
+            ignored_filename = settings["Ignore Filename"].value
+
+            file_components = publisher.util.get_file_path_components(path)
+            file_ignored = False
+
+            if file_components["extension"] in ignored_extensions:
+                file_ignored = True
+
+            if ignored_filename:
+                file_ignored = any(re.match(ignored_string, file_components["filename"])
+                                   for ignored_string in ignored_filename)
+
+            if file_ignored:
+
+                if is_sequence:
+                    # include an indicator that this is an image sequence and the known
+                    # file that belongs to this sequence
+                    ignore_warning = (
+                        "The following files were ignored:<br>"
+                        "<pre>%s</pre>" % (pprint.pformat(seq_files),)
+                    )
+                else:
+                    ignore_warning = (
+                        "The following file was ignored:<br>"
+                        "<pre>%s</pre>" % (path,)
+                    )
+
+                self.logger.warning(
+                    "Ignoring the file: %s" % file_components["filename"],
+                    extra={
+                        "action_show_more_info": {
+                            "label": "Show File(s)",
+                            "tooltip": "Show the ignored file",
+                            "text": ignore_warning
+                        }
+                    }
+                )
+                return
+
+        item = super(IngestCollectorPlugin, self)._add_file_item(settings, parent_item, path, is_sequence, seq_files,
+                                                                 item_name, item_type, context, properties)
+        return item
 
     def _add_note_item(self, settings, parent_item, fields, is_sequence=False, seq_files=None):
         """
@@ -226,7 +316,7 @@ class IngestCollectorPlugin(HookBaseClass):
             if items:
                 file_items.extend(items)
         else:
-            if publisher.settings["manifest_file_name"].value in os.path.basename(path):
+            if settings["Manifest File Name"].value in os.path.basename(path):
                 items = self._collect_manifest_file(settings, parent_item, path)
                 if items:
                     file_items.extend(items)
