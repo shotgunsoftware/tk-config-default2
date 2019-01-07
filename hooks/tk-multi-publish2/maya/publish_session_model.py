@@ -12,7 +12,7 @@ import os
 import maya.cmds as cmds
 import maya.mel as mel
 import sgtk
-from sgtk.util.filesystem import ensure_folder_exists
+from sgtk.util import filesystem
 
 # DD imports
 import dd.runtime.api
@@ -60,15 +60,30 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         # create list of elements from maya nodes to collect results about
         workflow_data = {"elements": []}
         toplevel_objects = findModelRootNodes()
-        # assume all children are lod nodes (they should be, if hierarchy is correct)
-        for toplevel_object in toplevel_objects:
-            for child in cmds.listRelatives(toplevel_object, children=True):
-                elem_dict = {
-                    "name": toplevel_object,
-                    "selection_node": toplevel_object,
-                    "lod": child
+        asset_name = item.context.entity['name'].lower()
+
+        # validate only assetname.lower() object
+        if asset_name not in toplevel_objects:
+            self.logger.error(
+                "Top-level object with name `{}` not found".format(asset_name),
+                extra={
+                    "action_show_more_info": {
+                        "label": "Show Found Objects",
+                        "tooltip": "Show found top-level objects",
+                        "text": "Toplevel objects found: {}".format(toplevel_objects)
+                    }
                 }
-                workflow_data["elements"].append(Element(**elem_dict))
+                )
+            return False
+
+        # assume all children are lod nodes (they should be, if hierarchy is correct)
+        for child in cmds.listRelatives(asset_name, children=True):
+            elem_dict = {
+                "name": asset_name,
+                "selection_node": asset_name,
+                "lod": child
+            }
+            workflow_data["elements"].append(Element(**elem_dict))
 
         workflow = Workflow.loadFromFile("indiapipeline/model_validate.wam", search_contexts=True)
         return_data = workflow.run(workflow_data)
@@ -99,3 +114,41 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
                         self.logger.warning("Failed modelpublish validation: {}".format(check))
 
         return super(MayaPublishSessionModelPlugin, self).validate(task_settings, item)
+
+    def publish_files(self, task_settings, item, publish_path):
+        """
+        This method publishes (copies) the item's path property to the publish location.
+        For session override this to do cleanup and save to publish location instead,
+        then discard the changes done during cleanup from the workfile so that they are
+        not preserved while versioning up.
+
+        :param task_settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the settings property. The values are `Setting`
+            instances.
+        :param item: Item to process
+        :param publish_path: The output path to publish files to
+        """
+
+        path = item.properties.get("path")
+        if not path:
+            raise KeyError("Base class implementation of publish_files() method requires a 'path' property.")
+
+        # Save to publish path
+        self.cleanup_file(item)
+        self._save_session(publish_path, item)
+
+        # Determine if we should seal the copied files or not
+        seal_files = item.properties.get("seal_files", False)
+        if seal_files:
+            filesystem.seal_file(publish_path)
+
+        # Reopen work file
+        cmds.file(new=True, force=True)
+        cmds.file(path, open=True, force=True)
+
+    def cleanup_file(self, item):
+        # delete any item in outliner not named "assetname"
+        asset_name = item.context.entity['name'].lower()
+        toplevel_objects = findModelRootNodes()
+        to_delete = toplevel_objects.remove(asset_name)
+        cmds.delete(to_delete)
