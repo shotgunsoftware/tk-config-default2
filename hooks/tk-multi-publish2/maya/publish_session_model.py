@@ -8,6 +8,7 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
+import copy
 import os
 import maya.cmds as cmds
 import maya.mel as mel
@@ -22,6 +23,7 @@ from wam.datatypes.element import Element
 
 dd.runtime.api.load('modelpublish')
 from modelpublish.lib.introspection import findModelRootNodes
+# TODO: replace with find_model_root_nodes from modelpublish-8.7.0+
 
 # for validate workflow
 dd.runtime.api.load('indiapipeline')
@@ -59,28 +61,42 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         """
         # create list of elements from maya nodes to collect results about
         workflow_data = {"elements": []}
+        # TODO: replace with find_model_root_nodes from modelpublish-8.7.0+
         toplevel_objects = findModelRootNodes()
-        asset_name = item.context.entity['name'].lower()
+        valid_node_name = item.context.entity['name'].lower()
 
         # validate only assetname.lower() object
-        if asset_name not in toplevel_objects:
-            self.logger.error(
-                "Top-level object with name `{}` not found".format(asset_name),
-                extra={
-                    "action_show_more_info": {
-                        "label": "Show Found Objects",
-                        "tooltip": "Show found top-level objects",
-                        "text": "Toplevel objects found: {}".format(toplevel_objects)
+        if valid_node_name not in toplevel_objects:
+            if not cmds.objExists("|{}".format(valid_node_name)):
+                self.logger.error(
+                    "Top-level object with name `{}` not found".format(valid_node_name),
+                    extra={
+                        "action_show_more_info": {
+                            "label": "Show Objects",
+                            "tooltip": "Show found top-level objects",
+                            "text": "Toplevel objects found: {}".format(toplevel_objects)
+                        }
                     }
-                }
+                    )
+            else:
+                self.logger.error(
+                    "Top-level object with name `{}` not valid".format(valid_node_name),
+                    extra={
+                        "action_show_more_info": {
+                            "label": "Show Error",
+                            "tooltip": "Show error details",
+                            "text": "Object may not have an lod transform as child. "
+                                    "Please check terminal for details."
+                        }
+                    }
                 )
             return False
 
         # assume all children are lod nodes (they should be, if hierarchy is correct)
-        for child in cmds.listRelatives(asset_name, children=True):
+        for child in cmds.listRelatives(valid_node_name, children=True):
             elem_dict = {
-                "name": asset_name,
-                "selection_node": asset_name,
+                "name": valid_node_name,
+                "selection_node": valid_node_name,
                 "lod": child
             }
             workflow_data["elements"].append(Element(**elem_dict))
@@ -96,7 +112,8 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
                                   "action_show_more_info": {
                                       "label": "Show Error",
                                       "tooltip": "Show stacktrace from wam",
-                                      "text": return_data['wam_exit_stack']
+                                      "text": return_data['wam_exit_stack'] +
+                                              "\nCheck terminal/logs for more details."
                                   }
                               }
                               )
@@ -129,7 +146,7 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         :param publish_path: The output path to publish files to
         """
 
-        path = item.properties.get("path")
+        path = copy.deepcopy(item.properties.get("path"))
         if not path:
             raise KeyError("Base class implementation of publish_files() method requires a 'path' property.")
 
@@ -142,13 +159,18 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         if seal_files:
             filesystem.seal_file(publish_path)
 
-        # Reopen work file
+        # Reopen work file and reset item property path, context
         cmds.file(new=True, force=True)
         cmds.file(path, open=True, force=True)
 
+        item.properties.path = path
+        self.parent.engine.change_context(item.context)
+
     def cleanup_file(self, item):
         # delete any item in outliner not named "assetname"
-        asset_name = item.context.entity['name'].lower()
-        toplevel_objects = findModelRootNodes()
-        to_delete = toplevel_objects.remove(asset_name)
-        cmds.delete(to_delete)
+        valid_node_name = item.context.entity['name'].lower()
+        toplevel_objects = cmds.ls(assemblies=True)
+        toplevel_objects.remove(valid_node_name)
+
+        self.logger.debug("Attempting to delete: {}".format(toplevel_objects))
+        cmds.delete(toplevel_objects)
