@@ -152,7 +152,7 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
 
         # Save to publish path
         self.cleanup_file(item)
-        self._save_session(publish_path, item)
+        self._save_session(publish_path, item.properties.get("publish_version"), item)
 
         # Determine if we should seal the copied files or not
         seal_files = item.properties.get("seal_files", False)
