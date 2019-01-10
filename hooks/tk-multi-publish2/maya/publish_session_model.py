@@ -21,7 +21,7 @@ from wam.core import Workflow
 from wam.datatypes.element import Element
 
 dd.runtime.api.load('modelpublish')
-from modelpublish.lib.introspection import findModelRootNodes
+from modelpublish.lib.introspection import find_model_root_nodes
 
 # for validate workflow
 dd.runtime.api.load('indiapipeline')
@@ -59,7 +59,7 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         """
         # create list of elements from maya nodes to collect results about
         workflow_data = {"elements": []}
-        toplevel_objects = findModelRootNodes()
+        toplevel_objects = find_model_root_nodes()
         # assume all children are lod nodes (they should be, if hierarchy is correct)
         for toplevel_object in toplevel_objects:
             for child in cmds.listRelatives(toplevel_object, children=True):
