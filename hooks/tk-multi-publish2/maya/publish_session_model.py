@@ -22,8 +22,7 @@ from wam.core import Workflow
 from wam.datatypes.element import Element
 
 dd.runtime.api.load('modelpublish')
-from modelpublish.lib.introspection import findModelRootNodes
-# TODO: replace with find_model_root_nodes from modelpublish-8.7.0+
+from modelpublish.lib.introspection import find_model_root_nodes
 
 # for validate workflow
 dd.runtime.api.load('indiapipeline')
@@ -61,8 +60,7 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         """
         # create list of elements from maya nodes to collect results about
         workflow_data = {"elements": []}
-        # TODO: replace with find_model_root_nodes from modelpublish-8.7.0+
-        toplevel_objects = findModelRootNodes()
+        toplevel_objects = find_model_root_nodes()
         valid_node_name = item.context.entity['name'].lower()
 
         # validate only assetname.lower() object
