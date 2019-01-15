@@ -63,7 +63,7 @@ settings.tk-multi-loader2.mari:
 # maya
 settings.tk-multi-loader2.maya:
   action_mappings:
-    ALembic Cache: [reference, import]
+    Alembic Cache: [reference, import]
     Image: [image_plane, texture_node_with_frames]
     Maya Scene: [reference, import]
     Model File: [reference, import]
