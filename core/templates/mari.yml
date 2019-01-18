@@ -89,3 +89,15 @@ strings:
     tk-mari_project_asset_project_name:     '{Step}_{AssetType}-{Asset}-{mari.project_name}'
     tk-mari_sequence_asset_project_name:    '{Sequence}_{Step}_{AssetType}-{Asset}-{mari.project_name}'
     tk-mari_shot_asset_project_name:        '{Sequence}_{Shot}_{Step}_{AssetType}-{Asset}-{mari.project_name}'
+
+    # SHOT ASSET TEXTURE NAME
+    tk-mari_project_texture_name:           '@tk-mari_project_project_name@channel_name'
+    tk-mari_sequence_texture_name:          '@tk-mari_sequence_project_name@channel_name'
+    tk-mari_shot_texture_name:              '@tk-mari_shot_project_name@channel_name'
+
+    # ASSET TEXTURE NAME
+    tk-mari_project_asset_texture_name:     '@tk-mari_project_asset_project_name@channel_name'
+    tk-mari_sequence_asset_texture_name:    '@tk-mari_sequence_asset_project_name@channel_name'
+    tk-mari_shot_asset_texture_name:        '@tk-mari_shot_asset_project_name@channel_name'
+
+    channel_name:                           '[-{node}]-{channel}[-{layer}]'
