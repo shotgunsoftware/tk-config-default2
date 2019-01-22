@@ -19,11 +19,15 @@ import pymel.core as pm
 import maya.cmds as cmds
 import maya.mel as mel
 import sgtk
+import urllib
+
+from functools import partial
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 # LOOKDEV group name
 SHADER_GROUP_NAME = "LOOKDEV"
+IMPORTABLE_ATTR_NAME = "imported_name"
 
 
 class CustomMayaActions(HookBaseClass):
@@ -100,6 +104,13 @@ class CustomMayaActions(HookBaseClass):
                                      "description": "Creates a file texture node, which reads the frames as per "
                                                     "timeline for the selected item.."})
 
+        if "create_importable_reference" in actions and "create_importable_reference" not in action_names:
+            action_instances.append({"name": "create_importable_reference",
+                                     "params": None,
+                                     "caption": "Create Importable Reference",
+                                     "description": "Creates a Reference node that can be localized by our shelf button"
+                                                    "This should allow users to rename the top group if needed."})
+
         return action_instances
 
     def execute_action(self, name, params, sg_publish_data):
@@ -134,6 +145,9 @@ class CustomMayaActions(HookBaseClass):
 
         if name == "texture_node_with_frames":
             self._create_texture_node_with_frames(path, sg_publish_data)
+
+        if name == "create_importable_reference":
+            self._create_importable_reference(path, sg_publish_data)
 
     ##############################################################################################################
     # helper methods which can be subclassed in custom hooks to fine tune the behaviour of things
@@ -342,12 +356,56 @@ class CustomMayaActions(HookBaseClass):
         replaced_ref_list = self._replace_reference(path, sg_publish_data)
         self._connect_shaders_with_objects(replaced_ref_list, path, sg_publish_data)
 
+    def _create_importable_reference(self, path, sg_publish_data):
+        """
+        Creates a Reference node that can be localized by our shelf button
+        This should allow users to rename the top group if needed.
+
+        :param path: Path to file.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        """
+
+        created_ref = self._create_reference(path, sg_publish_data)
+
+        # get all the top nodes in the above reference
+        top_nodes = pm.ls("%s:*" % created_ref.namespace, assemblies=True)
+
+        for top_node in top_nodes:
+            if not top_node.hasAttr(IMPORTABLE_ATTR_NAME):
+                # create the imported_name attr
+                top_node.addAttr(IMPORTABLE_ATTR_NAME, dt="string")
+                # ask the user for the name to be used after import
+                self._create_ui(top_node)
+
+    def _create_ui(self, node):
+        result = cmds.promptDialog(
+            title='Rename Object',
+            message='Name after import for %s:' % node.name(),
+            button=['Create Reference'])
+
+        if result == 'Create Reference':
+            imported_name = cmds.promptDialog(query=True, text=True)
+
+            if not imported_name:
+                response = cmds.confirmDialog(title='Imported Name is Empty!',
+                                              message='Are you sure, you do NOT want to rename after import?',
+                                              button=['Yes', 'No'], defaultButton='Yes',
+                                              cancelButton='No', dismissString='No')
+
+                if response == "No":
+                    self._create_ui(node)
+
+            else:
+                # set the attr on the node, also create a safe string
+                cmds.setAttr("%s.%s" % (node.name(), IMPORTABLE_ATTR_NAME),
+                             urllib.quote(imported_name.replace(" ", "_"), safe=''),
+                             type="string")
+
     def _connect_shaders_with_objects(self, ref_node_or_list, path, sg_publish_data):
         # get the shader shader_group
         shader_group = cmds.ls(SHADER_GROUP_NAME, long=True)
         if not shader_group:
             raise Exception("There is no %s group in the scene" % SHADER_GROUP_NAME)
-
 
         # this dict is mapping of {asset_id: {namespace_stripped_mesh_name: [shaders]}}
         src_mtl_mapping = dict()
