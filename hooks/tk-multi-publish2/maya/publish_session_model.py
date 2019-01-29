@@ -42,6 +42,7 @@ validation_action_ret_value = {
     "CleanUpScene": False,
 }
 
+
 class MayaPublishSessionModelPlugin(HookBaseClass):
     """
     Inherits from MayaPublishSessionPlugin
@@ -61,9 +62,9 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         # create list of elements from maya nodes to collect results about
         workflow_data = {"elements": []}
         toplevel_objects = find_model_root_nodes()
-        valid_node_name = item.context.entity['name'].lower()
+        valid_node_name = item.context.entity['name']
 
-        # validate only assetname.lower() object
+        # validate only assetname object
         if valid_node_name not in toplevel_objects:
             if not cmds.objExists("|{}".format(valid_node_name)):
                 self.logger.error(
@@ -105,7 +106,8 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
 
         if wam_exception is not None:
             # something wrong with workflow execution or user clicked cancel
-            self.logger.error("Error in modelpublish validations: {}".format(wam_exception.__class__.__name__),
+            self.logger.error("User clicked cancel or error in modelpublish "
+                              "validations: {}".format(wam_exception.__class__.__name__),
                               extra={
                                   "action_show_more_info": {
                                       "label": "Show Error",
@@ -117,16 +119,24 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
                               )
             return False
 
+        # find out whether entity has parents
+        entity = self.parent.shotgun.find_one(item.context.entity["type"],
+                                              [["id", "is", item.context.entity["id"]]],
+                                              ["parents"])
+        error_found = False
         for element in return_data['elements']:
             for check, result in element.metadata["modelCleanupChecks"].items():
                 if not result:
-                    # if return value is not given, assume it should be a warning
-                    # and don't block the publish
-                    if not validation_action_ret_value.get(check, True):
-                        self.logger.error("Failed modelpublish validation: {}".format(check))
-                        return False
-                    else:
+                    # if return value is not given, or entity has a parent
+                    # assume it should be a warning and don't block the publish
+                    if validation_action_ret_value.get(check, True) or entity.get("parents"):
                         self.logger.warning("Failed modelpublish validation: {}".format(check))
+                    else:
+                        self.logger.error("Failed modelpublish validation: {}".format(check))
+                        error_found = True
+
+        if error_found:
+            return False
 
         return super(MayaPublishSessionModelPlugin, self).validate(task_settings, item)
 
@@ -166,7 +176,7 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
 
     def cleanup_file(self, item):
         # delete any item in outliner not named "assetname"
-        valid_node_name = item.context.entity['name'].lower()
+        valid_node_name = item.context.entity['name']
         toplevel_objects = cmds.ls(assemblies=True)
         toplevel_objects.remove(valid_node_name)
 
