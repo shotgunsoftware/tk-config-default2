@@ -365,7 +365,7 @@ paths:
     sequence_asset_publish_cache:           '@sequence_asset_publish_area_anim/alembic/@geom_subdirs/@sequence_asset_version_name.abc'
     shot_asset_publish_cache:               '@shot_asset_publish_area_anim/alembic/@geom_subdirs/@shot_asset_version_name.abc'
 
-    # PREVIZ ALEMBIC METADATA
+    # ALEMBIC METADATA
     project_publish_metadata:               '@project_publish_area_anim/alembic/@geom_subdirs/@project_version_name.yaml'
     sequence_publish_metadata:              '@sequence_publish_area_anim/alembic/@geom_subdirs/@sequence_version_name.yaml'
     shot_publish_metadata:                  '@shot_publish_area_anim/alembic/@geom_subdirs/@shot_version_name.yaml'
