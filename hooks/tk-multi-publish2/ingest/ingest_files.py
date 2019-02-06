@@ -128,7 +128,7 @@ class IngestFilesPlugin(HookBaseClass):
         # ---- check for matching linked_entity of this path with a status.
 
         linked_entity_fields = ["sg_status_list"]
-        linked_entity = self._find_linked_entity(item, task_settings, linked_entity_fields)
+        linked_entity = self._find_linked_entity(task_settings, item, linked_entity_fields)
 
         if linked_entity and status:
             conflict_info = (
@@ -148,7 +148,7 @@ class IngestFilesPlugin(HookBaseClass):
 
         elif status:
             if item.properties["linked_entity_type"] == "Asset":
-                asset_type_status = self._create_asset_type(item, task_settings)
+                asset_type_status = self._create_asset_type(task_settings, item)
                 if asset_type_status:
                     self.logger.info("Created %s asset type!" % item.properties["fields"]["snapshot_type"])
 
@@ -191,7 +191,7 @@ class IngestFilesPlugin(HookBaseClass):
         """
 
         # create a linked_entity entity after the publish has gone through successfully.
-        linked_entity = self._create_linked_entity(item, task_settings)
+        linked_entity = self._create_linked_entity(task_settings, item)
 
         # let's create ingest_entity_data within item properties,
         # so that we can link the version created to linked entity as well.
@@ -203,11 +203,11 @@ class IngestFilesPlugin(HookBaseClass):
 
             if item.properties.get("sg_publish_data_list"):
                 # link the publish file to our linked entity.
-                updated_linked_entity = self._link_published_files_to_entity(item, task_settings)
+                updated_linked_entity = self._link_published_files_to_entity(task_settings, item)
 
                 if updated_linked_entity:
                     # clear the status list of the linked_entity
-                    self._clear_linked_entity_status_list(item, task_settings)
+                    self._clear_linked_entity_status_list(task_settings, item)
                     self.logger.info("%s entity registered and PublishedFile linked for %s" %
                                      (item.properties["linked_entity_type"], item.name))
                 else:
@@ -270,7 +270,7 @@ class IngestFilesPlugin(HookBaseClass):
         linked_entity_data = item.properties.get("ingest_entity_data")
 
         linked_entity_fields = ["sg_published_files"]
-        linked_entity = self._find_linked_entity(item, task_settings, linked_entity_fields)
+        linked_entity = self._find_linked_entity(task_settings, item, linked_entity_fields)
 
         # only delete the entity if the entity has no published files linked to it.
         if linked_entity_data and len(linked_entity["sg_published_files"]) == 0:
@@ -290,7 +290,7 @@ class IngestFilesPlugin(HookBaseClass):
                     }
                 )
 
-    def _create_asset_type(self, item, task_settings):
+    def _create_asset_type(self, task_settings, item):
         """Updates the sg_asset_type schema on SG to add the snapshot_type, if it doesn't already exist.
 
         :param item: Item to get the snapshot_type from
@@ -329,7 +329,7 @@ class IngestFilesPlugin(HookBaseClass):
                 return False
 
 
-    def _resolve_linked_entity_type(self, item, task_settings):
+    def _resolve_linked_entity_type(self, task_settings, item):
         """
         Resolve the entity that needs to be created for the item.
 
@@ -354,7 +354,7 @@ class IngestFilesPlugin(HookBaseClass):
         else:
             return snapshot_settings["*"]
 
-    def _clear_linked_entity_status_list(self, item, task_settings):
+    def _clear_linked_entity_status_list(self, task_settings, item):
         """
         Sets the status list on the linked_entity to None.
         Once the linked_entity has been completely linked to it's PublishedFile entity.
@@ -382,7 +382,7 @@ class IngestFilesPlugin(HookBaseClass):
                 }
             )
 
-    def _find_linked_entity(self, item, task_settings, fields=list()):
+    def _find_linked_entity(self, task_settings, item, fields=list()):
         """
         Finds a linked entity corresponding to the item's context.
         Name of the New Entity is governed by "publish_linked_entity_name" of the item.
@@ -410,7 +410,7 @@ class IngestFilesPlugin(HookBaseClass):
         fields.extend(['shots', 'code', 'id'])
 
         # add the linked_entity_type to item properties
-        item.properties["linked_entity_type"] = self._resolve_linked_entity_type(item, task_settings)
+        item.properties["linked_entity_type"] = self._resolve_linked_entity_type(task_settings, item)
 
         item_fields = item.properties["fields"]
 
@@ -444,7 +444,7 @@ class IngestFilesPlugin(HookBaseClass):
 
         return first_frame, last_frame
 
-    def _create_linked_entity(self, item, task_settings):
+    def _create_linked_entity(self, task_settings, item):
         """
         Creates a linked entity if it doesn't exist for a given item, or updates it if it already exists.
         Sets the status of the linked entity to "ip"
@@ -456,7 +456,7 @@ class IngestFilesPlugin(HookBaseClass):
         :return: Linked entity for the given item.
         """
         try:
-            linked_entity = self._find_linked_entity(item, task_settings)
+            linked_entity = self._find_linked_entity(task_settings, item)
         except Exception:
             self.logger.error(
                 "find_linked_entity failed for item: %s" % item.name,
@@ -567,7 +567,7 @@ class IngestFilesPlugin(HookBaseClass):
             )
             return
 
-    def _link_published_files_to_entity(self, item, task_settings):
+    def _link_published_files_to_entity(self, task_settings, item):
         """
         Link the new entity to its corresponding publish files.
 
@@ -604,7 +604,7 @@ class IngestFilesPlugin(HookBaseClass):
             )
             return
 
-    def _get_publish_version(self, item, task_settings):
+    def _get_publish_version(self, task_settings, item):
         """
         Get the publish version for the supplied item.
 

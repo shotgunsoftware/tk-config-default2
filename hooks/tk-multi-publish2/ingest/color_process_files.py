@@ -295,7 +295,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
 
             # resolve the templates to figure out what they are before we start publishing
             for identifier, template in task_settings.get("publish_file_identifiers").value.iteritems():
-                resolved_template = self._get_resolved_path(item, task_settings, template)
+                resolved_template = self._get_resolved_path(task_settings, item, template)
                 # these paths should never be the same as publish path
                 if resolved_template and resolved_template != item.properties.publish_path:
                     resolved_identifiers[resolved_template] = identifier
@@ -500,7 +500,7 @@ class ColorProcessFilesPlugin(HookBaseClass):
 
         return output_path
 
-    def _get_resolved_path(self, item, task_settings, template_name):
+    def _get_resolved_path(self, task_settings, item, template_name):
         """
         Get a publish path for the supplied item.
 
