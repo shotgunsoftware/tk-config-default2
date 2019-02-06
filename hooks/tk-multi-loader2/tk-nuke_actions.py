@@ -313,6 +313,9 @@ class CustomNukeActions(HookBaseClass):
         else:
             self.parent.logger.warning("{}: Not setting proxy path.".format(read_node.name()))
 
+        # add the SGTK metadata on the node
+        self._add_node_metadata(read_node, path, sg_publish_data)
+
     def _create_read_node(self, path, sg_publish_data):
         """
         Create a read node representing the publish.
@@ -332,6 +335,8 @@ class CustomNukeActions(HookBaseClass):
             # TODO: check issue of alembic with multiple nodes
             # http://community.foundry.com/discuss/topic/103204
             read_geo.knob('file').setValue(path)
+            # add the SGTK metadata on the node
+            self._add_node_metadata(read_geo, path, sg_publish_data)
             return
 
         valid_extensions = [".png", 
@@ -389,6 +394,9 @@ class CustomNukeActions(HookBaseClass):
             read_node["proxy"].fromUserText(proxy_path)
         else:
             self.parent.logger.warning("{}: Not setting proxy path.".format(read_node.name()))
+
+        # add the SGTK metadata on the node
+        self._add_node_metadata(read_node, path, sg_publish_data)
 
     def _get_proxy_path(self, path):
         # TODO: use sg_publish_data to find associated file tagged as "proxy" instead
@@ -503,4 +511,51 @@ class CustomNukeActions(HookBaseClass):
         # return the range
         return (min(frames), max(frames))
 
+    def _add_node_metadata(self, node,  path, sg_publish_data):
+        """
+        Bakes the additional metadata on the read node creating a SGTK tab on the node.
+
+        This currently only stores fields that are in `additional_publish_fields` setting of our app.
+
+        :param node: Node to store the additional metadata on.
+        :param path: Path to file on disk.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        """
+
+        import nuke
+
+        loader_app = self.parent
+        additional_publish_fields = loader_app.get_setting("additional_publish_fields")
+
+        sgtk_tab_knob = nuke.Tab_Knob("sgtk_tab", "SGTK")
+        node.addKnob(sgtk_tab_knob)
+
+        for publish_field in additional_publish_fields:
+            new_knob = None
+            # create a pretty name for the knob
+            knob_name = publish_field.replace("sg_", "")
+            knob_name = knob_name.replace("_", " ")
+            knob_name = knob_name.title()
+
+            knob_value = sg_publish_data[publish_field]
+
+            if isinstance(knob_value, str):
+                new_knob = nuke.String_Knob(publish_field, knob_name)
+            elif isinstance(knob_value, int):
+                new_knob = nuke.Int_Knob(publish_field, knob_name)
+            elif knob_value is None:
+                # instead of creating a knob with an incorrect type
+                # don't create a knob in this case since there is no value
+                self.parent.logger.info("Ignoring creation of {} knob since the value is {}".format(publish_field,
+                                                                                                    knob_value))
+            else:
+                self.parent.logger.warning("Unable to create {} knob for type {}".format(publish_field,
+                                                                                         type(knob_value)))
+
+            if new_knob:
+                # make the knob read only
+                new_knob.setFlag(nuke.READ_ONLY)
+                new_knob.setValue(knob_value)
+
+                node.addKnob(new_knob)
 
