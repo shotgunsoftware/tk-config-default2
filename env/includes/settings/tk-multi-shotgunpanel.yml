@@ -223,3 +223,28 @@ settings.tk-multi-shotgunpanel.photoshop:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
+
+# after effects
+settings.tk-multi-shotgunpanel.aftereffects:
+  action_mappings:
+    PublishedFile:
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: After Effects Project}
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: Maya Scene}
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: Rendered Image}
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: Image}
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: Texture}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
+  location: "@apps.tk-multi-shotgunpanel.location"

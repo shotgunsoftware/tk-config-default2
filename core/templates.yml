@@ -64,6 +64,12 @@ keys:
         type: str
         filter_by: alphanumeric
 
+    # Represents the optional output name for frames written by the After Effects Publish Rendering Plugin
+    afx.comp:
+        alias: comp
+        type: str
+        filter_by: alphanumeric
+
     SEQ:
         type: sequence
         format_spec: "04"
@@ -218,6 +224,28 @@ paths:
     photoshop_shot_publish:
         definition: '@shot_root/publish/photoshop/{name}.v{version}.psd'
 
+    #
+    # After Effects
+    #
+
+    # The location of WIP files
+    aftereffects_shot_work:
+        definition: '@shot_root/work/afx/{name}.v{version}.aep'
+    shot_work_area_aftereffects:
+        definition: '@shot_root/work/afx'
+    # The location of backups of WIP files
+    aftereffects_shot_snapshot:
+        definition: '@shot_root/work/afx/snapshots/{name}.v{version}.{timestamp}.aep'
+    # The location of published files
+    shot_publish_area_aftereffects:
+        definition: '@shot_root/publish/afx'
+    aftereffects_shot_publish:
+        definition: '@shot_root/publish/afx/{name}.v{version}.aep'
+    aftereffects_shot_render_pub_mono:
+        definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
+    aftereffects_shot_render_movie:
+        definition: '@shot_root/review/{Shot}_{name}_{afx.comp}_v{version}.avi'
+
 
     #
     # Maya
@@ -341,7 +369,7 @@ paths:
         definition: '@shot_root/publish/nuke/{name}.v{version}.nk'
     # write node outputs
     nuke_shot_render_mono_dpx:
-        definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
+        definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.png'
     nuke_shot_render_pub_mono_dpx:
         definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
     nuke_shot_render_stereo:
@@ -393,6 +421,24 @@ paths:
         definition: '@asset_root/publish/photoshop'
     photoshop_asset_publish:
         definition: '@asset_root/publish/photoshop/{name}.v{version}.psd'
+
+    #
+    # after effects
+    #
+
+    # The location of WIP files
+    aftereffects_asset_work:
+        definition: '@asset_root/work/afx/{name}.v{version}.aep'
+    asset_work_area_aftereffects:
+        definition: '@asset_root/work/afx'
+    # The location of backups of WIP files
+    aftereffects_asset_snapshot:
+        definition: '@asset_root/work/afx/snapshots/{name}.v{version}.{timestamp}.aep'
+    # The location of published files
+    asset_publish_area_aftereffects:
+        definition: '@asset_root/publish/afx'
+    aftereffects_asset_publish:
+        definition: '@asset_root/publish/afx/{name}.v{version}.aep'
 
 
     #
