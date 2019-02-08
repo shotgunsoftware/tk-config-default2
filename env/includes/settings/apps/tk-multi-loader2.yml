@@ -48,7 +48,7 @@ settings.tk-multi-loader2.houdini:
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
-  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id"]
+  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id", "id"]
   location: "@apps.tk-multi-loader2.location"
 
 # mari
@@ -63,7 +63,7 @@ settings.tk-multi-loader2.mari:
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
-  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id"]
+  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id", "id"]
   location: "@apps.tk-multi-loader2.location"
 
 # maya
@@ -80,7 +80,7 @@ settings.tk-multi-loader2.maya:
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
-  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id"]
+  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id", "id"]
   location: "@apps.tk-multi-loader2.location"
 
 # nuke
@@ -99,7 +99,7 @@ settings.tk-multi-loader2.nuke:
   actions_hook: '{self}/{engine_name}_actions.py:{config}/tk-multi-loader2/{engine_name}_actions.py'
   entities: *loader2_entities
   publish_filters: [["sg_status_list", "is_not", null]]
-  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id"]
+  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id", "id"]
   location: "@apps.tk-multi-loader2.location"
 
 # nuke studio
@@ -151,5 +151,5 @@ settings.tk-multi-loader2.nukestudio:
         - [project, is, '{context.project}']
       hierarchy: [sg_shot.Shot.sg_sequence, sg_shot, code]
   publish_filters: [["sg_status_list", "is_not", null]]
-  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id"]
+  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id", "id"]
   location: "@apps.tk-multi-loader2.location"
