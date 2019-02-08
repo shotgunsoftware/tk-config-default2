@@ -73,6 +73,12 @@ engines.tk-photoshopcc.location:
   name: tk-photoshopcc
   version: v1.6.3
 
+# After Effects
+engines.tk-aftereffectscc.location:
+  type: app_store
+  name: tk-aftereffectscc
+  version: v1.0.0
+
 # Shell
 engines.tk-shell.location:
   type: app_store
