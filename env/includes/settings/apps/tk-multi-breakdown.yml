@@ -16,8 +16,10 @@ includes:
 ################################################################################
 settings.tk-multi-breakdown.nukestudio:
   hook_scene_operations: '{self}/tk-nuke_scene_operations.py:{config}/tk-multi-breakdown/tk-nuke_scene_operations.py'
+  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id", "id"]
   location: "@apps.tk-multi-breakdown.location"
 
 settings.tk-multi-breakdown.config:
   hook_scene_operations: '{self}/{engine_name}_scene_operations.py:{config}/tk-multi-breakdown/{engine_name}_scene_operations.py'
+  additional_publish_fields: ["sg_path_to_source", "sg_snapshot_id", "id"]
   location: "@apps.tk-multi-breakdown.location"
