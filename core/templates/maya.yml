@@ -92,14 +92,23 @@ paths:
     tk-maya_sequence_asset_work_cache:      '@tk-maya_sequence_asset_work_area/cache/alembic/@geom_subdirs/@sequence_asset_version_name.abc'
     tk-maya_shot_asset_work_cache:          '@tk-maya_shot_asset_work_area/cache/alembic/@geom_subdirs/@shot_asset_version_name.abc'
 
-    # ALEMBIC METADATA
-    tk-maya_project_work_metadata:          '@tk-maya_project_work_area/cache/alembic/@geom_subdirs/@project_version_name.yaml'
-    tk-maya_sequence_work_metadata:         '@tk-maya_sequence_work_area/cache/alembic/@geom_subdirs/@sequence_version_name.yaml'
-    tk-maya_shot_work_metadata:             '@tk-maya_shot_work_area/cache/alembic/@geom_subdirs/@shot_version_name.yaml'
+    # REFERENCE CAMERA
+    tk-maya_project_work_ref_cam:          '@tk-maya_project_work_area/cache/ref_cam/@geom_subdirs/@project_version_name.abc'
+    tk-maya_sequence_work_ref_cam:         '@tk-maya_sequence_work_area/cache/ref_cam/@geom_subdirs/@sequence_version_name.abc'
+    tk-maya_shot_work_ref_cam:             '@tk-maya_shot_work_area/cache/ref_cam/@geom_subdirs/@shot_version_name.abc'
 
-    tk-maya_project_asset_work_metadata:    '@tk-maya_project_asset_work_area/cache/alembic/@geom_subdirs/@project_asset_version_name.yaml'
-    tk-maya_sequence_asset_work_metadata:   '@tk-maya_sequence_asset_work_area/cache/alembic/@geom_subdirs/@sequence_asset_version_name.yaml'
-    tk-maya_shot_asset_work_metadata:       '@tk-maya_shot_asset_work_area/cache/alembic/@geom_subdirs/@shot_asset_version_name.yaml'
+    tk-maya_project_asset_work_ref_cam:    '@tk-maya_project_asset_work_area/cache/ref_cam/@geom_subdirs/@project_asset_version_name.abc'
+    tk-maya_sequence_asset_work_ref_cam:   '@tk-maya_sequence_asset_work_area/cache/ref_cam/@geom_subdirs/@sequence_asset_version_name.abc'
+    tk-maya_shot_asset_work_ref_cam:       '@tk-maya_shot_asset_work_area/cache/ref_cam/@geom_subdirs/@shot_asset_version_name.abc'
+
+    # ALEMBIC METADATA
+    tk-maya_project_work_metadata:          '@tk-maya_project_work_area/cache/metadata/@geom_subdirs/@project_version_name.yaml'
+    tk-maya_sequence_work_metadata:         '@tk-maya_sequence_work_area/cache/metadata/@geom_subdirs/@sequence_version_name.yaml'
+    tk-maya_shot_work_metadata:             '@tk-maya_shot_work_area/cache/metadata/@geom_subdirs/@shot_version_name.yaml'
+
+    tk-maya_project_asset_work_metadata:    '@tk-maya_project_asset_work_area/cache/metadata/@geom_subdirs/@project_asset_version_name.yaml'
+    tk-maya_sequence_asset_work_metadata:   '@tk-maya_sequence_asset_work_area/cache/metadata/@geom_subdirs/@sequence_asset_version_name.yaml'
+    tk-maya_shot_asset_work_metadata:       '@tk-maya_shot_asset_work_area/cache/metadata/@geom_subdirs/@shot_asset_version_name.yaml'
 
 
 aliases:
