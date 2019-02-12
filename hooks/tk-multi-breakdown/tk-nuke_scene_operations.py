@@ -120,7 +120,7 @@ class BreakdownSceneOperations(HookBaseClass):
         """
         engine = self.parent.engine
 
-        node_type_list = ["Read", "ReadGeo2", "Camera2"]
+        node_type_list = ["Read", "ReadGeo2", "Camera2", "DeepRead"]
 
         for i in items:
             node_name = i["node"]
@@ -132,8 +132,61 @@ class BreakdownSceneOperations(HookBaseClass):
                 node = nuke.toNode(node_name)
                 node.knob("file").setValue(new_path)
 
+                if i.get("sg_data"):
+                    self._update_node_metadata(node, new_path, i["sg_data"])
+
             if node_type == "Clip":
                 engine.log_debug("Clip %s: Updating to version %s" % (node_name, new_path))
                 clip = node_name
                 clip.reconnectMedia(new_path)
+
+    def _update_node_metadata(self, node, path, sg_publish_data):
+        """
+        Bakes/Updates the additional metadata on the read node creating a SGTK tab on the node.
+
+        This currently only stores fields that are in `additional_publish_fields` setting of our app.
+
+        :param node: Node to store the additional metadata on.
+        :param path: Path to file on disk.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        """
+        additional_publish_fields = self.parent.get_setting("additional_publish_fields")
+
+        if not node.knob("sgtk_tab"):
+            sgtk_tab_knob = nuke.Tab_Knob("sgtk_tab", "SGTK")
+            node.addKnob(sgtk_tab_knob)
+
+        for publish_field in additional_publish_fields:
+
+            try:
+                knob_value = sg_publish_data[publish_field]
+                # create the knob if the field has a value now
+                if knob_value and not node.knob(publish_field):
+                    new_knob = None
+                    # create a pretty name for the knob
+                    knob_name = publish_field.replace("sg_", "")
+                    knob_name = knob_name.replace("_", " ")
+                    knob_name = knob_name.title()
+
+                    if isinstance(knob_value, str):
+                        new_knob = nuke.String_Knob(publish_field, knob_name)
+                    elif isinstance(knob_value, int):
+                        new_knob = nuke.Int_Knob(publish_field, knob_name)
+                    else:
+                        self.parent.logger.warning("Unable to create {} knob for type {}".format(publish_field,
+                                                                                                 type(knob_value)))
+
+                    if new_knob:
+                        # make the knob read only
+                        new_knob.setFlag(nuke.READ_ONLY)
+                        new_knob.setValue(knob_value)
+
+                        node.addKnob(new_knob)
+                #  else just update it
+                elif knob_value and node.knob(publish_field):
+                    # make the knob read only
+                    node.knob(publish_field).setFlag(nuke.READ_ONLY)
+                    node.knob(publish_field).setValue(knob_value)
+            except KeyError:
+                self.parent.logger.warning("%s not found in PublishedFile. Please check the SG Schema." % publish_field)
 
