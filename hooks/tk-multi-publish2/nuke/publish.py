@@ -136,9 +136,9 @@ class NukePublishDDValidationPlugin(HookBaseClass):
             'show_pub': os.path.join(show, 'SHARED'),                               # show published location
             }
         if 'Sequence' in fields:
-            valid_paths['seq'] = os.path.join(show, fields['Sequence'])             # seq published location
+            valid_paths['seq'] = os.path.join(show, fields['Sequence'], "SHARED")             # seq published location
         if 'Shot' in fields:
-            valid_paths['shot'] = os.path.join(valid_paths['seq'], fields['Shot'])  # shot published location
+            valid_paths['shot'] = os.path.join(show, fields['Sequence'], fields['Shot'], "SHARED")  # shot published location
 
         # Collect all the nodes associated with a write node
         # For all the read, readgeo and camera nodes present in the write node graph, check for 'file' knob.
