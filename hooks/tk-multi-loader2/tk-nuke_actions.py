@@ -537,25 +537,27 @@ class CustomNukeActions(HookBaseClass):
             knob_name = knob_name.replace("_", " ")
             knob_name = knob_name.title()
 
-            knob_value = sg_publish_data[publish_field]
+            try:
+                knob_value = sg_publish_data[publish_field]
+                if isinstance(knob_value, str):
+                    new_knob = nuke.String_Knob(publish_field, knob_name)
+                elif isinstance(knob_value, int):
+                    new_knob = nuke.Int_Knob(publish_field, knob_name)
+                elif knob_value is None:
+                    # instead of creating a knob with an incorrect type
+                    # don't create a knob in this case since there is no value
+                    self.parent.logger.info("Ignoring creation of {} knob since the value is {}".format(publish_field,
+                                                                                                        knob_value))
+                else:
+                    self.parent.logger.warning("Unable to create {} knob for type {}".format(publish_field,
+                                                                                             type(knob_value)))
 
-            if isinstance(knob_value, str):
-                new_knob = nuke.String_Knob(publish_field, knob_name)
-            elif isinstance(knob_value, int):
-                new_knob = nuke.Int_Knob(publish_field, knob_name)
-            elif knob_value is None:
-                # instead of creating a knob with an incorrect type
-                # don't create a knob in this case since there is no value
-                self.parent.logger.info("Ignoring creation of {} knob since the value is {}".format(publish_field,
-                                                                                                    knob_value))
-            else:
-                self.parent.logger.warning("Unable to create {} knob for type {}".format(publish_field,
-                                                                                         type(knob_value)))
+                if new_knob:
+                    # make the knob read only
+                    new_knob.setFlag(nuke.READ_ONLY)
+                    new_knob.setValue(knob_value)
 
-            if new_knob:
-                # make the knob read only
-                new_knob.setFlag(nuke.READ_ONLY)
-                new_knob.setValue(knob_value)
-
-                node.addKnob(new_knob)
+                    node.addKnob(new_knob)
+            except KeyError:
+                self.parent.logger.warning("%s not found in PublishedFile. Please check the SG Schema." % publish_field)
 
