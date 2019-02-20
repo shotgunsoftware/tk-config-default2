@@ -55,6 +55,7 @@ settings.tk-multi-loader2.houdini:
 settings.tk-multi-loader2.mari:
   action_mappings:
     Alembic Cache: [geometry_import]
+    Reference Camera: [ref_camera_import]
     Model File: [geometry_import]
     UDIM Image: [create_layer_with_image]
     # TODO: #1275 add_to_image_manager action currently loads the first frame artists wanted to choose the frame number.
