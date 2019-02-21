@@ -17,7 +17,7 @@
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.5.3
+  version: v0.5.4
 
 # Desktop
 engines.tk-desktop.location:
@@ -29,7 +29,7 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.0.2
+  version: v1.0.3
 
 # Flame
 engines.tk-flame.location:
