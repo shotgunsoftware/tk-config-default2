@@ -17,7 +17,8 @@ frameworks:
   tk-framework-adobe_v1.x.x:
     location:
       version: v1.0.0
-      type: dev
+      type: app_store
+      name: tk-framework-adobe
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
