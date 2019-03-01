@@ -399,9 +399,6 @@ settings.tk-multi-publish2.aftereffects.shot_step:
     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
     settings:
         Movie Output Module: AVI DV PAL 48kHz
-  - name: Upload project for review
-    hook: "{engine}/tk-multi-publish2/basic/upload_project_version.py"
-    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
