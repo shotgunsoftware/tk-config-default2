@@ -34,23 +34,29 @@ settings.tk-desktop.project:
     tk-multi-devutils:
       location: "@apps.tk-multi-devutils.location"
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
-    tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
-    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    # tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
+    # tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
+    # tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
   groups:
   - matches:
-    - "*Fla*"
     - "*Houdini*"
     - "*Mari*"
     - "*Max*"
     - "*Maya*"
     - "*Motion*"
+    name: 3D Tools
+  - matches:
+    - "*Fla*"
+    - "*Hiero*"
     - "*Nuke*"
     - "*Photoshop*"
-    name: Creative Tools
+    name: 2D Tools
   - matches:
-    - "*Hiero*"
-    name: Editorial Tools
+    - "*Slack*"
+    - "*Spotify*"
+    - "*Gmail*"
+    - "*Internet*"
+    name: Apps    
   location: "@engines.tk-desktop.location"
