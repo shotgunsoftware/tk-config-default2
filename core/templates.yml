@@ -222,6 +222,7 @@ paths:
     project_publish_area_script:            '@project_publish_area/SCRIPT/{Step}'
     project_publish_area_texture:           '@project_publish_area/TEXTURE/{Step}'
     project_publish_area_fx:                '@project_publish_area/FX/{Step}'
+    project_publish_area_3de:               '@project_publish_area/EQUALIZER/{Step}'
 
     sequence_publish_area_anim:             '@sequence_publish_area/ANIM/{Step}'
     sequence_publish_area_image:            '@sequence_publish_area/IMG/{Step}'
@@ -231,6 +232,7 @@ paths:
     sequence_publish_area_script:           '@sequence_publish_area/SCRIPT/{Step}'
     sequence_publish_area_texture:          '@sequence_publish_area/TEXTURE/{Step}'
     sequence_publish_area_fx:               '@sequence_publish_area/FX/{Step}'
+    sequence_publish_area_3de:              '@sequence_publish_area/EQUALIZER/{Step}'
 
     shot_publish_area_anim:                 '@shot_publish_area/ANIM/{Step}'
     shot_publish_area_image:                '@shot_publish_area/IMG/{Step}'
@@ -240,6 +242,8 @@ paths:
     shot_publish_area_script:               '@shot_publish_area/SCRIPT/{Step}'
     shot_publish_area_texture:              '@shot_publish_area/TEXTURE/{Step}'
     shot_publish_area_fx:                   '@shot_publish_area/FX/{Step}'
+    shot_publish_area_3de:                  '@shot_publish_area/EQUALIZER/{Step}'
+
 
     # ASSET PUBLISH PATHS
     project_asset_publish_area_anim:        '@project_publish_area_anim/{AssetType}/{Asset}'
@@ -250,6 +254,7 @@ paths:
     project_asset_publish_area_script:      '@project_publish_area_script/{AssetType}/{Asset}'
     project_asset_publish_area_texture:     '@project_publish_area_texture/{AssetType}/{Asset}'
     project_asset_publish_area_fx:          '@project_publish_area_fx/{AssetType}/{Asset}'
+    project_asset_publish_area_3de:         '@project_publish_area_3de/{AssetType}/{Asset}'
 
     sequence_asset_publish_area_anim:       '@sequence_publish_area_anim/{AssetType}/{Asset}'
     sequence_asset_publish_area_image:      '@sequence_publish_area_image/{AssetType}/{Asset}'
@@ -259,6 +264,7 @@ paths:
     sequence_asset_publish_area_script:     '@sequence_publish_area_script/{AssetType}/{Asset}'
     sequence_asset_publish_area_texture:    '@sequence_publish_area_texture/{AssetType}/{Asset}'
     sequence_asset_publish_area_fx:         '@sequence_publish_area_fx/{AssetType}/{Asset}'
+    sequence_asset_publish_area_3de:        '@sequence_publish_area_3de/{AssetType}/{Asset}'
 
     shot_asset_publish_area_anim:           '@shot_publish_area_anim/{AssetType}/{Asset}'
     shot_asset_publish_area_image:          '@shot_publish_area_image/{AssetType}/{Asset}'
@@ -268,6 +274,7 @@ paths:
     shot_asset_publish_area_script:         '@shot_publish_area_script/{AssetType}/{Asset}'
     shot_asset_publish_area_texture:        '@shot_publish_area_texture/{AssetType}/{Asset}'
     shot_asset_publish_area_fx:             '@shot_publish_area_fx/{AssetType}/{Asset}'
+    shot_asset_publish_area_3de:            '@shot_publish_area_3de/{AssetType}/{Asset}'
 
 
     # HOUDINI SCENES
@@ -391,6 +398,15 @@ paths:
     project_asset_publish_texture:          '@project_asset_publish_area_texture/@texture_subdirs/@project_asset_version_name[.{UDIM}].{tex.ext}'
     sequence_asset_publish_texture:         '@sequence_asset_publish_area_texture/@texture_subdirs/@sequence_asset_version_name[.{UDIM}].{tex.ext}'
     shot_asset_publish_texture:             '@shot_asset_publish_area_texture/@texture_subdirs/@shot_asset_version_name[.{UDIM}].{tex.ext}'
+
+    # 3DEQUALIZER FILES
+    project_publish_3de_file:               '@project_publish_area_3de/@project_version_name.3de'
+    sequence_publish_3de_file:              '@sequence_publish_area_3de/@sequence_version_name.3de'
+    shot_publish_3de_file:                  '@shot_publish_area_3de/@shot_version_name.3de'
+
+    project_asset_publish_3de_file:         '@project_asset_publish_area_3de/@project_version_name.3de'
+    sequence_asset_publish_3de_file:        '@sequence_asset_publish_area_3de/@sequence_version_name.3de'
+    shot_asset_publish_3de_file:            '@shot_asset_publish_area_3de/@shot_version_name.3de'
 
     # REVIEW SUBMISSION
     reviewsubmission_burnin_nuke_file:      '@project_publish_area/etc/reviewsubmit_presets/burnin.nk'
