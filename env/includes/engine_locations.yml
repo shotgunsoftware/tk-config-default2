@@ -71,7 +71,7 @@ engines.tk-nuke.location:
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.6.3
+  version: v1.7.0
 
 # After Effects
 engines.tk-aftereffects.location:
