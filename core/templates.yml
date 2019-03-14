@@ -69,6 +69,12 @@ keys:
         alias: comp
         type: str
         filter_by: alphanumeric
+    afx.mov.ext:
+        alias: extension
+        type: str
+        choices:
+            mov: Quicktime Movie (.mov)
+            avi: Audio Video Interleaved (.avi)
 
     SEQ:
         type: sequence
@@ -243,8 +249,11 @@ paths:
         definition: '@shot_root/publish/afx/{name}.v{version}.aep'
     aftereffects_shot_render_pub_mono:
         definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
+    # The following template uses {afx.mov.ext} this is a special key, that will be only there
+    # in the beta to support different extensions on mac and windows, while using the same
+    # output module (Lossless with Alpha)
     aftereffects_shot_render_movie:
-        definition: '@shot_root/review/{Shot}_{name}_{afx.comp}_v{version}.avi'
+        definition: '@shot_root/review/{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
 
 
     #
@@ -439,6 +448,13 @@ paths:
         definition: '@asset_root/publish/afx'
     aftereffects_asset_publish:
         definition: '@asset_root/publish/afx/{name}.v{version}.aep'
+    aftereffects_asset_render_pub_mono:
+        definition: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
+    # The following template uses {afx.mov.ext} this is a special key, that will be only there
+    # in the beta to support different extensions on mac and windows, while using the same
+    # output module (Lossless with Alpha)
+    aftereffects_asset_render_movie:
+        definition: '@asset_root/review/{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
 
 
     #
