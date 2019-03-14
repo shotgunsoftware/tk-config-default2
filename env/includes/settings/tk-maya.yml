@@ -22,6 +22,7 @@ includes:
 - ./apps/tk-multi-snapshot.yml
 - ./apps/tk-multi-workfiles2.yml
 - ./apps/tk-multi-breakdown.yml
+- ./apps/tk-multi-setframerange.yml
 
 ################################################################################
 
@@ -55,6 +56,7 @@ settings.tk-maya.asset:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.maya"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.maya"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.task"
+    tk-multi-setframerange: "@settings.tk-multi-setframerange"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

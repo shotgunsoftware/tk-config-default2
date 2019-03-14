@@ -1,0 +1,26 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../../app_locations.yml
+
+################################################################################
+
+settings.tk-multi-setframerange:
+  location: '@apps.tk-multi-setframerange.location'
+  sg_in_frame_field:  'sg_head_in'
+  sg_out_frame_field: 'sg_tail_out'
+  use_default_values: '@settings.tk-multi-setframerange.use_default_values'
+  default_sg_frame_values:
+    default_sg_in_frame_value: '@settings.tk-multi-setframerange.default_sg_in_frame_value'
+    default_sg_out_frame_value: '@settings.tk-multi-setframerange.default_sg_out_frame_value'

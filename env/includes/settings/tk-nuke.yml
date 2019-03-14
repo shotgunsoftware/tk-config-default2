@@ -24,6 +24,7 @@ includes:
 - ./apps/tk-nuke-quickdailies.yml
 - ./apps/tk-nuke-writenode.yml
 - ./apps/tk-multi-breakdown.yml
+- ./apps/tk-multi-setframerange.yml
 
 ################################################################################
 
@@ -57,6 +58,7 @@ settings.tk-nuke.asset:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.task"
     tk-nuke-quickdailies: "@settings.tk-nuke-quickdailies"
     tk-nuke-writenode: "@settings.tk-nuke-writenode"
+    tk-multi-setframerange: "@settings.tk-multi-setframerange"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

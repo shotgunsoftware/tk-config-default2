@@ -13,6 +13,7 @@ import maya.cmds as cmds
 import maya.mel as mel
 
 import sgtk
+from sgtk import TankError
 from sgtk.platform.qt import QtGui
 
 HookClass = sgtk.get_hook_baseclass()
@@ -130,6 +131,8 @@ class SceneOperation(HookClass):
 
             # do new file:
             cmds.file(newFile=True, force=True)
+            if parent_action == "new_file":
+                self.sync_frame_range()
             return True
 
     def set_show_preferences(self, file_path, context):
@@ -452,3 +455,29 @@ class SceneOperation(HookClass):
         prefix = prefix.replace("." + frame_sq_key.default, "")
 
         return prefix, ext
+
+    def sync_frame_range(self):
+        engine = self.parent.engine
+        if engine.context.entity is None:
+            # tk-multi-setframerange needs a context entity to work
+            warning_message = "Your current context does not have an entity " \
+                              "(e.g. a current Shot, current Asset etc). \nNot syncing frame range."
+            self.parent.logger.warning(warning_message)
+            QtGui.QMessageBox.warning(None, "Context has no entity", warning_message)
+            return
+
+        try:
+            # get app
+            frame_range_app = engine.apps["tk-multi-setframerange"]
+        except KeyError as ke:
+            error_message = "Unable to find {} in {} at this time. " \
+                            "Not syncing frame range automatically.".format(ke, engine.name)
+            # assume it is sequence/asset entity and do not give a pop-up warning
+            self.parent.logger.warning(error_message)
+        else:
+            try:
+                frame_range_app.run_app()
+            except TankError as te:
+                warning_message = "{}. Not syncing frame range.".format(te)
+                self.parent.logger.warning(warning_message)
+                QtGui.QMessageBox.warning(None, "Entity has no in/out frame", warning_message)
