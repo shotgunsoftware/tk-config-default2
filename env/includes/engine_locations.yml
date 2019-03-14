@@ -19,6 +19,12 @@ engines.tk-3dsmaxplus.location:
   name: tk-3dsmaxplus
   version: v0.5.4
 
+# After Effects
+engines.tk-aftereffects.location:
+  type: app_store
+  name: tk-aftereffects
+  version: v0.1.0
+
 # Desktop
 engines.tk-desktop.location:
   type: app_store
@@ -72,12 +78,6 @@ engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
   version: v1.7.0
-
-# After Effects
-engines.tk-aftereffects.location:
-  type: app_store
-  name: tk-aftereffects
-  version: v1.0.0
 
 # Shell
 engines.tk-shell.location:
