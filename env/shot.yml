@@ -29,6 +29,7 @@ includes:
 - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
+- ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -43,6 +44,7 @@ engines:
   tk-motionbuilder: "@settings.tk-motionbuilder.shot"
   tk-nuke: "@settings.tk-nuke.shot"
   tk-photoshopcc: "@settings.tk-photoshopcc.shot"
+  tk-aftereffects: "@settings.tk-aftereffects.shot"
   tk-shell: "@settings.tk-shell.shot"
   tk-shotgun: "@settings.tk-shotgun.shot"
 
