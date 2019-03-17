@@ -23,7 +23,7 @@ engines.tk-3dsmaxplus.location:
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
-  version: v0.1.0
+  version: v0.1.2
 
 # Desktop
 engines.tk-desktop.location:
