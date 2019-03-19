@@ -1,0 +1,7 @@
+- root_menu: "Nodes"
+  use_default_icon: true
+  sub_menu_create: true
+  sub_menu_use_text_name: false
+  sub_menu_name: "Project Gizmos"
+  sub_menu_tooltip: ""
+  sub_menu_index:

@@ -270,6 +270,8 @@ settings.tk-multi-workfiles2.maya.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.nuke.asset_step:
+  saveas_default_name: comp
+  launch_at_startup: true
   template_publish: nuke_asset_publish
   template_publish_area: asset_publish_area_nuke
   template_work: nuke_asset_work
@@ -297,6 +299,8 @@ settings.tk-multi-workfiles2.nuke.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.nuke.shot_step:
+  saveas_default_name: comp
+  launch_at_startup: true
   template_publish: nuke_shot_publish
   template_publish_area: shot_publish_area_nuke
   template_work: nuke_shot_work
@@ -328,6 +332,7 @@ settings.tk-multi-workfiles2.nuke.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.photoshop.asset_step:
+  saveas_default_name: art
   template_publish: photoshop_asset_publish
   template_publish_area: asset_publish_area_photoshop
   template_work: photoshop_asset_work
@@ -355,10 +360,71 @@ settings.tk-multi-workfiles2.photoshop.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.photoshop.shot_step:
+  saveas_default_name: art
   template_publish: photoshop_shot_publish
   template_publish_area: shot_publish_area_photoshop
   template_work: photoshop_shot_work
   template_work_area: shot_work_area_photoshop
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# ---- aftereffects
+
+# asset_step
+settings.tk-multi-workfiles2.aftereffects.asset_step:
+  saveas_default_name: comp
+  template_publish: aftereffects_asset_publish
+  template_publish_area: asset_publish_area_aftereffects
+  template_work: aftereffects_asset_work
+  template_work_area: asset_work_area_aftereffects
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.aftereffects.shot_step:
+  saveas_default_name: comp
+  template_publish: aftereffects_shot_publish
+  template_publish_area: shot_publish_area_aftereffects
+  template_work: aftereffects_shot_work
+  template_work_area: shot_work_area_aftereffects
   entities:
   - caption: Assets
     entity_type: Asset
@@ -435,4 +501,3 @@ settings.tk-multi-workfiles2.motionbuilder.shot_step:
       link_field: entity
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
-

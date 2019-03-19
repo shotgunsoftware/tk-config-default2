@@ -19,11 +19,12 @@ includes:
 - ./includes/settings/tk-desktop.yml
 - ./includes/settings/tk-flame.yml
 - ./includes/settings/tk-houdini.yml
-- ./includes/settings/tk-mari.yml
+# - ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
 - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
+- ./includes/settings/tk-aftereffectscc.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -36,12 +37,14 @@ engines:
   tk-flame: "@settings.tk-flame.project"
   tk-hiero: "@settings.tk-nuke.hiero.project"
   tk-houdini: "@settings.tk-houdini.project"
-  tk-mari: "@settings.tk-mari.project"
+  # tk-mari: "@settings.tk-mari.project"
   tk-maya: "@settings.tk-maya.project"
   tk-motionbuilder: "@settings.tk-motionbuilder.project"
   tk-nuke: "@settings.tk-nuke.project"
+  tk-nuke-render: "@settings.tk-nuke.render.project"
   tk-nukestudio: "@settings.tk-nuke.nukestudio.project"
   tk-photoshopcc: "@settings.tk-photoshopcc.project"
+  tk-aftereffectscc: "@settings.tk-aftereffectscc.project"
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
 

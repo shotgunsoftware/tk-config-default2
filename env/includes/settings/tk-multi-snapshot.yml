@@ -103,6 +103,22 @@ settings.tk-multi-snapshot.photoshop.shot_step:
 
 ################################################################################
 
+# ---- aftereffects
+
+# asset step
+settings.tk-multi-snapshot.aftereffects.asset_step:
+  template_snapshot: aftereffects_asset_snapshot
+  template_work: aftereffects_asset_work
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.aftereffects.shot_step:
+  template_snapshot: aftereffects_shot_snapshot
+  template_work: aftereffects_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
 # ---- Motion Builder
 
 # asset step
@@ -116,4 +132,3 @@ settings.tk-multi-snapshot.motionbuilder.shot_step:
   template_snapshot: mobu_shot_snapshot
   template_work: mobu_shot_work
   location: "@apps.tk-multi-snapshot.location"
-

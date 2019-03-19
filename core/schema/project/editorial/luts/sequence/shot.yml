@@ -15,12 +15,11 @@ type: "shotgun_entity"
 name: "code"
 
 # the shotgun entity type to connect to
-entity_type: "Sequence"
+entity_type: "Shot"
 
 # shotgun filters to apply when getting the list of items
 # this should be a list of dicts, each dict containing 
 # three fields: path, relation and values
 # (this is std shotgun API syntax)
 # any values starting with $ are resolved into path objects
-filters: [ { "path": "project", "relation": "is", "values": [ "$project" ] } ]
-
+filters: [ { "path": "sg_sequence", "relation": "is", "values": [ "$sequence" ] } ]

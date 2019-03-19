@@ -223,3 +223,27 @@ settings.tk-multi-shotgunpanel.photoshop:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
+
+# aftereffects
+# TODO: This will need to be refactored for AE files
+settings.tk-multi-shotgunpanel.aftereffects:
+  actions_hook: "{self}/general_actions.py"
+  action_mappings:
+    PublishedFile:
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Photoshop Image}
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Rendered Image}
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Image}
+    - actions: [add_as_a_layer, open_file]
+      filters: {published_file_type: Texture}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"

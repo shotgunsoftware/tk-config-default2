@@ -24,11 +24,12 @@ includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-houdini.yml
-- ./includes/settings/tk-mari.yml
+# - ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
 - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
+- ./includes/settings/tk-aftereffectscc.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -38,11 +39,12 @@ includes:
 engines:
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset"
   tk-houdini: "@settings.tk-houdini.asset"
-  tk-mari: "@settings.tk-mari.asset"
+  # tk-mari: "@settings.tk-mari.asset"
   tk-maya: "@settings.tk-maya.asset"
   tk-motionbuilder: "@settings.tk-motionbuilder.asset"
   tk-nuke: "@settings.tk-nuke.asset"
   tk-photoshopcc: "@settings.tk-photoshopcc.asset"
+  tk-aftereffectscc: "@settings.tk-aftereffectscc.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
 

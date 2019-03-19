@@ -72,25 +72,25 @@ settings.tk-multi-loader2.houdini:
   location: "@apps.tk-multi-loader2.location"
 
 # mari
-settings.tk-multi-loader2.mari:
-  action_mappings:
-    Alembic Cache: [geometry_import]
-  entities:
-  - caption: Assets
-    entity_type: Asset
-    filters:
-    - [project, is, '{context.project}']
-    hierarchy: [sg_asset_type, code]
-    publish_filters: []
-  - caption: My Tasks
-    entity_type: Task
-    filters:
-    - [task_assignees, is, '{context.user}']
-    - [project, is, '{context.project}']
-    hierarchy: [entity, content]
-    publish_filters: []
-  title_name: Import
-  location: '@apps.tk-multi-loader2.location'
+# settings.tk-multi-loader2.mari:
+#   action_mappings:
+#     Alembic Cache: [geometry_import]
+#   entities:
+#   - caption: Assets
+#     entity_type: Asset
+#     filters:
+#     - [project, is, '{context.project}']
+#     hierarchy: [sg_asset_type, code]
+#     publish_filters: []
+#   - caption: My Tasks
+#     entity_type: Task
+#     filters:
+#     - [task_assignees, is, '{context.user}']
+#     - [project, is, '{context.project}']
+#     hierarchy: [entity, content]
+#     publish_filters: []
+#   title_name: Import
+#   location: '@apps.tk-multi-loader2.location'
 
 # maya
 settings.tk-multi-loader2.maya:
@@ -123,6 +123,7 @@ settings.tk-multi-loader2.maya:
 
 # nuke
 settings.tk-multi-loader2.nuke:
+  actions_hook: '{config}/tk-multi-loader2/tk-nuke_actions.py'
   action_mappings:
     Alembic Cache: [read_node]
     Flame Render: [read_node]
@@ -133,6 +134,8 @@ settings.tk-multi-loader2.nuke:
     Photoshop Image: [read_node]
     Rendered Image: [read_node]
     Texture: [read_node]
+    Hiero Plate: [read_node]
+    Motion Builder FBX: [camera_node, readgeo_node]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -238,6 +241,34 @@ settings.tk-multi-loader2.photoshop:
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
+# aftereffects
+# TODO: will need refactor to add AE file type actions
+settings.tk-multi-loader2.aftereffects:
+  action_mappings:
+    Photoshop Image: [add_as_a_layer, open_file]
+    Rendered Image: [add_as_a_layer, open_file]
+    Image: [add_as_a_layer, open_file]
+    Texture: [add_as_a_layer, open_file]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    - [project, is, '{context.project}']
+    hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
 # motion builder
 settings.tk-multi-loader2.motionbuilder:
   entities:
@@ -258,4 +289,3 @@ settings.tk-multi-loader2.motionbuilder:
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
   location: "@apps.tk-multi-loader2.location"
-

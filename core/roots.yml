@@ -41,19 +41,19 @@
 # core, this requirement has been lifted and the root can be named anything.
 # ------------------------------------------------------------------------------
 
-primary:
+#primary:
 
-    description: A top-level root folder for production data. Project folders
-        will be created beneath this location.
+ #   description: A top-level root folder for production data. Project folders
+ #       will be created beneath this location.
 
     # these paths will be populated by the associated local storage in Shotgun
     # at setup time.
-    mac_path:
-    linux_path:
-    windows_path:
-
+    #mac_path:
+    #linux_path:
+    #windows_path:
+    #shotgun_storage_id:
     # indicates that this is the default storage root
-    default: true
+    #default: true
 
 # ------------------------------------------------------------------------------
 # Below is an example of a second storage root. This root would require a local
@@ -68,3 +68,21 @@ primary:
 #     shotgun_storage_id: 2
 #
 
+nuke_tools:
+    description: nuke tools repository
+    shotgun_storage_id: 69
+
+primary:
+    description: High speed storage for most projects
+    shotgun_storage_id: 3
+    default: true
+
+# primary:
+#     description: High speed storage for AMC projects
+#     shotgun_storage_id: 36
+#     default: true
+
+# primary:
+#     description: High speed storage for HBO projects
+#     shotgun_storage_id: 37
+#     default: true

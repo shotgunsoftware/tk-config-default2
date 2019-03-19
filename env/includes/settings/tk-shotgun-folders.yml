@@ -16,6 +16,6 @@ includes:
 ################################################################################
 
 settings.tk-shotgun-folders:
-  deny_permissions: []
+  deny_permissions: ['Artist']
   deny_platforms: []
   location: "@apps.tk-shotgun-folders.location"

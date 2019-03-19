@@ -18,53 +18,181 @@ includes:
 # asset
 settings.tk-nuke-writenode.asset:
   template_script_work: nuke_asset_work
+  show_convert_actions: True
   write_nodes:
   - file_type: exr
-    name: Exr
+    name: main output
+    promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_asset_render_pub
-    render_template: nuke_asset_render
-    settings: {}
+    render_template: nuke_asset_main_work
+    publish_template: nuke_asset_main_publish
+    settings:
+      autocrop: False
+      channels: rgb
+      compression: DWAB
+      dw_compression_level: 20
+      datatype: 16 bit half
+      metadata: all metadata
     tank_type: Rendered Image
     tile_color: []
+  - file_type: exr
+    name: precomp
+    # promote_write_knobs: [autocrop, datatype, compression]
     promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    render_template: nuke_asset_precomp_work
+    publish_template: nuke_asset_precomp_publish
+    settings:
+      autocrop: True
+      channels: all
+      compression: Zip (1 scanline)
+      datatype: 16 bit half
+      metadata: all metadata
+    tank_type: Rendered Image
+    tile_color: []
+    output_default: main
+  - file_type: exr
+    name: matte
+    # promote_write_knobs: [autocrop]
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    render_template: nuke_asset_matte_work
+    publish_template: nuke_asset_matte_publish
+    settings:
+      autocrop: True
+      channels: rgb
+      compression: RLE
+      datatype: 16 bit half
+      metadata: all metadata
+    tank_type: Rendered Image
+    tile_color: []
+  - file_type: exr
+    name: review
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    render_template: nuke_asset_review_work
+    publish_template: nuke_asset_review_publish
+    settings:
+      autocrop: False
+      channels: rgb
+      compression: DWAB
+      dw_compression_level: 150
+      datatype: 16 bit half
+      metadata: all metadata
+    tank_type: Rendered Image
+    tile_color: []
+  - file_type: exr
+    name: smartvectors
+    # promote_write_knobs: [autocrop, datatype, compression]
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    render_template: nuke_asset_smartvector_work
+    publish_template: nuke_asset_smartvector_publish
+    settings:
+      channels: all
+      compression: Zip (1 scanline)
+      datatype: 16 bit half
+      metadata: all metadata except input/*
+      interleave: channels
+      write_full_layer_names: True
+    tank_type: Rendered Image
+    tile_color: []
+    output_default: main
   location: "@apps.tk-nuke-writenode.location"
 
 # shot
+## note that the options here are required fields, you cannot comment
+## entire lines or the write nodes will break
 settings.tk-nuke-writenode.shot:
   template_script_work: nuke_shot_work
+  show_convert_actions: True
   write_nodes:
   - file_type: exr
-    name: Stereo Exr, 32 bit
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_render_pub_stereo
-    render_template: nuke_shot_render_stereo
-    settings:
-      datatype: 32 bit float
-    tank_type: Rendered Image
-    tile_color: []
-    promote_write_knobs: []
-  - file_type: exr
-    name: Stereo Exr, 16 bit
+    name: main output
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_shot_render_pub_stereo
-    render_template: nuke_shot_render_stereo
+    render_template: nuke_shot_main_work
+    publish_template: nuke_shot_main_publish
     settings:
+      autocrop: False
+      channels: rgb
+      compression: DWAB
+      dw_compression_level: 20
       datatype: 16 bit half
+      metadata: all metadata
     tank_type: Rendered Image
     tile_color: []
-  - file_type: dpx
-    name: Mono Dpx
+  - file_type: exr
+    name: precomp
+    # promote_write_knobs: [autocrop, datatype, compression]
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_shot_render_pub_mono_dpx
-    render_template: nuke_shot_render_mono_dpx
-    settings: {}
+    render_template: nuke_shot_precomp_work
+    publish_template: nuke_shot_precomp_publish
+    settings:
+      autocrop: True
+      channels: all
+      compression: Zip (1 scanline)
+      datatype: 16 bit half
+      metadata: all metadata
     tank_type: Rendered Image
     tile_color: []
+    output_default: main
+  - file_type: exr
+    name: matte
+    # promote_write_knobs: [autocrop]
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    render_template: nuke_shot_matte_work
+    publish_template: nuke_shot_matte_publish
+    settings:
+      autocrop: True
+      channels: rgb
+      compression: RLE
+      datatype: 16 bit half
+      metadata: all metadata
+    tank_type: Rendered Image
+    tile_color: []
+  - file_type: exr
+    name: review
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    render_template: nuke_shot_review_work
+    publish_template: nuke_shot_review_publish
+    settings:
+      autocrop: False
+      channels: rgb
+      compression: DWAB
+      dw_compression_level: 150
+      datatype: 16 bit half
+      metadata: all metadata
+    tank_type: Rendered Image
+    tile_color: []
+  - file_type: exr
+    name: smartvectors
+    # promote_write_knobs: [autocrop, datatype, compression]
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    render_template: nuke_shot_smartvector_work
+    publish_template: nuke_shot_smartvector_publish
+    settings:
+      channels: all
+      compression: Zip (1 scanline)
+      datatype: 16 bit half
+      metadata: all metadata except input/*
+      interleave: channels
+      write_full_layer_names: True
+    tank_type: Rendered Image
+    tile_color: []
+    output_default: main
   location: "@apps.tk-nuke-writenode.location"
