@@ -19,7 +19,13 @@ ToolkitComponent: &ToolkitComponent CustomNonProjectEntity03
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.5.3
+  version: v0.5.6
+
+# After Effects
+engines.tk-aftereffects.location:
+  type: app_store
+  name: tk-aftereffects
+  version: v0.1.2
 
 # Desktop
 engines.tk-desktop.location:
@@ -27,11 +33,17 @@ engines.tk-desktop.location:
   name: tk-desktop
   version: v2.4.12
 
+# Desktop2
+engines.tk-desktop2.location:
+  type: app_store
+  name: tk-desktop2
+  version: v1.1.0
+
 # Flame
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.14.7
+  version: v1.14.8
 
 # Houdini
 engines.tk-houdini.location:
@@ -40,10 +52,10 @@ engines.tk-houdini.location:
   version: v1.6.0
 
 # Mari
-# engines.tk-mari.location:
-#   type: app_store
-#   name: tk-mari
-#   version: v1.2.0
+engines.tk-mari.location:
+  type: app_store
+  name: tk-mari
+  version: v1.2.2
 
 # Maya
 engines.tk-maya.location:
@@ -78,19 +90,7 @@ engines.tk-nuke.location:
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.6.3
-
-# AfterEffects
-engines.tk-aftereffectscc.location:
-  ### Toolkit App Entity
-  type: shotgun
-  entity_type: *ToolkitComponent
-  name: tk-aftereffectscc
-  field: sg_uploaded_app
-  version: 1834
-  #### Dev
-  # type: dev
-  # path: R:\code\work\anthony.kramer\shotgun\engines\tk-aftereffectscc
+  version: v1.7.1
 
 # Shell
 engines.tk-shell.location:

@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -9,20 +9,22 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and Engines when launching with a site level context.
+description: Apps and engines loaded when a Version is loaded.
+  By default, the only engine defined here is tk-shotgun. This configuration
+  provides the apps that are necessary to display menu actions in the Shotgun
+  web application by way of Toolkit's browser integration.
 
 ################################################################################
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-desktop.yml
-- ./includes/settings/tk-desktop2.yml
+- ./includes/settings/tk-shotgun.yml
 
 ################################################################################
-# configuration for all engines to load in a project context
+# configuration for all engines to load in a version context
+
 engines:
-  tk-desktop: '@settings.tk-desktop.site'
-  tk-desktop2: '@settings.tk-desktop2.site'
+  tk-shotgun: "@settings.tk-shotgun.version"
 
 ################################################################################
 # reference all of the common frameworks

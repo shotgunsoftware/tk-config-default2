@@ -15,13 +15,14 @@ description: Apps and Engines related to Shot based work.
 
 includes:
 - ./includes/frameworks.yml
+- ./includes/settings/tk-desktop2.yml
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-maya.yml
 - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
-- ./includes/settings/tk-aftereffectscc.yml
+- ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -30,6 +31,7 @@ includes:
 
 engines:
   # referencing the DCC-specific shot_step environments included above
+  tk-desktop2: "@settings.tk-desktop2.all"
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.shot_step"
   tk-houdini: "@settings.tk-houdini.shot_step"
   tk-maya: "@settings.tk-maya.shot_step"
@@ -38,7 +40,7 @@ engines:
   tk-nuke-render: "@settings.tk-nuke.render.shot_step"
   tk-nukestudio: "@settings.tk-nuke.nukestudio.shot_step"
   tk-photoshopcc: "@settings.tk-photoshopcc.shot_step"
-  tk-aftereffectscc: "@settings.tk-aftereffectscc.shot_step"
+  tk-aftereffects: "@settings.tk-aftereffects.shot_step"
   tk-shell: "@settings.tk-shell.shot_step"
   tk-shotgun: "@settings.tk-shotgun.shot_step"
 

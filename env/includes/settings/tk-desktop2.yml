@@ -9,22 +9,28 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and Engines when launching with a site level context.
-
 ################################################################################
 
 includes:
-- ./includes/frameworks.yml
-- ./includes/settings/tk-desktop.yml
-- ./includes/settings/tk-desktop2.yml
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-multi-launchapp.yml
+- ./tk-multi-publish2.yml
 
 ################################################################################
-# configuration for all engines to load in a project context
-engines:
-  tk-desktop: '@settings.tk-desktop.site'
-  tk-desktop2: '@settings.tk-desktop2.site'
 
-################################################################################
-# reference all of the common frameworks
+# site
+settings.tk-desktop2.site:
+  apps:
+  location: "@engines.tk-desktop2.location"
 
-frameworks: "@frameworks"
+
+# project
+settings.tk-desktop2.all:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
+    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
+    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
+  location: "@engines.tk-desktop2.location"

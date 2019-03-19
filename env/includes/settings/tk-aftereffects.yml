@@ -1,0 +1,108 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
+- ./tk-multi-screeningroom.yml
+- ./tk-multi-shotgunpanel.yml
+- ./tk-multi-snapshot.yml
+- ./tk-multi-workfiles2.yml
+
+################################################################################
+
+# asset
+settings.tk-aftereffects.asset:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: '@engines.tk-aftereffects.location'
+
+# asset_step
+settings.tk-aftereffects.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.aftereffects"
+    tk-multi-publish2: "@settings.tk-multi-publish2.aftereffects.asset_step"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.aftereffects.asset_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects.asset_step"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  location: '@engines.tk-aftereffects.location'
+
+# project
+settings.tk-aftereffects.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  location: '@engines.tk-aftereffects.location'
+
+# shot
+settings.tk-aftereffects.shot:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  location: '@engines.tk-aftereffects.location'
+
+# shot_step
+settings.tk-aftereffects.shot_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.aftereffects"
+    tk-multi-publish2: "@settings.tk-multi-publish2.aftereffects.shot_step"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.aftereffects.shot_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects.shot_step"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  location: '@engines.tk-aftereffects.location'

@@ -224,26 +224,27 @@ settings.tk-multi-shotgunpanel.photoshop:
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
 
-# aftereffects
-# TODO: This will need to be refactored for AE files
+# after effects
 settings.tk-multi-shotgunpanel.aftereffects:
-  actions_hook: "{self}/general_actions.py"
   action_mappings:
     PublishedFile:
-    - actions: [add_as_a_layer, open_file]
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: After Effects Project}
+    - actions: [add_to_project, add_to_comp]
+      filters: {published_file_type: Maya Scene}
+    - actions: [add_to_project, add_to_comp]
       filters: {published_file_type: Photoshop Image}
-    - actions: [add_as_a_layer, open_file]
+    - actions: [add_to_project, add_to_comp]
       filters: {published_file_type: Rendered Image}
-    - actions: [add_as_a_layer, open_file]
+    - actions: [add_to_project, add_to_comp]
       filters: {published_file_type: Image}
-    - actions: [add_as_a_layer, open_file]
+    - actions: [add_to_project, add_to_comp]
       filters: {published_file_type: Texture}
-    - actions: [publish_clipboard]
-      filters: {}
     Task:
     - actions: [assign_task, task_to_ip]
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
+  actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
