@@ -325,40 +325,65 @@ class IngestCollectorPlugin(HookBaseClass):
                 if item:
                     file_items.append(item)
 
-        # make sure we have snapshot_type field in all the items!
-        # this is to make sure that on publish we retain this field to figure out asset creation is needed or not.
-        for file_item in file_items:
-            fields = file_item.properties["fields"]
-
-            item_info = self._get_item_type_info(settings, file_item.type)
-
-            if "snapshot_type" not in fields:
-                fields["snapshot_type"] = item_info["default_snapshot_type"]
-                # CDL files should always be published as Asset entity with nuke_avidgrade asset_type
-                # this is to match organic, and also for Avid grade lookup on shotgun
-                # this logic has been moved to _get_item_type_info by defining default_snapshot_type for each item type
-                # if file_item.type == "file.cdl":
-                #     fields["snapshot_type"] = "nuke_avidgrade"
-
-                self.logger.info(
-                    "Injected snapshot_type field for item: %s" % file_item.name,
-                    extra={
-                        "action_show_more_info": {
-                            "label": "Show Info",
-                            "tooltip": "Show more info",
-                            "text": "Updated fields:\n%s" %
-                                    (pprint.pformat(file_item.properties["fields"]))
-                        }
-                    }
-                )
-
-            # check for default fields those and add those fields if not already present on item.
-            if "default_fields" in item_info:
-                for key, value in item_info["default_fields"].iteritems():
-                    if key not in fields:
-                        fields[key] = value
-
         return file_items
+
+    def _resolve_item_fields(self, settings, item):
+        """
+        Populates the item's defaults that are to be stored on an ingested item.
+        make sure we have snapshot_type field in the item!
+        this is to make sure that on publish we retain this field to figure out asset creation is needed or not.
+
+        :param dict settings: Configured settings for this collector
+        :param item: Item to create/verify the defaults on
+        """
+
+        fields = super(IngestCollectorPlugin, self)._resolve_item_fields(settings, item)
+
+        item_info = self._get_item_type_info(settings, item.type)
+
+        # restore the fields from the manifest file, even though we currently don't allow users to change context
+        # when ingesting using the manifest file.
+        if "manifest_file_fields" in item.properties:
+            self.logger.info(
+                "Re-creating manifest file fields for: %s" % item.name,
+                extra={
+                    "action_show_more_info": {
+                        "label": "Show Info",
+                        "tooltip": "Show more info",
+                        "text": "Manifest fields:\n%s" %
+                                (pprint.pformat(item.properties.manifest_file_fields))
+                    }
+                }
+            )
+            fields.update(item.properties.manifest_file_fields)
+
+        if "snapshot_type" not in fields:
+            fields["snapshot_type"] = item_info["default_snapshot_type"]
+            # CDL files should always be published as Asset entity with nuke_avidgrade asset_type
+            # this is to match organic, and also for Avid grade lookup on shotgun
+            # this logic has been moved to _get_item_type_info by defining default_snapshot_type for each item type
+            # if file_item.type == "file.cdl":
+            #     fields["snapshot_type"] = "nuke_avidgrade"
+
+            self.logger.info(
+                "Injected snapshot_type field for item: %s" % item.name,
+                extra={
+                    "action_show_more_info": {
+                        "label": "Show Info",
+                        "tooltip": "Show more info",
+                        "text": "Updated fields:\n%s" %
+                                (pprint.pformat(fields))
+                    }
+                }
+            )
+
+        # create the defaults on the item, if we didn't already get them from the manifest.
+        if "default_fields" in item_info:
+            for key, value in item_info["default_fields"].iteritems():
+                if key not in fields:
+                    fields[key] = value
+
+        return fields
 
     def _process_manifest_file(self, settings, path):
         """
@@ -579,6 +604,9 @@ class IngestCollectorPlugin(HookBaseClass):
 
                     # inject the new fields into the item
                     for new_item in new_items:
+                        # create a new property that stores the fields contained in manifest file for this item.
+                        new_item.properties.manifest_file_fields = fields
+
                         item_fields = new_item.properties["fields"]
                         item_fields.update(fields)
 
@@ -610,7 +638,6 @@ class IngestCollectorPlugin(HookBaseClass):
         """Updates the context of the item from the work_path_template/template, if needed.
 
         :param work_path_template: The work_path template name
-        :param item: item to build the context for
         :param parent_item: parent item instance
         :param default_entities: a list of default entities to use during the creation of the
         :class:`sgtk.Context` if not found in the path
@@ -622,6 +649,7 @@ class IngestCollectorPlugin(HookBaseClass):
         ]
 
         # TODO-- this is not needed right now, since our keys only depend on short_name key of the Step
+        # Environment resolution hook anyways, doesn't validate if the Step entity belongs to the same class or not.
         # make sure we get the correct Step!
         # if base_context.entity:
         #     # this should handle whether the Step is from Sequence/Shot/Asset

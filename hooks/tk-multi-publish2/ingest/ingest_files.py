@@ -121,48 +121,49 @@ class IngestFilesPlugin(HookBaseClass):
         """
 
         # this has to run first so that item properties are populated.
+        # This also makes sure we are running within a valid context.
         # Properties are used to find a linked entity.
         status = super(IngestFilesPlugin, self).validate(task_settings, item)
 
         # ---- this check will only run if the status of the published files is true.
         # ---- check for matching linked_entity of this path with a status.
+        if status:
+            linked_entity_fields = ["sg_status_list"]
+            linked_entity = self._find_linked_entity(task_settings, item, linked_entity_fields)
 
-        linked_entity_fields = ["sg_status_list"]
-        linked_entity = self._find_linked_entity(task_settings, item, linked_entity_fields)
-
-        if linked_entity and status:
-            conflict_info = (
-                "This matching %s Entity will be updated and also linked to a new PublishedFile"
-                "<pre>%s</pre>" % (item.properties["linked_entity_type"], pprint.pformat(linked_entity),)
-            )
-            self.logger.info(
-                "Found a matching %s in Shotgun for item %s" % (item.properties["linked_entity_type"], item.name),
-                extra={
-                    "action_show_more_info": {
-                        "label": "Show %s" % item.properties["linked_entity_type"],
-                        "tooltip": "Show the matching linked_entity in Shotgun",
-                        "text": conflict_info
+            if linked_entity:
+                conflict_info = (
+                    "This matching %s Entity will be updated and also linked to a new PublishedFile"
+                    "<pre>%s</pre>" % (item.properties["linked_entity_type"], pprint.pformat(linked_entity),)
+                )
+                self.logger.info(
+                    "Found a matching %s in Shotgun for item %s" % (item.properties["linked_entity_type"], item.name),
+                    extra={
+                        "action_show_more_info": {
+                            "label": "Show %s" % item.properties["linked_entity_type"],
+                            "tooltip": "Show the matching linked_entity in Shotgun",
+                            "text": conflict_info
+                        }
                     }
-                }
-            )
+                )
 
-        elif status:
-            if item.properties["linked_entity_type"] == "Asset":
-                asset_type_status = self._create_asset_type(task_settings, item)
-                if asset_type_status:
-                    self.logger.info("Created %s asset type!" % item.properties["fields"]["snapshot_type"])
-
-                if asset_type_status is None:
-                    # failed to create the asset_type abort!
-                    return False
-
-                self.logger.info("%s entity will be created of type %s for item %s"
-                                 % (item.properties["linked_entity_type"],
-                                    item.properties["fields"]["snapshot_type"],
-                                    item.name))
             else:
-                self.logger.info("%s entity will be created for item %s"
-                                 % (item.properties["linked_entity_type"], item.name))
+                if item.properties["linked_entity_type"] == "Asset":
+                    asset_type_status = self._create_asset_type(task_settings, item)
+                    if asset_type_status:
+                        self.logger.info("Created %s asset type!" % item.properties["fields"]["snapshot_type"])
+
+                    if asset_type_status is None:
+                        # failed to create the asset_type abort!
+                        return False
+
+                    self.logger.info("%s entity will be created of type %s for item %s"
+                                     % (item.properties["linked_entity_type"],
+                                        item.properties["fields"]["snapshot_type"],
+                                        item.name))
+                else:
+                    self.logger.info("%s entity will be created for item %s"
+                                     % (item.properties["linked_entity_type"], item.name))
 
         return status
 

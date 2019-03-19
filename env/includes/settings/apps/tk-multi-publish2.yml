@@ -61,12 +61,12 @@ settings.tk-multi-publish2.nukestudio.create_version:   '@settings.tk-multi-publ
 settings.tk-multi-publish2.nukestudio.upload_version:   '@settings.tk-multi-publish2.basic.upload_version'
 
 settings.tk-multi-publish2.ingest.collector:            '@settings.tk-multi-publish2.basic.collector:{config}/tk-multi-publish2/ingest/collector.py'
-settings.tk-multi-publish2.ingest.publish_files:        '@settings.tk-multi-publish2.basic.publish_files:{config}/tk-multi-publish2/ingest/ingest_files.py'
+settings.tk-multi-publish2.ingest.publish_files:        '@settings.tk-multi-publish2.basic.publish_files:{config}/tk-multi-publish2/ingest/ingest_base.py:{config}/tk-multi-publish2/ingest/ingest_files.py'
 settings.tk-multi-publish2.ingest.color_process_files:  '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/ingest/color_process_files.py'
-settings.tk-multi-publish2.ingest.upload_notes:           '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/ingest/upload_notes.py'
+settings.tk-multi-publish2.ingest.upload_notes:         '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/ingest/upload_notes.py'
 settings.tk-multi-publish2.ingest.publish_cdl_files:    '@settings.tk-multi-publish2.ingest.publish_files:{config}/tk-multi-publish2/ingest/ingest_cdl_files.py'
-settings.tk-multi-publish2.ingest.create_version:       '@settings.tk-multi-publish2.basic.create_version'
-settings.tk-multi-publish2.ingest.upload_version:       '@settings.tk-multi-publish2.basic.upload_version'
+settings.tk-multi-publish2.ingest.create_version:       '{config}/tk-multi-publish2/ingest/ingest_base.py:@settings.tk-multi-publish2.basic.create_version'
+settings.tk-multi-publish2.ingest.upload_version:       '{config}/tk-multi-publish2/ingest/ingest_base.py:@settings.tk-multi-publish2.basic.upload_version'
 
 
 ################################################################################
