@@ -13,6 +13,7 @@ import os
 import maya.cmds as cmds
 import maya.mel as mel
 import sgtk
+from sgtk.platform.qt import QtGui
 from sgtk.util import filesystem
 
 # DD imports
@@ -59,6 +60,21 @@ class MayaPublishSessionModelPlugin(HookBaseClass):
         :param item: Item to process
         :returns: True if item is valid, False otherwise.
         """
+        if not item.get_property("skip_tide"):
+            item.local_properties["skip_tide"] = QtGui.QMessageBox.question(None, 'Skip Tide?',
+                                                                            'Would you like to skip Tide validations?',
+                                                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+        if item.get_property("skip_tide") == QtGui.QMessageBox.Yes:
+            skip_message = "Skipping Tide validations!"
+            self.logger.warning(skip_message)
+
+            # add to publish comment, if not already added
+            if not item.description:
+                item.description = skip_message
+            elif skip_message not in item.description:
+                item.description = "{} {}".format(item.description, skip_message)
+            return super(MayaPublishSessionModelPlugin, self).validate(task_settings, item)
+
         # create list of elements from maya nodes to collect results about
         workflow_data = {"elements": []}
         toplevel_objects = find_model_root_nodes()
