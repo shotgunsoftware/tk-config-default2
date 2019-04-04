@@ -126,7 +126,7 @@ settings.tk-multi-loader2.nukestudio:
       entity_type: Version
       filters:
         - [project, is, '{context.project}']
-        - ["sg_task.Task.step.Step.short_name", in, ["layout", "anim", "light", "fx", "comp"]]
+        - ["sg_task.Task.step.Step.short_name", in, ["layout", "anim", "light", "fx", "comp", "previs"]]
         - ["sg_path_to_movie", "is_not", ""]
       hierarchy: [entity.Shot.sg_sequence, sg_task.Task.step, entity.Shot.code, code]
     - caption: Playlists
@@ -135,7 +135,7 @@ settings.tk-multi-loader2.nukestudio:
       filters:
         - [project, "is", '{context.project}']
         - ["playlists", "is_not", null]
-        - ["sg_task.Task.step.Step.short_name", in, ["layout", "anim", "light", "fx", "comp"]]
+        - ["sg_task.Task.step.Step.short_name", in, ["layout", "anim", "light", "fx", "comp", "previs"]]
         - ["sg_path_to_movie", "is_not", ""]
       hierarchy: [playlists, entity.Shot.code, code]
     - caption: My Tasks
