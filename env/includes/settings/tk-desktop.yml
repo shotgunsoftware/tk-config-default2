@@ -55,4 +55,7 @@ settings.tk-desktop.project:
   - matches:
     - "*Hiero*"
     name: Editorial Tools
+  - matches:
+    - "*Alias*"
+    name: Automotive Tools
   location: "@engines.tk-desktop.location"
