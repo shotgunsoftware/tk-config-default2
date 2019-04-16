@@ -69,3 +69,11 @@ frameworks:
       branch: master
       path: https://github.com/shotgunsoftware/tk-framework-locking.git
       version: 5c8319eb317b134bc1e2e89febb5891a411b3fcb
+
+  # lmv - Lmv file conversion
+  tk-framework-lmv_v0.x.x:
+    location:
+      type: git_branch
+      branch: master
+      path: https://github.com/shotgunsoftware/tk-framework-lmv.git
+      version: 9a7ca19b1f9b0df3f109393da06834881ea7886f
