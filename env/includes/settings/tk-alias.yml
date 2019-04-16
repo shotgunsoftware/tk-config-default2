@@ -29,5 +29,7 @@ settings.tk-alias.asset_step:
 
 # project
 settings.tk-alias.project:
-  apps: {}
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
   location: "@engines.tk-alias.location"
