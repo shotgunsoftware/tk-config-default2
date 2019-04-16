@@ -20,7 +20,7 @@ frameworks:
       version: v1.0.2
       type: app_store
       name: tk-framework-adobe
-  
+
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
@@ -61,3 +61,11 @@ frameworks:
       version: v0.2.7
       type: app_store
       name: tk-framework-widget
+
+  # locking - Allow softwares to lock work file
+  tk-framework-locking_v0.x.x:
+    location:
+       type: git_branch
+       branch: master
+       path: https://github.com/shotgunsoftware/tk-framework-locking.git
+       version: 5c8319eb317b134bc1e2e89febb5891a411b3fcb
