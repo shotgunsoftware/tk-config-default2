@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.9
+  version: v0.11.10
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -135,7 +135,7 @@ apps.tk-shotgun-launchpublish.location:
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
-  version: v0.5.1
+  version: v0.5.2
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -169,7 +169,7 @@ apps.tk-nuke-quickreview.location:
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.4.1
+  version: v1.4.2
 
 # ---- Flame apps
 
