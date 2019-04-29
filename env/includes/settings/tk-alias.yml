@@ -36,4 +36,6 @@ settings.tk-alias.project:
       location: "@apps.tk-multi-about.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-alias.location"
