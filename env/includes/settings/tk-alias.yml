@@ -21,7 +21,9 @@ includes:
 
 # asset
 settings.tk-alias.asset:
-  apps: {}
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
   location: "@engines.tk-alias.location"
 
 # asset_step
