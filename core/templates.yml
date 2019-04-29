@@ -594,6 +594,26 @@ paths:
     nuke_asset_publish:
         definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
 
+    #
+    # Alias
+    #
+
+    # define the location of a work area
+    asset_work_area_alias:
+        definition: '@asset_root/work/alias'
+    # define the location of a publish area
+    asset_publish_area_alias:
+        definition: '@asset_root/publish/alias'
+    # The location of WIP files
+    alias_asset_work:
+        definition: '@asset_root/work/alias/{name}.v{version}.wire'
+    # The location of backups of WIP files
+    alias_asset_snapshot:
+        definition: '@asset_root/work/alias/snapshots/{name}.v{version}.{timestamp}.wire'
+    # The location of published Motionbuilder files
+    alias_asset_publish:
+        definition: '@asset_root/publish/alias/{name}.v{version}.wire'
+
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
