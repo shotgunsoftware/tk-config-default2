@@ -14,6 +14,7 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
+- ./tk-multi-shotgunpanel.yml
 
 ################################################################################
 
@@ -32,4 +33,5 @@ settings.tk-alias.project:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
   location: "@engines.tk-alias.location"
