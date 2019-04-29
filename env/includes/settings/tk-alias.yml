@@ -24,6 +24,7 @@ settings.tk-alias.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
   location: "@engines.tk-alias.location"
 
 # asset_step
