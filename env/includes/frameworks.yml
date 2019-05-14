@@ -49,7 +49,7 @@ frameworks:
       type: git_branch
       branch: master
       path: https://github.com/shotgunsoftware/tk-framework-locking.git
-      version: 5c8319eb317b134bc1e2e89febb5891a411b3fcb
+      version: 32cfd3a4b4d3b48e291381a3b83cec998af13171
 
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
