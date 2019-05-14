@@ -31,6 +31,7 @@ includes:
 - ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-alias.yml
+- ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
