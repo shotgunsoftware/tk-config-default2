@@ -15,6 +15,7 @@ includes:
 - ../app_locations.yml
 - ../engine_locations.yml
 - ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
@@ -30,6 +31,7 @@ settings.tk-alias.asset:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
+  file_usage_hook: "{tk-framework-locking_v0.x.x}/apps/alias_file_usage.py"
   location: "@engines.tk-alias.location"
 
 # asset_step
@@ -38,9 +40,16 @@ settings.tk-alias.asset_step:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.alias"
+    tk-multi-publish2: "@settings.tk-multi-publish2.alias.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.alias.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias.asset_step"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  file_usage_hook: "{tk-framework-locking_v0.x.x}/apps/alias_file_usage.py"
   location: "@engines.tk-alias.location"
 
 # project
@@ -52,4 +61,5 @@ settings.tk-alias.project:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
+  file_usage_hook: "{tk-framework-locking_v0.x.x}/apps/alias_file_usage.py"
   location: "@engines.tk-alias.location"
