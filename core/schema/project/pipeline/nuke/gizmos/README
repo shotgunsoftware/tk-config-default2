@@ -1,0 +1,4 @@
+This location is for project-specific nuke Gizmos. Any gizmo files placed in
+this folder will be added to the project tools menu within nuke. You may
+want to organize your gizmos into folders to keep the root of the menu
+from getting over-crowded.

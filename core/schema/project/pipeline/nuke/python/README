@@ -1,0 +1,5 @@
+This location is for project-specific nuke python scripts. This path will be added
+to NUKE_PATH before launching nuke so you can add a menu.py and init.py file to
+add per-show customizations to. Just be aware that this folder is LIVE and
+anything you add to this folder will get picked up by every active nuke session
+for this project.

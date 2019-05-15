@@ -46,19 +46,14 @@ class BeforeAppLaunch(tank.Hook):
         # you can set environment variables like this:
         # os.environ["MY_SETTING"] = "foo bar"
 
-        # this is the way SG says to do this
-
         self.logger.debug("[CBFX] engine name: %s" % engine_name)
 
+        current_context = self.parent.context
+        self.logger.debug("[CBFX] current context: %s" % current_context)
+
+
         # if engine_name == "tk-nuke":
-        #     self.logger.debug("[CBFX] nuke tools: %s" % self.sgtk.roots["nuke_tools"])
-        #     env_vars = {
-        #         "NUKE_PATH": "R:\\code\\work\\anthony.kramer\\nuke\\cbfx-nuke-tools;%s" % self.sgtk.roots['nuke_tools'],
-        #         # "NUKE_PATH": "S:\\tools\\nuke\\cbfx\\current;%s" % self.sgtk.roots['nuke_tools'],
-        #     }
-        #     for k, v in env_vars.iteritems():
-        #         tank.util.append_path_to_env_var(k, v)
-        #         self.logger.debug("[CBFX] added environ %s=%s" % (k, v))
+        #     os.environ['NUKE_PATH'] = os.environ['NUKE_PATH'].replace('S:\\Tools\\Nuke;', 'P:\\_pipe\\nuke;')
         #
         # if engine_name == "tk-hiero":
         #     env_vars = {

@@ -1,0 +1,4 @@
+This location is for project-specific nuke Templates. Any nuke script placed in
+this folder will be added to the project tools menu within nuke. You may
+want to organize your toolsets into folders to keep the root of the Templates
+menu from getting over-crowded.

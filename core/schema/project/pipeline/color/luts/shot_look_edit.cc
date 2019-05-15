@@ -1,6 +1,6 @@
-<ColorCorrection id="">
+<ColorCorrection id="default">
   <SOPNode>
-    <Description>DEFAULT FLAT</Description>
+    <Description></Description>
     <Slope>1 1 1</Slope>
     <Offset>0 0 0</Offset>
     <Power>1 1 1</Power>

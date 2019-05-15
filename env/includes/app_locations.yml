@@ -22,21 +22,9 @@ alias: &ToolkitComponent CustomNonProjectEntity03
 # ---- Multi apps
 
 # render app
-apps.tk-multi-render.location:
-  type: dev
-  path: R:\work\anthony.kramer\shotgun\apps\tk-multi-render
-
-# nuke tools app
-apps.tk-nuke-tools.location:
-  ## Toolkit App Entity
-  type: shotgun
-  entity_type: *ToolkitComponent
-  name: tk-nuke-tools
-  field: sg_uploaded_app
-  version: 25662 #v0.0.5
-  ## Dev
-  # type: dev
-  # path: R:\work\anthony.kramer\shotgun\apps\tk-nuke-tools
+# apps.tk-multi-render.location:
+#   type: dev
+#   path: R:\work\anthony.kramer\shotgun\apps\tk-multi-render
 
 # about
 apps.tk-multi-about.location:
@@ -222,7 +210,7 @@ apps.tk-nuke-writenode.location:
   entity_type: *ToolkitComponent
   name: tk-nuke-writenode
   field: sg_uploaded_app
-  version: 11930
+  version: 11930 #v1.4.1-cbfx.2
   ### Dev
   # type: dev
   # path: R:\code\work\anthony.kramer\shotgun\apps\tk-nuke-writenode
@@ -230,6 +218,30 @@ apps.tk-nuke-writenode.location:
   # name: tk-nuke-writenode
   # type: app_store
   # version: v1.4.1
+
+# nuke tools app
+apps.tk-nuke-tools.location:
+  ## Toolkit App Entity
+  type: shotgun
+  entity_type: *ToolkitComponent
+  name: tk-nuke-tools
+  field: sg_uploaded_app
+  version: 25662 #v0.0.5
+  ## Dev
+  # type: dev
+  # path: R:\work\anthony.kramer\github\tk-nuke-tools
+
+# ocio
+apps.tk-nuke-ocio.location:
+  ### Toolkit App Entity
+  type: shotgun
+  entity_type: *ToolkitComponent
+  name: tk-nuke-ocio
+  field: sg_uploaded_app
+  version: 43112 #v0.0.3-cbfx
+  ### Dev
+  # type: dev
+  # path: R:\work\anthony.kramer\github\tk-nuke-ocio
 
 # ---- Flame apps
 

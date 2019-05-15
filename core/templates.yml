@@ -216,21 +216,38 @@ paths:
       definition: './plugins'
       root_name: nuke_tools
 
+    # nuke_tools_project_path:
+    #   definition: 'pipeline/nuke'
+    #
+    # nuke_tools_project_gizmos:
+    #   definition: 'pipeline/nuke/gizmos'
+    #
+    # nuke_tools_project_templates:
+    #   definition: 'pipeline/nuke/templates'
 
     ##########################################################################################
     # Project level paths
     #
 
     #
-    # LUTs
+    # OCIO config path
+    #
+    ocio_config_path:
+      definition: 'pipeline/color'
+
+    #
+    # LUTs and Looks
     #
 
-    lut_root:
-      definition: 'editorial/luts'
-    lut_seq:
-      definition: '@lut_root/{Sequence}'
-    lut_shot:
-      definition: '@lut_root/{Sequence}/{Shot}'
+    # The location of project LUTs
+    lut_project_publish_area:
+      definition: 'pipeline/color/luts'
+
+    # The location of look/cc files
+    look_sequence_publish_area:
+      definition: 'pipeline/color/luts/{Sequence}'
+    look_shot_publish_area:
+      definition: 'pipeline/color/luts/{Sequence}/{Shot}'
 
     #
     # Hiero
@@ -299,7 +316,7 @@ paths:
 
 
     #
-    # AfterEffects
+    # After Effects
     #
 
     # The location of WIP files
@@ -307,39 +324,21 @@ paths:
         definition: '@shot_work_area/aftereffects'
     aftereffects_shot_work:
         definition: '@shot_work_area/aftereffects/{name}.v{version}.aep'
+    # The location of backups of WIP files
     aftereffects_shot_snapshot:
         definition: '@shot_work_area/aftereffects/snapshots/{name}.v{version}.{timestamp}.aep'
-
     # The location of published files
     shot_publish_area_aftereffects:
         definition: '@shot_publish_area/aftereffects'
     aftereffects_shot_publish:
         definition: '@shot_publish_area/aftereffects/{name}.v{version}.aep'
-
-    #
-    # After Effects
-    #
-
-    # The location of WIP files
-    aftereffects_shot_work:
-        definition: '@shot_root/work/afx/{name}.v{version}.aep'
-    shot_work_area_aftereffects:
-        definition: '@shot_root/work/afx'
-    # The location of backups of WIP files
-    aftereffects_shot_snapshot:
-        definition: '@shot_root/work/afx/snapshots/{name}.v{version}.{timestamp}.aep'
-    # The location of published files
-    shot_publish_area_aftereffects:
-        definition: '@shot_root/publish/afx'
-    aftereffects_shot_publish:
-        definition: '@shot_root/publish/afx/{name}.v{version}.aep'
     aftereffects_shot_render_pub_mono:
-        definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
+        definition: '@shot_publish_area/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
     # The following template uses {afx.mov.ext} this is a special key, that will be only there
     # in the beta to support different extensions on mac and windows, while using the same
     # output module (Lossless with Alpha)
     aftereffects_shot_render_movie:
-        definition: '@shot_root/review/{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
+        definition: '@shot_work_area/review/{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
 
 
     #
