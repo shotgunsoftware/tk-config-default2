@@ -24,21 +24,21 @@ includes:
 ################################################################################
 
 # asset
-settings.tk-aftereffectscc.asset:
+settings.tk-aftereffects.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects"
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  location: '@engines.tk-aftereffectscc.location'
+  location: '@engines.tk-aftereffects.location'
 
 # asset_step
-settings.tk-aftereffectscc.asset_step:
+settings.tk-aftereffects.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -55,40 +55,40 @@ settings.tk-aftereffectscc.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  location: '@engines.tk-aftereffectscc.location'
+  location: '@engines.tk-aftereffects.location'
 
 # project
-settings.tk-aftereffectscc.project:
+settings.tk-aftereffects.project:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects"
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  location: '@engines.tk-aftereffectscc.location'
+  location: '@engines.tk-aftereffects.location'
 
 # shot
-settings.tk-aftereffectscc.shot:
+settings.tk-aftereffects.shot:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.aftereffects"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.aftereffects"
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
-  location: '@engines.tk-aftereffectscc.location'
+  location: '@engines.tk-aftereffects.location'
 
 # shot_step
-settings.tk-aftereffectscc.shot_step:
+settings.tk-aftereffects.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -105,4 +105,4 @@ settings.tk-aftereffectscc.shot_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  location: '@engines.tk-aftereffectscc.location'
+  location: '@engines.tk-aftereffects.location'

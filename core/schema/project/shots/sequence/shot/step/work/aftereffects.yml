@@ -12,4 +12,4 @@
 type: "static"
 
 # defer creation and only create this folder when AfterEffects starts
-defer_creation: "tk-aftereffectscc"
+defer_creation: "tk-aftereffects"

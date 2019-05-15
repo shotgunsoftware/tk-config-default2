@@ -1,0 +1,22 @@
+This location is for project luts, sequence looks, and shot looks files.
+The default OCIO config will look for a luts and CC files in the following
+locations in this order:
+
+1 - ./{sequence}/{shot}/
+2 - ./ (this directory)
+
+project_lut_default.cube :
+Usually provided by the client, this LUT is used to transform the camera raw
+colrospace to rec709 display. If the the file provided by the client is not a
+.cube file, the colorsapce entity on shotgun can be updated to reflect the
+correct extension or you can try renaming the extension to .cube and let ocio
+figure it out. The default version of this is an AlexaV3LogC to rec709 curve.
+
+shot_look_edit.cc :
+Usually provided by editorial, when placed in the corresponding shot folders
+these .cc will be applied to that shot. The shot_look_edit.cc is a flat cc
+that will be applied if no CC file is found in the cooresponding shot folder.
+
+These file names can be changed in the colorspace config to account for more
+customized configutations or even muliple projects luts per project and multiple
+shot ccs per shot.

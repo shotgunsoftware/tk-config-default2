@@ -15,6 +15,7 @@ description: Apps and Engines related to Asset based work.
 
 includes:
 - ./includes/frameworks.yml
+- ./includes/settings/tk-desktop2.yml
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-houdini.yml
 # - ./includes/settings/tk-mari.yml
@@ -22,7 +23,7 @@ includes:
 - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
-- ./includes/settings/tk-aftereffectscc.yml
+- ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -30,6 +31,7 @@ includes:
 # configuration for all engines to load in an asset step context
 
 engines:
+  tk-desktop2: "@settings.tk-desktop2.all"
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset_step"
   tk-houdini: "@settings.tk-houdini.asset_step"
   # tk-mari: "@settings.tk-mari.asset_step"
@@ -39,7 +41,7 @@ engines:
   tk-nuke-render: "@settings.tk-nuke.render.asset_step"
   tk-nukestudio: "@settings.tk-nuke.nukestudio.asset_step"
   tk-photoshopcc: "@settings.tk-photoshopcc.asset_step"
-  tk-aftereffectscc: "@settings.tk-aftereffectscc.asset_step"
+  tk-aftereffects: "@settings.tk-aftereffects.asset_step"
   tk-shell: "@settings.tk-shell.asset_step"
   tk-shotgun: "@settings.tk-shotgun.asset_step"
 

@@ -24,6 +24,7 @@ includes:
 - ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-nuke-writenode.yml
+- ./tk-nuke-ocio.yml
 - ./tk-nuke-tools.yml
 
 ################################################################################
@@ -127,6 +128,7 @@ settings.tk-nuke.asset_step:
 settings.tk-nuke.project:
   apps:
     tk-nuke-tools: "@settings.tk-nuke-tools"
+    tk-nuke-ocio: "@settings.tk-nuke-ocio"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -143,6 +145,7 @@ settings.tk-nuke.project:
 settings.tk-nuke.sequence:
   apps:
     tk-nuke-tools: "@settings.tk-nuke-tools"
+    tk-nuke-ocio: "@settings.tk-nuke-ocio"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -159,6 +162,7 @@ settings.tk-nuke.sequence:
 settings.tk-nuke.shot:
   apps:
     tk-nuke-tools: "@settings.tk-nuke-tools"
+    tk-nuke-ocio: "@settings.tk-nuke-ocio"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -175,6 +179,7 @@ settings.tk-nuke.shot:
 settings.tk-nuke.shot_step:
   apps:
     tk-nuke-tools: "@settings.tk-nuke-tools"
+    tk-nuke-ocio: "@settings.tk-nuke-ocio"
     # tk-multi-render:
     #   location: "@apps.tk-multi-render.location"
     tk-multi-about:

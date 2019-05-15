@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -8,8 +8,13 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-# the type of dynamic content
-type: "project"
+################################################################################
 
-# name of project root as defined in roots.yml
-root_name: "nuke_tools"
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# settings
+settings.tk-nuke-ocio:
+  location: "@apps.tk-nuke-ocio.location"
