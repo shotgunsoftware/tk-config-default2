@@ -19,7 +19,7 @@ alias: &ToolkitComponent CustomNonProjectEntity03
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.5.6
+  version: v0.5.7
 
 # After Effects
 engines.tk-aftereffects.location:
@@ -61,7 +61,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.9.6
+  version: v0.9.7
 
 # Motion Builder
 engines.tk-motionbuilder.location:
@@ -83,7 +83,7 @@ engines.tk-nuke.location:
   ### App Store
   type: app_store
   name: tk-nuke
-  version: v0.11.5
+  version: v0.12.0
 
 
 # Photoshop
