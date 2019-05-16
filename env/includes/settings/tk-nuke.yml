@@ -356,14 +356,14 @@ settings.tk-nuke.nukestudio.shot_step:
 # project
 settings.tk-nuke.render.project:
   apps:
-    tk-nuke-ocio: "@settings.tk-nuke-ocio"
+    # tk-nuke-ocio: "@settings.tk-nuke-ocio"
     tk-nuke-tools: "@settings.tk-nuke-tools"
   location: "@engines.tk-nuke.location"
 
 # asset_step
 settings.tk-nuke.render.asset_step:
   apps:
-    tk-nuke-ocio: "@settings.tk-nuke-ocio"
+    # tk-nuke-ocio: "@settings.tk-nuke-ocio"
     tk-nuke-tools: "@settings.tk-nuke-tools"
     tk-nuke-writenode: "@settings.tk-nuke-writenode.asset"
   location: "@engines.tk-nuke.location"
@@ -371,7 +371,7 @@ settings.tk-nuke.render.asset_step:
 # shot_step
 settings.tk-nuke.render.shot_step:
   apps:
-    tk-nuke-ocio: "@settings.tk-nuke-ocio"
+    # tk-nuke-ocio: "@settings.tk-nuke-ocio"
     tk-nuke-tools: "@settings.tk-nuke-tools"
     tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
   location: '@engines.tk-nuke.location'
