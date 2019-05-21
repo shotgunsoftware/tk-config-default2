@@ -177,7 +177,7 @@ apps.tk-nuke-writenode.location:
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.9.2
+  version: v1.9.3
 
 # flame review
 apps.tk-flame-review.location:
