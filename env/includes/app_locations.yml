@@ -41,7 +41,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.10.2
+  version: v0.10.3
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.10
+  version: v0.11.11
 
 # dev utils
 apps.tk-multi-devutils.location:
