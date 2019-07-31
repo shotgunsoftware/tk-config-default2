@@ -29,7 +29,7 @@ apps.tk-multi-about.location:
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.6.0
+  version: v1.5.0
 
 # demo
 apps.tk-multi-demo.location:
@@ -41,7 +41,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.10.2
+  version: v0.10.3
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -53,7 +53,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.3.3
+  version: v2.3.4
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.9
+  version: v0.11.11
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -135,7 +135,7 @@ apps.tk-shotgun-launchpublish.location:
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
-  version: v0.5.1
+  version: v0.5.3
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -169,7 +169,7 @@ apps.tk-nuke-quickreview.location:
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.4.1
+  version: v1.4.2
 
 # ---- Flame apps
 
@@ -177,7 +177,7 @@ apps.tk-nuke-writenode.location:
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.9.2
+  version: v1.9.3
 
 # flame review
 apps.tk-flame-review.location:
