@@ -78,8 +78,9 @@ engines.tk-nuke.location:
   # field: sg_uploaded_app
   # version: 1725
   ### Dev
-  # type: dev
-  # path: R:\code\work\anthony.kramer\shotgun\engines\tk-nuke
+  #type: dev
+  #path: R:\code\work\chris.reid\shotgun\engines\tk-nuke
+  #path: R:\work\chris.reid\github\tk-nuke
   ### App Store
   type: app_store
   name: tk-nuke
