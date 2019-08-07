@@ -37,13 +37,13 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.1.0
+  version: v1.2.4
 
 # Flame
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.15.2
+  version: v1.15.3
 
 # Houdini
 engines.tk-houdini.location:
@@ -84,7 +84,7 @@ engines.tk-nuke.location:
   ### App Store
   type: app_store
   name: tk-nuke
-  version: v0.11.5
+  version: v0.12.2
 
 
 # Photoshop
