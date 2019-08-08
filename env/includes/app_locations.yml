@@ -173,7 +173,7 @@ apps.tk-hiero-export.location:
   ### App Store
   # type: app_store
   # name: tk-hiero-export
-  # version: v0.5.1
+  # version: v0.5.3
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -217,7 +217,7 @@ apps.tk-nuke-writenode.location:
   ### App Store
   # name: tk-nuke-writenode
   # type: app_store
-  # version: v1.4.1
+  # version: v1.4.2
 
 # nuke tools app
 apps.tk-nuke-tools.location:
@@ -239,6 +239,7 @@ apps.tk-nuke-ocio.location:
   ### Dev
   # type: dev
   # path: R:\work\anthony.kramer\github\tk-nuke-ocio
+
 
 # ---- Flame apps
 
