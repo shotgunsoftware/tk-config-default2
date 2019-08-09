@@ -36,7 +36,7 @@ apps.tk-multi-about.location:
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.6.0
+  version: v1.5.0
 
 # demo
 apps.tk-multi-demo.location:
@@ -48,7 +48,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.10.2
+  version: v0.10.3
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -119,7 +119,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.10
+  version: v0.11.11
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -173,7 +173,7 @@ apps.tk-hiero-export.location:
   ### App Store
   # type: app_store
   # name: tk-hiero-export
-  # version: v0.5.3
+  # version: v0.5.1
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -217,7 +217,7 @@ apps.tk-nuke-writenode.location:
   ### App Store
   # name: tk-nuke-writenode
   # type: app_store
-  # version: v1.4.2
+  # version: v1.4.1
 
 # nuke tools app
 apps.tk-nuke-tools.location:
@@ -227,7 +227,9 @@ apps.tk-nuke-tools.location:
   name: tk-nuke-tools
   field: sg_uploaded_app
   version: 63055 #v0.0.6
-
+  ## Dev
+  # type: dev
+  # path: R:\work\anthony.kramer\github\tk-nuke-tools
 
 # ocio
 apps.tk-nuke-ocio.location:
@@ -241,14 +243,13 @@ apps.tk-nuke-ocio.location:
   # type: dev
   # path: R:\work\anthony.kramer\github\tk-nuke-ocio
 
-
 # ---- Flame apps
 
 # flame export
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.9.2
+  version: v1.9.3
 
 # flame review
 apps.tk-flame-review.location:

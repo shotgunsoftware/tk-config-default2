@@ -37,13 +37,13 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.2.4
+  version: v1.1.0
 
 # Flame
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.14.9
+  version: v1.15.2
 
 # Houdini
 engines.tk-houdini.location:
@@ -78,13 +78,12 @@ engines.tk-nuke.location:
   # field: sg_uploaded_app
   # version: 1725
   ### Dev
-  #type: dev
-  #path: R:\code\work\chris.reid\shotgun\engines\tk-nuke
-  #path: R:\work\chris.reid\github\tk-nuke
+  # type: dev
+  # path: R:\code\work\anthony.kramer\shotgun\engines\tk-nuke
   ### App Store
   type: app_store
   name: tk-nuke
-  version: v0.12.0
+  version: v0.11.5
 
 
 # Photoshop
