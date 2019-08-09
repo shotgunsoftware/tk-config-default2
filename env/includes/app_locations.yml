@@ -226,7 +226,7 @@ apps.tk-nuke-tools.location:
   entity_type: *ToolkitComponent
   name: tk-nuke-tools
   field: sg_uploaded_app
-  version: 25662 #v0.0.5
+  version: 63055 #v0.0.6
   ## Dev
   # type: dev
   # path: R:\work\anthony.kramer\github\tk-nuke-tools
