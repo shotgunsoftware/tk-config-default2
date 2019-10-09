@@ -44,6 +44,7 @@ engines:
   tk-photoshopcc: "@settings.tk-photoshopcc.asset_step"
   tk-aftereffects: "@settings.tk-aftereffects.asset_step"
   tk-alias: "@settings.tk-alias.asset_step"
+  tk-vred: "@settings.tk-vred.asset_step"
   tk-shell: "@settings.tk-shell.asset_step"
   tk-shotgun: "@settings.tk-shotgun.asset_step"
 
