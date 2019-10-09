@@ -24,3 +24,8 @@ settings.tk-multi-breakdown.nukestudio:
 settings.tk-multi-breakdown.alias:
   hook_scene_operations: '{engine}/tk-multi-breakdown/basic/scene_operations.py'
   location: "@apps.tk-multi-breakdown.location"
+
+# VRED
+settings.tk-multi-breakdown.vred:
+  hook_scene_operations: '{engine}/tk-multi-breakdown/basic/scene_operations.py'
+  location: "@apps.tk-multi-breakdown.location"
