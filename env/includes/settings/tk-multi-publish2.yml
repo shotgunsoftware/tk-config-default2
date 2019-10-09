@@ -443,7 +443,7 @@ settings.tk-multi-publish2.motion_builder.asset_step:
     settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings: 
+    settings:
       Publish Template: mobu_asset_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -465,9 +465,35 @@ settings.tk-multi-publish2.motion_builder.shot_step:
     settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings: 
+    settings:
       Publish Template: mobu_shot_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
+
+################################################################################
+
+# ---- Alias
+
+# asset_step
+settings.tk-multi-publish2.alias.asset_step:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector_settings:
+      Work Template: alias_asset_work
+  publish_plugins:
+   - name: Publish to Shotgun
+     hook: "{self}/publish_file.py"
+     settings: {}
+   - name: Upload for review
+     hook: "{self}/upload_version.py"
+     settings: {}
+   - name: Begin file versioning
+     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+     settings: {}
+   - name: Publish to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+     settings:
+       Publish Template: alias_asset_publish
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
 
