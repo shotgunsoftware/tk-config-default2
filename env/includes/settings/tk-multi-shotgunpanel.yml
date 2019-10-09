@@ -266,7 +266,7 @@ settings.tk-multi-shotgunpanel.alias:
     - actions: [import]
       filters: {published_file_type: Jt File}
     - actions: [import]
-      filters: {published_file_type: CATPart File}
+      filters: {published_file_type: Catpart File}
     - actions: [import]
       filters: {published_file_type: Fbx File}
     - actions: [texture_node]
@@ -299,7 +299,7 @@ settings.tk-multi-shotgunpanel.vred:
     - actions: [import]
       filters: {published_file_type: Jt File}
     - actions: [import]
-      filters: {published_file_type: CATPart File}
+      filters: {published_file_type: Catpart File}
     - actions: [import]
       filters: {published_file_type: Fbx File}
     - actions: [load]
