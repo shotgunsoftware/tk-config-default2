@@ -14,6 +14,7 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
+- ./tk-multi-breakdown.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-shotgunpanel.yml
@@ -31,7 +32,6 @@ settings.tk-vred.asset:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  file_usage_hook: "{tk-framework-locking_v0.x.x}/apps/vred_file_usage.py"
   location: "@engines.tk-vred.location"
 
 # asset_step
@@ -39,6 +39,7 @@ settings.tk-vred.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.vred"
     tk-multi-loader2: "@settings.tk-multi-loader2.vred"
     tk-multi-publish2: "@settings.tk-multi-publish2.vred.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
@@ -49,7 +50,6 @@ settings.tk-vred.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  file_usage_hook: "{tk-framework-locking_v0.x.x}/apps/vred_file_usage.py"
   location: "@engines.tk-vred.location"
 
 # project
