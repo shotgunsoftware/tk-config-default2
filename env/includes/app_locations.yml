@@ -29,7 +29,7 @@ apps.tk-multi-about.location:
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.5.0
+  version: v1.6.1
 
 # demo
 apps.tk-multi-demo.location:
@@ -53,7 +53,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.3.4
+  version: v2.3.7
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -83,7 +83,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.6.3
+  version: v1.6.4
 
 # snapshot
 apps.tk-multi-snapshot.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.11
+  version: v0.11.12
 
 # dev utils
 apps.tk-multi-devutils.location:
