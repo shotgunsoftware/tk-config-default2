@@ -57,5 +57,6 @@ settings.tk-desktop.project:
     name: Editorial Tools
   - matches:
     - "*Alias*"
+    - "*VRED*"
     name: Automotive Tools
   location: "@engines.tk-desktop.location"
