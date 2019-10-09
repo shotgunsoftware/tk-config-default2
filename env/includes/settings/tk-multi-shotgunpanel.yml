@@ -309,10 +309,10 @@ settings.tk-multi-shotgunpanel.vred:
     - actions: [publish_clipboard]
       filters: {}
     Task:
-      - actions: [assign_task, task_to_ip]
-        filters: {}
+    - actions: [assign_task, task_to_ip]
+      filters: {}
     Version:
-      - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
-        filters: {}
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
