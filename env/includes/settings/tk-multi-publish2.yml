@@ -497,3 +497,30 @@ settings.tk-multi-publish2.alias.asset_step:
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
+
+################################################################################
+
+# ---- VRED
+
+# asset_step
+settings.tk-multi-publish2.vred.asset_step:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector_settings:
+      Work Template: vred_asset_work
+  publish_plugins:
+   - name: Publish to Shotgun
+     hook: "{self}/publish_file.py"
+     settings: {}
+   - name: Upload for review
+     hook: "{self}/upload_version.py"
+     settings: {}
+#   - name: Begin file versioning
+#     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+#     settings: {}
+   - name: Publish to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+     settings:
+       Publish Template: vred_asset_publish
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
