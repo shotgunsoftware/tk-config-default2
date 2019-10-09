@@ -639,7 +639,7 @@ paths:
     # The location of backups of WIP files
     vred_asset_snapshot:
         definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.{vred_extension}'
-    # The location of published Motionbuilder files
+    # The location of published VRED files
     vred_asset_publish:
         definition: '@asset_root/publish/vred/{name}.v{version}.{vred_extension}'
 
