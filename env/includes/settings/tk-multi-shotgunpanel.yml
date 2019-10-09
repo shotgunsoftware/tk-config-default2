@@ -283,3 +283,36 @@ settings.tk-multi-shotgunpanel.alias:
       filters: {}
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
+
+# VRED
+settings.tk-multi-shotgunpanel.vred:
+  action_mappings:
+    PublishedFile:
+    - actions: [import]
+      filters: {published_file_type: Alias File}
+    - actions: [import]
+      filters: {published_file_type: Igs File}
+    - actions: [import]
+      filters: {published_file_type: Stp File}
+    - actions: [import]
+      filters: {published_file_type: Stl File}
+    - actions: [import]
+      filters: {published_file_type: Jt File}
+    - actions: [import]
+      filters: {published_file_type: CATPart File}
+    - actions: [import]
+      filters: {published_file_type: Fbx File}
+    - actions: [load]
+      filters: {published_file_type: VRED Scene}
+    - actions: [import]
+      filters: {published_file_type: Osb File}
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+      - actions: [assign_task, task_to_ip]
+        filters: {}
+    Version:
+      - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+        filters: {}
+  actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
+  location: "@apps.tk-multi-shotgunpanel.location"
