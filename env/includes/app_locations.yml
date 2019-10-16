@@ -53,7 +53,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.3.7
+  version: v2.3.8
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -71,7 +71,7 @@ apps.tk-multi-reviewsubmission.location:
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
-  version: v0.3.3
+  version: v0.3.4
 
 # setframerange
 apps.tk-multi-setframerange.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.11.12
+  version: v0.11.14
 
 # dev utils
 apps.tk-multi-devutils.location:
