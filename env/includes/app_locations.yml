@@ -53,7 +53,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.3.8
+  version: v2.3.9
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -77,7 +77,7 @@ apps.tk-multi-screeningroom.location:
 apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
-  version: v0.3.0
+  version: v0.4.0
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:
