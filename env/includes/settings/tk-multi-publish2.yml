@@ -525,6 +525,14 @@ settings.tk-multi-publish2.vred.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
      settings:
        Publish Template: vred_asset_geometry_publish
+   - name: Publish Rendering to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
+     settings:
+       Publish Image Template: vred_asset_render_publish
+       Publish Sequence Template: vred_asset_render_sequence_publish
+   - name: Upload for review
+     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+     settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

@@ -50,6 +50,7 @@ settings.tk-vred.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  render_template: vred_asset_render_work
   location: "@engines.tk-vred.location"
 
 # project
