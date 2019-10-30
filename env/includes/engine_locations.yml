@@ -43,7 +43,7 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.2.4
+  version: v1.2.5
 
 # Flame
 engines.tk-flame.location:
@@ -67,7 +67,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.9.7
+  version: v0.9.8
 
 # Motion Builder
 engines.tk-motionbuilder.location:
@@ -79,7 +79,7 @@ engines.tk-motionbuilder.location:
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.12.2
+  version: v0.12.3
 
 # Photoshop
 engines.tk-photoshopcc.location:
