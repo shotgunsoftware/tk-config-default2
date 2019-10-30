@@ -643,6 +643,10 @@ paths:
     vred_asset_publish:
         definition: '@asset_root/publish/vred/{name}.v{version}.{vred_extension}'
 
+    # define the location of VRED geometry published files
+    vred_asset_geometry_publish:
+        definition: '@asset_root/publish/vred/geometry/{name}.v{version}.osb'
+
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
