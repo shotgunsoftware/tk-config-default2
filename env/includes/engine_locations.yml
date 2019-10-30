@@ -104,4 +104,4 @@ engines.tk-vred.location:
   type: git_branch
   branch: master
   path: https://github.com/shotgunsoftware/tk-vred.git
-  version: 86f254fdae90ee4de998945fd3fbbdf7df574cf2
+  version: b8085fcabcc2ac2ba8da94b93970fea4aa517771
