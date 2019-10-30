@@ -302,7 +302,7 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {published_file_type: Catpart File}
     - actions: [import]
       filters: {published_file_type: Fbx File}
-    - actions: [load]
+    - actions: [import]
       filters: {published_file_type: VRED Scene}
     - actions: [import]
       filters: {published_file_type: Osb File}
