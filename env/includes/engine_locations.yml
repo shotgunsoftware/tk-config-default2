@@ -27,11 +27,9 @@ engines.tk-aftereffects.location:
 
 # Alias
 engines.tk-alias.location:
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-alias.git
-  version: b4dfa0138497cd25a1f5d92b11b2beb9313e6493
-
+  type: app_store
+  name: tk-alias
+  version: v2.0.4
 
 # Desktop
 engines.tk-desktop.location:
@@ -101,7 +99,6 @@ engines.tk-shotgun.location:
 
 # VRED
 engines.tk-vred.location:
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-vred.git
-  version: b8085fcabcc2ac2ba8da94b93970fea4aa517771
+  type: app_store
+  name: tk-vred
+  version: v2.0.2
