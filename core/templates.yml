@@ -639,7 +639,7 @@ paths:
     # The location of backups of WIP files
     alias_asset_snapshot:
         definition: '@asset_root/work/alias/snapshots/{name}.v{version}.{timestamp}.wire'
-    # The location of published Motionbuilder files
+    # The location of published Alias files
     alias_asset_publish:
         definition: '@asset_root/publish/alias/{name}.v{version}.wire'
 
