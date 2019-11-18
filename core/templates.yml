@@ -643,6 +643,19 @@ paths:
     alias_asset_publish:
         definition: '@asset_root/publish/alias/{name}.v{version}.wire'
 
+    # Alias translations
+
+    alias_asset_igs_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.igs'
+    alias_asset_catpart_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.CATPart'
+    alias_asset_jt_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.jt'
+    alias_asset_stp_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.stp'
+    alias_asset_wref_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.wref'
+
     #
     # VRED
     #
