@@ -17,13 +17,13 @@
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.5.7
+  version: v0.5.8
 
 # After Effects
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
-  version: v0.1.2
+  version: v0.1.4
 
 # Desktop
 engines.tk-desktop.location:
@@ -35,7 +35,7 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.2.5
+  version: v1.3.1
 
 # Flame
 engines.tk-flame.location:
@@ -47,7 +47,7 @@ engines.tk-flame.location:
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.6.1
+  version: v1.6.2
 
 # Mari
 engines.tk-mari.location:
@@ -59,7 +59,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.9.8
+  version: v0.9.9
 
 # Motion Builder
 engines.tk-motionbuilder.location:
@@ -77,7 +77,7 @@ engines.tk-nuke.location:
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.7.2
+  version: v1.7.4
 
 # Shell
 engines.tk-shell.location:
