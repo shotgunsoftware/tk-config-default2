@@ -25,6 +25,8 @@ includes:
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-aftereffects.yml
+- ./includes/settings/tk-alias.yml
+- ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -44,6 +46,8 @@ engines:
   tk-nukestudio: "@settings.tk-nuke.nukestudio.project"
   tk-photoshopcc: "@settings.tk-photoshopcc.project"
   tk-aftereffects: "@settings.tk-aftereffects.project"
+  tk-alias: "@settings.tk-alias.project"
+  tk-vred: "@settings.tk-vred.project"
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
 

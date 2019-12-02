@@ -25,6 +25,12 @@ engines.tk-aftereffects.location:
   name: tk-aftereffects
   version: v0.1.4
 
+# Alias
+engines.tk-alias.location:
+  type: app_store
+  name: tk-alias
+  version: v2.0.4
+
 # Desktop
 engines.tk-desktop.location:
   type: app_store
@@ -91,4 +97,8 @@ engines.tk-shotgun.location:
   name: tk-shotgun
   version: v0.8.2
 
-
+# VRED
+engines.tk-vred.location:
+  type: app_store
+  name: tk-vred
+  version: v2.0.2
