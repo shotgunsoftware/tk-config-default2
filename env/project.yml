@@ -15,7 +15,7 @@ description: Apps and Engines when launching with a project only context.
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-3dsmaxplus.yml
+- ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-desktop.yml
 - ./includes/settings/tk-flame.yml
 - ./includes/settings/tk-houdini.yml
@@ -32,7 +32,7 @@ includes:
 # configuration for all engines to load in a project context
 
 engines:
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.project"
+  tk-3dsmax: "@settings.tk-3dsmax.project"
   tk-desktop: "@settings.tk-desktop.project"
   tk-flame: "@settings.tk-flame.project"
   tk-hiero: "@settings.tk-nuke.hiero.project"

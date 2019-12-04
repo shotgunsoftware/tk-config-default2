@@ -14,10 +14,9 @@
 ################################################################################
 
 # 3dsMax
-engines.tk-3dsmaxplus.location:
-  type: app_store
-  name: tk-3dsmaxplus
-  version: v0.5.8
+engines.tk-3dsmax.location:
+  type: dev
+  path: "$DEV_ROOT/tk-3dsmax"
 
 # After Effects
 engines.tk-aftereffects.location:
