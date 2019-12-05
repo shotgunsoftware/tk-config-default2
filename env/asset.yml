@@ -48,6 +48,7 @@ engines:
   tk-photoshopcc: "@settings.tk-photoshopcc.asset"
   tk-aftereffects: "@settings.tk-aftereffects.asset"
   tk-alias: "@settings.tk-alias.asset"
+  tk-vred: "@settings.tk-vred.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
 
