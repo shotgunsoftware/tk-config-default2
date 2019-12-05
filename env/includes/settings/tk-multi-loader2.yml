@@ -17,6 +17,7 @@ includes:
 
 # 3dsmax
 settings.tk-multi-loader2.3dsmax:
+  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   action_mappings:
     3dsmax Scene: [import, reference]
     Alembic Cache: [import]

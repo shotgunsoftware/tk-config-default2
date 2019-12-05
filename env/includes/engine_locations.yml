@@ -16,7 +16,7 @@
 # 3dsMax
 engines.tk-3dsmax.location:
   type: dev
-  path: "$DEV_ROOT/tk-3dsmax"
+  path: "$DEV_ROOT/gitlocal/tk-3dsmax"
 
 # After Effects
 engines.tk-aftereffects.location:

@@ -45,9 +45,8 @@ apps.tk-multi-launchapp.location:
 
 # loader2
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.19.4
+  type: dev
+  path: "$DEV_ROOT/gitlocal/tk-multi-loader2"
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -87,9 +86,8 @@ apps.tk-multi-shotgunpanel.location:
 
 # snapshot
 apps.tk-multi-snapshot.location:
-  type: app_store
-  name: tk-multi-snapshot
-  version: v0.7.4
+  type: dev
+  path: "$DEV_ROOT/gitlocal/tk-multi-snapshot"
 
 # workfiles (required for Mari)
 apps.tk-multi-workfiles.location:
@@ -99,9 +97,8 @@ apps.tk-multi-workfiles.location:
 
 # workfiles2
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.11.14
+  type: dev
+  path: "$DEV_ROOT/gitlocal/tk-multi-workfiles2"
 
 # dev utils
 apps.tk-multi-devutils.location:
