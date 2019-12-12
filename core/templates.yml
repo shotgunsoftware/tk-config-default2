@@ -139,6 +139,35 @@ keys:
         default: ma
         alias: extension
 
+    # Vred supports three extension types
+    vred.extension:
+        type: str
+        choices:
+            vpe: VRED Essentials Project Binary (*.vpe)
+            vpb: VRED Project Binary (*.vpb)
+            vpf: VRED Project File (*.vpf)
+        default: vpb
+
+    # represents the optional render pass for frames written by VRED
+    vred.render_pass:
+        type: str
+        filter_by: alphanumeric
+
+    # represents the image extension for frames written by VRED
+    vred.render_extension:
+        type: str
+        choices:
+            png: PNG Image
+            exr: EXR Image
+        default: png
+
+    # Represents a frame sequence exported from VRED
+    vred.frame:
+        type: sequence
+        format_spec: "05"
+        alias: SEQ
+
+
 #
 # The paths section contains all the the key locations where files are to be stored
 # by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
@@ -593,6 +622,79 @@ paths:
     # The location of published nuke script files
     nuke_asset_publish:
         definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
+
+    #
+    # Alias
+    #
+
+    # define the location of a work area
+    asset_work_area_alias:
+        definition: '@asset_root/work/alias'
+    # define the location of a publish area
+    asset_publish_area_alias:
+        definition: '@asset_root/publish/alias'
+    # The location of WIP files
+    alias_asset_work:
+        definition: '@asset_root/work/alias/{name}.v{version}.wire'
+    # The location of backups of WIP files
+    alias_asset_snapshot:
+        definition: '@asset_root/work/alias/snapshots/{name}.v{version}.{timestamp}.wire'
+    # The location of published Alias files
+    alias_asset_publish:
+        definition: '@asset_root/publish/alias/{name}.v{version}.wire'
+
+    # Alias translations
+
+    alias_asset_igs_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.igs'
+    alias_asset_catpart_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.CATPart'
+    alias_asset_jt_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.jt'
+    alias_asset_stp_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.stp'
+    alias_asset_wref_publish:
+        definition: '@asset_root/publish/alias/translations/{name}.v{version}.wref'
+
+    #
+    # VRED
+    #
+
+    # define the location of a work area
+    asset_work_area_vred:
+        definition: '@asset_root/work/vred'
+    # define the location of a publish area
+    asset_publish_area_vred:
+        definition: '@asset_root/publish/vred'
+    # The location of WIP files
+    vred_asset_work:
+        definition: '@asset_root/work/vred/{name}.v{version}.{vred.extension}'
+    # The location of backups of WIP files
+    vred_asset_snapshot:
+        definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.{vred.extension}'
+    # The location of published VRED files
+    vred_asset_publish:
+        definition: '@asset_root/publish/vred/{name}.v{version}.{vred.extension}'
+
+    # define the location of VRED geometry published files
+    vred_asset_geometry_publish:
+        definition: '@asset_root/publish/vred/geometry/{name}.v{version}.osb'
+
+    # define the location of the WIP render images
+    vred_asset_render_work:
+        definition: '@asset_root/work/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
+
+    # define the location of the WIP renderings for an image sequence
+    vred_asset_render_sequence_work:
+        definition: '@asset_root/work/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
+
+    # define the location of the published render images
+    vred_asset_render_publish:
+        definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
+
+    # define the location of the published renderings for an image sequence
+    vred_asset_render_sequence_publish:
+        definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
 
 
 #

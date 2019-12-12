@@ -1,0 +1,64 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-multi-breakdown.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
+- ./tk-multi-shotgunpanel.yml
+- ./tk-multi-snapshot.yml
+- ./tk-multi-workfiles2.yml
+
+################################################################################
+
+# asset
+settings.tk-alias.asset:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-alias.location"
+
+# asset_step
+settings.tk-alias.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.alias"
+    tk-multi-loader2: "@settings.tk-multi-loader2.alias"
+    tk-multi-publish2: "@settings.tk-multi-publish2.alias.asset_step"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.alias.asset_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias.asset_step"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  location: "@engines.tk-alias.location"
+
+# project
+settings.tk-alias.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: "@engines.tk-alias.location"

@@ -135,3 +135,24 @@ settings.tk-multi-snapshot.motionbuilder.shot_step:
   template_work: mobu_shot_work
   location: "@apps.tk-multi-snapshot.location"
 
+################################################################################
+
+# ---- Alias
+
+# asset step
+settings.tk-multi-snapshot.alias.asset_step:
+  template_snapshot: alias_asset_snapshot
+  template_work: alias_asset_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- VRED
+
+# asset step
+settings.tk-multi-snapshot.vred.asset_step:
+  template_snapshot: vred_asset_snapshot
+  template_work: vred_asset_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+  location: "@apps.tk-multi-snapshot.location"
