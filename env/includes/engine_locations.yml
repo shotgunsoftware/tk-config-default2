@@ -71,19 +71,19 @@ engines.tk-maya.location:
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
-  version: v0.5.0
+  version: v0.5.1
 
 # Nuke
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.12.4
+  version: v0.12.5
 
 # Photoshop
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.7.4
+  version: v1.7.5
 
 # Shell
 engines.tk-shell.location:
