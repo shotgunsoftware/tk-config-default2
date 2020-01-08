@@ -15,8 +15,8 @@ includes:
 
 ################################################################################
 
-# 3dsmax
-settings.tk-multi-loader2.3dsmax:
+# 3dsmaxplus
+settings.tk-multi-loader2.3dsmaxplus:
   action_mappings:
     3dsmax Scene: [import, reference]
     Alembic Cache: [import]

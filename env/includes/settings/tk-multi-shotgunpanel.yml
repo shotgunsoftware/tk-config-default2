@@ -29,8 +29,8 @@ settings.tk-multi-shotgunpanel:
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
 
-# 3dsmax
-settings.tk-multi-shotgunpanel.3dsmax:
+# 3dsmaxplus
+settings.tk-multi-shotgunpanel.3dsmaxplus:
   action_mappings:
     PublishedFile:
     - actions: [import]

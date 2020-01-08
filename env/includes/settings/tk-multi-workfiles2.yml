@@ -77,9 +77,9 @@ settings.tk-multi-workfiles2.launch_at_startup:
 
 ################################################################################
 
-# ---- 3dsmax
+# ---- 3dsmaxplus
 
-settings.tk-multi-workfiles2.3dsmax.asset_step:
+settings.tk-multi-workfiles2.3dsmaxplus.asset_step:
   template_publish: max_asset_publish
   template_publish_area: asset_publish_area_max
   template_work: max_asset_work
@@ -105,7 +105,7 @@ settings.tk-multi-workfiles2.3dsmax.asset_step:
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
 
-settings.tk-multi-workfiles2.3dsmax.shot_step:
+settings.tk-multi-workfiles2.3dsmaxplus.shot_step:
   template_publish: max_shot_publish
   template_publish_area: shot_publish_area_max
   template_work: max_shot_work
