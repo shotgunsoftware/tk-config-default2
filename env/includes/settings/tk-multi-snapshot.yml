@@ -15,18 +15,24 @@ includes:
 
 ################################################################################
 
-# ---- 3dsMax
+# ---- 3dsMaxPlus
 
-settings.tk-multi-snapshot.3dsmaxplus.asset_step:
+settings.tk-multi-snapshot.3dsmaxplus.asset_step: &settings.tk-multi-snapshot.3dsmaxplus.asset_step
   template_snapshot: max_asset_snapshot
   template_work: max_asset_work
   location: "@apps.tk-multi-snapshot.location"
 
-settings.tk-multi-snapshot.3dsmaxplus.shot_step:
+settings.tk-multi-snapshot.3dsmaxplus.shot_step: &settings.tk-multi-snapshot.3dsmaxplus.shot_step
   template_snapshot: max_shot_snapshot
   template_work: max_shot_work
   location: "@apps.tk-multi-snapshot.location"
 
+################################################################################
+
+# ---- 3dsMax
+
+settings.tk-multi-snapshot.3dsmax.asset_step: *settings.tk-multi-snapshot.3dsmaxplus.asset_step
+settings.tk-multi-snapshot.3dsmax.shot_step: *settings.tk-multi-snapshot.3dsmaxplus.shot_step
 
 ################################################################################
 

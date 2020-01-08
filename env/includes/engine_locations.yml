@@ -19,6 +19,11 @@ engines.tk-3dsmaxplus.location:
   name: tk-3dsmaxplus
   version: v0.5.8
 
+engines.tk-3dsmax.location:
+  type: app_store
+  name: tk-3dsmax
+  version: v1.0.0
+
 # After Effects
 engines.tk-aftereffects.location:
   type: app_store
