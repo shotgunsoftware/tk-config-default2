@@ -89,7 +89,7 @@ settings.tk-motionbuilder.shot:
   apps:
     tk-multi-about:
       location: '@apps.tk-multi-about.location'
-    tk-multi-shotgunpanel: 
+    tk-multi-shotgunpanel:
       location: '@apps.tk-multi-shotgunpanel.location'
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-workfiles2:

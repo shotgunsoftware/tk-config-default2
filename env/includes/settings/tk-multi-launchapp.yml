@@ -60,4 +60,3 @@ settings.tk-multi-launchapp.motionbuilder:
   windows_path: "@path.windows.motionbuilder"
   menu_name: MotionBuilder
   location: "@apps.tk-multi-launchapp.location"
-
