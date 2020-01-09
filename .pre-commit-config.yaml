@@ -19,10 +19,10 @@ repos:
     # Ensures the code is syntaxically correct
     - id: check-ast
       language_version: python3
-    # Ensures a file name will resolve on all platform
-    - id: check-case-conflict
     # Ensures a yaml file is properly formatted
     - id: check-yaml
+    # Ensures a file name will resolve on all platform
+    - id: check-case-conflict
     # Checks files with the execute bit set have shebangs
     - id: check-executables-have-shebangs
     # Ensure there's no incomplete merges
