@@ -12,7 +12,6 @@
 # Exclude the UI files, as they are auto-generated.
 exclude: "ui\/.*py$"
 # List of super useful formatters.
-# TODO: Leaving a lot of things disable that can be turned on during the Python 3 port.
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.2.3
