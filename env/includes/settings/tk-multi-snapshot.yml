@@ -31,8 +31,12 @@ settings.tk-multi-snapshot.3dsmaxplus.shot_step: &settings_tk-multi-snapshot_3ds
 
 # ---- 3dsMax
 
-settings.tk-multi-snapshot.3dsmax.asset_step: *settings_tk-multi-snapshot_3dsmaxplus_asset_step
-settings.tk-multi-snapshot.3dsmax.shot_step: *settings_tk-multi-snapshot_3dsmaxplus_shot_step
+settings.tk-multi-snapshot.3dsmax.asset_step:
+  <<: *settings_tk-multi-snapshot_3dsmaxplus_asset_step
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+settings.tk-multi-snapshot.3dsmax.shot_step:
+  <<: *settings_tk-multi-snapshot_3dsmaxplus_shot_step
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
 
 ################################################################################
 
