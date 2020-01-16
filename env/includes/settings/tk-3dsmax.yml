@@ -24,7 +24,7 @@ includes:
 ################################################################################
 
 # asset
-settings.tk-3dsmaxplus.asset:
+settings.tk-3dsmax.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -32,28 +32,28 @@ settings.tk-3dsmaxplus.asset:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmax"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  location: "@engines.tk-3dsmaxplus.location"
+  location: "@engines.tk-3dsmax.location"
 
 # asset_step
-settings.tk-3dsmaxplus.asset_step:
+settings.tk-3dsmax.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
-    tk-multi-loader2: "@settings.tk-multi-loader2.3dsmaxplus"
-    tk-multi-publish2: "@settings.tk-multi-publish2.3dsmaxplus.asset_step"
+    tk-multi-loader2: "@settings.tk-multi-loader2.3dsmax"
+    tk-multi-publish2: "@settings.tk-multi-publish2.3dsmax.asset_step"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.3dsmaxplus"
-    tk-multi-snapshot: "@settings.tk-multi-snapshot.3dsmaxplus.asset_step"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmaxplus.asset_step"
-  location: "@engines.tk-3dsmaxplus.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.3dsmax"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.3dsmax.asset_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmax.asset_step"
+  location: "@engines.tk-3dsmax.location"
 
 # project
-settings.tk-3dsmaxplus.project:
+settings.tk-3dsmax.project:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -61,13 +61,13 @@ settings.tk-3dsmaxplus.project:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmax"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  location: "@engines.tk-3dsmaxplus.location"
+  location: "@engines.tk-3dsmax.location"
 
 # sequence
-settings.tk-3dsmaxplus.sequence:
+settings.tk-3dsmax.sequence:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -75,13 +75,13 @@ settings.tk-3dsmaxplus.sequence:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmax"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  location: "@engines.tk-3dsmaxplus.location"
+  location: "@engines.tk-3dsmax.location"
 
 # shot
-settings.tk-3dsmaxplus.shot:
+settings.tk-3dsmax.shot:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -89,13 +89,13 @@ settings.tk-3dsmaxplus.shot:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmax"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  location: "@engines.tk-3dsmaxplus.location"
+  location: "@engines.tk-3dsmax.location"
 
 # shot_step
-settings.tk-3dsmaxplus.shot_step:
+settings.tk-3dsmax.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
@@ -103,10 +103,10 @@ settings.tk-3dsmaxplus.shot_step:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-setframerange:
       location: "@apps.tk-multi-setframerange.location"
-    tk-multi-loader2: "@settings.tk-multi-loader2.3dsmaxplus"
-    tk-multi-publish2: "@settings.tk-multi-publish2.3dsmaxplus.shot_step"
+    tk-multi-loader2: "@settings.tk-multi-loader2.3dsmax"
+    tk-multi-publish2: "@settings.tk-multi-publish2.3dsmax.shot_step"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.3dsmaxplus"
-    tk-multi-snapshot: "@settings.tk-multi-snapshot.3dsmaxplus.shot_step"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmaxplus.shot_step"
-  location: "@engines.tk-3dsmaxplus.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.3dsmax"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.3dsmax.shot_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dsmax.shot_step"
+  location: "@engines.tk-3dsmax.location"
