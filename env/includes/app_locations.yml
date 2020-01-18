@@ -23,7 +23,7 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.2.8
+  version: v0.2.9.rc
 
 # breakdown
 apps.tk-multi-breakdown.location:
