@@ -40,7 +40,7 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.4.12
+  version: v2.4.13
 
 # Desktop2
 engines.tk-desktop2.location:
@@ -70,7 +70,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.9.9
+  version: v0.9.10
 
 # Motion Builder
 engines.tk-motionbuilder.location:
