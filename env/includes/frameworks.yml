@@ -59,6 +59,6 @@ frameworks:
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
-      version: v0.2.7
+      version: v0.2.8
       type: app_store
       name: tk-framework-widget
