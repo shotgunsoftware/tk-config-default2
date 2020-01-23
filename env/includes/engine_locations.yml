@@ -17,7 +17,7 @@
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.5.9
+  version: v0.5.10
 
 engines.tk-3dsmax.location:
   type: app_store
