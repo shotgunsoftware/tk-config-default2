@@ -50,6 +50,8 @@ settings.tk-photoshopcc.asset_step:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.photoshop"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.photoshop.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.photoshop.asset_step"
+    tk-multi-review-submission: "@settings.tk-multi-reviewsubmission.photoshop"
+
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -100,6 +102,7 @@ settings.tk-photoshopcc.shot_step:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.photoshop"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.photoshop.shot_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.photoshop.shot_step"
+    tk-multi-review-submission: "@settings.tk-multi-reviewsubmission.photoshop"
   shelf_favorites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
