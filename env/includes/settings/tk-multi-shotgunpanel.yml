@@ -51,7 +51,7 @@ settings.tk-multi-shotgunpanel.3dsmaxplus: &settings_tk-multi-shotgunpanel_3dsma
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
-  actions_hook: '{self}/general_actions.py:{self}/tk-3dsmaxplus_actions.py'
+  actions_hook: '{self}/tk-3dsmaxplus_actions.py'
   location: "@apps.tk-multi-shotgunpanel.location"
 
 # 3dsmax
