@@ -47,7 +47,7 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.19.6
+  version: v1.12.0
 
 # publish2
 apps.tk-multi-publish2.location:
