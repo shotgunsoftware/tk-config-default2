@@ -59,13 +59,13 @@ apps.tk-multi-publish2.location:
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.2.0
+  version: v1.2.1
 
 # reviewsubmission
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
-  version: v1.0.0
+  version: v1.0.1
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
@@ -89,7 +89,7 @@ apps.tk-multi-shotgunpanel.location:
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
-  version: v0.7.5
+  version: v0.8.0
 
 # workfiles (required for Mari)
 apps.tk-multi-workfiles.location:
