@@ -523,6 +523,12 @@ settings.tk-multi-publish2.alias.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
      settings:
        Publish Template: alias_asset_wref_publish
+   - name: Publish Variants to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_variants.py"
+     settings: {}
+   - name: Publish Annotations to Shotgun
+     hook: "{engine}/tk-multi-publish2/basic/publish_annotations.py"
+     settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
