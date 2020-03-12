@@ -17,7 +17,7 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.0.2
+      version: v1.1.0
       type: app_store
       name: tk-framework-adobe
 
