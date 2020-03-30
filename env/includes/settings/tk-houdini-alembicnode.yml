@@ -19,7 +19,7 @@ settings.tk-houdini-alembicnode.asset_step:
   work_file_template: houdini_asset_work
   default_node_name: sg_alembic_out
   output_profiles:
-  - name: Shot Work Cache
+  - name: Asset Work Cache
     settings: {}
     color: []
     output_cache_template: houdini_asset_work_alembic_cache
