@@ -45,9 +45,11 @@ apps.tk-multi-launchapp.location:
 
 # loader2
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.20.2
+#  type: app_store
+#  name: tk-multi-loader2
+#  version: v1.20.2
+  type: dev
+  path: Y:\SGTK\devs\tk-multi-loader2
 
 # publish2
 apps.tk-multi-publish2.location:
