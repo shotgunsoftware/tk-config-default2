@@ -155,7 +155,7 @@ apps.tk-houdini-alembicnode.location:
 apps.tk-houdini-mantranode.location:
   type: app_store
   name: tk-houdini-mantranode
-  version: v0.4.0
+  version: v0.4.1
 
 # ---- Nuke apps
 
