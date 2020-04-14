@@ -149,7 +149,7 @@ apps.tk-hiero-openinshotgun.location:
 apps.tk-houdini-alembicnode.location:
   type: app_store
   name: tk-houdini-alembicnode
-  version: v0.4.0
+  version: v0.4.1
 
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
