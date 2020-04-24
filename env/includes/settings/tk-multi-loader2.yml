@@ -317,13 +317,13 @@ settings.tk-multi-loader2.motionbuilder:
 # alias
 settings.tk-multi-loader2.alias:
   action_mappings:
-    Alias File: [import]
+    Alias File: [import, import_as_reference]
     Wref File: [reference]
-    Igs File: [import]
-    Stp File: [import]
-    Stl File: [import]
-    Jt File: [import]
-    Catpart File: [import]
+    Igs File: [import, import_as_reference]
+    Stp File: [import, import_as_reference]
+    Stl File: [import, import_as_reference]
+    Jt File: [import, import_as_reference]
+    Catpart File: [import, import_as_reference]
     Fbx File: [import]
     Image: [texture_node]
     Photoshop Image: [texture_node]

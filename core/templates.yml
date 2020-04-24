@@ -139,6 +139,11 @@ keys:
         default: ma
         alias: extension
 
+    # needed by the Alias import as reference functionality
+    alias.extension:
+        type: str
+        filter_by: alphanumeric
+
     # Vred supports three extension types
     vred.extension:
         type: str
@@ -645,6 +650,9 @@ paths:
 
     # Alias translations
 
+    # The location of the reference created on the fly by Alias when importing a file as ref
+    alias_asset_reference_publish:
+        definition: '@asset_root/publish/alias/translations/{name}_{alias.extension}.v{version}.wref'
     alias_asset_igs_publish:
         definition: '@asset_root/publish/alias/translations/{name}.v{version}.igs'
     alias_asset_catpart_publish:
