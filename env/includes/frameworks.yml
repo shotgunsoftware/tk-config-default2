@@ -28,10 +28,17 @@ frameworks:
       type: app_store
       name: tk-framework-adminui
 
+  # aliastranslations - provides Alias translation tools
+  tk-framework-aliastranslations_v0.x.x:
+    location:
+      version: v0.1.0
+      type: app_store
+      name: tk-framework-aliastranslations
+
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.3.9
+      version: v1.3.11
       type: app_store
       name: tk-framework-desktopserver
 
@@ -66,6 +73,6 @@ frameworks:
   # desktopclient - A client for Shotgun Create
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.0.9
+      version: v0.1.1
       type: app_store
       name: tk-framework-desktopclient
