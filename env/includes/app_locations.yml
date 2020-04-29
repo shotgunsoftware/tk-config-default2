@@ -27,9 +27,11 @@ apps.tk-multi-about.location:
 
 # breakdown
 apps.tk-multi-breakdown.location:
-  type: app_store
-  name: tk-multi-breakdown
-  version: v1.7.1
+#  type: app_store
+#  name: tk-multi-breakdown
+#  version: v1.7.1
+  type: dev
+  path: Y:\SGTK\devs\tk-multi-breakdown
 
 # demo
 apps.tk-multi-demo.location:
@@ -45,11 +47,9 @@ apps.tk-multi-launchapp.location:
 
 # loader2
 apps.tk-multi-loader2.location:
-#  type: app_store
-#  name: tk-multi-loader2
-#  version: v1.20.2
-  type: dev
-  path: Y:\SGTK\devs\tk-multi-loader2
+  type: app_store
+  name: tk-multi-loader2
+  version: v1.20.2
 
 # publish2
 apps.tk-multi-publish2.location:
