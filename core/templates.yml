@@ -696,6 +696,23 @@ paths:
     vred_asset_render_sequence_publish:
         definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
 
+    #
+    # Sketchbook
+    #
+
+    # The location of WIP files
+    sketchbook_asset_work:
+        definition: '@asset_root/work/sketchbook/{name}.v{version}.psd'
+    asset_work_area_sketchbook:
+        definition: '@asset_root/work/sketchbook'
+    # The location of backups of WIP files
+    sketchbook_asset_snapshot:
+        definition: '@asset_root/work/sketchbook/snapshots/{name}.v{version}.{timestamp}.psd'
+    # The location of published files
+    asset_publish_area_sketchbook:
+        definition: '@asset_root/publish/sketchbook'
+    sketchbook_asset_publish:
+        definition: '@asset_root/publish/sketchbook/{name}.v{version}.psd'
 
 #
 # The strings section is similar to the paths section - but rather than defining paths

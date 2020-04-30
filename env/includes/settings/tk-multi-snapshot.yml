@@ -166,3 +166,14 @@ settings.tk-multi-snapshot.vred.asset_step:
   template_work: vred_asset_work
   hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
   location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Sketchbook
+
+# asset step
+settings.tk-multi-snapshot.sketchbook.asset_step:
+  template_snapshot: sketchbook_asset_snapshot
+  template_work: sketchbook_asset_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+  location: "@apps.tk-multi-snapshot.location"

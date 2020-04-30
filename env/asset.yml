@@ -35,6 +35,7 @@ includes:
 - ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-sketchbook.yml
 
 ################################################################################
 # configuration for all engines to load in an asset context
@@ -53,6 +54,7 @@ engines:
   tk-vred: "@settings.tk-vred.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
+  tk-sketchbook: "@settings.tk-sketchbook.asset"
 
 ################################################################################
 # reference all of the common frameworks
