@@ -51,6 +51,10 @@ settings.tk-maya.asset_step:
     tk-multi-snapshot: "@settings.tk-multi-snapshot.maya.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.asset_step"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.maya"
+    tk-maya-librarytests:
+      location:
+        type: dev
+        path: Y:\SGTK\devs\TESTS\tk-maya-librarytests
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
