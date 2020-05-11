@@ -353,7 +353,7 @@ settings.tk-multi-loader2.vred:
     Jt File: [import]
     Catpart File: [import]
     Fbx File: [import]
-    VRED Scene: [load]
+    VRED Scene: [import]
     Osb File: [import]
   entities:
   - caption: Assets
