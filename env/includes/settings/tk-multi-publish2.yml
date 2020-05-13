@@ -190,6 +190,11 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
     settings:
         Publish Template: asset_alembic_cache
+  - name: Publish to Library
+    hook: "{config}/tests/publish_to_library.py"
+    settings:
+      Project ID: 387
+      Pipeline Configuration ID: 463
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
