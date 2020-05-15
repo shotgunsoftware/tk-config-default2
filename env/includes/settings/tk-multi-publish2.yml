@@ -570,6 +570,22 @@ settings.tk-multi-publish2.vred.asset_step:
 # ---- Sketchbook
 
 # asset_step
+settings.tk-multi-publish2.sketchbook.project:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+   - name: Publish to Shotgun
+     hook: "{self}/publish_file.py"
+     settings: {}
+   - name: Upload for review
+     hook: "{self}/upload_version.py"
+     settings: {}
+   - name: Begin file versioning
+     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+     settings: {}
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+# asset_step
 settings.tk-multi-publish2.sketchbook.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:

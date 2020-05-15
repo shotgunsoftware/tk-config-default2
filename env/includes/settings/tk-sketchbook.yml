@@ -59,6 +59,10 @@ settings.tk-sketchbook.project:
       location: "@apps.tk-multi-about.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.sketchbook"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.sketchbook"
+    tk-multi-loader2: "@settings.tk-multi-loader2.sketchbook"
+    tk-multi-publish2: "@settings.tk-multi-publish2.sketchbook.project"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-sketchbook.location"

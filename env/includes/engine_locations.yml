@@ -110,6 +110,6 @@ engines.tk-vred.location:
 
 # Sketchbook
 engines.tk-sketchbook.location:
-  type: dev
+  type: app_store
   name: tk-sketchbook
-  path: /users/t_aitcr/git/tk-sketchbook
+  version: v0.2.0
