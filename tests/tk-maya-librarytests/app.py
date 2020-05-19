@@ -37,4 +37,4 @@ class CrossProjectApp(Application):
         menu_callback = lambda: tk_multi_librarytests.show_dialog(self)
 
         # now register the command with the engine
-        self.engine.register_command("Cross Project Tests", menu_callback)
+        self.engine.register_command("Breakdown - Cross Project", menu_callback)

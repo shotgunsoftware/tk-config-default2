@@ -110,20 +110,24 @@ class AppDialog(QtGui.QWidget):
     def _update_local_refs(self):
         """
         """
+        self.__local_ref_items = {}
         for r in self.local_refs:
             item = ListItemWidget()
             item.set_path(r["path"])
             item.set_project(r["sg_data"]["project"]["name"])
             self.ui.verticalLayout_2.insertWidget(0, item)
+            self.__local_ref_items[r["path"]] = item
 
     def _update_external_refs(self):
         """
         """
+        self.__external_ref_items = {}
         for r in self.external_refs:
             item = ListItemWidget()
             item.set_path(r["path"])
             item.set_project(r["sg_data"]["project"]["name"])
             self.ui.verticalLayout_3.insertWidget(0, item)
+            self.__external_ref_items[r["path"]] = item
 
     def update_references(self):
         """
@@ -147,7 +151,11 @@ class AppDialog(QtGui.QWidget):
             )
             for pf in all_published_files:
                 if os.path.isfile(pf["path"]["local_path"]):
-                    print("Finding latest version: %s" % pf["path"]["local_path"])
+                    item = self.__local_ref_items.get(r["path"])
+                    if item:
+                        # update the ref in Maya and the UI
+                        cmds.file(pf["path"]["local_path"], loadReference=r["node_name"])
+                        item.set_path(pf["path"]["local_path"])
                     break
 
         # then do the same with external references
@@ -166,14 +174,22 @@ class AppDialog(QtGui.QWidget):
                 fields=sg_fields,
                 order=sg_order
             )
+            new_path = None
             for pf in all_published_files:
-                if os.path.isfile(pf["path"]["local_path"]):
-                    if pf["path"]["local_path"] == r["path"]:
-                        print("Already updated!")
-                        break
-                    else:
-                        print("Finding latest version: %s" % pf["path"]["local_path"])
-                        break
+                if not os.path.isfile(pf["path"]["local_path"]):
+                    continue
+                if pf["path"]["local_path"] == r["path"]:
+                    print("Already updated!")
+                    break
+                new_path = pf["path"]["local_path"]
+                break
+
+            if new_path:
+                item = self.__external_ref_items.get(r["path"])
+                if item:
+                    # update the ref in Maya and the UI
+                    cmds.file(new_path, loadReference=r["node_name"])
+                    item.set_path(new_path)
 
 
 def find_publishes(paths):
