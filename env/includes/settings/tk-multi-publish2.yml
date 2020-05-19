@@ -191,10 +191,11 @@ settings.tk-multi-publish2.maya.asset_step:
     settings:
         Publish Template: asset_alembic_cache
   - name: Publish to Library
-    hook: "{config}/tests/publish_to_library.py"
+    hook: "{self}/publish_file.py:{config}/tests/publish_to_library.py"
     settings:
       Project ID: 387
       Pipeline Configuration ID: 463
+      Publish Template: maya_asset_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
