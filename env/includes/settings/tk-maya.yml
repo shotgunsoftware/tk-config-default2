@@ -54,7 +54,7 @@ settings.tk-maya.asset_step:
     tk-maya-librarytests:
       location:
         type: dev
-        path: Y:\SGTK\devs\TESTS\tk-maya-librarytests
+        path: "{CONFIG_FOLDER}/tests/tk-maya-librarytests"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

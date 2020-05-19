@@ -1,0 +1,35 @@
+# Copyright (c) 2013 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+# Metadata defining the behaviour and requirements for this engine
+
+# expected fields in the configuration file for this engine
+configuration:
+
+# this app works in all engines - it does not contain
+# any host application specific commands
+supported_engines:
+
+# the Shotgun fields that this engine needs in order to operate correctly
+requires_shotgun_fields:
+
+# More verbose description of this item
+display_name: "Cross-project tests"
+description: "Application to test cross-project workflow."
+
+# Required minimum versions for this item to run
+requires_shotgun_version:
+requires_core_version: "v0.14.133"
+requires_engine_version:
+
+# the frameworks required to run this app
+frameworks:
+    - {"name": "tk-framework-shotgunutils", "version": "v5.x.x"}
+    - {"name": "tk-framework-qtwidgets", "version": "v2.x.x"}
