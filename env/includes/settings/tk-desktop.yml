@@ -33,8 +33,6 @@ settings.tk-desktop.project:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-devutils:
       location: "@apps.tk-multi-devutils.location"
-    tk-multi-demo:
-      location: "@apps.tk-multi-demo.location"
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
