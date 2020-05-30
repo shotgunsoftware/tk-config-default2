@@ -196,13 +196,13 @@ paths:
     alembic_caches_pub: 04_publish/03_caches/{sg_asset_type}/{Asset}/{Step}
 
     asset_review: 04_review/assets/{sg_asset_type}/{Asset}/{Step}
-    shot_review: 04_review/shots/{Sequence}/{Shots}/{Step}
+    shot_review: 04_review/shots/{Sequence}/{Shot}/{Step}
 
-    cg_assetrender: 06_renders/cg/assets/{Sequence}/{Shots}/{Step}
-    cg_shotrender: 06_renders/cg/shots/{Sequence}/{Shots}/{Step}
+    cg_assetrender: 06_renders/cg/assets/{Sequence}/{Shot}/{Step}
+    cg_shotrender: 06_renders/cg/shots/{Sequence}/{Shot}/{Step}
     comp_assetrender: 06_renders/comp/assets/{sg_asset_type}/{Asset}/{Step}
-    comp_shotrender: 06_renders/comp/shots/{Sequence}/{Shots}
-    delivery: 06_renders/delivery/{Sequence}/{Shots}
+    comp_shotrender: 06_renders/comp/shots/{Sequence}/{Shot}
+    delivery: 06_renders/delivery/{Sequence}/{Shot}
 
 
     ##########################################################################################
@@ -353,10 +353,10 @@ paths:
         definition: '@cg_shotrender/{name}/{houdini.node}/v{version}/{width}x{height}/ifds/{Shot}_{name}_v{version}.{SEQ}.ifd'
 
     houdini_shot_dcm:
-        definition: ''@cg_shotrender/{name}/{houdini.node}/v{version}/{width}x{height}/dcms/{Shot}_{name}_v{version}.{SEQ}.dcm'
+        definition: '@cg_shotrender/{name}/{houdini.node}/v{version}/{width}x{height}/dcms/{Shot}_{name}_v{version}.{SEQ}.dcm'
 
     houdini_shot_extra_plane:
-        definition: ''@cg_shotrender/{name}/{houdini.node}/v{version}/{width}x{height}/{aov_name}/{Shot}_{name}_v{version}.{SEQ}.exr'
+        definition: '@cg_shotrender/{name}/{houdini.node}/v{version}/{width}x{height}/{aov_name}/{Shot}_{name}_v{version}.{SEQ}.exr'
 
 
     #
@@ -575,7 +575,7 @@ paths:
         definition: '@asset_root/3dsmax'
     # define the location of a publish area
     asset_publish_area_max:
-        definition: '@asset_root/3dsmax'
+        definition: '@asset_publish/3dsmax'
     # The location of WIP files
     max_asset_work:
         definition: '@asset_root/3dsmax/{name}.v{version}.max'
