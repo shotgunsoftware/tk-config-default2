@@ -198,7 +198,7 @@ paths:
     asset_review: 04_review/assets/{Asset}/{Step}
     shot_review: 04_review/shots/{Shot}
 
-    cg_assetrender: 06_renders/cg/assets/{Sequence}/{Shot}/{Step}
+    cg_assetrender: 06_renders/cg/assets/{Asset}/{Step}
     cg_shotrender: 06_renders/cg/shots/{Sequence}/{Shot}
     comp_assetrender: 06_renders/comp/assets/{Asset}/{Step}
     comp_shotrender: 06_renders/comp/shots/{Sequence}/{Shot}
