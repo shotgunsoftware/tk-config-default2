@@ -185,22 +185,22 @@ paths:
     #
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
-    asset_root: 03_workfiles/assets/{sg_asset_type}/{Asset}/{Step}
+    asset_root: 03_workfiles/assets/{Asset}/{Step}
     shot_root: 03_workfiles/shots/{Sequence}/{Shot}/{Step}
 
     sequence_root: 03_workfiles/shots/{Sequence}
 
-    asset_publish: 04_publish/01_assets/{sg_asset_type}/{Asset}/{Step}
+    asset_publish: 04_publish/01_assets/{Asset}/{Step}
     shot_publish: 04_publish/02_shots/{Sequence}/{Shot}/{Step
 
-    alembic_caches_pub: 04_publish/03_caches/{sg_asset_type}/{Asset}/{Step}
+    alembic_caches_pub: 04_publish/03_caches/{Asset}/{Step}
 
-    asset_review: 04_review/assets/{sg_asset_type}/{Asset}/{Step}
-    shot_review: 04_review/shots/{Sequence}/{Shot}/{Step}
+    asset_review: 04_review/assets/{Asset}/{Step}
+    shot_review: 04_review/shots/{Shot}
 
     cg_assetrender: 06_renders/cg/assets/{Sequence}/{Shot}/{Step}
-    cg_shotrender: 06_renders/cg/shots/{Sequence}/{Shot}/{Step}
-    comp_assetrender: 06_renders/comp/assets/{sg_asset_type}/{Asset}/{Step}
+    cg_shotrender: 06_renders/cg/shots/{Sequence}/{Shot}
+    comp_assetrender: 06_renders/comp/assets/{Asset}/{Step}
     comp_shotrender: 06_renders/comp/shots/{Sequence}/{Shot}
     delivery: 06_renders/delivery/{Sequence}/{Shot}
 
