@@ -167,6 +167,18 @@ keys:
         format_spec: "05"
         alias: SEQ
 
+    # Sketchbook supports six extension types for stills, one for flipbooks
+    sketchbook.extension:
+        type: str
+        choices:
+            tif: TIFF File
+            bmp: Bitmap File
+            jpg: JPEG File
+            gif: GIF File
+            png: PNG File
+            psd: Adobe Photoshop PSD File
+            skba: Sketchbook Flipbook
+        default: tif
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -429,6 +441,23 @@ paths:
         definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
     hiero_render_path:
         definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
+
+    #
+    # Sketchbook
+    #
+
+    # define the location of a work area
+    shot_work_area_sketchbook:
+        definition: '@shot_root/work/sketchbook'
+    # define the location of a publish area
+    shot_publish_area_sketchbook:
+        definition: '@shot_root/publish/sketchbook'
+    # The location of WIP files
+    sketchbook_shot_work:
+        definition: '@shot_root/work/sketchbook/{name}.v{version}.{sketchbook.extension}'
+    # The location of published sketchbook files
+    sketchbook_shot_publish:
+        definition: '@shot_root/publish/sketchbook/{name}.v{version}.{sketchbook.extension}'
 
     ##########################################################################################
     # Asset pipeline
@@ -702,17 +731,15 @@ paths:
 
     # The location of WIP files
     sketchbook_asset_work:
-        definition: '@asset_root/work/sketchbook/{name}.v{version}.psd'
+        definition: '@asset_root/work/sketchbook/{name}.v{version}.{sketchbook.extension}'
     asset_work_area_sketchbook:
         definition: '@asset_root/work/sketchbook'
-    # The location of backups of WIP files
-    sketchbook_asset_snapshot:
-        definition: '@asset_root/work/sketchbook/snapshots/{name}.v{version}.{timestamp}.psd'
+
     # The location of published files
     asset_publish_area_sketchbook:
         definition: '@asset_root/publish/sketchbook'
     sketchbook_asset_publish:
-        definition: '@asset_root/publish/sketchbook/{name}.v{version}.psd'
+        definition: '@asset_root/publish/sketchbook/{name}.v{version}.{sketchbook.extension}'
 
 #
 # The strings section is similar to the paths section - but rather than defining paths

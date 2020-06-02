@@ -374,10 +374,13 @@ settings.tk-multi-loader2.vred:
 # Sketchbook
 settings.tk-multi-loader2.sketchbook:
   action_mappings:
-    Photoshop Image: [open, add_image]
-    Rendered Image: [open, add_image]
-    Image: [open, add_image]
-    Texture: [open, add_image]
+    Photoshop Image: [add_image]
+    Rendered Image: [add_image]
+    Image: [add_image]
+    Texture: [add_image]
+    Tif File: [add_image]
+    Bmp File: [add_image]
+    Gif File: [add_image]
   entities:
   - caption: Assets
     entity_type: Asset

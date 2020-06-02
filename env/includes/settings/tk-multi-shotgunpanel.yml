@@ -336,6 +336,12 @@ settings.tk-multi-shotgunpanel.sketchbook:
       filters: {published_file_type: Image}
     - actions: [open_file]
       filters: {published_file_type: Texture}
+    - actions: [add_image]
+      filters: {published_file_type: Tif File}
+    - actions: [add_image]
+      filters: {published_file_type: Bmp File}
+    - actions: [add_image]
+      filters: {published_file_type: Gif File}
     - actions: [publish_clipboard]
       filters: {}
     Task:
