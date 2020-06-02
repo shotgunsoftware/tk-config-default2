@@ -569,7 +569,7 @@ settings.tk-multi-publish2.vred.asset_step:
 
 # ---- Sketchbook
 
-# asset_step
+# project
 settings.tk-multi-publish2.sketchbook.project:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   publish_plugins:
