@@ -40,13 +40,13 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.5.1
+  version: v2.5.3
 
 # Desktop2
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.3.1
+  version: v1.4.1
 
 # Flame
 engines.tk-flame.location:
@@ -106,7 +106,7 @@ engines.tk-shotgun.location:
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
-  version: v2.0.5
+  version: v2.0.6
 
 # Sketchbook
 engines.tk-sketchbook.location:
@@ -114,4 +114,5 @@ engines.tk-sketchbook.location:
   # name: tk-sketchbook
   # version: v0.2.0
   type: dev
-  path: C:\Users\t_aitcradmin\git\tk-sketchbook
+  windows_path: C:\Users\t_aitcradmin\git\tk-sketchbook
+  mac_path: /Users/t_aitcr/git/tk-sketchbook

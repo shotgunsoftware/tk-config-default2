@@ -29,8 +29,3 @@ settings.tk-multi-breakdown.alias:
 settings.tk-multi-breakdown.vred:
   hook_scene_operations: '{engine}/tk-multi-breakdown/basic/scene_operations.py'
   location: "@apps.tk-multi-breakdown.location"
-
-# Sketchbook
-settings.tk-multi-breakdown.sketchbook:
-  hook_scene_operations: '{engine}/tk-multi-breakdown/basic/scene_operations.py'
-  location: "@apps.tk-multi-breakdown.location"
