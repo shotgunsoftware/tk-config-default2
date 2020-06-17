@@ -179,6 +179,7 @@ keys:
             psd: Adobe Photoshop PSD File
             skba: Sketchbook Flipbook
         default: tif
+        alias: extension
 
 #
 # The paths section contains all the the key locations where files are to be stored

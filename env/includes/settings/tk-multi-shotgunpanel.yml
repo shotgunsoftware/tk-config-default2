@@ -323,18 +323,18 @@ settings.tk-multi-shotgunpanel.vred:
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
 
-# sketchbook
+# SketchBook
 settings.tk-multi-shotgunpanel.sketchbook:
-  actions_hook: "{self}/general_actions.py"
+  actions_hook: "{self}/general_actions.py:{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   action_mappings:
     PublishedFile:
-    - actions: [open_file]
+    - actions: [add_image]
       filters: {published_file_type: Photoshop Image}
-    - actions: [open_file]
+    - actions: [add_image]
       filters: {published_file_type: Rendered Image}
-    - actions: [open_file]
+    - actions: [add_image]
       filters: {published_file_type: Image}
-    - actions: [open_file]
+    - actions: [add_image]
       filters: {published_file_type: Texture}
     - actions: [add_image]
       filters: {published_file_type: Tif File}
@@ -342,6 +342,8 @@ settings.tk-multi-shotgunpanel.sketchbook:
       filters: {published_file_type: Bmp File}
     - actions: [add_image]
       filters: {published_file_type: Gif File}
+    - actions: [open_file]
+      filters: {published_file_type: Skba File}
     - actions: [publish_clipboard]
       filters: {}
     Task:
