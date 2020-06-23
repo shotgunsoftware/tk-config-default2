@@ -503,26 +503,10 @@ settings.tk-multi-publish2.alias.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
      settings:
        Publish Template: alias_asset_publish
-   - name: Publish IGES to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_igs_publish
    - name: Publish CATPart to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
      settings:
        Publish Template: alias_asset_catpart_publish
-   - name: Publish JT to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_jt_publish
-   - name: Publish STEP to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_stp_publish
-   - name: Publish WREF to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_wref_publish
    - name: Publish Variants to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_variants.py"
      settings: {}
