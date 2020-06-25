@@ -29,8 +29,6 @@ settings.tk-sketchbook.asset:
       location: "@apps.tk-multi-about.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.sketchbook"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
-  menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-sketchbook.location"
 
 # asset_step
@@ -42,10 +40,6 @@ settings.tk-sketchbook.asset_step:
     tk-multi-publish2: "@settings.tk-multi-publish2.sketchbook.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.sketchbook"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.sketchbook.asset_step"
-  menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
-  - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish2, name: Publish...}
   location: "@engines.tk-sketchbook.location"
 
 # project
@@ -57,8 +51,8 @@ settings.tk-sketchbook.project:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
     tk-multi-loader2: "@settings.tk-multi-loader2.sketchbook"
     tk-multi-publish2: "@settings.tk-multi-publish2.sketchbook.project"
-  menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
   location: "@engines.tk-sketchbook.location"
 
 # sequence
@@ -69,8 +63,6 @@ settings.tk-sketchbook.sequence:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
-  menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-sketchbook.location"
 
 # shot
@@ -81,8 +73,6 @@ settings.tk-sketchbook.shot:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
-  menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-sketchbook.location"
 
 # shot_step
@@ -95,9 +85,5 @@ settings.tk-sketchbook.shot_step:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.sketchbook"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.sketchbook.shot_step"
-  menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
-  - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish2, name: Publish...}
   template_project: shot_work_area_sketchbook
   location: "@engines.tk-sketchbook.location"

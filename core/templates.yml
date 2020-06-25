@@ -167,16 +167,13 @@ keys:
         format_spec: "05"
         alias: SEQ
 
-    # Sketchbook supports six extension types for stills, one for flipbooks
+    # Sketchbook supports six extension types for stills but we are using TIFF
+    # You can add different formats here if you would like to add or change this
+    # .skba file is for flipbooks
     sketchbook.extension:
         type: str
         choices:
             tif: TIFF File
-            bmp: Bitmap File
-            jpg: JPEG File
-            gif: GIF File
-            png: PNG File
-            psd: Adobe Photoshop PSD File
             skba: Sketchbook Flipbook
         default: tif
         alias: extension
