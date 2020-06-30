@@ -425,14 +425,10 @@ paths:
     nuke_shot_publish:
         definition: '@shot_publish/nuke/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.nk'
     # write node outputs
-    nuke_shot_render_mono_dpx:
+    nuke_shot_render_work:
         definition: '@shot_root/nuke/render/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
-    nuke_shot_render_pub_mono_dpx:
+    nuke_shot_render_pub:
         definition: '@comp_shotrender/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
-    nuke_shot_render_stereo:
-        definition: '@shot_root/nuke/render/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
-    nuke_shot_render_pub_stereo:
-        definition: '@comp_shotrender/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
     # review output
     shot_quicktime_quick:
         definition: '@shot_review/quickdaily/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_{iteration}.mov'
@@ -445,9 +441,9 @@ paths:
 
     # export of shot asset data from hiero
     hiero_plate_path:
-        definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
+        definition: '02_source/{Sequence}/{Shot}/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
     hiero_render_path:
-        definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
+        definition: '02_source/{Sequence}/{Shot}/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
 
     ##########################################################################################
     # Asset pipeline
