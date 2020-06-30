@@ -73,7 +73,7 @@ settings.tk-multi-workfiles2.launch_at_startup:
       filters:
       link_field: entity
       hierarchy: [step]
-  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py" # Remove this from SKB-1928 branch
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/advanced/scene_operation.py" # Remove this from SKB-1928 branch
   location: "@apps.tk-multi-workfiles2.location"
 
 ################################################################################
@@ -669,7 +669,7 @@ settings.tk-multi-workfiles2.sketchbook.asset_step:
       filters:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
-  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/advanced/scene_operation.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 # shot_step
@@ -702,5 +702,5 @@ settings.tk-multi-workfiles2.sketchbook.shot_step:
       filters:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
-  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/advanced/scene_operation.py"
   location: "@apps.tk-multi-workfiles2.location"
