@@ -98,7 +98,7 @@ apps.tk-multi-workfiles.location:
   version: v0.7.4
 
 # workfiles2
- apps.tk-multi-workfiles2.location:
+apps.tk-multi-workfiles2.location:
 #   type: app_store
 #   name: tk-multi-workfiles2
 #   version: v0.12.2
