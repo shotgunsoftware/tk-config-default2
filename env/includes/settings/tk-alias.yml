@@ -28,6 +28,8 @@ settings.tk-alias.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
   menu_favourites:
@@ -39,6 +41,8 @@ settings.tk-alias.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-breakdown: "@settings.tk-multi-breakdown.alias"
     tk-multi-loader2: "@settings.tk-multi-loader2.alias"
     tk-multi-publish2: "@settings.tk-multi-publish2.alias.asset_step"
@@ -58,6 +62,8 @@ settings.tk-alias.project:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
   menu_favourites:

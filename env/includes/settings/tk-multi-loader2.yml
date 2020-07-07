@@ -327,6 +327,10 @@ settings.tk-multi-loader2.alias:
     Fbx File: [import]
     Image: [texture_node]
     Photoshop Image: [texture_node]
+    Obj File: [import_subdiv]
+    Tsm File: [import_subdiv]
+    F3d File: [import_subdiv]
+    Sf3d File: [import_subdiv]
   entities:
   - caption: Assets
     entity_type: Asset
