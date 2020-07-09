@@ -58,7 +58,7 @@ engines.tk-flame.location:
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.7.1
+  version: v1.7.2
 
 # Mari
 engines.tk-mari.location:
