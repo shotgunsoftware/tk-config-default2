@@ -115,7 +115,7 @@ apps.tk-multi-devutils.location:
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
-  version: v0.1.7
+  version: v0.2.0
 
 # shotgun launchfolder
 apps.tk-shotgun-launchfolder.location:
