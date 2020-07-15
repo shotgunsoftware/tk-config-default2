@@ -24,7 +24,7 @@ frameworks:
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.5.2
+      version: v0.6.0
       type: app_store
       name: tk-framework-adminui
 
