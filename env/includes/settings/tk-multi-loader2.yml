@@ -327,6 +327,8 @@ settings.tk-multi-loader2.alias:
     Fbx File: [import]
     Image: [texture_node]
     Photoshop Image: [texture_node]
+    Tif File: [texture_node]
+    Bmp File: [texture_node]
     Obj File: [import_subdiv]
     Tsm File: [import_subdiv]
     F3d File: [import_subdiv]
