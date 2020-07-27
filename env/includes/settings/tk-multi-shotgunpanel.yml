@@ -279,6 +279,10 @@ settings.tk-multi-shotgunpanel.alias:
       filters: {published_file_type: Image}
     - actions: [texture_node]
       filters: {published_file_type: Photoshop Image}
+    - actions: [texture_node]
+      filters: {published_file_type: Tif File}
+    - actions: [texture_node]
+      filters: {published_file_type: Bmp File}
     - actions: [import_subdiv]
       filters: {published_file_type: Obj File}
     - actions: [import_subdiv]
