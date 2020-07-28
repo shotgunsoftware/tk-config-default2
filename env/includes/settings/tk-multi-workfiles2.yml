@@ -542,6 +542,7 @@ settings.tk-multi-workfiles2.motionbuilder.shot_step:
 
 # project
 settings.tk-multi-workfiles2.alias:
+  launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Asset
@@ -590,6 +591,7 @@ settings.tk-multi-workfiles2.alias.asset_step:
 
 # project
 settings.tk-multi-workfiles2.vred:
+  launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Asset
