@@ -59,9 +59,14 @@ frameworks:
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.7.4
-      type: app_store
-      name: tk-framework-shotgunutils
+#      version: v5.7.4
+#      type: app_store
+#      name: tk-framework-shotgunutils
+      type: git_branch
+      path: git@github.com:shotgunsoftware/tk-framework-shotgunutils.git
+      branch: shot-3508-qt-upgrade-deadlock
+      version: 2493e41
+
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
