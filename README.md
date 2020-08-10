@@ -1,12 +1,9 @@
-[![Build Status](https://dev.azure.com/shotgun-ecosystem/Toolkit/_apis/build/status/Configs/tk-config-default2?branchName=master)](https://dev.azure.com/shotgun-ecosystem/Toolkit/_build/latest?definitionId=49&branchName=master)
+# nfa-shotgun-configuration
 
--------------------------------------------------------------------------
-The Shotgun Pipeline Toolkit Default Configuration
--------------------------------------------------------------------------
+>Dutch
 
-Welcome to the Shotgun Pipeline Toolkit default configuration!
+Dit is de officiële Nederlandse Film Academie Shotgun Tookit configuratie repository. Voor meer informatie, ga naar: [wiki.vfxim.nl](wiki.vfxim.nl)
 
-For more information, go to the following url:
-https://support.shotgunsoftware.com/hc/en-us/articles/115000067493-Integrations-Admin-Guide
+>English
 
--------------------------------------------------------------------------
+This is the official Netherlands Film Academy Shotgun Toolkit configuration repository. For more information, visit: [wiki.vfxim.nl](wiki.vfxim.nl)
