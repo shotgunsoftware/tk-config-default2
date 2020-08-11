@@ -540,10 +540,6 @@ settings.tk-multi-publish2.vred.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
      settings:
        Publish Template: vred_asset_publish
-   - name: Publish to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
-     settings:
-       Publish Template: vred_asset_geometry_publish
    - name: Publish Rendering to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
      settings:
