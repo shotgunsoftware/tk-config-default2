@@ -563,9 +563,6 @@ settings.tk-multi-publish2.vred.asset_step:
 settings.tk-multi-publish2.sketchbook.project:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/collector.py"
   publish_plugins:
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/start_version_control.py"
-    settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/publish_session.py"
     settings: {}
@@ -584,9 +581,6 @@ settings.tk-multi-publish2.sketchbook.asset_step:
   collector_settings:
       Work Template: sketchbook_asset_work
   publish_plugins:
-   - name: Begin file versioning
-     hook: "{engine}/tk-multi-publish2/start_version_control.py"
-     settings: {}
    - name: Publish to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/publish_session.py"
      settings:
@@ -606,9 +600,6 @@ settings.tk-multi-publish2.sketchbook.shot_step:
   collector_settings:
       Work Template: sketchbook_shot_work
   publish_plugins:
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/start_version_control.py"
-    settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/publish_session.py"
     settings:
