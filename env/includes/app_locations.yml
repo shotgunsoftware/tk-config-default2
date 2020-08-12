@@ -23,7 +23,7 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.3.0
+  version: v0.3.1
 
 # breakdown
 apps.tk-multi-breakdown.location:
@@ -53,7 +53,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.5.3
+  version: v2.5.4
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -89,7 +89,7 @@ apps.tk-multi-shotgunpanel.location:
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
-  version: v0.8.0
+  version: v0.8.1
 
 # workfiles (required for Mari)
 apps.tk-multi-workfiles.location:
@@ -101,7 +101,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
 #   type: app_store
 #   name: tk-multi-workfiles2
-#   version: v0.12.2
+#   version: v0.12.3
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
   branch: SHOT-3416
@@ -120,7 +120,7 @@ apps.tk-multi-devutils.location:
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
-  version: v0.1.7
+  version: v0.2.0
 
 # shotgun launchfolder
 apps.tk-shotgun-launchfolder.location:
@@ -132,7 +132,7 @@ apps.tk-shotgun-launchfolder.location:
 apps.tk-shotgun-launchpublish.location:
   type: app_store
   name: tk-shotgun-launchpublish
-  version: v0.3.2
+  version: v0.4.0
 
 # ---- Hiero apps
 

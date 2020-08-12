@@ -543,6 +543,7 @@ settings.tk-multi-workfiles2.motionbuilder.shot_step:
 
 # project
 settings.tk-multi-workfiles2.alias:
+  launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Asset
@@ -558,7 +559,6 @@ settings.tk-multi-workfiles2.alias:
       filters:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
-  custom_actions_hook: "{engine}/tk-multi-workfiles2/basic/custom_actions.py"
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
   location: "@apps.tk-multi-workfiles2.location"
 
@@ -583,7 +583,6 @@ settings.tk-multi-workfiles2.alias.asset_step:
       filters:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
-  custom_actions_hook: "{engine}/tk-multi-workfiles2/basic/custom_actions.py"
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
   location: "@apps.tk-multi-workfiles2.location"
 
@@ -593,6 +592,7 @@ settings.tk-multi-workfiles2.alias.asset_step:
 
 # project
 settings.tk-multi-workfiles2.vred:
+  launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Asset
