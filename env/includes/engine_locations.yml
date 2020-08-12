@@ -40,21 +40,13 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-<<<<<<< HEAD
-  version: v2.5.3
-=======
   version: v2.5.6
->>>>>>> origin/master
 
 # Desktop2
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-<<<<<<< HEAD
-  version: v1.4.1
-=======
   version: v1.4.3
->>>>>>> origin/master
 
 # Flame
 engines.tk-flame.location:
