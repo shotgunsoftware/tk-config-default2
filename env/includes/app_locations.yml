@@ -84,6 +84,8 @@ apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
   version: v1.7.1
+#  type: dev
+#  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-multi-shotgunpanel
 
 # snapshot
 apps.tk-multi-snapshot.location:
@@ -107,6 +109,10 @@ apps.tk-multi-workfiles2.location:
   branch: SHOT-3416
   version: b337794
 
+## testperfs
+#apps.tk-multi-testperfs.location:
+#  type: dev
+#  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-multi-testperfs
 
 # dev utils
 apps.tk-multi-devutils.location:
