@@ -38,6 +38,8 @@ settings.tk-sketchbook.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+#    tk-multi-perftests:
+#      location: "@apps.tk-multi-testperfs.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.sketchbook"
     tk-multi-publish2: "@settings.tk-multi-publish2.sketchbook.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.sketchbook"

@@ -139,14 +139,10 @@ keys:
         default: ma
         alias: extension
 
-    # Vred supports three extension types
-    vred.extension:
+    # needed by the Alias import as reference functionality
+    alias.extension:
         type: str
-        choices:
-            vpe: VRED Essentials Project Binary (*.vpe)
-            vpb: VRED Project Binary (*.vpb)
-            vpf: VRED Project File (*.vpf)
-        default: vpb
+        filter_by: alphanumeric
 
     # represents the optional render pass for frames written by VRED
     vred.render_pass:
@@ -672,6 +668,9 @@ paths:
 
     # Alias translations
 
+    # The location of the reference created on the fly by Alias when importing a file as ref
+    alias_asset_reference_publish:
+        definition: '@asset_root/publish/alias/translations/{name}_{alias.extension}.v{version}.wref'
     alias_asset_igs_publish:
         definition: '@asset_root/publish/alias/translations/{name}.v{version}.igs'
     alias_asset_catpart_publish:
@@ -695,13 +694,13 @@ paths:
         definition: '@asset_root/publish/vred'
     # The location of WIP files
     vred_asset_work:
-        definition: '@asset_root/work/vred/{name}.v{version}.{vred.extension}'
+        definition: '@asset_root/work/vred/{name}.v{version}.vpb'
     # The location of backups of WIP files
     vred_asset_snapshot:
-        definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.{vred.extension}'
+        definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.vpb'
     # The location of published VRED files
     vred_asset_publish:
-        definition: '@asset_root/publish/vred/{name}.v{version}.{vred.extension}'
+        definition: '@asset_root/publish/vred/{name}.v{version}.vpb'
 
     # define the location of VRED geometry published files
     vred_asset_geometry_publish:

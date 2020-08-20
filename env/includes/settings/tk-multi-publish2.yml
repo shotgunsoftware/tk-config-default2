@@ -503,26 +503,16 @@ settings.tk-multi-publish2.alias.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
      settings:
        Publish Template: alias_asset_publish
-   - name: Publish IGES to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_igs_publish
    - name: Publish CATPart to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
      settings:
        Publish Template: alias_asset_catpart_publish
-   - name: Publish JT to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_jt_publish
-   - name: Publish STEP to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_stp_publish
-   - name: Publish WREF to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_wref_publish
+   - name: Publish Variants to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_variants.py"
+     settings: {}
+   - name: Publish Annotations to Shotgun
+     hook: "{engine}/tk-multi-publish2/basic/publish_annotations.py"
+     settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -573,9 +563,6 @@ settings.tk-multi-publish2.vred.asset_step:
 settings.tk-multi-publish2.sketchbook.project:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/collector.py"
   publish_plugins:
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/start_version_control.py"
-    settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/publish_session.py"
     settings: {}
@@ -594,9 +581,6 @@ settings.tk-multi-publish2.sketchbook.asset_step:
   collector_settings:
       Work Template: sketchbook_asset_work
   publish_plugins:
-   - name: Begin file versioning
-     hook: "{engine}/tk-multi-publish2/start_version_control.py"
-     settings: {}
    - name: Publish to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/publish_session.py"
      settings:
@@ -616,9 +600,6 @@ settings.tk-multi-publish2.sketchbook.shot_step:
   collector_settings:
       Work Template: sketchbook_shot_work
   publish_plugins:
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/start_version_control.py"
-    settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/publish_session.py"
     settings:
