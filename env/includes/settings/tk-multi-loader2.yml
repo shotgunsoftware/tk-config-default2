@@ -371,7 +371,7 @@ settings.tk-multi-loader2.vred:
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
-# Sketchbook
+# SketchBook
 settings.tk-multi-loader2.sketchbook:
   action_mappings:
     Photoshop Image: [add_image]

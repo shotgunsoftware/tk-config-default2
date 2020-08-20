@@ -167,14 +167,14 @@ keys:
         format_spec: "05"
         alias: SEQ
 
-    # Sketchbook supports six extension types for stills but we are using TIFF
+    # SketchBook supports six extension types for stills but we are using TIFF
     # You can add different formats here if you would like to add or change this
     # .skba file is for flipbooks
     sketchbook.extension:
         type: str
         choices:
             tif: TIFF File
-            skba: Sketchbook Flipbook
+            skba: SketchBook Flipbook
         default: tif
         alias: extension
 
@@ -441,7 +441,7 @@ paths:
         definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
 
     #
-    # Sketchbook
+    # SketchBook
     #
 
     # define the location of a work area
@@ -724,7 +724,7 @@ paths:
         definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
 
     #
-    # Sketchbook
+    # SketchBook
     #
 
     # The location of WIP files
