@@ -66,8 +66,6 @@ frameworks:
       path: https://github.com/shotgunsoftware/tk-framework-shotgunutils.git
       branch: shot-3508-qt-upgrade-deadlock
       version: 2493e41
-#      type: dev
-#      windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-framework-shotgunutils
 
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
