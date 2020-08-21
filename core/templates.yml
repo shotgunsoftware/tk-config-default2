@@ -219,15 +219,15 @@ paths:
 
     # The location of WIP files
     hiero_project_work:
-        definition: '02_source/editorial/work/{name}_v{version}.hrox'
+        definition: '02_source/editorial/work/{projectcode}_{name}_v{version}.hrox'
     hiero_project_work_area:
         definition: '02_source/editorial/work'
     # The location of backups of WIP files
     hiero_project_snapshot:
-        definition: '02_source/editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
+        definition: '02_source/editorial/work/snapshots/{projectcode}_{name}_v{version}_{timestamp}.hrox'
     # The location of published hiero files
     hiero_project_publish:
-        definition: '02_source/editorial/publish/{name}_v{version}.hrox'
+        definition: '02_source/editorial/publish/{projectcode}_{name}_v{version}.hrox'
     hiero_project_publish_area:
         definition: '02_source/editorial/publish'
 
