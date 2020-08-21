@@ -135,7 +135,7 @@ apps.tk-shotgun-launchpublish.location:
 apps.tk-hiero-export.location:
   type: github_release
   organization: nfa-vfxim
-  name: tk-hiero-export
+  repository: tk-hiero-export
   version: v0.5.3.1
 
 # hiero openinshotgun
