@@ -16,10 +16,10 @@ includes:
 ################################################################################
 
 settings.tk-hiero-export:
+  custom_template_fields:
+  - {description: Projectcode of project, keyword: projectcode}
   nuke_script_toolkit_write_nodes:
-  - {channel: stereoexr32, name: 'Stereo Exr, 32 bit'}
-  - {channel: stereoexr16, name: 'Stereo Exr, 16 bit'}
-  - {channel: monodpx, name: Mono Dpx}
+  - {channel: monoexr, name: 'exr, 16 bit'}
   template_nuke_script_path: nuke_shot_work
   template_plate_path: hiero_plate_path
   template_render_path: hiero_render_path
