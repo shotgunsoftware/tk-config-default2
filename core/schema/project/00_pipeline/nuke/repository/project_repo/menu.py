@@ -56,8 +56,11 @@ def populate_menu_recursive(tool_path, menu):
                 img = find_icon(root, file_name)
                 # Adding the menu command
                 if extension.lower() in ['.nk']:
+                    # Fixed windows issue where there is a \ used in the file path instead of a /, warning: this config is only usable for Windows
+                    nkfile_location = os.path.join(root, nuke_file)
+                    new_nkfile_location = nkfile_location.replace(os.sep, '/')
                     menu.addCommand(category + '/' + file_name,
-                                    'nuke.nodePaste( "{}" )'.format(os.path.join(root, nuke_file)),
+                                    'nuke.nodePaste( "{}" )'.format(new_nkfile_location),
                                     icon=img)
                 if extension.lower() in ['.gizmo', '.so']:
                     menu.addCommand(category + '/' + file_name,
