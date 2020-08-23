@@ -20,6 +20,7 @@ includes:
 settings.tk-multi-launchapp:
   use_software_entity: true
   hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+  hook_before_app_launch:  "{config}/tk-multi-launchapp/before_app_launch.py"
   location: "@apps.tk-multi-launchapp.location"
 
 # shotgun
@@ -27,6 +28,7 @@ settings.tk-multi-launchapp.shotgun:
   use_software_entity: true
   skip_engine_instances: ["tk-nukestudio"]
   hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
+  hook_before_app_launch:  "{config}/tk-multi-launchapp/before_app_launch.py"
   location: "@apps.tk-multi-launchapp.location"
 
 ################################################################################
