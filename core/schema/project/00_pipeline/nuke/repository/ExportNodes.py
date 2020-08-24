@@ -46,8 +46,17 @@ def main():
                     # Exporting as Nuke file
                     try:
                         nuke.nodeCopy(exploc_win)
+
+                        # Creating menu to add recent created node
+                        toolbar = nuke.toolbar("Nodes")
+                        prj_repo = toolbar.addMenu("Project repository", icon ="project_repository.png")
+
+                        # Creating command to import node when artist asks
+                        prj_repo.addCommand("Nodes/" + expname,"nuke.nodePaste(" + "\"" + exploc_win + "\")")
+
                         # Giving artist success message
                         nuke.message("Exporting " + expname + " as template was successful.")
+
                     except:
                         nuke.message("An exception occurred")
                 # Node export settings
@@ -62,7 +71,16 @@ def main():
                     # Exporting as Nuke file
                     try:
                         nuke.nodeCopy(exploc_win)
+
+                        # Creating menu to add recent created node
+                        toolbar = nuke.toolbar("Nodes")
+                        prj_repo = toolbar.addMenu("Project repository", icon ="project_repository.png")
+
+                        # Creating command to import node when artist asks
+                        prj_repo.addCommand("Nodes/" + expname,"nuke.nodePaste(" + "\"" + exploc_win + "\")")
+
                         # Giving artist success message
                         nuke.message("Exporting " + expname + " as node was successful.")
+
                     except:
                         nuke.message("An exception occurred")
