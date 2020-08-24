@@ -52,7 +52,7 @@ def main():
                         prj_repo = toolbar.addMenu("Project repository", icon ="project_repository.png")
 
                         # Creating command to import node when artist asks
-                        prj_repo.addCommand("Nodes/" + expname,"nuke.nodePaste(" + "\"" + exploc_win + "\")")
+                        prj_repo.addCommand("Templates/" + expname,"nuke.nodePaste(" + "\"" + exploc_win + "\")")
 
                         # Giving artist success message
                         nuke.message("Exporting " + expname + " as template was successful.")
