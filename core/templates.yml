@@ -337,13 +337,13 @@ paths:
         definition: '@shot_publish/houdini'
     # The location of WIP files
     houdini_shot_work:
-        definition: '@shot_root/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.hip'
+        definition: '@shot_root/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.hipnc'
     # The location of backups of WIP files
     houdini_shot_snapshot:
-        definition: '@shot_root/houdini/snapshots/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.hip'
+        definition: '@shot_root/houdini/snapshots/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc'
     # The location of published houdini files
     houdini_shot_publish:
-        definition: '@shot_publish/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.hip'
+        definition: '@shot_publish/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.hipnc'
     # Alembic caches
     houdini_shot_work_alembic_cache:
         definition: '@shot_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.abc'
@@ -519,13 +519,13 @@ paths:
         definition: '@asset_publish/maya'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/maya/{projectcode}_{Asset}_{Step}_work_v{version}.{maya_extension}'
+        definition: '@asset_root/maya/scenes/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/maya/snapshots/{projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.{maya_extension}'
+        definition: '@asset_root/maya/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_asset_publish:
-        definition: '@asset_publish/maya/{projectcode}_{Asset}_{Step}_pub_v{version}.{maya_extension}'
+        definition: '@asset_publish/maya/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.{maya_extension}'
 
 
     #
@@ -540,13 +540,13 @@ paths:
         definition: '@asset_publish/houdini'
     # The location of WIP files
     houdini_asset_work:
-        definition: '@asset_root/work/houdini/{projectcode}_{Asset}_{Step}_work_v{version}.hip'
+        definition: '@asset_root/work/houdini/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.hipnc'
     # The location of backups of WIP files
     houdini_asset_snapshot:
-        definition: '@asset_root/houdini/snapshots/{projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.hip'
+        definition: '@asset_root/houdini/snapshots/{projectcode}_{Asset}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc'
     # The location of published houdini files
     houdini_asset_publish:
-        definition: '@asset_publish/houdini/{projectcode}_{Asset}_{Step}_pub_v{version}.hip'
+        definition: '@asset_publish/houdini/{projectcode}_{Asset}_{Step}_{name}_pub_{name}_v{version}.hipnc'
     # Alembic caches
     houdini_asset_work_alembic_cache:
         definition: '@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{projectcode}_{Asset}_{Step}_work_v{version}.abc'
