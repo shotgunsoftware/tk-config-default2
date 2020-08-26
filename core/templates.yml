@@ -316,7 +316,7 @@ paths:
         definition: '@shot_publish/maya'
     # The location of WIP files
     maya_shot_work:
-        definition: '@shot_root/maya/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.{maya_extension}'
+        definition: '@shot_root/maya/scenes/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_shot_snapshot:
         definition: '@shot_root/maya/snapshots/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.{maya_extension}'
