@@ -110,8 +110,6 @@ engines.tk-vred.location:
 
 # SketchBook
 engines.tk-sketchbook.location:
-#  type: app_store
-#  name: tk-sketchbook
-#  version: v0.3.0
-  type: dev
-  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-sketchbook
+  type: app_store
+  name: tk-sketchbook
+  version: v0.3.1
