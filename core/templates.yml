@@ -463,7 +463,7 @@ paths:
 
     # The location of WIP files
     photoshop_asset_work:
-        definition: '@asset_root/photoshop/{projectcode}_{Asset}_{Step}_work_v{version}.psd'
+        definition: '@asset_root/photoshop/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.psd'
     asset_work_area_photoshop:
         definition: '@asset_root/photoshop'
     # The location of backups of WIP files
@@ -473,7 +473,7 @@ paths:
     asset_publish_area_photoshop:
         definition: '@asset_publish/photoshop'
     photoshop_asset_publish:
-        definition: '@asset_publish/photoshop/{projectcode}_{Asset}_{Step}_pub_v{version}.psd'
+        definition: '@asset_publish/photoshop/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.psd'
 
     #
     # after effects
@@ -540,7 +540,7 @@ paths:
         definition: '@asset_publish/houdini'
     # The location of WIP files
     houdini_asset_work:
-        definition: '@asset_root/work/houdini/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.hipnc'
+        definition: '@asset_root/houdini/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.hipnc'
     # The location of backups of WIP files
     houdini_asset_snapshot:
         definition: '@asset_root/houdini/snapshots/{projectcode}_{Asset}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc'
