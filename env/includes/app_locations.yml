@@ -27,9 +27,10 @@ apps.tk-multi-about.location:
 
 # breakdown
 apps.tk-multi-breakdown.location:
-  type: app_store
-  name: tk-multi-breakdown
-  version: v1.7.1
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-multi-breakdown
+  version: 0.1.1
 
 # demo
 apps.tk-multi-demo.location:
@@ -45,15 +46,17 @@ apps.tk-multi-launchapp.location:
 
 # loader2
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.20.2
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-multi-loader2
+  version: 0.1.1
 
 # publish2
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.5.2
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-multi-publish2
+  version: 0.1.1
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -156,6 +159,13 @@ apps.tk-houdini-mantranode.location:
   type: app_store
   name: tk-houdini-mantranode
   version: v0.4.1
+
+# houdini cachenode
+apps.tk-houdini-cachenode.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini-cachenode
+  version: 0.3.2
 
 # ---- Nuke apps
 

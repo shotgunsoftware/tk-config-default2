@@ -56,9 +56,10 @@ engines.tk-flame.location:
 
 # Houdini
 engines.tk-houdini.location:
-  type: app_store
-  name: tk-houdini
-  version: v1.7.1
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini
+  version: 0.1.1
 
 # Mari
 engines.tk-mari.location:
