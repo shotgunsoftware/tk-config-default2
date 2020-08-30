@@ -1,3 +1,5 @@
+![version](https://img.shields.io/github/v/release/nfa-vfxim/nfa-shotgun-configuration?include_prereleases&style=flat-square)
+
 # nfa-shotgun-configuration
 
 >Dutch
