@@ -1,0 +1,16 @@
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+settings.tk-houdini-cachenode.asset_step:
+  work_file_template: houdini_asset_work
+  output_cache_template: houdini_asset_work_file_cache
+  output_publish_template: houdini_asset_publish_file_cache
+  location: "@apps.tk-houdini-cachenode.location"
+
+settings.tk-houdini-cachenode.shot_step:
+  work_file_template: houdini_shot_work
+  output_cache_template: houdini_shot_work_file_cache
+  output_publish_template: houdini_shot_publish_file_cache
+  location: "@apps.tk-houdini-cachenode.location"

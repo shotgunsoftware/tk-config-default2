@@ -347,6 +347,12 @@ paths:
     # Alembic caches
     houdini_shot_work_alembic_cache:
         definition: '@shot_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.abc'
+    # File work caches
+    houdini_shot_work_file_cache:
+        definition: '@shot_root/houdini/cache/bgeo/{name}/v{version}/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.{SEQ}.bgeo'
+    # File publish caches
+    houdini_shot_publish_file_cache:
+        definition: '@shot_publish/cache/bgeo/{name}/v{version}/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo'
 
     # Rendered images
     houdini_shot_render:
@@ -550,6 +556,12 @@ paths:
     # Alembic caches
     houdini_asset_work_alembic_cache:
         definition: '@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{projectcode}_{Asset}_{Step}_work_v{version}.abc'
+    # File work caches
+    houdini_asset_work_file_cache:
+        definition: '@asset_root/houdini/cache/bgeo/{name}/v{version}/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.{SEQ}.bgeo'
+    # File publish caches
+    houdini_asset_publish_file_cache:
+        definition: '@asset_publish/cache/bgeo/{name}/v{version}/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo'
 
     # Rendered images
     houdini_asset_render:
