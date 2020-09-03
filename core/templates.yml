@@ -199,8 +199,8 @@ paths:
 
     alembic_caches_pub: 04_publish/03_caches/{Asset}/{Step}
 
-    asset_review: 04_review/assets/{Asset}/{Step}
-    shot_review: 04_review/shots/{Shot}
+    asset_review: 05_review/assets
+    shot_review: 05_review/shots
 
     cg_assetrender: 06_renders/cg/assets/{Asset}/{Step}
     cg_shotrender: 06_renders/cg/shots/{Sequence}/{Shot}
