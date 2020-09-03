@@ -110,7 +110,7 @@ settings.tk-houdini.shot:
 # shot_step
 settings.tk-houdini.shot_step:
   apps:
-  tk-multi-startup:
+    tk-multi-startup:
       location: "@apps.tk-multi-startup.location"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
