@@ -4,11 +4,11 @@
 The Shotgun Pipeline Toolkit Default Configuration
 -------------------------------------------------------------------------
 
-# This repo was forked 9/3/2020 to maintain connections with Shotgun software master release.
-
 Welcome to the Shotgun Pipeline Toolkit default configuration!
 
 For more information, go to the following url:
 https://support.shotgunsoftware.com/hc/en-us/articles/115000067493-Integrations-Admin-Guide
+
+# This repo was forked 9/3/2020 to maintain connections with Shotgun software master release.
 
 -------------------------------------------------------------------------
