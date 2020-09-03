@@ -19,6 +19,13 @@ includes:
 
 # ---- Multi apps
 
+# startup
+app.tk-multi-startup.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-multi-startup
+  version: 0.1.1
+
 # about
 apps.tk-multi-about.location:
   type: app_store
@@ -30,7 +37,7 @@ apps.tk-multi-breakdown.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-breakdown
-  version: 0.1.1
+  version: 1.7.1.1
 
 # demo
 apps.tk-multi-demo.location:
@@ -49,14 +56,14 @@ apps.tk-multi-loader2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-loader2
-  version: 0.1.1
+  version: 1.20.2.1
 
 # publish2
 apps.tk-multi-publish2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-publish2
-  version: 0.1.1
+  version: 2.5.4.1
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -166,7 +173,7 @@ apps.tk-houdini-cachenode.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-cachenode
-  version: 0.3.2
+  version: 0.3.3
 
 # ---- Nuke apps
 
