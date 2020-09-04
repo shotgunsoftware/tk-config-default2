@@ -9,8 +9,9 @@ import os
 # nuke
 import nuke
 
+curdir = os.path.dirname(os.path.abspath(__file__))
+project_dir = os.path.join(dirname, 'project_repo')
+project_dir_win = project_dir.replace(os.sep, '/')
 
-dirname, filename = os.path.split(os.path.abspath(__file__))
-
-for root, dirs, files in os.walk(dirname):
+for root, dirs, files in os.walk(project_dir_win):
     nuke.pluginAddPath(root)
