@@ -131,10 +131,10 @@ apps.tk-shotgun-launchpublish.location:
   type: dev
   windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-shotgun-launchpublish
 
-## shotgun launchpublish-vred
-#apps.tk-shotgun-launchpublish-vred.location:
-#  type: dev
-#  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-shotgun-launchpublish
+## shotgun launchvred
+apps.tk-shotgun-launchvred.location:
+  type: dev
+  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-shotgun-launchvred
 
 # ---- Hiero apps
 
