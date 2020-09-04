@@ -125,9 +125,16 @@ apps.tk-shotgun-launchfolder.location:
 
 # shotgun launchpublish
 apps.tk-shotgun-launchpublish.location:
-  type: app_store
-  name: tk-shotgun-launchpublish
-  version: v0.4.0
+#  type: app_store
+#  name: tk-shotgun-launchpublish
+#  version: v0.4.0
+  type: dev
+  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-shotgun-launchpublish
+
+## shotgun launchpublish-vred
+#apps.tk-shotgun-launchpublish-vred.location:
+#  type: dev
+#  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-shotgun-launchpublish
 
 # ---- Hiero apps
 

@@ -22,3 +22,9 @@ settings.tk-shotgun-launchpublish:
   viewer_path_mac: "@path.mac.rv"
   viewer_path_windows: "@path.windows.rv"
   location: "@apps.tk-shotgun-launchpublish.location"
+
+#settings.tk-shotgun-launchpublish-vred:
+#  viewer_extensions: [vpb]
+#  viewer_path_windows: "@path.windows.vred-presenter"
+#  hook_launch_publish: "{self}/shotgun_launch_publish_vred.py"
+#  location: "@apps.tk-shotgun-launchpublish-vred.location"

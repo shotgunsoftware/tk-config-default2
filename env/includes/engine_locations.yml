@@ -104,6 +104,8 @@ engines.tk-shotgun.location:
 
 # VRED
 engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v2.0.6
+#  type: app_store
+#  name: tk-vred
+#  version: v2.0.6
+  type: dev
+  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-vred
