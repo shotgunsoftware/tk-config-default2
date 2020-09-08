@@ -449,7 +449,7 @@ paths:
     # The location of WIP files
     sketchbook_shot_work:
         definition: '@shot_root/work/sketchbook/{name}.v{version}.{sketchbook.extension}'
-    # The location of published sketchbook files
+    # The location of published SketchBook files
     sketchbook_shot_publish:
         definition: '@shot_root/publish/sketchbook/{name}.v{version}.{sketchbook.extension}'
 
