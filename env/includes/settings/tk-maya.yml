@@ -111,10 +111,17 @@ settings.tk-maya.shot_step:
     tk-multi-snapshot: "@settings.tk-multi-snapshot.maya.shot_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.shot_step"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.maya"
+    tk-maya-playblast:
+      hook_post_playblast: default
+      hook_setup_window: default
+      location: "@apps.tk-maya-playblast.location"
+      template_work: maya_shot_work
+      template_shot: maya_shot_playblast
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-maya-playblast, name: Maya Playblast...}
   template_project: shot_work_area_maya
   location: "@engines.tk-maya.location"

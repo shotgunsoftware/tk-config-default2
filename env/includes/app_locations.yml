@@ -189,6 +189,13 @@ apps.tk-nuke-writenode.location:
   type: app_store
   version: v1.4.2
 
+# ---- Maya apps
+apps.tk-maya-playblast.location:
+  type: git_branch
+  branch: master
+  path: https://github.com/basestudio/tk-maya-playblast.git
+  version: d60a520
+
 # ---- Flame apps
 
 # flame export
