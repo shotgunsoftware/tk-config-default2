@@ -645,13 +645,13 @@ paths:
         definition: '@asset_review/quickdaily/{projectcode}_{Asset}_{Step}_{name}_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/nuke/{projectcode}_{Asset}_{Step}_work_v{version}.nk'
+        definition: '@asset_root/nuke/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.nk'
     # The location of backups of WIP files
     nuke_asset_snapshot:
-        definition: '@asset_root/nuke/snapshots/{projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.nk'
+        definition: '@asset_root/nuke/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.nk'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_publish/nuke/{projectcode}_{Asset}_{Step}_pub_v{version}.nk'
+        definition: '@asset_publish/nuke/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.nk'
 
     #
     # Alias
