@@ -15,19 +15,19 @@
 ################################################################################
 
 # Mari
-path.linux.mari: "Mari4.2"
-path.mac.mari: "/Applications/Mari3.4v2/Mari3.4v2.app"
-path.windows.mari: C:\Program Files\Mari4.2v1\Bundle\bin\Mari4.2v1.exe
+path.linux.mari: "Mari4.6"
+path.mac.mari: "/Applications/Mari4.6v4/Mari4.6v4.app"
+path.windows.mari: C:\Program Files\Mari4.6v4\Bundle\bin\Mari4.6v4.exe
 
 # Motionbuilder
-path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2018\bin\x64\motionbuilder.exe
+path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2020\bin\x64\motionbuilder.exe
 
 # Hiero
-path.linux.hiero: "Nuke11.2"
-path.mac.hiero: "/Applications/Nuke11.2v4/Hiero11.2v4.app"
-path.windows.hiero: C:\Program Files\Nuke11.2v4\Nuke11.2.exe
+path.linux.hiero: "Nuke12.1"
+path.mac.hiero: "/Applications/Nuke12.1v4/Hiero12.1v4.app"
+path.windows.hiero: C:\Program Files\Nuke12.1v4\Nuke12.1.exe
 
 # RV
 path.linux.rv: "rv"
 path.mac.rv: "/Applications/RV.app"
-path.windows.rv: C:\Program Files\Shotgun\RV-7.2.6\bin\rv.exe
+path.windows.rv: C:\Program Files\Shotgun\RV-7.9.0\bin\rv.exe
