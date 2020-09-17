@@ -107,5 +107,7 @@ engines.tk-vred.location:
 #  type: app_store
 #  name: tk-vred
 #  version: v2.0.6
-  type: dev
-  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-vred
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-vred.git
+  branch: SHOT-3542
+  version: 94888ce
