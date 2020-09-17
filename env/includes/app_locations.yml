@@ -125,11 +125,9 @@ apps.tk-shotgun-launchfolder.location:
 
 # shotgun launchpublish
 apps.tk-shotgun-launchpublish.location:
-#  type: app_store
-#  name: tk-shotgun-launchpublish
-#  version: v0.4.0
-  type: dev
-  windows_path: C:\Users\t_aitcradmin\PycharmProjects\tk-shotgun-launchpublish
+  type: app_store
+  name: tk-shotgun-launchpublish
+  version: v0.4.0
 
 ## shotgun launchvred
 apps.tk-shotgun-launchvred.location:

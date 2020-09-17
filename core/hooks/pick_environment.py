@@ -50,7 +50,7 @@ class PickEnvironment(Hook):
                 return "shot_step"
             if context.entity["type"] == "Asset":
                 return "asset_step"
-        
+
         if context.entity and context.step and context.task:
             return "publishedfile"
 
