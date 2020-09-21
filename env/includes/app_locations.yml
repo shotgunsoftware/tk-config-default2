@@ -185,9 +185,10 @@ apps.tk-nuke-quickreview.location:
 
 # writenode
 apps.tk-nuke-writenode.location:
-  name: tk-nuke-writenode
-  type: app_store
-  version: v1.4.2
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-nuke-writenode
+  version: 1.4.2.2
 
 # ---- Maya apps
 apps.tk-maya-playblast.location:
