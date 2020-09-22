@@ -231,6 +231,11 @@ paths:
     hiero_project_publish_area:
         definition: '02_source/editorial/publish'
 
+    ##########################################################################################    
+        
+    # OBJ Sculpts Standalone Publish Template
+    obj_asset_publish:
+        definition: '@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_{version}.obj'
 
     ##########################################################################################
     # Sequence level paths
