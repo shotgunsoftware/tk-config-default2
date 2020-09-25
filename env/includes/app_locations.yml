@@ -195,7 +195,7 @@ apps.tk-flame-review.location:
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.2.1
+  version: v1.2.2
 
 ################################################################################
 # reference all of the common frameworks
