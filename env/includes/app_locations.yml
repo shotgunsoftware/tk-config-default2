@@ -188,7 +188,7 @@ apps.tk-nuke-writenode.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-writenode
-  version: 1.4.2.2
+  version: 1.4.2.3
 
 # ---- Maya apps
 apps.tk-maya-playblast.location:
