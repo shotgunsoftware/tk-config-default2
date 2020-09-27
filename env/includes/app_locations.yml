@@ -143,8 +143,10 @@ apps.tk-shotgun-launchpublish.location:
 
 # hiero export
 apps.tk-hiero-export.location:
-  type: dev
-  path: E:\pipeline\nuke\tk-hiero-export
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-hiero-export
+  version: 0.5.3.2
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
