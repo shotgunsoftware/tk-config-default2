@@ -111,6 +111,8 @@ keys:
         alias: DD
     project:
         type: str
+    fileext:
+        type: str
 
     # These are used for the Mari UDIM pipeline:
     UDIM:
@@ -450,9 +452,11 @@ paths:
 
     # export of shot asset data from hiero
     hiero_plate_path:
-        definition: '02_source/{Sequence}/{Shot}/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
+        definition: '02_source/{Sequence}/{Shot}/p{version}/plates/ref/{projectcode}_sc{Sequence}_sh{Shot}_reference_p{version}.mov'
     hiero_render_path:
-        definition: '02_source/{Sequence}/{Shot}/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.exr'
+        definition: '02_source/{Sequence}/{Shot}/p{version}/renders/{projectcode}_sc{Sequence}_sh{Shot}_v{version}.{SEQ}.exr'
+    hiero_copy_path:
+        definition: '02_source/{Sequence}/{Shot}/p{version}/plates/{fileext}/{projectcode}_sc{Sequence}_sh{Shot}_plate_p{version}.{SEQ}.{fileext}'
 
     ##########################################################################################
     # Asset pipeline
