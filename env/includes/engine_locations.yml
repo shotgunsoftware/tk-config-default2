@@ -65,7 +65,7 @@ engines.tk-houdini.location:
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
-  version: v1.2.2
+  version: v1.2.3
 
 # Maya
 engines.tk-maya.location:
@@ -83,7 +83,7 @@ engines.tk-motionbuilder.location:
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.12.6
+  version: v0.12.7
 
 # Photoshop
 engines.tk-photoshopcc.location:

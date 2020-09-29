@@ -111,6 +111,8 @@ keys:
         alias: DD
     project:
         type: str
+    fileext:
+        type: str
 
     # These are used for the Mari UDIM pipeline:
     UDIM:
@@ -199,8 +201,8 @@ paths:
 
     alembic_caches_pub: 04_publish/03_caches/{Asset}/{Step}
 
-    asset_review: 04_review/assets/{Asset}/{Step}
-    shot_review: 04_review/shots/{Shot}
+    asset_review: 05_review/assets
+    shot_review: 05_review/shots
 
     cg_assetrender: 06_renders/cg/assets/{Asset}/{Step}
     cg_shotrender: 06_renders/cg/shots/{Sequence}/{Shot}
@@ -219,18 +221,23 @@ paths:
 
     # The location of WIP files
     hiero_project_work:
-        definition: '02_source/editorial/work/{name}_v{version}.hrox'
+        definition: '02_source/editorial/work/{projectcode}_{name}_v{version}.hrox'
     hiero_project_work_area:
         definition: '02_source/editorial/work'
     # The location of backups of WIP files
     hiero_project_snapshot:
-        definition: '02_source/editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
+        definition: '02_source/editorial/work/snapshots/{projectcode}_{name}_v{version}_{timestamp}.hrox'
     # The location of published hiero files
     hiero_project_publish:
-        definition: '02_source/editorial/publish/{name}_v{version}.hrox'
+        definition: '02_source/editorial/publish/{projectcode}_{name}_v{version}.hrox'
     hiero_project_publish_area:
         definition: '02_source/editorial/publish'
 
+    ##########################################################################################    
+        
+    # OBJ Sculpts Standalone Publish Template
+    obj_asset_publish:
+        definition: '@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_{version}.obj'
 
     ##########################################################################################
     # Sequence level paths
@@ -316,10 +323,13 @@ paths:
         definition: '@shot_publish/maya'
     # The location of WIP files
     maya_shot_work:
-        definition: '@shot_root/maya/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.{maya_extension}'
+        definition: '@shot_root/maya/scenes/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_shot_snapshot:
         definition: '@shot_root/maya/snapshots/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.{maya_extension}'
+    # The location of playblasts
+    maya_shot_playblast:
+        definition: '@shot_review/{projectcode}_sc{Sequence}_sh{Shot}_{name}_v{version}.mov'
     # The location of published maya files
     maya_shot_publish:
         definition: '@shot_publish/maya/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.{maya_extension}'
@@ -337,13 +347,13 @@ paths:
         definition: '@shot_publish/houdini'
     # The location of WIP files
     houdini_shot_work:
-        definition: '@shot_root/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.hip'
+        definition: '@shot_root/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.hipnc'
     # The location of backups of WIP files
     houdini_shot_snapshot:
-        definition: '@shot_root/houdini/snapshots/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.hip'
+        definition: '@shot_root/houdini/snapshots/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc'
     # The location of published houdini files
     houdini_shot_publish:
-        definition: '@shot_publish/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.hip'
+        definition: '@shot_publish/houdini/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.hipnc'
     # Alembic caches
     houdini_shot_work_alembic_cache:
         definition: '@shot_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_work_{name}_v{version}.abc'
@@ -432,9 +442,9 @@ paths:
         definition: '@shot_publish/nuke/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.nk'
     # write node outputs
     nuke_shot_render_work:
-        definition: '@shot_root/nuke/render/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
+        definition: '@shot_root/nuke/render/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
     nuke_shot_render_pub:
-        definition: '@comp_shotrender/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
+        definition: '@comp_shotrender/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
     # review output
     shot_quicktime_quick:
         definition: '@shot_review/quickdaily/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_{iteration}.mov'
@@ -447,9 +457,11 @@ paths:
 
     # export of shot asset data from hiero
     hiero_plate_path:
-        definition: '02_source/{Sequence}/{Shot}/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
+        definition: '02_source/{Sequence}/{Shot}/p{version}/plates/ref/{projectcode}_sc{Sequence}_sh{Shot}_reference_p{version}.mov'
     hiero_render_path:
-        definition: '02_source/{Sequence}/{Shot}/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
+        definition: '02_source/{Sequence}/{Shot}/p{version}/renders/{projectcode}_sc{Sequence}_sh{Shot}_v{version}.{SEQ}.exr'
+    hiero_copy_path:
+        definition: '02_source/{Sequence}/{Shot}/p{version}/plates/{fileext}/{projectcode}_sc{Sequence}_sh{Shot}_plate_p{version}.{SEQ}.{fileext}'
 
     ##########################################################################################
     # Asset pipeline
@@ -469,7 +481,7 @@ paths:
 
     # The location of WIP files
     photoshop_asset_work:
-        definition: '@asset_root/photoshop/{projectcode}_{Asset}_{Step}_work_v{version}.psd'
+        definition: '@asset_root/photoshop/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.psd'
     asset_work_area_photoshop:
         definition: '@asset_root/photoshop'
     # The location of backups of WIP files
@@ -479,7 +491,7 @@ paths:
     asset_publish_area_photoshop:
         definition: '@asset_publish/photoshop'
     photoshop_asset_publish:
-        definition: '@asset_publish/photoshop/{projectcode}_{Asset}_{Step}_pub_v{version}.psd'
+        definition: '@asset_publish/photoshop/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.psd'
 
     #
     # after effects
@@ -525,13 +537,13 @@ paths:
         definition: '@asset_publish/maya'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/maya/{projectcode}_{Asset}_{Step}_work_v{version}.{maya_extension}'
+        definition: '@asset_root/maya/scenes/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/maya/snapshots/{projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.{maya_extension}'
+        definition: '@asset_root/maya/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_asset_publish:
-        definition: '@asset_publish/maya/{projectcode}_{Asset}_{Step}_pub_v{version}.{maya_extension}'
+        definition: '@asset_publish/maya/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.{maya_extension}'
 
 
     #
@@ -546,13 +558,13 @@ paths:
         definition: '@asset_publish/houdini'
     # The location of WIP files
     houdini_asset_work:
-        definition: '@asset_root/work/houdini/{projectcode}_{Asset}_{Step}_work_v{version}.hip'
+        definition: '@asset_root/houdini/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.hipnc'
     # The location of backups of WIP files
     houdini_asset_snapshot:
-        definition: '@asset_root/houdini/snapshots/{projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.hip'
+        definition: '@asset_root/houdini/snapshots/{projectcode}_{Asset}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc'
     # The location of published houdini files
     houdini_asset_publish:
-        definition: '@asset_publish/houdini/{projectcode}_{Asset}_{Step}_pub_v{version}.hip'
+        definition: '@asset_publish/houdini/{projectcode}_{Asset}_{Step}_{name}_pub_{name}_v{version}.hipnc'
     # Alembic caches
     houdini_asset_work_alembic_cache:
         definition: '@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{projectcode}_{Asset}_{Step}_work_v{version}.abc'
@@ -642,13 +654,13 @@ paths:
         definition: '@asset_review/quickdaily/{projectcode}_{Asset}_{Step}_{name}_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/nuke/{projectcode}_{Asset}_{Step}_work_v{version}.nk'
+        definition: '@asset_root/nuke/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.nk'
     # The location of backups of WIP files
     nuke_asset_snapshot:
-        definition: '@asset_root/nuke/snapshots/{projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.nk'
+        definition: '@asset_root/nuke/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.nk'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_publish/nuke/{projectcode}_{Asset}_{Step}_pub_v{version}.nk'
+        definition: '@asset_publish/nuke/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.nk'
 
     #
     # Alias

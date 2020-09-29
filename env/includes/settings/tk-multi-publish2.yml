@@ -25,8 +25,12 @@ settings.tk-multi-publish2.standalone:
   collector: "{self}/collector.py"
   publish_plugins:
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py"
-    settings: {}
+    hook: "{self}/publish_file.py:{self}/publish_standalone.py"
+    settings:
+      Publish Template:
+        - ext: ["obj"]
+          entity_type: "Asset"
+          template: "obj_asset_publish"
   - name: Upload for review
     hook: "{self}/upload_version.py"
     settings: {}

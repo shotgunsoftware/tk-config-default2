@@ -63,7 +63,7 @@ apps.tk-multi-publish2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-publish2
-  version: 2.5.4.1
+  version: 2.5.4.2
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -111,7 +111,7 @@ apps.tk-multi-workfiles.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.12.2
+  version: v0.12.3
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -143,9 +143,10 @@ apps.tk-shotgun-launchpublish.location:
 
 # hiero export
 apps.tk-hiero-export.location:
-  type: app_store
-  name: tk-hiero-export
-  version: v0.5.3
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-hiero-export
+  version: 0.5.3.2
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -184,9 +185,17 @@ apps.tk-nuke-quickreview.location:
 
 # writenode
 apps.tk-nuke-writenode.location:
-  name: tk-nuke-writenode
-  type: app_store
-  version: v1.4.2
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-nuke-writenode
+  version: 1.4.2.3
+
+# ---- Maya apps
+apps.tk-maya-playblast.location:
+  type: git_branch
+  branch: master
+  path: https://github.com/basestudio/tk-maya-playblast.git
+  version: d60a520
 
 # ---- Flame apps
 
@@ -208,7 +217,7 @@ apps.tk-flame-review.location:
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.2.1
+  version: v1.2.2
 
 ################################################################################
 # reference all of the common frameworks
