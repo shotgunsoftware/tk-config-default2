@@ -237,7 +237,7 @@ paths:
         
     # OBJ Sculpts Standalone Publish Template
     obj_asset_publish:
-        definition: '@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_{version}.obj'
+        definition: '@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_v{version}.obj'
 
     ##########################################################################################
     # Sequence level paths
