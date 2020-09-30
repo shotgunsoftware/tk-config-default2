@@ -180,7 +180,7 @@ apps.tk-houdini-cachenode.location:
 # quickreview
 apps.tk-nuke-quickreview.location:
   type: github_release
-  name: nfa-vfxim
+  organization: nfa-vfxim
   repository: tk-nuke-quickreview
   version: 1.0.3.1
 
