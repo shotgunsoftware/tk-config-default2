@@ -179,9 +179,10 @@ apps.tk-houdini-cachenode.location:
 
 # quickreview
 apps.tk-nuke-quickreview.location:
-  type: app_store
-  name: tk-nuke-quickreview
-  version: v1.0.3
+  type: github_release
+  name: nfa-vfxim
+  repository: tk-nuke-quickreview
+  version: 1.0.3.1
 
 # writenode
 apps.tk-nuke-writenode.location:
