@@ -33,6 +33,7 @@ class BeforeAppLaunch(tank.Hook):
 
 
     log = sgtk.LogManager.get_logger(__name__)
+    system = sys.platform
    
     def _has_envstr(self, env_paths, srch_str):
         found = False
@@ -70,11 +71,8 @@ class BeforeAppLaunch(tank.Hook):
                 NUKE ENGINE
             ------------------------------------------------------------------"""
 
-            system = sys.platform
-
             if system == "win32":
                 # Windows
-                self.log.debug( ">>>>> Windows" )
                 # ssvfx_scripts_path = os.path.join(GLOBAL_PIPELINE_DIR, "ssvfx_scripts" )
                 nuke_path= os.path.join(os.environ["SSVFX_PIPELINE"], "ssvfx_nuke_path" )
 
