@@ -1,0 +1,1669 @@
+#! C:/Program Files/Nuke10.5v5/nuke-10.5.5.dll -nx
+#write_info main_write file:"//10.80.8.250/VFX_Project/the_favourite/admin/outgoing/submissions/v000s/test/084_0020_v000.mov" format:"1920 1080 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1040 1144" fps:"24" colorspace:"Cineon" datatype:"unknown" transfer:"unknown" views:"main" timecode:"01:00:00:00" colorManagement:"Nuke"
+version 10.5 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1920" h="1172" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1868" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1122"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="1920" y="0" w="1920" h="1200" maximized="1" screen="1">
+        <splitter orientation="1">
+            <split size="1260"/>
+            <dock id="" activePageId="DAG.1" focus="true">
+                <page id="DAG.1"/>
+                <page id="DopeSheet.1"/>
+                <page id="Curve Editor.1"/>
+            </dock>
+            <split size="648"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //10.80.8.252/projects/pipeline/admin/outgoing/submissions/nuke_script/nuke_submission_version_2.nk
+ frame 1040
+ first_frame 1040
+ last_frame 1144
+ lock_range true
+ format "2112 1174 0 0 2112 1174 1 proj_format"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ FrameListMode Global
+ addUserKnob {1 CustomFrameList l customFrameList}
+ CustomFrameList 1040-1144
+ addUserKnob {1 Department l department}
+ Department Comp
+ addUserKnob {1 Pool l pool}
+ Pool vfx_nuke
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ SecondaryPool vfx_nuke
+ addUserKnob {1 Group l group}
+ Group none
+ addUserKnob {1 Priority l priority}
+ Priority 50
+ addUserKnob {1 MachineLimit l machineLimit}
+ MachineLimit 6
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ IsBlacklist False
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ SubmitSuspended False
+ addUserKnob {1 ChunkSize l chunkSize}
+ ChunkSize 5
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ ConcurrentTasks 1
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ LimitConcurrentTasks True
+ addUserKnob {1 Threads l threads}
+ Threads 0
+ addUserKnob {1 SubmitScene l submitScene}
+ SubmitScene True
+ addUserKnob {1 BatchMode l batchMode}
+ BatchMode True
+ addUserKnob {1 ContinueOnError l continueOnError}
+ ContinueOnError False
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ UseNodeRange True
+ addUserKnob {1 UseGpu l useGpu}
+ UseGpu False
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ ChooseGpu 0
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ EnforceRenderOrder False
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ DeadlineRenderMode "Use Scene Settings"
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ PerformanceProfiler False
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ ReloadPlugin False
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
+BackdropNode {
+ inputs 0
+ name BURNIN_BDN
+ tile_color 0x223138ff
+ label "BURN IN"
+ note_font_size 25
+ xpos -1029
+ ypos -180
+ bdwidth 469
+ bdheight 299
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ label "PROJECT LUT"
+ note_font_size 25
+ xpos -865
+ ypos -964
+ bdwidth 525
+ bdheight 91
+}
+BackdropNode {
+ inputs 0
+ name CROP_BDN
+ label "FRAME LEADER\t\t\t"
+ note_font_size 25
+ xpos -864
+ ypos -1301
+ bdwidth 525
+ bdheight 153
+}
+BackdropNode {
+ inputs 0
+ name LOGO_BDN
+ label "LOGO\n"
+ note_font_size 25
+ xpos -2233
+ ypos -1178
+ bdwidth 764
+ bdheight 485
+}
+BackdropNode {
+ inputs 0
+ name LUT_BDN
+ label "SHOT LUT\t\t\t\t"
+ note_font_size 25
+ xpos -865
+ ypos -1126
+ bdwidth 525
+ bdheight 153
+}
+BackdropNode {
+ inputs 0
+ name Read_BDN
+ tile_color 0x64ef64ff
+ label READ
+ note_font_size 25
+ xpos -862
+ ypos -1608
+ bdwidth 524
+ bdheight 174
+}
+BackdropNode {
+ inputs 0
+ name Slate_BDN
+ tile_color 0xc263efff
+ label "SLATE\n"
+ note_font_size 25
+ xpos -1703
+ ypos -464
+ bdwidth 643
+ bdheight 823
+}
+BackdropNode {
+ inputs 0
+ name Testers
+ tile_color 0x7f005fff
+ label Testers
+ note_font_size 42
+ xpos -2205
+ ypos -414
+ bdwidth 425
+ bdheight 638
+}
+BackdropNode {
+ inputs 0
+ name WRITE_BDN
+ tile_color 0xa9b200ff
+ label WRITE
+ note_font_size 25
+ xpos -856
+ ypos 848
+ bdwidth 519
+ bdheight 187
+}
+Read {
+ inputs 0
+ file P:/the_little_stranger/tmp_misc/Ronan/TLS_aces_pipeline_write_node_seq.JPG
+ format "574 462 0 0 574 462 1 "
+ origset true
+ name Read3
+ xpos -507
+ ypos 864
+}
+Read {
+ inputs 0
+ file P:/the_little_stranger/tmp_misc/Ronan/TLS_aces_pipeline_vectorfield_properties.JPG
+ format "587 268 0 0 587 268 1 "
+ origset true
+ name Read2
+ xpos -543
+ ypos -1095
+}
+Read {
+ inputs 0
+ file P:/the_little_stranger/tmp_misc/Ronan/TLS_aces_pipeline_project_settings_colour.JPG
+ format "565 728 0 0 565 728 1 "
+ origset true
+ name Read1
+ xpos -541
+ ypos -1535
+}
+Dot {
+ inputs 0
+ name Dot11
+ xpos -1921
+ ypos -235
+}
+Constant {
+ inputs 0
+ name Format
+ xpos -2035
+ ypos -370
+}
+Reformat {
+ type "to box"
+ box_width {{"\[exists parent.input]==1?parent.input.format.w:root.format.w"}}
+ box_height {{"\[exists parent.input]==1?parent.input.format.h:root.format.h"}}
+ box_fixed true
+ box_pixel_aspect {{"\[exists parent.input]==1?parent.input.format.pixel_aspect:root.format.pixel_aspect"}}
+ center false
+ filter Impulse
+ name CurrentFormat
+ xpos -2035
+ ypos -274
+}
+set C3799800 [stack 0]
+set N3799800 [stack 0]
+Merge2 {
+ inputs 2
+ operation screen
+ mix 0
+ name WatermarkOver
+ xpos -2035
+ ypos -238
+}
+Mirror {
+ Horizontal true
+ Vertical true
+ name MirrorVerticalHorizontal
+ xpos -2035
+ ypos -202
+}
+set C37e1400 [stack 0]
+NoOp {
+ inputs 0
+ name OS_Switch
+ tile_color 0xffffff
+ xpos -1951
+ ypos -380
+ hide_input true
+ addUserKnob {20 os_switch l OS_Switch}
+ addUserKnob {4 operative_system l OS t "Select your OS" M {Linux Mac Windows}}
+ operative_system Windows
+ addUserKnob {22 substitute_path l INVISIBLE t "This changes the server path in all 'Read' nodes on this script" -STARTLINE +INVISIBLE}
+ addUserKnob {1 tcl_expression l INVISIBLE t "TCL expresion for Linux/Mac options" +INVISIBLE}
+ tcl_expression "\[value \[value operative_system]_path]"
+ addUserKnob {26 instructions l "" t "Instructions to apply this OS_Switch" +STARTLINE T "Instructions:\nLINUX: Substitute \"/mnt/server/\" with \"\[value OS_Switch1.tcl_expression]\".\nMAC: Substitute \"/Volumes/\" with \"\[value OS_Switch1.tcl_expression]\".\nWINDOWS: Substitute \"//Server/\" with \"\[value OS_Switch1.tcl_expression]\".\n*Note that the number of the node can be different depending on how many OS_Switch nodes had been created."}
+ addUserKnob {1 CopyThis l "copy this!"}
+ CopyThis "\[value OS_Switch.tcl_expression]"
+ addUserKnob {20 OS_paths l "OS Paths"}
+ addUserKnob {2 Linux_path l "Linux Server Path" t "Path to find the server from Linux"}
+ Linux_path /mnt/server/
+ addUserKnob {2 Mac_path l "Mac Server Path" t "Path to find the server from Mac"}
+ Mac_path /Volumes/
+ addUserKnob {2 Windows_path l "Windows Server Path" t "Path to find the server from Mac"}
+ Windows_path //Server/
+}
+Read {
+ inputs 0
+ file P:/the_little_stranger/tmp_misc/Ronan/TLS_aces_pipeline_write_node_mov.JPG
+ format "583 575 0 0 583 575 1 "
+ origset true
+ name Read4
+ xpos -508
+ ypos 942
+}
+Switch {
+ inputs 0
+ name Switch1
+ xpos -104
+ ypos -1096
+}
+Read {
+ inputs 0
+ file //10.80.8.250/VFX_Project/the_favourite/shots/084_0020/rushes/plate/main/fav_084_0020_fg01_v1/fav_084_0020_fg01_v1.########.dpx
+ format "2112 1174 0 0 2112 1174 1 proj_format"
+ first 1001
+ last 1184
+ origfirst 1001
+ origlast 1215
+ origset true
+ version 1
+ name main_read
+ xpos -833
+ ypos -1547
+}
+set N37e0800 [stack 0]
+ViewMetaData {
+ name ViewMetaData1
+ xpos -1145
+ ypos -1377
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0 0 0 0}
+ color_panelDropped true
+ name Constant1
+ xpos -1872
+ ypos -1139
+}
+Read {
+ inputs 0
+ file //10.80.8.250/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+ localizationPolicy off
+ format "4000 2250 0 0 4000 2250 1 "
+ origset true
+ premultiplied true
+ name logo_read
+ xpos -1750
+ ypos -1143
+}
+Dissolve {
+ inputs 2
+ name Dissolve1
+ xpos -1807
+ ypos -1032
+}
+set Ne884f800 [stack 0]
+push $N37e0800
+Crop {
+ box {0 87 0 2111}
+ name frame_crop
+ xpos -835
+ ypos -1221
+ disable true
+}
+Vectorfield {
+ vfield_file //10.80.8.250/VFX_Project/the_little_stranger/luts/LS__140_1060.cube
+ version 41
+ file_type cube
+ colorspaceIn sRGB
+ colorspaceOut Cineon
+ name main_lut
+ xpos -835
+ ypos -1062
+ disable true
+}
+Vectorfield {
+ vfield_file P:/the_favourite/luts/from_goldcrest/17X_FL_Kodak_N_To_Rec709_resolve.cube
+ version 30
+ file_type cube
+ colorspaceIn Cineon
+ colorspaceOut Cineon
+ name project_lut
+ xpos -835
+ ypos -915
+}
+Gamma {
+ name main_gamma
+ xpos -835
+ ypos -742
+ disable true
+}
+set N2053b800 [stack 0]
+Dot {
+ name Dot2
+ xpos -1122
+ ypos -732
+}
+Transform {
+ translate {1171.800049 533.7499878}
+ scale 0.235
+ center {287 231}
+ name thumbnail_transform
+ xpos -1156
+ ypos -422
+}
+Crop {
+ box {0 725 2112 971}
+ name Crop1
+ xpos -1156
+ ypos -396
+}
+Transform {
+ translate {0 -66}
+ center {1632.5 613.5}
+ name Transform21
+ xpos -1156
+ ypos -370
+}
+ColorBars {
+ inputs 0
+ PAL true
+ name ColorBarsTester
+ xpos -1875
+ ypos -352
+}
+clone $C3799800 {
+ xpos -1875
+ ypos -274
+ selected false
+}
+Shuffle {
+ alpha white
+ name NewAlphaOnBars
+ xpos -1875
+ ypos -130
+}
+set C20575400 [stack 0]
+Colorspace {
+ colorspace_in sRGB
+ colorspace_out sRGB
+ name BarsLinearized
+ tile_color 0xff0000ff
+ xpos -1875
+ ypos -58
+}
+Reformat {
+ type scale
+ scale {1 0.05}
+ resize none
+ name BandTesterSize
+ xpos -1875
+ ypos -22
+}
+set C20574c00 [stack 0]
+Position {
+ translate {{curve} {root.proxy==1?BandTesterSize.format.h/(1*root.proxy_scale):BandTesterSize.format.h+100}}
+ name BarsPosition
+ xpos -1875
+ ypos 15
+}
+BlackOutside {
+ name BlackOutsideBand1
+ xpos -1875
+ ypos 46
+}
+Dot {
+ name Dot3
+ xpos -1841
+ ypos 89
+}
+push 0
+push $N3799800
+Dot {
+ name Dot4
+ xpos -2161
+ ypos -271
+}
+Ramp {
+ output rgb
+ p0 {0 0}
+ p1 {{CurrentFormat.box_width} 0}
+ name BW_Ramp
+ xpos -2195
+ ypos -244
+ postage_stamp true
+}
+clone $C20575400 {
+ xpos -2195
+ ypos -130
+ selected false
+}
+Posterize {
+ Colors 17
+ name BW_Chips
+ xpos -2195
+ ypos -99
+}
+Colorspace {
+ colorspace_in sRGB
+ name RampLinearized
+ tile_color 0xff0000ff
+ xpos -2195
+ ypos -58
+}
+clone $C20574c00 {
+ xpos -2195
+ ypos -22
+ selected false
+}
+Position {
+ translate {{curve} {root.proxy==1?BandTesterSize.format.h/(1*root.proxy_scale):BandTesterSize.format.h+30}}
+ name BarsPosition1
+ xpos -2195
+ ypos 11
+}
+BlackOutside {
+ name BlackOutsideBand
+ xpos -2195
+ ypos 49
+}
+Dot {
+ name Dot5
+ xpos -2161
+ ypos 89
+}
+clone $C37e1400 {
+ inputs 0
+ xpos -2035
+ ypos -166
+ selected false
+}
+Merge2 {
+ inputs 3+1
+ name TestersMerge
+ xpos -2035
+ ypos 85
+}
+Transform {
+ translate {0 68}
+ center {1056 587}
+ name Transform1
+ xpos -2035
+ ypos 111
+}
+Transform {
+ translate {1010 414}
+ rotate 90
+ scale {0.56 1.24}
+ center {1074 180}
+ name Transform19
+ xpos -2035
+ ypos 195
+ disable true
+}
+Dot {
+ name Dot1
+ xpos -2001
+ ypos 250
+}
+Roto {
+ inputs 0
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44840000 x4412c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle1 512 bezier
+     {{cc
+       {f 8192}
+       {px x44820000
+        {0 xc3a50000}
+        {xc39f0000 x449d0000}
+        {x44650000 0}
+        {xc4650000 0}
+        {x4517e000 x449d0000}
+        {0 xc3a50000}
+        {0 x43a50000}
+        {x4517e000 x43850000}
+        {xc4650000 0}
+        {x44650000 0}
+        {xc39f0000 x43850000}
+        {0 x43a50000}}}
+      {cc
+       {f 8192}
+       {p
+        {{{x44820000 0}}
+      {{x44820000 xc3a50000}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 x44650000}}
+      {{x44820000 0}}}
+        {{{x44820000 xc4650000}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 xc3a50000}}}
+        {{{x44820000 0}}
+      {{x44820000 x43a50000}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 xc4650000}}
+      {{x44820000 0}}}
+        {{{x44820000 x44650000}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 x43a50000}}}}}}
+     {tx x44820000 x44840000 x443e4000}
+     {a osw x41200000 osf 0 str 1 spx x44840000 spy x4412c000 sb 1 ltn x44820000 ltm x44820000 tt x41000000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1056 587}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ lifetime_start 1040
+ lifetime_end 1040
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto4
+ xpos -1681
+ ypos -738
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0 0 0 0}
+ color_panelDropped true
+ name Constant2
+ xpos -2215
+ ypos -1125
+}
+Read {
+ inputs 0
+ file //10.80.8.250/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+ localizationPolicy off
+ format "4000 2250 0 0 4000 2250 1 "
+ origset true
+ premultiplied true
+ name logo_read1
+ xpos -2080
+ ypos -1137
+}
+Dissolve {
+ inputs 2
+ name Dissolve2
+ xpos -2142
+ ypos -944
+}
+BlackOutside {
+ name BlackOutside2
+ xpos -2142
+ ypos -900
+}
+Roto {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44840000 x4412c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle1 512 bezier
+     {{cc
+       {f 8192}
+       {px x44820000
+        {0 x43780000}
+        {x44c3a000 x4456c000}
+        {x439b2aac 0}
+        {xc39b2aa8 0}
+        {x451c0000 x4456c000}
+        {0 x43780000}
+        {0 xc3780000}
+        {x451c0000 x44c86000}
+        {xc39b2aa8 0}
+        {x439b2aac 0}
+        {x44c3a000 x44c86000}
+        {0 xc3780000}}}
+      {cc
+       {f 8192}
+       {p
+        {{{x44820000 0}}
+      {{x44820000 x43780000}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 x439b2aac}}
+      {{x44820000 0}}}
+        {{{x44820000 xc39b2aa8}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 x43780000}}}
+        {{{x44820000 0}}
+      {{x44820000 xc3780000}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 xc39b2aa8}}
+      {{x44820000 0}}}
+        {{{x44820000 x439b2aac}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 xc3780000}}}}}}
+     {tx x44820000 x44fdd000 x4499e000}
+     {a bm x41400000 inv 1 osw x41200000 osf 0 str 1 spx x44840000 spy x4412c000 sb 1 ltn x44820000 ltm x44820000 tt x41000000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1056 587}
+ colorOverlay {0 0 0 0}
+ blending_mode minus
+ lifetime_type "all frames"
+ lifetime_start 1040
+ lifetime_end 1040
+ motionblur_shutter_offset_type centred
+ inverted true
+ source_black_outside true
+ name Roto3
+ xpos -2142
+ ypos -839
+}
+Premult {
+ name Premult2
+ xpos -2142
+ ypos -801
+}
+Transform {
+ translate {-1360 -1120}
+ scale 2.44
+ center {2001 923}
+ name Transform18
+ xpos -2142
+ ypos -732
+}
+Read {
+ inputs 0
+ file //10.80.8.250/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+ localizationPolicy off
+ format "4000 2250 0 0 4000 2250 1 "
+ origset true
+ premultiplied true
+ name logo_read2
+ xpos -1645
+ ypos -919
+}
+Reformat {
+ name Reformat1
+ xpos -1645
+ ypos -821
+}
+Transform {
+ translate {0 -60}
+ center {1056 587}
+ name Transform3
+ xpos -1645
+ ypos -795
+}
+push $Ne884f800
+BlackOutside {
+ name BlackOutside1
+ xpos -1807
+ ypos -988
+}
+Roto {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44840000 x4412c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle1 512 bezier
+     {{cc
+       {f 8192}
+       {px x44820000
+        {0 x43780000}
+        {x44c3a000 x4456c000}
+        {x439b2aac 0}
+        {xc39b2aa8 0}
+        {x451c0000 x4456c000}
+        {0 x43780000}
+        {0 xc3780000}
+        {x451c0000 x44c86000}
+        {xc39b2aa8 0}
+        {x439b2aac 0}
+        {x44c3a000 x44c86000}
+        {0 xc3780000}}}
+      {cc
+       {f 8192}
+       {p
+        {{{x44820000 0}}
+      {{x44820000 x43780000}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 x439b2aac}}
+      {{x44820000 0}}}
+        {{{x44820000 xc39b2aa8}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 x43780000}}}
+        {{{x44820000 0}}
+      {{x44820000 xc3780000}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 xc39b2aa8}}
+      {{x44820000 0}}}
+        {{{x44820000 x439b2aac}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 0}}}
+        {{{x44820000 0}}
+      {{x44820000 xc3780000}}}}}}
+     {tx x44820000 x44fdd000 x4499e000}
+     {a bm x41400000 inv 1 osw x41200000 osf 0 str 1 spx x44840000 spy x4412c000 sb 1 ltn x44820000 ltm x44820000 tt x41000000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1056 587}
+ colorOverlay {0 0 0 0}
+ blending_mode minus
+ lifetime_type "all frames"
+ lifetime_start 1040
+ lifetime_end 1040
+ motionblur_shutter_offset_type centred
+ inverted true
+ source_black_outside true
+ name Roto1
+ xpos -1807
+ ypos -927
+}
+Premult {
+ name Premult1
+ xpos -1807
+ ypos -889
+}
+Transform {
+ translate {-367.2200012 -558.6399048}
+ scale 1.12
+ center {1990 928}
+ name Transform2
+ xpos -1807
+ ypos -863
+}
+Merge2 {
+ inputs 2
+ name Merge1
+ xpos -1807
+ ypos -795
+}
+Blur {
+ size 2.3
+ name Blur1
+ xpos -1807
+ ypos -769
+}
+Merge2 {
+ inputs 2+1
+ mix 0.2
+ name Merge11
+ xpos -1807
+ ypos -732
+}
+Dot {
+ name Dot6
+ xpos -1758
+ ypos 217
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message 10MM
+ old_message {{49 48 77 77}
+   }
+ box {650 400 1150 450}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_lens_value
+ xpos -1238
+ ypos 86
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform10
+ xpos -1340
+ ypos 86
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Lens Info : "
+ old_message {{76 101 110 115 32 73 110 102 111 32 58 32}
+   }
+ box {100 400 600 450}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100}
+   }
+ cursor_position 12
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_lens_text
+ xpos -1459
+ ypos 86
+}
+Transform {
+ translate {0 311}
+ center {1056 587}
+ name Transform16
+ xpos -1569
+ ypos 86
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message v000
+ old_message {{118 48 48 48}
+   }
+ box {650 475 1150 525}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_notes_value
+ xpos -1236
+ ypos 13
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform9
+ xpos -1338
+ ypos 13
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Notes : "
+ old_message {{78 111 116 101 115 32 58 32}
+   }
+ box {100 475 600 525}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100}
+   }
+ cursor_position 8
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_notes_text
+ xpos -1459
+ ypos 13
+}
+Transform {
+ translate {0 106}
+ center {1056 587}
+ name Transform15
+ xpos -1569
+ ypos 13
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[clock format \[clock seconds] -format %m/%d/%Y]"
+ old_message {{48 57 47 50 49 47 50 48 49 56}
+   }
+ old_expression_markers {{0 9}
+   }
+ box {650 550 1150 600}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_date_value
+ xpos -1237
+ ypos -42
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform8
+ xpos -1339
+ ypos -42
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Date : "
+ old_message {{68 97 116 101 32 58 32}
+   }
+ box {100 550 600 600}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100}
+   }
+ cursor_position 7
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_date_text
+ xpos -1459
+ ypos -42
+}
+Transform {
+ translate {0 99}
+ center {1056 587}
+ name Transform14
+ xpos -1563
+ ypos -42
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message 1041-1144
+ old_message {{49 48 52 49 45 49 49 52 52}
+   }
+ box {650 650 1150 700}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_frames_value
+ xpos -1236
+ ypos -104
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform7
+ xpos -1339
+ ypos -104
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Frames : "
+ old_message {{70 114 97 109 101 115 32 58 32}
+   }
+ box {100 650 600 700}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100}
+   }
+ cursor_position 9
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_frames_text
+ xpos -1459
+ ypos -104
+}
+Transform {
+ translate {0 124}
+ center {1056 587}
+ name Transform13
+ xpos -1569
+ ypos -104
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message 084_0020_v000
+ old_message {{48 56 52 95 48 48 50 48 95 118 48 48 48}
+   }
+ box {650 750 1150 800}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_version_value
+ xpos -1233
+ ypos -171
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform6
+ xpos -1335
+ ypos -171
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Version Name : "
+ old_message {{86 101 114 115 105 111 110 32 78 97 109 101 32 58 32}
+   }
+ box {100 750 600 800}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 12 100 13 100 14 100}
+   }
+ cursor_position 15
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_version_text
+ xpos -1458
+ ypos -171
+}
+Transform {
+ translate {0 84}
+ center {1056 587}
+ name Transform12
+ xpos -1568
+ ypos -171
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message 084_0020
+ old_message {{48 56 52 95 48 48 50 48}
+   }
+ box {650 850 1150 900}
+ transforms {{0 2}
+   }
+ cursor_position 1
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{636.5 982}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_name_value
+ xpos -1233
+ ypos -238
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform5
+ xpos -1335
+ ypos -238
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Shot Name : "
+ old_message {{83 104 111 116 32 78 97 109 101 32 58 32}
+   }
+ box {100 850 600 900}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100 0 25}
+   }
+ cursor_position 5
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_name_text
+ xpos -1460
+ ypos -238
+}
+Transform {
+ translate {0 43}
+ center {1056 587}
+ name Transform11
+ xpos -1570
+ ypos -238
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "The Favourite"
+ old_message {{84 104 101 32 70 97 118 111 117 114 105 116 101}
+   }
+ box {650 950 1150 1000}
+ transforms {{0 2}
+   }
+ kern_values {{0 0}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{569 1040}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name show_title_value
+ xpos -1235
+ ypos -297
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform4
+ xpos -1340
+ ypos -297
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ cliptype none
+ message "Show Title : "
+ old_message {{83 104 111 119 32 84 105 116 108 101 32 58 32}
+   }
+ box {100 950 600 1000}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100 12 100 0 25 1 25 2 25 3 25 4 25 5 25 6 25 7 25 8 25 9 25}
+   }
+ cursor_position 13
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{148.5 1040.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name show_title_text
+ xpos -1459
+ ypos -297
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0 0 0 0}
+ color_panelDropped true
+ name slate_constant
+ xpos -1683
+ ypos -421
+}
+Merge2 {
+ inputs 2
+ name Merge4
+ xpos -1683
+ ypos -297
+}
+Merge2 {
+ inputs 2
+ name Merge3
+ xpos -1683
+ ypos -238
+}
+Merge2 {
+ inputs 2
+ name Merge5
+ xpos -1683
+ ypos -171
+}
+Merge2 {
+ inputs 2
+ name Merge6
+ xpos -1683
+ ypos -104
+}
+Merge2 {
+ inputs 2
+ name Merge7
+ xpos -1683
+ ypos -42
+}
+Merge2 {
+ inputs 2
+ name Merge8
+ xpos -1683
+ ypos 13
+}
+Merge2 {
+ inputs 2
+ name Merge9
+ xpos -1683
+ ypos 86
+}
+Transform {
+ translate {60 -4}
+ center {1056 587}
+ name Transform17
+ xpos -1683
+ ypos 128
+}
+Transform {
+ translate {36 -96}
+ scale 1.2
+ center {440 738}
+ name Transform20
+ xpos -1683
+ ypos 164
+}
+Merge2 {
+ inputs 2
+ name Merge12
+ xpos -1683
+ ypos 213
+}
+Merge2 {
+ inputs 2
+ name Merge10
+ xpos -1683
+ ypos 246
+}
+FrameRange {
+ last_frame 0
+ time ""
+ name slate_framerange
+ xpos -1549
+ ypos 246
+}
+Colorspace {
+ colorspace_in Cineon
+ name Colorspace1
+ xpos -1359
+ ypos 246
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ xpos -1156
+ ypos 246
+}
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ name slate_reformat
+ xpos -1000
+ ypos 240
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ cliptype none
+ message "\[clock format \[clock seconds] -format %m/%d/%Y]"
+ old_message {{48 57 47 50 49 47 50 48 49 56}
+   }
+ old_expression_markers {{0 9}
+   }
+ box {960.5 875.5 1900.5 1075.5}
+ xjustify right
+ transforms {{0 2}
+   }
+ font {{ Times New Roman : Regular : times.ttf : 0 }}
+ global_font_scale 0.16
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{943.999939 631.999939}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ shadow_opacity 1
+ shadow_angle 300
+ shadow_distance 2
+ name content_date_burnin
+ xpos -645
+ ypos -130
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ cliptype none
+ message "\[format %04d \[expr \[value frame]]] /1144\n"
+ old_message {{49 48 52 48 32 47 49 49 52 52 10}
+   }
+ old_expression_markers {{0 3}
+   }
+ box {936.5 6.5 1896.5 196.5}
+ xjustify right
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font {{ Times New Roman : Regular : times.ttf : 0 }}
+ global_font_scale 0.16
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{943.999939 631.999939}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ shadow_opacity 1
+ shadow_angle 300
+ shadow_distance 2
+ name content_framecounter_burnin
+ xpos -651
+ ypos 87
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ cliptype none
+ message 084_0020_v000
+ old_message {{48 56 52 95 48 48 50 48 95 118 48 48 48}
+   }
+ box {23 875 913 1075}
+ transforms {{0 2}
+   }
+ font {{ Times New Roman : Regular : times.ttf : 0 }}
+ global_font_scale 0.16
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{943.999939 631.999939}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ shadow_opacity 1
+ shadow_angle 300
+ shadow_distance 2
+ name content_version_burnin
+ xpos -1000
+ ypos -125
+}
+push 0
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ cliptype none
+ message 084_0020
+ box {6.5 6.5 896.5 196.5}
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font {{ Times New Roman : Regular : times.ttf : 0 }}
+ global_font_scale 0.16
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{943.999939 631.999939}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_opacity 1
+ shadow_angle 300
+ shadow_distance 2
+ name content_name_burnin
+ xpos -1006
+ ypos 82
+ disable true
+}
+push $N2053b800
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ black_outside true
+ name main_read_refomat
+ xpos -835
+ ypos -408
+}
+Merge2 {
+ inputs 5+1
+ name burnin_merge
+ xpos -835
+ ypos -16
+}
+Switch {
+ inputs 2
+ which {{"(frame == root.first_frame || frame == root.first_frame) ? 1 : 0"}}
+ name Switch2
+ xpos -835
+ ypos 246
+}
+AddTimeCode {
+ name main_timecode
+ xpos -835
+ ypos 764
+}
+ModifyMetaData {
+ metadata {
+  {set input/timecode 01:00:00:00}
+ }
+ name modify_meta_data
+ xpos -835
+ ypos 809
+}
+Write {
+ file //10.80.8.250/VFX_Project/the_favourite/admin/outgoing/submissions/v000s/test/084_0020_v000.mov
+ colorspace Cineon
+ file_type mov
+ meta_codec AVdn
+ mov64_codec AVdn
+ mov64_dnxhd_codec_profile "DNxHD 422 8-bit 145Mbit"
+ mov64_write_timecode true
+ mov64_advanced 1
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 40000000
+ mov64_quality_min 2
+ mov64_quality_max 31
+ mov64_gop_size 12
+ mov64_b_frames 0
+ create_directories true
+ checkHashOnRead false
+ version 24
+ name main_write
+ xpos -835
+ ypos 925
+ postage_stamp true
+}
+Viewer {
+ inputs 2
+ frame 1040
+ frame_range 1040-1144
+ name Viewer1
+ xpos -625
+ ypos 539
+}

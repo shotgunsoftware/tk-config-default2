@@ -168,8 +168,17 @@ apps.tk-nuke-quickreview.location:
 # writenode
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
-  type: app_store
-  version: v1.4.2
+  type: git
+  version: v1.4.2.13
+
+  path: https://github.com/ssvfx41/tk-nuke-writenode.git
+  write_nodes: {}
+# # writenode
+# apps.tk-nuke-writenode.location:
+#   # name: tk-nuke-writenode
+#   type: git
+#   version: v1.4.2.12
+#   path: https://github.com/ssvfx41/tk-nuke-writenode.git
 
 # ---- Flame apps
 

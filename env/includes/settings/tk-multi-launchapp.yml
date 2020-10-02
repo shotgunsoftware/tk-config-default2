@@ -19,6 +19,8 @@ includes:
 # auto discover DCCs for launch
 settings.tk-multi-launchapp:
   use_software_entity: true
+  hook_app_launch: '{config}/tk-multi-launchapp/app_launch.py'
+  hook_before_app_launch: '{config}/tk-multi-launchapp/before_app_launch.py'  
   hook_before_register_command: "{config}/tk-multi-launchapp/before_register_command.py"
   location: "@apps.tk-multi-launchapp.location"
 

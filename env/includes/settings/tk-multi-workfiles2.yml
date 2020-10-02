@@ -28,49 +28,57 @@ includes:
 # doesn't happen, but you just want the user to jump to their
 # work area. The work area is typically a task or pipeline step
 # and these 'transit' areas can be project, shot, or sequence level.
+filter_by_omit_hold: &filter_by_omit_hold  [{filter_operator: all, filters: [[sg_status_list, is_not, omt],[sg_status_list, is_not, hld],[sg_status_list, is_not, awt]]}]
+
 
 settings.tk-multi-workfiles2: &settings_tk-multi-workfiles2
+  allow_task_creation: false
   entities:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: [{filter_operator: any, 
+                filters: [[sg_status_list, is_not, omt], 
+                [sg_status_list, is_not, hld]]}]
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
-    hierarchy: [sg_sequence, code]
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_episode, sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: [{filter_operator: any, 
+                filters: [[sg_status_list, is_not, omt], 
+                [sg_status_list, is_not, hld]]}]
       link_field: entity
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
 
 # launches at startup.
 settings.tk-multi-workfiles2.launch_at_startup:
-  launch_at_startup: true
+  allow_task_creation: false
+  launch_at_startup: false
   entities:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
-    hierarchy: [sg_sequence, code]
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_episode, sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
@@ -80,10 +88,11 @@ settings.tk-multi-workfiles2.launch_at_startup:
 # ---- 3dsmaxplus
 
 settings.tk-multi-workfiles2.3dsmaxplus.asset_step: &settings_tk-multi-workfiles2_3dsmaxplus_asset_step
+  allow_task_creation: false
   template_publish: max_asset_publish
-  template_publish_area: asset_publish_area_max
+  template_publish_area: max_asset_publish_area
   template_work: max_asset_work
-  template_work_area: asset_work_area_max
+  template_work_area: max_asset_work_area
   entities:
   - caption: Assets
     entity_type: Asset
@@ -106,10 +115,11 @@ settings.tk-multi-workfiles2.3dsmaxplus.asset_step: &settings_tk-multi-workfiles
   location: "@apps.tk-multi-workfiles2.location"
 
 settings.tk-multi-workfiles2.3dsmaxplus.shot_step: &settings_tk-multi-workfiles2_3dsmaxplus_shot_step
+  allow_task_creation: false
   template_publish: max_shot_publish
-  template_publish_area: shot_publish_area_max
+  template_publish_area: max_shot_publish_area
   template_work: max_shot_work
-  template_work_area: shot_work_area_max
+  template_work_area: max_shot_work_area
   entities:
   - caption: Assets
     entity_type: Asset
@@ -167,21 +177,45 @@ settings.tk-multi-workfiles2.hiero:
 ################################################################################
 
 # ---- Houdini
+# project
+settings.tk-multi-workfiles2.houdini.project:
+  allow_task_creation: false
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, sg_element, tags, code]
+    filters: *filter_by_omit_hold
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_episode, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-houdini.py'
+  location: "@apps.tk-multi-workfiles2.location"
 
 # asset_step
 settings.tk-multi-workfiles2.houdini.asset_step:
   template_publish: houdini_asset_publish
-  template_publish_area: asset_publish_area_houdini
+  template_publish_area: houdini_asset_publish_area
   template_work: houdini_asset_work
-  template_work_area: asset_work_area_houdini
+  template_work_area: houdini_asset_work_area
   entities:
   - caption: Assets
     entity_type: Asset
-    hierarchy: [sg_asset_type, code]
-    filters:
+    hierarchy: [sg_asset_type, sg_element, tags, code]
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
@@ -193,149 +227,209 @@ settings.tk-multi-workfiles2.houdini.asset_step:
       filters:
       link_field: entity
       hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-houdini.py'
   location: "@apps.tk-multi-workfiles2.location"
 
 # shot_step
 settings.tk-multi-workfiles2.houdini.shot_step:
   template_publish: houdini_shot_publish
-  template_publish_area: shot_publish_area_houdini
+  template_publish_area: houdini_shot_publish_area
   template_work: houdini_shot_work
-  template_work_area: shot_work_area_houdini
+  template_work_area: houdini_shot_work_area
   entities:
   - caption: Assets
     entity_type: Asset
-    hierarchy: [sg_asset_type, code]
-    filters:
+    hierarchy: [sg_asset_type, sg_element, tags,  code]
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
+    filters: *filter_by_omit_hold
     hierarchy: [sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-houdini.py'
   location: '@apps.tk-multi-workfiles2.location'
 
 ################################################################################
 
 # ---- Maya
-
-# asset_step
-settings.tk-multi-workfiles2.maya.asset_step:
-  template_publish: maya_asset_publish
-  template_publish_area: asset_publish_area_maya
-  template_work: maya_asset_work
-  template_work_area: asset_work_area_maya
+# project
+settings.tk-multi-workfiles2.maya.project:
+  allow_task_creation: false
+  # launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_episode, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-maya.py'           
+  location: "@apps.tk-multi-workfiles2.location"
+
+# asset_step
+settings.tk-multi-workfiles2.maya.asset_step:
+  allow_task_creation: false
+  template_publish: maya_asset_publish
+  template_publish_area: maya_asset_publish_area
+  template_work: maya_asset_work
+  template_work_area: maya_asset_work_area
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters: *filter_by_omit_hold
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters: *filter_by_omit_hold
     hierarchy: [sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
       filters:
       link_field: entity
       hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-maya.py'
   location: "@apps.tk-multi-workfiles2.location"
 
 # shot_step
 settings.tk-multi-workfiles2.maya.shot_step:
+  allow_task_creation: false
   template_publish: maya_shot_publish
-  template_publish_area: shot_publish_area_maya
+  template_publish_area: maya_shot_publish_area
   template_work: maya_shot_work
-  template_work_area: shot_work_area_maya
+  template_work_area: maya_shot_work_area
   entities:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
+    filters: *filter_by_omit_hold
     hierarchy: [sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
       filters:
       link_field: entity
       hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-maya.py'
   location: '@apps.tk-multi-workfiles2.location'
 
 ################################################################################
 
 # ---- nuke
-
-# asset_step
-settings.tk-multi-workfiles2.nuke.asset_step:
-  template_publish: nuke_asset_publish
-  template_publish_area: asset_publish_area_nuke
-  template_work: nuke_asset_work
-  template_work_area: asset_work_area_nuke
+# project
+settings.tk-multi-workfiles2.nuke.project:
+  allow_task_creation: false
+  # launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_episode, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/nuke/scene_operation_tk-nuke.py'           
+  location: "@apps.tk-multi-workfiles2.location"
+
+# asset_step
+settings.tk-multi-workfiles2.nuke.asset_step:
+  allow_task_creation: false
+  template_publish: nuke_asset_publish
+  template_publish_area: nuke_asset_publish_area
+  template_work: nuke_asset_work
+  template_work_area: nuke_asset_work_area
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters: *filter_by_omit_hold
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters: *filter_by_omit_hold
     hierarchy: [sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
 
 # shot_step
 settings.tk-multi-workfiles2.nuke.shot_step:
+  allow_task_creation: false
   template_publish: nuke_shot_publish
-  template_publish_area: shot_publish_area_nuke
+  template_publish_area: nuke_shot_publish_area
   template_work: nuke_shot_work
-  template_work_area: shot_work_area_nuke
+  template_work_area: nuke_shot_work_area
   entities:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
-    hierarchy: [sg_sequence, code]
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_episode, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
+
+  hook_scene_operation: '{config}/tk-multi-workfiles2/nuke/scene_operation_tk-nuke.py'      
   location: "@apps.tk-multi-workfiles2.location"
 
 ################################################################################
@@ -406,19 +500,19 @@ settings.tk-multi-workfiles2.aftereffects:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
+    filters: *filter_by_omit_hold
     hierarchy: [sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
@@ -434,19 +528,19 @@ settings.tk-multi-workfiles2.aftereffects.asset_step:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
+    filters: *filter_by_omit_hold
     hierarchy: [sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
@@ -462,19 +556,19 @@ settings.tk-multi-workfiles2.aftereffects.shot_step:
   - caption: Assets
     entity_type: Asset
     hierarchy: [sg_asset_type, code]
-    filters:
+    filters: *filter_by_omit_hold
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   - caption: Shots
     entity_type: Shot
-    filters:
+    filters: *filter_by_omit_hold
     hierarchy: [sg_sequence, code]
     sub_hierarchy:
       entity_type: Task
-      filters:
+      filters: *filter_by_omit_hold
       link_field: entity
       hierarchy: [step]
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"

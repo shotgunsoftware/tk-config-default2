@@ -1,0 +1,714 @@
+#! C:/Program Files/Nuke10.5v5/nuke-10.5.5.dll -nx
+version 10.5 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1920" h="1156" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1249" stretch="1"/>
+            <splitter orientation="2">
+                <split size="647"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="455"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //10.80.8.252/project_paint/paint/admin/workfile_templates/pipeline_task/roto/roto_rgb_template.nk
+ frame 1001
+ first_frame 1001
+ last_frame 1119
+ format "4966 2618 0 0 4966 2618 1 paint_4966"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ addUserKnob {1 CustomFrameList l customFrameList}
+ addUserKnob {1 Department l department}
+ addUserKnob {1 Pool l pool}
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ addUserKnob {1 Group l group}
+ addUserKnob {1 Priority l priority}
+ addUserKnob {1 MachineLimit l machineLimit}
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ addUserKnob {1 ChunkSize l chunkSize}
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ addUserKnob {1 Threads l threads}
+ addUserKnob {1 SubmitScene l submitScene}
+ addUserKnob {1 BatchMode l batchMode}
+ addUserKnob {1 ContinueOnError l continueOnError}
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ addUserKnob {1 UseGpu l useGpu}
+ addUserKnob {1 UseSpecificGpu l useSpecificGpu}
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x151515ff
+ label L30
+ note_font_size 100
+ xpos 6409
+ ypos 874
+ bdwidth 383
+ bdheight 508
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x151515ff
+ label L40
+ note_font_size 100
+ xpos 6409
+ ypos 1450
+ bdwidth 383
+ bdheight 508
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0x151515ff
+ label L20
+ note_font_size 100
+ xpos 6409
+ ypos 298
+ bdwidth 383
+ bdheight 508
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0x151515ff
+ label L50
+ note_font_size 100
+ xpos 6409
+ ypos 2050
+ bdwidth 383
+ bdheight 508
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0x151515ff
+ label L10
+ note_font_size 100
+ xpos 6409
+ ypos -278
+ bdwidth 383
+ bdheight 508
+}
+Dot {
+ inputs 0
+ name Dot29
+ tile_color 0xfefefeff
+ label "CONNECT Roto Here"
+ note_font_size 30
+ xpos 6484
+ ypos -414
+}
+Reformat {
+ inputs 0
+ name Reformat5
+ xpos 6560
+ ypos 2193
+}
+Dot {
+ name Dot25
+ xpos 6594
+ ypos 2269
+}
+set N3737000 [stack 0]
+Dot {
+ name Dot27
+ xpos 6704
+ ypos 2269
+}
+Shuffle {
+ red black
+ green black
+ blue alpha
+ name blue_channel4
+ tile_color 0x3fffff
+ xpos 6670
+ ypos 2366
+}
+push $N3737000
+Shuffle {
+ red black
+ green alpha
+ blue black
+ name green_channel4
+ tile_color 0x7fff00ff
+ xpos 6560
+ ypos 2366
+}
+push $N3737000
+Dot {
+ name Dot26
+ xpos 6484
+ ypos 2269
+}
+Shuffle {
+ red alpha
+ green black
+ blue black
+ name red_channel4
+ tile_color 0xff0000ff
+ xpos 6450
+ ypos 2366
+}
+Dot {
+ name Dot8
+ xpos 6484
+ ypos 2490
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge7
+ xpos 6560
+ ypos 2486
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge8
+ xpos 6670
+ ypos 2486
+}
+Dot {
+ name Dot9
+ xpos 6924
+ ypos 2490
+}
+set N3763000 [stack 0]
+Dot {
+ name Dot10
+ xpos 6924
+ ypos 2418
+}
+Reformat {
+ inputs 0
+ name Reformat4
+ xpos 6560
+ ypos 1619
+}
+Dot {
+ name Dot22
+ xpos 6594
+ ypos 1695
+}
+set N3762000 [stack 0]
+Dot {
+ name Dot24
+ xpos 6704
+ ypos 1695
+}
+Shuffle {
+ red black
+ green black
+ blue alpha
+ name blue_channel3
+ tile_color 0x3fffff
+ xpos 6670
+ ypos 1790
+}
+push $N3762000
+Shuffle {
+ red black
+ green alpha
+ blue black
+ name green_channel3
+ tile_color 0x7fff00ff
+ xpos 6560
+ ypos 1790
+}
+push $N3762000
+Dot {
+ name Dot23
+ xpos 6484
+ ypos 1695
+}
+Shuffle {
+ red alpha
+ green black
+ blue black
+ name red_channel3
+ tile_color 0xff0000ff
+ xpos 6450
+ ypos 1790
+}
+Dot {
+ name Dot5
+ xpos 6484
+ ypos 1890
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge5
+ xpos 6560
+ ypos 1886
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge6
+ xpos 6670
+ ypos 1886
+}
+Dot {
+ name Dot6
+ xpos 6924
+ ypos 1890
+}
+set N161b3c00 [stack 0]
+Dot {
+ name Dot7
+ xpos 6924
+ ypos 1842
+}
+Reformat {
+ inputs 0
+ name Reformat3
+ xpos 6560
+ ypos 989
+}
+Dot {
+ name Dot19
+ xpos 6594
+ ypos 1065
+}
+set N161b2c00 [stack 0]
+Dot {
+ name Dot21
+ xpos 6704
+ ypos 1065
+}
+Shuffle {
+ red black
+ green black
+ blue alpha
+ name blue_channel2
+ tile_color 0x3fffff
+ xpos 6670
+ ypos 1190
+}
+push $N161b2c00
+Shuffle {
+ red black
+ green alpha
+ blue black
+ name green_channel2
+ tile_color 0x7fff00ff
+ xpos 6560
+ ypos 1190
+}
+push $N161b2c00
+Dot {
+ name Dot20
+ xpos 6484
+ ypos 1065
+}
+Shuffle {
+ red alpha
+ green black
+ blue black
+ name red_channel2
+ tile_color 0xff0000ff
+ xpos 6450
+ ypos 1190
+}
+Dot {
+ name Dot2
+ xpos 6484
+ ypos 1314
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge3
+ xpos 6560
+ ypos 1310
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge4
+ xpos 6670
+ ypos 1310
+}
+Dot {
+ name Dot3
+ xpos 6924
+ ypos 1314
+}
+set N161d4400 [stack 0]
+Dot {
+ name Dot4
+ xpos 6924
+ ypos 1242
+}
+Reformat {
+ inputs 0
+ name Reformat2
+ xpos 6560
+ ypos 459
+}
+Dot {
+ name Dot16
+ xpos 6594
+ ypos 535
+}
+set N16205400 [stack 0]
+Dot {
+ name Dot18
+ xpos 6704
+ ypos 535
+}
+Shuffle {
+ red black
+ green black
+ blue alpha
+ name blue_channel1
+ tile_color 0x3fffff
+ xpos 6670
+ ypos 614
+}
+push $N16205400
+Shuffle {
+ red black
+ green alpha
+ blue black
+ name green_channel1
+ tile_color 0x7fff00ff
+ xpos 6560
+ ypos 614
+}
+push $N16205400
+Dot {
+ name Dot17
+ xpos 6484
+ ypos 535
+}
+Shuffle {
+ red alpha
+ green black
+ blue black
+ name red_channel1
+ tile_color 0xff0000ff
+ xpos 6450
+ ypos 614
+}
+Dot {
+ name Dot1
+ xpos 6484
+ ypos 738
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge1
+ xpos 6560
+ ypos 734
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge2
+ xpos 6670
+ ypos 734
+}
+Dot {
+ name Dot114
+ xpos 6924
+ ypos 738
+}
+set N1622ec00 [stack 0]
+Dot {
+ name Dot119
+ xpos 6924
+ ypos 666
+}
+Reformat {
+ inputs 0
+ name Reformat1
+ xpos 6560
+ ypos -109
+}
+Dot {
+ name Dot14
+ xpos 6594
+ ypos -33
+}
+set N1625bc00 [stack 0]
+Dot {
+ name Dot15
+ xpos 6704
+ ypos -33
+}
+Shuffle {
+ red black
+ green black
+ blue alpha
+ name blue_channel6
+ tile_color 0x3fffff
+ xpos 6670
+ ypos 62
+}
+push $N1625bc00
+Shuffle {
+ red black
+ green alpha
+ blue black
+ name green_channel8
+ tile_color 0x7fff00ff
+ xpos 6560
+ ypos 62
+}
+push $N1625bc00
+Dot {
+ name Dot13
+ xpos 6484
+ ypos -33
+}
+Shuffle {
+ red alpha
+ green black
+ blue black
+ name red_channel10
+ tile_color 0xff0000ff
+ xpos 6450
+ ypos 62
+}
+Dot {
+ name Dot101
+ xpos 6484
+ ypos 162
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge24
+ xpos 6560
+ ypos 158
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge25
+ xpos 6670
+ ypos 158
+}
+Dot {
+ name Dot116
+ xpos 6924
+ ypos 162
+}
+set N16285400 [stack 0]
+Dot {
+ name Dot120
+ xpos 6924
+ ypos 90
+}
+Input {
+ inputs 0
+ name PLATE
+ tile_color 0x809a9eff
+ note_font_size 91
+ xpos 7220
+ ypos -627
+ number 14
+}
+Remove {
+ channels alpha
+ name Remove1
+ xpos 7221
+ ypos -369
+}
+ChannelMerge {
+ inputs 2
+ bbox B
+ name ChannelMerge11
+ xpos 7220
+ ypos 73
+}
+ChannelMerge {
+ inputs 2
+ bbox B
+ name ChannelMerge12
+ xpos 7220
+ ypos 649
+}
+ChannelMerge {
+ inputs 2
+ bbox B
+ name ChannelMerge1
+ xpos 7220
+ ypos 1225
+}
+ChannelMerge {
+ inputs 2
+ bbox B
+ name ChannelMerge2
+ xpos 7220
+ ypos 1825
+}
+ChannelMerge {
+ inputs 2
+ bbox B
+ name ChannelMerge3
+ xpos 7220
+ ypos 2401
+}
+Dot {
+ name Dot11
+ tile_color 0xfefefeff
+ label "check roto here"
+ note_font_size 30
+ xpos 7254
+ ypos 3258
+}
+Constant {
+ inputs 0
+ channels rgb
+ format "4966 2618 0 0 4966 2618 1 paint_4966"
+ name Constant4
+ xpos 7000
+ ypos -399
+}
+set N204bac00 [stack 0]
+Dot {
+ name Dot112
+ label "adjust the global read format here"
+ note_font_size 22
+ xpos 7034
+ ypos -462
+}
+push $N3763000
+push $N161b3c00
+push $N161d4400
+push $N1622ec00
+push $N16285400
+push $N204bac00
+add_layer {L10 L10.red L10.green L10.blue L10.alpha}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 L10.red
+ from1 rgba.green
+ to1 L10.green
+ from2 rgba.blue
+ to2 L10.blue
+ from3 rgba.alpha
+ to3 L10.alpha
+ bbox B
+ name Copy1
+ xpos 7000
+ ypos 132
+}
+add_layer {L20 L20.red L20.green L20.blue L20.alpha}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 L20.red
+ from1 rgba.green
+ to1 L20.green
+ from2 rgba.blue
+ to2 L20.blue
+ from3 rgba.alpha
+ to3 L20.alpha
+ bbox B
+ name Copy2
+ xpos 7000
+ ypos 708
+}
+add_layer {L30 L30.red L30.green L30.blue L30.alpha L30.alph}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 L30.red
+ from1 rgba.green
+ to1 L30.green
+ from2 rgba.blue
+ to2 L30.blue
+ from3 rgba.alpha
+ to3 L30.alpha
+ bbox B
+ name Copy3
+ xpos 7000
+ ypos 1284
+}
+add_layer {L40 L40.red L40.green L40.blue L40.alpha}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 L40.red
+ from1 rgba.green
+ to1 L40.green
+ from2 rgba.blue
+ to2 L40.blue
+ from3 rgba.alpha
+ to3 L40.alpha
+ bbox B
+ name Copy4
+ xpos 7000
+ ypos 1860
+}
+add_layer {L50 L50.red L50.green L50.blue L50.alpha}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 L50.red
+ from1 rgba.green
+ to1 L50.green
+ from2 rgba.blue
+ to2 L50.blue
+ from3 rgba.alpha
+ to3 L50.alpha
+ bbox B
+ name Copy5
+ xpos 7000
+ ypos 2460
+}
+Dot {
+ name Dot12
+ tile_color 0xfefefeff
+ label "RGBA/Contact sheet"
+ note_font_size 30
+ xpos 7034
+ ypos 3414
+}

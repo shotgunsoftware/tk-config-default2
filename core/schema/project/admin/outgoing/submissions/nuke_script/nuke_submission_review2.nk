@@ -1,0 +1,1670 @@
+#! C:/Program Files/Nuke11.2v1/nuke-11.2.1.dll -nx
+#write_info main_write file:"//pix_artist/project_paint/paint/editorial/resolve/review/20190130_Resolve_Review/PM/DBT1070_cmp_fin_resolve-version-color_v012.mov" format:"1920 1080 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1039 1136" fps:"24" colorspace:"default (Gamma2.2)" datatype:"unknown" transfer:"unknown" views:"main" timecode:"00:59:58:10" colorManagement:"Nuke"
+version 11.2 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1904" h="1122" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1241" stretch="1"/>
+            <splitter orientation="2">
+                <split size="630"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="444"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //pix_artist/project_paint/paint/admin/outgoing/submissions/nuke_script/nuke_submission_review2.nk
+ frame 1040
+ first_frame 1039
+ last_frame 1136
+ lock_range true
+ format "4966 2618 0 0 4966 2618 1 proj_format"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ OCIO_config custom
+ customOCIOConfigPath //pix_artist/project_paint/paint/luts/color_bundles/dbt1070/dbt1070_v1/dbt1070.ocio
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ FrameListMode Global
+ addUserKnob {1 CustomFrameList l customFrameList}
+ CustomFrameList 1040-1144
+ addUserKnob {1 Department l department}
+ Department Comp
+ addUserKnob {1 Pool l pool}
+ Pool vfx_nuke
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ SecondaryPool vfx_nuke
+ addUserKnob {1 Group l group}
+ Group none
+ addUserKnob {1 Priority l priority}
+ Priority 50
+ addUserKnob {1 MachineLimit l machineLimit}
+ MachineLimit 6
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ IsBlacklist False
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ SubmitSuspended False
+ addUserKnob {1 ChunkSize l chunkSize}
+ ChunkSize 5
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ ConcurrentTasks 1
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ LimitConcurrentTasks True
+ addUserKnob {1 Threads l threads}
+ Threads 0
+ addUserKnob {1 SubmitScene l submitScene}
+ SubmitScene True
+ addUserKnob {1 BatchMode l batchMode}
+ BatchMode True
+ addUserKnob {1 ContinueOnError l continueOnError}
+ ContinueOnError False
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ UseNodeRange True
+ addUserKnob {1 UseGpu l useGpu}
+ UseGpu False
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ ChooseGpu 0
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ EnforceRenderOrder False
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ DeadlineRenderMode "Use Scene Settings"
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ PerformanceProfiler False
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ ReloadPlugin False
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
+BackdropNode {
+ inputs 0
+ name BURNIN_BDN1
+ tile_color 0x223138ff
+ label "BURN IN"
+ note_font_size 25
+ xpos -394
+ ypos -403
+ bdwidth 475
+ bdheight 344
+}
+BackdropNode {
+ inputs 0
+ name CROP_BDN
+ label "FRAME LEADER\t\t\t"
+ note_font_size 25
+ xpos -864
+ ypos -1301
+ bdwidth 525
+ bdheight 153
+}
+BackdropNode {
+ inputs 0
+ name LUT_BDN
+ label "SHOT LUT\t\t\t\t"
+ note_font_size 25
+ xpos -865
+ ypos -1126
+ bdwidth 525
+ bdheight 153
+}
+BackdropNode {
+ inputs 0
+ name Read_BDN
+ tile_color 0x64ef64ff
+ label READ
+ note_font_size 25
+ xpos -862
+ ypos -1608
+ bdwidth 524
+ bdheight 174
+}
+BackdropNode {
+ inputs 0
+ name Slate_BDN
+ tile_color 0xc263efff
+ label "SLATE\n"
+ note_font_size 50
+ xpos -2334
+ ypos -974
+ bdwidth 1199
+ bdheight 1290
+}
+BackdropNode {
+ inputs 0
+ name Testers
+ tile_color 0x7f005fff
+ label Testers
+ note_font_size 42
+ xpos -2258
+ ypos -316
+ bdwidth 420
+ bdheight 550
+}
+BackdropNode {
+ inputs 0
+ name WRITE_BDN1
+ tile_color 0xa9b200ff
+ label WRITE
+ note_font_size 25
+ xpos -996
+ ypos 334
+ bdwidth 533
+ bdheight 341
+}
+BackdropNode {
+ inputs 0
+ name LOGO_BDN1
+ label "LOGO\n"
+ note_font_size 25
+ xpos -2275
+ ypos -862
+ bdwidth 764
+ bdheight 485
+ z_order 1
+}
+Switch {
+ inputs 0
+ name Switch1
+ xpos -104
+ ypos -1096
+}
+Dot {
+ inputs 0
+ name Dot11
+ xpos -1974
+ ypos -137
+}
+Reformat {
+ inputs 0
+ type "to box"
+ box_width {{"\[exists parent.input]==1?parent.input.format.w:root.format.w"}}
+ box_height {{"\[exists parent.input]==1?parent.input.format.h:root.format.h"}}
+ box_fixed true
+ box_pixel_aspect {{"\[exists parent.input]==1?parent.input.format.pixel_aspect:root.format.pixel_aspect"}}
+ center false
+ filter Impulse
+ name CurrentFormat
+ xpos -2088
+ ypos -176
+}
+set C36b6a80 [stack 0]
+set N36b6a80 [stack 0]
+Merge2 {
+ inputs 2
+ operation screen
+ mix 0
+ name WatermarkOver
+ xpos -2088
+ ypos -140
+}
+Mirror {
+ Horizontal true
+ Vertical true
+ name MirrorVerticalHorizontal
+ xpos -2088
+ ypos -104
+}
+set C36b6380 [stack 0]
+NoOp {
+ inputs 0
+ name OS_Switch
+ tile_color 0xffffff
+ xpos -2004
+ ypos -282
+ hide_input true
+ addUserKnob {20 os_switch l OS_Switch}
+ addUserKnob {4 operative_system l OS t "Select your OS" M {Linux Mac Windows}}
+ operative_system Windows
+ addUserKnob {22 substitute_path l INVISIBLE t "This changes the server path in all 'Read' nodes on this script" -STARTLINE +INVISIBLE}
+ addUserKnob {1 tcl_expression l INVISIBLE t "TCL expresion for Linux/Mac options" +INVISIBLE}
+ tcl_expression "\[value \[value operative_system]_path]"
+ addUserKnob {26 instructions l "" t "Instructions to apply this OS_Switch" +STARTLINE T "Instructions:\nLINUX: Substitute \"/mnt/server/\" with \"\[value OS_Switch1.tcl_expression]\".\nMAC: Substitute \"/Volumes/\" with \"\[value OS_Switch1.tcl_expression]\".\nWINDOWS: Substitute \"//Server/\" with \"\[value OS_Switch1.tcl_expression]\".\n*Note that the number of the node can be different depending on how many OS_Switch nodes had been created."}
+ addUserKnob {1 CopyThis l "copy this!"}
+ CopyThis "\[value OS_Switch.tcl_expression]"
+ addUserKnob {20 OS_paths l "OS Paths"}
+ addUserKnob {2 Linux_path l "Linux Server Path" t "Path to find the server from Linux"}
+ Linux_path /mnt/server/
+ addUserKnob {2 Mac_path l "Mac Server Path" t "Path to find the server from Mac"}
+ Mac_path /Volumes/
+ addUserKnob {2 Windows_path l "Windows Server Path" t "Path to find the server from Mac"}
+ Windows_path //Server/
+}
+Constant {
+ inputs 0
+ channels rgb
+ color {0 0 0 0}
+ color_panelDropped true
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ name slate_constant
+ xpos -2184
+ ypos -820
+}
+set N36b7c00 [stack 0]
+Dot {
+ name Dot6
+ xpos -2150
+ ypos -706
+}
+Read {
+ inputs 0
+ file_type png
+ file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+ localizationPolicy off
+ format "4000 2250 0 0 4000 2250 1 "
+ origset true
+ version 2
+ premultiplied true
+ name logo_read3
+ xpos -1683
+ ypos -746
+}
+Dissolve {
+ inputs 2
+ name Dissolve1
+ xpos -1849
+ ypos -716
+}
+BlackOutside {
+ name BlackOutside3
+ xpos -1849
+ ypos -672
+}
+Roto {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x44840000 x4412c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle1 512 bezier
+     {{cc
+       {f 8192}
+       {px x44820000
+        {0 x43780000}
+        {x44c3a000 x4456c000}
+        {x439b2aac 0}
+        {xc39b2aa8 0}
+        {x451c0000 x4456c000}
+        {0 x43780000}
+        {0 xc3780000}
+        {x451c0000 x44c86000}
+        {xc39b2aa8 0}
+        {x439b2aac 0}
+        {x44c3a000 x44c86000}
+        {0 xc3780000}}}     idem}
+     {tx x44820000 x44fdd000 x4499e000}
+     {a bm x41400000 inv 1 osw x41200000 osf 0 str 1 spx x44840000 spy x4412c000 sb 1 ltn x44820000 ltm x44820000 tt x41000000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1056 587}
+ colorOverlay {0 0 0 0}
+ blending_mode minus
+ lifetime_type "all frames"
+ lifetime_start 1040
+ lifetime_end 1040
+ motionblur_shutter_offset_type centred
+ inverted true
+ source_black_outside true
+ name Roto1
+ xpos -1849
+ ypos -639
+}
+Premult {
+ name Premult1
+ xpos -1849
+ ypos -601
+}
+Transform {
+ translate {-30 400}
+ scale 1.12
+ center {1990 928}
+ name Transform1
+ xpos -1849
+ ypos -575
+}
+Read {
+ inputs 0
+ file_type png
+ file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_only.png
+ localizationPolicy off
+ format "4000 2250 0 0 4000 2250 1 "
+ origset true
+ version 2
+ premultiplied true
+ name logo_read4
+ xpos -213
+ ypos -297
+}
+Transform {
+ translate {{format.width} 10}
+ scale {{"1 + format.width/format.height*-1.125"}}
+ name Transform2
+ xpos -213
+ ypos -191
+}
+push 0
+Merge2 {
+ inputs 2
+ name Merge9
+ xpos -213
+ ypos -163
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file //10.80.8.250/VFX_Project/the_little_stranger/tmp_misc/Ronan/TLS_aces_pipeline_vectorfield_properties.JPG
+ format "587 268 0 0 587 268 1 "
+ origset true
+ name Read2
+ xpos -543
+ ypos -1095
+}
+Read {
+ inputs 0
+ file_type exr
+ file //pix_artist/project_paint/paint/shots/0000_0000/renders/nuke/cmp_fin/version/0000_0000_cmp_fin_v003/0000_0000_cmp_fin_v003.####.exr
+ format "4966 2618 0 0 4966 2618 1 proj_format"
+ first 1001
+ last 1025
+ origfirst 1001
+ origlast 1025
+ origset true
+ name main_read
+ xpos -835
+ ypos -1530
+}
+Crop {
+ box {0 87 0 2111}
+ name frame_crop
+ xpos -835
+ ypos -1221
+ disable true
+}
+Transform {
+ scale 1.245
+ center {2483 1309}
+ name main_transform
+ xpos -835
+ ypos -1186
+}
+Vectorfield {
+ vfield_file //10.80.8.250/VFX_Project/got8/luts/GOT-Night/GOT-Night_DaVinciResolve33.cube
+ version 86
+ file_type cube
+ colorspaceIn Cineon
+ colorspaceOut sRGB
+ name main_lut
+ xpos -835
+ ypos -1062
+ disable true
+}
+OCIOColorSpace {
+ in_colorspace dbt1070.bg01.fcam.red.
+ out_colorspace paint_grade.rec709g24
+ name main_ocio_color
+ xpos -835
+ ypos -1027
+}
+set N1f56b180 [stack 0]
+push $N1f56b180
+Gamma {
+ name main_gamma
+ xpos -835
+ ypos -742
+ disable true
+}
+set N1f56ae00 [stack 0]
+Dot {
+ name Dot2
+ xpos -1231
+ ypos -732
+}
+Transform {
+ translate {{width/1.75} {height/2.5}}
+ scale {{translate.y/translate.x}}
+ name thumbnail_transform
+ xpos -1266
+ ypos -435
+}
+ColorBars {
+ inputs 0
+ PAL true
+ name ColorBarsTester
+ xpos -1928
+ ypos -254
+}
+clone $C36b6a80 {
+ xpos -1928
+ ypos -176
+ selected false
+}
+Shuffle {
+ alpha white
+ name NewAlphaOnBars
+ xpos -1928
+ ypos -32
+}
+set C1f59fc00 [stack 0]
+Colorspace {
+ colorspace_in sRGB
+ colorspace_out sRGB
+ name BarsLinearized
+ tile_color 0xff0000ff
+ xpos -1928
+ ypos 40
+}
+Reformat {
+ type scale
+ scale {1 0.05}
+ resize none
+ name BandTesterSize
+ xpos -1928
+ ypos 76
+}
+set C1f59f500 [stack 0]
+Position {
+ translate {{curve} {root.proxy==1?BandTesterSize.format.h/(1*root.proxy_scale):BandTesterSize.format.h+100}}
+ name BarsPosition
+ xpos -1928
+ ypos 113
+}
+BlackOutside {
+ name BlackOutsideBand1
+ xpos -1928
+ ypos 144
+}
+Dot {
+ name Dot3
+ xpos -1894
+ ypos 187
+}
+push 0
+push $N36b6a80
+Dot {
+ name Dot4
+ xpos -2214
+ ypos -173
+}
+Ramp {
+ output rgb
+ p0 {0 0}
+ p1 {{CurrentFormat.box_width} 0}
+ name BW_Ramp
+ xpos -2248
+ ypos -146
+ postage_stamp true
+}
+clone $C1f59fc00 {
+ xpos -2248
+ ypos -32
+ selected false
+}
+Posterize {
+ Colors 17
+ name BW_Chips
+ xpos -2248
+ ypos -1
+}
+Colorspace {
+ colorspace_in sRGB
+ name RampLinearized
+ tile_color 0xff0000ff
+ xpos -2248
+ ypos 40
+}
+clone $C1f59f500 {
+ xpos -2248
+ ypos 76
+ selected false
+}
+Position {
+ translate {{curve} {root.proxy==1?BandTesterSize.format.h/(1*root.proxy_scale):BandTesterSize.format.h-50}}
+ name BarsPosition1
+ xpos -2248
+ ypos 109
+}
+BlackOutside {
+ name BlackOutsideBand
+ xpos -2248
+ ypos 147
+}
+Dot {
+ name Dot5
+ xpos -2214
+ ypos 187
+}
+clone $C36b6380 {
+ inputs 0
+ xpos -2088
+ ypos -68
+ selected false
+}
+Merge2 {
+ inputs 3+1
+ name TestersMerge
+ xpos -2088
+ ypos 183
+}
+Transform {
+ translate {0 250}
+ center {1056 587}
+ name Transform17
+ xpos -2088
+ ypos 209
+}
+Dot {
+ name Dot1
+ xpos -2054
+ ypos 250
+}
+Roto {
+ inputs 0
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x44840000 x4412c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle1 512 bezier
+     {{cc
+       {f 8192}
+       {px
+        {x447a0000 x4481e000 x44820000}
+        {{{0 -}      0
+       {0 -}}
+      {{xc3c8f858 0 1 x3fe63566 1}      xc3a5e635
+       {xc3a50000 x3fe63566 1 0 1}}}
+        {{{x40666780 0 1 xc100a3d9 1}      xc3aa7fb1
+       {xc39f0000 xc100a3d9 1 0 1}}
+      {{x45230cc4 0 1 xc20747a0 1}      x452a9f5c
+       {x449d0000 xc20747a0 1 0 1}}}
+        {{{x44650000 -}      x44650000
+       {x44650000 -}}
+      {{0 -}      0
+       {0 -}}}
+        {{{xc4650000 -}      xc4650000
+       {xc4650000 -}}
+      {{0 -}      0
+       {0 -}}}
+        {{{x451ace65 0 1 xbf96140e 1}
+       {x45245cff xbf961433 1 xbf961433 1}
+       {x4517e000 xbf9619e6 1 0 1}}
+      {{x452377f7 0 1 xc207f325 1}
+       {x4526c0d7 xc207f325 1 xc207f325 1}
+       {x449d0000 xc207f31e 1 0 1}}}
+        {{{0 -}      0
+       {0 -}}
+      {{xc3c8f858 0 1 x3fe63566 1}      xc3a5e635
+       {xc3a50000 x3fe63566 1 0 1}}}
+        {{{0 -}      0
+       {0 -}}
+      {{x43a50000 -}      x43a50000
+       {x43a50000 -}}}
+        {{{x45198ccc 0 1 xbf2b84fc 1}
+       {x451bc3a4 xbf2b84cd 1 xbf2b84cd 1}
+       {x4517e000 xbf2b7d9a 1 0 1}}
+      {{x44164000 0 1 xc1060000 1}
+       {x440572ff xc1060000 1 xc1060000 1}
+       {x43850000 xc1060000 1 0 1}}}
+        {{{xc4650000 -}      xc4650000
+       {xc4650000 -}}
+      {{0 -}      0
+       {0 -}}}
+        {{{x44650000 -}      x44650000
+       {x44650000 -}}
+      {{0 -}      0
+       {0 -}}}
+        {{{xc0466800 0 1 xc0fbeb80 1}
+       {xc37891dc xc0fbeb80 1 xc0fbeb80 1}
+       {xc39f0000 xc0fbeb80 1 0 1}}
+      {{x44164000 0 1 xc1060000 1}
+       {x440e3e3e xc1060000 1 xc1060000 1}
+       {x43850000 xc1060000 1 0 1}}}
+        {{{0 -}      0
+       {0 -}}
+      {{x43a50000 -}      x43a50000
+       {x43a50000 -}}}}}     idem}
+     {tx x44820000 x44840000 x443e4000}
+     {a osw x41200000 osf 0 str 1 spx x44840000 spy x4412c000 sb 1 ltn x44820000 ltm x44820000 tt x41000000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1056 587}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ lifetime_start 1040
+ lifetime_end 1040
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto4
+ xpos -1437
+ ypos -422
+}
+push $N36b7c00
+Read {
+ inputs 0
+ file_type png
+ file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+ localizationPolicy off
+ format "4000 2250 0 0 4000 2250 1 "
+ origset true
+ premultiplied true
+ name logo_read1
+ xpos -2029
+ ypos -652
+}
+Dissolve {
+ inputs 2
+ name Dissolve2
+ xpos -2184
+ ypos -628
+}
+BlackOutside {
+ name BlackOutside2
+ xpos -2184
+ ypos -559
+}
+Roto {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x44840000 x4412c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle1 512 bezier
+     {{cc
+       {f 8192}
+       {px x44820000
+        {0 x43780000}
+        {x44c3a000 x4456c000}
+        {x439b2aac 0}
+        {xc39b2aa8 0}
+        {x451c0000 x4456c000}
+        {0 x43780000}
+        {0 xc3780000}
+        {x451c0000 x44c86000}
+        {xc39b2aa8 0}
+        {x439b2aac 0}
+        {x44c3a000 x44c86000}
+        {0 xc3780000}}}     idem}
+     {tx x44820000 x44fdd000 x4499e000}
+     {a bm x41400000 inv 1 osw x41200000 osf 0 str 1 spx x44840000 spy x4412c000 sb 1 ltn x44820000 ltm x44820000 tt x41000000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1056 587}
+ colorOverlay {0 0 0 0}
+ blending_mode minus
+ lifetime_type "all frames"
+ lifetime_start 1040
+ lifetime_end 1040
+ motionblur_shutter_offset_type centred
+ inverted true
+ source_black_outside true
+ name Roto3
+ xpos -2184
+ ypos -523
+}
+Premult {
+ name Premult2
+ xpos -2184
+ ypos -485
+}
+Transform {
+ translate {-545 -825}
+ scale 4
+ center {2001 923}
+ name Transform18
+ xpos -2184
+ ypos -416
+}
+Read {
+ inputs 0
+ file_type png
+ file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+ localizationPolicy off
+ format "4000 2250 0 0 4000 2250 1 "
+ origset true
+ premultiplied true
+ name logo_read2
+ xpos -1687
+ ypos -645
+}
+Reformat {
+ name Reformat5
+ xpos -1687
+ ypos -559
+}
+Transform {
+ translate {0 -75}
+ center {1056 587}
+ name Transform3
+ xpos -1687
+ ypos -521
+}
+push 0
+Merge2 {
+ inputs 2
+ name Merge1
+ xpos -1849
+ ypos -521
+}
+Blur {
+ size 2.3
+ name Blur1
+ xpos -1849
+ ypos -495
+}
+Merge2 {
+ inputs 2+1
+ mix 0.2
+ name Merge11
+ xpos -1849
+ ypos -416
+}
+Dot {
+ name Dot8
+ xpos -1815
+ ypos 211
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ box {650 400 1150 450}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_lens_value
+ xpos -1318
+ ypos 66
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform10
+ xpos -1420
+ ypos 66
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Lens Info : "
+ old_message {{76 101 110 115 32 73 110 102 111 32 58 32}
+   }
+ box {100 400 600 450}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100}
+   }
+ cursor_position 12
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_lens_text
+ xpos -1524
+ ypos 66
+}
+Transform {
+ translate {0 330}
+ center {1056 587}
+ name Transform16
+ xpos -1628
+ ypos 66
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Testing for new submission process"
+ old_message {{84 101 115 116 105 110 103 32 102 111 114 32 110 101 119 32 115 117 98 109 105 115 115 105 111 110 32 112 114 111 99 101 115 115}
+   }
+ box {650 450 1200 525}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_notes_value
+ xpos -1317
+ ypos 7
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform9
+ xpos -1419
+ ypos 7
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Notes : "
+ old_message {{78 111 116 101 115 32 58 32}
+   }
+ box {100 475 600 525}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100}
+   }
+ cursor_position 8
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_notes_text
+ xpos -1525
+ ypos 7
+}
+Transform {
+ translate {0 150}
+ center {1056 587}
+ name Transform15
+ xpos -1635
+ ypos 7
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[clock format \[clock seconds] -format %m/%d/%Y]"
+ old_message {{48 50 47 49 50 47 50 48 49 57}
+   }
+ old_expression_markers {{0 9}
+   }
+ box {650 550 1150 600}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_date_value
+ xpos -1321
+ ypos -48
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform8
+ xpos -1423
+ ypos -48
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Date : "
+ old_message {{68 97 116 101 32 58 32}
+   }
+ box {100 550 600 600}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100}
+   }
+ cursor_position 7
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_date_text
+ xpos -1528
+ ypos -48
+}
+Transform {
+ translate {0 125}
+ center {1056 587}
+ name Transform14
+ xpos -1629
+ ypos -48
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message 1040-1136
+ old_message {{49 48 52 48 45 49 49 51 54}
+   }
+ box {650 650 1150 700}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_frames_value
+ xpos -1317
+ ypos -115
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform7
+ xpos -1420
+ ypos -115
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Frames : "
+ old_message {{70 114 97 109 101 115 32 58 32}
+   }
+ box {100 650 600 700}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100}
+   }
+ cursor_position 9
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_frames_text
+ xpos -1525
+ ypos -115
+}
+Transform {
+ translate {0 135}
+ center {1056 587}
+ name Transform13
+ xpos -1635
+ ypos -115
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message DBT1070_cmp_fin_v012
+ old_message {{68 66 84 49 48 55 48 95 99 109 112 95 102 105 110 95 118 48 49 50}
+   }
+ box {650 750 1150 800}
+ transforms {{0 2}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{588.5 896}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_version_value
+ xpos -1314
+ ypos -182
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform6
+ xpos -1416
+ ypos -182
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Version Name : "
+ old_message {{86 101 114 115 105 111 110 32 78 97 109 101 32 58 32}
+   }
+ box {100 750 600 800}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 12 100 13 100 14 100}
+   }
+ cursor_position 15
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_version_text
+ xpos -1524
+ ypos -182
+}
+Transform {
+ translate {0 90}
+ center {1056 587}
+ name Transform12
+ xpos -1640
+ ypos -182
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message DBT1070
+ old_message {{68 66 84 49 48 55 48}
+   }
+ box {650 850 1150 900}
+ transforms {{0 2}
+   }
+ cursor_position 1
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{636.5 982}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_name_value
+ xpos -1316
+ ypos -241
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform5
+ xpos -1418
+ ypos -241
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "Shot Name : "
+ old_message {{83 104 111 116 32 78 97 109 101 32 58 32}
+   }
+ box {100 850 600 900}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100 0 25}
+   }
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{142 985}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name content_name_text
+ xpos -1528
+ ypos -241
+}
+Transform {
+ translate {0 43}
+ center {1056 587}
+ name Transform11
+ xpos -1636
+ ypos -244
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message Paint
+ old_message {{80 97 105 110 116}
+   }
+ box {650 950 1150 1000}
+ transforms {{0 2}
+   }
+ kern_values {{0 0}
+   }
+ global_font_scale 0.2
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{569 1040}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name show_title_value
+ xpos -1317
+ ypos -285
+}
+Transform {
+ translate {-253 -8}
+ center {1056 587}
+ name Transform4
+ xpos -1422
+ ypos -285
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ cliptype none
+ message "Show Title : "
+ old_message {{83 104 111 119 32 84 105 116 108 101 32 58 32}
+   }
+ box {100 950 600 1000}
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 11 100 12 100 0 25 1 25 2 25 3 25 4 25 5 25 6 25 7 25 8 25 9 25}
+   }
+ global_font_scale 0.3
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{148.5 1040.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1083.5 697.5 0 0 1 1 0 0 0 0}
+   }
+ name show_title_text
+ xpos -1526
+ ypos -285
+}
+push 0
+Merge2 {
+ inputs 2
+ name Merge12
+ xpos -1738
+ ypos -285
+}
+Merge2 {
+ inputs 2
+ name Merge4
+ xpos -1738
+ ypos -241
+}
+Merge2 {
+ inputs 2
+ name Merge3
+ xpos -1738
+ ypos -182
+}
+Merge2 {
+ inputs 2
+ name Merge5
+ xpos -1738
+ ypos -115
+}
+Merge2 {
+ inputs 2
+ name Merge6
+ xpos -1738
+ ypos -48
+}
+Merge2 {
+ inputs 2
+ name Merge7
+ xpos -1738
+ ypos 14
+}
+Merge2 {
+ inputs 2
+ name Merge8
+ xpos -1738
+ ypos 69
+}
+Transform {
+ translate {1510 565}
+ scale 2
+ center {1056 587}
+ name Transform19
+ xpos -1738
+ ypos 114
+}
+Merge2 {
+ inputs 2
+ name Merge13
+ xpos -1738
+ ypos 207
+}
+Merge2 {
+ inputs 2
+ name Merge10
+ xpos -1738
+ ypos 246
+}
+FrameRange {
+ last_frame 0
+ time ""
+ name slate_framerange
+ xpos -1604
+ ypos 246
+}
+Colorspace {
+ colorspace_out 2.20
+ name slate_colorspace
+ xpos -1460
+ ypos 246
+ disable true
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ xpos -1265
+ ypos 246
+}
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ resize fit
+ filter Lanczos6
+ pbb true
+ name slate_reformat
+ xpos -1094
+ ypos 240
+}
+push $N1f56ae00
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ resize fit
+ pbb true
+ name main_reformat
+ xpos -839
+ ypos -464
+}
+set N23146700 [stack 0]
+Dot {
+ name Dot9
+ xpos -166
+ ypos -454
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message PAINT
+ old_message {{80 65 73 78 84}
+   }
+ box {10 {height-50} {width-box.x} {height-5}}
+ xjustify center
+ transforms {{0 2}
+   }
+ cursor_position 12
+ font {{ Bitstream Charter : Regular : BitstreamCharter.pfb : 0 }}
+ global_font_scale {{"format.height *.00025"}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_project_burnin
+ xpos -200
+ ypos -358
+ disable true
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message DBT1070_cmp_fin_v012
+ old_message {{68 66 84 49 48 55 48 95 99 109 112 95 102 105 110 95 118 48 49 50}
+   }
+ box {10 {height-100} {width-box.x} {height-5}}
+ transforms {{0 2}
+   }
+ cursor_position 20
+ font {{ Bitstream Charter : Regular : BitstreamCharter.pfb : 0 }}
+ global_font_scale {{"format.height *.00025"}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_version_burnin
+ xpos -379
+ ypos -358
+}
+Dot {
+ name Dot7
+ xpos -345
+ ypos -317
+}
+Dot {
+ name Dot17
+ xpos 21
+ ypos -317
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[clock format \[clock seconds] -format %m/%d/%Y]"
+ old_message {{48 50 47 49 56 47 50 48 49 57}
+   }
+ old_expression_markers {{0 9}
+   }
+ box {10 {height-50} {width-box.x} {height-5}}
+ xjustify right
+ transforms {{0 2}
+   }
+ cursor_position 17
+ font {{ Bitstream Charter : Regular : BitstreamCharter.pfb : 0 }}
+ global_font_scale {{"format.height *.00025"}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_date_burnin
+ xpos -13
+ ypos -357
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ box {10 0 {width-box.x} 100}
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font {{ Bitstream Charter : Regular : BitstreamCharter.pfb : 0 }}
+ global_font_scale {{"format.height *.00025"}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_notes_burnin
+ xpos -382
+ ypos -120
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message SSVFX
+ old_message {{83 83 86 70 88}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify center
+ yjustify bottom
+ transforms {{0 2}
+   }
+ cursor_position 5
+ font {{ Bitstream Charter : Regular : BitstreamCharter.pfb : 0 }}
+ global_font_scale {{"format.height *.00025"}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_vendor_burnin
+ xpos -213
+ ypos -120
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[format %s \[expr \[value frame]]]"
+ old_message {{49 48 52 48}
+   }
+ old_expression_markers {{0 3}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify right
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font {{ Bitstream Charter : Regular : BitstreamCharter.pfb : 0 }}
+ global_font_scale {{"format.height *.00025"}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_framecounter_burnin
+ label framecounter
+ xpos -12
+ ypos -126
+}
+Dot {
+ name Dot19
+ xpos 22
+ ypos -80
+}
+Dot {
+ name Dot10
+ xpos -177
+ ypos -80
+}
+Dot {
+ name Dot12
+ xpos -177
+ ypos 1
+}
+push $N23146700
+Switch {
+ inputs 2
+ which 1
+ name burnin_switch
+ xpos -839
+ ypos -3
+}
+Switch {
+ inputs 2
+ which {{"(frame == root.first_frame || frame == root.first_frame) ? 1 : 0"}}
+ name slate_switch
+ xpos -839
+ ypos 246
+}
+AddTimeCode {
+ metafps false
+ frame 1039
+ useFrame true
+ name main_timecode
+ label "\nCalculates timecode based on 0:00:00:00 starting at frame 0000. \nSo for clips starting at frame 1000, timecode would be 00:00:41:16\n\nPlease embed \"frame accurate\" timecode for both editorial and vfx quicktimes."
+ xpos -839
+ ypos 405
+}
+ModifyMetaData {
+ metadata {
+  {set input/timecode 01:00:00:00}
+ }
+ name modify_meta_data
+ xpos -839
+ ypos 519
+ disable true
+}
+Write {
+ file //pix_artist/project_paint/paint/editorial/resolve/review/20190130_Resolve_Review/PM/DBT1070_cmp_fin_resolve-version-color_v012.mov
+ file_type mov
+ meta_codec apco
+ mov32_codec AVdn
+ mov32_keyframerate 0
+ mov32_units Frames
+ mov32_settings 000000000000000000000000000001d27365616e000000010000000100000000000001be76696465000000010000000f00000000000000227370746c0000000100000000000000004156646e000000000020000003ff000000207470726c000000010000000000000000000000000018000000000000000000246472617400000001000000000000000000000000000000530000010000000100000000156d70736f00000001000000000000000000000000186d66726100000001000000000000000000000000000000187073667200000001000000000000000000000000000000156266726100000001000000000000000000000000166d70657300000001000000000000000000000000002868617264000000010000000000000000000000000000000000000000000000000000000000000016656e647300000001000000000000000000000000001663666c67000000010000000000000000004400000018636d66720000000100000000000000004156494400000014636c757400000001000000000000000000000038636465630000000100000000000000004156494400000001000000020000000100000015000000030000000000000000000000000000001c766572730000000100000000000000000003001c00010000
+ mov32_write_timecode true
+ mov32_advanced 1
+ mov32_pixel_format {{0} "default (YCbCr  8-bit 422 (2vuy))" "RGBA  8-bit" "RGBA  16-bit (b64a)" "YCbCrA 8-bit 444 Biased (r408)" "YCbCr  8-bit 422 (2vuy)"}
+ mov64_codec apco
+ mov64_dnxhd_codec_profile "DNxHD 422 8-bit 145Mbit"
+ mov64_units Frames
+ mov64_write_timecode true
+ mov64_advanced 1
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 40000000
+ mov64_quality_min 2
+ mov64_quality_max 31
+ mov64_gop_size 12
+ mov64_b_frames 0
+ create_directories true
+ checkHashOnRead false
+ version 26
+ name main_write
+ xpos -839
+ ypos 565
+ postage_stamp true
+}
+Viewer {
+ inputs 2
+ frame_range 1039-1039
+ rgb_only true
+ viewerProcess None
+ name Viewer1
+ xpos -296
+ ypos 659
+}
