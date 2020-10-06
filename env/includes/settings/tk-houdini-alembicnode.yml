@@ -19,18 +19,26 @@ settings.tk-houdini-alembicnode.asset_step:
   work_file_template: houdini_asset_work
   default_node_name: sg_alembic_out
   output_profiles:
-  - name: Asset Work Cache
-    settings: {}
-    color: []
+  - name: Asset Work Cache Sequence
+    settings: {trange: 1}
+    color: [1.0, 0.6, 0.0]
     output_cache_template: houdini_asset_work_alembic_cache
+  - name: Asset Work Cache Still
+    settings: {trange: 0}
+    color: [1.0, 0.5, 0.0]
+    output_cache_template: houdini_asset_work_alembic_cache_still
   location: "@apps.tk-houdini-alembicnode.location"
 
 settings.tk-houdini-alembicnode.shot_step:
   work_file_template: houdini_shot_work
   default_node_name: sg_alembic_out
   output_profiles:
-  - name: Shot Work Cache
-    settings: {}
-    color: []
+  - name: Shot Work Cache Sequence
+    settings: {trange: 1}
+    color: [1.0, 0.6, 0.0]
     output_cache_template: houdini_shot_work_alembic_cache
+  - name: Shot Work Cache Still 
+    settings: {trange: 0}
+    color: [1.0, 0.5, 0.0]
+    output_cache_template: houdini_shot_work_alembic_cache_still
   location: "@apps.tk-houdini-alembicnode.location"

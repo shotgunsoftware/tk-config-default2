@@ -114,17 +114,23 @@ settings.tk-nuke.asset_step:
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
   location: "@engines.tk-nuke.location"
+  favourite_directories: [
+    {display_name: Asset Work Area, template_directory: nuke_asset_work_area, icon: 'icons/icon_folder_80.png'}
+  ]
 
 # project
 settings.tk-nuke.project:
+  project_favourite_name: ""
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.project"
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: ''}      
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-nuke.location"
@@ -159,12 +165,15 @@ settings.tk-nuke.shot:
 
 # shot_step
 settings.tk-nuke.shot_step:
+  project_favourite_name: "-"
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-breakdown:
       location: "@apps.tk-multi-breakdown.location"
     tk-multi-setframerange:
+      sg_in_frame_field: sg_head_in
+      sg_out_frame_field: sg_tail_out
       location: "@apps.tk-multi-setframerange.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
     tk-multi-publish2: "@settings.tk-multi-publish2.nuke.shot_step"
@@ -176,11 +185,18 @@ settings.tk-nuke.shot_step:
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
     tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: ''}   
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  favourite_directories: [
+    {display_name: Shot Work Area, template_directory: nuke_shot_work_area, icon: 'icons/icon_folder_80.png'}, 
+    {display_name: Shot Rush Area, template_directory: shot_rushes_root, icon: 'icons/icon_plates_80.png'},
+    {display_name: Shot Render Area, template_directory: nuke_shot_render_area, icon: 'icons/icon_renders_80.png'}
+    ]  
   location: "@engines.tk-nuke.location"
 
 ################################################################################

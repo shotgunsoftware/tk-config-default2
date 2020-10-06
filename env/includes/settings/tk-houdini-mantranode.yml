@@ -22,8 +22,8 @@ settings.tk-houdini-mantranode.asset_step:
   output_profiles:
   - name: Default Render
     settings: {}
-    color: []
-    output_render_template: houdini_asset_render
+    color: [1.0, 0.5, 0.0]
+    output_render_template: houdini_asset_render_exr
     output_ifd_template: houdini_asset_ifd
     output_dcm_template: houdini_asset_dcm
     output_extra_plane_template: houdini_asset_extra_plane
@@ -36,9 +36,11 @@ settings.tk-houdini-mantranode.shot_step:
   output_profiles:
   - name: Default Render
     settings: {}
-    color: []
-    output_render_template: houdini_shot_render
+    color: [1.0, 0.5, 0.0]
+    output_render_template: houdini_shot_render_exr
     output_ifd_template: houdini_shot_ifd
     output_dcm_template: houdini_shot_dcm
     output_extra_plane_template: houdini_shot_extra_plane
   location: "@apps.tk-houdini-mantranode.location"
+  display_name: "Mantra Render Output Node"
+  description: "Support for the SGToolkit Mantra render output node in Houdini."

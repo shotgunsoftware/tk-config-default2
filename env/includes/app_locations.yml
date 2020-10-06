@@ -129,6 +129,12 @@ apps.tk-shotgun-launchpublish.location:
   name: tk-shotgun-launchpublish
   version: v0.4.0
 
+# shotgun copypaths
+apps.tk-shotgun-copypaths.location:
+  type: git
+  version: v0.1.2.2
+  path: https://github.com/ssvfx41/tk-shotgun-copypaths.git
+
 # ---- Hiero apps
 
 # hiero export
@@ -144,18 +150,23 @@ apps.tk-hiero-openinshotgun.location:
   version: v0.3.4
 
 # ---- Houdini apps
+# houdini geometry node
+apps.tk-houdini-geometrynode.location:
+  type: git
+  version: v0.1.0.1
+  path: https://github.com/ssvfx41/tk-houdini-geometrynode.git
 
 # houdini alembicnode
 apps.tk-houdini-alembicnode.location:
-  type: app_store
-  name: tk-houdini-alembicnode
-  version: v0.4.1
+  type: git
+  version: v0.3.1.1
+  path: https://github.com/ssvfx41/tk-houdini-alembicnode.git
 
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
-  type: app_store
-  name: tk-houdini-mantranode
-  version: v0.4.1
+  type: git
+  version: v0.3.1.1
+  path: https://github.com/ssvfx41/tk-houdini-mantranode.git
 
 # ---- Nuke apps
 

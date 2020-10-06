@@ -15,7 +15,7 @@ includes:
 
 ################################################################################
 
-settings.tk-shotgun-folders:
-  deny_permissions: ["permission_rule_set", "is", "Artist"]
+settings.tk-shotgun-copypaths:
+  deny_permissions: []
   deny_platforms: []
-  location: "@apps.tk-shotgun-folders.location"
+  location: "@apps.tk-shotgun-copypaths.location"

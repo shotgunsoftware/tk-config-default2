@@ -220,6 +220,7 @@ class SceneOperation(HookClass):
         elif operation == "prepare_new":
 
             self.log.debug(">>>>> prepare new file")
+            self.log.debug(">>>>> context.project:  %s" % context.project)
 
             # critical Shotgun information
             proj_name = context.project['name']

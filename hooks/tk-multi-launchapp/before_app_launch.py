@@ -33,7 +33,6 @@ class BeforeAppLaunch(tank.Hook):
 
 
     log = sgtk.LogManager.get_logger(__name__)
-    system = sys.platform
    
     def _has_envstr(self, env_paths, srch_str):
         found = False
@@ -55,6 +54,7 @@ class BeforeAppLaunch(tank.Hook):
         """
 
         self.log.debug("Current Engine [%s]" % str(engine_name))
+        system = sys.platform
 
         if "SSVFX_PIPELINE_DEV" in os.environ.keys():
             # Set local studio scripts dirs based on DEV env var
