@@ -52,6 +52,31 @@ settings.tk-houdini.asset_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.asset_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
+    tk-houdini-geometrynode:
+      location:
+        type: dev
+        path: /Users/anton/development/tk-houdini-geometrynode
+      work_file_template: houdini_asset_work
+      default_node_name: sg_geometry_out
+      output_profiles:
+      - name: Asset Work Cache
+        settings: {}
+        color: []
+        output_cache_template: houdini_asset_work_geo_cache
+        output_cache_shared_template: houdini_asset_work_geo_cache
+    tk-houdini-arnoldnode:
+      location:
+        type: dev
+        path: /Users/anton/development/tk-houdini-arnoldnode
+    tk-houdini-cameranode:
+      location:
+        type: dev
+        path: /Users/anton/development/tk-houdini-cameranode
+      default_node_name: sg_camera_in
+    tk-houdini-filenode:
+      location:
+        type: dev
+        path: /Users/anton/development/tk-houdini-filenode
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -62,6 +87,10 @@ settings.tk-houdini.asset_step:
 # project
 settings.tk-houdini.project:
   apps:
+    tk-multi-starterapp:
+      location:
+        type: dev
+        path: /Users/anton/development/tk-multi-starterapp
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"

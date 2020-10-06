@@ -37,7 +37,7 @@ settings.tk-cinema.asset:
     tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.project'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  debug_logging: true
+  debug_logging: false
   location: '@engines.tk-cinema.location'
 # asset_step
 settings.tk-cinema.asset_step:
@@ -51,6 +51,12 @@ settings.tk-cinema.asset_step:
     tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.cinema'
     tk-multi-snapshot: '@settings.tk-multi-snapshot.cinema.asset_step'
     tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.asset_step'
+    tk-cinema-setuprender:
+      location:
+        type: dev
+        path: /Users/anton/development/tk-cinema-setuprender
+      template_work: asset_work_area_cinema
+      template_shot: asset_publish_area_cinema
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
