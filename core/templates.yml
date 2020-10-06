@@ -26,6 +26,7 @@
 # used by Sgtk. A key is a magic token that is replaced by a value at runtime, for example
 # {Shot}. The section below tells Sgtk which data types and formats to expect for each key.
 #
+#Staino hello
 keys:
     Sequence:
         type: str
