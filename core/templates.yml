@@ -25,8 +25,8 @@
 # The keys section contains the definitions for all the different keys that are being
 # used by Sgtk. A key is a magic token that is replaced by a value at runtime, for example
 # {Shot}. The section below tells Sgtk which data types and formats to expect for each key.
-#
-#Staino hello
+# Staino hello
+# Anton says hallo
 keys:
     Sequence:
         type: str
@@ -57,6 +57,8 @@ keys:
     height:
         type: int
     segment_name:
+        type: str
+    Episode:
         type: str
 
     # Represents the optional output name for frames written by the Shotgun Write Node
@@ -145,6 +147,15 @@ keys:
         type: str
         filter_by: alphanumeric
 
+    # Vred supports three extension types
+    vred.extension:
+        type: str
+        choices:
+            vpe: VRED Essentials Project Binary (*.vpe)
+            vpb: VRED Project Binary (*.vpb)
+            vpf: VRED Project File (*.vpf)
+        default: vpb
+
     # represents the optional render pass for frames written by VRED
     vred.render_pass:
         type: str
@@ -164,13 +175,6 @@ keys:
         format_spec: "05"
         alias: SEQ
 
-    # represents the image extension written by Cinema 4D
-    cinema.render_extension:
-        type: str
-        choices:
-            png: PNG Image
-            exr: EXR Image
-        default: png
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -197,136 +201,6 @@ paths:
     ##########################################################################################
     # Project level paths
     #
-    
-    #
-    # Cinema
-    #
-
-    # asset
-    # define the location of a work area
-    asset_work_area_cinema:
-        definition: '@asset_root/work/cinema'
-        root_name: 'primary'
-    # define the location of a publish area
-    asset_publish_area_cinema:
-        definition: '@asset_root/publish/cinema'
-        root_name: 'primary'
-
-    # define the location of work render area
-    asset_work_area_cinema_render:
-        definition: '@asset_root/work/images'
-        root_name: 'primary'    
-    # define the location of publish render area
-    asset_work_area_cinema_render:
-        definition: '@asset_root/publish/images'
-        root_name: 'primary'
-
-
-    # The location of WIP files
-    cinema_asset_work:
-        definition: '@asset_root/work/cinema/{name}.v{version}.c4d'
-        root_name: 'primary'
-    # The location of backups of WIP files
-    cinema_asset_snapshot:
-        definition: '@asset_root/work/cinema/snapshots/{name}.v{version}.{timestamp}.c4d'
-        root_name: 'primary'
-    # The location of published cinema files
-    cinema_asset_publish:
-        definition: '@asset_root/publish/cinema/{name}.v{version}.c4d'
-        root_name: 'primary'
-
-    # The location of WIP render png files
-    cinema_render_asset_work:
-        definition: '@asset_root/work/images/{name}.v{version}.{cinema.render_extension}'
-        root_name: 'primary'
-    # The location of published render png files
-    cinema_render_asset_publish:
-        definition: '@asset_root/publish/images/{name}.v{version}.{cinema.render_extension}'
-        root_name: 'primary'
- 
-    # shot 
-    # define the location of a work area
-    shot_work_area_cinema:
-        definition: '@shot_root/work/cinema'
-        root_name: 'primary'
-    # define the location of a publish area
-    shot_publish_area_cinema:
-        definition: '@shot_root/publish/cinema'
-        root_name: 'primary'
-
-    # define the location of a work render area
-    shot_work_area_cinema_render:
-        definition: '@shot_root/work/images'
-        root_name: 'primary'
-    # define the location of a publish render area
-    shot_publish_area_cinema_render:
-        definition: '@shot_root/publish/images'
-        root_name: 'primary'
-
-    # The location of WIP files
-    cinema_shot_work:
-        definition: '@shot_root/work/cinema/{name}.v{version}.c4d'
-        root_name: 'primary'
-    # The location of backups of WIP files
-    cinema_shot_snapshot:
-        definition: '@shot_root/work/cinema/snapshots/{name}.v{version}.{timestamp}.c4d'
-        root_name: 'primary'
-    # The location of published cinema files
-    cinema_shot_publish:
-        definition: '@shot_root/publish/cinema/{name}.v{version}.c4d'
-        root_name: 'primary'
-
-    # The location of WIP render png files
-    cinema_render_shot_work:
-        definition: '@shot_root/work/images/{name}.v{version}.{cinema.render_extension}'
-        root_name: 'primary'
-    # The location of published render png files
-    cinema_render_shot_publish:
-        definition: '@shot_root/publish/images/{name}.v{version}.{cinema.render_extension}'
-        root_name: 'primary'
-
-
-    # sequence 
-    # define the location of a work area
-    sequence_work_area_cinema:
-        definition: '@sequence_root/work/cinema'
-        root_name: 'primary'
-    # define the location of a publish area
-    sequence_publish_area_cinema:
-        definition: '@sequence_root/publish/cinema'
-        root_name: 'primary'
-    
-    # define the location of a work render area
-    sequence_work_area_cinema_render:
-        definition: '@sequence_root/work/images'
-        root_name: 'primary'
-    # define the location of a publish render area
-    sequence_publish_area_cinema_render:
-        definition: '@sequence_root/publish/images'
-        root_name: 'primary'
-
-    # The location of WIP files
-    cinema_sequence_work:
-        definition: '@sequence_root/work/cinema/{name}.v{version}.c4d'
-        root_name: 'primary'
-    # The location of backups of WIP files
-    cinema_sequence_snapshot:
-        definition: '@sequence_root/work/cinema/snapshots/{name}.v{version}.{timestamp}.c4d'
-        root_name: 'primary'
-    # The location of published cinema files
-    cinema_sequence_publish:
-        definition: '@sequence_root/publish/cinema/{name}.v{version}.c4d'
-        root_name: 'primary'
-
-    # The location of WIP render png files
-    cinema_render_sequence_work:
-        definition: '@sequence_root/work/images/{name}.v{version}.{cinema.render_extension}'
-        root_name: 'primary'
-    # The location of published cinema render png files
-    cinema_render_sequence_publish:
-        definition: '@sequence_root/publish/images/{name}.v{version}.{cinema.render_extension}'
-        root_name: 'primary'
-        
 
     #
     # Hiero
@@ -346,7 +220,76 @@ paths:
     hiero_project_publish_area:
         definition: 'editorial/publish'
 
+    #
+    # Cinema
+    #
 
+    # asset
+    # define the location of a work area
+    asset_work_area_cinema:
+        definition: '@asset_root/work/cinema'
+        root_name: 'primary'
+    # define the location of a publish area
+    asset_publish_area_cinema:
+        definition: '@asset_root/publish/cinema'
+        root_name: 'primary'
+
+    # The location of WIP files
+    cinema_asset_work:
+        definition: '@asset_root/work/cinema/{Asset}_{Step}_{name}.v{version}.c4d'
+        root_name: 'primary'
+    # The location of backups of WIP files
+    cinema_asset_snapshot:
+        definition: '@asset_root/work/cinema/snapshots/{Asset}_{Step}_{name}.v{version}.{timestamp}.c4d'
+        root_name: 'primary'
+    # The location of published cinema files
+    cinema_asset_publish:
+        definition: '@asset_root/publish/cinema/{Asset}_{Step}_{name}.v{version}.c4d'
+        root_name: 'primary'
+ 
+    # shot 
+    # define the location of a work area
+    shot_work_area_cinema:
+        definition: '@shot_root/work/cinema'
+        root_name: 'primary'
+    # define the location of a publish area
+    shot_publish_area_cinema:
+        definition: '@shot_root/publish/cinema'
+        root_name: 'primary'
+    # The location of WIP files
+    cinema_shot_work:
+        definition: '@shot_root/work/cinema/{Shot}_{Step}_{name}.v{version}.c4d'
+        root_name: 'primary'
+    # The location of backups of WIP files
+    cinema_shot_snapshot:
+        definition: '@shot_root/work/cinema/snapshots/{Shot}_{Step}_{name}.v{version}.{timestamp}.c4d'
+        root_name: 'primary'
+    # The location of published cinema files
+    cinema_shot_publish:
+        definition: '@shot_root/publish/cinema/{Shot}_{Step}_{name}.v{version}.c4d'
+        root_name: 'primary'
+
+    # sequence 
+    # define the location of a work area
+    sequence_work_area_cinema:
+        definition: '@sequence_root/work/cinema'
+        root_name: 'primary'
+    # define the location of a publish area
+    sequence_publish_area_cinema:
+        definition: '@sequence_root/publish/cinema'
+        root_name: 'primary'
+    # The location of WIP files
+    cinema_sequence_work:
+        definition: '@sequence_root/work/cinema/{Sequence}_{Step}_{name}.v{version}.c4d'
+        root_name: 'primary'
+    # The location of backups of WIP files
+    cinema_sequence_snapshot:
+        definition: '@sequence_root/work/cinema/snapshots/{Sequence}_{Step}_{name}.v{version}.{timestamp}.c4d'
+        root_name: 'primary'
+    # The location of published cinema files
+    cinema_sequence_publish:
+        definition: '@sequence_root/publish/cinema/{Sequence}_{Step}_{name}.v{version}.c4d'
+        root_name: 'primary'
     ##########################################################################################
     # Sequence level paths
     #
@@ -669,6 +612,9 @@ paths:
     # Alembic caches
     houdini_asset_work_alembic_cache:
         definition: '@asset_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
+    # Geometry caches
+    houdini_asset_work_geo_cache:
+        definition: '@asset_root/work/houdini/cache/geometry/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
 
     # Rendered images
     houdini_asset_render:
@@ -805,13 +751,13 @@ paths:
         definition: '@asset_root/publish/vred'
     # The location of WIP files
     vred_asset_work:
-        definition: '@asset_root/work/vred/{name}.v{version}.vpb'
+        definition: '@asset_root/work/vred/{name}.v{version}.{vred.extension}'
     # The location of backups of WIP files
     vred_asset_snapshot:
-        definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.vpb'
+        definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.{vred.extension}'
     # The location of published VRED files
     vred_asset_publish:
-        definition: '@asset_root/publish/vred/{name}.v{version}.vpb'
+        definition: '@asset_root/publish/vred/{name}.v{version}.{vred.extension}'
 
     # define the location of VRED geometry published files
     vred_asset_geometry_publish:
@@ -856,3 +802,5 @@ strings:
 
     # define how new Mari projects should be named
     mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
+
+   

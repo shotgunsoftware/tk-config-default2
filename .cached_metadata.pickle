@@ -4,7 +4,7 @@ p2
 (dp3
 S'code'
 p4
-S'v1.3.12'
+S'v1.3.10'
 p5
 sS'description'
 p6
@@ -18,11 +18,11 @@ p10
 (dp11
 S'name'
 p12
-S'tk-config-default2_v1.3.12.zip'
+S'tk-config-default2_v1.3.10.zip'
 p13
 sS'url'
 p14
-S'https://s3-proxy.shotgunstudio.com/d18c13bf0e59a9a82f18be518a1b6b508bcbd774/0a06057bac37f75668edf76647971505af93ad1f/tk-config-default2_v1.3.12.zip?response-content-disposition=filename%3D%22tk-config-default2_v1.3.12.zip%22&x-amz-meta-user-id=42&x-amz-meta-user-type=ApiUser&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYJG6Z4JIW4LDLVRF%2F20200918%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200918T183718Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=29b51f2e4165f861dee6da6648f8358eec47a0f395389c24afbb2170fff91f1b'
+S'https://s3-proxy.shotgunstudio.com/d18c13bf0e59a9a82f18be518a1b6b508bcbd774/7e22bb8231b0520a41fd41280c993277bb00dddb/tk-config-default2_v1.3.10.zip?response-content-disposition=filename%3D%22tk-config-default2_v1.3.10.zip%22&x-amz-meta-user-id=42&x-amz-meta-user-type=ApiUser&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYJG6Z4JIW4LDLVRF%2F20200709%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200709T122623Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=3e56bd53e31a88b736094d575863537a56bf86522e4f7a982aff0e8e130df6ee'
 p15
 sS'content_type'
 p16
@@ -34,7 +34,7 @@ S'Attachment'
 p19
 sS'id'
 p20
-I22699
+I22500
 sS'link_type'
 p21
 S'upload'
@@ -48,11 +48,11 @@ p25
 (dp26
 S'name'
 p27
-S'v1.3.12'
+S'v1.3.10'
 p28
 sS'url'
 p29
-S'https://support.shotgunsoftware.com/hc/en-us/articles/360042159573#1_3_12'
+S'https://support.shotgunsoftware.com/hc/en-us/articles/360042159573#1_3_10'
 p30
 sS'content_type'
 p31
@@ -62,7 +62,7 @@ S'Attachment'
 p33
 sS'id'
 p34
-I22701
+I22501
 sS'link_type'
 p35
 S'web'
@@ -75,7 +75,7 @@ S'CustomNonProjectEntity08'
 p39
 sS'id'
 p40
-I1099
+I1086
 ssS'sg_bundle_data'
 p41
 (dp42

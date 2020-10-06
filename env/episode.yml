@@ -9,47 +9,44 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and Engines related to Shot based work.
+description: Apps and engines loaded when a Sequence is loaded. Since std VFX
+  config template has a file system structure which is centered around pipeline
+  steps, this environment is largely empty. Most of the work takes place on a
+  level in the file system where both a shot and a pipeline step is available -
+  e.g Shot ABC, modeling, so all apps for loading, publishing etc. are located
+  in the shot_step environment. This environment mostly contains utility apps
+  and the tank work files app, which lets you choose a task to work on and load
+  associated content into an application.
 
 ################################################################################
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-desktop2.yml
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-maya.yml
 - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
-- ./includes/settings/tk-photoshopcc.yml
-- ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-cinema.yml
-
 ################################################################################
-# configuration for all engines to load in a shot step context
+# configuration for all engines to load in a sequence context
 
 engines:
-  # referencing the DCC-specific shot_step environments included above
-  tk-desktop2: "@settings.tk-desktop2.all"
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.shot_step"
-  tk-3dsmax: "@settings.tk-3dsmax.shot_step"
-  tk-houdini: "@settings.tk-houdini.shot_step"
-  tk-maya: "@settings.tk-maya.shot_step"
-  tk-motionbuilder: "@settings.tk-motionbuilder.shot_step"
-  tk-nuke: "@settings.tk-nuke.shot_step"
-  tk-nukestudio: "@settings.tk-nuke.nukestudio.shot_step"
-  tk-photoshopcc: "@settings.tk-photoshopcc.shot_step"
-  tk-aftereffects: "@settings.tk-aftereffects.shot_step"
-  tk-shell: "@settings.tk-shell.shot_step"
-  tk-shotgun: "@settings.tk-shotgun.shot_step"
-  tk-cinema: "@settings.tk-cinema.shot_step"
+  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.sequence"
+  tk-3dsmax: "@settings.tk-3dsmax.sequence"
+  tk-houdini: "@settings.tk-houdini.sequence"
+  tk-maya: "@settings.tk-maya.sequence"
+  tk-motionbuilder: "@settings.tk-motionbuilder.sequence"
+  tk-nuke: "@settings.tk-nuke.sequence"
+  tk-shell: "@settings.tk-shell.sequence"
+  tk-shotgun: "@settings.tk-shotgun.episode"
+  tk-cinema: "@settings.tk-cinema.sequence"
 
 ################################################################################
 # reference all of the common frameworks
 
 frameworks: "@frameworks"
-
 
