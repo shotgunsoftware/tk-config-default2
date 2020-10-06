@@ -15,9 +15,9 @@ includes:
 
 ################################################################################
 
-settings.tk-shotgun-launchvred:
+settings.tk-shotgun-launchvredreview:
   deny_platforms: [ Mac, Linux ]
   viewer_extensions: [ vpb ]
   hook_verify_install: "{self}/verify_install.py"
   hook_launch_publish: "{self}/shotgun_launch_vred.py"
-  location: "@apps.tk-shotgun-launchvred.location"
+  location: "@apps.tk-shotgun-launchvredreview.location"

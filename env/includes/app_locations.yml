@@ -129,12 +129,13 @@ apps.tk-shotgun-launchpublish.location:
   name: tk-shotgun-launchpublish
   version: v0.4.0
 
-## shotgun launchvred
-apps.tk-shotgun-launchvred.location:
-  type: git_branch
-  path: https://github.com/shotgunsoftware/tk-shotgun-launchvred.git
-  branch: pre-release
-  version: db6adf5
+## shotgun launchvredreview
+apps.tk-shotgun-launchvredreview.location:
+  type: dev
+  windows_path: V:\source\tk\tk-shotgun-launchvredreview
+#  type: app_store
+#  name: tk-shotgun-launchvredreview
+#  version: v1.0.0
 
 # ---- Hiero apps
 
