@@ -19,22 +19,8 @@ publish_help_url: &help_url "https://support.shotgunsoftware.com/hc/en-us/articl
 
 ################################################################################
 
-# ---- Stand alone publish
-
-settings.tk-multi-publish2.standalone:
-  collector: "{self}/collector.py"
-  publish_plugins:
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  help_url: *help_url
-  location: "@apps.tk-multi-publish2.location"
 
 
-################################################################################
 # -- Cinema
 
 # asset step
@@ -55,7 +41,7 @@ settings.tk-multi-publish2.cinema.asset_step:
   - name: Publish Render to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
     settings: 
-        Publish Template: cinema_render_asset_publish
+        Publish Template: cinema_render_[name of action]_publish
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
@@ -82,7 +68,7 @@ settings.tk-multi-publish2.cinema.sequence_step:
   - name: Publish Render to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
     settings: 
-        Publish Template: cinema_render_sequence_publish
+        Publish Template: cinema_render_[name of action]_publish
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
@@ -109,11 +95,25 @@ settings.tk-multi-publish2.cinema.shot_step:
   - name: Publish Render to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
     settings: 
-        Publish Template: cinema_render_shot_publish
+        Publish Template: cinema_render_[name of action]_publish
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: cinema_shot_publish
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+# ---- Stand alone publish
+
+settings.tk-multi-publish2.standalone:
+  collector: "{self}/collector.py"
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -587,16 +587,26 @@ settings.tk-multi-publish2.alias.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
      settings:
        Publish Template: alias_asset_publish
+   - name: Publish IGES to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+     settings:
+       Publish Template: alias_asset_igs_publish
    - name: Publish CATPart to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
      settings:
        Publish Template: alias_asset_catpart_publish
-   - name: Publish Variants to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_variants.py"
-     settings: {}
-   - name: Publish Annotations to Shotgun
-     hook: "{engine}/tk-multi-publish2/basic/publish_annotations.py"
-     settings: {}
+   - name: Publish JT to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+     settings:
+       Publish Template: alias_asset_jt_publish
+   - name: Publish STEP to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+     settings:
+       Publish Template: alias_asset_stp_publish
+   - name: Publish WREF to Shotgun
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+     settings:
+       Publish Template: alias_asset_wref_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

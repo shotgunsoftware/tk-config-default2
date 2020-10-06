@@ -21,7 +21,6 @@ description: Apps and engines loaded when an Asset is loaded. Since std VFX
 ################################################################################
 
 includes:
-- ./includes/settings/tk-cinema.yml
 - ./includes/frameworks.yml
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-3dsmax.yml
@@ -36,12 +35,12 @@ includes:
 - ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-cinema.yml
 
 ################################################################################
 # configuration for all engines to load in an asset context
 
 engines:
-  tk-cinema: "@settings.tk-cinema.asset"
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset"
   tk-3dsmax: "@settings.tk-3dsmax.asset"
   tk-houdini: "@settings.tk-houdini.asset"
@@ -55,8 +54,15 @@ engines:
   tk-vred: "@settings.tk-vred.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
-
+  tk-cinema: "@settings.tk-cinema.asset"
 ################################################################################
 # reference all of the common frameworks
 
+
+
+############## CINEMA STUFF HERE
 frameworks: "@frameworks"
+
+
+
+

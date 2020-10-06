@@ -16,12 +16,16 @@ includes:
 ################################################################################
 
 # -- Cinema
+
 settings.tk-multi-loader2.cinema:
   actions_hook: '{engine}/tk-multi-loader2/tk-cinema_actions.py'
   action_mappings:
     Alembic Cache: [reference, import]
     Image: [texture_node, texture_stream_node, import]
     Cinema Project File: [reference, import]
+    FBX:  [reference, import]
+    Motion Builder FBX:  [reference, import]
+    
   entities:
   - caption: Assets
     entity_type: Asset
@@ -41,6 +45,7 @@ settings.tk-multi-loader2.cinema:
     hierarchy: [entity, content]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
+
 
 # 3dsmaxplus
 settings.tk-multi-loader2.3dsmaxplus: &settings_tk-multi-loader2_3dsmaxplus
@@ -354,12 +359,6 @@ settings.tk-multi-loader2.alias:
     Fbx File: [import]
     Image: [texture_node]
     Photoshop Image: [texture_node]
-    Tif File: [texture_node]
-    Bmp File: [texture_node]
-    Obj File: [import_subdiv]
-    Tsm File: [import_subdiv]
-    F3d File: [import_subdiv]
-    Sf3d File: [import_subdiv]
   entities:
   - caption: Assets
     entity_type: Asset

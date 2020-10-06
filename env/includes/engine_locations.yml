@@ -13,6 +13,26 @@
 
 ################################################################################
 
+# -- Cinema
+# engines.tk-cinema.location:
+  # type: github_release
+  # organization: mikedatsik
+  # repository: tk-cinema
+  # version: v1.0.0
+
+#engines.tk-cinema.location:
+  #type: dev
+  #path: /Users/anton/development/Jakubs-tk-cinema-master
+  #version: 17fe57e25fee12812d977afa9fb7a561a5f6bd47 
+
+# Cinema 4D
+
+engines.tk-cinema.location:
+  type: git_branch
+  branch: render_inmage_plugin
+  path: git@github.com:Wangle-Media/Jakubs-tk-cinema.git
+  version: 17fe57e25fee12812d977afa9fb7a561a5f6bd47
+  
 # 3dsMax
 engines.tk-3dsmaxplus.location:
   type: app_store
@@ -34,13 +54,13 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.0.7
+  version: v2.0.6
 
 # Desktop
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.5.7
+  version: v2.5.6
 
 # Desktop2
 engines.tk-desktop2.location:
@@ -64,7 +84,7 @@ engines.tk-houdini.location:
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
-  version: v1.2.3
+  version: v1.2.2
 
 # Maya
 engines.tk-maya.location:
@@ -107,17 +127,3 @@ engines.tk-vred.location:
   type: app_store
   name: tk-vred
   version: v2.0.6
-
-# Cinema 4D
-engines.tk-cinema.location:
-  type: git_branch
-  branch: render_inmage_plugin
-  path: git@github.com:Wangle-Media/Jakubs-tk-cinema.git
-  version: bb153823229ce7a58ab4738a5a2ee4e3081f075c
-
-
-# Cinema 4D
-#engines.tk-cinema.location:
-#  type: dev
-#  path: ${HOME}\Documents\Wangle\tk-cinema
-
