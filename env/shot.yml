@@ -21,7 +21,6 @@ description: Apps and engines loaded when a Shot is loaded. Since std VFX config
 ################################################################################
 
 includes:
-- ./includes/settings/tk-cinema.yml
 - ./includes/frameworks.yml
 - ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-3dsmax.yml
@@ -34,12 +33,12 @@ includes:
 - ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-cinema.yml
 
 ################################################################################
 # configuration for all engines to load in a shot context
 
 engines:
-  tk-cinema: "@settings.tk-cinema.shot"
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.shot"
   tk-3dsmax: "@settings.tk-3dsmax.shot"
   tk-flame: "@settings.tk-flame.shot"
@@ -51,8 +50,13 @@ engines:
   tk-aftereffects: "@settings.tk-aftereffects.shot"
   tk-shell: "@settings.tk-shell.shot"
   tk-shotgun: "@settings.tk-shotgun.shot"
+  tk-cinema: "@settings.tk-cinema.shot"
 
 ################################################################################
 # reference all of the common frameworks
 
 frameworks: "@frameworks"
+
+
+
+

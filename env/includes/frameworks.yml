@@ -27,25 +27,26 @@ frameworks:
       version: v0.6.0
       type: app_store
       name: tk-framework-adminui
-
   # aliastranslations - provides Alias translation tools
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.1.1
+      version: v0.1.0
       type: app_store
       name: tk-framework-aliastranslations
+
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.4.4
+      version: v1.4.3
       type: app_store
       name: tk-framework-desktopserver
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.9.3
+      version: v2.9.2
       type: app_store
       name: tk-framework-qtwidgets
+
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
@@ -59,7 +60,6 @@ frameworks:
       version: v5.7.6
       type: app_store
       name: tk-framework-shotgunutils
-
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
