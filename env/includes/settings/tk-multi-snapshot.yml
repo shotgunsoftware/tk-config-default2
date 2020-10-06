@@ -15,6 +15,35 @@ includes:
 
 ################################################################################
 
+# -- Cinema
+
+# asset step
+settings.tk-multi-snapshot.cinema.asset_step:
+  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-cinema.py"
+  template_snapshot: cinema_asset_snapshot
+  template_work: cinema_asset_work
+  hook_thumbnail: "{engine}/thumbnail.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+# sequence step
+settings.tk-multi-snapshot.cinema.sequence_step:
+  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-cinema.py"
+  template_snapshot: cinema_sequence_snapshot
+  template_work: cinema_sequence_work
+  hook_thumbnail: "{engine}/thumbnail.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.cinema.shot_step:
+  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-cinema.py"
+  template_snapshot: cinema_shot_snapshot
+  template_work: cinema_shot_work
+  hook_thumbnail: "{engine}/thumbnail.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+
+################################################################################
+
 # ---- 3dsMaxPlus
 
 settings.tk-multi-snapshot.3dsmaxplus.asset_step: &settings_tk-multi-snapshot_3dsmaxplus_asset_step

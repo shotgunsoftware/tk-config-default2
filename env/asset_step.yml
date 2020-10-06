@@ -14,6 +14,7 @@ description: Apps and Engines related to Asset based work.
 ################################################################################
 
 includes:
+- ./includes/settings/tk-cinema.yml
 - ./includes/frameworks.yml
 - ./includes/settings/tk-desktop2.yml
 - ./includes/settings/tk-3dsmaxplus.yml
@@ -34,6 +35,7 @@ includes:
 # configuration for all engines to load in an asset step context
 
 engines:
+  tk-cinema: "@settings.tk-cinema.asset_step"
   tk-desktop2: "@settings.tk-desktop2.all"
   tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset_step"
   tk-3dsmax: "@settings.tk-3dsmax.asset_step"

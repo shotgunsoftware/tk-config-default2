@@ -1,0 +1,146 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# Author: Mykhailo Datsyk
+# Contact: https://www.linkedin.com/in/mykhailo-datsyk/
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-breakdown.yml
+- ./tk-multi-publish2.yml
+- ./tk-multi-screeningroom.yml
+- ./tk-multi-shotgunpanel.yml
+- ./tk-multi-snapshot.yml
+- ./tk-multi-workfiles2.yml
+
+################################################################################
+
+# asset
+settings.tk-cinema.asset:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
+    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.cinema'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.project'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  debug_logging: true
+  location: '@engines.tk-cinema.location'
+# asset_step
+settings.tk-cinema.asset_step:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-breakdown: '@settings.tk-multi-breakdown.cinema'
+    tk-multi-loader2: '@settings.tk-multi-loader2.cinema'
+    tk-multi-publish2: '@settings.tk-multi-publish2.cinema.asset_step'
+    tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
+    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.cinema'
+    tk-multi-snapshot: '@settings.tk-multi-snapshot.cinema.asset_step'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.asset_step'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  template_project: asset_work_area_cinema
+  location: '@engines.tk-cinema.location'
+# project
+settings.tk-cinema.project:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
+    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.cinema'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.project'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  debug_logging: true
+  location: '@engines.tk-cinema.location'
+# sequence
+settings.tk-cinema.sequence:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
+    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.project'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: '@engines.tk-cinema.location'
+# sequence_step
+settings.tk-cinema.sequence_step:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-breakdown: '@settings.tk-multi-breakdown.cinema'
+    tk-multi-setframerange:
+      location:
+        type: git_branch
+        branch: enable_hooks_for_app
+        path: https://github.com/diegogarciahuerta/tk-multi-setframerange
+        version: b24a977
+      hook_frame_operation: '{engine}/tk-multi-setframerange/frame_operations_tk-cinema.py'
+    # tk-multi-loader2: "@settings.tk-multi-loader2.cinema"
+    tk-multi-publish2: '@settings.tk-multi-publish2.cinema.sequence_step'
+    tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
+    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.cinema'
+    tk-multi-snapshot: '@settings.tk-multi-snapshot.cinema.sequence_step'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.sequence_step'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  template_project: sequence_work_area_cinema
+  location: '@engines.tk-cinema.location'
+# shot
+settings.tk-cinema.shot:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
+    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.project'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: '@engines.tk-cinema.location'
+# shot_step
+settings.tk-cinema.shot_step:
+  apps:
+    tk-multi-about:
+      location: '@apps.tk-multi-about.location'
+    tk-multi-breakdown: '@settings.tk-multi-breakdown.cinema'
+    tk-multi-setframerange:
+      location:
+        path: https://github.com/diegogarciahuerta/tk-multi-setframerange
+        version: b24a9773fdd4636c10b3bd6229b2e90d8f75eb52
+        type: git_branch
+        branch: enable_hooks_for_app
+      hook_frame_operation: '{engine}/tk-multi-setframerange/frame_operations_tk-cinema.py'
+    tk-multi-loader2: '@settings.tk-multi-loader2.cinema'
+    tk-multi-publish2: '@settings.tk-multi-publish2.cinema.shot_step'
+    tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
+    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.cinema'
+    tk-multi-snapshot: '@settings.tk-multi-snapshot.cinema.shot_step'
+    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.cinema.shot_step'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  template_project: shot_work_area_cinema
+  location: '@engines.tk-cinema.location'

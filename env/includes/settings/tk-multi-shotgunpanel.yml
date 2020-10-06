@@ -29,6 +29,20 @@ settings.tk-multi-shotgunpanel:
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
 
+# -- Cinema
+settings.tk-multi-shotgunpanel.cinema:
+  action_mappings:
+    PublishedFile:
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
+
 # 3dsmaxplus
 settings.tk-multi-shotgunpanel.3dsmaxplus: &settings_tk-multi-shotgunpanel_3dsmaxplus
   actions_hook: '{self}/general_actions.py:{self}/tk-3dsmaxplus_actions.py'

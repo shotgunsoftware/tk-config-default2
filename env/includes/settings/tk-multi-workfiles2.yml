@@ -77,6 +77,68 @@ settings.tk-multi-workfiles2.launch_at_startup:
 
 ################################################################################
 
+# -- Cinema
+
+settings.tk-multi-workfiles2.cinema.project:
+  allow_task_creation: true
+  create_new_task_hook: "{self}/create_new_task.py"
+  custom_actions_hook: "{self}/custom_actions.py"
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+  file_extensions: []
+  hook_copy_file: "{self}/copy_file.py"
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-cinema.py"
+  launch_at_startup: false
+  my_tasks_extra_display_fields: []
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  show_my_tasks: true
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
+  location: "@apps.tk-multi-workfiles2.location"
+
+# asset_step
+settings.tk-multi-workfiles2.cinema.asset_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-cinema.py"
+  template_publish: cinema_asset_publish
+  template_publish_area: asset_publish_area_cinema
+  template_work: cinema_asset_work
+  template_work_area: asset_work_area_cinema
+  location: "@apps.tk-multi-workfiles2.location"
+
+
+# shot_step
+settings.tk-multi-workfiles2.cinema.shot_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-cinema.py"
+  template_publish: cinema_shot_publish
+  template_publish_area: shot_publish_area_cinema
+  template_work: cinema_shot_work
+  template_work_area: shot_work_area_cinema
+  location: "@apps.tk-multi-workfiles2.location"
+
+# sequence_step
+settings.tk-multi-workfiles2.cinema.sequence_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-cinema.py"
+  template_publish: cinema_sequence_publish
+  template_publish_area: sequence_publish_area_cinema
+  template_work: cinema_sequence_work
+  template_work_area: sequence_work_area_cinema
+  location: "@apps.tk-multi-workfiles2.location"
+
 # ---- 3dsmaxplus
 
 settings.tk-multi-workfiles2.3dsmaxplus.asset_step: &settings_tk-multi-workfiles2_3dsmaxplus_asset_step
