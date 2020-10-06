@@ -215,7 +215,7 @@ paths:
     # define the location of work render area
     asset_work_area_cinema_render:
         definition: '@asset_root/work/images'
-        root_name: 'primary'
+        root_name: 'primary'    
     # define the location of publish render area
     asset_work_area_cinema_render:
         definition: '@asset_root/publish/images'
