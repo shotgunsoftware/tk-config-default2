@@ -23,13 +23,13 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.3.1
+  version: v0.3.2
 
 # breakdown
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.7.1
+  version: v1.7.2
 
 # demo
 apps.tk-multi-demo.location:
@@ -59,7 +59,7 @@ apps.tk-multi-publish2.location:
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.2.3
+  version: v1.2.4
 
 # reviewsubmission
 apps.tk-multi-reviewsubmission.location:
@@ -197,7 +197,7 @@ apps.tk-flame-review.location:
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.2.1
+  version: v1.2.2
 
 ################################################################################
 # reference all of the common frameworks

@@ -675,10 +675,6 @@ paths:
     vred_asset_publish:
         definition: '@asset_root/publish/vred/{name}.v{version}.vpb'
 
-    # define the location of VRED geometry published files
-    vred_asset_geometry_publish:
-        definition: '@asset_root/publish/vred/geometry/{name}.v{version}.osb'
-
     # define the location of the WIP render images
     vred_asset_render_work:
         definition: '@asset_root/work/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
