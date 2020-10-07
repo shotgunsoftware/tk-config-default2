@@ -129,13 +129,11 @@ apps.tk-shotgun-launchpublish.location:
   name: tk-shotgun-launchpublish
   version: v0.4.0
 
-## shotgun launchvredreview
+# shotgun launchvredreview
 apps.tk-shotgun-launchvredreview.location:
-  type: dev
-  windows_path: V:\source\tk\tk-shotgun-launchvredreview
-#  type: app_store
-#  name: tk-shotgun-launchvredreview
-#  version: v1.0.0
+  type: app_store
+  name: tk-shotgun-launchvredreview
+  version: v1.0.0
 
 # ---- Hiero apps
 
