@@ -34,7 +34,7 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.0.6
+  version: v2.0.7
 
 # Desktop
 engines.tk-desktop.location:
@@ -64,7 +64,7 @@ engines.tk-houdini.location:
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
-  version: v1.2.2
+  version: v1.2.3
 
 # Maya
 engines.tk-maya.location:
@@ -82,7 +82,7 @@ engines.tk-motionbuilder.location:
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.12.7
+  version: v0.12.8
 
 # Photoshop
 engines.tk-photoshopcc.location:
