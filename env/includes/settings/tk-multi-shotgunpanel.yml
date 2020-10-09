@@ -337,7 +337,7 @@ settings.tk-multi-shotgunpanel.vred:
 
 # SketchBook
 settings.tk-multi-shotgunpanel.sketchbook:
-  actions_hook: "{self}/general_actions.py:{engine}/tk-multi-shotgunpanel/scene_actions.py"
+  actions_hook: "{self}/general_actions.py:{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   action_mappings:
     PublishedFile:
     - actions: [add_image]
