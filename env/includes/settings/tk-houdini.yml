@@ -17,6 +17,7 @@ includes:
 - ./tk-houdini-alembicnode.yml
 - ./tk-houdini-cachenode.yml
 - ./tk-houdini-mantranode.yml
+- ./tk-houdini-flipbook.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
@@ -58,11 +59,13 @@ settings.tk-houdini.asset_step:
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
+    tk-houdini-flipbook: "@settings.tk-houdini-flipbook.asset_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-houdini-flipbook, name: Flipbook...}
   location: '@engines.tk-houdini.location'
 
 # project
@@ -127,9 +130,11 @@ settings.tk-houdini.shot_step:
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.shot_step"
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.shot_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
+    tk-houdini-flipbook: "@settings.tk-houdini-flipbook.shot_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-houdini-flipbook, name: Flipbook...}
   location: '@engines.tk-houdini.location'
