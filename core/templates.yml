@@ -363,6 +363,9 @@ paths:
     # File publish caches
     houdini_shot_publish_file_cache:
         definition: '@shot_publish/cache/bgeo/{name}/v{version}/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo'
+    # Houdini review files
+    houdini_shot_review:
+        definition: '@shot_review/sc{Sequence}/sh{Shot}/{projectcode}_sc{Sequence}_sh{Shot}_sRGB_v{version}.mov'
 
     # Rendered images
     houdini_shot_render:
@@ -574,6 +577,9 @@ paths:
     # File publish caches
     houdini_asset_publish_file_cache:
         definition: '@asset_publish/cache/bgeo/{name}/v{version}/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo'
+    # Houdini rewiew files
+    houdini_asset_review:
+        definition: '@asset_review/{Asset}/{projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov'
 
     # Rendered images
     houdini_asset_render:
