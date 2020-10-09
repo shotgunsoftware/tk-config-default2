@@ -1,0 +1,14 @@
+includes:
+    - ../app_locations.yml
+    
+    ################################################################################
+    
+settings.tk-houdini-flipbook.asset_step:
+  work_file_template: houdini_asset_work
+  review_file_template: houdini_asset_review
+  location: "@apps.tk-houdini-flipbook.location"
+
+settings.tk-houdini-flipbook.shot_step:
+  work_file_template: houdini_shot_work
+  review_file_template: houdini_shot_review
+  location: "@apps.tk-houdini-flipbook.location"
