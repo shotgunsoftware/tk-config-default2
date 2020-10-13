@@ -41,7 +41,7 @@
 # core, this requirement has been lifted and the root can be named anything.
 # ------------------------------------------------------------------------------
 
-primary:
+dvs_root:
 
     description: A top-level root folder for production data. Project folders
         will be created beneath this location.

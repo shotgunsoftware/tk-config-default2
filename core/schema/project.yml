@@ -12,4 +12,4 @@
 type: "project"
 
 # name of project root as defined in roots.yml
-root_name: "primary"
+root_name: "dvs_root"
