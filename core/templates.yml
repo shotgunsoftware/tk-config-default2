@@ -233,8 +233,8 @@ paths:
     hiero_project_publish_area:
         definition: '02_source/editorial/publish'
 
-    ##########################################################################################    
-        
+    ##########################################################################################
+
     # OBJ Sculpts Standalone Publish Template
     obj_asset_publish:
         definition: '@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_v{version}.obj'
@@ -365,7 +365,7 @@ paths:
         definition: '@shot_publish/cache/bgeo/{name}/v{version}/{projectcode}_sc{Sequence}_sh{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo'
     # Houdini review files
     houdini_shot_review:
-        definition: '@shot_review/sc{Sequence}/sh{Shot}/{projectcode}_sc{Sequence}_sh{Shot}_sRGB_v{version}.mov'
+        definition: '@shot_review/sc{Sequence}/sh{Shot}/{projectcode}_sc{Sequence}_sh{Shot}_srgb_v{version}.mov'
 
     # Rendered images
     houdini_shot_render:
@@ -452,7 +452,7 @@ paths:
     shot_quicktime_quick:
         definition: '@shot_review/quickdaily/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_{iteration}.mov'
     nuke_shot_render_movie:
-        definition: '@shot_review/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.mov'
+        definition: '@shot_review/sc{Sequence}/sh{Shot}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_srgb_v{version}.mov'
 
     #
     # Hiero
