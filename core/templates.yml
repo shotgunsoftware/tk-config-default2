@@ -452,7 +452,7 @@ paths:
     shot_quicktime_quick:
         definition: '@shot_review/quickdaily/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_{iteration}.mov'
     nuke_shot_render_movie:
-        definition: '@shot_review/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.mov'
+        definition: '@shot_review/sc{Sequence}/sh{Shot}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_srgb_v{version}.mov'
 
     #
     # Hiero
