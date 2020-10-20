@@ -91,17 +91,11 @@ apps.tk-multi-snapshot.location:
   name: tk-multi-snapshot
   version: v0.8.1
 
-# workfiles (required for Mari)
-apps.tk-multi-workfiles.location:
-  type: app_store
-  name: tk-multi-workfiles
-  version: v0.7.4
-
 # workfiles2
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.12.4
+  version: v0.12.5
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -128,6 +122,12 @@ apps.tk-shotgun-launchpublish.location:
   type: app_store
   name: tk-shotgun-launchpublish
   version: v0.4.0
+
+# shotgun launchvredreview
+apps.tk-shotgun-launchvredreview.location:
+  type: app_store
+  name: tk-shotgun-launchvredreview
+  version: v1.0.0
 
 # ---- Hiero apps
 
