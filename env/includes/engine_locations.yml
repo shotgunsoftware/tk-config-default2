@@ -107,3 +107,9 @@ engines.tk-vred.location:
   type: app_store
   name: tk-vred
   version: v2.0.8
+
+# SketchBook
+engines.tk-sketchbook.location:
+  type: app_store
+  name: tk-sketchbook
+  version: v0.3.6

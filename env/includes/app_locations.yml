@@ -93,9 +93,13 @@ apps.tk-multi-snapshot.location:
 
 # workfiles2
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.12.5
+  type: git_branch
+  branch: SHOT-3416
+  path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
+  version: e8e197f
+#  type: app_store
+#  name: tk-multi-workfiles2
+#  version: v0.12.5
 
 # dev utils
 apps.tk-multi-devutils.location:
