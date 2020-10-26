@@ -577,6 +577,7 @@ settings.tk-multi-publish2.sketchbook.project:
     hook: "{engine}/tk-multi-publish2/basic/unsaved_file.py"
     settings: {}
   help_url: *help_url
+  modal: true
   location: "@apps.tk-multi-publish2.location"
 
 # asset_step
@@ -596,6 +597,7 @@ settings.tk-multi-publish2.sketchbook.asset_step:
      hook: "{engine}/tk-multi-publish2/basic/unsaved_file.py"
      settings: {}
   help_url: *help_url
+  modal: true
   location: "@apps.tk-multi-publish2.location"
 
 # shot_step
@@ -615,4 +617,5 @@ settings.tk-multi-publish2.sketchbook.shot_step:
     hook: "{engine}/tk-multi-publish2/basic/unsaved_file.py"
     settings: {}
   help_url: *help_url
+  modal: true
   location: "@apps.tk-multi-publish2.location"
