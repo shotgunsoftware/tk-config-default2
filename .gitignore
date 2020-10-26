@@ -37,6 +37,6 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-# Pycharm
-venv
+# Jetbrains Pycharm
 .idea
+venv

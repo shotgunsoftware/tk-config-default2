@@ -40,7 +40,7 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.5.7
+  version: v2.5.9
 
 # Desktop2
 engines.tk-desktop2.location:
@@ -106,10 +106,4 @@ engines.tk-shotgun.location:
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
-  version: v2.0.6
-
-# SketchBook
-engines.tk-sketchbook.location:
-  type: app_store
-  name: tk-sketchbook
-  version: v0.3.4
+  version: v2.0.8
