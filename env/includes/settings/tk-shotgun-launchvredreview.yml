@@ -1,0 +1,23 @@
+# Copyright (c) 2020 Autodesk, Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Autodesk, Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+settings.tk-shotgun-launchvredreview:
+  deny_platforms: [ Mac, Linux ]
+  viewer_extensions: [ vpb ]
+  hook_verify_install: "{self}/verify_install.py"
+  hook_launch_publish: "{self}/shotgun_launch_vred.py"
+  location: "@apps.tk-shotgun-launchvredreview.location"
