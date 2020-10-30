@@ -343,21 +343,6 @@ class BasicSceneCollector(HookBaseClass):
         return {}
 
     @property
-    def step_fields(self):
-
-        search_fields = [
-            'id', 
-            'code', 
-            'sg_department',
-            'sg_publish_to_shotgun', 
-            'sg_version_for_review', 
-            'sg_slap_comp', 
-            'sg_review_process_type', 
-            'entity_type',
-            ]
-        return search_fields
-
-    @property
     def step_info(self):
         '''
         A collector that gathers all existing pipeline steps to build 2 lists:
@@ -370,7 +355,16 @@ class BasicSceneCollector(HookBaseClass):
         '''
 
         publisher = self.parent
-        search_fields = self.step_fields
+        search_fields = [
+            'id', 
+            'code', 
+            'sg_department',
+            'sg_publish_to_shotgun', 
+            'sg_version_for_review', 
+            'sg_slap_comp', 
+            'sg_review_process_type', 
+            'entity_type',
+            ]
         steps_info = publisher.shotgun.find("Step", [], search_fields)
 
         return steps_info
@@ -406,6 +400,10 @@ class BasicSceneCollector(HookBaseClass):
         additional_render_folder = []
         path = re.sub(r"^[/\\]{2}pix[a-zA-Z0-9_\.]+", r"//pix_artist", path)
 
+        publisher = self.parent
+        ctx = publisher.engine.context
+        self.logger.warning( ">>>>> Context Info: %s" % ctx.to_dict() )
+
         # Path string for manipulation
         path = str(sgtk.util.ShotgunPath.normalize(path)).replace('\\','/')
 
@@ -423,67 +421,44 @@ class BasicSceneCollector(HookBaseClass):
             else:
                 self.logger.debug("Could not get work_template from: %s" %(path))
         else:
-            self.logger.debug("Could not get TK from path!")            
-            
-        try:
-            task_name = {'task_name': curr_fields['task_name']}
-        except:
-            task_name = {'task_name': ''}
-        
-        try:
-            vendor = {'vendor': curr_fields['vendor']}
-        except:
-            vendor = {'vendor': ''}            
+            self.logger.debug("Could not get TK from path!") 
 
-        entity ={
-            # 'Shot': '',
+        entity = {
             'name': '',
             'output': '',
-            'version_number': '',
-            'task_name': '',
-            'vendor': ''
+            'version_number': curr_fields.get( 'version' ) or '',
+            'task_name': curr_fields.get( 'task_name' ) or '',
+            'vendor': curr_fields.get( 'vendor' ) or ''
             }
+
+        task_fields =[
+            "step",
+            "entity"
+            ]
+
+        filters = [
+            ["content", "is", entity['task_name']],
+            ["project.Project.id", "is", ctx.project['id']]  
+            ]
+
         if curr_fields:
 
             if "Shot" in curr_fields.keys():
-                entity ={
+                entity.update( {
                         'Shot': curr_fields['Shot'],
-                        'name': '',
-                        'output': '',
-                        'version_number': curr_fields['version'],
                         'type': "Shot"
-                }
-                entity.update(task_name)
-                entity.update(vendor)
-                filters = [
-                    ["content", "is", entity['task_name']],
-                    ["entity.Shot.code", "is", entity['Shot']],
-                    ["project.Project.id", "is", self.project_info['id']]  
-                ]
-                task_fields =[
-                    "step",
-                    "entity"
-                ]                
-            elif "Asset" in curr_fields.keys():
-                entity ={
-                        'Asset': curr_fields['Asset'],
-                        'name': '',
-                        'output': '',
-                        'version_number': curr_fields['version'],
-                        'type': "Asset"                        
-                }
-                entity.update(task_name)
-                entity.update(vendor)
-                filters = [
-                    ["content", "is", entity['task_name']],
-                    ["entity.Asset.code", "is", entity['Asset']],
-                    ["project.Project.id", "is", self.project_info['id']]  
-                ]
+                    })
 
-                task_fields =[
-                    "step",
-                    "entity"
-                ]                
+                filters.append( ["entity.Shot.code", "is", entity['Shot']] )
+
+            elif "Asset" in curr_fields.keys():
+                entity.update({
+                        'Asset': curr_fields['Asset'],
+                        'type': "Asset"                        
+                    })
+
+                filters.append( ["entity.Asset.code", "is", entity['Asset']] )
+
             else:
                 self.logger.info("Not an Asset or Shot entity.")
             
@@ -528,7 +503,7 @@ class BasicSceneCollector(HookBaseClass):
         evaluated_path = sgtk.util.ShotgunPath.normalize(path)
 
         # get info for the extension
-        item_info = self._get_item_info(path)
+        item_info = self._get_item_info(evaluated_path)
         item_type = item_info["item_type"]
         type_display = item_info["type_display"]
         thumbnail_path = None
@@ -536,25 +511,22 @@ class BasicSceneCollector(HookBaseClass):
 
         if frame_sequence:
             # replace the frame number with frame spec
-            seq_path = publisher.util.get_frame_sequence_path(path)
+            seq_path = publisher.util.get_frame_sequence_path(evaluated_path)
             if seq_path:
                 evaluated_path = seq_path
                 type_display = "%s Sequence" % (type_display,)
                 item_type = "%s.%s" % (item_type, "sequence")
                 is_sequence = True
 
-        display_name = publisher.util.get_publish_name(
-            path, sequence=is_sequence)
+        display_name = publisher.util.get_publish_name(evaluated_path, sequence=is_sequence)
         self.logger.debug("Collect file display name is %s obtained from path" % (display_name,))
         # create and populate the item
-        file_item = parent_item.create_item(
-            item_type, type_display, display_name)
+        file_item = parent_item.create_item(item_type, type_display, display_name)
         file_item.set_icon_from_path(item_info["icon_path"])
 
         # if the supplied path is an image, use the path as # the thumbnail.
-        if (item_type.startswith("file.image") or
-            item_type.startswith("file.texture")):
-            file_item.set_thumbnail_from_path(path)
+        if item_type.startswith("file.image") or item_type.startswith("file.texture"):
+            file_item.set_thumbnail_from_path(evaluated_path)
             thumbnail_path = evaluated_path
             # disable thumbnail creation since we get it for free
             file_item.thumbnail_enabled = False
@@ -575,7 +547,7 @@ class BasicSceneCollector(HookBaseClass):
         if is_sequence:
             # include an indicator that this is an image sequence and the known
             # file that belongs to this sequence
-            file_item.properties["sequence_paths"] = [path]
+            file_item.properties["sequence_paths"] = [evaluated_path]
         self.logger.debug("Frame range: %s" % (frame_range))
         folder_name = os.path.basename(evaluated_path)
 
