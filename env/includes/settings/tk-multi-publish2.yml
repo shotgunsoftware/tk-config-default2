@@ -576,6 +576,7 @@ settings.tk-multi-publish2.sketchbook.project:
   - name: Unsaved File Click Me
     hook: "{engine}/tk-multi-publish2/basic/unsaved_file.py"
     settings: {}
+  pre_publish: "{self}/pre_publish.py:{engine}/tk-multi-publish2/basic/pre_publish.py"
   help_url: *help_url
   modal: true
   location: "@apps.tk-multi-publish2.location"
@@ -596,6 +597,7 @@ settings.tk-multi-publish2.sketchbook.asset_step:
    - name: Unsaved File Click Me
      hook: "{engine}/tk-multi-publish2/basic/unsaved_file.py"
      settings: {}
+  pre_publish: "{self}/pre_publish.py:{engine}/tk-multi-publish2/basic/pre_publish.py"
   help_url: *help_url
   modal: true
   location: "@apps.tk-multi-publish2.location"
@@ -616,6 +618,7 @@ settings.tk-multi-publish2.sketchbook.shot_step:
   - name: Unsaved File Click Me
     hook: "{engine}/tk-multi-publish2/basic/unsaved_file.py"
     settings: {}
+  pre_publish: "{self}/pre_publish.py:{engine}/tk-multi-publish2/basic/pre_publish.py"
   help_url: *help_url
   modal: true
   location: "@apps.tk-multi-publish2.location"
