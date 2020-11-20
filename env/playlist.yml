@@ -1,0 +1,35 @@
+# Copyright (c) 2020 Autodesk, Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Autodesk, Inc.
+#
+
+description: Apps and engines loaded when a Playlist is loaded.
+  By default, the only engine defined here is tk-shotgun and tk-vred.
+  This configuration provides the apps that are necessary to display
+  menu actions in the Shotgun web application by way of Toolkit's
+  browser integration.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-vred.yml
+
+################################################################################
+# configuration for all engines to load in a playlist context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.playlist"
+  tk-vred: "@settings.tk-vred.playlist"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"
