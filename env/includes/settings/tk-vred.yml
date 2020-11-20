@@ -75,3 +75,11 @@ settings.tk-vred.version:
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: ""}
   location: "@engines.tk-vred.location"
+
+# playlist for tk-shotgun-launchvredreview
+settings.tk-vred.playlist:
+  apps:
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: ""}
+  location: "@engines.tk-vred.location"
