@@ -17,7 +17,7 @@ includes:
 
 settings.tk-shotgun-launchvredreview:
   deny_platforms: [ Mac, Linux ]
-  viewer_extensions: [ vpb ]
+  accepted_published_file_types: [ VRED Scene ]
   hook_verify_install: "{self}/verify_install.py"
   hook_launch_publish: "{self}/shotgun_launch_vred.py"
   location: "@apps.tk-shotgun-launchvredreview.location"
