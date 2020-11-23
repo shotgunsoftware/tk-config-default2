@@ -1,0 +1,88 @@
+#! C:/Program Files/Nuke10.5v5/nuke-10.5.5.dll -nx
+#write_info main_write file:"//10.80.8.250/VFX_Project/the_favourite/shots/030_0010/rushes/jpeg/030_0010_v000.%04d.jpeg" format:"2112 1174 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1041 2134" fps:"0" colorspace:"default" datatype:"8 bit" transfer:"unknown" views:"main" timecode:"08:09:55:11" colorManagement:"Nuke"
+version 10.5 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="1920" y="-226" w="1200" h="1920" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="521" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1089"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="766"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //10.80.8.250/VFX_Project/the_favourite/admin/outgoing/submissions/nuke_script/nuke_submission_processor.nk
+ frame 1041
+ first_frame 1041
+ last_frame 2134
+ lock_range true
+ format "2112 1174 0 0 2112 1174 1 proj_format"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Read {
+ inputs 0
+ file //10.80.8.250/VFX_Project/the_favourite/shots/030_0010/rushes/plate/main/fav_030_0010_fg01_v1/fav_030_0010_fg01_v1.########.dpx
+ format "3414 2198 0 0 3414 2198 1 "
+ first 1001
+ last 2174
+ origfirst 1001
+ origlast 1168
+ origset true
+ name main_read
+ xpos -53
+ ypos -295
+}
+set N39d2000 [stack 0]
+Viewer {
+ frame 1041
+ frame_range 1041-1168
+ name Viewer1
+ xpos -53
+ ypos 48
+}
+push $N39d2000
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ name main_read_refomat
+ xpos -53
+ ypos -156
+ disable true
+}
+Write {
+ file //10.80.8.250/VFX_Project/the_favourite/shots/030_0010/rushes/jpeg/030_0010_v000.%04d.jpeg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ name main_write
+ xpos -53
+ ypos -42
+}

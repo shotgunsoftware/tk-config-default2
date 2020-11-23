@@ -27,49 +27,45 @@ includes:
 settings.tk-alias.asset:
   apps:
     tk-multi-about:
-      location: '@apps.tk-multi-about.location'
+      location: "@apps.tk-multi-about.location"
     tk-multi-pythonconsole:
-      location: '@apps.tk-multi-pythonconsole.location'
-    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.alias'
-    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.alias'
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  location: '@engines.tk-alias.location'
+  location: "@engines.tk-alias.location"
+
 # asset_step
 settings.tk-alias.asset_step:
   apps:
     tk-multi-about:
-      location: '@apps.tk-multi-about.location'
+      location: "@apps.tk-multi-about.location"
     tk-multi-pythonconsole:
-      location: '@apps.tk-multi-pythonconsole.location'
-    tk-multi-breakdown: '@settings.tk-multi-breakdown.alias'
-    tk-multi-loader2: '@settings.tk-multi-loader2.alias'
-    tk-multi-publish2: '@settings.tk-multi-publish2.alias.asset_step'
-    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.alias'
-    tk-multi-snapshot: '@settings.tk-multi-snapshot.alias.asset_step'
-    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.alias.asset_step'
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.alias"
+    tk-multi-loader2: "@settings.tk-multi-loader2.alias"
+    tk-multi-publish2: "@settings.tk-multi-publish2.alias.asset_step"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.alias.asset_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias.asset_step"
   reference_template: alias_asset_reference_publish
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  location: '@engines.tk-alias.location'
+  location: "@engines.tk-alias.location"
+
 # project
 settings.tk-alias.project:
   apps:
     tk-multi-about:
-      location: '@apps.tk-multi-about.location'
+      location: "@apps.tk-multi-about.location"
     tk-multi-pythonconsole:
-      location: '@apps.tk-multi-pythonconsole.location'
-    tk-multi-shotgunpanel: '@settings.tk-multi-shotgunpanel.alias'
-    tk-multi-workfiles2: '@settings.tk-multi-workfiles2.alias'
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  location: '@engines.tk-alias.location'
-frameworks:
-  tk-framework-widget_v1.x.x:
-    location:
-      version: v1.0.0
-      type: app_store
-      name: tk-framework-widget
+  location: "@engines.tk-alias.location"

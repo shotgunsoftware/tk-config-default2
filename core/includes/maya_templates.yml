@@ -1,0 +1,259 @@
+# Copyright (c) 2015 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+#
+# This file is one of the central points in the Shotgun Pipeline Toolkit configuration and
+# a counterpart to the folder configuration structure.
+#
+# The folder structure underneath the project folder is used to create folders on disk -
+# templates.yml (this file) refers to those folders. Therefore, the two files need to be
+# in sync. This file contains an overview of all locations that are used by Sgtk.
+#
+# Whenever an app or an engine refers to a location on disk, it is using an entry defined in
+# this file. For more information, see the Shotgun Pipeline Toolkit Documentation.
+
+keys:
+    maya.render.output:
+        alias: output
+        type: str
+        filter_by: alphanumeric
+
+    maya.cache.output:
+        alias: output
+        type: str
+        filter_by: alphanumeric
+
+    maya.layer_name:
+        type: str
+        filter_by: '^[0-9a-zA-Z_]+$'
+
+    maya.camera_name:
+        type: str
+        filter_by: '^[0-9a-zA-Z_]+$'
+  
+    # Maya supports two extension types.
+    maya_extension:
+        type: str
+        choices:
+            ma: Maya Ascii (.ma)
+            mb: Maya Binary (.mb)
+        default: ma
+        alias: extension
+  
+    # image extension descriptor.
+    image_extension:
+        type: str
+        choices:
+            JPG: Joint Photographic Group (.JPG)
+            jpeg: Joint Photographic Expert Group (.jpeg)
+            exr: OpenEXR (.exr)
+            dpx: Digital Picture Exchange (.dpx)
+        default: exr
+        alias: format
+
+
+paths:
+    ###########
+    ## Maya
+    ###########
+    ########################################SHOT WORK
+    # define the location of a work area
+    maya_shot_work_area:
+        definition: '@shot_root/maya'
+        root_name: 'project_pipeline'
+    # define the location of a publish area
+    maya_shot_publish_area:
+        definition: '@shot_root/publish/maya'
+        root_name: 'project_pipeline'
+    # The location of WIP files
+    maya_shot_work:
+        definition: '@shot_root/maya/scenes/{Shot}_{task_name}[_{name}]_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
+    
+    maya_shot_outsource_work_file:
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
+
+    maya_shot_outsource_version_abc:
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{name}_v{version}.abc'
+        root_name: 'project_pipeline'
+        
+    # The location of backups of WIP files
+    maya_shot_snapshot:
+        definition: '@shot_root/maya/snapshots/{Shot}_{task_name}[_{name}]_v{version}_{timestamp}.{maya_extension}'
+        root_name: 'project_pipeline'
+    # The location of published maya files
+    maya_shot_publish:
+        definition: '@shot_root/publish/maya/{Shot}_{task_name}[_{name}]_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
+    # the Location of Maya published Camera's
+    maya_shot_camera_publish:
+        definition: '@shot_root/publish/maya/cameras/{Shot}_{task_name}[_{name}]_v{version}.abc'
+        root_name: 'project_pipeline'
+    
+    ########################################ASSET WORK
+    # define the location of a work area
+    maya_asset_work_area:
+        definition: '@asset_root/work/maya'
+        root_name: 'project_pipeline'
+    # define the location of a publish area
+    maya_asset_publish_area:
+        definition: '@asset_root/publish/maya'
+        root_name: 'project_pipeline'
+    # The location of WIP files
+    maya_asset_work:
+        definition: '@asset_root/work/maya/scenes/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
+    # The location of backups of WIP files
+    maya_asset_snapshot:
+        definition: '@asset_root/work/maya/snapshots/{Asset}_{task_name}[_{name}]_v{version}_{timestamp}.{maya_extension}'
+        root_name: 'project_pipeline'
+    # The location of published maya files
+    maya_asset_publish:
+        definition: '@asset_root/publish/maya/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
+    # # The location of published maya geometry files
+    # asset_alembic_cache:
+    #     definition: '@asset_root/publish/maya/geometry/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
+    #     root_name: 'project_pipeline'
+    # The location of published maya shader files
+    maya_shader_network_publish:
+        definition: '@asset_root/publish/maya/surfacing/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
+    # the Location of Maya published Camera's
+    maya_asset_camera_publish:
+        definition: '@asset_root/publish/maya/cameras/{Asset}_{task_name}[_{name}]_v{version}.abc'
+        root_name: 'project_pipeline'
+    
+    ########################################SHOT OUTPUT
+    # version output
+    maya_shot_renders_step:
+        definition: '@render_root/maya/{task_name}/version'
+        root_name: 'project_pipeline'
+    maya_shot_render_stub:
+        definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}'
+        root_name: 'project_pipeline'
+    maya_shot_render_layer:
+        definition: '@maya_shot_render_stub/{maya.layer_name}'
+        root_name: 'project_pipeline'
+    # maya_shot_render_layer:
+    #     definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{maya.layer_name}'
+    #     root_name: 'project_pipeline'
+    maya_shot_render_thumb_jpeg:
+        definition: '@temp_shot_root/thumbnails/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.jpeg'
+        root_name: 'secondary'
+    maya_shot_render_exr:
+        definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.exr'
+        root_name: 'project_pipeline'
+    maya_shot_render_jpg:
+        definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.jpg'
+        root_name: 'project_pipeline'
+    maya_shot_render_png:
+        definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.png'
+        root_name: 'project_pipeline'
+    maya_shot_render_exr_pub:
+        definition: '@render_root/maya/{task_name}/publish/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.exr'
+        root_name: 'project_pipeline'
+    # # Maya Simulations output 
+    # fxd = fume effects
+    maya_shot_sim_ffx:
+        definition: '@shot_context/maya/{task_name}/caches/sim/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.fxd'
+        root_name: 'caches' 
+    # # Maya Object export 
+    # maya_shot_export_obj:
+    #     definition: '@shot_context/3d_export/obj/{task_name}/{Shot}_{task_name}_v{version}/{Shot}_{task_name}_v{version}.abc'
+    #     root_name: 'caches'
+    # Maya Cache output
+    maya_shot_cache_area:
+        definition:  '@shot_context/maya/{task_name}/caches/'
+        root_name:  'caches'
+    maya_shot_cache_geo:
+         definition: '@shot_context/maya/{task_name}/caches/n_cache/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}_v{version}.{SEQ}.mcx'
+         root_name: 'caches'
+    maya_shot_cache_alembic:
+         definition: '@shot_context/maya/{task_name}/caches/alembic/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}'
+         root_name: 'caches'
+    maya_shot_cache_alembic_abc:
+         definition: '@shot_context/maya/{task_name}/caches/alembic/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}.abc'
+         root_name: 'caches'
+    maya_shot_cache_bifrost:
+         definition: '@shot_context/maya/{task_name}/caches/bifrost/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}_v{version}.{SEQ}.bif'
+         root_name: 'caches'
+    # review output
+    maya_shot_playblast_output:
+        definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{name}]_pb_v{version}/{Shot}_{task_name}[_{name}]_pb_v{version}'
+        root_name: 'project_pipeline'
+    maya_shot_playblast_publishing:
+        definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{name}]_pb_v{version}/{Shot}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
+        root_name: 'project_pipeline'
+    maya_shot_quicktime_quick:
+        definition: '@render_root/maya/{task_name}/review/quickdaily/{Shot}[_{name}]_v{version}_{iteration}.mov'
+        root_name: 'project_pipeline'
+    maya_shot_render_filmstrip:
+        definition: '@render_root/maya/{task_name}/review/{Shot}_review/{Shot}[_{name}]_review_v{version}.{SEQ}.png'
+        root_name: 'project_pipeline' 
+
+    ######################################## ASSET OUTPUT       
+    # Render location for asset renders
+    maya_asset_renders_step:
+        definition: '@asset_render_root/maya/{task_name}/version'
+        root_name: 'project_pipeline'
+    maya_asset_renders_stub:
+        definition: '@asset_render_root/maya/{task_name}/version/{Asset}_{task_name}[_{name}]_v{version}'
+        root_name: 'project_pipeline'
+    maya_asset_renders_layer:
+        definition: '@maya_asset_renders_stub/{maya.layer_name}'
+        root_name: 'project_pipeline'
+    maya_asset_render_thumb_jpeg:
+        definition: '@temp_shot_root/thumbnails/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{name}]_v{version}.jpeg'
+        root_name: 'secondary'
+    maya_asset_render_exr:
+        definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]exr'
+        root_name: 'project_pipeline'
+    maya_asset_render_jpg:
+        definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]jpg'
+        root_name: 'project_pipeline'
+    maya_asset_render_jpeg:
+        definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]jpeg'
+        root_name: 'project_pipeline'
+    maya_asset_render_png:
+        definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]png'
+        root_name: 'project_pipeline'
+    maya_asset_render_exr_pub:
+        definition: '@asset_render_root/maya/{task_name}/publish/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{name}]_v{version}.{SEQ}.exr'
+        root_name: 'project_pipeline'
+    maya_asset_playblast_output:
+        definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{name}]_pb_v{version}/{Asset}_{task_name}[_{name}]_pb_v{version}'
+        root_name: 'project_pipeline'
+    maya_asset_playblast_publishing:
+        definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{name}]_pb_v{version}/{Asset}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
+        root_name: 'project_pipeline'
+    # # Maya Simulations output
+    # maya_asset_sim:
+    #     definition: '@asset_context/maya/{task_name}/caches/sim/{Asset}_{task_name}_v{version}/{Asset}_{task_name}_v{version}.fxd'
+    #     root_name: 'caches'   
+    # # Maya Cache output
+    # asset_context: assets/{sg_asset_type}/{Asset}
+    #'@asset_context/pipeline_task/{task_name}/caches/houdini'
+    maya_asset_cache_area:
+        definition:  '@asset_context/pipeline_task/{task_name}/caches/maya'
+        root_name:  'caches'
+    maya_asset_cache_geo:
+         definition: '@maya_asset_cache_area/n_cache/{Asset}_{task_name}[_{name}]_v{version}/'
+         root_name: 'caches'
+    maya_asset_cache_alembic:
+         definition: '@maya_asset_cache_area/geometry/{Asset}_{task_name}[_{name}]_v{version}/'
+         root_name: 'caches'
+    maya_asset_cache_alembic_seq:
+         definition: '@maya_asset_cache_area/geometry/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.{SEQ}.abc'
+         root_name: 'caches'
+    maya_asset_cache_alembic_file:
+         definition: '@maya_asset_cache_area/geometry/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.abc'
+         root_name: 'caches'

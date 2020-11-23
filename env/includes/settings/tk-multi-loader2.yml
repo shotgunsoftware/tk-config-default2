@@ -69,6 +69,8 @@ settings.tk-multi-loader2.flame:
 
 # houdini
 settings.tk-multi-loader2.houdini:
+settings.tk-multi-loader2.houdini:
+  actions_hook: '{config}/tk-multi-loader2/tk-houdini_actions.py'
   action_mappings:
     Alembic Cache: [import]
     Houdini Scene: [merge]
@@ -119,13 +121,17 @@ settings.tk-multi-loader2.mari:
 
 # maya
 settings.tk-multi-loader2.maya:
+  actions_hook: '{config}/tk-multi-loader2/tk-maya_actions.py'
+  filter_publishes_hook: '{config}/tk-multi-loader2/filter_publishes.py'
   action_mappings:
-    Alembic Cache: [reference, import]
+    Alembic Cache: [import, reference]
+    Alembic Camera: [import, reference]
     Image: [texture_node, image_plane]
-    Maya Scene: [reference, import]
+    Maya Scene: [import, reference]
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
+    Maya Shader Network: [import, reference]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -143,13 +149,21 @@ settings.tk-multi-loader2.maya:
     - [task_assignees, is, "{context.user}"]
     - [project, is, "{context.project}"]
     hierarchy: [entity, content]
+  - caption: Library
+    entity_type: Asset
+    filters:
+    - [project, is, {'type': 'Project', 'id': 241}]
+    hierarchy: [sg_2d_3d, sg_asset_type, sg_element, tags, code] 
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
 # nuke
 settings.tk-multi-loader2.nuke:
+  actions_hook: '{config}/tk-multi-loader2/tk-nuke_actions.py'
+  filter_publishes_hook: '{config}/tk-multi-loader2/filter_publishes.py'
   action_mappings:
     Alembic Cache: [read_node]
+    Alembic Camera: [import_camera]
     Flame Render: [read_node]
     Flame Quicktime: [read_node]
     Image: [read_node]
@@ -158,6 +172,23 @@ settings.tk-multi-loader2.nuke:
     Photoshop Image: [read_node]
     Rendered Image: [read_node]
     Texture: [read_node]
+    Main Plate: [read_node]
+    Main JPG Plate: [read_node]    
+    Main Reformat Plate: [read_node]
+    Reference Plate: [read_node]
+    BG Plate: [read_node]
+    BG Reformat Plate: [read_node]
+    Element Plate: [read_node]
+    JPEG Plate: [read_node]
+    Main Plate Proxy: [read_node]
+    BG Plate Proxy: [read_node]
+    JPEG Lineup Sheet: [read_node]
+    Cleanup Plate: [read_node]
+    3D Render: [read_node]
+    Undistorted Main Plate: [read_node]
+    Converted Main Plate: [read_node]    
+    Converted Element Plate: [read_node]      
+    Tif File: [read_node]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -169,13 +200,18 @@ settings.tk-multi-loader2.nuke:
     filters:
     - [project, is, '{context.project}']
     hierarchy: [sg_sequence, code]
-  - caption: My Tasks
-    entity_type: Task
+  - caption: Library
+    entity_type: Asset
     filters:
-    - [task_assignees, is, '{context.user}']
-    - [project, is, '{context.project}']
-    hierarchy: [entity, content]
-  publish_filters: [["sg_status_list", "is_not", null]]
+    - [project, is, {'type': 'Project', 'id': 241}]
+    hierarchy: [sg_2d_3d, sg_asset_type, code]
+  # - caption: My Tasks
+  #   entity_type: Task
+  #   filters:
+  #   - [task_assignees, is, '{context.user}']
+  #   - [project, is, '{context.project}']
+  #   hierarchy: [entity, content]
+  # publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
 # nuke studio (actions hook)
@@ -271,7 +307,6 @@ settings.tk-multi-loader2.aftereffects:
     Photoshop Image: [add_to_project, add_to_comp]
     Rendered Image: [add_to_project, add_to_comp]
     Image: [add_to_project, add_to_comp]
-    Movie: [add_to_project, add_to_comp]
     Texture: [add_to_project, add_to_comp]
   entities:
   - caption: Assets

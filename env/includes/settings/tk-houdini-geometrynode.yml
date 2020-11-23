@@ -1,0 +1,28 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+settings.tk-houdini-geometrynode.asset_step:
+  work_file_template: houdini_asset_work
+  default_node_name: sg_geometrynode_out
+  output_cache_template: houdini_asset_work_geo_cache
+  location: "@apps.tk-houdini-geometrynode.location"
+
+settings.tk-houdini-geometrynode.shot_step:
+  work_file_template: houdini_shot_work
+  default_node_name: sg_geometrynode_out
+  output_cache_template: houdini_shot_work_geo_cache
+  location: "@apps.tk-houdini-geometrynode.location"

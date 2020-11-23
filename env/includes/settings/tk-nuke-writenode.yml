@@ -35,36 +35,135 @@ settings.tk-nuke-writenode.asset:
 settings.tk-nuke-writenode.shot:
   template_script_work: nuke_shot_work
   write_nodes:
-  - file_type: exr
-    name: Stereo Exr, 32 bit
+  - file_type: jpeg
+    name: Jpeg
+    publish_template: nuke_shot_render_pub_jpeg
+    render_template: nuke_shot_render_jpeg
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_shot_render_pub_stereo
-    render_template: nuke_shot_render_stereo
-    settings:
-      datatype: 32 bit float
+    element_render_template: nuke_shot_render_element_jpeg
+    denoise_render_template: nuke_shot_render_denoise_jpeg
+    smartvector_render_template: nuke_shot_render_smartvector_jpeg
+    stmap_render_template: nuke_shot_render_stmap_jpeg    
+    test_render_template: nuke_shot_render_test_jpeg
+    settings: {_jpeg_quality: 0.95, _jpeg_sub_sampling: '4:2:2', raw: false}
+    tank_type: Rendered Image
+    tile_color: []
+    promote_write_knobs: [_jpeg_quality]  
+  # - file_type: exr
+  #   name: Stereo Exr, 32 bit
+  #   proxy_publish_template:
+  #   proxy_render_template:
+  #   publish_template: nuke_shot_render_pub_stereo
+  #   render_template: nuke_shot_render_stereo
+  #   settings:
+  #     datatype: 32 bit float
+  #   tank_type: Rendered Image
+  #   tile_color: []
+  #   promote_write_knobs: []
+  # - file_type: exr
+  #   name: Stereo Exr, 16 bit
+  #   promote_write_knobs: []
+  #   proxy_publish_template:
+  #   proxy_render_template:
+  #   publish_template: nuke_shot_render_pub_stereo
+  #   render_template: nuke_shot_render_stereo
+  #   settings:
+  #     datatype: 16 bit half
+  #   tank_type: Rendered Image
+  #   tile_color: []
+  # - file_type: dpx
+  #   name: Mono Dpx
+  #   promote_write_knobs: []
+  #   proxy_publish_template:
+  #   proxy_render_template:
+  #   publish_template: nuke_shot_render_pub_mono_dpx
+  #   render_template: nuke_shot_render_mono_dpx
+  #   settings: {}
+  #   tank_type: Rendered Image
+  #   tile_color: []
+  # location: "@apps.tk-nuke-writenode.location"
+  - file_type: exr
+    name: Exr
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_pub_exr
+    render_template: nuke_shot_render_exr
+    element_render_template: nuke_shot_render_element_exr
+    denoise_render_template: nuke_shot_render_denoise_exr
+    smartvector_render_template: nuke_shot_render_smartvector_exr
+    stmap_render_template: nuke_shot_render_stmap_exr
+    test_render_template: nuke_shot_render_test_exr
+    settings: {datatype: 16 bit half, raw: false, compression: none}
     tank_type: Rendered Image
     tile_color: []
     promote_write_knobs: []
-  - file_type: exr
-    name: Stereo Exr, 16 bit
-    promote_write_knobs: []
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_render_pub_stereo
-    render_template: nuke_shot_render_stereo
-    settings:
-      datatype: 16 bit half
-    tank_type: Rendered Image
-    tile_color: []
   - file_type: dpx
-    name: Mono Dpx
+    name: Dpx
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_shot_render_pub_mono_dpx
-    render_template: nuke_shot_render_mono_dpx
-    settings: {}
+    publish_template: nuke_shot_render_pub_dpx
+    render_template: nuke_shot_render_dpx
+    element_render_template: nuke_shot_render_element_dpx
+    denoise_render_template: nuke_shot_render_denoise_dpx
+    smartvector_render_template: nuke_shot_render_smartvector_dpx
+    stmap_render_template: nuke_shot_render_stmap_dpx
+    test_render_template: nuke_shot_render_test_dpx
+    settings: {raw: false}
     tank_type: Rendered Image
     tile_color: []
   location: "@apps.tk-nuke-writenode.location"
+
+# asset
+settings.tk-nuke-writenode.asset:
+  template_script_work: nuke_asset_work
+  write_nodes:
+  - file_type: jpeg
+    name: Jpeg
+    publish_template: nuke_asset_render_pub_jpeg
+    render_template: nuke_asset_render_jpeg
+    proxy_publish_template:
+    proxy_render_template:
+    element_render_template: nuke_asset_render_element_jpeg
+    denoise_render_template: nuke_asset_render_denoise_jpeg
+    smartvector_render_template: nuke_asset_render_smartvector_jpeg
+    stmap_render_template: nuke_asset_render_stmap_jpeg
+    test_render_template: nuke_asset_render_test_jpeg
+    settings: {_jpeg_quality: 0.95, _jpeg_sub_sampling: '4:2:2', raw: true}
+    tank_type: Rendered Image
+    tile_color: []
+    promote_write_knobs: [_jpeg_quality]  
+  - file_type: exr
+    name: Exr
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_asset_render_pub_exr
+    render_template: nuke_asset_render_exr
+    element_render_template: nuke_asset_render_element_exr
+    denoise_render_template: nuke_asset_render_denoise_exr
+    smartvector_render_template: nuke_asset_render_smartvector_exr
+    stmap_render_template: nuke_asset_render_stmap_exr
+    test_render_template: nuke_asset_render_test_exr
+    settings: {datatype: 16 bit half, raw: false}
+    tank_type: Rendered Image
+    tile_color: []
+    promote_write_knobs: []
+  - file_type: dpx
+    name: Dpx
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_asset_render_pub_dpx
+    render_template: nuke_asset_render_dpx
+    element_render_template: nuke_asset_render_element_dpx
+    denoise_render_template: nuke_asset_render_denoise_dpx
+    smartvector_render_template: nuke_asset_render_smartvector_dpx
+    stmap_render_template: nuke_asset_render_stmap_dpx
+    test_render_template: nuke_asset_render_test_dpx
+    settings: {raw: false}
+    tank_type: Rendered Image
+    tile_color: []
+  location: "@apps.tk-nuke-writenode.location"  

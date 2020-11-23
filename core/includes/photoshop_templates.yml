@@ -1,0 +1,38 @@
+paths:
+    ## Workfiles
+    # The location of WIP script files
+    psd_asset_work:
+        definition: '@asset_root/psd/{Asset}_{task_name}[_{name}]_v{version}.psd'
+        root_name: 'project_pipeline'    
+    psd_shot_work:
+        definition: '@shot_root/psd/{Shot}_{task_name}[_{name}]_v{version}.psd'
+        root_name: 'project_pipeline'
+    # The location of backups of WIP files
+    psd_shot_snapshot:
+        definition: '@shot_root/nuke/snapshots/{Shot}_{task_name}[_{name}]_v{version}.{timestamp}.psd'
+        root_name: 'project_pipeline'
+
+    ## Output
+    # Asset
+    psd_asset_version_dpx:
+        definition: '@asset_render_root/psd/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.dpx'
+        root_name: 'project_pipeline'
+    psd_asset_version_exr:
+        definition: '@asset_render_root/psd/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.exr'
+        root_name: 'project_pipeline'
+    psd_asset_version_jpeg:
+        definition: '@asset_render_root/psd/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.jpeg'
+        root_name: 'project_pipeline'
+    # Shot
+    psd_shot_version_dpx:
+        definition: '@render_root/psd/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.dpx'
+        root_name: 'project_pipeline'
+    psd_shot_version_exr:
+        definition: '@render_root/psd/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.exr'
+        root_name: 'project_pipeline'
+    psd_shot_version_jpeg:
+        definition: '@render_root/psd/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.jpeg'
+        root_name: 'project_pipeline'
+    psd_shot_version_tif:
+        definition: '@render_root/psd/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.tif'
+        root_name: 'project_pipeline'        

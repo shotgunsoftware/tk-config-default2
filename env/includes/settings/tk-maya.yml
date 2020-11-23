@@ -14,6 +14,7 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
+- ./tk-multi-breakdown.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-reviewsubmission.yml
@@ -56,7 +57,7 @@ settings.tk-maya.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  template_project: asset_work_area_maya
+  template_project: maya_asset_work_area
   location: "@engines.tk-maya.location"
 
 # project
@@ -66,7 +67,7 @@ settings.tk-maya.project:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.project"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-maya.location"
@@ -103,6 +104,8 @@ settings.tk-maya.shot_step:
     tk-multi-breakdown:
       location: "@apps.tk-multi-breakdown.location"
     tk-multi-setframerange:
+      sg_in_frame_field: sg_head_in
+      sg_out_frame_field: sg_tail_out
       location: "@apps.tk-multi-setframerange.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.maya.shot_step"
@@ -116,5 +119,5 @@ settings.tk-maya.shot_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
-  template_project: shot_work_area_maya
+  template_project: maya_shot_work_area
   location: "@engines.tk-maya.location"

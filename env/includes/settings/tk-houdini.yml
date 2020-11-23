@@ -16,6 +16,7 @@ includes:
 - ../engine_locations.yml
 - ./tk-houdini-alembicnode.yml
 - ./tk-houdini-mantranode.yml
+- ./tk-houdini-geometrynode.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
@@ -52,6 +53,7 @@ settings.tk-houdini.asset_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.asset_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
+    tk-houdini-geometrynode: "@settings.tk-houdini-geometrynode.asset_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -66,7 +68,8 @@ settings.tk-houdini.project:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.project"
+  enable_sg_shelf: true
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-houdini.location"
@@ -78,7 +81,7 @@ settings.tk-houdini.sequence:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-houdini.location"
@@ -90,7 +93,7 @@ settings.tk-houdini.shot:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-houdini.location"
@@ -103,6 +106,8 @@ settings.tk-houdini.shot_step:
     tk-multi-breakdown:
       location: "@apps.tk-multi-breakdown.location"
     tk-multi-setframerange:
+      sg_in_frame_field: sg_head_in
+      sg_out_frame_field: sg_tail_out
       location: "@apps.tk-multi-setframerange.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.houdini"
     tk-multi-publish2: "@settings.tk-multi-publish2.houdini.shot_step"
@@ -112,9 +117,11 @@ settings.tk-houdini.shot_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.shot_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.shot_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
+    tk-houdini-geometrynode: "@settings.tk-houdini-geometrynode.shot_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  template_project: houdini_shot_work_area
   location: '@engines.tk-houdini.location'

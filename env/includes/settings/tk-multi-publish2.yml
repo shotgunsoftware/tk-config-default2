@@ -22,19 +22,23 @@ publish_help_url: &help_url "https://support.shotgunsoftware.com/hc/en-us/articl
 # ---- Stand alone publish
 
 settings.tk-multi-publish2.standalone:
-  collector: "{self}/collector.py"
+  display_name: Submit
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/desktop/collector.py"
+  path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/desktop/path_info.py"
+  enable_manual_load: true
+
   publish_plugins:
   - name: Slap Comp for Review
     hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
     settings: {}
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/desktop/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
+  - name: Create Alembic
+    hook: "{config}/tk-multi-publish2/basic/desktop/create_alembic.py"
     settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -52,9 +56,9 @@ settings.tk-multi-publish2.3dsmaxplus.asset_step: &settings_tk-multi-publish2_3d
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+  # - name: Upload for review
+  #   hook: "{self}/upload_version.py"
+  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -78,9 +82,9 @@ settings.tk-multi-publish2.3dsmaxplus.shot_step: &settings_tk-multi-publish2_3ds
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+  # - name: Upload for review
+  #   hook: "{self}/upload_version.py"
+  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -113,9 +117,9 @@ settings.tk-multi-publish2.houdini.asset_step:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+  # - name: Upload for review
+  #   hook: "{self}/upload_version.py"
+  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -135,9 +139,9 @@ settings.tk-multi-publish2.houdini.shot_step:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+  # - name: Upload for review
+  #   hook: "{self}/upload_version.py"
+  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -175,42 +179,51 @@ settings.tk-multi-publish2.mari.asset_step:
 
 # asset step
 settings.tk-multi-publish2.maya.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/maya/collector.py"
   collector_settings:
       Work Template: maya_asset_work
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+  # - name: Upload for review
+  #   hook: "{self}/upload_version.py"
+  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+  - name: Publish Session
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session.py"
     settings:
         Publish Template: maya_asset_publish
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+  - name: Publish Shaders
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_shader_network.py"
     settings:
-        Publish Template: asset_alembic_cache
+        Publish Template: maya_shader_network_publish
+  - name: Publish Camera
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_camera.py"
+    settings:
+        Publish Template: maya_asset_camera_publish
+        Cameras: ["cam_main*"]
+  # - name: Publish to Shotgun
+  #   hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+  #   settings:
+  #       Publish Template: asset_alembic_cache
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
 # shot step
 settings.tk-multi-publish2.maya.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/basic/maya/collector.py"
   collector_settings:
       Work Template: maya_shot_work
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+  # - name: Upload for review
+  #   hook: "{self}/upload_version.py"
+  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -218,6 +231,15 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_camera.py"
+    settings:
+        Publish Template: maya_shot_camera_publish
+        Cameras: ["cam_main"]
+  - name: Publish to Shaders
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_shader_network.py"
+    settings:
+        Publish Template: maya_shader_network_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -227,16 +249,15 @@ settings.tk-multi-publish2.maya.shot_step:
 
 # asset step
 settings.tk-multi-publish2.nuke.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/nuke/collector.py"
   collector_settings:
       Work Template: nuke_asset_work
   publish_plugins:
+  - name: Version for review
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
+    settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
     settings: {}
@@ -252,30 +273,34 @@ settings.tk-multi-publish2.nuke.asset_step:
 
 # shot step
 settings.tk-multi-publish2.nuke.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/nuke/collector.py"
+  path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/general/path_info.py"
   collector_settings:
       Work Template: nuke_shot_work
   publish_plugins:
+  - name: Version for review
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
+    settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
     settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+  # - name: Upload for review
+  #   hook: "{self}/upload_version.py"
+  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_script.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/nuke_publish_script.py"
     settings:
         Publish Template: nuke_shot_publish
-  - name: Submit for Review
-    hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
-    settings: {}
-  - name: Update Flame Clip
-    hook: "{engine}/tk-multi-publish2/basic/nuke_update_flame_clip.py"
-    settings:
-        Flame Clip Template: flame_shot_clip
+  # - name: Submit for Review
+  #   hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+  #   settings: {}
+  # - name: Update Flame Clip
+  #   hook: "{engine}/tk-multi-publish2/basic/nuke_update_flame_clip.py"
+  #   settings:
+  #       Flame Clip Template: flame_shot_clip
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -550,10 +575,6 @@ settings.tk-multi-publish2.vred.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
      settings:
        Publish Template: vred_asset_publish
-   - name: Create 2D Version for Review
-     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_session_version.py"
-     settings:
-       3D Version: False
    - name: Publish Rendering to Shotgun
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
      settings:

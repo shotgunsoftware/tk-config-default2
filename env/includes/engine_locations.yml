@@ -34,13 +34,13 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.0.8
+  version: v2.0.7
 
 # Desktop
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.5.9
+  version: v2.5.7
 
 # Desktop2
 engines.tk-desktop2.location:
@@ -82,7 +82,7 @@ engines.tk-motionbuilder.location:
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.12.9
+  version: v0.12.7
 
 # Photoshop
 engines.tk-photoshopcc.location:
@@ -106,4 +106,4 @@ engines.tk-shotgun.location:
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
-  version: v2.0.8
+  version: v2.0.6

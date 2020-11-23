@@ -39,19 +39,26 @@ settings.tk-desktop.project:
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+  default_group: Production Tools
   groups:
   - matches:
     - "*Fla*"
-    - "*Houdini*"
     - "*Mari*"
-    - "*Max*"
-    - "*Maya*"
     - "*Motion*"
     - "*Nuke*"
     - "*Photoshop*"
     - "*After*"
     - "*Effects*"
-    name: Creative Tools
+    name: 2D Tools
+  - matches:
+    - "*Houdini*"
+    - "*Max*"
+    - "*Maya*"
+    name: 3D Tools
+  - matches:
+    - "*Spotify*"
+    - "*GMail*"    
+    name: Apps  
   - matches:
     - "*Hiero*"
     name: Editorial Tools

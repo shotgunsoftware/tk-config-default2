@@ -19,14 +19,12 @@ description: Apps and engines loaded when a Version is loaded.
 includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-shotgun.yml
-- ./includes/settings/tk-vred.yml
 
 ################################################################################
 # configuration for all engines to load in a version context
 
 engines:
   tk-shotgun: "@settings.tk-shotgun.version"
-  tk-vred: "@settings.tk-vred.version"
 
 ################################################################################
 # reference all of the common frameworks

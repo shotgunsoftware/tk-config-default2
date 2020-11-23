@@ -18,18 +18,14 @@ includes:
 # nuke studio
 settings.tk-multi-breakdown.nukestudio:
   hook_scene_operations: '{self}/tk-nuke_scene_operations.py'
-  location: '@apps.tk-multi-breakdown.location'
+  location: "@apps.tk-multi-breakdown.location"
+
 # alias
 settings.tk-multi-breakdown.alias:
   hook_scene_operations: '{engine}/tk-multi-breakdown/basic/scene_operations.py'
-  location: '@apps.tk-multi-breakdown.location'
+  location: "@apps.tk-multi-breakdown.location"
+
 # VRED
 settings.tk-multi-breakdown.vred:
   hook_scene_operations: '{engine}/tk-multi-breakdown/basic/scene_operations.py'
-  location: '@apps.tk-multi-breakdown.location'
-frameworks:
-  tk-framework-widget_v1.x.x:
-    location:
-      version: v1.0.0
-      type: app_store
-      name: tk-framework-widget
+  location: "@apps.tk-multi-breakdown.location"
