@@ -41,19 +41,33 @@
 # core, this requirement has been lifted and the root can be named anything.
 # ------------------------------------------------------------------------------
 
-primary:
+project_pipeline:
 
     description: A top-level root folder for production data. Project folders
         will be created beneath this location.
 
     # these paths will be populated by the associated local storage in Shotgun
     # at setup time.
-    mac_path:
-    linux_path:
-    windows_path:
+    mac_path: null
+    linux_path: /mnt/project_pipeline
+    windows_path: \\pix_artist\project_pipeline
+    shotgun_storage_id: 140
 
     # indicates that this is the default storage root
     default: true
+
+secondary: {
+  linux_path: null, 
+  mac_path: null, 
+  windows_path: \\10.80.8.252\projects\,
+  default: true
+  }
+
+caches: {
+  linux_path: null, 
+  mac_path: null, 
+  windows_path: \\10.80.8.252\projects\caches\
+  }
 
 # ------------------------------------------------------------------------------
 # Below is an example of a second storage root. This root would require a local

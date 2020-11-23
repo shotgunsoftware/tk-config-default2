@@ -1007,18 +1007,16 @@ class BasicSceneCollector(HookBaseClass):
         nuke_review_file = templates['nuke_review_template'].apply_fields( fields )
         review_process_json = templates['review_process_json_template'].apply_fields( fields )
 
-        temp_root = re.sub("(\s+)", "-", temp_root)
-        nuke_review_file = re.sub("(\s+)", "-", nuke_review_file)
-        review_process_json = re.sub("(\s+)", "-", review_process_json)
-
-
-
         template_paths = {
                             'temp_root': temp_root,
                             'nuke_review_file': nuke_review_file,
                             'review_process_json': review_process_json,
                             }
-
+        
+        for i in template_paths:
+            self.logger.warning(">>>>> %s exists? %s" % ( i, os.path.exists( template_paths[i] ) ) )
+            template_paths[i] = re.sub( "(\s+)", "-", template_paths[i] )
+        
         return template_paths
 
     def _get_existing_version(self, item):
