@@ -17,7 +17,7 @@ includes:
 
 settings.tk-shotgun-launchvredreview:
   deny_platforms: [ Mac, Linux ]
-  accepted_published_file_types: [ VRED Scene ]
+  accepted_published_file_types: [ VRED Scene, Alias File, Catpart File, Jt File, Igs File ]
   hook_verify_install: "{self}/verify_install.py"
   hook_launch_publish: "{self}/shotgun_launch_vred.py"
   location: "@apps.tk-shotgun-launchvredreview.location"
