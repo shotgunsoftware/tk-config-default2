@@ -24,6 +24,12 @@ publish_help_url: &help_url "https://support.shotgunsoftware.com/hc/en-us/articl
 settings.tk-multi-publish2.standalone:
   collector: "{self}/collector.py"
   publish_plugins:
+  - name: Slap Comp for Review
+    hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
+    settings: {}
+  - name: Version for review
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
+    settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
     settings: {}
