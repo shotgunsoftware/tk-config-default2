@@ -390,9 +390,11 @@ class UploadVersionPlugin(HookBaseClass):
         # Aux files
         # draft_py=os.path.join("C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
         if item.properties.get("pipeline_root"):
-            draft_py=os.path.join(item.properties.get("pipeline_root"),"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+            draft_py = os.path.join(item.properties.get("pipeline_root"),"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
         else:
-            draft_py=os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+            draft_py = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+
+        self.logger.warning(">>>>> draft_py: %s" % draft_py )
 
         item.properties["script_file"] = draft_py
 

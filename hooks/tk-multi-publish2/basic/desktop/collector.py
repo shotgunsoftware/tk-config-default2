@@ -1014,7 +1014,8 @@ class BasicSceneCollector(HookBaseClass):
                             }
         
         for i in template_paths:
-            self.logger.warning(">>>>> %s exists? %s" % ( i, os.path.exists( template_paths[i] ) ) )
+            # self.logger.warning(">>>>> %s" % template_paths[i] )
+            # self.logger.warning(">>>>> %s exists? %s" % ( i, os.path.exists( template_paths[i] ) ) )
             template_paths[i] = re.sub( "(\s+)", "-", template_paths[i] )
         
         return template_paths
