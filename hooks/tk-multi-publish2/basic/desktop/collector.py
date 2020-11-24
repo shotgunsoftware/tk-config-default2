@@ -755,8 +755,10 @@ class BasicSceneCollector(HookBaseClass):
 
         # everything should be populated. return the dictionary
         return dict(
-            item_type=item_type, type_display=type_display, icon_path=icon_path,
-        )
+            item_type=item_type,
+            type_display=type_display,
+            icon_path=icon_path,
+            )
 
     def _get_icon_path(self, icon_name, icons_folders=None):
         """
@@ -813,6 +815,7 @@ class BasicSceneCollector(HookBaseClass):
             # get all the image mime type image extensions as well
             mimetypes.init()
             types_map = mimetypes.types_map
+
             for (ext, mimetype) in types_map.items():
                 if mimetype.startswith("image/"):
                     image_extensions.add(ext.lstrip("."))
