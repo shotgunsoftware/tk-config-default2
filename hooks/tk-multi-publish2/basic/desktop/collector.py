@@ -1,4 +1,3 @@
-
 # Copyright (c) 2017 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
@@ -1154,4 +1153,3 @@ class BasicSceneCollector(HookBaseClass):
                                 ])
 
         return search_fields
-
