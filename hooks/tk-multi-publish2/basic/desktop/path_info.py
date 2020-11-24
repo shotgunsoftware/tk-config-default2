@@ -11,6 +11,7 @@
 import os
 from tank.util import sgre as re
 
+
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -21,12 +22,14 @@ HookBaseClass = sgtk.get_hook_baseclass()
 # this implementation assumes the version number is of the form 'v###'
 # coming just before an optional extension in the file/folder name and just
 # after a '.', '_', or '-'.
+
 VERSION_REGEX = re.compile(r"(.+)([._-])v(\d+)\.?([^.]+)?\.?([^.]+)?$", re.IGNORECASE)
 
 # a regular expression used to extract the frame number from the file.
 # this implementation assumes the version number is of the form '.####'
 # coming just before the extension in the filename and just after a '.', '_',
 # or '-'.
+
 FRAME_REGEX = re.compile(r"(.*)([._-])(\d+)\.([^.]+)$", re.IGNORECASE)
 
 
@@ -60,6 +63,7 @@ class BasicPathInfo(HookBaseClass):
         :return: A publish display name for the provided path.
         """
 
+
         publisher = self.parent
 
         logger = publisher.logger
@@ -74,11 +78,14 @@ class BasicPathInfo(HookBaseClass):
         if version_pattern_match:
             # found a version number, use the other groups to remove it
             prefix = version_pattern_match.group(1)
+            self.logger.debug("Found version pattern match: %s" % (prefix))
+
             extension = version_pattern_match.group(4) or ""
             if extension:
                 publish_name = "%s.%s" % (prefix, extension)
             else:
                 publish_name = prefix
+
         elif frame_pattern_match and sequence:
             # found a frame number, meplace it with #s
             prefix = frame_pattern_match.group(1)
@@ -91,6 +98,7 @@ class BasicPathInfo(HookBaseClass):
             publish_name = filename
 
         logger.debug("Returning publish name: %s" % (publish_name,))
+
         return publish_name
 
     def get_version_number(self, path):
@@ -109,6 +117,7 @@ class BasicPathInfo(HookBaseClass):
         publisher = self.parent
 
         logger = publisher.logger
+        
         logger.debug("Getting version number for path: %s ..." % (path,))
 
         path_info_returns = publisher.util.get_file_path_components(path)
@@ -214,6 +223,7 @@ class BasicPathInfo(HookBaseClass):
         logger = publisher.logger
 
         logger.debug("Looking for sequences in folder: '%s'..." % (folder,))
+
 
         # list of already processed file names
         processed_names = {}
@@ -493,3 +503,4 @@ class BasicPathInfo(HookBaseClass):
         else:
             item['workfile_dir'] = None
             item['publish_path'] = None
+

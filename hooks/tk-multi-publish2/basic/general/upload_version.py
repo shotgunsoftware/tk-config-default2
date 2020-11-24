@@ -254,6 +254,7 @@ class UploadVersionPlugin(HookBaseClass):
         """ 
         # publish_thumbnail = self.get_publish_thumbnail(settings, item)
         publisher = self.parent
+
         # sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
         get_file_string = file_strings.FileStrings()
 
@@ -306,6 +307,7 @@ class UploadVersionPlugin(HookBaseClass):
                 item.properties['failed_check'] = False
                 raise Exception("A Sanity Check has failed. This item cannot be validated.")
 
+
         review_process = item.properties.get("step")
 
         review_process_type = review_process['sg_review_process_type']
@@ -321,7 +323,7 @@ class UploadVersionPlugin(HookBaseClass):
                                                                         "%02d" % (now.month),
                                                                         "%02d" % (now.day),
                                                                         str(ampm))
-            
+
         self.logger.debug("Using review JSON: %s" % ( item.properties['template_paths'].get('review_process_json') ))
 
         # entity_info = item.properties.get('entity')
@@ -401,6 +403,7 @@ class UploadVersionPlugin(HookBaseClass):
         # submission and creation of the QTs. Now we need to loop through the alternative jobs
 
         self.logger.warning( ">>>>> END UPLOAD_VERSION VALIDATION >>>>>")
+
         return True
         
     def publish(self, settings, item):
@@ -449,6 +452,7 @@ class UploadVersionPlugin(HookBaseClass):
         ### NTENTIONAL BREAKAGE ###
         return
 
+
         total_info_dict = dict(
         project_info = item.properties.get("project_info"),
         entity_info = item.properties.get("entity_info"),
@@ -456,6 +460,7 @@ class UploadVersionPlugin(HookBaseClass):
         # Create the json file
         review_output = None
         process_info_list = []
+
         review_process_json = item.properties['template_paths'].get('review_process_json')
         review_process_json_dict = self.read_json_file(jm,total_info_dict,review_process_json)
 
@@ -487,6 +492,7 @@ class UploadVersionPlugin(HookBaseClass):
             item.properties["output_main"] = os.path.split(review_output)[1]
             item.properties["output_ext"] = os.path.splitext(review_output)[1]
                         
+
             item.properties['nuke_out_script'] = os.path.join(item.properties['template_paths'].get('temp_root'),
                                                                 "deadline", 
                                                                 "%s_%s.nk" % (re.sub("(\s+)", "-", item.properties.get('version_data')['code']), 
@@ -521,6 +527,7 @@ class UploadVersionPlugin(HookBaseClass):
             total_info_dict.update({'process_info': process_info})
             if process_dict[str(i)]['add_to_review_playlist']:
                 added_verions = sg_writer.add_version_to_playlist(
+
                                                                     item.context.project['id'],
                                                                     item.properties.get('playlist_name'),
                                                                     'rsv',
@@ -743,6 +750,7 @@ class UploadVersionPlugin(HookBaseClass):
         burnin_enabled = project_info['sg_review_burn_in']
         plugin_in_script = self.replace_slashes(item.properties['nuke_review_script'])
         plugin_out_script = item.properties['nuke_out_script']
+
         temp_root = self.replace_slashes( item.properties['template_paths'].get('temp_root') )
         script_file = self.replace_slashes(item.properties['script_file']) or None
 
@@ -950,5 +958,6 @@ class UploadVersionPlugin(HookBaseClass):
             if property_key:                 
                 item.properties[property_key] = template
                 self.logger.debug("Template: %s - %s" % (property_key,template))
+
                 return template            
                 
