@@ -10,7 +10,6 @@
 
 import os
 from tank.util import sgre as re
-
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -30,7 +29,6 @@ VERSION_REGEX = re.compile(r"(.+)([._-])v(\d+)\.?([^.]+)?\.?([^.]+)?$", re.IGNOR
 # or '-'.
 
 FRAME_REGEX = re.compile(r"(.*)([._-])(\d+)\.([^.]+)$", re.IGNORECASE)
-
 
 class BasicPathInfo(HookBaseClass):
     """
@@ -95,7 +93,6 @@ class BasicPathInfo(HookBaseClass):
             publish_name = filename
 
         logger.debug("Returning publish name: %s" % (publish_name,))
-        
         return publish_name
 
     def get_version_number(self, path):
@@ -114,7 +111,6 @@ class BasicPathInfo(HookBaseClass):
         publisher = self.parent
 
         logger = publisher.logger
-        
         logger.debug("Getting version number for path: %s ..." % (path,))
 
         path_info_returns = publisher.util.get_file_path_components(path)
@@ -171,6 +167,7 @@ class BasicPathInfo(HookBaseClass):
 
         # if extension:
         #     seq_filename = "%s.%s" % (seq_filename, extension)
+
 
         # # build the full sequence path
         # return os.path.join(path_info_returns["folder"], seq_filename)
@@ -499,4 +496,3 @@ class BasicPathInfo(HookBaseClass):
         else:
             item['workfile_dir'] = None
             item['publish_path'] = None
-

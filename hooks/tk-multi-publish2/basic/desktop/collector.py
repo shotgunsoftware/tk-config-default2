@@ -579,6 +579,7 @@ class BasicSceneCollector(HookBaseClass):
         if item_type.startswith("file.image") or item_type.startswith("file.texture"):
             file_item.set_thumbnail_from_path(path)
             thumbnail_path = path
+          
             # disable thumbnail creation since we get it for free
             file_item.thumbnail_enabled = False
         else:
@@ -815,8 +816,8 @@ class BasicSceneCollector(HookBaseClass):
             # get all the image mime type image extensions as well
             mimetypes.init()
             types_map = mimetypes.types_map
-
             for (ext, mimetype) in types_map.items():
+
                 if mimetype.startswith("image/"):
                     image_extensions.add(ext.lstrip("."))
 

@@ -254,7 +254,6 @@ class UploadVersionPlugin(HookBaseClass):
         """ 
         # publish_thumbnail = self.get_publish_thumbnail(settings, item)
         publisher = self.parent
-        
         # sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
         get_file_string = file_strings.FileStrings()
 
@@ -322,7 +321,7 @@ class UploadVersionPlugin(HookBaseClass):
                                                                         "%02d" % (now.month),
                                                                         "%02d" % (now.day),
                                                                         str(ampm))
-
+            
         self.logger.debug("Using review JSON: %s" % ( item.properties['template_paths'].get('review_process_json') ))
 
         # entity_info = item.properties.get('entity')
