@@ -388,6 +388,7 @@ class BasicSceneCollector(HookBaseClass):
         :param dict settings: Configured settings for this collector
         :param parent_item: Root item instance
         """
+
         # default implementation does not do anything
         pass
 
@@ -575,12 +576,11 @@ class BasicSceneCollector(HookBaseClass):
         file_item = parent_item.create_item(item_type, type_display, display_name)
         file_item.set_icon_from_path(item_info["icon_path"])
 
-
         # if the supplied path is an image, use the path as the thumbnail.
         if item_type.startswith("file.image") or item_type.startswith("file.texture"):
             file_item.set_thumbnail_from_path(path)
             thumbnail_path = path
-
+          
             # disable thumbnail creation since we get it for free
             file_item.thumbnail_enabled = False
         else:
@@ -604,7 +604,6 @@ class BasicSceneCollector(HookBaseClass):
         return file_item
 
     def _collect_folder(self, parent_item, folder, path_info, render_folders, properties):
-
         """
         Process the supplied folder path.
 
@@ -777,6 +776,7 @@ class BasicSceneCollector(HookBaseClass):
         :returns: The full path to the icon of the supplied name, or a default
             icon if the name could not be found.
         """
+
         # ensure the publisher's icons folder is included in the search
         app_icon_folder = os.path.join(self.disk_location, "icons")
 
@@ -806,11 +806,7 @@ class BasicSceneCollector(HookBaseClass):
 
         if not hasattr(self, "_image_extensions"):
 
-            image_file_types = [
-                "Photoshop Image",
-                "Rendered Image",
-                "Texture Image"
-            ]
+            image_file_types = ["Photoshop Image", "Rendered Image", "Texture Image"]
             image_extensions = set()
 
             for image_file_type in image_file_types:
@@ -818,11 +814,9 @@ class BasicSceneCollector(HookBaseClass):
                     self.common_file_info[image_file_type]["extensions"]
                 )
 
-
             # get all the image mime type image extensions as well
             mimetypes.init()
             types_map = mimetypes.types_map
-
             for (ext, mimetype) in types_map.items():
 
                 if mimetype.startswith("image/"):

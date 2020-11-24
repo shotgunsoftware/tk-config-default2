@@ -307,7 +307,6 @@ class UploadVersionPlugin(HookBaseClass):
                 item.properties['failed_check'] = False
                 raise Exception("A Sanity Check has failed. This item cannot be validated.")
 
-
         review_process = item.properties.get("step")
 
         review_process_type = review_process['sg_review_process_type']
@@ -323,7 +322,7 @@ class UploadVersionPlugin(HookBaseClass):
                                                                         "%02d" % (now.month),
                                                                         "%02d" % (now.day),
                                                                         str(ampm))
-
+            
         self.logger.debug("Using review JSON: %s" % ( item.properties['template_paths'].get('review_process_json') ))
 
         # entity_info = item.properties.get('entity')
@@ -452,7 +451,6 @@ class UploadVersionPlugin(HookBaseClass):
         ### NTENTIONAL BREAKAGE ###
         return
 
-
         total_info_dict = dict(
         project_info = item.properties.get("project_info"),
         entity_info = item.properties.get("entity_info"),
@@ -492,7 +490,6 @@ class UploadVersionPlugin(HookBaseClass):
             item.properties["output_main"] = os.path.split(review_output)[1]
             item.properties["output_ext"] = os.path.splitext(review_output)[1]
                         
-
             item.properties['nuke_out_script'] = os.path.join(item.properties['template_paths'].get('temp_root'),
                                                                 "deadline", 
                                                                 "%s_%s.nk" % (re.sub("(\s+)", "-", item.properties.get('version_data')['code']), 
@@ -527,7 +524,6 @@ class UploadVersionPlugin(HookBaseClass):
             total_info_dict.update({'process_info': process_info})
             if process_dict[str(i)]['add_to_review_playlist']:
                 added_verions = sg_writer.add_version_to_playlist(
-
                                                                     item.context.project['id'],
                                                                     item.properties.get('playlist_name'),
                                                                     'rsv',
