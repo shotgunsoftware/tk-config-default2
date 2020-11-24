@@ -27,7 +27,6 @@ if "SSVFX_PIPELINE" in os.environ.keys():
     sys.path.append(ssvfx_script_path)
 else:
     sys.stdout.write("SSVFX_PIPELINE not in env var keys. Using explicit")
-    pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
     ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
 
     sys.path.append(ssvfx_script_path)
@@ -495,7 +494,6 @@ class BasicSceneCollector(HookBaseClass):
                                                     entity.get('id') 
                                                     )
                                                     
-        self.logger.warning(">>>>> main_plate? %s" % main_plate)
         entity.update( { 
                         'type': curr_fields['type'],
                         'main_plate': main_plate 
@@ -516,6 +514,7 @@ class BasicSceneCollector(HookBaseClass):
                 'folder_name': info['folder_name'],
                 'frame_range': info['file_range'],
                 'template': info['base_template'],
+                'script_file': curr_fields.get('script_file'),
                 
                 # step and plugin booleons
                 'step': step,
@@ -533,7 +532,7 @@ class BasicSceneCollector(HookBaseClass):
                 'workfile_dir': info.get('workfile_dir'),
                 'publish_path': info.get('publish_path'),
 
-                # templates for creating wuicktimes
+                # templates and other quicktime info
                 'extra_templates': self._get_extra_templates( info['fields'] ),
                 }
 
@@ -593,23 +592,12 @@ class BasicSceneCollector(HookBaseClass):
 
         self.logger.info("Collected file: %s" % (path,))
 
-        # set default properties and link the task context
-        self._add_default_properties( file_item, properties)
-        self._link_task( file_item )
-        
+        # run helper methods that add universial item properties
+        self._run_helper_methods( path, file_item, properties)
+
         file_item.properties['thumbnail_path'] = thumbnail_path
 
-        # check for existing version
-        file_item.properties['existing_version'] = self._get_existing_version( file_item )
-
-        # set version_data for creating a version in Shotgun
-        file_item.properties['version_data'] = self.set_version_data( path, file_item )
-        
-        # set fields to resolve output path
-        file_item.properties['resolve_fields'] = self.set_resolve_fields( file_item )
-        
-        # collect template paths
-        file_item.properties['_apply_templates'] = self._apply_templates( file_item )
+        self.logger.warning( ">>>>> END COLLECT_FILE >>>>>" )
 
         return file_item
 
@@ -671,25 +659,17 @@ class BasicSceneCollector(HookBaseClass):
             # properties for the plugins to use for processing.
             file_item.properties["path"] = image_seq_path
 
-            # set default properties and link the task context
-            self._add_default_properties( file_item, properties)
-            self._link_task( file_item )
-
             self.logger.info("Collected file: %s" % (image_seq_path,))
 
-            # check for existing version
-            file_item.properties['existing_version'] = self._get_existing_version( file_item )
-
-            # set version_data for creating a version in Shotgun
-            file_item.properties['version_data'] = self.set_version_data( image_seq_path, file_item )
-            
-            # set fields to resolve output path
-            file_item.properties['resolve_fields'] = self.set_resolve_fields( file_item )
+            # run helper methods that add universial item properties
+            self._run_helper_methods( image_seq_path, file_item, properties)
 
             file_items.append(file_item)
 
         if not file_items:
             self.logger.warn("No image sequences found in: %s" % (folder,))
+
+        self.logger.warning( ">>>>> END COLLECT_FOLDER >>>>>" )
 
         return file_items
 
@@ -867,6 +847,28 @@ class BasicSceneCollector(HookBaseClass):
         return plugins_dict
 
     # set of custom helper methods for cleanliness
+    def _run_helper_methods(self, path, item, properties):
+        '''
+        Run all the helper methods
+        '''
+        # set default properties and link the task context
+        self._add_default_properties( item, properties)
+        self._link_task( item )
+
+        # check for existing version
+        item.properties['existing_version'] = self._get_existing_version( item )
+
+        # set version_data for creating a version in Shotgun
+        item.properties['version_data'] = self.set_version_data( path, item )
+        
+        # set fields to resolve output path
+        item.properties['resolve_fields'] = self.set_resolve_fields( item )
+        
+        # collect template paths
+        item.properties['template_paths'] = self._apply_templates( item )
+        
+        return item
+
     def _add_default_properties(self, item, properties):
         '''
         Add the default properties and their values
@@ -1014,8 +1016,6 @@ class BasicSceneCollector(HookBaseClass):
                             }
         
         for i in template_paths:
-            # self.logger.warning(">>>>> %s" % template_paths[i] )
-            # self.logger.warning(">>>>> %s exists? %s" % ( i, os.path.exists( template_paths[i] ) ) )
             template_paths[i] = re.sub( "(\s+)", "-", template_paths[i] )
         
         return template_paths
@@ -1048,7 +1048,7 @@ class BasicSceneCollector(HookBaseClass):
         else:
             underscore_ver = "_v%s" % str(version_number).zfill(3)
     
-        version_name = "%s%s" % ( publish_name, version_number )
+        version_name = "%s%s" % ( publish_name, underscore_ver )
 
         # search for version and return result
         existing_version_data = [
@@ -1067,6 +1067,8 @@ class BasicSceneCollector(HookBaseClass):
                             "version_name": version_name,
                             "publish_name": publish_name,
                             }
+
+        self.logger.warning(">>>>> version_name: %s" % version_name)
 
         return existing_version
 

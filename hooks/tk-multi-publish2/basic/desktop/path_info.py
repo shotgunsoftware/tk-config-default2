@@ -461,6 +461,10 @@ class BasicPathInfo(HookBaseClass):
                 else:
                     pass
 
+            # set pipeline root for Deadline processes
+            script_file = "\\\\10.80.8.252\\VFX_Pipeline\\Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py"
+            path_info['all_fields']['script_file'] = script_file
+
         return path_info
 
     def _set_workfile_dir(self, path, item, tk):
