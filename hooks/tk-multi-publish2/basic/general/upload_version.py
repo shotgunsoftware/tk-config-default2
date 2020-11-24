@@ -254,6 +254,7 @@ class UploadVersionPlugin(HookBaseClass):
         """ 
         # publish_thumbnail = self.get_publish_thumbnail(settings, item)
         publisher = self.parent
+
         # sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
         get_file_string = file_strings.FileStrings()
 
@@ -401,6 +402,7 @@ class UploadVersionPlugin(HookBaseClass):
         # submission and creation of the QTs. Now we need to loop through the alternative jobs
 
         self.logger.warning( ">>>>> END UPLOAD_VERSION VALIDATION >>>>>")
+
         return True
         
     def publish(self, settings, item):
@@ -456,6 +458,7 @@ class UploadVersionPlugin(HookBaseClass):
         # Create the json file
         review_output = None
         process_info_list = []
+
         review_process_json = item.properties['template_paths'].get('review_process_json')
         review_process_json_dict = self.read_json_file(jm,total_info_dict,review_process_json)
 
@@ -743,6 +746,7 @@ class UploadVersionPlugin(HookBaseClass):
         burnin_enabled = project_info['sg_review_burn_in']
         plugin_in_script = self.replace_slashes(item.properties['nuke_review_script'])
         plugin_out_script = item.properties['nuke_out_script']
+
         temp_root = self.replace_slashes( item.properties['template_paths'].get('temp_root') )
         script_file = self.replace_slashes(item.properties['script_file']) or None
 
@@ -950,5 +954,6 @@ class UploadVersionPlugin(HookBaseClass):
             if property_key:                 
                 item.properties[property_key] = template
                 self.logger.debug("Template: %s - %s" % (property_key,template))
+
                 return template            
                 
