@@ -63,7 +63,7 @@ apps.tk-multi-publish2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-publish2
-  version: 2.5.4.4
+  version: 2.5.4.5
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -182,6 +182,13 @@ apps.tk-houdini-flipbook.location:
   organization: nfa-vfxim
   repository: tk-houdini-flipbook
   version: 1.0.0
+
+# houdini arnold
+apps.tk-houdini-arnold.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini-arnold
+  version: 0.1.1
 
 # ---- Nuke apps
 
