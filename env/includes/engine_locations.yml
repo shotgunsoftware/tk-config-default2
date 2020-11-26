@@ -112,4 +112,4 @@ engines.tk-vred.location:
 engines.tk-sketchbook.location:
   type: app_store
   name: tk-sketchbook
-  version: v0.3.7
+  version: v0.4.0
