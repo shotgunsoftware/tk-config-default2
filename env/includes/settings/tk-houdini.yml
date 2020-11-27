@@ -12,18 +12,19 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
-- ../engine_locations.yml
-- ./tk-houdini-alembicnode.yml
-- ./tk-houdini-cachenode.yml
-- ./tk-houdini-mantranode.yml
-- ./tk-houdini-flipbook.yml
-- ./tk-multi-loader2.yml
-- ./tk-multi-publish2.yml
-- ./tk-multi-screeningroom.yml
-- ./tk-multi-shotgunpanel.yml
-- ./tk-multi-snapshot.yml
-- ./tk-multi-workfiles2.yml
+  - ../app_locations.yml
+  - ../engine_locations.yml
+  - ./tk-houdini-alembicnode.yml
+  - ./tk-houdini-cachenode.yml
+  - ./tk-houdini-mantranode.yml
+  - ./tk-houdini-flipbook.yml
+  - ./tk-houdini-arnold.yml
+  - ./tk-multi-loader2.yml
+  - ./tk-multi-publish2.yml
+  - ./tk-multi-screeningroom.yml
+  - ./tk-multi-shotgunpanel.yml
+  - ./tk-multi-snapshot.yml
+  - ./tk-multi-workfiles2.yml
 
 ################################################################################
 
@@ -38,7 +39,7 @@ settings.tk-houdini.asset:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
   menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
+    - { app_instance: tk-multi-workfiles2, name: File Open... }
   location: "@engines.tk-houdini.location"
 
 # asset_step
@@ -60,13 +61,14 @@ settings.tk-houdini.asset_step:
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
     tk-houdini-flipbook: "@settings.tk-houdini-flipbook.asset_step"
+    tk-houdini-arnold: "@settings.tk-houdini-arnold.asset_step"
   menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
-  - {app_instance: tk-multi-snapshot, name: Snapshot...}
-  - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish2, name: Publish...}
-  - {app_instance: tk-houdini-flipbook, name: Flipbook...}
-  location: '@engines.tk-houdini.location'
+    - { app_instance: tk-multi-workfiles2, name: File Open... }
+    - { app_instance: tk-multi-snapshot, name: Snapshot... }
+    - { app_instance: tk-multi-workfiles2, name: File Save... }
+    - { app_instance: tk-multi-publish2, name: Publish... }
+    - { app_instance: tk-houdini-flipbook, name: Flipbook... }
+  location: "@engines.tk-houdini.location"
 
 # project
 settings.tk-houdini.project:
@@ -79,7 +81,7 @@ settings.tk-houdini.project:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
   menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
+    - { app_instance: tk-multi-workfiles2, name: File Open... }
   location: "@engines.tk-houdini.location"
 
 # sequence
@@ -93,7 +95,7 @@ settings.tk-houdini.sequence:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
   menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
+    - { app_instance: tk-multi-workfiles2, name: File Open... }
   location: "@engines.tk-houdini.location"
 
 # shot
@@ -107,7 +109,7 @@ settings.tk-houdini.shot:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
   menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
+    - { app_instance: tk-multi-workfiles2, name: File Open... }
   location: "@engines.tk-houdini.location"
 
 # shot_step
@@ -131,10 +133,11 @@ settings.tk-houdini.shot_step:
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.shot_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
     tk-houdini-flipbook: "@settings.tk-houdini-flipbook.shot_step"
+    tk-houdini-arnold: "@settings.tk-houdini-arnold.shot_step"
   menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
-  - {app_instance: tk-multi-snapshot, name: Snapshot...}
-  - {app_instance: tk-multi-workfiles2, name: File Save...}
-  - {app_instance: tk-multi-publish2, name: Publish...}
-  - {app_instance: tk-houdini-flipbook, name: Flipbook...}
-  location: '@engines.tk-houdini.location'
+    - { app_instance: tk-multi-workfiles2, name: File Open... }
+    - { app_instance: tk-multi-snapshot, name: Snapshot... }
+    - { app_instance: tk-multi-workfiles2, name: File Save... }
+    - { app_instance: tk-multi-publish2, name: Publish... }
+    - { app_instance: tk-houdini-flipbook, name: Flipbook... }
+  location: "@engines.tk-houdini.location"
