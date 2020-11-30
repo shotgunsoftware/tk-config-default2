@@ -34,7 +34,7 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.0.7
+  version: v2.0.8
 
 # Desktop
 engines.tk-desktop.location:
@@ -82,7 +82,7 @@ engines.tk-motionbuilder.location:
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.12.8
+  version: v0.12.9
 
 # Photoshop
 engines.tk-photoshopcc.location:

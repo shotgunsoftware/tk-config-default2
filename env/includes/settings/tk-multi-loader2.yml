@@ -271,6 +271,7 @@ settings.tk-multi-loader2.aftereffects:
     Photoshop Image: [add_to_project, add_to_comp]
     Rendered Image: [add_to_project, add_to_comp]
     Image: [add_to_project, add_to_comp]
+    Movie: [add_to_project, add_to_comp]
     Texture: [add_to_project, add_to_comp]
   entities:
   - caption: Assets
