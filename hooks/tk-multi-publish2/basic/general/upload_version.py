@@ -15,6 +15,7 @@ import re
 import sgtk
 import datetime
 import time
+import json
 
 # from software.nuke.nuke_python import submission_sanity_checks as ssc
 # submission_tools = ssc.NukeSanityChecks()
@@ -310,7 +311,7 @@ class UploadVersionPlugin(HookBaseClass):
 
         review_process_type = review_process['sg_review_process_type']
         review_process_entity_type = review_process['entity_type']
-        item.properties['review_process_type']=review_process_type.lower()
+        item.properties['review_process_type'] = review_process_type.lower()
         self.logger.info("Review process info: %s - %s" %(review_process_entity_type,
                                                         item.properties.get("review_process_type")))
 
@@ -428,60 +429,73 @@ class UploadVersionPlugin(HookBaseClass):
             }
         )
 
-        # Create the version
-        try:
-            self.logger.info("Creating Version : %s" % (item.properties.get("version_data")['code'],))
-            start_time = time.time()
-            version = publisher.shotgun.create("Version", item.properties.get("version_data"))
-            self.logger.debug("--- Version creation took %s seconds ---" % (time.time() - start_time))
-            if version:
-                self.logger.info("Version info:  %s" % (str(version.get('code') ) ) )
-                item.properties["sg_version_data"] = version
-                if 'version' in item.properties['entity_info'].keys():
-                    item.properties['entity_info']['version'].update({'id':version['id']})   
-                else:
-                    item.properties['entity_info']['version']=version
-        except:
-            raise Exception("Failed to upload Version to SG ")
-        finally:
-            self.logger.info("Version upload complete!")
+        one = True
+        if not one:
+            # Create the version
+            try:
+                self.logger.info("Creating Version : %s" % (item.properties.get("version_data")['code'],))
+                start_time = time.time()
+                version = publisher.shotgun.create("Version", item.properties.get("version_data"))
+                self.logger.debug("--- Version creation took %s seconds ---" % (time.time() - start_time))
+                if version:
+                    self.logger.info("Version info:  %s" % (str(version.get('code') ) ) )
+                    item.properties["sg_version_data"] = version
+                    if 'version' in item.properties['entity_info'].keys():
+                        item.properties['entity_info']['version'].update({'id':version['id']})   
+                    else:
+                        item.properties['entity_info']['version']=version
+            except:
+                raise Exception("Failed to upload Version to SG ")
+            finally:
+                self.logger.info("Version upload complete!")
 
-        ### NTENTIONAL BREAKAGE ###
-        return
 
         total_info_dict = dict(
-        project_info = item.properties.get("project_info"),
-        entity_info = item.properties.get("entity_info"),
-        )
+            project_info = item.properties.get("project_info"),
+            entity_info = item.properties.get("entity_info"),
+            )
+
         # Create the json file
         review_output = None
         process_info_list = []
-        review_process_json = item.properties['template_paths'].get('review_process_json')
-        review_process_json_dict = self.read_json_file(jm,total_info_dict,review_process_json)
 
+        # Convert json to dict 
+        # and extract primary/secondary process dictionary
+        review_process_json_dict = item.properties.get('review_process_json')
         process_dict =  review_process_json_dict[item.properties.get('review_process_type')]
         
         for i in process_dict.keys():
+
+            key = str(i)
+            process_settings = process_dict[key].get('process_settings')
+            nuke_settings = process_dict[key].get('nuke_settings')
+
             self.logger.info("Creating process files for %s" % (i))            
             resolve_fields = item.properties.get('resolve_fields')
-            resolve_fields.update({'name': str(i)})
+            resolve_fields.update({'name': key})
 
             if resolve_fields['version'] == None:
                 self.logger.warning("No version number find from path. Setting to version Zero")
                 resolve_fields['version'] = 000
-            if 'plugin_in_script_alt' in process_dict[str(i)].keys():
-                item.properties['nuke_review_script'] = os.path.join(total_info_dict['project_info']['sg_root']['local_path_windows'], 
-                                                process_dict[str(i)]['plugin_in_script_alt'])
-            self.logger.info("Update nuke script: %s" % (item.properties['nuke_review_script']))
+
+            if process_settings.get('plugin_in_script_alt'):
+                review_script_path = os.path.join(total_info_dict['project_info']['sg_root']['local_path_windows'], 
+                                                process_settings['plugin_in_script_alt'])
+                review_script_path = os.path.normpath( review_script_path )
+                item.properties['nuke_review_script'] = review_script_path
+
+            self.logger.warning("Update nuke script: %s" % (item.properties['nuke_review_script']))
+            self.logger.warning(">>>>> %s: %s" % ( "resolve_fields_version", resolve_fields['version'] ) )
+            continue
 
             info_json_file = item.properties['extra_templates'].get('info_json_template').apply_fields(resolve_fields)
             info_json_file = re.sub("(\s+)", "-", info_json_file) 
             info_json_file = self.test_template(item, info_json_file, 'info_json_file')                
             process_info_list.append(info_json_file)  
 
-            review_template = publisher.engine.get_template_by_name(process_dict[str(i)]['qt_template_secondary'])
+            review_template = publisher.engine.get_template_by_name(process_dict[key]['qt_template_secondary'])
             review_output = review_template.apply_fields(resolve_fields)
-            review_output = self.test_template(item, review_output, str(i))
+            review_output = self.test_template(item, review_output, key)
 
             item.properties["output_root"] = os.path.split(review_output)[0]
             item.properties["output_main"] = os.path.split(review_output)[1]
@@ -490,15 +504,15 @@ class UploadVersionPlugin(HookBaseClass):
             item.properties['nuke_out_script'] = os.path.join(item.properties['template_paths'].get('temp_root'),
                                                                 "deadline", 
                                                                 "%s_%s.nk" % (re.sub("(\s+)", "-", item.properties.get('version_data')['code']), 
-                                                                            str(i)))
+                                                                            key))
 
-            item.properties['entity_info'].update({'create_version':process_dict[str(i)]['create_version']})
-            item.properties['entity_info'].update({'update_version':process_dict[str(i)]['update_version']})
+            item.properties['entity_info'].update({'create_version':process_dict[key]['create_version']})
+            item.properties['entity_info'].update({'update_version':process_dict[key]['update_version']})
 
             content_info_dict = {}
-            if (process_dict[str(i)]['content_info'] and 
-            isinstance(process_dict[str(i)]['content_info'], dict)):
-                for k,v in process_dict[str(i)]['content_info'].items():
+            if (process_dict[key]['content_info'] and 
+            isinstance(process_dict[key]['content_info'], dict)):
+                for k,v in process_dict[key]['content_info'].items():
                     try:
                         content_info_dict[str(k)] = item.properties.get("entity_info")[str(v)]
                     except:
@@ -510,8 +524,8 @@ class UploadVersionPlugin(HookBaseClass):
             process_info = self.set_process_info(
                                                 self.dl_submission,
                                                 "Nuke",
-                                                str(i),
-                                                process_dict[str(i)],
+                                                key,
+                                                process_dict[key],
                                                 item.properties.get("project_info"),
                                                 item.properties.get("software_info"),
                                                 item.properties.get("entity_info"),
@@ -531,15 +545,22 @@ class UploadVersionPlugin(HookBaseClass):
                     self.logger.debug("Playlist %s already has Verion %s" %(item.properties.get('playlist_name'),version['code']))
                 else:
                     self.logger.debug("Updated Playlist %s with Verion %s" %(item.properties.get('playlist_name'),version['code']))
-            info_json_file = self.write_json_file(jm,
-                        total_info_dict, 
-                        info_json_file)  
+            
+            info_json_file = self.write_json_file( jm,
+                                                    total_info_dict, 
+                                                    info_json_file
+                                                    )  
 
             # log results  
             self.logger.debug("Review template: %s" %(str(process_dict[str(i)])))
             self.logger.debug("Review output: %s" %(str(review_output)))
             self.logger.debug("JSON file: %s" %(str(info_json_file)))
 
+        ### NTENTIONAL BREAKAGE ###
+        self.logger.warning(">>>>> End review space")
+        raise Exception
+        return
+        
         item.properties['process_info_list']=process_info_list
 
         # Send the QT creation job to the farm
@@ -676,20 +697,21 @@ class UploadVersionPlugin(HookBaseClass):
     def set_process_info(self, dl_module, plugin_name, process_name, plugin_settings, project_info, software_info, entity_info, item, multiple_task_list=None):
         
         process_info = None
+        create_version = False
         # DL vairables
         batch_name = (entity_info['version']['code']+"_submit") or ""
         job_name = entity_info['version']['code']+ "_" + process_name or ""
         plate_type = entity_info['version']['code'] or ""        
-        create_version = entity_info['create_version'] or False
-        update_version = entity_info['update_version'] or False
+        create_version = entity_info['deadline_settings']['create_version']    # json ref
+        update_version = entity_info['update_version'] or False    #json ref
         update_client_version = False
         create_publish = False
         publish_file_type = None
         copy_to_location = False
         copy_location = None
-        plugin_version = None
-        plugin_path = None
-        process_type = None
+        plugin_version = None    # set value
+        plugin_path = None    # set value
+        process_type = None    # set value
         zip_output = False
         # user = project_info['artist_name'] or ""
         comment = ""
@@ -782,24 +804,37 @@ class UploadVersionPlugin(HookBaseClass):
             self.logger.warning("Could not set process_type")
 
         process_info = dict(
-            batch_name = batch_name,
-            job_name = job_name, 
+            #????
+            plugin_settings = plugin_settings, # potentially remove
+            plate_type = plate_type,  # potentially remove
+            comment = comment, # potentially remove
+            # process_settings
+            user = user_name,   
+            vendor = vendor,     
             process_name = process_name, 
             process_type = process_type,
             content_info = content_info,
-            plate_type = plate_type,
+            script_file = script_file,
+            sg_temp_root = temp_root,
+            # deadline
+            batch_name = batch_name,
+            job_name = job_name, 
+            content_output_file = content_output_file,
+            content_output_file_ext =content_output_file_ext,  
+            content_output_file_total = content_output_file_total,          
+            content_output_root = content_output_root,
+            plugin_name = plugin_name,
             create_version = create_version,
             update_version = update_version,
             update_client_version = update_client_version,
             create_publish = create_publish,
-            publish_file_type = publish_file_type,
+            publish_file_type = publish_file_type, # should derive in collector i.e. "Alembic Cache"
             copy_to_location = copy_to_location,
+            plugin_path = plugin_path,
+            plugin_version = plugin_version,
             copy_location = copy_location,
             zip_output = zip_output,
-            user = user_name,   
-            vendor = vendor,     
             title = title,
-            comment = comment,
             department = department,
             group= group,
             priority = priority,
@@ -809,22 +844,13 @@ class UploadVersionPlugin(HookBaseClass):
             concurrent_task = concurrent_task,
             chunk_size = chunk_size,                
             frame_range =frame_range,
-            content_output_file = content_output_file,
-            content_output_file_ext =content_output_file_ext,  
-            content_output_file_total = content_output_file_total,          
-            content_output_root = content_output_root,
-            camera_switch = camera_switch,
             job_dependencies = job_dependencies,
-            plugin_name = plugin_name,
-            plugin_path = plugin_path,
-            plugin_version = plugin_version,
-            plugin_settings = plugin_settings,
+            #nuke_settings
+            camera_switch = camera_switch,
             plugin_in_script = plugin_in_script,
             plugin_out_script = plugin_out_script,
             slate_enabled = slate_enabled,
             burnin_enabled = burnin_enabled,
-            script_file = script_file,
-            sg_temp_root = temp_root,
             main_transform_switch = main_transform_switch
             )
         
@@ -918,22 +944,58 @@ class UploadVersionPlugin(HookBaseClass):
 
             return json_file
 
-    def read_json_file(self, json_module, info_dict, json_filename):
+    # def read_json_file(self, json_module, info_dict, json_filename):
 
-        json_file = None
-        try:
-            json_file = json_module.read_JsonDataFile(filename=json_filename)
-        except:
-            raise Exception("Issue reading JSON file - needed for DL submission!")
-        finally:
-            self.logger.debug("Read info JSON file.",
-                    extra={
-                    "action_show_folder": {
-                        "path": json_filename
-                    }
-                    })
+    #     json_file = None
+    #     try:
+    #         json_file = json_module.read_JsonDataFile(filename=json_filename)
+    #     except:
+    #         raise Exception("Issue reading JSON file - needed for DL submission!")
+    #     finally:
+    #         self.logger.debug("Read info JSON file.",
+    #                 extra={
+    #                 "action_show_folder": {
+    #                     "path": json_filename
+    #                 }
+    #                 })
 
-        return json_file
+    #     return 
+        
+    # def write_DataToJsonFile(self, path):
+    #     """
+    #     write Data structure to the json file name specified
+    #     """
+    #     fileOut = None
+    #     data = reviewInData
+    #     filename = self.json_fileName
+    #     try:
+    #         fileOut = open(filename, "w+")
+    #         json_data = json.dumps(data, sort_keys=False,
+    #                                indent=4, separators=(',', ': '), default=str)
+    #         fileOut.write(json_data)
+    #         fileOut.flush()
+    #         fileOut.close()
+    #         return True
+    #     except Exception as err:
+    #         raise Exception("%s : %s" % (filename, err))
+    #     finally:
+    #         if fileOut is not None:
+    #             fileOut.close()
+
+    def read_JsonDataFile(self, path):
+        '''
+        Convert json file contents into a dictionary
+        '''
+        if not os.path.exists( path ):
+            raise Exception("Unable to read Json data from file: %s" % path)
+
+        file_content = open(path, "r")
+        file_str = file_content.read()
+        file_content.close()
+
+        json_data = json.loads(file_str)
+        
+        return json_data
 
     def test_template(self, item, template, property_key, exists=False):
         """

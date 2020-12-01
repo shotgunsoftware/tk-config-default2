@@ -40,7 +40,7 @@ keys:
         type: str
     Shot:
         type: str
-        filter_by: '^[0-9a-zA-Z]{0,3}_?[0-9a-zA-Z]+_?\d{0,4}'
+        # filter_by: '^[0-9a-zA-Z]{0,3}_?[0-9a-zA-Z]+_?\d{0,4}'
     Rush:
         type: str    
     ext:
@@ -155,6 +155,14 @@ keys:
         default: abc
         alias: extension
 
+    outsource_task:
+        type: str
+        shotgun_entity_type: Task
+        shotgun_field_name: content
+        choices: ['matchmove', 'DMP']
+        default: matchmove
+        alias: task_name
+
 #
 # The paths section contains all the the key locations where files are to be stored
 # by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
@@ -198,7 +206,7 @@ paths:
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_folder_root:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}'
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}'
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_version_jpg:
@@ -214,7 +222,7 @@ paths:
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_version_tif:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.tif'
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}.{SEQ}.tif'
         root_name: 'project_pipeline'
     
     incoming_outsource_shot_version_psd:
@@ -301,6 +309,10 @@ paths:
 
     processing_root:
         definition: 'admin/processing'
+        root_name: 'project_pipeline'
+
+    general_review_process_json:
+        definition: admin/processing/json/processing_review_settings.json
         root_name: 'project_pipeline'
 
     shot_review_process_json:
