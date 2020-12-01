@@ -568,6 +568,9 @@ settings.tk-multi-publish2.sketchbook.project:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   publish_plugins:
   - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings: {}
   - name: Upload for review
@@ -584,13 +587,16 @@ settings.tk-multi-publish2.sketchbook.asset_step:
   collector_settings:
       Work Template: sketchbook_asset_work
   publish_plugins:
-   - name: Publish to Shotgun
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-     settings:
-       Publish Template: sketchbook_asset_publish
-   - name: Upload for review
-     hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
-     settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    settings:
+      Publish Template: sketchbook_asset_publish
+  - name: Upload for review
+    hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
+    settings: {}
   pre_publish: "{self}/pre_publish.py:{engine}/tk-multi-publish2/basic/pre_publish.py"
   help_url: *help_url
   modal: true
@@ -602,6 +608,9 @@ settings.tk-multi-publish2.sketchbook.shot_step:
   collector_settings:
       Work Template: sketchbook_shot_work
   publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
