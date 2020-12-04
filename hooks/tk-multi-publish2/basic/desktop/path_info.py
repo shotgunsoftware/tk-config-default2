@@ -399,29 +399,42 @@ class BasicPathInfo(HookBaseClass):
         else:
             finder_path = path
 
-        logger.warning(">>>>> Collecting path: %s" % finder_path)
-        path_info_returns = find_path.get_folder_contents( finder_path, ignore_folder_list, seek_folder_list )
+        self.logger.warning(">>>>> Collecting path: %s" % finder_path)
+        path_info_returns = find_path.get_folder_contents( finder_path, ignore_folder_list, seek_folder_list, file_ext_ignore=["db"] )
         path_info = { 'all_fields':{}, 'path_info_returns': path_info_returns }
+
+        # for i in path_info_returns:
+        #     self.logger.warning(">>>>> i: %s" % i)
 
         # initialize templates
         tk = sgtk.sgtk_from_path(path)
+        root_template = tk.template_from_path( path )
+        path_info['all_fields']['root_template'] = root_template
+
+        # self.logger.warning( ">>>>> root_template: %s" % root_template )
 
         for item in path_info_returns:
-            if not ext:
+            if item['file_range'] == 0:
+                item['single'] = True
+            elif not ext:
                 item['single'] = item['file_range'].split('-')[0] == item['file_range'].split('-')[-1]
             else:
                 frame = re.search( r"(\d{3,10})%s$" % ext, path ).group(1)
                 item['file_range'] = "%s-%s" % ( frame, frame )
                 item['single'] = True
 
-            frames = item['file_range'].split('-')
+            frames = str( item['file_range'] ).split('-')
 
             # collect template and template fields
             tmp_path = ''
             work_template = None
             if item['single']:
                 tmp_path = item['padded_file_name']
-                full_path = re.sub( item['hash_padding'].replace('.', ''), frames[0], tmp_path )
+                if item['file_range'] != 0:
+                    full_path = re.sub( item['hash_padding'].replace('.', ''), frames[0], tmp_path )
+                else:
+                    full_path = item['padded_file_name']
+
                 work_template = tk.template_from_path( tmp_path )
 
                 item['full_path'] = full_path
@@ -431,11 +444,18 @@ class BasicPathInfo(HookBaseClass):
                 work_template = tk.template_from_path( tmp_path )
 
             else:
-                tmp_path = os.path.join( path, item['relative_path'] )
+                tmp_path = os.path.join( path, item['relative_path'] ).replace("\\", "/")
                 item['directory'] = tmp_path
                 work_template = tk.template_from_path( tmp_path )
 
             item['base_template'] = work_template
+
+            self.logger.warning(">>>>>")
+            # self.logger.warning(">>>>> tmp_path: %s" % tmp_path .replace("\\","/") )
+            self.logger.warning("    >>>>> padded_file_name: %s" % item['padded_file_name'])
+            self.logger.warning("    >>>>> tmp_path: %s" % tmp_path)
+            self.logger.warning("    >>>>> work_template: %s" % work_template)
+            self.logger.warning(">>>>>")
 
             if item.get('base_template'):
                 curr_fields = work_template.get_fields(tmp_path)
@@ -492,3 +512,22 @@ class BasicPathInfo(HookBaseClass):
         else:
             item['workfile_dir'] = None
             item['publish_path'] = None
+
+    def _set_process(self, template):
+
+        process_info = {
+            "outrource": False,
+            "process": "Nuke",
+            }
+
+        if not template:
+            return process_info
+
+        if template.name in [
+            "incoming_outsource_shot_folder_root",
+            "incoming_outsource_assets_root"]:
+            
+            process_info['outsource'] = True
+
+        return process_info
+

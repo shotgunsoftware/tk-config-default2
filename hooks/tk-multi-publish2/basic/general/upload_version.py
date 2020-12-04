@@ -533,6 +533,7 @@ class UploadVersionPlugin(HookBaseClass):
                                                 )
 
             total_info_dict.update({'process_info': process_info})
+
             if process_dict[str(i)]['add_to_review_playlist']:
                 added_verions = sg_writer.add_version_to_playlist(
                                                                     item.context.project['id'],
@@ -807,7 +808,7 @@ class UploadVersionPlugin(HookBaseClass):
             #????
             plugin_settings = plugin_settings, # potentially remove
             plate_type = plate_type,  # potentially remove
-            comment = comment, # potentially remove
+            comment = comment,
             # process_settings
             user = user_name,   
             vendor = vendor,     
@@ -820,7 +821,7 @@ class UploadVersionPlugin(HookBaseClass):
             batch_name = batch_name,
             job_name = job_name, 
             content_output_file = content_output_file,
-            content_output_file_ext =content_output_file_ext,  
+            content_output_file_ext = content_output_file_ext,  
             content_output_file_total = content_output_file_total,          
             content_output_root = content_output_root,
             plugin_name = plugin_name,

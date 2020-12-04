@@ -163,6 +163,10 @@ keys:
         default: matchmove
         alias: task_name
 
+    etc:
+        type: str
+        filter_by: ([a-zA-Z]+)
+
 #
 # The paths section contains all the the key locations where files are to be stored
 # by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
@@ -199,7 +203,7 @@ paths:
     temp_asset_render_root: assets/temp/{sg_asset_type}/{Asset}/renders
     info_json_file: shots/temp/{Shot}/json/{Shot}_{task_name}[_{name}]_v{version}.json
     asset_json_file: assets/temp/{sg_asset_type}/{Asset}/renders/json/{Asset}_{task_name}[_{name}]_v{version}.json
-    
+
     #Shots
     incoming_outsource_shot_root:
         definition: 'admin/incoming/outsource/shots'
@@ -209,8 +213,12 @@ paths:
         definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}'
         root_name: 'project_pipeline'
 
+    incoming_outsource_shot_undistorted: 
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}/UD'
+        root_name: 'project_pipeline'
+
     incoming_outsource_shot_version_jpg:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.jpg'
+        definition: '@incoming_outsource_shot_folder_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}.{SEQ}.jpg'
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_version_jpeg:
@@ -235,6 +243,14 @@ paths:
     
     incoming_outsource_shot_matchmove_render:
         definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}/renders/{descriptor}'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_shot_nuke_render:
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}/nuke/{descriptor}/{Shot}_{descriptor}[_{name}]_v{version}.{SEQ}.{ext}'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_shot_3de_file:
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{etc}[_{name}]_v{version}.3de'
         root_name: 'project_pipeline'
 
     #Assets
