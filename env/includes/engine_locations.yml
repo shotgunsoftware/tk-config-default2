@@ -76,7 +76,7 @@ engines.tk-maya.location:
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
-  version: v0.5.1
+  version: v0.5.2
 
 # Nuke
 engines.tk-nuke.location:
