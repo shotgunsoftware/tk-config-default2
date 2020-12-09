@@ -29,7 +29,7 @@ apps.tk-multi-about.location:
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.7.2
+  version: v1.7.3
 
 # demo
 apps.tk-multi-demo.location:
