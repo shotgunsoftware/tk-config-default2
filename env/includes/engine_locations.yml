@@ -40,7 +40,7 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.5.11
+  version: v2.5.12
 
 # Desktop2
 engines.tk-desktop2.location:
