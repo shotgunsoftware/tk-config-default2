@@ -450,13 +450,6 @@ class BasicPathInfo(HookBaseClass):
 
             item['base_template'] = work_template
 
-            self.logger.warning(">>>>>")
-            # self.logger.warning(">>>>> tmp_path: %s" % tmp_path .replace("\\","/") )
-            self.logger.warning("    >>>>> padded_file_name: %s" % item['padded_file_name'])
-            self.logger.warning("    >>>>> tmp_path: %s" % tmp_path)
-            self.logger.warning("    >>>>> work_template: %s" % work_template)
-            self.logger.warning(">>>>>")
-
             if item.get('base_template'):
                 curr_fields = work_template.get_fields(tmp_path)
                 item['fields'] = curr_fields
@@ -476,6 +469,9 @@ class BasicPathInfo(HookBaseClass):
 
             # set workfiles directory for any copy functions
             self._set_workfile_dir( path, item, tk )
+
+            # set outsource/process
+            item['process_plugin_info'] = self._set_process( work_template )
 
             # upadate all_info with any outstanding key:value pairs
             for key in item['fields'].keys():
@@ -516,18 +512,40 @@ class BasicPathInfo(HookBaseClass):
     def _set_process(self, template):
 
         process_info = {
-            "outrource": False,
-            "process": "Nuke",
+            "outsource": False,
+            "software": "Nuke",
+            # "process": "",
             }
 
         if not template:
             return process_info
 
+        # determine if outsource
         if template.name in [
             "incoming_outsource_shot_folder_root",
-            "incoming_outsource_assets_root"]:
+            "incoming_outsource_assets_root",
+            "incoming_outsource_shot_3de_file",
+            "maya_shot_outsource_work_file",
+            "maya_shot_outsource_version_abc",
+            "maya_asset_outsource_work_file",
+            "maya_asset_outsource_version_abc",
+            "incoming_outsource_shot_nuke_render",
+            "incoming_outsource_shot_matchmove_render",
+            "incoming_outsource_shot_undistorted",
+            ]:
             
             process_info['outsource'] = True
+
+        # determine if Maya File
+        if template.name in [
+            "maya_shot_outsource_work_file",
+            "maya_asset_outsource_work_file",
+            "maya_shot_work",
+            "maya_asset_work",
+            ]:
+
+            process_info['software'] = "Maya"
+            # process_info['process'] = "Alembic"
 
         return process_info
 

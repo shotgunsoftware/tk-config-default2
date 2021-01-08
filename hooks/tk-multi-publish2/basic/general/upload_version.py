@@ -42,8 +42,8 @@ try:
             ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
 
     sys.path.append(ssvfx_script_path)
-    from thinkbox.deadline import deadline_manager
-    from thinkbox.deadline import deadline_submission3
+    from thinkbox.deadline import deadline_manager3
+    from thinkbox.deadline import deadline_submission4
     from general.file_functions import file_strings
     from general.data_management import json_manager
     from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
@@ -325,45 +325,6 @@ class UploadVersionPlugin(HookBaseClass):
             
         self.logger.debug("Using review JSON: %s" % ( item.properties['template_paths'].get('review_process_json') ))
 
-        # entity_info = item.properties.get('entity')
-        # entity_type = item.properties['fields'].get('type')
-        
-        # if entity_type == "Shot":
-            
-            # shot_info_dict = {}
-            # for i in entity_info.keys():
-            #     shot_info_dict.update( { i: entity_info[i] } )
-            
-            # if item.properties.get('camera'):
-            #     camera = item.properties.get('camera')
-            #     shot_info_dict.update( { "main_plate_camera": camera } )
-            #     self.logger.info("Main plate camera - %s" % ( camera['code']))
-            
-            # if item.properties.get('version_data'):
-            #     shot_info_dict.update({"version":item.properties.get('version_data')})
-            
-            # item.properties['entity_info'] = shot_info_dict
-            
-        # elif entity_type == "Asset":
-            # asset_info_dict = {}
-            # for i in entity_info.keys():
-            #     asset_info_dict.update({i:entity_info[i]})
-
-            # if item.properties.get('version_data'):
-            #     asset_info_dict.update({"version":item.properties.get('version_data')})  
-
-            # item.properties['entity_info'] = asset_info_dict
-
-        # else:
-        #     # Set shot specifics to None
-        #     item.properties['shot'] = {}
-        #     item.properties['content_info'] = None
-        #     item.properties['shot'].update({'sg_lens_info' : None})
-        #     item.properties['shot'].update({'sg_gamma' : None})
-        #     item.properties['shot_lut'] = None
-        #     item.properties['lut_pick'] = "None-(Log)"
-        #     item.properties['shot'].update({'sg_frame_handles' : None})
-
         entity_info = item.properties.get('entity')
         entity_type = item.properties['fields'].get('type')
 
@@ -381,18 +342,28 @@ class UploadVersionPlugin(HookBaseClass):
             
         item.properties['entity_info'] = entity_info
 
-        # set codec or error
-        codecs = item.properties.get("codec_info")
-        if (len(item.properties.get("project_info")['sg_review_qt_codecs'])>0 and codecs): 
-            review_codecs = item.properties.get("project_info")['sg_review_qt_codecs']  
-            if review_codecs:
-                for i in review_codecs:
-                    codec_match = next((codec for codec in codecs if codec['code'] == i['name']), None) 
-                    review_codec = codec_match['sg_nuke_code']
-                    self.logger.debug("Nuke codec name: %s" % (review_codec,))
-            item.properties['review_codec'] = review_codec
-        else:
-            raise Exception("Not enough info for submission. Needs review codec info from SG.")                            
+        info_json_file = self.read_JsonDataFile( item.properties['json_properties']['general_settings']['info_json_file'] )
+
+        for process in info_json_file['processes']:
+            process_qt_codec = info_json_file['processes'].get(process).get('nuke_settings').get('quicktime_codec')
+            if not process_qt_codec:
+                raise Exception("JSON process %s has no Quicktime codec" % process)
+
+        # self.logger.warning( ">>>>> process_codecs: %s" % json_process_codecs )
+        
+
+        # # set codec or error
+        # codecs = item.properties.get("codec_info")
+        # if (len(item.properties.get("project_info")['sg_review_qt_codecs'])>0 and codecs): 
+        #     review_codecs = item.properties.get("project_info")['sg_review_qt_codecs']  
+        #     if review_codecs:
+        #         for i in review_codecs:
+        #             codec_match = next((codec for codec in codecs if codec['code'] == i['name']), None) 
+        #             review_codec = codec_match['sg_nuke_code']
+        #             self.logger.debug("Nuke codec name: %s" % (review_codec,))
+        #     item.properties['review_codec'] = review_codec
+        # else:
+        #     raise Exception("Not enough info for submission. Needs review codec info from SG.")                            
 
         # Input
         item.properties['input_path'] = get_file_string.get_input_file_format(item.properties.get("path") )
@@ -402,6 +373,7 @@ class UploadVersionPlugin(HookBaseClass):
         # submission and creation of the QTs. Now we need to loop through the alternative jobs
 
         self.logger.warning( ">>>>> END UPLOAD_VERSION VALIDATION >>>>>")
+
         return True
         
     def publish(self, settings, item):
@@ -414,7 +386,7 @@ class UploadVersionPlugin(HookBaseClass):
         :param item: Item to process
         """
         publisher = self.parent
-        self.dl_submission = deadline_submission3.DeadlineSubmission()
+        self.dl_submission = deadline_submission4.DeadlineSubmission()
         jm = json_manager.JsonManager()
         sg_writer = shotgun_utilities.ShotgunWriter(shotgun=publisher.shotgun)
 
@@ -429,6 +401,7 @@ class UploadVersionPlugin(HookBaseClass):
             }
         )
 
+        # dev switch for DL submission testing
         one = True
         if not one:
             # Create the version
@@ -449,120 +422,138 @@ class UploadVersionPlugin(HookBaseClass):
             finally:
                 self.logger.info("Version upload complete!")
 
+        # create draft files
+        job_info_file, plugin_info_file = self._create_draft_files( item )
 
-        total_info_dict = dict(
-            project_info = item.properties.get("project_info"),
-            entity_info = item.properties.get("entity_info"),
-            )
-
-        # Create the json file
-        review_output = None
-        process_info_list = []
-
-        # Convert json to dict 
-        # and extract primary/secondary process dictionary
-        review_process_json_dict = item.properties.get('review_process_json')
-        process_dict =  review_process_json_dict[item.properties.get('review_process_type')]
-        
-        for i in process_dict.keys():
-
-            key = str(i)
-            process_settings = process_dict[key].get('process_settings')
-            nuke_settings = process_dict[key].get('nuke_settings')
-
-            self.logger.info("Creating process files for %s" % (i))            
-            resolve_fields = item.properties.get('resolve_fields')
-            resolve_fields.update({'name': key})
-
-            if resolve_fields['version'] == None:
-                self.logger.warning("No version number find from path. Setting to version Zero")
-                resolve_fields['version'] = 000
-
-            if process_settings.get('plugin_in_script_alt'):
-                review_script_path = os.path.join(total_info_dict['project_info']['sg_root']['local_path_windows'], 
-                                                process_settings['plugin_in_script_alt'])
-                review_script_path = os.path.normpath( review_script_path )
-                item.properties['nuke_review_script'] = review_script_path
-
-            self.logger.warning("Update nuke script: %s" % (item.properties['nuke_review_script']))
-            self.logger.warning(">>>>> %s: %s" % ( "resolve_fields_version", resolve_fields['version'] ) )
-            continue
-
-            info_json_file = item.properties['extra_templates'].get('info_json_template').apply_fields(resolve_fields)
-            info_json_file = re.sub("(\s+)", "-", info_json_file) 
-            info_json_file = self.test_template(item, info_json_file, 'info_json_file')                
-            process_info_list.append(info_json_file)  
-
-            review_template = publisher.engine.get_template_by_name(process_dict[key]['qt_template_secondary'])
-            review_output = review_template.apply_fields(resolve_fields)
-            review_output = self.test_template(item, review_output, key)
-
-            item.properties["output_root"] = os.path.split(review_output)[0]
-            item.properties["output_main"] = os.path.split(review_output)[1]
-            item.properties["output_ext"] = os.path.splitext(review_output)[1]
-                        
-            item.properties['nuke_out_script'] = os.path.join(item.properties['template_paths'].get('temp_root'),
-                                                                "deadline", 
-                                                                "%s_%s.nk" % (re.sub("(\s+)", "-", item.properties.get('version_data')['code']), 
-                                                                            key))
-
-            item.properties['entity_info'].update({'create_version':process_dict[key]['create_version']})
-            item.properties['entity_info'].update({'update_version':process_dict[key]['update_version']})
-
-            content_info_dict = {}
-            if (process_dict[key]['content_info'] and 
-            isinstance(process_dict[key]['content_info'], dict)):
-                for k,v in process_dict[key]['content_info'].items():
-                    try:
-                        content_info_dict[str(k)] = item.properties.get("entity_info")[str(v)]
-                    except:
-                        self.logger.debug("!!! Issue getting content info for %s" % (str(v)))
-
-      
-            item.properties["content_info"] = content_info_dict
-
-            process_info = self.set_process_info(
-                                                self.dl_submission,
-                                                "Nuke",
-                                                key,
-                                                process_dict[key],
-                                                item.properties.get("project_info"),
-                                                item.properties.get("software_info"),
-                                                item.properties.get("entity_info"),
-                                                item
-                                                )
-
-            total_info_dict.update({'process_info': process_info})
-
-            if process_dict[str(i)]['add_to_review_playlist']:
-                added_verions = sg_writer.add_version_to_playlist(
-                                                                    item.context.project['id'],
-                                                                    item.properties.get('playlist_name'),
-                                                                    'rsv',
-                                                                    version['code'],
-                                                                    version['id']
-                                                                )
-                if not added_verions:
-                    self.logger.debug("Playlist %s already has Verion %s" %(item.properties.get('playlist_name'),version['code']))
-                else:
-                    self.logger.debug("Updated Playlist %s with Verion %s" %(item.properties.get('playlist_name'),version['code']))
-            
-            info_json_file = self.write_json_file( jm,
-                                                    total_info_dict, 
-                                                    info_json_file
-                                                    )  
-
-            # log results  
-            self.logger.debug("Review template: %s" %(str(process_dict[str(i)])))
-            self.logger.debug("Review output: %s" %(str(review_output)))
-            self.logger.debug("JSON file: %s" %(str(info_json_file)))
+        # send draft job to deadline
+        self.send_to_dl( job_info_file, plugin_info_file )
 
         ### NTENTIONAL BREAKAGE ###
         self.logger.warning(">>>>> End review space")
         raise Exception
         return
+
+        # # create deadline files
+        # job_info_file, plugin_info_file = self.create_dl_info_files( item )
+
+        # json_properties = item.properties['json_properties']
+
+        # # set primary or secondary
+        # process_type = item.properties['step'].get('sg_review_process_type').lower()        
+        # process_dict =  json_properties[process_type]
+
+        # total_info_dict = dict(
+        #     project_info = item.properties.get("project_info"),
+        #     entity_info = item.properties.get("entity_info"),
+        #     )
+
+
+        # Create the json file
+        # review_output = None
+        # process_info_list = []
+
+        # Convert json to dict 
+        # and extract primary/secondary process dictionary
+        # review_process_json_dict = item.properties.get('review_process_json')
+        # process_dict =  review_process_json_dict[item.properties.get('review_process_type')]
+
+        # self.logger.warning(">>>>> review_process_json_dict: %s" % review_process_json_dict)
+        # self.logger.warning(">>>>> process_dict: %s" % process_dict)
         
-        item.properties['process_info_list']=process_info_list
+        # for i in process_dict.keys():
+
+        #     key = str(i)
+        #     process_settings = process_dict[key].get('process_settings')
+        #     nuke_settings = process_dict[key].get('nuke_settings')
+
+        #     self.logger.info("Creating process files for %s" % (i))            
+        #     resolve_fields = item.properties.get('resolve_fields')
+        #     resolve_fields.update({'name': key})
+
+        #     if resolve_fields['version'] == None:
+        #         self.logger.warning("No version number find from path. Setting to version Zero")
+        #         resolve_fields['version'] = 000
+
+        #     if process_settings.get('plugin_in_script_alt'):
+        #         review_script_path = os.path.join(total_info_dict['project_info']['sg_root']['local_path_windows'], 
+        #                                         process_settings['plugin_in_script_alt'])
+        #         review_script_path = os.path.normpath( review_script_path )
+        #         item.properties['nuke_review_script'] = review_script_path
+
+        #     self.logger.warning("Update nuke script: %s" % (item.properties['nuke_review_script']))
+        #     self.logger.warning(">>>>> %s: %s" % ( "resolve_fields_version", resolve_fields['version'] ) )
+        #     continue
+
+        #     info_json_file = item.properties['extra_templates'].get('info_json_template').apply_fields(resolve_fields)
+        #     info_json_file = re.sub("(\s+)", "-", info_json_file) 
+        #     info_json_file = self.test_template(item, info_json_file, 'info_json_file')                
+        #     process_info_list.append(info_json_file)  
+
+        #     review_template = publisher.engine.get_template_by_name(process_dict[key]['qt_template_secondary'])
+        #     review_output = review_template.apply_fields(resolve_fields)
+        #     review_output = self.test_template(item, review_output, key)
+
+        #     item.properties["output_root"] = os.path.split(review_output)[0]
+        #     item.properties["output_main"] = os.path.split(review_output)[1]
+        #     item.properties["output_ext"] = os.path.splitext(review_output)[1]
+                        
+        #     item.properties['nuke_out_script'] = os.path.join(item.properties['template_paths'].get('temp_root'),
+        #                                                         "deadline", 
+        #                                                         "%s_%s.nk" % (re.sub("(\s+)", "-", item.properties.get('version_data')['code']), 
+        #                                                                     key))
+
+        #     item.properties['entity_info'].update({'create_version':process_dict[key]['create_version']})
+        #     item.properties['entity_info'].update({'update_version':process_dict[key]['update_version']})
+
+        #     content_info_dict = {}
+        #     if (process_dict[key]['content_info'] and 
+        #     isinstance(process_dict[key]['content_info'], dict)):
+        #         for k,v in process_dict[key]['content_info'].items():
+        #             try:
+        #                 content_info_dict[str(k)] = item.properties.get("entity_info")[str(v)]
+        #             except:
+        #                 self.logger.debug("!!! Issue getting content info for %s" % (str(v)))
+
+      
+        #     item.properties["content_info"] = content_info_dict
+
+        #     process_info = self.set_process_info(
+        #                                         self.dl_submission,
+        #                                         "Nuke",
+        #                                         key,
+        #                                         process_dict[key],
+        #                                         item.properties.get("project_info"),
+        #                                         item.properties.get("software_info"),
+        #                                         item.properties.get("entity_info"),
+        #                                         item
+        #                                         )
+
+        #     total_info_dict.update({'process_info': process_info})
+
+        #     if process_dict[str(i)]['add_to_review_playlist']:
+        #         added_verions = sg_writer.add_version_to_playlist(
+        #                                                             item.context.project['id'],
+        #                                                             item.properties.get('playlist_name'),
+        #                                                             'rsv',
+        #                                                             version['code'],
+        #                                                             version['id']
+        #                                                         )
+        #         if not added_verions:
+        #             self.logger.debug("Playlist %s already has Verion %s" %(item.properties.get('playlist_name'),version['code']))
+        #         else:
+        #             self.logger.debug("Updated Playlist %s with Verion %s" %(item.properties.get('playlist_name'),version['code']))
+            
+        #     info_json_file = self.write_json_file( jm,
+        #                                             total_info_dict, 
+        #                                             info_json_file
+        #                                             )  
+
+        #     # log results  
+        #     self.logger.debug("Review template: %s" %(str(process_dict[str(i)])))
+        #     self.logger.debug("Review output: %s" %(str(review_output)))
+        #     self.logger.debug("JSON file: %s" %(str(info_json_file)))
+        
+        # item.properties['process_info_list']=process_info_list
 
         # Send the QT creation job to the farm
         try:
@@ -663,29 +654,25 @@ class UploadVersionPlugin(HookBaseClass):
         
         return ampm
 
-    def send_to_dl(self, dl_module, draft_info, item):
+    def send_to_dl(self, job_info_file, plugin_info_file):
         """
         Runs cmd function to send image sequence to DL.
         Needs to be of type file.type.sequence.
 
         :param item: Item to process
         """   
-        self.dm = deadline_manager.DeadlineManager()
+        self.dm = deadline_manager3.DeadlineManager3()
 
-        try:
-            deadline_submission = self.dm.get_dl_cmd("%s %s" %(draft_info['job_info_file'], draft_info['plugin_info_file']))
-        except:
-            raise Exception("Failed in the DL submission process.")          
-        finally:
-            self.logger.debug("Sucessfully Sent job to DL.")
-            for line in deadline_submission.splitlines():
-                if not line:
-                    pass
-                else:
-                    self.logger.debug("--- %s "% (line,))
+        if not ( job_info_file and plugin_info_file ):
+            if not job_info_file:
+                raise Exception( "Missing job info file" )
+            else:
+                raise Exception( "Missing plugin info file" )
+
+        deadline_submission = self.dm.get_dl_cmd("%s %s" % ( job_info_file, plugin_info_file))
         
-        self.logger.info("Version Submission Complete!\nVersion has been sent to SG and the QT sent to DL")
-    
+        self.logger.warning( ">>>>> deadline_submission: %s" % str(deadline_submission) )
+
     def replace_slashes(self, path):
         """
         Simple function to replace back with forward slashes
@@ -695,235 +682,307 @@ class UploadVersionPlugin(HookBaseClass):
         else:
             return path.replace("\\","/")
 
-    def set_process_info(self, dl_module, plugin_name, process_name, plugin_settings, project_info, software_info, entity_info, item, multiple_task_list=None):
+    def _create_draft_files(self, item):
+
+        job_file_dir = os.path.join( 
+                                    item.properties['template_paths'].get('temp_root'), 
+                                    "deadline",
+                                    "draft-update" 
+                                    )
         
-        process_info = None
-        create_version = False
-        # DL vairables
-        batch_name = (entity_info['version']['code']+"_submit") or ""
-        job_name = entity_info['version']['code']+ "_" + process_name or ""
-        plate_type = entity_info['version']['code'] or ""        
-        create_version = entity_info['deadline_settings']['create_version']    # json ref
-        update_version = entity_info['update_version'] or False    #json ref
-        update_client_version = False
-        create_publish = False
-        publish_file_type = None
-        copy_to_location = False
-        copy_location = None
-        plugin_version = None    # set value
-        plugin_path = None    # set value
-        process_type = None    # set value
-        zip_output = False
-        # user = project_info['artist_name'] or ""
-        comment = ""
-        title = "artist_submit"        
-        department = "VFX"
-        group="artist"
-        priority = 55
-        primary_pool = "draft_submission"
-        secondary_pool = "draft_submission"
+        if not os.path.exists( job_file_dir ):
+            os.makedirs( job_file_dir )
 
-        if process_name == "shotgun-version":
-            priority = 50        
-            primary_pool = "update_sg"
-            secondary_pool = "update_sg"            
-        if plugin_name == "DraftPlugin":
-            primary_pool = "vfx_processing" #"dduffy_test"#
-            secondary_pool = "vfx_processing" #"dduffy_test"#         
-        machine_limit = 1
-        concurrent_task = 1
-        chunk_size = 1000000
+        output_name = "%s_%s" % ( item.properties['version_data']['code'], "draft-update" )
 
-        # Content variables
-        content_info = item.properties.get('content_info') or ""
-        content_output_file = item.properties.get('output_main') or ""
-        content_output_file_total = item.properties.get('output_main') or ""
-        content_output_file_ext = item.properties.get('output_ext') or ""
-        content_output_root = item.properties.get('output_root') or ""
-        content_output_file_total = os.path.join(content_output_root,content_output_file)
-        job_dependencies = ""
-        frame_range = item.properties.get("frame_range") or "1-1"
-        if 'slate' in  plugin_settings.keys():
-            if not plugin_settings['slate']:
-                pass
-            else:
-                if len(frame_range.split("-")) == 1:
-                    frame_range = "%s-%s" % (frame_range, frame_range)
-                else:
-                    first_frame= frame_range.split("-")[0]
-                    last_frame= frame_range.split("-")[1]
-                    frame_range = "%s-%s" % (first_frame, last_frame)
+        draft_job_file = os.path.join( job_file_dir, "%s_job_info.job" % output_name )
+        draft_plugin_file = os.path.join( job_file_dir, "%s_plugin_info.job" % output_name )
+
+        draft_job_info = [
+                        "BatchName=%s" % item.properties['version_data']['code'] + "_submit",
+                        "Name=%s" % output_name,
+                        "Plugin=Python",
+                        "Priority=55",
+                        "MachineLimit=1",
+                        "Pool=rthompson_test",
+                        "SecondaryPool=rthompson_test",
+                        "ExtraInfo0=%s" % item.properties['project_info']['name'],
+                        ]
+
+        draft_plugin_info = [
+                            # "ScriptFile=%s" % item.properties['json_properties']['general_settings']['script_file'],
+                            "ScriptFile=%s" % "C:\\Users\\rthompson\\Scripts\\Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit2.py",
+                            "Arguments=%s" % item.properties['json_properties']['general_settings']['info_json_file'],
+                            "Version=2.7",
+                            ]
+
+        # write draft files
+        writer = open( draft_job_file, "w" )
+        try:
+            for i in draft_job_info:
+                writer.write( "%s\n" % i )
+
+            writer.close()
+
+        except:
+            writer.close()
+            raise Exception( "Error writing job info file")
+
+        writer = open( draft_plugin_file, "w" )
+        try:
+            for i in draft_plugin_info:
+                writer.write( "%s\n" % i )
+
+            writer.close()
+
+        except:
+            writer.close()
+            raise Exception( "Error writing job info file")
+
+        return draft_job_file, draft_plugin_file
+
+    # def set_process_info(self, dl_module, plugin_name, process_name, plugin_settings, project_info, software_info, entity_info, item, multiple_task_list=None):
+        
+    #     process_info = None
+    #     create_version = False
+    #     # DL vairables
+    #     batch_name = (entity_info['version']['code']+"_submit") or ""
+    #     job_name = entity_info['version']['code']+ "_" + process_name or ""
+    #     plate_type = entity_info['version']['code'] or ""        
+    #     create_version = entity_info['deadline_settings']['create_version']    # json ref
+    #     update_version = entity_info['update_version'] or False    #json ref
+    #     update_client_version = False
+    #     create_publish = False
+    #     publish_file_type = None
+    #     copy_to_location = False
+    #     copy_location = None
+    #     plugin_version = None    # set value
+    #     plugin_path = None    # set value
+    #     process_type = None    # set value
+    #     zip_output = False
+    #     # user = project_info['artist_name'] or ""
+    #     comment = ""
+    #     title = "artist_submit"        
+    #     department = "VFX"
+    #     group="artist"
+    #     priority = 55
+    #     primary_pool = "draft_submission"
+    #     secondary_pool = "draft_submission"
+
+    #     if process_name == "shotgun-version":
+    #         priority = 50        
+    #         primary_pool = "update_sg"
+    #         secondary_pool = "update_sg"            
+    #     if plugin_name == "DraftPlugin":
+    #         primary_pool = "vfx_processing" #"dduffy_test"#
+    #         secondary_pool = "vfx_processing" #"dduffy_test"#         
+    #     machine_limit = 1
+    #     concurrent_task = 1
+    #     chunk_size = 1000000
+
+    #     # Content variables
+    #     content_info = item.properties.get('content_info') or ""
+    #     content_output_file = item.properties.get('output_main') or ""
+    #     content_output_file_total = item.properties.get('output_main') or ""
+    #     content_output_file_ext = item.properties.get('output_ext') or ""
+    #     content_output_root = item.properties.get('output_root') or ""
+    #     content_output_file_total = os.path.join(content_output_root,content_output_file)
+    #     job_dependencies = ""
+    #     frame_range = item.properties.get("frame_range") or "1-1"
+    #     if 'slate' in  plugin_settings.keys():
+    #         if not plugin_settings['slate']:
+    #             pass
+    #         else:
+    #             if len(frame_range.split("-")) == 1:
+    #                 frame_range = "%s-%s" % (frame_range, frame_range)
+    #             else:
+    #                 first_frame= frame_range.split("-")[0]
+    #                 last_frame= frame_range.split("-")[1]
+    #                 frame_range = "%s-%s" % (first_frame, last_frame)
             
-        # Software Variables
-        software_nuke = next((soft for soft in software_info if soft['products'] == plugin_name and soft['sg_pipeline_tools'] == True), None)
-        try:
-            plugin_version = software_nuke['version_names']
-            plugin_path = software_nuke['windows_path']
-        except:
-            pass
+    #     # Software Variables
+    #     software_nuke = next((soft for soft in software_info if soft['products'] == plugin_name and soft['sg_pipeline_tools'] == True), None)
+    #     try:
+    #         plugin_version = software_nuke['version_names']
+    #         plugin_path = software_nuke['windows_path']
+    #     except:
+    #         pass
 
-        slate_enabled = project_info['sg_review_qt_slate']
-        burnin_enabled = project_info['sg_review_burn_in']
-        plugin_in_script = self.replace_slashes(item.properties['nuke_review_script'])
-        plugin_out_script = item.properties['nuke_out_script']
-        temp_root = self.replace_slashes( item.properties['template_paths'].get('temp_root') )
-        script_file = self.replace_slashes(item.properties['script_file']) or None
+    #     slate_enabled = project_info['sg_review_qt_slate']
+    #     burnin_enabled = project_info['sg_review_burn_in']
+    #     plugin_in_script = self.replace_slashes(item.properties['nuke_review_script'])
+    #     plugin_out_script = item.properties['nuke_out_script']
+    #     temp_root = self.replace_slashes( item.properties['template_paths'].get('temp_root') )
+    #     script_file = self.replace_slashes(item.properties['script_file']) or None
 
-        user_name = ""
-        try:
-            user_info = item.properties.get("user_info")    
-            if( user_info and 
-            len(user_info)==1):
-                user_name = user_info[0]['login']
-        except:
-            self.logger.warning("Could not get user_name info")
+    #     user_name = ""
+    #     try:
+    #         user_info = item.properties.get("user_info")    
+    #         if( user_info and 
+    #         len(user_info)==1):
+    #             user_name = user_info[0]['login']
+    #     except:
+    #         self.logger.warning("Could not get user_name info")
 
-        vendor = ""
-        try:
-            vendor = item.properties.get("vendor")    
-        except:
-            self.logger.warning("Could not get user_name info")
+    #     vendor = ""
+    #     try:
+    #         vendor = item.properties.get("vendor")    
+    #     except:
+    #         self.logger.warning("Could not get user_name info")
 
-        camera_switch = None
-        try:
-            camera_switch = entity_info['main_plate_camera']['sg_pump_incoming_transform_switch']
-        except:
-            pass
+    #     camera_switch = None
+    #     try:
+    #         camera_switch = entity_info['main_plate_camera']['sg_pump_incoming_transform_switch']
+    #     except:
+    #         pass
 
-        main_transform_switch = None
-        try:
-            main_transform_switch = plugin_settings['main_transform_switch']
-        except:
-            pass
+    #     main_transform_switch = None
+    #     try:
+    #         main_transform_switch = plugin_settings['main_transform_switch']
+    #     except:
+    #         pass
 
-        if item.properties.get('template'):
-            if (item.properties.get('template').name == "incoming_outsource_shot_version_tif" or
-            item.properties.get('template').name =="incoming_outsource_shot_version_seq_tif"):
-                self.logger.info("Shot tiff found gathering settings for Version process.")
-                process_type = "dmp"   
-        else:
-            self.logger.warning("Could not set process_type")
+    #     if item.properties.get('template'):
+    #         if (item.properties.get('template').name == "incoming_outsource_shot_version_tif" or
+    #         item.properties.get('template').name =="incoming_outsource_shot_version_seq_tif"):
+    #             self.logger.info("Shot tiff found gathering settings for Version process.")
+    #             process_type = "dmp"   
+    #     else:
+    #         self.logger.warning("Could not set process_type")
 
-        process_info = dict(
-            #????
-            plugin_settings = plugin_settings, # potentially remove
-            plate_type = plate_type,  # potentially remove
-            comment = comment,
-            # process_settings
-            user = user_name,   
-            vendor = vendor,     
-            process_name = process_name, 
-            process_type = process_type,
-            content_info = content_info,
-            script_file = script_file,
-            sg_temp_root = temp_root,
-            # deadline
-            batch_name = batch_name,
-            job_name = job_name, 
-            content_output_file = content_output_file,
-            content_output_file_ext = content_output_file_ext,  
-            content_output_file_total = content_output_file_total,          
-            content_output_root = content_output_root,
-            plugin_name = plugin_name,
-            create_version = create_version,
-            update_version = update_version,
-            update_client_version = update_client_version,
-            create_publish = create_publish,
-            publish_file_type = publish_file_type, # should derive in collector i.e. "Alembic Cache"
-            copy_to_location = copy_to_location,
-            plugin_path = plugin_path,
-            plugin_version = plugin_version,
-            copy_location = copy_location,
-            zip_output = zip_output,
-            title = title,
-            department = department,
-            group= group,
-            priority = priority,
-            primary_pool = primary_pool,
-            secondary_pool = secondary_pool,
-            machine_limit = machine_limit,
-            concurrent_task = concurrent_task,
-            chunk_size = chunk_size,                
-            frame_range =frame_range,
-            job_dependencies = job_dependencies,
-            #nuke_settings
-            camera_switch = camera_switch,
-            plugin_in_script = plugin_in_script,
-            plugin_out_script = plugin_out_script,
-            slate_enabled = slate_enabled,
-            burnin_enabled = burnin_enabled,
-            main_transform_switch = main_transform_switch
-            )
+    #     process_info = dict(
+    #         #????
+    #         plugin_settings = plugin_settings, # potentially remove
+    #         plate_type = plate_type,  # potentially remove
+    #         comment = comment,
+    #         # process_settings
+    #         user = user_name,   
+    #         vendor = vendor,     
+    #         process_name = process_name, 
+    #         process_type = process_type,
+    #         content_info = content_info,
+    #         script_file = script_file,
+    #         sg_temp_root = temp_root,
+    #         # deadline
+    #         batch_name = batch_name,
+    #         job_name = job_name, 
+    #         content_output_file = content_output_file,
+    #         content_output_file_ext = content_output_file_ext,  
+    #         content_output_file_total = content_output_file_total,          
+    #         content_output_root = content_output_root,
+    #         plugin_name = plugin_name,
+    #         create_version = create_version,
+    #         update_version = update_version,
+    #         update_client_version = update_client_version,
+    #         create_publish = create_publish,
+    #         publish_file_type = publish_file_type, # should derive in collector i.e. "Alembic Cache"
+    #         copy_to_location = copy_to_location,
+    #         plugin_path = plugin_path,
+    #         plugin_version = plugin_version,
+    #         copy_location = copy_location,
+    #         zip_output = zip_output,
+    #         title = title,
+    #         department = department,
+    #         group= group,
+    #         priority = priority,
+    #         primary_pool = primary_pool,
+    #         secondary_pool = secondary_pool,
+    #         machine_limit = machine_limit,
+    #         concurrent_task = concurrent_task,
+    #         chunk_size = chunk_size,                
+    #         frame_range =frame_range,
+    #         job_dependencies = job_dependencies,
+    #         #nuke_settings
+    #         camera_switch = camera_switch,
+    #         plugin_in_script = plugin_in_script,
+    #         plugin_out_script = plugin_out_script,
+    #         slate_enabled = slate_enabled,
+    #         burnin_enabled = burnin_enabled,
+    #         main_transform_switch = main_transform_switch
+    #         )
         
-        if multiple_task_list != None:
-            process_info.update({'info_json_count':len(multiple_task_list)})
-            for index, i in enumerate(multiple_task_list):
-                info_json_key = 'info_json_0%s'%str(index+1)
-                process_info.update({info_json_key:i})
+    #     if multiple_task_list != None:
+    #         process_info.update({'info_json_count':len(multiple_task_list)})
+    #         for index, i in enumerate(multiple_task_list):
+    #             info_json_key = 'info_json_0%s'%str(index+1)
+    #             process_info.update({info_json_key:i})
 
-        job_info_file,plugin_info_file = self.create_dl_info_files(dl_module, project_info, entity_info, process_info)
-        process_info.update({'job_info_file':job_info_file})
-        process_info.update({'plugin_info_file':plugin_info_file})
+    #     job_info_file, plugin_info_file = self.create_dl_info_files( item )
+    #     process_info.update({'job_info_file':job_info_file})
+    #     process_info.update({'plugin_info_file':plugin_info_file})
 
-        return process_info
+    #     return process_info
 
-    def create_dl_info_files(self, dl_module, project_info_dict, entity_info, process_info_dict):
+    def create_dl_info_files(self, item):
         
         job_info = None
         plugin_info = None
 
-        total_info = dict(
-        project_info = project_info_dict,
-        entity_info = entity_info,
-        process_info = process_info_dict
-        )
-
-        job_info = self.create_job_info(dl_module,
-                            total_info, 
-                            process_info_dict['plugin_name'])
-        plugin_info = self.create_plugin_info(dl_module,
-                            total_info, 
-                            process_info_dict['plugin_name'])  
+        try:
+            job_info = self.dl_submission.gather_job_info2( item )
+            plugin_info = self.dl_submission.gather_plugin_info2( item )  
+        except Exception as err:
+            raise Exception( "Unable to create job info file: %s" % err )
 
         return(job_info, plugin_info)
 
-    def create_job_info(self, dl_module, total_info, plugin_name):
+    # def create_dl_info_files(self, dl_module, project_info_dict, entity_info, process_info_dict):
+        
+    #     job_info = None
+    #     plugin_info = None
 
-        job_info = None
-        try:
-            job_info = self.dl_submission.gather_job_info(
-                total_info,
-                )
-        except Exception as err:
-            raise Exception("Unable to create %s job info file %s" % (plugin_name, err))
-        finally:
-            job_info = job_info.replace("/","\\")
-            self.logger.debug("Created %s job info file for %s." % (plugin_name,total_info['process_info']['process_name']),
-                    extra={
-                    "action_show_folder": {
-                        "path": job_info
-                    }
-            })
-        return job_info
+    #     total_info = dict(
+    #     project_info = project_info_dict,
+    #     entity_info = entity_info,
+    #     process_info = process_info_dict
+    #     )
 
-    def create_plugin_info(self, dl_module, total_info, plugin_name):
+    #     job_info = self.create_job_info(dl_module,
+    #                         total_info, 
+    #                         process_info_dict['plugin_name'])
+    #     plugin_info = self.create_plugin_info(dl_module,
+    #                         total_info, 
+    #                         process_info_dict['plugin_name'])  
 
-        plugin_info = None
-        try:
-            plugin_info = self.dl_submission.gather_plugin_info(
-                total_info,
-                )
-        except Exception as err:
-            raise Exception("Unable to create %s plugin info file %s" % (plugin_name, err))
-        finally:
-            plugin_info = plugin_info.replace("/","\\")
-            self.logger.debug("Created %s plugin info file for %s" % (plugin_name,total_info['process_info']['process_name']),
-                    extra={
-                    "action_show_folder": {
-                        "path": plugin_info
-                    }
-                    })
-            return plugin_info
+    #     return(job_info, plugin_info)
+
+    # def create_job_info(self, dl_module, total_info, plugin_name):
+
+    #     job_info = None
+    #     try:
+    #         job_info = self.dl_submission.gather_job_info(
+    #             total_info,
+    #             )
+    #     except Exception as err:
+    #         raise Exception("Unable to create %s job info file %s" % (plugin_name, err))
+    #     finally:
+    #         job_info = job_info.replace("/","\\")
+    #         self.logger.debug("Created %s job info file for %s." % (plugin_name,total_info['process_info']['process_name']),
+    #                 extra={
+    #                 "action_show_folder": {
+    #                     "path": job_info
+    #                 }
+    #         })
+    #     return job_info
+
+    # def create_plugin_info(self, dl_module, total_info, plugin_name):
+
+    #     plugin_info = None
+    #     try:
+    #         plugin_info = self.dl_submission.gather_plugin_info(
+    #             total_info,
+    #             )
+    #     except Exception as err:
+    #         raise Exception("Unable to create %s plugin info file %s" % (plugin_name, err))
+    #     finally:
+    #         plugin_info = plugin_info.replace("/","\\")
+    #         self.logger.debug("Created %s plugin info file for %s" % (plugin_name,total_info['process_info']['process_name']),
+    #                 extra={
+    #                 "action_show_folder": {
+    #                     "path": plugin_info
+    #                 }
+    #                 })
+    #         return plugin_info
 
     def write_json_file(self, json_module, info_dict, json_filename):
 

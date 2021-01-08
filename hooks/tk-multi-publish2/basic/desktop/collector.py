@@ -364,7 +364,12 @@ class BasicSceneCollector(HookBaseClass):
             path_root = "linux_path"
             sg_root = "local_path_linux"
 
-        local_storage_match = next((ls for ls in local_storage if ls[path_root] in proj_info['sg_root'][sg_root]), None)
+        proj_sg_root = proj_info.get('sg_root')
+        if not proj_sg_root:
+            local_storage_match = None
+        else:
+            local_storage_match = next((ls for ls in local_storage if ls[path_root] in proj_sg_root.get(sg_root)), None)
+        
         proj_info['local_storage'] = local_storage_match
 
         if proj_info['sg_3d_settings']:
@@ -429,6 +434,7 @@ class BasicSceneCollector(HookBaseClass):
         path_info = publisher.util.get_frame_sequence_path( {'path': path, 'ignore_folder_list': [], 'seek_folder_list': []} )
         curr_fields = path_info.get('all_fields')
 
+
         if curr_fields:
 
             # run one large shotgun search to collect entity, task, and step info
@@ -446,7 +452,7 @@ class BasicSceneCollector(HookBaseClass):
 
             entity_info = self.sgtk.shotgun.find_one("Task", filters, search_fields)
 
-            # Parse search results into entityl, task, step, and camera
+            # Parse search results into entity, task, step, and camera
             for key in entity_info:
                 key_split = key.split(".")
                 set_key = key_split[-1]
@@ -456,7 +462,7 @@ class BasicSceneCollector(HookBaseClass):
                 
                 if key_split[0] == 'step':
                     step[set_key] = entity_info[key]
-                elif "sg_main_plate_camera" in key:
+                elif "sg_main_plate_camera" in key_split:
                     camera[set_key] = entity_info[key]
                 else:
                     entity[set_key] = entity_info[key]
@@ -535,9 +541,11 @@ class BasicSceneCollector(HookBaseClass):
 
                 # templates and other quicktime info
                 'extra_templates': self._get_extra_templates( info['fields'] ),
+                'process_plugin_info': info['process_plugin_info'],
+                'padded_file_name': info['padded_file_name']
                 }
 
-            self.logger.warning(">>>>> full_path? %s" % info.get('full_path'))
+            # self.logger.warning(">>>>> camera? %s" % properties.get('camera'))
 
             if info['single']:
                 if info.get('full_path'):
@@ -860,16 +868,20 @@ class BasicSceneCollector(HookBaseClass):
         '''
         publisher = self.parent
 
-        # confirm job type by file extension
-        file_info = publisher.util.get_file_path_components(path)
-        extension = file_info["extension"]
-        # submit_file_type = next( ( j['item_type'] for i,j in self.common_file_info.items() if extension in j['extensions'] ), None )
-        submit_file_type = next( ( {i:j} for i,j in self.common_file_info.items() if extension in j['extensions'] ), None )
-        item.properties['submit_file_type'] = submit_file_type
-
         # set default properties and link the task context
         self._add_default_properties( item, properties)
         self._link_task( item )
+
+        # confirm job type by file extension
+        file_info = publisher.util.get_file_path_components(path)
+        extension = file_info["extension"]
+        submit_file_type = next( ( {i:j} for i,j in self.common_file_info.items() if extension in j['extensions'] ), None )
+        item.properties['submit_file_type'] = submit_file_type
+
+        # retrieve software for processing job
+        item_software = item.properties['process_plugin_info']['software']
+        set_software = next(( i for i in self.software_info if (item_software == i['products'] and i['sg_pipeline_tools'] == True ) ), None )
+        item.properties['set_software'] = set_software
 
         # check for existing version
         item.properties['existing_version'] = self._get_existing_version( item )
@@ -889,13 +901,6 @@ class BasicSceneCollector(HookBaseClass):
         # collect review process json as dictionary
         item.properties['json_properties'] = self._json_properties( item )
 
-        
-        self.logger.warning( ">>>>> template: %s" % item.properties['template'] )
-
-        ### TESTING DEADLINE_SUBMISSION SCRIPTS ###
-        item.properties['job_info_file'] = self.gather_job_info2( item )
-        item.properties['job_info_file'] = self.gather_plugin_info2( item )
-        
         return item
 
     def _add_default_properties(self, item, properties):
@@ -1155,7 +1160,6 @@ class BasicSceneCollector(HookBaseClass):
         json_properties = item.properties.get('review_process_json').copy()
         templates = item.properties.get('extra_templates')
         codecs = item.properties.get('codec_info')
-        project_codec = item.properties.get("project_info")['sg_review_qt_codecs'][0] or None
 
         info_json_file = templates['info_json_template'].apply_fields( item.properties.get('resolve_fields') )
         info_json_file = re.sub("(\s+)", "-", info_json_file)
@@ -1164,22 +1168,31 @@ class BasicSceneCollector(HookBaseClass):
         # set primary or secondary
         process_type = item.properties['step'].get('sg_review_process_type').lower()        
         process_dict =  json_properties[process_type]
+        process_jobs = process_dict['processes']
         
         # collect values and append them to the appropriate settings dictionary
-        for i in process_dict:
+        for i in process_jobs:
             key = str(i)
-            current_process = process_dict[key]
+            current_process = process_jobs[key]
             process_settings = current_process.get('process_settings')
+            nuke_settings = current_process.get('nuke_settings')
             
             resolve_fields = item.properties.get('resolve_fields').copy()
             resolve_fields.update({'name': key})
 
-            if process_settings.get('plugin_in_script_alt'):
+            if process_settings.get('plugin_in_script_alt') and item.properties['project_info'].get('sg_root'):
                 review_script_path = os.path.join( item.properties['project_info']['sg_root']['local_path_windows'], 
                                                 process_settings['plugin_in_script_alt'] )
                 review_script_path = os.path.normpath( review_script_path )
+            else:
+                review_script_path = item.properties['template_paths'].get('nuke_review_file')
 
-            quicktime_codec = next( ( i for i in codecs if i['id'] == project_codec['id'] ), None )
+
+            process_codec = nuke_settings.get('quicktime_codec').get('id')
+            if not process_codec:
+                raise Exception("Missing Quicktime Codec id in procesing_review_settings.json")
+
+            quicktime_codec = next( ( i for i in codecs if i['id'] == process_codec ), None )
 
             review_output = templates['qt_template_secondary'].apply_fields(resolve_fields)
             
@@ -1208,9 +1221,11 @@ class BasicSceneCollector(HookBaseClass):
             plugin_info_file = "%s_plugin_info.job" % variable_path
 
             # set format
-            json_format = current_process['nuke_settings']['format']['name']
+            json_format = current_process['nuke_settings']['format']['id']
             proj_formats = item.properties['project_info']['formats']
-            output_format = next((format_ for format_ in proj_formats if format_['code'] == json_format ), None)
+            output_format = next((format_ for format_ in proj_formats if format_['id'] == json_format ), None)
+
+            camera_format = item.properties.get('camera')
 
             # process_settings from item info
             user = item.properties['user_info'].get('login')
@@ -1249,9 +1264,18 @@ class BasicSceneCollector(HookBaseClass):
             create_publish = deadline_values.get('create_publish')
             copy_to_location = deadline_values.get('copy_to_location')
             copy_location = deadline_values.get('copy_location')
+
+            set_software = item.properties['set_software']
+            item_software = item.properties['set_software']['products']
+
             publish_file_type = deadline_values.get('publish_file_type')
+            if item_software == "Maya" and item['step']['id'] == 4:
+                publish_file_type = "Alembic Cache"
 
             current_process['process_settings'].update( {  
+                                        "plugin_name": item_software,
+                                        "plugin_path": set_software['windows_path'],
+                                        "plugin_version": set_software['version_names'],
                                         "nuke_review_script": review_script_path,
                                         "review_output": review_output,
                                         "user": user,
@@ -1260,8 +1284,10 @@ class BasicSceneCollector(HookBaseClass):
                                         "sg_temp_root": sg_temp_root,
                                         } )
 
+            # General Nuke Settings
             current_process['nuke_settings'].update( {
-                                        "qt_format": output_format,
+                                        # "format": output_format,
+                                        "format": camera_format,
                                         "quicktime_codec": quicktime_codec,
                                         "camera_switch": camera_switch,
                                         "plugin_out_script": plugin_out_script,
@@ -1269,7 +1295,47 @@ class BasicSceneCollector(HookBaseClass):
                                         "burnin_enabled": burnin_enabled,
                                         "main_transform_switch": main_transform_switch,
                                         } )
+            ### Node-specific Nuke Settings ###
+            # General Script Settings
+            current_process['nuke_settings']
+
+            # Main Read
+            current_process['nuke_settings']['main_read'].update( {
+                                        'file': item.properties['padded_file_name'],
+                                        'first': int(item.properties['frame_range'].split('-')[0]),
+                                        'last': int(item.properties['frame_range'].split('-')[-1]),
+                                        } )
+            # Shot CCC
+            shot_ccc_file = ""
+            shot_ccc = item.properties['entity'].get('sg_shot_ccc')
+            if shot_ccc != None:
+                shot_ccc_file = shot_ccc.get('local_path_windows').replace("\\", "/")
+            current_process['nuke_settings']['shot_ccc'] = {
+                                        'read_from_file': True,
+                                        'file': shot_ccc_file,
+                                        'disable': shot_ccc_file == "",
+                                        }
+            # Shot Cube
+            vfield_file = ""
+            vfield = item.properties['entity'].get('sg_shot_lut')
+            if shot_ccc != None:
+                vfield_file = vfield.get('local_path_windows').replace("\\", "/")
+            current_process['nuke_settings']['main_lut'] = {
+                                        'vfield_file': vfield_file,
+                                        'disable': vfield_file == "",
+                                        }
+            # Main Reformat
+            output_format_name = ""
+            if output_format:
+                output_format_name = output_format.get('code')
             
+            current_process['nuke_settings']['main_reformat'].update( {
+                                        'format': output_format_name,
+                                        'disable': output_format_name == "",
+                                        } )
+
+            # self.logger.warning(">>>>> main_reformat: %s" % current_process['nuke_settings']['main_reformat'] )
+
             current_process['deadline_settings'].update( {
                                         "batch_name": batch_name,
                                         "job_name": job_name,
@@ -1293,6 +1359,24 @@ class BasicSceneCollector(HookBaseClass):
                                         "job_info_file": job_info_file,
                                         "plugin_info_file": plugin_info_file,
                                         } )
+
+            
+
+        process_dict['project_info'] = { i: item.properties['project_info'][i] for i in item.properties['project_info'] if i != 'formats' }
+
+        process_dict['entity_info'] = {}
+        for key in item.properties['entity']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['entity'][i]
+        for key in item.properties['task']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['task'][i]
+        for key in item.properties['step']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['step'][i]
+        for key in item.properties['camera']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['camera'][i]
 
         self._write_dl_json( json_properties['general_settings']['info_json_file'], process_dict )
 
@@ -1349,11 +1433,11 @@ class BasicSceneCollector(HookBaseClass):
                                 "entity.Shot.sg_target_age",
                                 "entity.Shot.sg_shot_transform",
                                 "entity.Shot.sg_main_plate_camera",
-                                "entity.Shot.sg_main_plate_camera.code",
-                                "entity.Shot.sg_main_plate_camera.sg_format_width",
-                                "entity.Shot.sg_main_plate_camera.sg_format_height",
-                                "entity.Shot.sg_main_plate_camera.sg_pixel_aspect_ratio",
-                                "entity.Shot.sg_main_plate_camera.sg_pump_incoming_transform_switch",
+                                "entity.Shot.sg_main_plate_camera.Camera.code",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_format_width",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_format_height",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_pixel_aspect_ratio",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_pump_incoming_transform_switch",
                                 ])
                                 
         elif entity_type == "Asset":
@@ -1376,322 +1460,3 @@ class BasicSceneCollector(HookBaseClass):
 
         return search_fields
 
-    # def set_process_info(self, dl_module, plugin_name, process_name, plugin_settings, item, multiple_task_list=None):
-        
-    #     project_info = item.properties.get('project_info')
-    #     software_info = item.properties.get('software_info')
-    #     entity_info = item.properties.get('entity_info')
-
-    #     process_info = None
-    #     # DL vairables
-    #     batch_name = (entity_info['version']['code']+"_submit") or ""
-    #     job_name = entity_info['version']['code']+ "_" + process_name or ""
-    #     plate_type = entity_info['version']['code'] or ""        
-    #     create_version = entity_info['create_version'] or False
-    #     update_version = entity_info['update_version'] or False
-    #     # update_client_version = False
-    #     # create_publish = False
-    #     publish_file_type = None
-    #     # copy_to_location = False
-    #     # copy_location = None
-    #     plugin_version = None
-    #     plugin_path = None
-    #     process_type = None
-    #     zip_output = False
-    #     # user = project_info['artist_name'] or ""
-    #     comment = ""
-    #     title = "artist_submit"        
-    #     department = "VFX"
-    #     group="artist"
-    #     priority = 55
-    #     primary_pool = "draft_submission"
-    #     secondary_pool = "draft_submission"
-
-    #     if process_name == "shotgun-version":
-    #         priority = 50        
-    #         primary_pool = "update_sg"
-    #         secondary_pool = "update_sg"            
-    #     if plugin_name == "DraftPlugin":
-    #         primary_pool = "vfx_processing" #"dduffy_test"#
-    #         secondary_pool = "vfx_processing" #"dduffy_test"#         
-    #     machine_limit = 1
-    #     concurrent_task = 1
-    #     chunk_size = 1000000
-
-    #     # Content variables
-    #     content_info = item.properties.get('content_info') or ""
-    #     content_output_file = item.properties.get('output_main') or ""
-    #     content_output_file_total = item.properties.get('output_main') or ""
-    #     content_output_file_ext = item.properties.get('output_ext') or ""
-    #     content_output_root = item.properties.get('output_root') or ""
-    #     content_output_file_total = os.path.join(content_output_root,content_output_file)
-    #     job_dependencies = ""
-    #     frame_range = item.properties.get("frame_range") or "1-1"
-    #     if 'slate' in  plugin_settings.keys():
-    #         if not plugin_settings['slate']:
-    #             pass
-    #         else:
-    #             if len(frame_range.split("-")) == 1:
-    #                 frame_range = "%s-%s" % (frame_range, frame_range)
-    #             else:
-    #                 first_frame= frame_range.split("-")[0]
-    #                 last_frame= frame_range.split("-")[1]
-    #                 frame_range = "%s-%s" % (first_frame, last_frame)
-            
-    #     # Software Variables
-    #     software_nuke = next((soft for soft in software_info if soft['products'] == plugin_name and soft['sg_pipeline_tools'] == True), None)
-    #     try:
-    #         plugin_version = software_nuke['version_names']
-    #         plugin_path = software_nuke['windows_path']
-    #     except:
-    #         pass
-
-    #     slate_enabled = project_info['sg_review_qt_slate']
-    #     burnin_enabled = project_info['sg_review_burn_in']
-    #     plugin_in_script = self.replace_slashes(item.properties['nuke_review_script'])
-    #     plugin_out_script = item.properties['nuke_out_script']
-    #     temp_root = self.replace_slashes( item.properties['template_paths'].get('temp_root') )
-    #     script_file = self.replace_slashes(item.properties['script_file']) or None
-
-    #     user_name = ""
-    #     try:
-    #         user_info = item.properties.get("user_info")    
-    #         if( user_info and 
-    #         len(user_info)==1):
-    #             user_name = user_info[0]['login']
-    #     except:
-    #         self.logger.warning("Could not get user_name info")
-
-    #     vendor = ""
-    #     try:
-    #         vendor = item.properties.get("vendor")    
-    #     except:
-    #         self.logger.warning("Could not get user_name info")
-
-    #     camera_switch = None
-    #     try:
-    #         camera_switch = entity_info['main_plate_camera']['sg_pump_incoming_transform_switch']
-    #     except:
-    #         pass
-
-    #     main_transform_switch = None
-    #     try:
-    #         main_transform_switch = plugin_settings['main_transform_switch']
-    #     except:
-    #         pass
-
-    #     if item.properties.get('template'):
-    #         if (item.properties.get('template').name == "incoming_outsource_shot_version_tif" or
-    #         item.properties.get('template').name =="incoming_outsource_shot_version_seq_tif"):
-    #             self.logger.info("Shot tiff found gathering settings for Version process.")
-    #             process_type = "dmp"   
-    #     else:
-    #         self.logger.warning("Could not set process_type")
-
-    #     process_info = dict(
-    #         #????
-    #         plugin_settings = plugin_settings, # potentially remove
-    #         plate_type = plate_type,  # potentially remove
-    #         comment = comment, # potentially remove
-    #         # process_settings
-    #         user = user_name,   
-    #         vendor = vendor,     
-    #         process_name = process_name, 
-    #         process_type = process_type,
-    #         content_info = content_info,
-    #         script_file = script_file,
-    #         sg_temp_root = temp_root,
-    #         # deadline - variable
-    #         batch_name = batch_name,
-    #         job_name = job_name, 
-    #         content_output_file = content_output_file,
-    #         content_output_file_ext =content_output_file_ext,  
-    #         content_output_file_total = content_output_file_total,          
-    #         content_output_root = content_output_root,
-    #         plugin_name = plugin_name,
-    #         create_version = create_version,
-    #         update_version = update_version,
-    #         # deadline - static
-    #         # update_client_version = update_client_version,
-    #         # create_publish = create_publish,
-    #         publish_file_type = publish_file_type, # should derive in collector i.e. "Alembic Cache"
-    #         # copy_to_location = copy_to_location,
-    #         # copy_location = copy_location,
-    #         plugin_path = plugin_path,
-    #         plugin_version = plugin_version,
-    #         zip_output = zip_output,
-    #         title = title,
-    #         department = department,
-    #         group= group,
-    #         priority = priority,
-    #         primary_pool = primary_pool,
-    #         secondary_pool = secondary_pool,
-    #         machine_limit = machine_limit,
-    #         concurrent_task = concurrent_task,
-    #         chunk_size = chunk_size,                
-    #         frame_range =frame_range,
-    #         job_dependencies = job_dependencies,
-    #         #nuke_settings
-    #         camera_switch = camera_switch,
-    #         plugin_in_script = plugin_in_script,
-    #         plugin_out_script = plugin_out_script,
-    #         slate_enabled = slate_enabled,
-    #         burnin_enabled = burnin_enabled,
-    #         main_transform_switch = main_transform_switch
-    #         )
-        
-    #     if multiple_task_list != None:
-    #         process_info.update({'info_json_count':len(multiple_task_list)})
-    #         for index, i in enumerate(multiple_task_list):
-    #             info_json_key = 'info_json_0%s'%str(index+1)
-    #             process_info.update({info_json_key:i})
-
-    #     job_info_file,plugin_info_file = self.create_dl_info_files(dl_module, project_info, entity_info, process_info)
-    #     process_info.update({'job_info_file':job_info_file})
-    #     process_info.update({'plugin_info_file':plugin_info_file})
-
-    #     return process_info    
-
-    def gather_job_info2 (self, item):
-        """
-            Sets up the deadline job info 
-            :param info_dict loaded data for the content that will inform all relevant requirements
-        """
-        project_info = item.properties['project_info']
-        version_info = item.properties['version_data']
-        entity_info = item.properties['entity']
-
-        json_properties = item.properties['json_properties']
-        process_type = item.properties['step'].get('sg_review_process_type').lower()        
-        process_dict =  json_properties[process_type]
-
-        for i in process_dict:
-            key = str(i)
-            process_settings = process_dict[key]['process_settings']
-            deadline_settings = process_dict[key]['deadline_settings']
-
-            output_filename = deadline_settings['content_output_file']
-            output_directory = deadline_settings['content_output_root']
-            if deadline_settings.get('job_dependencies'):
-                output_filename = deadline_settings['content_output_file']
-                output_directory = deadline_settings['content_output_root']
-
-            basic_job_info = dict(
-                BatchName= deadline_settings['batch_name'],
-                OnJobComplete= "Nothing",
-                Plugin= process_settings['plugin_name'],
-                MachineLimit= deadline_settings['machine_limit'],
-                ConcurrentTasks= deadline_settings['concurrent_task'],
-                ChunkSize= deadline_settings['chunk_size'],
-                Department= deadline_settings['department'],
-                Group= deadline_settings['group'],
-                Priority= deadline_settings['priority'],
-                Name= deadline_settings['job_name'],
-                OutputFilename0= output_filename,
-                OutputDirectory0= output_directory,
-                Pool= deadline_settings['primary_pool'],
-                SecondaryPool= deadline_settings['secondary_pool'],
-                # Comment= MakeStringSafe(info_dict['process_info']['comment']),
-                JobDependencies= deadline_settings['job_dependencies'],
-                UserName= process_settings['user'],
-                Frames= deadline_settings['frame_range'],
-                ExtraInfo0= project_info['name'],
-            )
-
-            job_extra_info = dict(
-                ProjectID= project_info['id'],
-                ProjectName= project_info['name'],
-
-                PublishFileVersion= version_info['version_number'],            
-                PublishFileName= version_info['publish_name'],            
-
-                ContentType= entity_info['type'],
-                ContentID= entity_info['id'],
-                VersionName= version_info.get('code'),
-                VersionID= version_info.get('id'),
-                PipelineStep= version_info['sg_task']['name'],
-                InFile= version_info['sg_path_to_frames'], 
-                TaskID= version_info['sg_task']['id'],
-                Description= version_info.get('description'),
-
-                UpdateClientVersion= deadline_settings['update_client_version'],
-                CreateVersion= deadline_settings['create_version'],
-                CreatePublish= deadline_settings['create_publish'],
-                PublishFileType= deadline_settings['publish_file_type'],
-                CopyFileToLocation= deadline_settings['copy_to_location'],
-                ProcessType= key,
-                CopyLocation= deadline_settings['copy_location'],
-                UpdateVersion= deadline_settings['update_version'],
-                ZipOutputFolder= deadline_settings['zip_output'],
-                FileExtension=deadline_settings['content_output_file_ext']
-            )
-
-            job_info_file = deadline_settings['job_info_file']
-            writer = open( job_info_file, "w" )
-            try:
-                for i in basic_job_info:
-                    try:
-                        writer.write( "%s=%s\n" % ( i, basic_job_info[i] ) )
-                    except:
-                        writer.write( "%s=%s\n" % ( i, basic_job_info[i].encode('utf-8') ) )
-                
-                for i, j in enumerate(job_extra_info.keys()):
-                    ev_num = str(i)
-                    try:
-                        writer.write( "ExtraInfoKeyValue%s=%s=%s\n" % ( ev_num, j, job_extra_info[j] ) )
-                    except:
-                        writer.write( "ExtraInfoKeyValue%s=%s=%s\n" % ( ev_num, j, job_extra_info[j].encode('utf-8') ) )
-                
-                writer.close()
-
-            except:
-                writer.close()
-
-            return job_info_file
-
-    def gather_plugin_info2 (self, item):
-        """
-            Sets up the deadline job info 
-            :param info_dict loaded data for the content that will inform all relevant requirements
-        """
-        json_properties = item.properties['json_properties']
-        process_type = item.properties['step'].get('sg_review_process_type').lower()        
-        process_dict =  json_properties[process_type]
-
-        def flatten_dict(my_dict, existing_dict, prev_key=None):
-            for k, v in my_dict.items():
-                safe_name = k
-                if prev_key:
-                    safe_name =  "%s_%s" % (prev_key.split("_")[0], k)
-
-                if not isinstance(v, dict):
-                    existing_dict[safe_name] = v
-                else:
-                    flatten_dict(v, existing_dict, prev_key=k)
-            return existing_dict  
-
-        for i in process_dict:
-            key = str(i)
-            process_settings = process_dict[key]['process_settings']
-            deadline_settings = process_dict[key]['deadline_settings']
-            plugin_info_file = deadline_settings['plugin_info_file']
-
-            set_string = "ScriptArg%s=%s=%s\n"
-            root_list = []
-            for j in process_dict[key]:
-                root_list.extend( flatten_dict( process_dict[key][j], {} ).items() )
-
-            write_list = [ set_string % (j,k,l) for j,(k,l) in enumerate(root_list) ]
-
-            write_list.append( "Version=%s" % process_settings['plugin_version'] )
-            
-            writer = open(plugin_info_file, "w")
-            try:
-                for item in write_list:
-                    writer.write(item)
-
-                writer.close()
-            except:
-                writer.close()
-
-        return True
