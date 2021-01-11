@@ -12,10 +12,10 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
-- ../engine_locations.yml
-- ./tk-multi-launchapp.yml
-- ./tk-multi-publish2.yml
+  - ../app_locations.yml
+  - ../engine_locations.yml
+  - ./tk-multi-launchapp.yml
+  - ./tk-multi-publish2.yml
 
 ################################################################################
 
@@ -23,7 +23,6 @@ includes:
 settings.tk-desktop2.site:
   apps:
   location: "@engines.tk-desktop2.location"
-
 
 # project
 settings.tk-desktop2.all:
