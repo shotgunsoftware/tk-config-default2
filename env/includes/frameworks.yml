@@ -17,14 +17,14 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.0
+      version: v1.1.1
       type: app_store
       name: tk-framework-adobe
 
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.6.0
+      version: v0.6.1
       type: app_store
       name: tk-framework-adminui
 
@@ -38,14 +38,14 @@ frameworks:
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.4.4
+      version: v1.4.5
       type: app_store
       name: tk-framework-desktopserver
 
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.9.3
+      version: v2.9.4
       type: app_store
       name: tk-framework-qtwidgets
 
@@ -59,14 +59,21 @@ frameworks:
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.7.6
+      version: v5.7.10
       type: app_store
       name: tk-framework-shotgunutils
 
-  # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
+  # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
       version: v0.2.8
+      type: app_store
+      name: tk-framework-widget
+
+  # widget v1 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
+  tk-framework-widget_v1.x.x:
+    location:
+      version: v1.0.0
       type: app_store
       name: tk-framework-widget
 

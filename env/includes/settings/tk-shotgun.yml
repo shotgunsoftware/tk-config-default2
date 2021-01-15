@@ -18,7 +18,7 @@ includes:
 - ./tk-multi-screeningroom.yml
 - ./tk-shotgun-folders.yml
 - ./tk-shotgun-launchfolder.yml
-- ./tk-shotgun-copypaths.yml
+# - ./tk-shotgun-copypaths.yml
 - ./tk-shotgun-launchpublish.yml
 - ./tk-shotgun-launchvredreview.yml
 
@@ -33,7 +33,7 @@ settings.tk-shotgun.asset:
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
-    tk-shotgun-copypaths: "@settings.tk-shotgun-copypaths"
+    # tk-shotgun-copypaths: "@settings.tk-shotgun-copypaths"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 
@@ -45,7 +45,7 @@ settings.tk-shotgun.asset_step:
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-shotgun-copypaths: "@settings.tk-shotgun-copypaths"
+    # tk-shotgun-copypaths: "@settings.tk-shotgun-copypaths"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 

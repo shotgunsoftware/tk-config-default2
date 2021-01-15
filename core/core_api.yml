@@ -1,17 +1,6 @@
-# Copyright (c) 2018 Shotgun Software Inc.
-#
-# CONFIDENTIAL AND PROPRIETARY
-#
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
-# Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
-# not expressly granted therein are reserved by Shotgun Software Inc.
-
-# this configuration file defines which version of the toolkit
-# core API that should be used at runtime.
-
+# Shotgun Pipeline Toolkit configuration file. This file was automatically
+# created during the latest core update.
 location:
-  type: app_store
   name: tk-core
-  version: v0.19.16
+  type: app_store
+  version: v0.19.18
