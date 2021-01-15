@@ -16,8 +16,9 @@ import sgtk
 import datetime
 import time
 
-# from software.nuke.nuke_python import submission_sanity_checks as ssc
-# submission_tools = ssc.NukeSanityChecks()
+from software.nuke.nuke_python import submission_sanity_checks as ssc
+submission_tools = ssc.NukeSanityChecks()
+
 
 # find SSVFX/Deadline plugins
 log = sgtk.LogManager.get_logger(__name__)
@@ -254,9 +255,10 @@ class UploadVersionPlugin(HookBaseClass):
         """ 
         # publish_thumbnail = self.get_publish_thumbnail(settings, item)
         publisher = self.parent
-        # sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
+        sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
         get_file_string = file_strings.FileStrings()
 
+        temp_root = None
         now = datetime.datetime.now()
         ampm = self.get_ampm(now)
 
@@ -269,12 +271,64 @@ class UploadVersionPlugin(HookBaseClass):
         if not item.properties.get("frame_range"):
             self.logger.warning("Could not get frame range from item. Needed for the creation of the QT. Sending as a single frame render.")
 
-        if not item.properties.get("step"):
-            self.logger.error("Missing step info")
+        # Nuke-specific sanity checks
+        if publisher.engine.name == "tk-nuke":
+            self.logger.debug("Running Nuke-specific Sanity Checks...")
 
+            if not item.properties.get('sanity_checks'):
+                submission_tools.sanity_checks(item)
+            elif item.properties.get('failed_check'):
+                item.properties['sanity_checks'] = False
+                item.properties['failed_check'] = False
+                raise Exception("A Sanity Check has failed. This item cannot be validated.")
+
+        self.logger.debug("Type: %s" % (item.context.entity,))
+        self.logger.debug("Task: %s" % (item.context.task,))
+        self.logger.debug("Step: %s" % (item.context.step,))
+        self.logger.debug("Description: %s" % (item.description,))
+
+        if not item.properties.get("step"):
+            review_process = publisher.shotgun.find_one("Step", 
+                [['id', 'is', item.context.step['id']]], 
+                item.properties["step_fields"])
+        else:
+            review_process = item.properties.get("step")
+
+        review_process_type = review_process['sg_review_process_type']
+        review_process_entity_type = review_process['entity_type']
+        item.properties['review_process_type']=review_process_type.lower()
+        self.logger.info("Review process info: %s - %s" %(review_process_entity_type,
+                                                        item.properties.get("review_process_type")))
         # Check for a Version with same Version name   
-        if item.properties['existing_version']['version']:
-            existing_version = item.properties['existing_version']['version']
+        version_name = ""
+        publish_name = item.properties.get("publish_name")
+        path = item.properties["path"]
+        version_number_from_path = publisher.util.get_version_number(item.properties["path"]) or None
+        
+        if not publish_name:
+            self.logger.debug("Using path info hook to determine publish name.")
+            publish_name = self.get_publish_name(settings, item)
+
+            if os.path.splitext(publish_name)[1]:
+                publish_name = os.path.splitext(publish_name)[0]
+            version_number = ""
+
+            if version_number_from_path:
+                version_number = version_number_from_path
+                version_number = "_v" + str(version_number).zfill(3)
+        
+            version_name = publish_name + version_number
+
+        existing_version_data = [
+            ['project', 'is', {'type': 'Project','id': item.context.project['id']}],
+            ["code", "is", version_name]
+        ]
+        
+        existing_version = publisher.shotgun.find_one("Version", 
+                                                    existing_version_data,
+                                                    ["code"])
+        
+        if existing_version:
             self.logger.warning(
                 "Version already exists with the same name!",
                 extra={
@@ -285,102 +339,159 @@ class UploadVersionPlugin(HookBaseClass):
                     }
                 })                                                                                                      
             raise Exception("Version exists with same name: %s " % (existing_version['code'],))
+        else:
+            version_thumbnail = self.get_version_thumbnail(item)
+            version_data = {
+                "project": item.context.project,
+                "code": version_name,
+                "description": item.description,
+                "entity": self._get_version_entity(item),
+                "sg_task": item.context.task,
+                "image": version_thumbnail,
+                "frame_range": item.properties.get("frame_range"),
+                "sg_path_to_frames": path
+            }
+            item.properties['version_data'] = version_data
 
-        # path = item.properties["path"]
-        self.logger.debug("Type: %s" % (item.context.entity,))
-        self.logger.debug("Task: %s" % (item.context.task,))
-        self.logger.debug("Step: %s" % (item.context.step,))
-        self.logger.debug("Description: %s" % (item.description,))
+        # Get the output paths based on context 
+        nuke_review_template = publisher.engine.get_template_by_name("nuke_review_template2")
+        review_process_json_template = publisher.engine.get_template_by_name("review_process_json")
+        temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
+        info_json_template = publisher.engine.get_template_by_name('info_json_file')
 
-        # Nuke-specific sanity checks
-        if publisher.engine.name == "tk-nuke":
-            from software.nuke.nuke_python import submission_sanity_checks as ssc
-            submission_tools = ssc.NukeSanityChecks()
-            
-            self.logger.debug("Running Nuke-specific Sanity Checks...")
+        resolve_fields = {
+            'Shot': publish_name, #item.context.entity['name'],
+            'task_name': item.context.task['name'],
+            'name': None,
+            'version': version_number_from_path,
+            'ampm': ampm,
+            'YYYY': now.year,
+            'MM': now.month,
+            'DD': now.day
+        }        
 
-            if not item.properties.get('sanity_checks'):
-                submission_tools.sanity_checks(item)
-            elif item.properties.get('failed_check'):
-                item.properties['sanity_checks'] = False
-                item.properties['failed_check'] = False
-                raise Exception("A Sanity Check has failed. This item cannot be validated.")
-
-        review_process = item.properties.get("step")
-
-        review_process_type = review_process['sg_review_process_type']
-        review_process_entity_type = review_process['entity_type']
-        item.properties['review_process_type']=review_process_type.lower()
-        self.logger.info("Review process info: %s - %s" %(review_process_entity_type,
-                                                        item.properties.get("review_process_type")))
-
-        # append discription to existing version_data
-        item.properties['version_data'].update( { "description": item.description } )
-            
+        fields = {}
+        item.properties['info_json_template'] = info_json_template
+        item.properties['resolve_fields'] = resolve_fields
+        item.properties['fields'] = fields
         item.properties['playlist_name'] = "%s%s%s_Resolve_Review_%s" %("%04d" % (now.year),
                                                                         "%02d" % (now.month),
                                                                         "%02d" % (now.day),
                                                                         str(ampm))
-            
-        self.logger.debug("Using review JSON: %s" % ( item.properties['template_paths'].get('review_process_json') ))
+        temp_root = temp_root_template.apply_fields(resolve_fields)
+        nuke_review_file = nuke_review_template.apply_fields(fields)
+        review_process_json = review_process_json_template.apply_fields(fields)
 
-        # entity_info = item.properties.get('entity')
-        # entity_type = item.properties['fields'].get('type')
+        temp_root = re.sub("(\s+)", "-", temp_root)
+        nuke_review_file = re.sub("(\s+)", "-", nuke_review_file)
+        review_process_json  = re.sub("(\s+)", "-", review_process_json)
         
-        # if entity_type == "Shot":
-            
-            # shot_info_dict = {}
-            # for i in entity_info.keys():
-            #     shot_info_dict.update( { i: entity_info[i] } )
-            
-            # if item.properties.get('camera'):
-            #     camera = item.properties.get('camera')
-            #     shot_info_dict.update( { "main_plate_camera": camera } )
-            #     self.logger.info("Main plate camera - %s" % ( camera['code']))
-            
-            # if item.properties.get('version_data'):
-            #     shot_info_dict.update({"version":item.properties.get('version_data')})
-            
-            # item.properties['entity_info'] = shot_info_dict
-            
-        # elif entity_type == "Asset":
-            # asset_info_dict = {}
-            # for i in entity_info.keys():
-            #     asset_info_dict.update({i:entity_info[i]})
+        self.logger.debug("Using review JSON: %s" % (review_process_json))
+        self.test_template(item, temp_root, 'temp_root')
+        self.test_template(item, review_process_json, 'review_process_json')
+        self.test_template(item, nuke_review_file, 'nuke_review_script')
 
-            # if item.properties.get('version_data'):
-            #     asset_info_dict.update({"version":item.properties.get('version_data')})  
-
-            # item.properties['entity_info'] = asset_info_dict
-
-        # else:
-        #     # Set shot specifics to None
-        #     item.properties['shot'] = {}
-        #     item.properties['content_info'] = None
-        #     item.properties['shot'].update({'sg_lens_info' : None})
-        #     item.properties['shot'].update({'sg_gamma' : None})
-        #     item.properties['shot_lut'] = None
-        #     item.properties['lut_pick'] = "None-(Log)"
-        #     item.properties['shot'].update({'sg_frame_handles' : None})
-
-        entity_info = item.properties.get('entity')
-        entity_type = item.properties['fields'].get('type')
-
-        # attach any outstanding entity-type specific info to the entity info
-        if entity_type == "Shot":
-            camera = item.properties.get('camera')
-            entity_info.update( { "main_plate_camera": camera } )
-            self.logger.info("Main plate camera - %s" % ( camera.get('code')))
+        # Get entity info from SG
+        entity_filter = [
+            ['project', 'is', {'type': 'Project','id': item.context.project['id']}],
+            ["code", "is", item.context.entity['name']]
+        ]
+           
+        if item.context.entity['type'] == "Shot":
+            shot_info = publisher.shotgun.find_one("Shot",
+                                                    entity_filter,
+                                                    [
+                                                    "code",
+                                                    "id",
+                                                    "description",
+                                                    "created_by",
+                                                    "sg_episode",
+                                                    "sg_shot_lut",
+                                                    "sg_shot_audio",
+                                                    "sg_status_list",
+                                                    "sg_project_name",
+                                                    "sg_plates_processed_date",
+                                                    "sg_shot_lut",
+                                                    "sg_shot_ocio",
+                                                    "sg_without_ocio",
+                                                    "sg_head_in",
+                                                    "sg_tail_out",
+                                                    "sg_lens_info",
+                                                    "sg_plate_proxy_scale",
+                                                    "sg_frame_handles",
+                                                    "sg_shot_ccc",
+                                                    "sg_seq_ccc",
+                                                    "sg_vfx_work",
+                                                    "sg_scope_of_work",
+                                                    "sg_editorial_notes",
+                                                    "sg_sequence"
+                                                    "sg_main_plate",
+                                                    "sg_latest_version",
+                                                    "sg_latest_client_version",
+                                                    "sg_gamma",
+                                                    "sg_target_age",
+                                                    "sg_shot_transform",
+                                                    "sg_main_plate_camera"
+                                                    ])
+            shot_info_dict = {}
+            shot_info.update({"type": "Shot"})
+            shot_info.update({"main_plate":self._get_published_main_plate(sg_reader, item)})
             
-        elif entity_type == "Asset":
-            pass
-
-        if item.properties.get('version_data'):
-            entity_info.update({"version":item.properties.get('version_data')})
+            if shot_info['sg_main_plate_camera']:
+                shot_info.update({"main_plate_camera":self._get_main_plate_camera(sg_reader, item, shot_info['sg_main_plate_camera'])})
+                self.logger.info("Main plate camera - %s" %(shot_info['main_plate_camera']['code']))
             
-        item.properties['entity_info'] = entity_info
+            if item.properties.get('version_data'):
+                shot_info.update({"version":item.properties.get('version_data')})
+            
+            for i in shot_info.keys():
+                shot_info_dict.update({i:shot_info[i]})
+            item.properties['entity_info'] = shot_info_dict
 
-        # set codec or error
+        elif item.context.entity['type'] == "Asset":
+            asset_info = publisher.shotgun.find_one("Asset",
+                                                    entity_filter,
+                                                    [
+                                                    "code",
+                                                    "id",
+                                                    "description",
+                                                    "created_by",
+                                                    "sg_status_list",
+                                                    "sg_head_in",
+                                                    "sg_tail_out",
+                                                    "sg_lens_info",
+                                                    "sg_vfx_work",
+                                                    "sg_scope_of_work",
+                                                    "sg_editorial_notes",
+                                                    "sg_latest_version",
+                                                    "sg_latest_client_version"
+                                                    ])
+            asset_info_dict = {}
+            asset_info.update({"type": "Asset"})
+            if item.properties.get('version_data'):
+                asset_info.update({"version":item.properties.get('version_data')})            
+            for i in asset_info.keys():
+                asset_info_dict.update({i:asset_info[i]})
+            item.properties['entity_info'] = asset_info_dict
+        else:
+            # Set shot specifics to None
+            item.properties['shot'] = {}
+            item.properties['content_info'] = None
+            item.properties['shot'].update({'sg_lens_info' : None})
+            item.properties['shot'].update({'sg_gamma' : None})
+            item.properties['shot_lut'] = None
+            item.properties['lut_pick'] = "None-(Log)"
+            item.properties['shot'].update({'sg_frame_handles' : None})
+
+        # Aux files
+        # draft_py=os.path.join("C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+        if item.properties.get("pipeline_root"):
+            draft_py=os.path.join(item.properties.get("pipeline_root"),"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+        else:
+            draft_py=os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+
+        item.properties["script_file"] = draft_py
+
         codecs = item.properties.get("codec_info")
         if (len(item.properties.get("project_info")['sg_review_qt_codecs'])>0 and codecs): 
             review_codecs = item.properties.get("project_info")['sg_review_qt_codecs']  
@@ -400,7 +511,6 @@ class UploadVersionPlugin(HookBaseClass):
         # At this stage we have gathered all the required Project info needed for the
         # submission and creation of the QTs. Now we need to loop through the alternative jobs
 
-        self.logger.warning( ">>>>> END UPLOAD_VERSION VALIDATION >>>>>")
         return True
         
     def publish(self, settings, item):
@@ -446,9 +556,6 @@ class UploadVersionPlugin(HookBaseClass):
         finally:
             self.logger.info("Version upload complete!")
 
-        ### NTENTIONAL BREAKAGE ###
-        return
-
         total_info_dict = dict(
         project_info = item.properties.get("project_info"),
         entity_info = item.properties.get("entity_info"),
@@ -456,7 +563,7 @@ class UploadVersionPlugin(HookBaseClass):
         # Create the json file
         review_output = None
         process_info_list = []
-        review_process_json = item.properties['template_paths'].get('review_process_json')
+        review_process_json = item.properties.get('review_process_json')
         review_process_json_dict = self.read_json_file(jm,total_info_dict,review_process_json)
 
         process_dict =  review_process_json_dict[item.properties.get('review_process_type')]
@@ -474,7 +581,7 @@ class UploadVersionPlugin(HookBaseClass):
                                                 process_dict[str(i)]['plugin_in_script_alt'])
             self.logger.info("Update nuke script: %s" % (item.properties['nuke_review_script']))
 
-            info_json_file = item.properties['extra_templates'].get('info_json_template').apply_fields(resolve_fields)
+            info_json_file = item.properties['info_json_template'].apply_fields(resolve_fields)
             info_json_file = re.sub("(\s+)", "-", info_json_file) 
             info_json_file = self.test_template(item, info_json_file, 'info_json_file')                
             process_info_list.append(info_json_file)  
@@ -487,7 +594,7 @@ class UploadVersionPlugin(HookBaseClass):
             item.properties["output_main"] = os.path.split(review_output)[1]
             item.properties["output_ext"] = os.path.splitext(review_output)[1]
                         
-            item.properties['nuke_out_script'] = os.path.join(item.properties['template_paths'].get('temp_root'),
+            item.properties['nuke_out_script'] = os.path.join(item.properties.get('temp_root'),
                                                                 "deadline", 
                                                                 "%s_%s.nk" % (re.sub("(\s+)", "-", item.properties.get('version_data')['code']), 
                                                                             str(i)))
@@ -507,26 +614,24 @@ class UploadVersionPlugin(HookBaseClass):
       
             item.properties["content_info"] = content_info_dict
 
-            process_info = self.set_process_info(
-                                                self.dl_submission,
-                                                "Nuke",
-                                                str(i),
-                                                process_dict[str(i)],
-                                                item.properties.get("project_info"),
-                                                item.properties.get("software_info"),
-                                                item.properties.get("entity_info"),
-                                                item
-                                                )
+            process_info = self.set_process_info(self.dl_submission,
+                            "Nuke",
+                            str(i),
+                            process_dict[str(i)],
+                            item.properties.get("project_info"),
+                            item.properties.get("software_info"),
+                            item.properties.get("entity_info"),
+                            item)
 
             total_info_dict.update({'process_info': process_info})
             if process_dict[str(i)]['add_to_review_playlist']:
                 added_verions = sg_writer.add_version_to_playlist(
-                                                                    item.context.project['id'],
-                                                                    item.properties.get('playlist_name'),
-                                                                    'rsv',
-                                                                    version['code'],
-                                                                    version['id']
-                                                                )
+                    item.context.project['id'],
+                    item.properties.get('playlist_name'),
+                    'rsv',
+                    version['code'],
+                    version['id']
+                )
                 if not added_verions:
                     self.logger.debug("Playlist %s already has Verion %s" %(item.properties.get('playlist_name'),version['code']))
                 else:
@@ -584,6 +689,29 @@ class UploadVersionPlugin(HookBaseClass):
             return item.context.project
         else:
             return None
+    
+    def _get_published_main_plate(self, sg_reader, item):
+   
+        published_main_plate = sg_reader.get_pushlished_file(item.context.project['id'], 
+                                                                        "Main Plate", 
+                                                                        "Shot", 
+                                                                        entity_id=item.context.entity['id'], 
+                                                                        get_latest=True)
+        
+        self.logger.info("Got main plate of entity %s - %s" %(str(item.context.entity['id']),published_main_plate))
+
+        return published_main_plate       
+
+    def _get_main_plate_camera(self, sg_reader, item, camera_data):
+
+        publisher = self.parent
+        return publisher.shotgun.find_one("Camera",
+                                            [['id', 'is', camera_data['id']]],
+                                            ['code',
+                                            'sg_format_width',
+                                            'sg_format_height',
+                                            'sg_pixel_aspect_ratio',
+                                            'sg_pump_incoming_transform_switch'])
 
     def get_publish_name(self, settings, item):
         """
@@ -743,7 +871,7 @@ class UploadVersionPlugin(HookBaseClass):
         burnin_enabled = project_info['sg_review_burn_in']
         plugin_in_script = self.replace_slashes(item.properties['nuke_review_script'])
         plugin_out_script = item.properties['nuke_out_script']
-        temp_root = self.replace_slashes( item.properties['template_paths'].get('temp_root') )
+        temp_root = self.replace_slashes(item.properties['temp_root'])
         script_file = self.replace_slashes(item.properties['script_file']) or None
 
         user_name = ""
@@ -950,6 +1078,4 @@ class UploadVersionPlugin(HookBaseClass):
             if property_key:                 
                 item.properties[property_key] = template
                 self.logger.debug("Template: %s - %s" % (property_key,template))
-
                 return template            
-                

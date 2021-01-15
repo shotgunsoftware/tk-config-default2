@@ -89,7 +89,7 @@ class BeforeAppLaunch(tank.Hook):
                     if os.path.exists("H:\\"):
                         os.environ["NUKE_DISK_CACHE"] = "H:\\NUKE_TEMP"
                         os.environ["NUKE_TEMP_DIR"] = "H:\\NUKE_TEMP"
-                except Exception, err:
+                except Exception as err:
                     self.log.debug("Error unable to set env paths : %s", err)
 
                 try:

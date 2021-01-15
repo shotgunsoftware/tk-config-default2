@@ -275,7 +275,7 @@ class BasicFilePublishPlugin(HookBaseClass):
         accept = {"accepted": True}
 
         # check pipeline step to determine if it should be checked/unchecked
-        if item.properties.sg_publish_to_shotgun:
+        if item.properties.publish_to_shotgun:
             accept.update({'checked': True})
             # log the accepted file and display a button to reveal it in the fs
             self.logger.info(

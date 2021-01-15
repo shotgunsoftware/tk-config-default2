@@ -126,11 +126,10 @@ settings.tk-nuke.project:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.project"
+    # tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.project"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
-  run_at_startup:
-  - {app_instance: tk-multi-shotgunpanel, name: ''}      
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-nuke.location"
@@ -185,8 +184,6 @@ settings.tk-nuke.shot_step:
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
     tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
-  run_at_startup:
-  - {app_instance: tk-multi-shotgunpanel, name: ''}   
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -194,7 +191,7 @@ settings.tk-nuke.shot_step:
   - {app_instance: tk-multi-publish2, name: Publish...}
   favourite_directories: [
     {display_name: Shot Work Area, template_directory: nuke_shot_work_area, icon: 'icons/icon_folder_80.png'}, 
-    {display_name: Shot Rush Area, template_directory: shot_rushes_root, icon: 'icons/icon_plates_80.png'},
+    # {display_name: Shot Rush Area, template_directory: shot_rushes_root, icon: 'icons/icon_plates_80.png'},
     {display_name: Shot Render Area, template_directory: nuke_shot_render_area, icon: 'icons/icon_renders_80.png'}
     ]  
   location: "@engines.tk-nuke.location"
