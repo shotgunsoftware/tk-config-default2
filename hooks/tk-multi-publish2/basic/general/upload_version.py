@@ -355,9 +355,6 @@ class UploadVersionPlugin(HookBaseClass):
 
         # Get the output paths based on context 
         nuke_review_template = publisher.engine.get_template_by_name("nuke_review_template2")
-        review_process_json_template = publisher.engine.get_template_by_name("review_process_json")
-        temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
-        info_json_template = publisher.engine.get_template_by_name('info_json_file')
 
         resolve_fields = {
             'Shot': publish_name, #item.context.entity['name'],
@@ -368,7 +365,24 @@ class UploadVersionPlugin(HookBaseClass):
             'YYYY': now.year,
             'MM': now.month,
             'DD': now.day
-        }        
+        }
+
+        if item.context.entity['type'] in [ 'shot', 'Shot', 'SHOT' ]:
+            info_json_template = publisher.engine.get_template_by_name('info_json_file')
+            temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
+            review_process_json_template = publisher.engine.get_template_by_name("shot_review_process_json")
+            
+            resolve_fields.update( { 'Shot': publish_name } )
+
+        elif item.context.entity['type'] in [ 'asset', 'Asset', 'ASSET' ]:
+            temp_root_template = publisher.engine.get_template_by_name("temp_asset_render_root")
+            info_json_template = publisher.engine.get_template_by_name('asset_json_file')
+            review_process_json_template = publisher.engine.get_template_by_name("asset_review_process_json")
+            
+            resolve_fields.update( {
+                                    'Asset': publish_name,
+                                    'sg_asset_type': item.properties['fields'].get('sg_asset_type')
+                                    } )
 
         fields = {}
         item.properties['info_json_template'] = info_json_template
