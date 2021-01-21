@@ -540,7 +540,14 @@ paths:
     # The location of published maya files
     maya_asset_publish:
         definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
-
+   # The location of FBX exports for Unreal
+    maya_asset_fbx_publish:
+        definition: '@asset_root/publish/fbx/{name}.v{version}.fbx'
+    # The location of turntable review output rendered in Unreal
+    maya_ue4_turntable_render:
+        definition: '@asset_root/work/images/{name}_turntable_v{version}.avi'
+    maya_ue4_turntable_publish:
+        definition: '@asset_root/review/{Asset}_{name}_turntable_v{version}.avi'
 
     #
     # Houdini
