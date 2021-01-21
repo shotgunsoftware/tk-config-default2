@@ -163,6 +163,29 @@ keys:
         format_spec: "05"
         alias: SEQ
 
+    # These are used by the Loader in Unreal
+    sg_asset_type_ue4:
+        type: str
+        shotgun_entity_type: Asset
+        shotgun_field_name: sg_asset_type
+    sg_asset_name:
+        type: str
+        shotgun_entity_type: Asset
+        shotgun_field_name: code
+    sg_shot_name:
+        type: str
+        shotgun_entity_type: Shot
+        shotgun_field_name: code
+    sg_sequence_name:
+        type: str
+        shotgun_entity_type: Shot
+        shotgun_field_name: sg_sequence
+
+    # These are used by the Movie Publish in Unreal
+    level_sequence:
+        type: str
+    world:
+        type: str
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -425,6 +448,16 @@ paths:
         definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
     hiero_render_path:
         definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
+
+    #
+    # Unreal
+    #
+
+    # level sequence review output from unreal
+    unreal_movie_publish:
+        definition: '[sequences/{Sequence}/][{Shot}/]editorial/{YYYY}_{MM}_{DD}/unreal/{level_sequence}_{world}.v{version}.avi'
+    unreal_shot_publish:
+        definition: '@shot_root/publish/unreal/{name}.v{version}.nk'
 
     ##########################################################################################
     # Asset pipeline
@@ -691,6 +724,15 @@ paths:
     vred_asset_render_sequence_publish:
         definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
 
+    #
+    # Unreal
+    #
+
+    # Placeholder location for static mesh assets exported from Unreal
+    # Hook implementation intended to be a starting point for a pipeline
+    # No context info used in template, developers expected to further customize
+    unreal_asset_publish:
+        definition: 'assets/unrealdemo/exports/{YYYY}_{MM}_{DD}/{name}.fbx'
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
@@ -714,3 +756,13 @@ strings:
 
     # define how new Mari projects should be named
     mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
+
+    # entity-specific templates for importing files into the Unreal content browser
+    # template logic is defined in Python, not settings:
+    # tk-unreal/hooks/tk-multi-loader2/tk-unreal_actions.py
+    unreal_loader_asset_path: "/Game/Assets/{sg_asset_type_ue4}/{sg_asset_name}/"
+    unreal_loader_asset_name: "{sg_asset_name}_{name}"
+    unreal_loader_shot_path: "/Game/Cinematics/Sequences/{sg_sequence_name}/{sg_shot_name}/"
+    unreal_loader_shot_name: "{sg_shot_name}_{name}"
+    unreal_loader_project_path: "/Game/Assets/"
+    unreal_loader_project_name: "{name}"

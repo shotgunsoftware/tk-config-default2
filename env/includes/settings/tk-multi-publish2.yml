@@ -190,6 +190,20 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
     settings:
         Publish Template: asset_alembic_cache
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_fbx.py"
+    settings:
+        Publish Template: maya_asset_fbx_publish
+  - name: Publish and Submit for Review
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/tk-maya/basic/publish_turntable.py"
+    settings:
+        Work Template: maya_ue4_turntable_render
+        Publish Template: maya_ue4_turntable_publish
+        Unreal Engine Version: "4.26"
+        Unreal Project Path: "{config}/tk-multi-publish2/tk-maya/unreal/resources/{unreal_engine_version}/turntable/turntable.uproject"
+        Turntable Map Path: "/Game/turntable/level/turntable.umap"
+        Sequence Path: "/Game/turntable/sequence/turntable_sequence.turntable_sequence"
+        Turntable Assets Path: "/Game/maya_turntable_assets/"   # note the trailing '/' must be included
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -556,5 +570,34 @@ settings.tk-multi-publish2.vred.asset_step:
    - name: Upload for review
      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
      settings: {}
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+
+################################################################################
+
+# ---- Unreal
+
+# project
+settings.tk-multi-publish2.unreal.project:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    settings: {}
+  - name: Export FBX and Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_asset.py"
+    settings:
+        Publish Template: unreal_asset_publish
+  - name: Render Movie and Submit for Review
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_movie.py"
+    settings:
+        Publish Template: unreal_movie_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"

@@ -90,3 +90,11 @@ frameworks:
       version: v0.1.2
       type: app_store
       name: tk-framework-lmv
+
+  # unrealqt - PySide build for Unreal (Windows-only)
+  tk-framework-unrealqt_v1.x.x:
+    location:
+      type: github_release
+      organization: ue4plugins
+      repository: tk-framework-unrealqt
+      version: v1.1.0
