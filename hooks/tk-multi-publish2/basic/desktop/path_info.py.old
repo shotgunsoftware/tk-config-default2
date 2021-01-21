@@ -64,6 +64,7 @@ class BasicPathInfo(HookBaseClass):
 
         publisher = self.parent
         logger = publisher.logger
+        logger.warning(">>>>> path_info get_publish_name")
         logger.debug("Getting publish name for path: %s ..." % (path,))
 
         path_info = publisher.util.get_file_path_components(path)
@@ -125,6 +126,7 @@ class BasicPathInfo(HookBaseClass):
         publisher = self.parent
 
         logger = publisher.logger
+        logger.warning(">>>>> path_info get_version_number")
         self.logger.debug("Getting version number for path: %s" % (path,))
 
         path_info = publisher.util.get_file_path_components(path)
@@ -156,6 +158,8 @@ class BasicPathInfo(HookBaseClass):
         """
 
         publisher = self.parent
+        logger = publisher.logger
+        logger.warning(">>>>> path_info get_frame_sequence_path")
         path_info = publisher.util.get_file_path_components(path)
 
         # see if there is a frame number
@@ -226,6 +230,7 @@ class BasicPathInfo(HookBaseClass):
 
         publisher = self.parent
         logger = publisher.logger
+        logger.warning(">>>>> path_info get_frame_sequences")
 
         logger.debug(
             "Looking for sequences in folder: '%s'..." % (folder,))
@@ -314,6 +319,7 @@ class BasicPathInfo(HookBaseClass):
         publisher = self.parent
 
         logger = publisher.logger
+        logger.warning(">>>>> path_info get_version_path")
         logger.debug("Getting version %s of path: %s ..." % (version, path))
 
         path_info = publisher.util.get_file_path_components(path)
@@ -355,6 +361,7 @@ class BasicPathInfo(HookBaseClass):
         publisher = self.parent
 
         logger = publisher.logger
+        logger.warning(">>>>> path_info get_next_version_path")
         logger.debug("Getting next version of path: %s ..." % (path,))
 
         # default

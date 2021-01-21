@@ -1,18 +1,54 @@
-    # Copyright (c) 2017 Shotgun Software Inc.
-# 
+# Copyright (c) 2017 Shotgun Software Inc.
+#
 # CONFIDENTIAL AND PROPRIETARY
-# 
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
 # Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your 
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import mimetypes
 import os
 import sys
 import re
+from datetime import datetime
+import json
+
 import sgtk
+from tank_vendor import six
+
+log = sgtk.LogManager.get_logger(__name__)
+
+try:
+    ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
+    if "SSVFX_PIPELINE_DEV" in os.environ.keys():
+        pipeline_root = os.environ["SSVFX_PIPELINE_DEV"]
+        ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
+    else:
+        if "SSVFX_PIPELINE" in os.environ.keys():
+            pipeline_root =  os.environ["SSVFX_PIPELINE"]
+            ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
+            if os.path.exists(ssvfx_script_path):
+                pass
+            else:
+                log.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
+            log.debug("Found env var path: %s" %(ssvfx_script_path,))
+        else:
+            log.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
+            pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
+            ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
+
+    sys.path.append(ssvfx_script_path)
+
+    from shotgun import shotgun_utilities
+except Exception as err:
+    raise Exception("Could not load on of the studio modules! Error: %s" % err)
+
+# from general.file_functions import file_strings
+# from general.data_management import json_manager
+# from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
+from shotgun import shotgun_utilities
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -41,24 +77,214 @@ class BasicSceneCollector(HookBaseClass):
 
     """
     @property
+    def common_file_info(self):
+        """
+        A dictionary of file type info that allows the basic collector to
+        identify common production file types and associate them with a display
+        name, item type, and config icon.
+
+        The dictionary returned is of the form::
+
+            {
+                <Publish Type>: {
+                    "extensions": [<ext>, <ext>, ...],
+                    "icon": <icon path>,
+                    "item_type": <item type>
+                },
+                <Publish Type>: {
+                    "extensions": [<ext>, <ext>, ...],
+                    "icon": <icon path>,
+                    "item_type": <item type>
+                },
+                ...
+            }
+
+        See the collector source to see the default values returned.
+
+        Subclasses can override this property, get the default values via
+        ``super``, then update the dictionary as necessary by
+        adding/removing/modifying values.
+        """
+
+        if not hasattr(self, "_common_file_info"):
+
+            # do this once to avoid unnecessary processing
+            self._common_file_info = {
+                "Alias File": {
+                    "extensions": ["wire"],
+                    "icon": self._get_icon_path("alias.png"),
+                    "item_type": "file.alias",
+                },
+                "Alembic Cache": {
+                    "extensions": ["abc"],
+                    "icon": self._get_icon_path("alembic.png"),
+                    "item_type": "file.alembic",
+                },
+                "3dsmax Scene": {
+                    "extensions": ["max"],
+                    "icon": self._get_icon_path("3dsmax.png"),
+                    "item_type": "file.3dsmax",
+                },
+                "Hiero Project": {
+                    "extensions": ["hrox"],
+                    "icon": self._get_icon_path("hiero.png"),
+                    "item_type": "file.hiero",
+                },
+                "Houdini Scene": {
+                    "extensions": ["hip", "hipnc"],
+                    "icon": self._get_icon_path("houdini.png"),
+                    "item_type": "file.houdini",
+                },
+                "Maya Scene": {
+                    "extensions": ["ma", "mb"],
+                    "icon": self._get_icon_path("maya.png"),
+                    "item_type": "file.maya",
+                },
+                "Motion Builder FBX": {
+                    "extensions": ["fbx"],
+                    "icon": self._get_icon_path("motionbuilder.png"),
+                    "item_type": "file.motionbuilder",
+                },
+                "Nuke Script": {
+                    "extensions": ["nk"],
+                    "icon": self._get_icon_path("nuke.png"),
+                    "item_type": "file.nuke",
+                },
+                "Photoshop Image": {
+                    "extensions": ["psd", "psb"],
+                    "icon": self._get_icon_path("photoshop.png"),
+                    "item_type": "file.photoshop",
+                },
+                "VRED Scene": {
+                    "extensions": ["vpb", "vpe", "osb"],
+                    "icon": self._get_icon_path("vred.png"),
+                    "item_type": "file.vred",
+                },
+                "Rendered Image": {
+                    "extensions": ["dpx", "exr", "png", "jpg", "jpeg"],
+                    "icon": self._get_icon_path("image_sequence.png"),
+                    "item_type": "file.image",
+                },
+                "Texture Image": {
+                    "extensions": ["tx", "tga", "dds", "rat"],
+                    "icon": self._get_icon_path("texture.png"),
+                    "item_type": "file.texture",
+                },
+                "DMP": {
+                    "extensions": ["tif", "tiff"],
+                    "icon": self._get_icon_path("dmp.png"),
+                    "item_type": "file.image",
+                },                   
+                "3D Equalizer": {
+                    "extensions": ["3de"],
+                    "icon": self._get_icon_path("lens.png"),
+                    "item_type": "file.3de",
+                },                             
+                "PDF": {
+                    "extensions": ["pdf"],
+                    "icon": self._get_icon_path("file.png"),
+                    "item_type": "file.image",
+                },
+            }
+
+        return self._common_file_info
+
+    @property
+    def settings(self):
+        """
+        Dictionary defining the settings that this collector expects to receive
+        through the settings parameter in the process_current_session and
+        process_file methods.
+
+        A dictionary on the following form::
+
+            {
+                "Settings Name": {
+                    "type": "settings_type",
+                    "default": "default_value",
+                    "description": "One line description of the setting"
+            }
+
+        The type string should be one of the data types that toolkit accepts as
+        part of its environment configuration.
+        """
+        return {}
+
+    @property
     def user_info(self):
 
         publisher = self.parent
         ctx = publisher.engine.context 
         user_fields =[
+            'name',
             'login',
             'sg_ip_address'
         ]
         user_filter =[
             ['id', 'is', ctx.user['id']],
         ]
-        user_info = publisher.shotgun.find(
+        user_info = publisher.shotgun.find_one(
             'HumanUser',
             user_filter,
             user_fields
             )    
 
         return user_info
+
+    @property
+    def software_info(self):
+        """
+        Test SG for all associated software
+
+        :returns: The SG info of the given softwares
+        """  
+        publisher = self.parent
+
+        software_filters = [
+        ['id', 'is_not', 0],
+        ['version_names', 'is_not', None]
+        ]
+        
+        software_fields = [
+        'code',
+        'products',
+        'windows_path',
+        'version_names',
+        'sg_pipeline_tools'
+        ]
+
+        software_info = publisher.shotgun.find(
+        'Software',
+        software_filters,
+        software_fields
+        )
+
+        return software_info
+
+    @property
+    def codec_info(self):
+        """
+        Test SG for all associated codec
+
+        :returns: The SG info of the given codecs
+        """  
+        publisher = self.parent
+
+        codec_filters = []
+        
+        codec_fields = ['id',
+                        'code', 
+                        'name', 
+                        'sg_nuke_code', 
+                        'sg_output_folder']
+
+        codec_info = publisher.shotgun.find(
+        'CustomNonProjectEntity08',
+        codec_filters,
+        codec_fields
+        )
+
+        return codec_info
 
     @property
     def project_info(self):
@@ -130,19 +356,19 @@ class BasicSceneCollector(HookBaseClass):
         proj_info.update({'artist_name' : ctx.user['name']})
 
         formats = publisher.shotgun.find("CustomNonProjectEntity01",
-        [],
-        ['code',
-        'sg_format_height',
-        'sg_format_width',
-        ])
+            [],
+            ['code',
+            'sg_format_height',
+            'sg_format_width',
+            ])
         proj_info.update({'formats' : formats})
 
         local_storage = publisher.shotgun.find("LocalStorage",
-        [],
-        ["code",
-        "windows_path",
-        "linux_path",
-        "mac_path"])
+            [],
+            ["code",
+            "windows_path",
+            "linux_path",
+            "mac_path"])
         
         if "win" in sys.platform:
             path_root = "windows_path"
@@ -151,7 +377,12 @@ class BasicSceneCollector(HookBaseClass):
             path_root = "linux_path"
             sg_root = "local_path_linux"
 
-        local_storage_match = next((ls for ls in local_storage if ls[path_root] in proj_info['sg_root'][sg_root]), None)
+        proj_sg_root = proj_info.get('sg_root')
+        if not proj_sg_root:
+            local_storage_match = None
+        else:
+            local_storage_match = next((ls for ls in local_storage if ls[path_root] in proj_sg_root.get(sg_root)), None)
+        
         proj_info['local_storage'] = local_storage_match
 
         if proj_info['sg_3d_settings']:
@@ -165,216 +396,8 @@ class BasicSceneCollector(HookBaseClass):
 
             proj_info.update({'sg_3d_settings' : sg_3d_settings})
 
-        return proj_info         
-  
-    @property
-    def software_info(self):
-        """
-        Test SG for all associated software
+        return proj_info
 
-        :returns: The SG info of the given softwares
-        """  
-        publisher = self.parent
-
-        software_filters = [
-        ['id', 'is_not', 0],
-        ['version_names', 'is_not', None]
-        # ['sg_pipeline_tools', 'is', True]
-        ]
-        
-        software_fields = [
-        'code',
-        'products',
-        'windows_path',
-        'version_names',
-        'sg_pipeline_tools'
-        ]
-
-        software_info = publisher.shotgun.find(
-        'Software',
-        software_filters,
-        software_fields
-        )
-
-        return software_info
-    
-    @property
-    def codec_info(self):
-        """
-        Test SG for all associated codec
-
-        :returns: The SG info of the given codecs
-        """  
-        publisher = self.parent
-
-        codec_filters = []
-        
-        codec_fields = ['id',
-                        'code', 
-                        'name', 
-                        'sg_nuke_code', 
-                        'sg_output_folder']
-
-        codec_info = publisher.shotgun.find(
-        'CustomNonProjectEntity08',
-        codec_filters,
-        codec_fields
-        )
-
-        return codec_info
-    
-    @property
-    def common_file_info(self):
-        """
-        A dictionary of file type info that allows the basic collector to
-        identify common production file types and associate them with a display
-        name, item type, and config icon.
-
-        The dictionary returned is of the form::
-
-            {
-                <Publish Type>: {
-                    "extensions": [<ext>, <ext>, ...],
-                    "icon": <icon path>,
-                    "item_type": <item type>
-                },
-                <Publish Type>: {
-                    "extensions": [<ext>, <ext>, ...],
-                    "icon": <icon path>,
-                    "item_type": <item type>
-                },
-                ...
-            }
-
-        See the collector source to see the default values returned.
-
-        Subclasses can override this property, get the default values via
-        ``super``, then update the dictionary as necessary by
-        adding/removing/modifying values.
-        """
-
-        if not hasattr(self, "_common_file_info"):
-
-            # do this once to avoid unnecessary processing
-            self._common_file_info = {
-                "Alembic Cache": {
-                    "extensions": ["abc"],
-                    "icon": self._get_icon_path("alembic.png"),
-                    "item_type": "file.alembic",
-                },
-                "3dsmax Scene": {
-                    "extensions": ["max"],
-                    "icon": self._get_icon_path("3dsmax.png"),
-                    "item_type": "file.3dsmax",
-                },
-                "Hiero Project": {
-                    "extensions": ["hrox"],
-                    "icon": self._get_icon_path("hiero.png"),
-                    "item_type": "file.hiero",
-                },
-                "Houdini Scene": {
-                    "extensions": ["hip", "hipnc"],
-                    "icon": self._get_icon_path("houdini.png"),
-                    "item_type": "file.houdini",
-                },
-                "Maya Scene": {
-                    "extensions": ["ma", "mb"],
-                    "icon": self._get_icon_path("maya.png"),
-                    "item_type": "file.maya",
-                },
-                "Motion Builder FBX": {
-                    "extensions": ["fbx"],
-                    "icon": self._get_icon_path("fbx.png"),
-                    "item_type": "file.motionbuilder",
-                },
-                "Nuke Script": {
-                    "extensions": ["nk"],
-                    "icon": self._get_icon_path("nuke.png"),
-                    "item_type": "file.nuke",
-                },
-                "Photoshop Image": {
-                    "extensions": ["psd", "psb"],
-                    "icon": self._get_icon_path("photoshop.png"),
-                    "item_type": "file.photoshop",
-                },
-                "Rendered Image": {
-                    "extensions": ["dpx", "exr", "png", "jpg", "jpeg"],
-                    "icon": self._get_icon_path("image_sequence.png"),
-                    "item_type": "file.image",
-                },
-                "Texture Image": {
-                    "extensions": ["tx", "tga", "dds", "rat"],
-                    "icon": self._get_icon_path("texture.png"),
-                    "item_type": "file.texture",
-                },
-                "DMP": {
-                    "extensions": ["tif", "tiff"],
-                    "icon": self._get_icon_path("dmp.png"),
-                    "item_type": "file.image",
-                },                
-                "3D Equalizer": {
-                    "extensions": ["3de"],
-                    "icon": self._get_icon_path("lens.png"),
-                    "item_type": "file.3de",
-                },                
-            }
-
-        return self._common_file_info
-
-    @property
-    def settings(self):
-        """
-        Dictionary defining the settings that this collector expects to receive
-        through the settings parameter in the process_current_session and
-        process_file methods.
-
-        A dictionary on the following form::
-
-            {
-                "Settings Name": {
-                    "type": "settings_type",
-                    "default": "default_value",
-                    "description": "One line description of the setting"
-            }
-
-        The type string should be one of the data types that toolkit accepts as
-        part of its environment configuration.
-        """
-        return {}
-
-    @property
-    def step_fields(self):
-
-        search_fields = [
-            'id', 
-            'code', 
-            'sg_department',
-            'sg_publish_to_shotgun', 
-            'sg_version_for_review', 
-            'sg_slap_comp', 
-            'sg_review_process_type', 
-            'entity_type',
-            ]
-        return search_fields
-
-    @property
-    def step_info(self):
-        '''
-        A collector that gathers all existing pipeline steps to build 2 lists:
-        1) publish_codes: the names of all steps that should be published to Shotgun*
-        2) version_codes: the names of all steps that should publish review versions
-        3) sg_slap_comp: option to create a slap comp Version for review
-
-        *publish_codes also includes all SSVFX Shotgun WriteNode render types
-        ** This needs to be hand-coded at the moment. Sorry...
-        '''
-
-        publisher = self.parent
-        search_fields = self.step_fields
-        steps_info = publisher.shotgun.find("Step", [], search_fields)
-
-        return steps_info
-    
     def process_current_session(self, settings, parent_item):
         """
         Analyzes the current scene open in a DCC and parents a subtree of items
@@ -383,6 +406,7 @@ class BasicSceneCollector(HookBaseClass):
         :param dict settings: Configured settings for this collector
         :param parent_item: Root item instance
         """
+
         # default implementation does not do anything
         pass
 
@@ -398,122 +422,153 @@ class BasicSceneCollector(HookBaseClass):
         :returns: The main item that was created, or None if no item was created
             for the supplied path
         """
-        entity = None
+        # Declaring variables for later
         curr_fields = None
-        step = None    
-        task = None
+        entity = {}
+        task = {}
+        step = {}
+        camera = {}
         primary_render_folder = []
         additional_render_folder = []
+
+        # a path-swap that converts all pix addresses to pix_artist
         path = re.sub(r"^[/\\]{2}pix[a-zA-Z0-9_\.]+", r"//pix_artist", path)
+
+        # various utilities
+        publisher = self.parent
+        ctx = publisher.engine.context
+        sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
 
         # Path string for manipulation
         path = str(sgtk.util.ShotgunPath.normalize(path)).replace('\\','/')
+        self.logger.info('Submission path is: %s' % path)
 
-        self.logger.info('Submission path is: ' + path)
+        # use hijacked method to collect info about the path and folder
+        path_info = publisher.util.get_frame_sequence_path( {'path': path, 'ignore_folder_list': [], 'seek_folder_list': []} )
+        curr_fields = path_info.get('all_fields')
 
-        # Attempt to get entity elements from Templates
-        # Default to manual entry if there is no Template
-        tk = sgtk.sgtk_from_path(path)
-        if tk:
-            work_template = tk.template_from_path(path)
-            if work_template:
-                curr_fields = work_template.get_fields(path)
-                self.logger.debug("work_template %s" %(work_template))
-                self.logger.debug("curr_fields %s" %(curr_fields))
-            else:
-                self.logger.debug("Could not get work_template from: %s" %(path))
-        else:
-            self.logger.debug("Could not get TK from path!")            
-            
-        try:
-            task_name = {'task_name': curr_fields['task_name']}
-        except:
-            task_name = {'task_name': ''}
-        
-        try:
-            vendor = {'vendor': curr_fields['vendor']}
-        except:
-            vendor = {'vendor': ''}            
 
-        entity ={
-            # 'Shot': '',
-            'name': '',
-            'output': '',
-            'version_number': '',
-            'task_name': '',
-            'vendor': ''
-            }
         if curr_fields:
 
-            if "Shot" in curr_fields.keys():
-                entity ={
-                        'Shot': curr_fields['Shot'],
-                        'name': '',
-                        'output': '',
-                        'version_number': curr_fields['version'],
-                        'type': "Shot"
-                }
-                entity.update(task_name)
-                entity.update(vendor)
-                filters = [
-                    ["content", "is", entity['task_name']],
-                    ["entity.Shot.code", "is", entity['Shot']],
-                    ["project.Project.id", "is", self.project_info['id']]  
-                ]
-                task_fields =[
-                    "step",
-                    "entity"
-                ]                
-            elif "Asset" in curr_fields.keys():
-                entity ={
-                        'Asset': curr_fields['Asset'],
-                        'name': '',
-                        'output': '',
-                        'version_number': curr_fields['version'],
-                        'type': "Asset"                        
-                }
-                entity.update(task_name)
-                entity.update(vendor)
-                filters = [
-                    ["content", "is", entity['task_name']],
-                    ["entity.Asset.code", "is", entity['Asset']],
-                    ["project.Project.id", "is", self.project_info['id']]  
+            # run one large shotgun search to collect entity, task, and step info
+            search_fields = self._task_fields( curr_fields )
+
+            filters = [
+                ["content", "is", curr_fields['task_name']],
+                ["project.Project.id", "is", ctx.project['id']]  
                 ]
 
-                task_fields =[
-                    "step",
-                    "entity"
-                ]                
-            else:
-                self.logger.info("Not an Asset or Shot entity.")
-            
-            task = self.sgtk.shotgun.find_one("Task", filters, task_fields)
+            entity_type = "entity.%s" % curr_fields['type']
+            entity_code = "%s.code" % entity_type
+            entity_name = curr_fields['Entity']
+            filters.append( [entity_code, "is", entity_name] )
 
+            entity_info = self.sgtk.shotgun.find_one("Task", filters, search_fields)
+
+            # Parse search results into entity, task, step, and camera
+            for key in entity_info:
+                key_split = key.split(".")
+                set_key = key_split[-1]
+                
+                if len(key_split) == 1:
+                    task[key] = entity_info[key]
+                
+                if key_split[0] == 'step':
+                    step[set_key] = entity_info[key]
+                elif "sg_main_plate_camera" in key_split:
+                    camera[set_key] = entity_info[key]
+                else:
+                    entity[set_key] = entity_info[key]
+
+            # add task id to current fields (holdover from previous version of script)
             if task:
                 self.logger.info("Task: %s" %(task))
-                entity['id'] = task['entity']['id']
-                step = next((i for i in self.step_info if i['id'] == task['step']['id']), None)
-                if step:
-                    self.logger.info("Step: %s" %(step))
-                    if step['sg_department'] == "3D":
-                        if self.project_info['sg_3d_settings']:
-                            if self.project_info['sg_3d_settings'][0]['sg_primary_render_layer']:
-                                primary_render_folder = self.project_info['sg_3d_settings'][0]['sg_primary_render_layer'].split(",")
-                            if self.project_info['sg_3d_settings'][0]['sg_additional_render_layers']:
-                                for additional in self.project_info['sg_3d_settings'][0]['sg_additional_render_layers'].split(","):
-                                    additional_render_folder.append(additional)
-                                self.logger.debug("Collected additionals %s. Will publish separately." % (additional_render_folder))
+                curr_fields['id'] = task['entity']['id']
 
+            # evaluate step for 3D-specific settings
+            if step:
+                self.logger.info("Step: %s" %(step))
+                if step['sg_department'] == "3D":
+                    if self.project_info['sg_3d_settings']:
+                        if self.project_info['sg_3d_settings'][0]['sg_primary_render_layer']:
+                            primary_render_folder = self.project_info['sg_3d_settings'][0]['sg_primary_render_layer'].split(",")
+                        if self.project_info['sg_3d_settings'][0]['sg_additional_render_layers']:
+                            for additional in self.project_info['sg_3d_settings'][0]['sg_additional_render_layers'].split(","):
+                                additional_render_folder.append(additional)
+                            self.logger.debug("Collected additionals %s. Will publish separately." % (additional_render_folder))
+            
+            # define plugin visibility/enabled
+            plugin_bools = None
+            if step:   
+                plugin_bools = self._set_plugins_from_sg( step )
+
+        render_folders = {
+                        'primary_render_folder': primary_render_folder,
+                        'additional_render_folder': additional_render_folder,
+                        }
+
+        # collect the main plate, if there is one
+        main_plate = self._get_published_main_plate(
+                                                    sg_reader, 
+                                                    self.project_info.get('id'), 
+                                                    entity.get('id') 
+                                                    )
+                                                    
+        entity.update( { 
+                        'type': curr_fields['type'],
+                        'main_plate': main_plate 
+                        } )
+
+        for info in path_info['path_info_returns']:
+            
+            # Construct dictionary of properties with existing values
+            properties = {
+                # class properties to pass
+                'user_info': self.user_info,
+                'codec_info': self.codec_info,
+                'project_info': self.project_info,
+                'software_info': self.software_info,
                 
-        # handle files and folders differently
-        if os.path.isdir(path):
-            self.logger.info("Collecting folder %s" %(path,))
-            self._collect_folder(tk, self.user_info, parent_item, path, entity, step, task, primary_render_folder, additional_render_folder)
-        else:
-            self.logger.info("Collecting file  %s" %(path,))
-            return self._collect_file(tk, self.user_info, parent_item, path, entity, step, task, primary_render_folder, additional_render_folder)
-    
-    def _collect_file(self, tk, user_info, parent_item, path, entity, step, task, primary_render_folder, additional_render_folder, frame_sequence=False):
+                # assign properties from path_info values
+                'fields': info['fields'],
+                'folder_name': info['folder_name'],
+                'frame_range': info['file_range'],
+                'template': info['base_template'],
+                
+                # step and plugin booleons
+                'step': step,
+                'sg_publish_to_shotgun': plugin_bools['sg_publish_to_shotgun'],
+                'sg_slap_comp': plugin_bools['sg_slap_comp'],
+                'sg_version_for_review': plugin_bools['sg_version_for_review'],
+
+                # other shotgun dictionaries
+                'entity': entity,
+                'task': task,
+                'camera': camera,
+                
+                # vendor info for outsource
+                'vendor': curr_fields.get('vendor'),
+                'workfile_dir': info.get('workfile_dir'),
+                'publish_path': info.get('publish_path'),
+
+                # templates and other quicktime info
+                'extra_templates': self._get_extra_templates( info['fields'] ),
+                'process_plugin_info': info['process_plugin_info'],
+                'padded_file_name': info['padded_file_name']
+                }
+
+            if info['single']:
+                if info.get('full_path'):
+                    path = info.get('full_path')
+                properties['sequence_paths'] = [path]
+                self._collect_file(parent_item, path, info, render_folders, properties)
+            else:
+                if info.get('directory'):
+                    path = info.get('directory')
+                properties['sequence_paths'] = [ os.path.join( os.path.normpath(path), i ) for i in os.listdir( path ) ]
+                self._collect_folder(parent_item, path, info, render_folders, properties)
+
+    def _collect_file(self, parent_item, path, path_info, render_folders, properties, frame_sequence=False):
         """
         Process the supplied file path.
 
@@ -522,131 +577,52 @@ class BasicSceneCollector(HookBaseClass):
         :param frame_sequence: Treat the path as a part of a sequence
         :returns: The item that was created
         """
+        self.logger.debug( "Collecting file %s..." % path )
+
         # make sure the path is normalized. no trailing separator, separators
         # are appropriate for the current os, no double separators, etc.
+        path = sgtk.util.ShotgunPath.normalize(path)
         publisher = self.parent
-        evaluated_path = sgtk.util.ShotgunPath.normalize(path)
 
         # get info for the extension
         item_info = self._get_item_info(path)
         item_type = item_info["item_type"]
         type_display = item_info["type_display"]
-        thumbnail_path = None
-        is_sequence = False
 
-        if frame_sequence:
-            # replace the frame number with frame spec
-            seq_path = publisher.util.get_frame_sequence_path(path)
-            if seq_path:
-                evaluated_path = seq_path
-                type_display = "%s Sequence" % (type_display,)
-                item_type = "%s.%s" % (item_type, "sequence")
-                is_sequence = True
+        display_name = publisher.util.get_publish_name(path, sequence=False)
 
-        display_name = publisher.util.get_publish_name(
-            path, sequence=is_sequence)
-        self.logger.debug("Collect file display name is %s obtained from path" % (display_name,))
         # create and populate the item
-        file_item = parent_item.create_item(
-            item_type, type_display, display_name)
+        file_item = parent_item.create_item(item_type, type_display, display_name)
         file_item.set_icon_from_path(item_info["icon_path"])
 
-        # if the supplied path is an image, use the path as # the thumbnail.
-        if (item_type.startswith("file.image") or
-            item_type.startswith("file.texture")):
+        # if the supplied path is an image, use the path as the thumbnail.
+        if item_type.startswith("file.image") or item_type.startswith("file.texture"):
             file_item.set_thumbnail_from_path(path)
-            thumbnail_path = evaluated_path
+            thumbnail_path = path
+          
             # disable thumbnail creation since we get it for free
             file_item.thumbnail_enabled = False
         else:
             self.logger.debug("Using icon as thumbnail: %s" %(item_info["icon_path"],))
             file_item.set_thumbnail_from_path(item_info["icon_path"])
             thumbnail_path = item_info["icon_path"]
-        # all we know about the file is its path. set the path in its
-        # properties for the plugins to use for processing.
-        file_item.properties["path"] = evaluated_path
-        # Get version info
-        content_version_name = os.path.basename(os.path.split(evaluated_path)[0])
-
-        first_frame_search = self._get_frame_number(evaluated_path)
-        frame_range = "1-1"
-        if first_frame_search:
-            frame_range = first_frame_search.group(1) 
-        if is_sequence:
-            # include an indicator that this is an image sequence and the known
-            # file that belongs to this sequence
-            file_item.properties["sequence_paths"] = [path]
-        self.logger.debug("Frame range: %s" % (frame_range))
-        folder_name = os.path.basename(evaluated_path)
 
         # all we know about the file is its path. set the path in its
         # properties for the plugins to use for processing.
-        file_item.properties['entity_info']={}
-        file_item.properties['entity_info']['id']=None
-        if entity:
-            file_item.properties['entity_info'] = entity
-            file_item.properties["pipeline_step"] = entity['task_name']
-        else:
-            self.logger.debug("No entity given.")
-            file_item.properties["pipeline_step"] = None
+        file_item.properties['path'] = path
 
-        file_item.properties["process_info"] = {}
-        file_item.properties["project_info"] = self.project_info
-        file_item.properties["software_info"] = self.software_info
-        file_item.properties["codec_info"] = self.codec_info
-        file_item.properties["user_info"] = user_info
-        file_item.properties["vendor"] = entity['vendor']
+        self.logger.info("Collected file: %s" % (path,))
 
-        file_item.properties["path"] = evaluated_path
-        # file_item.properties["sequence_paths"] = img_seq_files
-        file_item.properties["thumbnail_path"] = thumbnail_path
-        file_item.properties["content_version_name"] = content_version_name
-        file_item.properties["frame_range"] = frame_range        
-        file_item.properties["folder_name"] = folder_name      
-        file_item.properties['step_fields'] = self.step_fields
-        file_item.properties['step'] = step
-        file_item.properties['template'] = None
-        file_item.properties['workfile_template'] = None
-        file_item.properties['fields'] = None
+        # run helper methods that add universial item properties
+        self._run_helper_methods( path, file_item, properties)
 
-        if step:   
-            for k,v in self._set_plugins_from_sg(step['id']).items():
-                file_item.properties[k] = v
-        else:
-            for k,v in self._set_plugins_from_sg(None).items():
-                file_item.properties[k] = v    
+        file_item.properties['thumbnail_path'] = thumbnail_path
 
-        # Template set
-        template = tk.template_from_path(evaluated_path)
-        if template:
-            self.logger.debug("File template: %s" % (template.name))
-            file_item.properties['template'] = template
-            file_item.properties['fields'] = template.get_fields(evaluated_path)
-            if template.name == "incoming_outsource_shot_version_psd":
-                file_item.properties['fields']['task_name'] = file_item.properties['fields']['task_name'].lower()
-                file_item.properties['workfile_template'] = publisher.engine.get_template_by_name('psd_shot_work').apply_fields(file_item.properties['fields'])
-            
-            if template.name == "incoming_outsource_shot_version_tif":
-                file_item.properties['fields']['task_name'] = file_item.properties['fields']['task_name'].lower()
-                file_item.properties['workfile_template'] = publisher.engine.get_template_by_name('psd_shot_version_tif').apply_fields(file_item.properties['fields'])           
-
-            if file_item.properties['workfile_template']:
-                file_item.properties['publish_path'] = file_item.properties['workfile_template']
-                self.logger.info("Publish will copy file to here and publish: %s" % (file_item.properties['workfile_template']))
-        else:
-            self.logger.warning("Could not get template from %s" %(evaluated_path))
-
-        # Set Context
-        try:
-            self.logger.info('Context (Task, Link) is ' + str(self.sgtk.context_from_entity("Task", task["id"])))
-            file_item.context = self.sgtk.context_from_entity("Task", task["id"])
-        except:
-            self.logger.warning('Could not auto-set the context for this item. Not a recognised template patern/naming convention. Please set Task/Link manually')
-            file_item.context = None
+        self.logger.debug( ">>>>> END COLLECT_FILE >>>>>" )
 
         return file_item
 
-    def _collect_folder(self, tk, user_info, parent_item, folder, entity, step, task, primary_render_folder, additional_render_folder):
+    def _collect_folder(self, parent_item, folder, path_info, render_folders, properties):
         """
         Process the supplied folder path.
 
@@ -654,372 +630,68 @@ class BasicSceneCollector(HookBaseClass):
         :param folder: Path to analyze
         :returns: The item that was created
         """
-        ignore_files = ["Thumbs.db"]
-        ignore_folders = [".mayaSwatches"]
-        folder_items = []
-            
-        def get_seq_item(folder, sub_folders = False):
-
-            self.logger.debug("Attempting to get seq items in %s" %(folder))
-            img_sequences = publisher.util.get_frame_sequences(
-                os.path.normpath(folder),
-                self._get_image_extensions()
-            )
-            
-            if not img_sequences:
-                self.logger.debug("Could not find frame sequences.")
-                return None
-            else:
-                self.logger.debug("Image sequence count: %s" % str(len(img_sequences)))
-                for (image_seq_path, img_seq_files) in img_sequences:
-                    # folder_name = ""
-                    folder_name = os.path.basename(folder)
-                    # get info for the extension
-                    item_info = self._get_item_info(image_seq_path)
-                    item_type = item_info["item_type"]
-                    type_display = item_info["type_display"]
-
-                    # the supplied image path is part of a sequence. alter the
-                    # type info to account for this.
-                    type_display = "%s Sequence" % (type_display,)
-                    item_type = "%s.%s" % (item_type, "sequence")
-                    icon_name = "image_sequence.png"
-                    frame_range = "1-1"
-
-                    # Get version info
-                    content_version_name = os.path.basename(os.path.split(image_seq_path)[0])
-                    version_number = publisher.util.get_version_number(image_seq_path)
-
-                    # Get frame range from first/last file path string
-                    # from sorted SEQ list of
-                    img_seq_files.sort()
-                    first_frame_file = img_seq_files[0]
-                    last_frame_file = img_seq_files[-1]
-
-                    first_frame_search = self._get_frame_number(first_frame_file)
-                    last_frame_search = self._get_frame_number(last_frame_file)
-                    if (first_frame_search and 
-                    last_frame_search):
-                        frame_range = (first_frame_search.group(1) +  
-                                        "-" +
-                                        last_frame_search.group(1))
-                        self.logger.debug("Frame range from path: %s" % frame_range)
-                    else:
-                        self.logger.debug("Could not find frame numbers.")
-
-                    display_name = "%s - %s" % (publisher.util.get_publish_name(first_frame_file, sequence=True),folder_name)
-                    self.logger.debug("Collect folder display name: %s" % (display_name))
-                    if version_number:
-                        display_name += "- v%s" % (str(version_number).zfill(3))
-                    
-                    # create and populate the item
-                    file_item = parent_item.create_item(
-                        item_type,
-                        type_display,
-                        display_name 
-                    )
-                    icon_path = self._get_icon_path(icon_name)
-                    file_item.set_icon_from_path(icon_path)
-                    # get the first frame of the sequence. we'll use this for the
-                    # thumbnail and to generate the display name
-                    file_item.set_thumbnail_from_path(first_frame_file)
-                    if os.path.exists(first_frame_file):
-                        thumbnail_path = first_frame_file
-                    else:
-                        thumbnail_path = None   
-                    
-                    # Get additional info from templates
-                    # error suppression for rare cases where the template search faults
-                    try:
-                       template = tk.template_from_path(image_seq_path)
-                       fields = {}
-                    except:
-                        self.logger.warning("Error retrieving template.")
-                        template = None
-                        fields = {}
- 
-                    if template:
-                        self.logger.debug("File template: %s" % (template.name))
-                        fields = template.get_fields(image_seq_path)
-                    
-                        if template.name == 'shot_plate_main_undistorted':
-                            file_item.properties['publish_type'] = "Undistorted Main Plate"
-                    else:
-                        template =  tk.template_from_path(folder)
-                        if template:
-                            self.logger.debug("Folder template: %s" % (template.name))                            
-                            fields = template.get_fields(folder)
-
-                    self.logger.debug("fields %s" %(fields))
-
-                    # disable thumbnail creation since we get it for free
-                    file_item.thumbnail_enabled = False
-                    # all we know about the file is its path. set the path in its
-                    # properties for the plugins to use for processing.
-                    file_item.properties['entity_info']={}
-                    file_item.properties['entity_info']['id']=None
-
-                    if entity:
-                        file_item.properties['entity_info'] = entity                        
-                        file_item.properties["pipeline_step"] = entity['task_name']
-                    else:
-                        file_item.properties["pipeline_step"] = None
-
-                    file_item.properties["project_info"] = self.project_info
-                    file_item.properties["software_info"] = self.software_info
-                    file_item.properties["codec_info"] = self.codec_info
-
-                    file_item.properties["process_info"] = {}
-                    file_item.properties["user_info"] = user_info
-                    file_item.properties["vendor"] = entity['vendor']                    
-                    
-                    file_item.properties["path"] = image_seq_path
-                    file_item.properties["sequence_paths"] = img_seq_files
-                    file_item.properties["thumbnail_path"] = thumbnail_path
-                    file_item.properties["content_version_name"] = content_version_name
-                    file_item.properties["frame_range"] = frame_range        
-                    file_item.properties["folder_name"] = folder_name
-                    file_item.properties['step_fields'] = self.step_fields                    
-                    file_item.properties['step'] = step
-                    file_item.properties['fields'] = fields                    
-                    file_item.properties['template'] = template
-
-                    # create task context to replace project-level context
-                    if step:   
-                        for k,v in self._set_plugins_from_sg(step['id']).items():
-                            file_item.properties[k] = v
-                    else:
-                        for k,v in self._set_plugins_from_sg(None).items():
-                            file_item.properties[k] = v   
-                                                 
-                    # Set Context
-                    try:
-                        self.logger.info('Context (Task, Link) is ' + str(self.sgtk.context_from_entity("Task", task["id"])))
-                        file_item.context = self.sgtk.context_from_entity("Task", task["id"])
-                    except:
-                        self.logger.warning('Could not auto-set the context for this item. Not a recognised template patern/naming convention. Please set Task/Link manually')
-                        file_item.context = None
-
-                    self.logger.info("Collected file: %s" % (image_seq_path,))
-
-                    return file_item
-
-        def get_single_item(file_item, path, display_name, entity, step, frame_range):
-
-            self.logger.debug("Getting single item: %s" %(path,))
-
-            tk = sgtk.sgtk_from_path(path)
-
-            new_item = parent_item.create_item(
-                file_item["item_type"],
-                file_item["type_display"],
-                display_name 
-            )
-            
-            new_item.properties['path'] = path
-            new_item.properties["publish_to_shotgun"] = True
-            new_item.properties["sg_version_for_review"] = False
-            new_item.set_icon_from_path(file_item['icon_path'])
-            new_item.properties['step'] = step
-            new_item.properties['frame_range'] = frame_range
-            
-            # Attempt to find a frame range for items without one
-            # Default to None if no range can be established
-            if not frame_range:
-                # Set range for single item
-                if not os.path.isdir(path):
-                    first_frame_file = path
-
-                    first_frame_search = self._get_frame_number(first_frame_file)
-
-                    if first_frame_search:
-                        frame_range = first_frame_search.group(1)
-                        self.logger.debug("Frame range from path: %s" % frame_range)
-
-                else:
-                    # set range for a sequence
-                    frame_list = sorted( os.listdir( path ) )
-                    first_frame_file = frame_list[0]
-                    last_frame_file = frame_list[-1]
-
-                    first_frame_search = self._get_frame_number(first_frame_file)
-                    last_frame_search = self._get_frame_number(last_frame_file)
-
-                    if (first_frame_search and last_frame_search):
-                        frame_range = (first_frame_search.group(1) +  
-                                        "-" +
-                                        last_frame_search.group(1))
-                        self.logger.debug("Frame range from directory paths: %s" % frame_range)
-
-            # verify and apply frame range amendments
-            new_item.properties['frame_range'] = frame_range
-            
-            new_item.properties['file_info'] = publisher.util.get_file_path_components(path)
-            new_item.properties["software_info"] = self.software_info      
-
-            # Error handling to deal with rare instances where template searches break the collection process
-            try:
-                new_item_file_template = tk.template_from_path(path)
-                new_item_folder_template = tk.template_from_path(new_item.properties['file_info']['folder'])
-            except:
-                new_item_file_template = None
-                new_item_folder_template = None
-            
-
-            new_item.properties['template'] = None
-            new_item.properties['template_file'] = None
-            new_item.properties['fields'] = None
-
-            if new_item_folder_template:
-                new_item.properties['template'] = new_item_folder_template
-                new_item.properties['fields'] = new_item_folder_template.get_fields(new_item.properties['file_info']['folder'])
-
-            if new_item_file_template:
-                new_item.properties['template_file'] = new_item_file_template                
-
-            new_item.properties["project_info"] = self.project_info
-            new_item.properties["user_info"] = user_info
-            
-            new_item.properties['entity_info']={}
-            new_item.properties['entity_info']['id']=None
-            
-            new_item.properties['codec_info'] = self.codec_info
-            new_item.properties['step_fields'] = self.step_fields   
-
-            if entity:
-                new_item.properties['entity_info'] = entity
-                                    # create task context to replace project-level context
-            if step:   
-                for k,v in self._set_plugins_from_sg(step['id']).items():
-                    new_item.properties[k] = v
-            else:
-                for k,v in self._set_plugins_from_sg(None).items():
-                    new_item.properties[k] = v
-
-            # Set Context
-            try:
-                self.logger.debug('Context is %s. Display name: %s' % (str(self.sgtk.context_from_entity("Task", task["id"])), display_name))
-                new_item.context = self.sgtk.context_from_entity("Task", task["id"])
-            except:
-                self.logger.warning('Could not auto-set the context for this item. Not a recognised template patern/naming convention. Please set Task/Link manually')
-                new_item.context = None
-
-            return new_item
+        self.logger.debug( "Collecting folder contents from %s..." % folder )
 
         # make sure the path is normalized. no trailing separator, separators
         # are appropriate for the current os, no double separators, etc.
-        publisher = self.parent   
         folder = sgtk.util.ShotgunPath.normalize(folder)
 
-        # Get frame range
-        frame_range = None
+        publisher = self.parent
+        img_sequences = publisher.util.get_frame_sequences(
+            folder, self._get_image_extensions()
+        )
 
-        # frame range for single items in folders
-        if len(os.listdir(folder) ) == 1:
-            frame_range_path = os.path.join(folder, os.listdir(folder)[0] )
-            evaluated_path = sgtk.util.ShotgunPath.normalize(frame_range_path)
+        file_items = []
 
-            first_frame_search = self._get_frame_number(evaluated_path)
-            
-            frame_range = "1-1"
-            if first_frame_search:
-                frame_range = first_frame_search.group(1) 
+        for (image_seq_path, img_seq_files) in img_sequences:
 
-            self.logger.debug("Frame range: %s" % (frame_range))
+            # get info for the extension
+            item_info = self._get_item_info(image_seq_path)
+            item_type = item_info["item_type"]
+            type_display = item_info["type_display"]
 
-        # frame range for matchmoves
-        if step != None:
-            if step['id'] == 4:
-                sg_frame_range = publisher.shotgun.find_one("Shot", 
-                                                        [["id", "is", task['entity']['id']]],
-                                                        ['sg_head_in', 'sg_tail_out'])
-                
-                if sg_frame_range['sg_head_in'] and sg_frame_range['sg_tail_out']:
-                    frame_range = "%s-%s" % (sg_frame_range['sg_head_in'], sg_frame_range['sg_tail_out'])
+            # the supplied image path is part of a sequence. alter the
+            # type info to account for this.
+            type_display = "%s Sequence" % (type_display,)
+            item_type = "%s.%s" % (item_type, "sequence")
+            icon_name = "image_sequence.png"
 
-        if primary_render_folder:
-            self.logger.info("Searching for primary renders in:")
-            for search_folder in primary_render_folder:
-                self.logger.info(" - %s" % (search_folder))
-        else:
-            self.logger.debug("No primary folder set. Search all..")
-        
-        for root, sub_folder ,files in os.walk(folder):
+            # get the first frame of the sequence. we'll use this for the
+            # thumbnail and to generate the display name
+            img_seq_files.sort()
+            first_frame_file = img_seq_files[0]
+            display_name = publisher.util.get_publish_name(
+                first_frame_file, sequence=True
+            )
 
-            # Continue if certain ignore folders are met
-            if(os.path.basename(root) in ignore_folders):
-                continue
+            # create and populate the item
+            file_item = parent_item.create_item(item_type, type_display, display_name)
+            icon_path = self._get_icon_path(icon_name)
+            file_item.set_icon_from_path(icon_path)
 
-            # Main walk area
-            if (root != folder):
-                self.logger.debug("Sub folder(s):")
-                self.logger.debug(sub_folder)
-                files = list(set(files) - set(ignore_files))
-                if len(files)>0:
-                    if len(files) == 1:
-                        self.logger.debug("Found ONE file in: %s" % (root,))
-                        file_item = self._get_item_info(os.path.join(root,files[0]))
-                        if primary_render_folder:
-                            if os.path.basename(root) not in primary_render_folder:
-                                file_item.properties["sg_slap_comp"] = False                              
-                        single_item = get_single_item(file_item, os.path.join(root,files[0]), "%s" %(files[0],) , entity, step, frame_range)
-                        folder_items.append(single_item)
-                    elif len(files)>1:
-                        self.logger.debug("Found %s files in: %s" % (len(files),root))
-                        # display_name += "- %s" % (root)
-                        seq_file_items = get_seq_item(root, sub_folders=True)
-                        if primary_render_folder:
-                            if os.path.basename(root) not in primary_render_folder:
-                                seq_file_items.properties["sg_slap_comp"] = False                        
-                        if seq_file_items:
-                            folder_items.append(seq_file_items)
-               
-            else:
-                # check for files that are in the root folder
-                if len(files)==1:
-                    # self.logger.warning(files)
-                    file_item = self._get_item_info(os.path.join(root,files[0]))
-                    single_item = get_single_item(file_item, os.path.join(root,files[0]), "%s" %(files[0],) , entity, step, frame_range)
-                    folder_items.append(single_item)
-                elif len(files)>1:
-                    self.logger.debug("Found %s files in: %s" % (len(files),root))
-                    seq_file_items = get_seq_item(sgtk.util.ShotgunPath.normalize(root))
-                    if not seq_file_items:
-                        for index, file in enumerate(files):
-                            file_item = self._get_item_info(os.path.join(root,file))
-                            single_item = get_single_item(file_item, os.path.join(root,files[index]), "%s" %(file,) , entity, step, frame_range)
-                            folder_items.append(single_item)
-                else:
-                    self.logger.warn("Found %s files in: %s" % (len(files),root))
+            # use the first frame of the seq as the thumbnail
+            file_item.set_thumbnail_from_path(first_frame_file)
 
-        return folder_items
-    
-    def _set_plugins_from_sg(self, step_id):
+            # disable thumbnail creation since we get it for free
+            file_item.thumbnail_enabled = False
 
-        # Determine if there are plugin visibility settings in Shotgun
-        publish_bool = next((i['sg_publish_to_shotgun'] for i in self.step_info if i['id'] == step_id), None)
-        version_bool = next((i['sg_version_for_review'] for i in self.step_info if i['id'] == step_id), None)
-        slap_bool = next((i['sg_slap_comp'] for i in self.step_info if i['id'] == step_id), None)
-        
-        plugins_dict = {}
-        # Determine which plugins to load
-        if step_id == None:
-            self.logger.debug("No Step ID found. Loading defaults.")
-            plugins_dict["publish_to_shotgun"] = True
-            plugins_dict["sg_version_for_review"] = True
-            plugins_dict["sg_slap_comp"] = False
-        else:
-            plugins_dict["publish_to_shotgun"] = publish_bool
-            plugins_dict["sg_slap_comp"] = slap_bool
-            if not version_bool:
-                plugins_dict["sg_version_for_review"] = True
-            else:
-                plugins_dict["sg_version_for_review"] = False
+            # all we know about the file is its path. set the path in its
+            # properties for the plugins to use for processing.
+            file_item.properties["path"] = image_seq_path
 
-        self.logger.info("Publish: %s | Version: %s | Slap: %s"%(plugins_dict["publish_to_shotgun"],
-                                                plugins_dict["sg_version_for_review"],
-                                                plugins_dict["sg_slap_comp"]))
-        return plugins_dict
+            self.logger.info("Collected file: %s" % (image_seq_path,))
+
+            # run helper methods that add universial item properties
+            self._run_helper_methods( image_seq_path, file_item, properties)
+
+            file_items.append(file_item)
+
+        if not file_items:
+            self.logger.warn("No image sequences found in: %s" % (folder,))
+
+        self.logger.debug( ">>>>> END COLLECT_FOLDER >>>>>" )
+
+        return file_items
 
     def _get_item_info(self, path):
         """
@@ -1088,8 +760,7 @@ class BasicSceneCollector(HookBaseClass):
                 # the system's default encoding. If a unicode string is
                 # returned, we simply ensure it's utf-8 encoded to avoid issues
                 # with toolkit, which expects utf-8
-                if isinstance(category_type, unicode):
-                    category_type = category_type.encode("utf-8")
+                category_type = six.ensure_str(category_type)
 
                 # the category portion of the mimetype
                 category = category_type.split("/")[0]
@@ -1107,7 +778,7 @@ class BasicSceneCollector(HookBaseClass):
             item_type=item_type,
             type_display=type_display,
             icon_path=icon_path,
-        )
+            )
 
     def _get_icon_path(self, icon_name, icons_folders=None):
         """
@@ -1123,6 +794,7 @@ class BasicSceneCollector(HookBaseClass):
         :returns: The full path to the icon of the supplied name, or a default
             icon if the name could not be found.
         """
+
         # ensure the publisher's icons folder is included in the search
         app_icon_folder = os.path.join(self.disk_location, "icons")
 
@@ -1141,11 +813,10 @@ class BasicSceneCollector(HookBaseClass):
             if os.path.exists(icon_path):
                 found_icon_path = icon_path
                 break
-            
+
         # supplied file name doesn't exist. return the default file.png image
         if not found_icon_path:
             found_icon_path = os.path.join(app_icon_folder, "file.png")
-
 
         return found_icon_path
 
@@ -1153,21 +824,19 @@ class BasicSceneCollector(HookBaseClass):
 
         if not hasattr(self, "_image_extensions"):
 
-            image_file_types = [
-                "Photoshop Image",
-                "Rendered Image",
-                "Texture Image"
-            ]
+            image_file_types = ["Photoshop Image", "Rendered Image", "Texture Image"]
             image_extensions = set()
 
             for image_file_type in image_file_types:
                 image_extensions.update(
-                    self.common_file_info[image_file_type]["extensions"])
+                    self.common_file_info[image_file_type]["extensions"]
+                )
 
             # get all the image mime type image extensions as well
             mimetypes.init()
             types_map = mimetypes.types_map
-            for (ext, mimetype) in types_map.iteritems():
+            for (ext, mimetype) in types_map.items():
+
                 if mimetype.startswith("image/"):
                     image_extensions.add(ext.lstrip("."))
 
@@ -1175,19 +844,696 @@ class BasicSceneCollector(HookBaseClass):
 
         return self._image_extensions
 
-    def _get_frame_number(self, path):
+    def _set_plugins_from_sg(self, step):
+        '''
+        Assign correct plugins based on item step
 
-        """
-        Extract a SEQ frame number from the supplied path.
+        :param step: The item's task step from Shotgun
+        '''
 
-        This is used by plugins for populating frame range info.
+        # Set plugin defaults
+        plugins_dict = {
+                        "sg_publish_to_shotgun": True,
+                        "sg_version_for_review": True,
+                        "sg_slap_comp": False
+                        }
 
-        :param path: The path to a file.
+        # Determine which plugins to load
+        for key in plugins_dict:
+            if step.get(key) != None:
+                plugins_dict[key] = step.get(key)
 
-        :return: An integer representing the frame number in the supplied
-            path. If no version found, ``None`` will be returned.
-        """
+            if key == "sg_version_for_review":
+                if not step.get(key):
+                    plugins_dict[key] = True
+                else:
+                    plugins_dict[key] = False
+
+        self.logger.info("Publish: %s | Version: %s | Slap: %s" % ( plugins_dict["sg_publish_to_shotgun"],
+                                                                    plugins_dict["sg_version_for_review"],
+                                                                    plugins_dict["sg_slap_comp"] ) )
+        return plugins_dict
+
+    # set of custom helper methods for cleanliness
+    def _run_helper_methods(self, path, item, properties):
+        '''
+        Run all the helper methods to complete the collector item
+
+        :param path: file/folder path
+        :param item: the collector item to update/pass to plugins
+        :param properties: dictionary of default properties to assign
+        '''
+        publisher = self.parent
+
+        # set default properties and link the task context
+        self._add_default_properties( item, properties)
+        self._link_task( item )
+
+        # confirm job type by file extension
+        file_info = publisher.util.get_file_path_components(path)
+        extension = file_info["extension"]
+        submit_file_type = next( ( {i:j} for i,j in self.common_file_info.items() if extension in j['extensions'] ), None )
+        item.properties['submit_file_type'] = submit_file_type
+
+        # retrieve software for processing job
+        item_software = item.properties['process_plugin_info']['software']
+        set_software = next(( i for i in self.software_info if (item_software == i['products'] and i['sg_pipeline_tools'] == True ) ), None )
+        item.properties['set_software'] = set_software
+
+        # check for existing version
+        item.properties['existing_version'] = self._get_existing_version( item )
+
+        # set version_data for creating a version in Shotgun
+        item.properties['version_data'] = self.set_version_data( path, item )
         
-        frame_number = r"\.(\d{4,10})\."
-                
-        return re.search(frame_number, path)
+        # set fields to resolve output path
+        item.properties['resolve_fields'] = self.set_resolve_fields( item )
+        
+        # collect template paths
+        item.properties['template_paths'] = self._apply_templates( item )
+
+        # collect review process json as dictionary
+        item.properties['review_process_json'] = self._get_process_review_settings( item )
+        
+        # collect review process json as dictionary
+        item.properties['json_properties'] = self._json_properties( item )
+
+        return item
+
+    def _add_default_properties(self, item, properties):
+        '''
+        Add the default properties and their values
+        to a newly created file item
+
+        :param item: the collector item for property assignment
+        :param properties: dictionary of default properties to assign
+        '''
+
+        for key in properties.keys():
+            item.properties[key] = properties[key]
+
+        return item
+
+    def _link_task(self, item):
+        '''
+        Use Task ID to set context
+
+        :param item: the collector item for property assignment
+        '''
+        # self._link_task( file_item, global_info.get('task') )
+        if not item.properties.get('task'):
+            self.logger.warning('Could not auto-set the context for this item. Not a recognised template patern/naming convention. Please set Task/Link manually')
+            return
+
+        task = item.properties.get('task')
+        item.context = self.sgtk.context_from_entity("Task", task["id"])
+        self.logger.info('Context (Task, Link) is ' + str(self.sgtk.context_from_entity("Task", task["id"])))
+
+        return item
+
+    def _get_ampm(self, now):
+        '''
+        determine appropriate dailies location based on current time
+
+        :param now: a datetime object expressing the current time
+        '''
+        ampm =""
+        if int(now.strftime("%H")) < 11:
+            ampm = "AM"
+        elif int(now.strftime("%H")) < 16:
+            ampm = "PM"            
+        else:   
+            ampm = "LATE"
+        
+        return ampm
+
+    def set_version_data(self, path, item):
+        '''
+        Generate a version_data dictionary
+
+        :param path: file/folder path
+        :param item: the collector item for property assignment
+        '''
+        version_data = {
+                        "sg_path_to_frames": path,
+                        "project": item.context.project,
+                        "sg_task": item.context.task,
+                        "entity": item.context.entity,
+                        "code": item.properties['existing_version'].get('version_name'),
+                        "image": item.properties.get("thumbnail_path"),
+                        "frame_range": item.properties.get("frame_range"),                   
+                        "version_number": item.properties['existing_version'].get('version_number'),                   
+                        "publish_name": item.properties['existing_version'].get('publish_name'),                   
+                        }
+
+        return version_data
+
+    def set_resolve_fields(self, item):
+        '''
+        gather fields for template constructions
+
+        :param item: the collector item for property assignment
+        '''
+        entity_type = item.properties['fields']['type']
+        entity_name = item.properties['fields']['Entity']
+        now = datetime.now()
+
+        resolve_fields = {
+                        entity_type: entity_name,
+                        'task_name': item.context.task['name'],
+                        'name': None,
+                        'version': item.properties['version_data'].get('version_number'),
+                        'ampm': self._get_ampm( now ),
+                        'YYYY': now.year,
+                        'MM': now.month,
+                        'DD': now.day,
+                        'sg_asset_type': item.properties['fields'].get('sg_asset_type')
+                        }
+        
+        return resolve_fields
+
+    def _get_published_main_plate(self, sg_reader, project_id, entity_id):
+        '''
+        Get the main plate from  network storage
+
+        :param sg_reader: sg_reader instance to use for file navigation
+        :param project_id: ID number of the current project
+        :param entity_id: ID number of the current entity (Shot/Asset)
+        '''
+        if not (project_id and entity_id):
+            self.logger.warning("Could not find Main Plate.")
+            return
+
+        published_main_plate = sg_reader.get_pushlished_file(
+                                                            project_id, 
+                                                            "Main Plate", 
+                                                            "Shot", 
+                                                            entity_id=entity_id, 
+                                                            get_latest=True
+                                                            )
+        
+        self.logger.info( "Got main plate of entity %s - %s" % ( str( entity_id ), published_main_plate ) )
+        return published_main_plate
+
+    def _get_extra_templates(self, item):
+        '''
+        Get assorted templates for assigning input/output locations
+
+        :param item: the collector item for property assignment
+        '''
+        publisher = self.parent
+
+        # find default templates
+        nuke_review_template = publisher.engine.get_template_by_name("nuke_review_template2")
+        temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
+        info_json_template = publisher.engine.get_template_by_name('info_json_file')  
+        review_process_json_template = publisher.engine.get_template_by_name("general_review_process_json")
+
+        # find templates for the correct entity type
+        if item['type'] in [ 'shot', 'Shot', 'SHOT' ]:
+            temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
+            info_json_template = publisher.engine.get_template_by_name('info_json_file')
+            qt_template = publisher.engine.get_template_by_name('resolve_shot_review_mov')
+            qt_template_secondary =  publisher.engine.get_template_by_name('resolve_shot_review_mov_secondary')
+
+        elif item['type'] in [ 'asset', 'Asset', 'ASSET' ]:
+            temp_root_template = publisher.engine.get_template_by_name("temp_asset_render_root")
+            info_json_template = publisher.engine.get_template_by_name('asset_json_file')
+            qt_template = publisher.engine.get_template_by_name('resolve_asset_review_mov')
+            qt_template_secondary =  publisher.engine.get_template_by_name('resolve_asset_review_mov_secondary')
+        
+        extra_templates = {
+                            'nuke_review_template': nuke_review_template,
+                            'temp_root_template': temp_root_template,
+                            'info_json_template': info_json_template,
+                            'review_process_json_template': review_process_json_template,
+                            'qt_template': qt_template,
+                            'qt_template_secondary': qt_template_secondary,
+                            }
+
+        return extra_templates
+
+    def _apply_templates(self, item):
+        '''
+        Assign paths based on returns from _get_extra_templates and check path validity
+        
+        :param item: the collector item for property assignment
+        '''
+        templates = item.properties['extra_templates']
+        resolve_fields = item.properties['resolve_fields']
+
+        temp_root = templates['temp_root_template'].apply_fields(resolve_fields)
+
+        fields = {}
+        nuke_review_file = templates['nuke_review_template'].apply_fields( fields )
+        review_process_json = templates['review_process_json_template'].apply_fields( fields )
+
+        template_paths = {
+                            'temp_root': temp_root,
+                            'nuke_review_file': nuke_review_file,
+                            'review_process_json': review_process_json,
+                            }
+        
+        for i in template_paths:
+            template_paths[i] = re.sub( "(\s+)", "-", template_paths[i] )
+        
+        return template_paths
+
+    def _get_existing_version(self, item):
+        '''
+        Search for existing version in SG and construct version naming
+        NOTE: This gets appended to the dictionary in set_version_data later
+
+        :param item: the collector item for property assignment
+        '''
+        publisher = self.parent
+
+        version_name = ""
+
+        # initial input and basic publisher name
+        path = item.properties['path']
+        is_sequence = len( item.properties['sequence_paths'] ) > 1
+        publish_name = publisher.util.get_publish_name(
+                                                        path,
+                                                        sequence=is_sequence
+                                                        )
+
+        # strip values separated by a . at the end of the name
+        while os.path.splitext(publish_name)[1]:
+            publish_name = os.path.splitext(publish_name)[0]
+
+        # check for version number and either apply it or v000
+        underscore_ver = ""
+        version_number = publisher.util.get_version_number(item.properties["path"])
+        if not version_number:
+            underscore_ver = "_v" + "".zfill(3)
+        else:
+            underscore_ver = "_v%s" % str(version_number).zfill(3)
+    
+        version_name = "%s%s" % ( publish_name, underscore_ver )
+
+        # search for version and return result
+        existing_version_data = [
+            ['project', 'is', {'type': 'Project','id': item.properties['project_info']['id']}],
+            ["code", "is", version_name]
+        ]
+        
+        existing_version = publisher.shotgun.find_one("Version", 
+                                                    existing_version_data,
+                                                    ["code"])
+
+        existing_version= {
+                            "version": existing_version,
+                            "version_number": version_number,
+                            "underscore_ver": underscore_ver,
+                            "version_name": version_name,
+                            "publish_name": publish_name,
+                            }
+
+        self.logger.debug("version_name: %s" % version_name)
+
+        return existing_version
+
+    def _get_process_review_settings(self, item):
+        '''
+        Locates a JSON file based on templates and converts it to a dictionary
+
+        :param item: the collector item for property assignment
+        '''
+        json_file = item.properties['template_paths'].get('review_process_json')
+
+        if not os.path.exists( json_file ):
+            raise Exception("Unable to read Json data from file: %s" % json_file)
+
+        file_content = open(json_file, "r")
+        file_str = file_content.read()
+        file_content.close()
+
+        json_data = json.loads(file_str)
+        
+        return json_data
+
+    def _json_properties(self, item):
+        '''
+        Collects and assigns properties to a dictionary that will be written to a JSON.
+        This JSON dictates the settings for Deadline jobs.
+
+        :param item: the collector item for property assignment
+        '''
+
+        json_properties = item.properties.get('review_process_json').copy()
+        templates = item.properties.get('extra_templates')
+        codecs = item.properties.get('codec_info')
+
+        info_json_file = templates['info_json_template'].apply_fields( item.properties.get('resolve_fields') )
+        info_json_file = re.sub("(\s+)", "-", info_json_file)
+        json_properties['general_settings']['info_json_file'] = info_json_file
+
+        # set primary or secondary
+        process_type = item.properties['step'].get('sg_review_process_type').lower()        
+        process_dict =  json_properties[process_type]
+        process_jobs = process_dict['processes']
+        
+        # collect values and append them to the appropriate settings dictionary
+        for i in process_jobs:
+            key = str(i)
+            current_process = process_jobs[key]
+            process_settings = current_process.get('process_settings')
+            nuke_settings = current_process.get('nuke_settings')
+            
+            resolve_fields = item.properties.get('resolve_fields').copy()
+            resolve_fields.update({'name': key})
+
+            if process_settings.get('plugin_in_script_alt') and item.properties['project_info'].get('sg_root'):
+                review_script_path = os.path.join( item.properties['project_info']['sg_root']['local_path_windows'], 
+                                                process_settings['plugin_in_script_alt'] )
+                review_script_path = os.path.normpath( review_script_path )
+            else:
+                review_script_path = item.properties['template_paths'].get('nuke_review_file')
+
+
+            process_codec = nuke_settings.get('quicktime_codec').get('id')
+            if not process_codec:
+                raise Exception("Missing Quicktime Codec id in procesing_review_settings.json")
+
+            quicktime_codec = next( ( i for i in codecs if i['id'] == process_codec ), None )
+
+            review_output = templates['qt_template_secondary'].apply_fields(resolve_fields)
+            
+            output_root = os.path.split(review_output)[0]
+            output_main = os.path.split(review_output)[1]
+            output_ext = os.path.splitext(review_output)[1]
+            
+            # set temp_root here because it's used in a lot of places
+            temp_root = item.properties['template_paths'].get('temp_root')
+
+            dl_root = os.path.join( temp_root, "deadline" )
+            nuke_out_root = os.path.join( dl_root, "%s_%s.nk" )
+            nuke_out_script = nuke_out_root % ( re.sub("(\s+)", "-", item.properties.get('version_data')['code']), key )
+
+            # check for .job file root and create it if missing
+            dirname = os.path.join( temp_root, "deadline", key)
+
+            version_name = item.properties['version_data'].get('code')
+            basename = "%s_%s" % (version_name, key)
+            variable_path = os.path.join( dirname, basename )
+
+            job_info_file = "%s_job_info.job" % variable_path
+            plugin_info_file = "%s_plugin_info.job" % variable_path
+
+            # set format
+            json_format = current_process['nuke_settings']['format']['id']
+            proj_formats = item.properties['project_info']['formats']
+            output_format = next((format_ for format_ in proj_formats if format_['id'] == json_format ), None)
+            camera_format = item.properties.get('camera')
+
+            # process_settings from item info
+            user = item.properties['user_info'].get('login')
+            vendor = item.properties['vendor']
+            script_file = json_properties['general_settings']['script_file']
+            sg_temp_root = temp_root.replace("\\", "/")
+
+            # nuke_settings from item info
+            camera_switch = item.properties['camera'].get('sg_pump_incoming_transform_switch')
+            # plugin_in_script = review_script_path.replace("\\", "/")
+            plugin_out_script = nuke_out_script
+            slate_enabled = item.properties['project_info'].get('sg_review_qt_slate')
+            burnin_enabled = item.properties['project_info'].get('sg_review_burn_in')
+            main_transform_switch = current_process.get('main_transform_switch')
+
+            # deadline_settings from item info
+            batch_name =  (item.properties['version_data']['code'] + "_submit") or ""
+            job_name = ("%s_%s" % (item.properties['version_data']['code'], key)) or ""
+            content_output_file = output_main or ""
+            content_output_file_total = output_main or ""
+            content_output_file_ext = output_ext or ""
+            content_output_root = output_root or ""
+            frame_range = item.properties.get('frame_range')
+            job_dependencies = ""
+
+            slate_frames = item.properties['project_info'].get('sg_delivery_slate_count')
+            if not slate_frames:
+                slate_frames = 1
+
+            head_in = int(item.properties['frame_range'].split('-')[0])
+            tail_out = int(item.properties['frame_range'].split('-')[-1])
+            slate_range = "%s-%s" % ( ( head_in - slate_frames ), tail_out )
+
+            # deadline_settings from item json
+            deadline_values = json_properties['deadline_settings']
+
+            primary_pool = deadline_values.get('primary_pool')
+            secondary_pool = deadline_values.get('secondary_pool')
+            chunk_size = deadline_values.get('chunk_size')
+            priority = deadline_values.get('priority')
+            concurrent_task = deadline_values.get('concurrent_task')
+            machine_limit = deadline_values.get('machine_limit')
+            update_client_version = deadline_values.get('update_client_version')
+            create_publish = deadline_values.get('create_publish')
+            copy_to_location = deadline_values.get('copy_to_location')
+            copy_location = deadline_values.get('copy_location')
+
+            set_software = item.properties['set_software']
+            item_software = item.properties['set_software']['products']
+
+            publish_file_type = deadline_values.get('publish_file_type')
+            if item_software == "Maya" and item['step']['id'] == 4:
+                publish_file_type = "Alembic Cache"
+
+            current_process['process_settings'].update( {  
+                                        "plugin_name": item_software,
+                                        "plugin_path": set_software['windows_path'],
+                                        "plugin_version": set_software['version_names'],
+                                        "nuke_review_script": review_script_path,
+                                        "review_output": review_output,
+                                        "user": user,
+                                        "vendor": vendor,
+                                        "script_file": script_file,
+                                        "sg_temp_root": sg_temp_root,
+                                        } )
+
+            # General Nuke Settings
+            current_process['nuke_settings'].update( {
+                                        # "format": output_format,
+                                        "format": camera_format,
+                                        "quicktime_codec": quicktime_codec,
+                                        "camera_switch": camera_switch,
+                                        "plugin_out_script": plugin_out_script,
+                                        "slate_enabled": slate_enabled,
+                                        "burnin_enabled": burnin_enabled,
+                                        "main_transform_switch": main_transform_switch,
+                                        } )
+
+            ### Node-specific Nuke Settings ###
+            # General Script Settings
+            current_process['nuke_settings']
+
+            # Main Read
+            current_process['nuke_settings']['main_read'].update( {
+                                        'file': item.properties['padded_file_name'],
+                                        'first': head_in,
+                                        'last': tail_out,
+                                        } )
+            # Shot CCC
+            shot_ccc_file = ""
+            shot_ccc = item.properties['entity'].get('sg_shot_ccc')
+            if shot_ccc != None:
+                shot_ccc_file = shot_ccc.get('local_path_windows').replace("\\", "/")
+            current_process['nuke_settings']['shot_ccc'] = {
+                                        'read_from_file': True,
+                                        'file': shot_ccc_file,
+                                        'disable': shot_ccc_file == "",
+                                        }
+            # Shot Cube
+            vfield_file = ""
+            vfield = item.properties['entity'].get('sg_shot_lut')
+            if shot_ccc != None:
+                vfield_file = vfield.get('local_path_windows').replace("\\", "/")
+            current_process['nuke_settings']['main_lut'] = {
+                                        'vfield_file': vfield_file,
+                                        'disable': vfield_file == "",
+                                        }
+            # Main Reformat
+            output_format_name = ""
+            if camera_format:
+                output_format_name = camera_format.get('code')
+            
+            current_process['nuke_settings']['main_reformat'].update( {
+                                        'format': output_format_name or "main_read_format",
+                                        'disable': output_format_name == "",
+                                        } )
+
+            ### SLATE Group ###
+            # Show title
+            current_process['nuke_settings']['show_title_value'] = {
+                                                                    'message': item.properties['project_info'].get('name')
+                                                                    }
+            # Name
+            current_process['nuke_settings']['content_name_value'] = {
+                                                                    'message': item.properties['entity'].get('code')
+                                                                    }
+            # Version
+            current_process['nuke_settings']['content_version_value'] = {
+                                                                    'message': version_name
+                                                                    }
+            # Vendor
+            set_vendor = item.properties.get('vendor') 
+            if not set_vendor:
+                set_vendor = item.properties['user_info'].get('name')
+                            
+            current_process['nuke_settings']['content_vendor_value'] = {
+                                                                    'message': set_vendor,
+                                                                    }
+            # # Frame Range w/ Handles
+            # current_process['nuke_settings']['content_frameswithhandles_value'] = {
+            #                                                         'message': item.properties.get('frame_range')
+            #                                                         }
+
+            # Frame Range
+            current_process['nuke_settings']['content_frames_value'] = {
+                                                                    'message': item.properties.get('frame_range')
+                                                                    }
+            # Lens Info
+            current_process['nuke_settings']['content_lens_value'] = {
+                                                                    'message': item.properties['entity'].get('sg_lens_info')
+                                                                    }
+
+            ### BURN-IN ###
+            current_process['nuke_settings']['content_vendor_burnin'] = {
+                                                                    'message': set_vendor,
+                                                                    'disable': set_vendor == None
+                                                                    }
+
+            ### OUTPUT ###
+            current_process['nuke_settings']['main_write'] = {
+                                                                'file': review_output.replace('\\','/'),
+                                                                }
+
+            current_process['deadline_settings'].update( {
+                                        "batch_name": batch_name,
+                                        "job_name": job_name,
+                                        "content_output_file": content_output_file,
+                                        "content_output_file_ext": content_output_file_ext,
+                                        "content_output_file_total": content_output_file_total,
+                                        "content_output_root": content_output_root,
+                                        "primary_pool": primary_pool,
+                                        "secondary_pool": secondary_pool,
+                                        "chunk_size": chunk_size,
+                                        "priority": priority,
+                                        "concurrent_task": concurrent_task,
+                                        "machine_limit": machine_limit,
+                                        "update_client_version": update_client_version,
+                                        "create_publish": create_publish,
+                                        "copy_location": copy_location,
+                                        "copy_to_location": copy_to_location,
+                                        "publish_file_type": publish_file_type,
+                                        "frame_range": slate_range,
+                                        "job_dependencies": job_dependencies,
+                                        "job_info_file": job_info_file,
+                                        "plugin_info_file": plugin_info_file,
+                                        } )
+
+        process_dict['project_info'] = { i: item.properties['project_info'][i] for i in item.properties['project_info'] if i != 'formats' }
+
+        # Re-compile step, task, camera, and entity info into a single dictionary
+        process_dict['entity_info'] = {}
+        for key in item.properties['entity']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['entity'][i]
+        for key in item.properties['task']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['task'][i]
+        for key in item.properties['step']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['step'][i]
+        for key in item.properties['camera']:
+            i = str(key)
+            process_dict['entity_info'][i] = item.properties['camera'][i]
+
+        return json_properties
+
+    def _task_fields(self, curr_fields):
+        '''
+        Generate a list of fields to search for in SG
+
+        :param curr_fields: info derived from the path and used for specificity
+        '''
+        # default field
+        search_fields = [
+                        "entity",
+                        ]
+        
+        # step fields
+        search_fields.extend( [
+                            "step.Step.id",
+                            'step.Step.sg_department',
+                            'step.Step.sg_publish_to_shotgun', 
+                            'step.Step.sg_version_for_review', 
+                            'step.Step.sg_slap_comp', 
+                            'step.Step.sg_review_process_type', 
+                            'step.Step.entity_type',
+                            ])
+
+        # entity fields
+        entity_type = curr_fields['type']
+        if entity_type == "Shot":
+            search_fields.extend( [
+                                "entity.Shot.code",
+                                "entity.Shot.id",
+                                "entity.Shot.type",
+                                "entity.Shot.description",
+                                "entity.Shot.created_by",
+                                "entity.Shot.sg_episode",
+                                "entity.Shot.sg_shot_lut",
+                                "entity.Shot.sg_shot_audio",
+                                "entity.Shot.sg_status_list",
+                                "entity.Shot.sg_project_name",
+                                "entity.Shot.sg_plates_processed_date",
+                                "entity.Shot.sg_shot_lut",
+                                "entity.Shot.sg_shot_ocio",
+                                "entity.Shot.sg_without_ocio",
+                                "entity.Shot.sg_head_in",
+                                "entity.Shot.sg_tail_out",
+                                "entity.Shot.sg_lens_info",
+                                "entity.Shot.sg_plate_proxy_scale",
+                                "entity.Shot.sg_frame_handles",
+                                "entity.Shot.sg_shot_ccc",
+                                "entity.Shot.sg_seq_ccc",
+                                "entity.Shot.sg_vfx_work",
+                                "entity.Shot.sg_scope_of_work",
+                                "entity.Shot.sg_editorial_notes",
+                                "entity.Shot.sg_sequence"
+                                "entity.Shot.sg_main_plate",
+                                "entity.Shot.sg_latest_version",
+                                "entity.Shot.sg_latest_client_version",
+                                "entity.Shot.sg_gamma",
+                                "entity.Shot.sg_target_age",
+                                "entity.Shot.sg_shot_transform",
+                                "entity.Shot.sg_main_plate_camera",
+                                "entity.Shot.sg_main_plate_camera.Camera.code",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_format_width",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_format_height",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_pixel_aspect_ratio",
+                                "entity.Shot.sg_main_plate_camera.Camera.sg_pump_incoming_transform_switch",
+                                ])
+                                
+        elif entity_type == "Asset":
+            search_fields.extend( [
+                                "entity.Asset.code",
+                                "entity.Asset.id",
+                                "entity.Asset.type",
+                                "entity.Asset.description",
+                                "entity.Asset.created_by",
+                                "entity.Asset.sg_status_list",
+                                "entity.Asset.sg_head_in",
+                                "entity.Asset.sg_tail_out",
+                                "entity.Asset.sg_lens_info",
+                                "entity.Asset.sg_vfx_work",
+                                "entity.Asset.sg_scope_of_work",
+                                "entity.Asset.sg_editorial_notes",
+                                "entity.Asset.sg_latest_version",
+                                "entity.Asset.sg_latest_client_version"
+                                ])
+
+        return search_fields
+

@@ -32,7 +32,7 @@ settings.tk-multi-publish2.standalone:
     hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
     settings: {}
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/desktop/publish_file.py"
@@ -254,7 +254,7 @@ settings.tk-multi-publish2.nuke.asset_step:
       Work Template: nuke_asset_work
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
@@ -279,7 +279,7 @@ settings.tk-multi-publish2.nuke.shot_step:
       Work Template: nuke_shot_work
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
