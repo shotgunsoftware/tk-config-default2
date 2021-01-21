@@ -11,8 +11,8 @@
 from tank import Hook
 from tank import TankError
 
-
 class SnapshotHistoryPostQuickdaily(Hook):
+
     def execute(self, mov_path, version_id, comments, **kwargs):
         app = self.parent
         # get app

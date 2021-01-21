@@ -334,3 +334,10 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {}
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
+
+# unreal
+settings.tk-multi-shotgunpanel.unreal:
+  actions_hook: '{self}/general_actions.py:{engine}/tk-multi-shotgunpanel/tk-unreal_actions.py'
+  action_mappings: {}
+  enable_context_switch: true
+  location: "@apps.tk-multi-shotgunpanel.location"
