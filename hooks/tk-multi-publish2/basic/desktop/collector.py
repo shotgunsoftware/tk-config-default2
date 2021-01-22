@@ -1317,7 +1317,7 @@ class BasicSceneCollector(HookBaseClass):
                                         # "format": output_format,
                                         "format": camera_format,
                                         "quicktime_codec": quicktime_codec,
-                                        "camera_switch": camera_switch,
+                                        "camera_switch": { "which": camera_switch },
                                         "plugin_out_script": plugin_out_script,
                                         "slate_enabled": slate_enabled,
                                         "burnin_enabled": burnin_enabled,
