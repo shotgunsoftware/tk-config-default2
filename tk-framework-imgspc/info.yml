@@ -1,0 +1,15 @@
+# Metadata defining the behaviour and requirements for this framework
+
+# expected fields in the configuration file for this engine
+configuration:
+
+# the Shotgun fields that this engine needs in order to operate correctly
+requires_shotgun_fields:
+
+# More verbose description of this item
+display_name: "Imaginary Spaces Framework"
+description: "Tools for tk-config-imgspc"
+
+# Required minimum versions for this item to run
+requires_shotgun_version:
+requires_core_version:

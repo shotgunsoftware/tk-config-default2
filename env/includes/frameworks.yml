@@ -98,3 +98,8 @@ frameworks:
       organization: ue4plugins
       repository: tk-framework-unrealqt
       version: v1.1.0
+
+  tk-framework-imgspc:
+    location:
+      type: dev
+      path: "{CONFIG_FOLDER}/tk-framework-imgspc"
