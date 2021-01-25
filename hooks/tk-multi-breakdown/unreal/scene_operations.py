@@ -74,7 +74,7 @@ class BreakdownSceneOperations(Hook):
         imgspc_fw = self.load_framework("tk-framework-imgspc")
         imgspc_globals = imgspc_fw.import_module("globals")
         engine = sgtk.platform.current_engine()
-        source_path_tag = engine.get_metadata_tag(imgspc_globals.SOURCE_PATH_TAG)
+        source_path_tag = engine.get_metadata_tag(imgspc_globals.sgtk.SOURCE_PATH_TAG)
 
         asset = unreal.load_asset(asset_path)
         sgtk_path = unreal.EditorAssetLibrary.get_metadata_tag(

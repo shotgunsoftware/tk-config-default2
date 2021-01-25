@@ -164,7 +164,7 @@ def set_asset_metadata(asset_path, sg_publish_data, tk=None):
     unreal.EditorAssetLibrary.set_metadata_tag(asset, tag, url)
 
     publish_path = sg_publish_data.get("path", {}).get("local_path", asset_path)
-    source_path_tag = engine.get_metadata_tag(imgspc_globals.SOURCE_PATH_TAG)
+    source_path_tag = engine.get_metadata_tag(imgspc_globals.sgtk.SOURCE_PATH_TAG)
     unreal.EditorAssetLibrary.set_metadata_tag(asset, source_path_tag, publish_path)
 
     unreal.EditorAssetLibrary.save_loaded_asset(asset)
