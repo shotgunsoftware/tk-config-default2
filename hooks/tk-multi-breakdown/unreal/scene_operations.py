@@ -128,7 +128,7 @@ class BreakdownSceneOperations(Hook):
                 # resolve path to this config
                 engine._TankBundle__resolve_hook_expression(
                     None,
-                    "{config}/tk-multi-loader2/unreal/tk-unreal_sgtk_actions.py"
+                    "{config}/tk-multi-loader2/unreal/scene_actions.py"
                 )[0]
             ],
             self,
