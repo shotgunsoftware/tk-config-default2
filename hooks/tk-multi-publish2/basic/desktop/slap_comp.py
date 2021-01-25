@@ -44,8 +44,9 @@ try:
     from general.data_management import json_manager
     from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
     from shotgun import shotgun_utilities
-except:
-    raise Exception("Could not load on of the studio modules!")
+except Exception as err:
+    raise Exception("Could not load on of the studio modules: %s" % err)
+
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
