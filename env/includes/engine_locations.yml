@@ -110,7 +110,5 @@ engines.tk-vred.location:
 
 # Unreal
 engines.tk-unreal.location:
-  type: github_release
-  organization: ue4plugins
-  repository: tk-unreal
-  version: v1.1.0
+  type: path
+  path: "{CONFIG_FOLDER}/tk-unreal"
