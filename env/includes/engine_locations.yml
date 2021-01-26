@@ -111,4 +111,7 @@ engines.tk-vred.location:
 # Unreal
 engines.tk-unreal.location:
   type: path
+  # Source: ue4plugins/tk-unreal v1.1.0.
+  # Some code has been moved from it to tk-framework-imgspc, so that we can call
+  # it from several apps.
   path: "{CONFIG_FOLDER}/tk-unreal"
