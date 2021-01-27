@@ -1,0 +1,247 @@
+[
+  {
+    "type": "Step",
+    "id": 2,
+    "code": "Online",
+    "short_name": "ONL",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 6,
+    "code": "FX",
+    "short_name": "FX",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 7,
+    "code": "Light",
+    "short_name": "LGT",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 8,
+    "code": "Comp",
+    "short_name": "CMP",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 13,
+    "code": "Art",
+    "short_name": "ART",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 14,
+    "code": "Model",
+    "short_name": "MDL",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 15,
+    "code": "Rig",
+    "short_name": "RIG",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 16,
+    "code": "Texture",
+    "short_name": "TXT",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 32,
+    "code": "Animation",
+    "short_name": "ANM",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 35,
+    "code": "Layout",
+    "short_name": "LAY",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 106,
+    "code": "Animation",
+    "short_name": "ANM",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 119,
+    "code": "Concept",
+    "short_name": "CPT",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 120,
+    "code": "Level Design",
+    "short_name": "LD",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 121,
+    "code": "Modeling",
+    "short_name": "MDL",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 122,
+    "code": "Level Art",
+    "short_name": "LA",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 123,
+    "code": "Lighting",
+    "short_name": "LTG",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 124,
+    "code": "Animation",
+    "short_name": "ANM",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 125,
+    "code": "FX",
+    "short_name": "FX",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 126,
+    "code": "Gameplay",
+    "short_name": "GPL",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 127,
+    "code": "QA",
+    "short_name": "QA",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 128,
+    "code": "Integration",
+    "short_name": "INT",
+    "entity_type": "Level"
+  },
+  {
+    "type": "Step",
+    "id": 129,
+    "code": "Design",
+    "short_name": "DSN",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 130,
+    "code": "Clay",
+    "short_name": "CLY",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 131,
+    "code": "Visualization",
+    "short_name": "VIZ",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 132,
+    "code": "Class-A",
+    "short_name": "CSA",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 133,
+    "code": "Tracking",
+    "short_name": "TRK",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 134,
+    "code": "Roto",
+    "short_name": "RTO",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 136,
+    "code": "Character FX",
+    "short_name": "CFX",
+    "entity_type": "Shot"
+  },
+  {
+    "type": "Step",
+    "id": 137,
+    "code": "Character FX",
+    "short_name": "CFX",
+    "entity_type": "Asset"
+  },
+  {
+    "type": "Step",
+    "id": 142,
+    "code": "Layout",
+    "short_name": "lyt",
+    "entity_type": "Sequence"
+  },
+  {
+    "type": "Step",
+    "id": 143,
+    "code": "Animation",
+    "short_name": "anm",
+    "entity_type": "Sequence"
+  },
+  {
+    "type": "Step",
+    "id": 144,
+    "code": "Planning",
+    "short_name": "pln",
+    "entity_type": "Episode"
+  },
+  {
+    "type": "Step",
+    "id": 175,
+    "code": "Blocking",
+    "short_name": "blk",
+    "entity_type": "Sequence"
+  },
+  {
+    "type": "Step",
+    "id": 176,
+    "code": "Lighting",
+    "short_name": "lht",
+    "entity_type": "Sequence"
+  },
+  {
+    "type": "Step",
+    "id": 178,
+    "code": "Surfacing",
+    "short_name": "sfi",
+    "entity_type": "Sequence"
+  }
+]

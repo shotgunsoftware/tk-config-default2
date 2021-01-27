@@ -1,0 +1,138 @@
+{
+  "mappings": {
+    "doc": "This file contains mappings of imgspc_field_name --> sg_field_name",
+    "Project": {
+      "status": "sg_status_list",
+      "description": "sg_description",
+      "name": "name",
+      "thumbnail": "image"
+    },
+    "Asset": {
+      "description": "description",
+      "asset_type": "sg_asset_type",
+      "tags": "tags",
+      "name": "code",
+      "thumbnail": "image",
+      "status": "sg_status_list",
+      "creator": "created_by"
+    },
+    "Sequence": {
+      "sequence_type": "sg_sequence_type",
+      "name": "code",
+      "description": "description",
+      "status": "sg_status_list",
+      "episode": "episode",
+      "tags": "tags",
+      "thumbnail": "image",
+      "assets": "assets",
+      "creator": "created_by"
+    },
+    "Shot": {
+      "description": "description",
+      "name": "code",
+      "status": "sg_status_list",
+      "thumbnail": "image",
+      "cut_in": "sg_cut_in",
+      "cut_out": "sg_cut_out",
+      "assets": "assets",
+      "creator": "created_by"
+    },
+    "Task": {
+      "department": "step",
+      "name": "content",
+      "color": "color",
+      "description": "sg_description",
+      "status": "sg_status_list",
+      "thumbnail": "image",
+      "user": "task_assignees"
+    },
+    "Note": {
+      "name": "subject",
+      "body": "content",
+      "attachments": "attachments",
+      "replies": "replies",
+      "status": "sg_status_list",
+      "thumbnail": "image",
+      "creator": "created_by"
+    },
+    "Reply": {
+      "author": "user",
+      "body": "content"
+    },
+    "Version": {
+      "creator": "created_by",
+      "artist": "user",
+      "name": "code",
+      "description": "description",
+      "thumbnail": "image",
+      "video": "sg_uploaded_movie_mp4",
+      "status": "sg_status_list",
+      "task": "sg_task"
+    },
+
+     "PublishedFile": {
+        "name": "code",
+        "description": "description",
+        "origin_file": "name",
+        "path": "path_cache",
+        "file_type": "published_file_type",
+        "task": "task",
+        "version": "version_number",
+        "status": "sg_status_list",
+        "thumbnail": "image",
+        "creator": "created_by"
+    },
+    "Enum": {
+      "doc": "For Shotgun  specific enums, provides mapping for imgspc_values. E.g., imgspc status of complete == shotgun status of fin.",
+      "sg_status_list": {
+        "not started": "na",
+        "waiting": "wtg",
+        "started": "rdy",
+        "in_progress": "ip",
+        "hold": "hld",
+        "revision": "rev",
+        "complete": "fin",
+        "block": "blk",
+	"open": "opn"
+      },
+      "sg_asset_type": {
+        "character": "Character",
+        "environment": "Environment",
+        "prop": "Prop",
+        "fx": "FX",
+        "graphic": "Graphic",
+        "matte_painting": "Matte Painting",
+        "vehicle": "Vehicle",
+        "weapon": "Weapon",
+        "interior": "Interior",
+        "exterior": "Exterior"
+      },
+      "step": {
+        "rigging": "Rig",
+        "art": "Art",
+        "modeling": "Model",
+        "texturing": "Texture",
+        "layout": "Layout",
+        "anim": "Animation",
+        "fx": "FX",
+        "light": "Light",
+        "comp": "Comp",
+        "online": "Online",
+        "roto": "Roto",
+        "cfx": "Character FX",
+        "tracking": "Tracking",
+        "blocking": "Blocking",
+        "lighting": "Lighting",
+        "surfacing": "Surfacing"
+      },
+      "published_file_type": {
+        ".abc": "Alembic Cache",
+        ".ma": "Maya Scene",
+        ".png": "Image",
+        ".jpg": "Image",
+        ".jpeg": "Image",
+        ".fbx": "Motion Builder FBX"
+      }
+    }
+  }
+}

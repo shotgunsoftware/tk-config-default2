@@ -193,6 +193,12 @@ apps.tk-mari-projectmanager.location:
   type: app_store
   version: v1.2.2
 
+# ---- PMT
+apps.tk-pmt.location:
+  name: tk-pmt
+  type: dev
+  path: "{CONFIG_FOLDER}/tk-pmt"
+
 ################################################################################
 # reference all of the common frameworks
 frameworks: '@frameworks'
