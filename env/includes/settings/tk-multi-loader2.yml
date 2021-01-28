@@ -340,7 +340,7 @@ settings.tk-multi-loader2.alias:
   - caption: Assets - Linked
     entity_type: Asset
     filters:
-      - [sg_linked_projects, is, "{context.project}"]
+      - [linked_projects, is, "{context.project}"]
     hierarchy: [project.Project.name, sg_asset_type, code]
   - caption: My Tasks
     entity_type: Task
@@ -373,7 +373,7 @@ settings.tk-multi-loader2.vred:
   - caption: Assets - Linked
     entity_type: Asset
     filters:
-      - [sg_linked_projects, is, "{context.project}"]
+      - [linked_projects, is, "{context.project}"]
     hierarchy: [project.Project.name, sg_asset_type, code]
   - caption: My Tasks
     entity_type: Task
