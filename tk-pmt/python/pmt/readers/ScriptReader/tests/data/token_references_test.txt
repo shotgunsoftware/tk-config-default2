@@ -1,5 +1,0 @@
-None, "Start"
-    BlankLine
-        ShotInstruction
-    ShotInstruction
-        BlankLine
