@@ -23,13 +23,13 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.3.0
+  version: v0.3.3
 
 # breakdown
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.7.1
+  version: v1.7.3
 
 # demo
 apps.tk-multi-demo.location:
@@ -53,13 +53,13 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.5.3
+  version: v2.5.5
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.2.3
+  version: v1.2.5
 
 # reviewsubmission
 apps.tk-multi-reviewsubmission.location:
@@ -91,17 +91,11 @@ apps.tk-multi-snapshot.location:
   name: tk-multi-snapshot
   version: v0.8.1
 
-# workfiles (required for Mari)
-apps.tk-multi-workfiles.location:
-  type: app_store
-  name: tk-multi-workfiles
-  version: v0.7.4
-
 # workfiles2
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.12.2
+  version: v0.12.6
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -115,7 +109,7 @@ apps.tk-multi-devutils.location:
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
-  version: v0.1.7
+  version: v0.2.0
 
 # shotgun launchfolder
 apps.tk-shotgun-launchfolder.location:
@@ -127,7 +121,13 @@ apps.tk-shotgun-launchfolder.location:
 apps.tk-shotgun-launchpublish.location:
   type: app_store
   name: tk-shotgun-launchpublish
-  version: v0.3.2
+  version: v0.4.1
+
+# shotgun launchvredreview
+apps.tk-shotgun-launchvredreview.location:
+  type: app_store
+  name: tk-shotgun-launchvredreview
+  version: v1.0.0
 
 # ---- Hiero apps
 
@@ -191,7 +191,7 @@ apps.tk-flame-review.location:
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.2.1
+  version: v1.2.2
 
 ################################################################################
 # reference all of the common frameworks
