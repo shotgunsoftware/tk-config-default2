@@ -14,6 +14,7 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
+- ./tk-multi-launchapp.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
@@ -46,8 +47,6 @@ settings.tk-unreal.project:
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.unreal"
-    tk-pmt:
-      location: "@apps.tk-pmt.location"
   location: "@engines.tk-unreal.location"
   menu_favourites: []
   run_at_startup:
