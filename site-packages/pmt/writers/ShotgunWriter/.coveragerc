@@ -1,0 +1,10 @@
+[run]
+omit =
+        *tests*
+        *__init__*
+        *shotgun_api3*
+        *appdirs.py
+
+[report]
+exclude_lines =
+    def main

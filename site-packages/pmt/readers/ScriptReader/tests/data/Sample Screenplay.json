@@ -1,0 +1,80 @@
+{
+  "type": "Project",
+  "name": "Sample Screenplay",
+  "children": [
+    {
+      "assets": [
+        "JUDGE",
+        "CROWD"
+      ],
+      "type": "Sequence",
+      "name": "0010",
+      "children": []
+    },
+    {
+      "type": "Asset",
+      "name": "JUDGE",
+      "asset_type": "character",
+      "children": []
+    },
+    {
+      "type": "Asset",
+      "asset_type": "undefined",
+      "name": "CROWD",
+      "children": []
+    },
+    {
+      "assets": [
+        "JUDGE",
+        "CROWD",
+        "DEFENDANT",
+        "DEFENSE ATTORNEY"
+      ],
+      "type": "Sequence",
+      "name": "0020",
+      "children": []
+    },
+    {
+      "type": "Asset",
+      "name": "DEFENDANT",
+      "asset_type": "character",
+      "children": []
+    },
+    {
+      "type": "Asset",
+      "name": "DEFENSE ATTORNEY",
+      "asset_type": "character",
+      "children": []
+    },
+    {
+      "assets": [
+        "DEFENDANT",
+        "PRISON GUARD",
+        "THE FIXER"
+      ],
+      "type": "Sequence",
+      "name": "0030",
+      "children": []
+    },
+    {
+      "type": "Asset",
+      "name": "PRISON GUARD",
+      "asset_type": "character",
+      "children": []
+    },
+    {
+      "type": "Asset",
+      "name": "THE FIXER",
+      "asset_type": "character",
+      "children": []
+    },
+    {
+      "assets": [
+        "THE FIXER"
+      ],
+      "type": "Sequence",
+      "name": "0040",
+      "children": []
+    }
+  ]
+}

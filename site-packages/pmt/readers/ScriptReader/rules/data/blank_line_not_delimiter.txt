@@ -1,0 +1,53 @@
+None, "Start2"
+    BlankLine, "Start BlankLine"
+        BlankLine, "Start BlankLine"
+        ShotInstruction, "Start ShotInstruction"
+        SceneHeading
+        Discardable
+    ShotInstruction, "Start ShotInstruction"
+        SceneHeading
+        BlankLine, "Start BlankLine"
+    SceneHeading
+        Character
+            Parenthetical
+                BlankLine, "Character BlankLine"
+                Dialog
+            BlankLine, "Character BlankLine"
+                Parenthetical
+                BlankLine, "Character BlankLine"
+                Dialog
+            Dialog
+                SceneHeading
+                Character
+                ShotInstruction, "Scene ShotInstruction"
+                Parenthetical
+                BlankLine, "Dialog BlankLine"
+                    SceneHeading
+                    Parenthetical
+                    ShotInstruction, "Scene ShotInstruction"
+                    Character
+                    BlankLine, "Dialog BlankLine"
+                    Action
+                Action
+        ShotInstruction, "Scene ShotInstruction"
+            Character
+            SceneHeading
+            BlankLine, "Scene BlankLine"
+            Action
+        BlankLine, "Scene BlankLine"
+            SceneHeading
+            Character
+            ShotInstruction, "Scene ShotInstruction"
+            BlankLine, "Scene BlankLine"
+            Action
+        Action
+            Character
+            SceneHeading
+            ShotInstruction, "Scene ShotInstruction"
+            BlankLine, "Scene BlankLine"
+            Action
+    Discardable
+        BlankLine, "Start BlankLine"
+        ShotInstruction, "Start ShotInstruction"
+        SceneHeading
+        Discardable
