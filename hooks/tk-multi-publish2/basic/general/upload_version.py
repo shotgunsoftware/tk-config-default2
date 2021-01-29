@@ -57,7 +57,7 @@ class UploadVersionPlugin(HookBaseClass):
     """
     Plugin for sending quicktimes and images to shotgun for review.
     """
-                                                             
+
     @property
     def icon(self):
         """
@@ -65,18 +65,28 @@ class UploadVersionPlugin(HookBaseClass):
         """
 
         # look for icon one level up from this hook's folder in "icons" folder
-        return os.path.join(
-            self.disk_location,
-            "icons",
-            "review.png"
-        )
+        return self._icon
+                                                             
+    @icon.setter
+    def icon(self, plugin_key=None):
+        """
+        Plugin path setter
+        """
+        pass
 
     @property
     def name(self):
         """
         One line display name describing the plugin
         """
-        return "Upload for review"
+        return self._name
+
+    @name.setter
+    def name(self, plugin_key=None):
+        """
+        name setter
+        """
+        pass
 
     @property
     def description(self):
@@ -85,21 +95,14 @@ class UploadVersionPlugin(HookBaseClass):
         contain simple html for formatting.
         """
 
-        publisher = self.parent
+        return self._description
 
-        shotgun_url = publisher.sgtk.shotgun_url
-
-        media_page_url = "%s/page/media_center" % (shotgun_url,)
-        review_url = "https://www.shotgunsoftware.com/features/#review"
-
-        return """
-        Upload the file to Shotgun for review.<br><br>
-
-        A <b>Version</b> entry will be created in Shotgun and a transcoded
-        copy of the file will be attached to it. The file can then be reviewed
-        via the project's <a href='%s'>Media</a> page, <a href='%s'>RV</a>, or
-        the <a href='%s'>Shotgun Review</a> mobile app.
-        """ % (media_page_url, review_url, review_url)
+    @description.setter
+    def description(self, plugin_key=None):
+        """
+        description setter
+        """
+        pass
 
 
     @property
@@ -182,6 +185,9 @@ class UploadVersionPlugin(HookBaseClass):
         publisher = self.parent
         file_path = item.properties["path"]
 
+        # re set properties to correspond to upload_version or slap_comp configurations
+        self.reset_properties(item)
+
         file_info = publisher.util.get_file_path_components(file_path)
         extension = file_info["extension"].lower()
 
@@ -205,6 +211,18 @@ class UploadVersionPlugin(HookBaseClass):
                         }
                     }
                 )
+            elif item.properties.get("sg_slap_comp"):
+                accept.update({'checked': False})
+                # log the accepted file and display a button to reveal it in the fs
+                self.logger.info(
+                    "Slap Comp plugin accepted: %s" % (file_path,),
+                    extra={
+                        "action_show_folder": {
+                            "path": file_path
+                        }
+                    }
+                )   
+
             else:
                 accept.update({'checked': False})
                 accept.update({'enabled': False})
@@ -238,6 +256,8 @@ class UploadVersionPlugin(HookBaseClass):
                         accept.update({'visible': False})
                         accept = {"accepted": False}
 
+        self.logger.warning("icon_path: %s" % self.icon )
+
         return accept
 
     def validate(self, settings, item):
@@ -255,7 +275,6 @@ class UploadVersionPlugin(HookBaseClass):
         """ 
         # publish_thumbnail = self.get_publish_thumbnail(settings, item)
         publisher = self.parent
-        # sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
         get_file_string = file_strings.FileStrings()
 
         now = datetime.datetime.now()
@@ -272,6 +291,9 @@ class UploadVersionPlugin(HookBaseClass):
 
         if not item.properties.get("step"):
             self.logger.error("Missing step info")
+
+        if not item.properties['entity'].get("main_plate"):
+            raise Exception("Missing Main Plate: Cannot complete Slap Comp")
 
         # Check for a Version with same Version name   
         if item.properties['existing_version']['version']:
@@ -568,7 +590,7 @@ class UploadVersionPlugin(HookBaseClass):
         script_file = item.properties['json_properties']['general_settings']['script_file']
         if "SSVFX_PIPELINE_DEV" in os.environ.keys():
             dev_root = os.environ["SSVFX_PIPELINE_DEV"]
-            script_location = os.path.join( "Pipeline", "ssvfx_scripts", "thinkbox", "submission", "submission_process_submit.py" )
+            script_location = os.path.join( "Pipeline", "ssvfx_scripts", "thinkbox", "python", "submission_process_submit.py" )
             script_file = os.path.join( dev_root, script_location )
 
         submission_plugin_info = [
@@ -646,3 +668,57 @@ class UploadVersionPlugin(HookBaseClass):
         except:
             file_write.close()
             raise Exception( "Failed to write JSON to %s" % json_path )
+
+    def reset_properties(self, item):
+        
+        publisher = self.parent
+
+        shotgun_url = publisher.sgtk.shotgun_url
+
+        media_page_url = "%s/page/media_center" % (shotgun_url,)
+        review_url = "https://www.shotgunsoftware.com/features/#review"
+
+        if item.properties.get("sg_version_for_review"):
+            # icon 
+            self._icon = os.path.join(
+                                        self.disk_location,
+                                        "icons",
+                                        "review.png"
+                                    )
+            
+            # name 
+            self._name = "Upload for review"
+
+            # description 
+            self._description = """
+            Upload the file to Shotgun for review.<br><br>
+
+            A <b>Version</b> entry will be created in Shotgun and a transcoded
+            copy of the file will be attached to it. The file can then be reviewed
+            via the project's <a href='%s'>Media</a> page, <a href='%s'>RV</a>, or
+            the <a href='%s'>Shotgun Review</a> mobile app.
+            """ % (media_page_url, review_url, review_url)
+
+        elif item.properties.get("sg_slap_comp"):
+            # icon 
+            self._icon = os.path.join(
+                                        self.disk_location,
+                                        "icons",
+                                        "slap.png"
+                                    )
+            
+            # name 
+            self._name = "Slap Comp for review"
+
+            # description 
+            self._description = """
+            A Slap Comp will be created using a predefined nuke script.<br><br>
+
+
+            A <b>Version</b> entry will then be created in Shotgun and a transcoded
+            copy of the file will be attached to it. The file can then be reviewed
+            via the project's <a href='%s'>Media</a> page, <a href='%s'>RV</a>, or
+            the <a href='%s'>Shotgun Review</a> mobile app.
+            """ % (media_page_url, review_url, review_url)
+
+

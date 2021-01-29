@@ -511,8 +511,11 @@ class BasicSceneCollector(HookBaseClass):
         main_plate = self._get_published_main_plate(
                                                     sg_reader, 
                                                     self.project_info.get('id'), 
-                                                    entity.get('id') 
+                                                    entity.get('id'),
+                                                    plugin_bools 
                                                     )
+
+        self.logger.warning(">>>>> main_plate: %s" % main_plate)
                                                     
         entity.update( { 
                         'type': curr_fields['type'],
@@ -557,7 +560,9 @@ class BasicSceneCollector(HookBaseClass):
                 'padded_file_name': info['padded_file_name']
                 }
 
-            if info['single']:
+            self.logger.warning(">>>>> plugin_bools: %s" % plugin_bools)
+
+            if info['single']: 
                 if info.get('full_path'):
                     path = info.get('full_path')
                 properties['sequence_paths'] = [path]
@@ -1012,7 +1017,7 @@ class BasicSceneCollector(HookBaseClass):
         
         return resolve_fields
 
-    def _get_published_main_plate(self, sg_reader, project_id, entity_id):
+    def _get_published_main_plate(self, sg_reader, project_id, entity_id, plugin_bools):
         '''
         Get the main plate from  network storage
 
@@ -1024,16 +1029,73 @@ class BasicSceneCollector(HookBaseClass):
             self.logger.warning("Could not find Main Plate.")
             return
 
-        published_main_plate = sg_reader.get_pushlished_file(
-                                                            project_id, 
-                                                            "Main Plate", 
-                                                            "Shot", 
-                                                            entity_id=entity_id, 
-                                                            get_latest=True
-                                                            )
-        
-        self.logger.info( "Got main plate of entity %s - %s" % ( str( entity_id ), published_main_plate ) )
-        return published_main_plate
+        # get main plate forgeneral processes
+        if not plugin_bools or plugin_bools.get('sg_slap_comp') == False:
+
+            published_main_plate = sg_reader.get_pushlished_file(
+                                                                project_id, 
+                                                                "Main Plate", 
+                                                                "Shot", 
+                                                                entity_id=entity_id, 
+                                                                get_latest=True
+                                                                )
+            
+            self.logger.info( "Got main plate of entity %s - %s" % ( str( entity_id ), published_main_plate ) )
+            return published_main_plate
+
+        # get converted plate for slap comp
+        elif plugin_bools.get('sg_slap_comp') == True:
+            
+            publisher = self.parent
+            published_main_plate = None
+
+            entity_filters = []
+            entity_filters.append( [ "published_file_type", "is", {'type': 'PublishedFileType', 'id': 2} ] )
+            entity_filters.append( [ "task.Task.step", "is", {'type': 'Step', 'id': 111} ] )
+            entity_filters.append( [ "project.Project.id", "is", project_id ] )
+            entity_filters.append( {
+                                    "filter_operator": "any",
+                                    "filters": [
+                                        [ "entity.Shot.id", "is", entity_id ],
+                                        [ "entity.Asset.id", "is", entity_id ],
+                                    ]
+                                } )
+            
+            fields = [
+                        'code',
+                        'name',
+                        'path',
+                        'entity',
+                        'version_number',
+                        'published_file_type'
+                        'version_number'
+                        ]
+
+            published_cleanups = publisher.shotgun.find("PublishedFile", 
+                                                        entity_filters, 
+                                                        fields)
+
+            if published_cleanups:
+                max_version = max([i.get('version_number') for i in published_cleanups] )
+                published_main_plate = next((i for i in published_cleanups if i.get('version_number') == max_version), None)
+
+            if not published_main_plate:
+                published_main_plate = sg_reader.get_pushlished_file(project_id, 
+                                                                            "Converted Main Plate", 
+                                                                            "Shot", 
+                                                                            entity_id=entity_id, 
+                                                                            get_latest=True)
+            if not published_main_plate:
+                published_main_plate = sg_reader.get_pushlished_file(project_id, 
+                                                                                "Main Plate", 
+                                                                                "Shot", 
+                                                                                entity_id=entity_id, 
+                                                                                get_latest=True)
+
+            self.logger.debug("Plate for Slap-Comp: %s" % str( published_main_plate ) )
+
+            return published_main_plate
+
 
     def _get_extra_templates(self, item):
         '''
@@ -1335,6 +1397,29 @@ class BasicSceneCollector(HookBaseClass):
                                         'first': head_in,
                                         'last': tail_out,
                                         } )
+
+            # alternate main_read setup for slap_comps
+            if item.properties.get('sg_slap_comp'):
+
+                if item.properties['entity'].get("main_plate"):
+                   
+                    main_plate = item.properties['entity'].get("main_plate")
+                    plate_path = main_plate['path'].get('local_path_windows').replace("\\","/")
+
+                    self.logger.warning(">>>>> plate_path: %s" % plate_path)
+
+                    current_process['nuke_settings']['main_read'].update( {
+                                            'file': plate_path,
+                                            'first': head_in,
+                                            'last': tail_out,
+                                            } )
+
+                    current_process['nuke_settings']['slap_read'] = {
+                                            'file': item.properties['padded_file_name'],
+                                            'first': head_in,
+                                            'last': tail_out,
+                                            } 
+
             # Shot CCC
             shot_ccc_file = ""
             shot_ccc = item.properties['entity'].get('sg_shot_ccc')
@@ -1354,15 +1439,30 @@ class BasicSceneCollector(HookBaseClass):
                                         'vfield_file': vfield_file,
                                         'disable': vfield_file == "",
                                         }
-            # Main Reformat
-            output_format_name = ""
-            if camera_format:
-                output_format_name = camera_format.get('code')
+            # # Main Reformat
+            # output_format_name = ""
+            # if camera_format:
+            #     output_format_name = camera_format.get('code')
             
-            current_process['nuke_settings']['main_reformat'].update( {
-                                        'format': output_format_name or "main_read_format",
-                                        'disable': output_format_name == "",
-                                        } )
+            # current_process['nuke_settings']['main_reformat'].update( {
+            #                             'format': output_format_name or "main_read_format",
+            #                             'disable': output_format_name == "",
+            #                             } )
+
+            #### SLAP BLOCK ####
+            # Slap Switch
+            slap_switch = 0
+            if item.properties.get('sg_slap_comp'):
+                slap_switch = 1
+
+                current_process['nuke_settings']['slap_switch'] = {
+                                                                    'which': slap_switch
+                                                                    }
+
+                # current_process['nuke_settings']['slap_reformat'] = {
+                #                 'format': output_format_name or "main_read_format",
+                #                 'disable': output_format_name == "",
+                #                 }
 
             ### SLATE Group ###
             # Show title
