@@ -66,6 +66,11 @@ class PythonLaunch(tank.Hook):
             config_path=self.sgtk.configuration_descriptor.get_config_folder()
         )
 
+        # Uploaded pipeline configs (zipped) get copied to the %APPDATA% area,
+        # where spaces can get in the full path name. Surround the argument with
+        # quotes
+        app_args = '"{}"'.format(app_args)
+
         if tank.util.is_linux():
             # on linux, we just run the executable directly
             cmd = "%s %s &" % (app_path, app_args)
