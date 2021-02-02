@@ -39,6 +39,7 @@ settings.tk-desktop.project:
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    setup_ue_project: "@settings.tk-multi-launchapp.setup_ue_project"
   groups:
   - matches:
     - "*Fla*"

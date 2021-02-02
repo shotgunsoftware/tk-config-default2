@@ -43,7 +43,7 @@ class BeforeAppLaunch(tank.Hook):
         # Add this configuration `site-packages` folder to the PYTHONPATH
         # NB: Adding to sys.path (e.g. with `site.addsitepackage`) won't work,
         # this Hook is executed by Shotgun Desktop's Python interpreter, while
-        # Unreal has its own Python interpreter.
+        # DCCs have their own Python interpreter.
         config_site_packages = os.path.join(
             self.sgtk.configuration_descriptor.get_config_folder(),
             "site-packages",
