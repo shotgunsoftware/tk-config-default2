@@ -39,6 +39,14 @@ settings.tk-desktop.project:
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-setup_ue_project: 
+      menu_name: Setup UE Project
+      icon: "{config_path}/icons/tools.png"
+      windows_path: "python.exe"
+      windows_args: "D:/projects/tk-config-imgspc/apps/setup_ue_project.py"
+      location: "@apps.tk-multi-launchapp.location"
+      hook_before_app_launch: "{config}/tk-multi-launchapp/before_app_launch.py"
+
   groups:
   - matches:
     - "*Fla*"

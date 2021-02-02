@@ -16,7 +16,7 @@ to set environment variables or run scripts as part of the app initialization.
 """
 
 import os
-
+import sys
 import tank
 
 
@@ -26,7 +26,13 @@ class BeforeAppLaunch(tank.Hook):
     """
 
     def execute(
-        self, app_path, app_args, version, engine_name, software_entity=None, **kwargs
+        self,
+        app_path,
+        app_args,
+        version,
+        engine_name,
+        software_entity=None,
+        **kwargs
     ):
         """
         The execute function of the hook will be called prior to starting the required application
@@ -43,10 +49,23 @@ class BeforeAppLaunch(tank.Hook):
         # Add this configuration `site-packages` folder to the PYTHONPATH
         # NB: Adding to sys.path (e.g. with `site.addsitepackage`) won't work,
         # this Hook is executed by Shotgun Desktop's Python interpreter, while
-        # Unreal has its own Python interpreter.
+        # DCCs have their own Python interpreter.
         config_site_packages = os.path.join(
             self.sgtk.configuration_descriptor.get_config_folder(),
             "site-packages",
         )
         if not config_site_packages in os.environ.get("PYTHONPATH", ""):
             os.environ["PYTHONPATH"] += os.pathsep + config_site_packages
+
+        # Make sure the right Python interpreter is used for Python scripts
+        # We use the Shotgun Desktop Python interpreter
+        if app_path == "python.exe":
+            python_interpreter_dir = os.path.split(sys.executable)[0]
+            os.environ["PATH"] = (
+                python_interpreter_dir + os.pathsep + os.environ["PATH"]
+            )
+
+            # setup_ue_project needs to know where the config is
+            os.environ[
+                "TK_CONFIG_PATH"
+            ] = self.sgtk.configuration_descriptor.get_config_folder()
