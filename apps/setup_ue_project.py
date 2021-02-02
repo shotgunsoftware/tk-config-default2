@@ -66,7 +66,7 @@ if file_dialog.exec_():
             reply = QMessageBox.question(
                 None,
                 "Warning",
-                "The {} plugin already exist in your Unreal Engine Project "
+                "The {} plugin already exists in your Unreal Engine Project "
                 "({}). Do you want to overwrite it?".format(
                     plugin_name, ue_project_dir
                 ),

@@ -62,3 +62,11 @@ settings.tk-multi-launchapp.motionbuilder:
   menu_name: MotionBuilder
   location: "@apps.tk-multi-launchapp.location"
 
+# setup_ue_project
+settings.tk-multi-launchapp.setup_ue_project:
+  menu_name: Setup UE Project
+  icon: "{config_path}/icons/tools.png"
+  windows_path: "python.exe"
+  windows_args: "D:/projects/tk-config-imgspc/apps/setup_ue_project.py"
+  location: "@apps.tk-multi-launchapp.location"
+  hook_before_app_launch: "{config}/tk-multi-launchapp/before_app_launch.py"
