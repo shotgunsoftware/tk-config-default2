@@ -643,9 +643,14 @@ class UploadVersionPlugin(HookBaseClass):
         :param item: item to submit for data collection
         """
 
+        item_dict = item.to_dict().get('global_properties')
+
+        if not item_dict:
+            raise Exception( "Could not find global_properties in item dictionary" )
+        
         try:
-            self.dl_submission.gather_job_info2( item )
-            self.dl_submission.gather_plugin_info2( item )  
+            self.dl_submission.gather_job_info2( item_dict )
+            self.dl_submission.gather_plugin_info2( item_dict )  
         except Exception as err:
             raise Exception( "Unable to create job info file: %s" % err )
 
