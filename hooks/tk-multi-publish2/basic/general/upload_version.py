@@ -256,8 +256,6 @@ class UploadVersionPlugin(HookBaseClass):
                         accept.update({'visible': False})
                         accept = {"accepted": False}
 
-        self.logger.warning("icon_path: %s" % self.icon )
-
         return accept
 
     def validate(self, settings, item):
@@ -416,28 +414,41 @@ class UploadVersionPlugin(HookBaseClass):
         )
 
         # dev switch for DL submission testing
-        dev_switch = True
+        dev_switch = False
         if not dev_switch:
             # Create the version
+            start_time = datetime.datetime.now()
+            str_time = start_time.strftime("%H:%M")
+            sg_version_data = {
+                                "project": item.properties['version_data'].get('project'),
+                                "code": item.properties['version_data'].get('code'),
+                                "description": item.description,
+                                "entity": item.properties['version_data'].get('entity'),
+                                "sg_task": item.properties['version_data'].get('sg_task'),
+                                "image": item.properties['version_data'].get('image'),
+                                "frame_range": item.properties['version_data'].get('frame_range'),
+                                "sg_path_to_frames": item.properties['version_data'].get('sg_path_to_frames'),
+                            }
             try:
-                self.logger.info("Creating Version : %s" % (item.properties.get("version_data")['code'],))
-                start_time = time.time()
-                version = publisher.shotgun.create("Version", item.properties.get("version_data"))
-                self.logger.debug("--- Version creation took %s seconds ---" % (time.time() - start_time))
+                self.logger.info( "Creating Version : %s" % ( sg_version_data.get("code"), ) )
+                # start_time = time.time()
+                version = publisher.shotgun.create("Version", sg_version_data)
+                # self.logger.debug("--- Version creation took %s seconds ---" % (time.time() - str_time))
                 if version:
                     self.logger.info("Version info:  %s" % (str(version.get('code') ) ) )
                     item.properties["sg_version_data"] = version
-                    if 'version' in item.properties['entity_info'].keys():
-                        item.properties['entity_info']['version'].update({'id':version['id']})   
+                    if 'version_data' in item.properties.keys():
+                        item.properties['version_data'].update({'id':version['id']})   
                     else:
-                        item.properties['entity_info']['version']=version
-            except:
-                raise Exception("Failed to upload Version to SG ")
+                        item.properties['version_data']['version'] = version
+            except Exception as err:
+                raise Exception( "Failed to upload Version to SG: %s" % err )
             finally:
                 self.logger.info("Version upload complete!")
         
         # create deadline files
-        process_job_info_file, process_plugin_info_file = self.create_dl_info_files( item )
+        self.create_dl_info_files( item )
+        # process_job_info_file, process_plugin_info_file = self.create_dl_info_files( item )
 
         # create submission files
         job_info_file, plugin_info_file = self._create_submission_files( item )
@@ -631,17 +642,12 @@ class UploadVersionPlugin(HookBaseClass):
 
         :param item: item to submit for data collection
         """
-        
-        job_info = None
-        plugin_info = None
 
         try:
-            job_info = self.dl_submission.gather_job_info2( item )
-            plugin_info = self.dl_submission.gather_plugin_info2( item )  
+            self.dl_submission.gather_job_info2( item )
+            self.dl_submission.gather_plugin_info2( item )  
         except Exception as err:
             raise Exception( "Unable to create job info file: %s" % err )
-
-        return(job_info, plugin_info)
 
     def _write_dl_json(self, json_path, process_dict):
         """
@@ -720,5 +726,4 @@ class UploadVersionPlugin(HookBaseClass):
             via the project's <a href='%s'>Media</a> page, <a href='%s'>RV</a>, or
             the <a href='%s'>Shotgun Review</a> mobile app.
             """ % (media_page_url, review_url, review_url)
-
 

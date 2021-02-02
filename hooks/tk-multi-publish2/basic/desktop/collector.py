@@ -514,8 +514,6 @@ class BasicSceneCollector(HookBaseClass):
                                                     entity.get('id'),
                                                     plugin_bools 
                                                     )
-
-        self.logger.warning(">>>>> main_plate: %s" % main_plate)
                                                     
         entity.update( { 
                         'type': curr_fields['type'],
@@ -559,8 +557,6 @@ class BasicSceneCollector(HookBaseClass):
                 'process_plugin_info': info['process_plugin_info'],
                 'padded_file_name': info['padded_file_name']
                 }
-
-            self.logger.warning(">>>>> plugin_bools: %s" % plugin_bools)
 
             if info['single']: 
                 if info.get('full_path'):
@@ -619,7 +615,7 @@ class BasicSceneCollector(HookBaseClass):
         self.logger.info("Collected file: %s" % (path,))
 
         # run helper methods that add universial item properties
-        self._run_helper_methods( path, file_item, properties)
+        self._run_helper_methods( path, file_item, properties )
 
         file_item.properties['thumbnail_path'] = thumbnail_path
 
@@ -1405,8 +1401,6 @@ class BasicSceneCollector(HookBaseClass):
                    
                     main_plate = item.properties['entity'].get("main_plate")
                     plate_path = main_plate['path'].get('local_path_windows').replace("\\","/")
-
-                    self.logger.warning(">>>>> plate_path: %s" % plate_path)
 
                     current_process['nuke_settings']['main_read'].update( {
                                             'file': plate_path,
