@@ -1,0 +1,2256 @@
+{
+    "type": "Project",
+    "name": "Thimble",
+    "thumbnail": "thumbnails/Thimble_264.png",
+    "children": [
+        {
+            "type": "Asset",
+            "description": "Our Protagonist!",
+            "asset_type": "character",
+            "name": "Thimble",
+            "thumbnail": "thumbnails/Thimble_1557.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "cfx",
+                    "name": "Animation",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Producer&#39;s Note on Thimble Walk Cycle and Thimble_13242.png",
+                    "children": [
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Thimble Walk Cycle and Thimble",
+                            "attachments": [
+                                "thumbnails/annot_version_7225.5.png"
+                            ],
+                            "creator": "PRODUCER",
+                            "status": "open",
+                            "thumbnail": "thumbnails/annot_version_7225.5.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/CFX/publish/maya/scene.v001.fbx",
+                            "task": "Animation",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.fbx_3206.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "art",
+                    "name": "Integration",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1557.png"
+                },
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1557.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_192.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_193.png"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.ma",
+                            "description": "Switched the model to A-Pose for better import into Mecanim",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/maya/scene.v003.ma",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.ma_1469.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/caches/scene.v003.abc",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.abc_1470.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/maya/scene.v003.fbx",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.fbx_1471.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v004.ma",
+                            "description": "Added IK handles for better control when authoring simple animations.",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/maya/scene.v004.ma",
+                            "task": "Modeling",
+                            "version": 4,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v004.ma_2646.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v004.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/caches/scene.v004.abc",
+                            "task": "Modeling",
+                            "version": 4,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v004.abc_2647.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v004.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/MDL/publish/maya/scene.v004.fbx",
+                            "task": "Modeling",
+                            "version": 4,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v004.fbx_2648.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "rigging",
+                    "name": "Rigging",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1557.png",
+                    "user": "RIGGER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/RIG/publish/maya/scene.v001.ma",
+                            "task": "Rigging",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_3207.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/RIG/publish/caches/scene.v001.abc",
+                            "task": "Rigging",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.abc_3208.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/RIG/publish/maya/scene.v001.fbx",
+                            "task": "Rigging",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.fbx_3209.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Texturing",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/N_ThimbleBody.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_ThimbleBody.v001.png",
+                            "origin_file": "A_ThimbleBody.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/TXT/publish/mari/A_ThimbleBody.v001.png",
+                            "task": "Texturing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_ThimbleBody.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "ORM_ThimbleBody.v001.png",
+                            "origin_file": "ORM_ThimbleBody.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/TXT/publish/mari/ORM_ThimbleBody.v001.png",
+                            "task": "Texturing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/ORM_ThimbleBody.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "N_ThimbleBody.v001.png",
+                            "origin_file": "N_ThimbleBody.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Character/Thimble/TXT/publish/mari/N_ThimbleBody.v001.png",
+                            "task": "Texturing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/N_ThimbleBody.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Note",
+                    "name": "Producer's Note on Thimble",
+                    "body": "Our Thimble character. Inside of the game engine, it is composed of a few different components, from the bone-rigged body to the blendshape-based face.",
+                    "creator": "PRODUCER",
+                    "status": "open"
+                },
+                {
+                    "type": "Note",
+                    "name": "Producer's Note on Thimble Walk Cycle and Thimble",
+                    "attachments": [
+                        "thumbnails/annot_version_7225.5.png"
+                    ],
+                    "creator": "PRODUCER",
+                    "status": "open",
+                    "thumbnail": "thumbnails/annot_version_7225.5.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "A_ThimbleBody.v001.png",
+                    "video": "thumbnails\\ea369e4b9ab301d9_A_ThimbleBody.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_ThimbleBody.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "N_ThimbleBody.v001.png",
+                    "video": "thumbnails\\0075defab7a808db_N_ThimbleBody.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/N_ThimbleBody.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "ORM_ThimbleBody.v001.png",
+                    "video": "thumbnails\\e27558d3e2dc64b9_ORM_ThimbleBody.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/ORM_ThimbleBody.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "Thimble Walk Cycle",
+                    "description": "Here's how Thimble looks like in various states of the animation walk cycle.",
+                    "video": "thumbnails\\148c3d3a2b366f04_walkcycle.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Thimble Walk Cycle_7225.png",
+                    "children": [
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Thimble Walk Cycle and Thimble",
+                            "attachments": [
+                                "thumbnails/annot_version_7225.5.png"
+                            ],
+                            "creator": "PRODUCER",
+                            "status": "open",
+                            "thumbnail": "thumbnails/annot_version_7225.5.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Scrap Paper Carpet",
+            "asset_type": "environment",
+            "name": "Carpet",
+            "thumbnail": "thumbnails/Carpet_1558.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1558.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "description": "Pivot + nomenclature change",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Carpet/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_2649.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Carpet/MDL/publish/caches/scene.v001.abc",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.abc_2650.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Carpet/MDL/publish/maya/scene.v001.fbx",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.fbx_2651.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v002.ma",
+                            "description": "Reduced topology",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Carpet/MDL/publish/maya/scene.v002.ma",
+                            "task": "Modeling",
+                            "version": 2,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v002.ma_2652.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v002.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Carpet/MDL/publish/caches/scene.v002.abc",
+                            "task": "Modeling",
+                            "version": 2,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v002.abc_2653.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v002.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Carpet/MDL/publish/maya/scene.v002.fbx",
+                            "task": "Modeling",
+                            "version": 2,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v002.fbx_2654.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/A_PaperCutout.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_PaperCutout.v001.png",
+                            "origin_file": "A_PaperCutout.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Carpet/TXT/publish/mari/A_PaperCutout.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_PaperCutout.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_PaperCutout.v001.png",
+                    "video": "thumbnails\\50f7755443124c04_A_PaperCutout.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_PaperCutout.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Gum Pack Table",
+            "asset_type": "environment",
+            "name": "GumPack",
+            "thumbnail": "thumbnails/GumPack_1559.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1559.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_190.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_191.png"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.ma",
+                            "description": "Changed scale and nomenclature",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/MDL/publish/maya/scene.v003.ma",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.ma_2655.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/MDL/publish/caches/scene.v003.abc",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.abc_2656.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/MDL/publish/maya/scene.v003.fbx",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.fbx_2657.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/ORM_CoffeeTable.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "N_sm_CoffeeTable.v001.png",
+                            "origin_file": "N_sm_CoffeeTable.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/TXT/publish/mari/N_sm_CoffeeTable.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/N_sm_CoffeeTable.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_CoffeeTable.v001.png",
+                            "origin_file": "A_CoffeeTable.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/TXT/publish/mari/A_CoffeeTable.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_CoffeeTable.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "ORM_CoffeeTable.v001.png",
+                            "origin_file": "ORM_CoffeeTable.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/GumPack/TXT/publish/mari/ORM_CoffeeTable.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/ORM_CoffeeTable.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_CoffeeTable.v001.png",
+                    "video": "thumbnails\\cbf201acb82c6d44_A_CoffeeTable.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_CoffeeTable.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "N_sm_CoffeeTable.v001.png",
+                    "video": "thumbnails\\343468b5616455ad_N_sm_CoffeeTable.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/N_sm_CoffeeTable.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "ORM_CoffeeTable.v001.png",
+                    "video": "thumbnails\\9bdf398f108def80_ORM_CoffeeTable.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/ORM_CoffeeTable.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Old Cookie Tin",
+            "asset_type": "environment",
+            "name": "CookieTin",
+            "thumbnail": "thumbnails/CookieTin_1560.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1560.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/CookieTin/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_2661.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/CookieTin/MDL/publish/caches/scene.v001.abc",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.abc_2662.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/CookieTin/MDL/publish/maya/scene.v001.fbx",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.fbx_2663.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.ma",
+                            "description": "Improved vertex normals",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/CookieTin/MDL/publish/maya/scene.v003.ma",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.ma_2664.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/CookieTin/MDL/publish/caches/scene.v003.abc",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.abc_2665.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/CookieTin/MDL/publish/maya/scene.v003.fbx",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.fbx_2666.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/Linked Asset_1560.png",
+                    "user": "TEXTURER"
+                },
+                {
+                    "type": "Version",
+                    "name": "Cookie Tin in Scene",
+                    "description": "Cookie tin in the scene. The  improved normals really help the fact it doesn't have a texture!",
+                    "video": "thumbnails\\061722a79c4981e3_6496c412bb468d41855360fdf0ec5883.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Cookie Tin in Scene_7224.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "World Surface",
+            "asset_type": "environment",
+            "name": "Table",
+            "thumbnail": "thumbnails/Table_1561.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1561.png",
+                    "user": "MODELLER"
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/AO_FineWood.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_FineWood.v001.png",
+                            "origin_file": "A_FineWood.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Table/TXT/publish/mari/A_FineWood.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_FineWood.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "N_FineWood.v001.png",
+                            "origin_file": "N_FineWood.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Table/TXT/publish/mari/N_FineWood.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/N_FineWood.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "AO_FineWood.v001.png",
+                            "origin_file": "AO_FineWood.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Table/TXT/publish/mari/AO_FineWood.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/AO_FineWood.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_FineWood.v001.png",
+                    "video": "thumbnails\\a06e8bef53a5ff5a_A_FineWood.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_FineWood.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "AO_FineWood.v001.png",
+                    "video": "thumbnails\\eea3980f3e6cb3e8_AO_FineWood.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/AO_FineWood.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "N_FineWood.v001.png",
+                    "video": "thumbnails\\7e4c6a17604ae834_N_FineWood.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/N_FineWood.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Marble",
+            "asset_type": "environment",
+            "name": "Marble",
+            "thumbnail": "thumbnails/Marble_1562.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1562.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "description": "Single marble asset - materials assignments are done in-engine to get multiple variations.",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Marble/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_2658.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Marble/MDL/publish/caches/scene.v001.abc",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.abc_2659.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Marble/MDL/publish/maya/scene.v001.fbx",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.fbx_2660.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/Linked Asset_1562.png",
+                    "user": "TEXTURER"
+                },
+                {
+                    "type": "Note",
+                    "name": "Marble Surfacing",
+                    "body": "Like many assets, the marble isn't textured by any software and is instead surfaced with in-engine materials.",
+                    "creator": "PRODUCER",
+                    "status": "open"
+                },
+                {
+                    "type": "Version",
+                    "name": "Marble Variations",
+                    "description": "Marble Variations, surfaced in engine.",
+                    "video": "thumbnails\\ec0aa60aba6d1e96_Marble_Variations.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Marble Variations_7226.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Background scenery",
+            "asset_type": "environment",
+            "name": "Mousetrap",
+            "thumbnail": "thumbnails/Mousetrap_1563.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1563.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Mousetrap/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_171.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Environment/Mousetrap/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_172.png"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/N_MouseTrap.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_MouseTrap.v001.png",
+                            "origin_file": "A_MouseTrap.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Mousetrap/TXT/publish/mari/A_MouseTrap.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_MouseTrap.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "ORM_MouseTrap.v001.png",
+                            "origin_file": "ORM_MouseTrap.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Mousetrap/TXT/publish/mari/ORM_MouseTrap.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/ORM_MouseTrap.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "N_MouseTrap.v001.png",
+                            "origin_file": "N_MouseTrap.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Mousetrap/TXT/publish/mari/N_MouseTrap.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/N_MouseTrap.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_MouseTrap.v001.png",
+                    "video": "thumbnails\\8b626990cf6c3310_A_MouseTrap.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_MouseTrap.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "N_MouseTrap.v001.png",
+                    "video": "thumbnails\\c1cd5e9e44ddf3a0_N_MouseTrap.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/N_MouseTrap.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "ORM_MouseTrap.v001.png",
+                    "video": "thumbnails\\abac7c0ed83694c4_ORM_MouseTrap.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/ORM_MouseTrap.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Large Carpet",
+            "asset_type": "environment",
+            "name": "SewingPattern",
+            "thumbnail": "thumbnails/SewingPattern_1564.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1564.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingPattern/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_198.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingPattern/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_199.png"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/A_Newsapper.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_SewingPattern.v001.png",
+                            "origin_file": "A_SewingPattern.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingPattern/TXT/publish/mari/A_SewingPattern.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_SewingPattern.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_Newsapper.v001.png",
+                            "origin_file": "A_Newsapper.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingPattern/TXT/publish/mari/A_Newsapper.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_Newsapper.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_Newsapper.v001.png",
+                    "video": "thumbnails\\a3d54a4712ce88a5_A_Newsapper.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_Newsapper.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "A_SewingPattern.v001.png",
+                    "video": "thumbnails\\923cc33b0a82d662_A_SewingPattern.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_SewingPattern.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Tape",
+            "asset_type": "environment",
+            "name": "Tape Roll",
+            "thumbnail": "thumbnails/Tape Roll_1565.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1565.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Tape-Roll/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_200.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Environment/Tape-Roll/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_201.png"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/Tape_MaskMap.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "N_Tape.v001.png",
+                            "origin_file": "N_Tape.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Tape-Roll/TXT/publish/mari/N_Tape.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/N_Tape.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_lambert1.v001.png",
+                            "origin_file": "A_lambert1.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Tape-Roll/TXT/publish/mari/A_lambert1.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_lambert1.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "Tape_MaskMap.v001.png",
+                            "origin_file": "Tape_MaskMap.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/Tape-Roll/TXT/publish/mari/Tape_MaskMap.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/Tape_MaskMap.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_lambert1.v001.png",
+                    "video": "thumbnails\\6593989efbb8cd26_A_lambert1.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_lambert1.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "N_Tape.v001.png",
+                    "video": "thumbnails\\06381f08d8412b37_N_Tape.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/N_Tape.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "Tape_MaskMap.v001.png",
+                    "video": "thumbnails\\c0e0e88fbcfa5fa7_Tape_MaskMap.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Tape_MaskMap.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Misc Threads and Sewing Items",
+            "asset_type": "environment",
+            "name": "SewingItems",
+            "thumbnail": "thumbnails/SewingItems_1566.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1566.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingItems/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_202.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingItems/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_203.png"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/A_Pincushions.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "ORM_PinCushions.v001.png",
+                            "origin_file": "ORM_PinCushions.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingItems/TXT/publish/mari/ORM_PinCushions.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/ORM_PinCushions.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "N_Pincushions.v001.png",
+                            "origin_file": "N_Pincushions.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingItems/TXT/publish/mari/N_Pincushions.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/N_Pincushions.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_Pincushions.v001.png",
+                            "origin_file": "A_Pincushions.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/SewingItems/TXT/publish/mari/A_Pincushions.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_Pincushions.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_Pincushions.v001.png",
+                    "video": "thumbnails\\b4e2fe5d47325b9f_A_Pincushions.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_Pincushions.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "N_Pincushions.v001.png",
+                    "video": "thumbnails\\ed8eb5b65d5aaad6_N_Pincushions.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/N_Pincushions.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "ORM_PinCushions.v001.png",
+                    "video": "thumbnails\\ec916deb1bd484e8_ORM_PinCushions.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/ORM_PinCushions.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Thumb Tack Box",
+            "asset_type": "environment",
+            "name": "ThumbTackBox",
+            "thumbnail": "thumbnails/ThumbTackBox_1567.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1567.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "description": "Scale, Pivot and Nomenclature Change",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTackBox/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_2667.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTackBox/MDL/publish/caches/scene.v001.abc",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.abc_2668.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTackBox/MDL/publish/maya/scene.v001.fbx",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.fbx_2669.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.ma",
+                            "description": "Slight polygon reduction",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTackBox/MDL/publish/maya/scene.v003.ma",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.ma_2670.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/A_Box.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_Box.v001.png",
+                            "origin_file": "A_Box.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTackBox/TXT/publish/mari/A_Box.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_Box.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_Box.v001.png",
+                    "video": "thumbnails\\b798daf4d61ebffd_A_Box.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_Box.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Tack",
+            "asset_type": "environment",
+            "name": "ThumbTack",
+            "thumbnail": "thumbnails/ThumbTack_1568.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1568.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTack/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_204.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTack/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_205.png"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.ma",
+                            "description": "Fixed pivot for multi-engine integration and nomenclature",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTack/MDL/publish/maya/scene.v003.ma",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.ma_2643.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTack/MDL/publish/caches/scene.v003.abc",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.abc_2644.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/ThumbTack/MDL/publish/maya/scene.v003.fbx",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.fbx_2645.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/Linked Asset_1568.png",
+                    "user": "TEXTURER"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "Pincushions and needles",
+            "asset_type": "environment",
+            "name": "PincushionItems",
+            "thumbnail": "thumbnails/PincushionItems_1569.png",
+            "status": "complete",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "modeling",
+                    "name": "Modeling",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Asset_1569.png",
+                    "user": "MODELLER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v001.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/maya/scene.v001.ma",
+                            "task": "Modeling",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v001.ma_194.png",
+                            "children": [
+                                {
+                                    "type": "PublishedFile",
+                                    "name": "scene.v001.abc",
+                                    "origin_file": "scene.abc",
+                                    "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/caches/scene.v001.abc",
+                                    "task": "Modeling",
+                                    "version": 1,
+                                    "creator": "PRODUCER",
+                                    "file_type": ".abc",
+                                    "status": "waiting",
+                                    "thumbnail": "thumbnails/scene.v001.abc_195.png"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v002.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/maya/scene.v002.ma",
+                            "task": "Modeling",
+                            "version": 2,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v002.ma_1628.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v002.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/caches/scene.v002.abc",
+                            "task": "Modeling",
+                            "version": 2,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v002.abc_1629.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v002.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/maya/scene.v002.fbx",
+                            "task": "Modeling",
+                            "version": 2,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v002.fbx_1630.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/maya/scene.v003.ma",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.ma_1631.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/caches/scene.v003.abc",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.abc_1632.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v003.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/maya/scene.v003.fbx",
+                            "task": "Modeling",
+                            "version": 3,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v003.fbx_1633.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v004.ma",
+                            "origin_file": "scene.ma",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/maya/scene.v004.ma",
+                            "task": "Modeling",
+                            "version": 4,
+                            "creator": "PRODUCER",
+                            "file_type": ".ma",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v004.ma_1634.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v004.abc",
+                            "origin_file": "scene.abc",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/caches/scene.v004.abc",
+                            "task": "Modeling",
+                            "version": 4,
+                            "creator": "PRODUCER",
+                            "file_type": ".abc",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v004.abc_1635.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "scene.v004.fbx",
+                            "origin_file": "scene.fbx",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/MDL/publish/maya/scene.v004.fbx",
+                            "task": "Modeling",
+                            "version": 4,
+                            "creator": "PRODUCER",
+                            "file_type": ".fbx",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/scene.v004.fbx_1636.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "description": "Texture work for the asset.",
+                    "status": "waiting",
+                    "thumbnail": "thumbnails/A_Thread.v001.png",
+                    "user": "TEXTURER",
+                    "children": [
+                        {
+                            "type": "PublishedFile",
+                            "name": "ORM_Thread.v001.png",
+                            "origin_file": "ORM_Thread.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/TXT/publish/mari/ORM_Thread.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/ORM_Thread.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "N_Thread.v001.png",
+                            "origin_file": "N_Thread.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/TXT/publish/mari/N_Thread.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/N_Thread.v001.png"
+                        },
+                        {
+                            "type": "PublishedFile",
+                            "name": "A_Thread.v001.png",
+                            "origin_file": "A_Thread.png",
+                            "path": "P:/imgspc/Production/thimble_package/assets/Environment/PincushionItems/TXT/publish/mari/A_Thread.v001.png",
+                            "task": "Surfacing",
+                            "version": 1,
+                            "creator": "PRODUCER",
+                            "file_type": ".jpeg",
+                            "status": "waiting",
+                            "thumbnail": "thumbnails/A_Thread.v001.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "A_Thread.v001.png",
+                    "video": "thumbnails\\71da4ea02b22a837_A_Thread.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/A_Thread.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "N_Thread.v001.png",
+                    "video": "thumbnails\\1308bcee50c43c3e_N_Thread.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/N_Thread.v001.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "ORM_Thread.v001.png",
+                    "video": "thumbnails\\aca46b394da458d1_ORM_Thread.v001.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/ORM_Thread.v001.png"
+                }
+            ]
+        },
+        {
+            "type": "Asset",
+            "description": "The ambient HDRI for the world of the sequence. This HDRI has been edited in Photoshop multiple times to adjust the final in-engine look.",
+            "asset_type": "exterior",
+            "name": "Ambient HDRI",
+            "thumbnail": "thumbnails/Ambient HDRI_5465.png",
+            "status": "waiting",
+            "children": [
+                {
+                    "type": "Task",
+                    "department": "texturing",
+                    "name": "Texture Work",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Ambient HDRI_7227.png",
+                    "user": "TEXTURER"
+                },
+                {
+                    "type": "Version",
+                    "name": "Ambient HDRI",
+                    "description": "Here's the in-engine result.",
+                    "video": "thumbnails\\a41790365abe4fa3_hdri.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Ambient HDRI_7227.png"
+                }
+            ]
+        },
+        {
+            "type": "Sequence",
+            "name": "S001",
+            "assets": [
+                "Thimble"
+            ],
+            "status": "in_progress",
+            "thumbnail": "thumbnails/S001_140.png",
+            "children": [
+                {
+                    "type": "Shot",
+                    "assets": [
+                        "Thimble"
+                    ],
+                    "description": "An overview of the scene",
+                    "name": "SH001",
+                    "cut_out": 196,
+                    "status": "complete",
+                    "thumbnail": "thumbnails/SH001_1326.png",
+                    "children": [
+                        {
+                            "type": "Task",
+                            "department": "anim",
+                            "name": "Animation",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1326.png",
+                            "user": "ANIMATOR"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "fx",
+                            "name": "FX",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1326.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "layout",
+                            "name": "Layout",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1326.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "light",
+                            "name": "Lighting",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1326.png",
+                            "user": "LIGHTER"
+                        },
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Shot001",
+                            "body": "This is the only sequence in the project. In most game engine TV or Film projects animation is handled per-sequence; with one or more shots being continuously assembled in the main sequence timeline.",
+                            "creator": "PRODUCER",
+                            "status": "open"
+                        }
+                    ]
+                },
+                {
+                    "type": "Shot",
+                    "assets": [
+                        "Thimble"
+                    ],
+                    "description": "We close into a shot of the falling thimble",
+                    "name": "SH002",
+                    "cut_in": 197,
+                    "cut_out": 527,
+                    "status": "complete",
+                    "thumbnail": "thumbnails/SH002_1327.png",
+                    "children": [
+                        {
+                            "type": "Task",
+                            "department": "anim",
+                            "name": "Animation",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1327.png",
+                            "user": "ANIMATOR"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "fx",
+                            "name": "FX",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1327.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "layout",
+                            "name": "Layout",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1327.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "light",
+                            "name": "Lighting",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1327.png",
+                            "user": "LIGHTER"
+                        }
+                    ]
+                },
+                {
+                    "type": "Shot",
+                    "assets": [
+                        "Thimble"
+                    ],
+                    "description": "Our protagonist emerges!",
+                    "name": "SH003",
+                    "cut_in": 527,
+                    "cut_out": 560,
+                    "status": "complete",
+                    "thumbnail": "thumbnails/SH003_1328.png",
+                    "children": [
+                        {
+                            "type": "Task",
+                            "department": "anim",
+                            "name": "Animation",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1328.png",
+                            "user": "ANIMATOR"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "fx",
+                            "name": "FX",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1328.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "layout",
+                            "name": "Layout",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1328.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "light",
+                            "name": "Lighting",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1328.png",
+                            "user": "LIGHTER"
+                        }
+                    ]
+                },
+                {
+                    "type": "Shot",
+                    "assets": [
+                        "Thimble"
+                    ],
+                    "description": "The thimble freaks out over it's change at life",
+                    "name": "SH004",
+                    "cut_in": 561,
+                    "cut_out": 769,
+                    "status": "complete",
+                    "thumbnail": "thumbnails/SH004_1329.png",
+                    "children": [
+                        {
+                            "type": "Task",
+                            "department": "anim",
+                            "name": "Animation",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1329.png",
+                            "user": "ANIMATOR"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "fx",
+                            "name": "FX",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1329.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "layout",
+                            "name": "Layout",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1329.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "light",
+                            "name": "Lighting",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1329.png",
+                            "user": "LIGHTER"
+                        }
+                    ]
+                },
+                {
+                    "type": "Shot",
+                    "assets": [
+                        "Marble",
+                        "Thimble"
+                    ],
+                    "description": "It looks over to the other side of the table. What's going on?",
+                    "name": "SH005",
+                    "cut_in": 770,
+                    "cut_out": 824,
+                    "status": "complete",
+                    "thumbnail": "thumbnails/SH005_1330.png",
+                    "children": [
+                        {
+                            "type": "Task",
+                            "department": "anim",
+                            "name": "Animation",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1330.png",
+                            "user": "ANIMATOR"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "fx",
+                            "name": "FX",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1330.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "layout",
+                            "name": "Layout",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1330.png"
+                        },
+                        {
+                            "type": "Task",
+                            "department": "light",
+                            "name": "Lighting",
+                            "color": "pipeline_step",
+                            "status": "complete",
+                            "thumbnail": "thumbnails/Linked Shot_1330.png",
+                            "user": "LIGHTER"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "blocking",
+                    "name": "Blocking",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Sequence_140.png"
+                },
+                {
+                    "type": "Task",
+                    "department": "layout",
+                    "name": "Layout",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Set Overview_7223.png"
+                },
+                {
+                    "type": "Task",
+                    "department": "lighting",
+                    "name": "Lighting",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Sequence_140.png"
+                },
+                {
+                    "type": "Task",
+                    "department": "anim",
+                    "name": "Preview Storyboard",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Animatic with Edits_7222.png",
+                    "user": "ANIMATOR",
+                    "children": [
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Animatic and S001",
+                            "attachments": [
+                                "thumbnails/annot_version_7221.144.png"
+                            ],
+                            "replies": [
+                                {
+                                    "author": "RIGGER",
+                                    "body": "I'll add more thread and some misc. junk to fill the gap!"
+                                }
+                            ],
+                            "creator": "PRODUCER",
+                            "status": "open",
+                            "thumbnail": "thumbnails/annot_version_7221.144.png"
+                        },
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Animatic and S001",
+                            "attachments": [
+                                "thumbnails/annot_version_7221.280.png"
+                            ],
+                            "creator": "PRODUCER",
+                            "status": "open",
+                            "thumbnail": "thumbnails/annot_version_7221.280.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Task",
+                    "department": "surfacing",
+                    "name": "Surfacing",
+                    "color": "pipeline_step",
+                    "status": "complete",
+                    "thumbnail": "thumbnails/Linked Sequence_140.png"
+                },
+                {
+                    "type": "Note",
+                    "name": "About Sequences in Real-Time Rendering",
+                    "body": "This is the only sequence in the project. In most game engine TV or Film projects, animation is handled per-sequence; with one or more shots being assembled in the main sequence timeline. This is usually one scene of the video on one set.",
+                    "creator": "PRODUCER",
+                    "status": "open"
+                },
+                {
+                    "type": "Note",
+                    "name": "Producer's Note on Animatic and S001",
+                    "attachments": [
+                        "thumbnails/annot_version_7221.144.png"
+                    ],
+                    "replies": [
+                        {
+                            "author": "RIGGER",
+                            "body": "I'll add more thread and some misc. junk to fill the gap!"
+                        }
+                    ],
+                    "creator": "PRODUCER",
+                    "status": "open",
+                    "thumbnail": "thumbnails/annot_version_7221.144.png"
+                },
+                {
+                    "type": "Note",
+                    "name": "Producer's Note on Animatic and S001",
+                    "attachments": [
+                        "thumbnails/annot_version_7221.280.png"
+                    ],
+                    "creator": "PRODUCER",
+                    "status": "open",
+                    "thumbnail": "thumbnails/annot_version_7221.280.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "Animatic",
+                    "description": "Associated animatic for the Storyboard.",
+                    "video": "thumbnails\\56d13ad156e9be23_Animatic.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Animatic_7221.png",
+                    "children": [
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Animatic and S001",
+                            "attachments": [
+                                "thumbnails/annot_version_7221.144.png"
+                            ],
+                            "replies": [
+                                {
+                                    "author": "RIGGER",
+                                    "body": "I'll add more thread and some misc. junk to fill the gap!"
+                                }
+                            ],
+                            "creator": "PRODUCER",
+                            "status": "open",
+                            "thumbnail": "thumbnails/annot_version_7221.144.png"
+                        },
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Animatic and S001",
+                            "attachments": [
+                                "thumbnails/annot_version_7221.280.png"
+                            ],
+                            "creator": "PRODUCER",
+                            "status": "open",
+                            "thumbnail": "thumbnails/annot_version_7221.280.png"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "Animatic with Edits",
+                    "description": "Fixed the animatic so that it's easier to preview the scene later.",
+                    "video": "thumbnails\\014d9e3a1c2f1e65_Animatic.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Animatic with Edits_7222.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "Set Overview",
+                    "description": "An overview of the final set. How does it look?",
+                    "video": "thumbnails\\12bf7b288477c839_set.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Set Overview_7223.png"
+                },
+                {
+                    "type": "Version",
+                    "name": "Thimble, pass 1",
+                    "description": "Original render, small ammount of stuttering",
+                    "video": "thumbnails\\6501f445f4726fbb_Thimble.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Thimble, pass 1_7155.png",
+                    "children": [
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Thimble.mp4 and Thimble",
+                            "body": "Small issues on the thimble also - Collider might be set up wrong.",
+                            "attachments": [
+                                "thumbnails/annot_version_7155.344.png"
+                            ],
+                            "creator": "PRODUCER",
+                            "status": "open",
+                            "thumbnail": "thumbnails/annot_version_7155.344.png"
+                        },
+                        {
+                            "type": "Note",
+                            "name": "Producer's Note on Thimble.mp4 and Thimble",
+                            "body": "Strange and intermittent stuttering. I need to check what's up with the render!",
+                            "creator": "PRODUCER",
+                            "status": "open"
+                        }
+                    ]
+                },
+                {
+                    "type": "Version",
+                    "name": "Thimble, pass 2",
+                    "description": "A much better review pass!",
+                    "video": "thumbnails\\679f7f973c838c8a_S001-Surfacing.mp4",
+                    "creator": "PRODUCER",
+                    "status": "revision",
+                    "thumbnail": "thumbnails/Thimble, pass 2_7156.png"
+                }
+            ]
+        }
+    ]
+}
