@@ -70,6 +70,11 @@ class PythonLaunch(tank.Hook):
         # where spaces can get in the full path name. Surround the argument with
         # quotes
         app_args = '"{}"'.format(app_args)
+        self.logger.info(
+            'Launching command: "{}\python.exe" {}'.format(
+                python_interpreter_dir, app_args
+            )
+        )
 
         if tank.util.is_linux():
             # on linux, we just run the executable directly

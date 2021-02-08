@@ -4,7 +4,19 @@ It then copies the Imaginary Spaces UE plug-ins to the project, in the right
 location
 """
 import os
-from PySide.QtGui import QApplication, QFileDialog, QMessageBox
+
+# Support older and newer versions of SG Desktop
+try:
+    from PySide2.QtWidgets import QApplication, QFileDialog, QMessageBox
+
+    # Mandatory Application
+    app = QApplication()
+except:
+    from PySide.QtGui import QApplication, QFileDialog, QMessageBox
+
+    # Mandatory Application
+    app = QApplication("")
+
 import shutil
 
 
