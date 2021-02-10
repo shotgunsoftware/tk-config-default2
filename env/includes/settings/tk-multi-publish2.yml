@@ -28,9 +28,9 @@ settings.tk-multi-publish2.standalone:
   enable_manual_load: true
 
   publish_plugins:
-  - name: Slap Comp for Review
-    hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
-    settings: {}
+  # - name: Slap Comp for Review
+  #   hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
+  #   settings: {}
   - name: Version for review
     hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}

@@ -256,6 +256,7 @@ class UploadVersionPlugin(HookBaseClass):
                         accept.update({'visible': False})
                         accept = {"accepted": False}
 
+        self.logger.warning(">>>>> uv_settings: %s" % settings['File Extensions'].value )
         return accept
 
     def validate(self, settings, item):
@@ -428,27 +429,31 @@ class UploadVersionPlugin(HookBaseClass):
                                 "image": item.properties['version_data'].get('image'),
                                 "frame_range": item.properties['version_data'].get('frame_range'),
                                 "sg_path_to_frames": item.properties['version_data'].get('sg_path_to_frames'),
+                                "sg_version_number": item.properties['version_data'].get('version_number'),
                             }
+
+            self.logger.info( "Creating Version : %s" % ( sg_version_data.get("code"), ) )
+            # start_time = time.time()
+            # self.logger.debug("--- Version creation took %s seconds ---" % (time.time() - str_time))
             try:
-                self.logger.info( "Creating Version : %s" % ( sg_version_data.get("code"), ) )
-                # start_time = time.time()
                 version = publisher.shotgun.create("Version", sg_version_data)
-                # self.logger.debug("--- Version creation took %s seconds ---" % (time.time() - str_time))
-                if version:
-                    self.logger.info("Version info:  %s" % (str(version.get('code') ) ) )
-                    item.properties["sg_version_data"] = version
-                    if 'version_data' in item.properties.keys():
-                        item.properties['version_data'].update({'id':version['id']})   
-                    else:
-                        item.properties['version_data']['version'] = version
+                self.logger.info("Created version: %s" % version)
             except Exception as err:
-                raise Exception( "Failed to upload Version to SG: %s" % err )
-            finally:
-                self.logger.info("Version upload complete!")
+                self.logger.error("Failed to create SG version. Check connection to Shotgun.")
+                raise Exception( "Error: %s" % err )
+            
+            if version:
+                self.logger.info("Version info:  %s" % (str(version.get('code') ) ) )
+                item.properties["sg_version_data"] = version
+                if 'version_data' in item.properties.keys():
+                    item.properties['version_data'].update({'id':version['id']})   
+                else:
+                    item.properties['version_data']['version'] = version
+
+            self.logger.info("Version upload complete!")
         
         # create deadline files
         self.create_dl_info_files( item )
-        # process_job_info_file, process_plugin_info_file = self.create_dl_info_files( item )
 
         # create submission files
         job_info_file, plugin_info_file = self._create_submission_files( item )

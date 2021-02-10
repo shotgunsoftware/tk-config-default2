@@ -448,7 +448,9 @@ class BasicPathInfo(HookBaseClass):
                 item['directory'] = tmp_path
                 work_template = tk.template_from_path( tmp_path )
 
+            self.logger.warning(">>>>> tmp_path: %s" % tmp_path )
             item['base_template'] = work_template
+            self.logger.warning(">>>>> work_template: %s" % work_template )
 
             if item.get('base_template'):
                 curr_fields = work_template.get_fields(tmp_path)
@@ -536,7 +538,7 @@ class BasicPathInfo(HookBaseClass):
             
             process_info['outsource'] = True
 
-        # determine if Maya File
+        # determine if Maya .ma/.mb File
         if template.name in [
             "maya_shot_outsource_work_file",
             "maya_asset_outsource_work_file",

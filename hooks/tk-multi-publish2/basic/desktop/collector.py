@@ -447,15 +447,16 @@ class BasicSceneCollector(HookBaseClass):
         path_info = publisher.util.get_frame_sequence_path( {'path': path, 'ignore_folder_list': [], 'seek_folder_list': []} )
         curr_fields = path_info.get('all_fields')
 
-
         if curr_fields:
 
             # run one large shotgun search to collect entity, task, and step info
             search_fields = self._task_fields( curr_fields )
 
+            # some renders don't have a task_name, we assign these to processing
+            task_name = curr_fields.get('task_name') or "processing"
             filters = [
-                ["content", "is", curr_fields['task_name']],
-                ["project.Project.id", "is", ctx.project['id']]  
+                [ "project.Project.id", "is", ctx.project['id'] ],
+                [ "content", "is", task_name ],
                 ]
 
             entity_type = "entity.%s" % curr_fields['type']
@@ -501,6 +502,15 @@ class BasicSceneCollector(HookBaseClass):
             plugin_bools = None
             if step:   
                 plugin_bools = self._set_plugins_from_sg( step )
+
+            # manual override for non-version renders
+            if not curr_fields.get('task_name'):
+                plugin_bools['sg_version_for_review'] = False
+                plugin_bools['sg_publish_to_shotgun'] = True
+
+            self.logger.info("Publish: %s | Version: %s | Slap: %s" % ( plugin_bools["sg_publish_to_shotgun"],
+                                                                        plugin_bools["sg_version_for_review"],
+                                                                        plugin_bools["sg_slap_comp"] ) )
 
         render_folders = {
                         'primary_render_folder': primary_render_folder,
@@ -557,6 +567,9 @@ class BasicSceneCollector(HookBaseClass):
                 'process_plugin_info': info['process_plugin_info'],
                 'padded_file_name': info['padded_file_name']
                 }
+
+            # A commented print for development 
+            # self.logger.warning(">>>>> settings: %s" % properties['settings'])
 
             if info['single']: 
                 if info.get('full_path'):
@@ -870,9 +883,6 @@ class BasicSceneCollector(HookBaseClass):
                 else:
                     plugins_dict[key] = False
 
-        self.logger.info("Publish: %s | Version: %s | Slap: %s" % ( plugins_dict["sg_publish_to_shotgun"],
-                                                                    plugins_dict["sg_version_for_review"],
-                                                                    plugins_dict["sg_slap_comp"] ) )
         return plugins_dict
 
     # set of custom helper methods for cleanliness
@@ -918,6 +928,9 @@ class BasicSceneCollector(HookBaseClass):
         
         # collect review process json as dictionary
         item.properties['json_properties'] = self._json_properties( item )
+        
+        # A commented print for development 
+        # self.logger.warning(">>>>> version_data: %s" % item.properties['version_data'])
 
         return item
 
@@ -943,7 +956,10 @@ class BasicSceneCollector(HookBaseClass):
         '''
         # self._link_task( file_item, global_info.get('task') )
         if not item.properties.get('task'):
-            self.logger.warning('Could not auto-set the context for this item. Not a recognised template patern/naming convention. Please set Task/Link manually')
+            self.logger.warning('Path does not conform to templates/Could not identify Task. Please set Task/Link manually')
+            return
+        elif not item.properties['fields'].get('task_name'):
+            self.logger.warning('Task are not automatically linked for non-Version renders. Please set Task/Link...')
             return
 
         task = item.properties.get('task')
@@ -1106,6 +1122,7 @@ class BasicSceneCollector(HookBaseClass):
         temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
         info_json_template = publisher.engine.get_template_by_name('info_json_file')  
         review_process_json_template = publisher.engine.get_template_by_name("general_review_process_json")
+        workfiles_template = None
 
         # find templates for the correct entity type
         if item['type'] in [ 'shot', 'Shot', 'SHOT' ]:
@@ -1113,12 +1130,14 @@ class BasicSceneCollector(HookBaseClass):
             info_json_template = publisher.engine.get_template_by_name('info_json_file')
             qt_template = publisher.engine.get_template_by_name('resolve_shot_review_mov')
             qt_template_secondary =  publisher.engine.get_template_by_name('resolve_shot_review_mov_secondary')
+            workfiles_template =  publisher.engine.get_template_by_name('nuke_shot_work')
 
         elif item['type'] in [ 'asset', 'Asset', 'ASSET' ]:
             temp_root_template = publisher.engine.get_template_by_name("temp_asset_render_root")
             info_json_template = publisher.engine.get_template_by_name('asset_json_file')
             qt_template = publisher.engine.get_template_by_name('resolve_asset_review_mov')
             qt_template_secondary =  publisher.engine.get_template_by_name('resolve_asset_review_mov_secondary')
+            workfiles_template =  publisher.engine.get_template_by_name('nuke_asset_work')
         
         extra_templates = {
                             'nuke_review_template': nuke_review_template,
@@ -1127,6 +1146,7 @@ class BasicSceneCollector(HookBaseClass):
                             'review_process_json_template': review_process_json_template,
                             'qt_template': qt_template,
                             'qt_template_secondary': qt_template_secondary,
+                            'workfiles_template': workfiles_template,
                             }
 
         return extra_templates
@@ -1141,6 +1161,9 @@ class BasicSceneCollector(HookBaseClass):
         resolve_fields = item.properties['resolve_fields']
 
         temp_root = templates['temp_root_template'].apply_fields(resolve_fields)
+        copy_dir = resolve_fields.copy()
+        copy_dir.update( { "name": "slapComp" } )
+        workfiles_directory = templates['workfiles_template'].apply_fields( copy_dir )
 
         fields = {}
         nuke_review_file = templates['nuke_review_template'].apply_fields( fields )
@@ -1150,6 +1173,7 @@ class BasicSceneCollector(HookBaseClass):
                             'temp_root': temp_root,
                             'nuke_review_file': nuke_review_file,
                             'review_process_json': review_process_json,
+                            'workfiles_directory': workfiles_directory,
                             }
         
         for i in template_paths:
@@ -1220,6 +1244,8 @@ class BasicSceneCollector(HookBaseClass):
         '''
         json_file = item.properties['template_paths'].get('review_process_json')
 
+        self.logger.warning( ">>>>> review_process_json: %s" % json_file )
+
         if not os.path.exists( json_file ):
             raise Exception("Unable to read Json data from file: %s" % json_file)
 
@@ -1256,8 +1282,8 @@ class BasicSceneCollector(HookBaseClass):
         for i in process_jobs:
             key = str(i)
             current_process = process_jobs[key]
-            process_settings = current_process.get('process_settings')
-            nuke_settings = current_process.get('nuke_settings')
+            process_settings = current_process.get('process_settings') or {}
+            nuke_settings = current_process.get('nuke_settings') or {}
             
             resolve_fields = item.properties.get('resolve_fields').copy()
             resolve_fields.update({'name': key})
@@ -1388,10 +1414,14 @@ class BasicSceneCollector(HookBaseClass):
             current_process['nuke_settings']
 
             # Main Read
+            file_type = str( os.path.splitext( item.properties['padded_file_name'] )[-1] )
+
             current_process['nuke_settings']['main_read'].update( {
                                         'file': item.properties['padded_file_name'],
                                         'first': head_in,
                                         'last': tail_out,
+                                        'raw': file_type.lower() not in ['jpg', 'jpeg'],
+                                        'colorspace': 'sRGB',
                                         } )
 
             # alternate main_read setup for slap_comps
@@ -1427,7 +1457,7 @@ class BasicSceneCollector(HookBaseClass):
             # Shot Cube
             vfield_file = ""
             vfield = item.properties['entity'].get('sg_shot_lut')
-            if shot_ccc != None:
+            if vfield != None:
                 vfield_file = vfield.get('local_path_windows').replace("\\", "/")
             current_process['nuke_settings']['main_lut'] = {
                                         'vfield_file': vfield_file,
@@ -1544,6 +1574,9 @@ class BasicSceneCollector(HookBaseClass):
         for key in item.properties['camera']:
             i = str(key)
             process_dict['entity_info'][i] = item.properties['camera'][i]
+        process_dict['entity_info'].update( { 
+            "copy_destination": item.properties['template_paths'].get('workfiles_directory') 
+            } )
 
         return json_properties
 
@@ -1561,6 +1594,7 @@ class BasicSceneCollector(HookBaseClass):
         # step fields
         search_fields.extend( [
                             "step.Step.id",
+                            "step.Step.code",
                             'step.Step.sg_department',
                             'step.Step.sg_publish_to_shotgun', 
                             'step.Step.sg_version_for_review', 
