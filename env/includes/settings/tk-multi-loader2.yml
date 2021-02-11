@@ -362,6 +362,7 @@ settings.tk-multi-loader2.vred:
     Fbx File: [import]
     VRED Scene: [import]
     Osb File: [import]
+    Py File: [load_python, import_python, execute_python]
   entities:
   - caption: Assets
     entity_type: Asset
