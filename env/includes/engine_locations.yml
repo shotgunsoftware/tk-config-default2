@@ -52,7 +52,7 @@ engines.tk-desktop2.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.15.6
+  version: v1.16.0
 
 # Houdini
 engines.tk-houdini.location:
