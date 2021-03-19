@@ -531,6 +531,9 @@ class BasicSceneCollector(HookBaseClass):
                         } )
 
         for info in path_info['path_info_returns']:
+
+            if not info.get('fields'):
+                continue
             
             # Construct dictionary of properties with existing values
             properties = {
@@ -553,7 +556,7 @@ class BasicSceneCollector(HookBaseClass):
                 'sg_version_for_review': plugin_bools['sg_version_for_review'],
 
                 # other shotgun dictionaries
-                'entity': entity,
+                'entity_info': entity,
                 'task': task,
                 'camera': camera,
                 
@@ -569,7 +572,7 @@ class BasicSceneCollector(HookBaseClass):
                 }
 
             # A commented print for development 
-            # self.logger.warning(">>>>> settings: %s" % properties['settings'])
+            # self.logger.warning(">>>>> fields: %s" % properties['fields'])
 
             if info['single']: 
                 if info.get('full_path'):
@@ -627,10 +630,10 @@ class BasicSceneCollector(HookBaseClass):
 
         self.logger.info("Collected file: %s" % (path,))
 
+        file_item.properties['thumbnail_path'] = thumbnail_path
+
         # run helper methods that add universial item properties
         self._run_helper_methods( path, file_item, properties )
-
-        file_item.properties['thumbnail_path'] = thumbnail_path
 
         self.logger.debug( ">>>>> END COLLECT_FILE >>>>>" )
 
@@ -684,7 +687,9 @@ class BasicSceneCollector(HookBaseClass):
             file_item.set_icon_from_path(icon_path)
 
             # use the first frame of the seq as the thumbnail
-            file_item.set_thumbnail_from_path(first_frame_file)
+            thumbnail_path = file_item.set_thumbnail_from_path(first_frame_file)
+            if not thumbnail_path:
+                file_item.properties['thumbnail_path'] = first_frame_file
 
             # disable thumbnail creation since we get it for free
             file_item.thumbnail_enabled = False
@@ -908,7 +913,11 @@ class BasicSceneCollector(HookBaseClass):
 
         # retrieve software for processing job
         item_software = item.properties['process_plugin_info']['software']
+
         set_software = next(( i for i in self.software_info if (item_software == i['products'] and i['sg_pipeline_tools'] == True ) ), None )
+        if not set_software and item_software == "Maya":
+            set_software = next(( i for i in self.software_info if item_software == i['products'] ), None )
+
         item.properties['set_software'] = set_software
 
         # check for existing version
@@ -1122,6 +1131,7 @@ class BasicSceneCollector(HookBaseClass):
         temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
         info_json_template = publisher.engine.get_template_by_name('info_json_file')  
         review_process_json_template = publisher.engine.get_template_by_name("general_review_process_json")
+        alembic_json_template = publisher.engine.get_template_by_name("alembic_review_process_json")
         workfiles_template = None
 
         # find templates for the correct entity type
@@ -1147,6 +1157,7 @@ class BasicSceneCollector(HookBaseClass):
                             'qt_template': qt_template,
                             'qt_template_secondary': qt_template_secondary,
                             'workfiles_template': workfiles_template,
+                            'alembic_template': alembic_json_template,
                             }
 
         return extra_templates
@@ -1168,12 +1179,14 @@ class BasicSceneCollector(HookBaseClass):
         fields = {}
         nuke_review_file = templates['nuke_review_template'].apply_fields( fields )
         review_process_json = templates['review_process_json_template'].apply_fields( fields )
+        alembic_json_template = templates['alembic_template'].apply_fields( fields )
 
         template_paths = {
                             'temp_root': temp_root,
                             'nuke_review_file': nuke_review_file,
                             'review_process_json': review_process_json,
                             'workfiles_directory': workfiles_directory,
+                            'alembic_template': alembic_json_template,
                             }
         
         for i in template_paths:
@@ -1244,7 +1257,13 @@ class BasicSceneCollector(HookBaseClass):
         '''
         json_file = item.properties['template_paths'].get('review_process_json')
 
-        self.logger.warning( ">>>>> review_process_json: %s" % json_file )
+        file_info = item.properties['fields']
+        extension = file_info["extension"].lower()
+
+        if extension in [ "mb", "ma" ] and item.properties.get('template').name == "maya_shot_outsource_work_file":
+            json_file = item.properties['template_paths'].get('alembic_template')
+
+        # self.logger.warning( ">>>>> review_process_json: %s" % json_file )
 
         if not os.path.exists( json_file ):
             raise Exception("Unable to read Json data from file: %s" % json_file)
@@ -1274,9 +1293,13 @@ class BasicSceneCollector(HookBaseClass):
         json_properties['general_settings']['info_json_file'] = info_json_file
 
         # set primary or secondary
-        process_type = item.properties['step'].get('sg_review_process_type').lower()        
+        process_type = item.properties['step'].get('sg_review_process_type').lower()     
+
         process_dict =  json_properties[process_type]
         process_jobs = process_dict['processes']
+
+        ### dev print ###
+        # self.logger.warning(">>>>> process_type: %s" % process_type)
         
         # collect values and append them to the appropriate settings dictionary
         for i in process_jobs:
@@ -1297,7 +1320,7 @@ class BasicSceneCollector(HookBaseClass):
 
 
             process_codec = nuke_settings.get('quicktime_codec').get('id')
-            if not process_codec:
+            if not process_codec and process_codec != 0:
                 raise Exception("Missing Quicktime Codec id in procesing_review_settings.json")
 
             quicktime_codec = next( ( i for i in codecs if i['id'] == process_codec ), None )
@@ -1325,10 +1348,6 @@ class BasicSceneCollector(HookBaseClass):
             job_info_file = "%s_job_info.job" % variable_path
             plugin_info_file = "%s_plugin_info.job" % variable_path
 
-            # set format
-            json_format = current_process['nuke_settings']['format']['id']
-            proj_formats = item.properties['project_info']['formats']
-            output_format = next((format_ for format_ in proj_formats if format_['id'] == json_format ), None)
             camera_format = item.properties.get('camera')
 
             # process_settings from item info
@@ -1339,11 +1358,15 @@ class BasicSceneCollector(HookBaseClass):
 
             # nuke_settings from item info
             camera_switch = item.properties['camera'].get('sg_pump_incoming_transform_switch')
+            if not item.properties['process_plugin_info'].get('outsource'):
+                current_process['nuke_settings'].update( {
+                                                            "camera_switch": { "which": camera_switch },
+                                                        } )
+
             # plugin_in_script = review_script_path.replace("\\", "/")
             plugin_out_script = nuke_out_script
             slate_enabled = item.properties['project_info'].get('sg_review_qt_slate')
             burnin_enabled = item.properties['project_info'].get('sg_review_burn_in')
-            main_transform_switch = current_process.get('main_transform_switch')
 
             # deadline_settings from item info
             batch_name =  (item.properties['version_data']['code'] + "_submit") or ""
@@ -1359,8 +1382,12 @@ class BasicSceneCollector(HookBaseClass):
             if not slate_frames:
                 slate_frames = 1
 
-            head_in = int(item.properties['frame_range'].split('-')[0])
-            tail_out = int(item.properties['frame_range'].split('-')[-1])
+            head_in = 1
+            tail_out = 1
+            if frame_range:
+                head_in = int(frame_range.split('-')[0])
+                tail_out = int(frame_range.split('-')[-1])
+            
             slate_range = "%s-%s" % ( ( head_in - slate_frames ), tail_out )
 
             # deadline_settings from item json
@@ -1377,18 +1404,17 @@ class BasicSceneCollector(HookBaseClass):
             copy_to_location = deadline_values.get('copy_to_location')
             copy_location = deadline_values.get('copy_location')
 
-            set_software = item.properties['set_software']
-            item_software = item.properties['set_software']['products']
+            set_software = item.properties['set_software'] or {}
+            item_software = item.properties['set_software'].get('products')
 
             publish_file_type = deadline_values.get('publish_file_type')
-            if item_software == "Maya" and item['step']['id'] == 4:
+            if item_software == "Maya" and item.properties['step']['id'] == 4:
                 publish_file_type = "Alembic Cache"
 
             current_process['process_settings'].update( {  
                                         "plugin_name": item_software,
                                         "plugin_path": set_software['windows_path'],
                                         "plugin_version": set_software['version_names'],
-                                        "nuke_review_script": review_script_path,
                                         "review_output": review_output,
                                         "user": user,
                                         "vendor": vendor,
@@ -1399,14 +1425,14 @@ class BasicSceneCollector(HookBaseClass):
             # General Nuke Settings
             current_process['nuke_settings'].update( {
                                         # "format": output_format,
+                                        "plugin_in_script": review_script_path,
                                         "format": camera_format,
                                         "quicktime_codec": quicktime_codec,
-                                        "camera_switch": { "which": camera_switch },
-                                        # "camera_switch": camera_switch,
+                                        # "camera_switch": { "which": camera_switch },
                                         "plugin_out_script": plugin_out_script,
                                         "slate_enabled": slate_enabled,
                                         "burnin_enabled": burnin_enabled,
-                                        "main_transform_switch": main_transform_switch,
+                                        # "main_transform_switch": main_transform_switch,
                                         } )
 
             ### Node-specific Nuke Settings ###
@@ -1416,20 +1442,29 @@ class BasicSceneCollector(HookBaseClass):
             # Main Read
             file_type = str( os.path.splitext( item.properties['padded_file_name'] )[-1] )
 
-            current_process['nuke_settings']['main_read'].update( {
-                                        'file': item.properties['padded_file_name'],
-                                        'first': head_in,
-                                        'last': tail_out,
-                                        'raw': file_type.lower() not in ['jpg', 'jpeg'],
-                                        'colorspace': 'sRGB',
-                                        } )
+            if current_process['nuke_settings'].get('main_read'):
+                current_process['nuke_settings']['main_read'].update( {
+                                            'file': item.properties['padded_file_name'],
+                                            'first': head_in,
+                                            'last': tail_out,
+                                            'raw': file_type.lower() not in ['jpg', 'jpeg'],
+                                            'colorspace': 'sRGB',
+                                            } )
+            else:
+                current_process['nuke_settings']['main_read'] = {
+                                            'file': item.properties['padded_file_name'],
+                                            'first': head_in,
+                                            'last': tail_out,
+                                            'raw': file_type.lower() not in ['jpg', 'jpeg'],
+                                            'colorspace': 'sRGB',
+                                            }
 
             # alternate main_read setup for slap_comps
             if item.properties.get('sg_slap_comp'):
 
-                if item.properties['entity'].get("main_plate"):
+                if item.properties['entity_info'].get("main_plate"):
                    
-                    main_plate = item.properties['entity'].get("main_plate")
+                    main_plate = item.properties['entity_info'].get("main_plate")
                     plate_path = main_plate['path'].get('local_path_windows').replace("\\","/")
 
                     current_process['nuke_settings']['main_read'].update( {
@@ -1446,7 +1481,7 @@ class BasicSceneCollector(HookBaseClass):
 
             # Shot CCC
             shot_ccc_file = ""
-            shot_ccc = item.properties['entity'].get('sg_shot_ccc')
+            shot_ccc = item.properties['entity_info'].get('sg_shot_ccc')
             if shot_ccc != None:
                 shot_ccc_file = shot_ccc.get('local_path_windows').replace("\\", "/")
             current_process['nuke_settings']['shot_ccc'] = {
@@ -1456,22 +1491,22 @@ class BasicSceneCollector(HookBaseClass):
                                         }
             # Shot Cube
             vfield_file = ""
-            vfield = item.properties['entity'].get('sg_shot_lut')
+            vfield = item.properties['entity_info'].get('sg_shot_lut')
             if vfield != None:
                 vfield_file = vfield.get('local_path_windows').replace("\\", "/")
             current_process['nuke_settings']['main_lut'] = {
                                         'vfield_file': vfield_file,
                                         'disable': vfield_file == "",
                                         }
-            # # Main Reformat
-            # output_format_name = ""
-            # if camera_format:
-            #     output_format_name = camera_format.get('code')
+
             
-            # current_process['nuke_settings']['main_reformat'].update( {
-            #                             'format': output_format_name or "main_read_format",
-            #                             'disable': output_format_name == "",
-            #                             } )
+            main_transform_switch = current_process['nuke_settings'].get('main_transform_switch')
+            if main_transform_switch:
+                main_transform_switch = main_transform_switch['which']
+
+                current_process['nuke_settings']['main_transform_switch'] = {
+                                                                            'which': slap_switch
+                                                                            }
 
             #### SLAP BLOCK ####
             # Slap Switch
@@ -1495,7 +1530,7 @@ class BasicSceneCollector(HookBaseClass):
                                                                     }
             # Name
             current_process['nuke_settings']['content_name_value'] = {
-                                                                    'message': item.properties['entity'].get('code')
+                                                                    'message': item.properties['entity_info'].get('code')
                                                                     }
             # Version
             current_process['nuke_settings']['content_version_value'] = {
@@ -1520,8 +1555,20 @@ class BasicSceneCollector(HookBaseClass):
                                                                     }
             # Lens Info
             current_process['nuke_settings']['content_lens_value'] = {
-                                                                    'message': item.properties['entity'].get('sg_lens_info')
+                                                                    'message': item.properties['entity_info'].get('sg_lens_info')
                                                                     }
+
+            # Slate Node
+            current_process['nuke_settings']['SSVFX_SLATE'] = {
+                                                            'show': item.properties['project_info'].get('name'),
+                                                            'shot': item.properties['entity_info'].get('code'),
+                                                            'version': version_name,
+                                                            'vendor': set_vendor,
+                                                            'lens': item.properties['entity_info'].get('sg_lens_info'),
+                                                            'notes': None,
+                                                            # 'format': None,
+                                                            }
+            
 
             ### BURN-IN ###
             current_process['nuke_settings']['content_vendor_burnin'] = {
@@ -1534,13 +1581,15 @@ class BasicSceneCollector(HookBaseClass):
                                                                 'file': review_output.replace('\\','/'),
                                                                 }
 
+            # self.logger.warning(">>>>> department: %s" % item.properties['step'].get('sg_department'))
+            
             current_process['deadline_settings'].update( {
                                         "batch_name": batch_name,
                                         "job_name": job_name,
-                                        "content_output_file": content_output_file,
-                                        "content_output_file_ext": content_output_file_ext,
+                                        "output_file": content_output_file,
+                                        "output_file_ext": content_output_file_ext,
                                         "content_output_file_total": content_output_file_total,
-                                        "content_output_root": content_output_root,
+                                        "output_root": content_output_root,
                                         "primary_pool": primary_pool,
                                         "secondary_pool": secondary_pool,
                                         "chunk_size": chunk_size,
@@ -1556,15 +1605,18 @@ class BasicSceneCollector(HookBaseClass):
                                         "job_dependencies": job_dependencies,
                                         "job_info_file": job_info_file,
                                         "plugin_info_file": plugin_info_file,
+                                        "department": item.properties['step'].get('sg_department'),
                                         } )
+
+            # self.logger.warning(">>>>> job_info_file: %s" % job_info_file)
 
         process_dict['project_info'] = { i: item.properties['project_info'][i] for i in item.properties['project_info'] if i != 'formats' }
 
         # Re-compile step, task, camera, and entity info into a single dictionary
         process_dict['entity_info'] = {}
-        for key in item.properties['entity']:
+        for key in item.properties['entity_info']:
             i = str(key)
-            process_dict['entity_info'][i] = item.properties['entity'][i]
+            process_dict['entity_info'][i] = item.properties['entity_info'][i]
         for key in item.properties['task']:
             i = str(key)
             process_dict['entity_info'][i] = item.properties['task'][i]

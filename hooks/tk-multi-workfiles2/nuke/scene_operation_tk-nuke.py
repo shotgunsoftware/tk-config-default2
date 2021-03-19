@@ -516,6 +516,7 @@ class SceneOperation(HookClass):
                     nuke.Root()['colorManagement'].setValue('OCIO')
                     nuke.Root()['OCIO_config'].setValue('custom')
                     nuke.Root()['customOCIOConfigPath'].setValue(shot_info['sg_shot_ocio']['local_path_windows'].replace('\\', '/'))
+                    nuke.Root()['reloadConfig'].execute()
                     
                     # Check for viewers and clean out the list of viewer processes
                     if len(nuke.allNodes('Viewer')) < 1:

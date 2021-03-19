@@ -293,13 +293,15 @@ class BasicFilePublishPlugin(HookBaseClass):
             accept.update({'visible': False})
             accept = {"accepted": False}
 
-        try:
-            if item.properties['template_file']:
-                if item.properties['template_file'].name == "maya_shot_outsource_work_file":
-                    self.logger.warning(item.properties['template_file'])
+        template = item.properties.get('template')
+        if template:
+            if item.properties['template'].name == "maya_shot_outsource_work_file":
+                    self.logger.warning("Outsource Workfile will not be published to Shotgun.")
+                    accept.update({'checked': False})
+                    accept.update({'enabled': False})
+                    accept.update({'visible': False})
                     accept = {"accepted": False}
-        except:
-            pass
+
         # return the accepted info
         return accept
 

@@ -411,8 +411,6 @@ class BasicPathInfo(HookBaseClass):
         root_template = tk.template_from_path( path )
         path_info['all_fields']['root_template'] = root_template
 
-        # self.logger.warning( ">>>>> root_template: %s" % root_template )
-
         for item in path_info_returns:
             if item['file_range'] == 0:
                 item['single'] = True
@@ -448,13 +446,17 @@ class BasicPathInfo(HookBaseClass):
                 item['directory'] = tmp_path
                 work_template = tk.template_from_path( tmp_path )
 
-            self.logger.warning(">>>>> tmp_path: %s" % tmp_path )
+            if not work_template:
+                self.logger.warning( ">>>>> Could not find template for %s. Continuing..." % tmp_path )
+                continue
+
             item['base_template'] = work_template
-            self.logger.warning(">>>>> work_template: %s" % work_template )
 
             if item.get('base_template'):
                 curr_fields = work_template.get_fields(tmp_path)
                 item['fields'] = curr_fields
+                if not curr_fields.get("extension"):
+                    item['fields'].update( { "extension": ext } )
 
             # Add fields specific to shot/asset
             if "Shot" in item['fields'].keys():
@@ -516,7 +518,7 @@ class BasicPathInfo(HookBaseClass):
         process_info = {
             "outsource": False,
             "software": "Nuke",
-            # "process": "",
+
             }
 
         if not template:
@@ -547,7 +549,14 @@ class BasicPathInfo(HookBaseClass):
             ]:
 
             process_info['software'] = "Maya"
-            # process_info['process'] = "Alembic"
+
+        # determine if alembic
+        if template.name in [
+            "maya_shot_outsource_work_file",
+            "maya_asset_outsource_work_file",
+            ]:
+
+            process_info['process'] = "Alembic"
 
         return process_info
 

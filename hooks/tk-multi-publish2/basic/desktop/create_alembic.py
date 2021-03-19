@@ -20,13 +20,14 @@ import traceback
 from sgtk.util.filesystem import copy_file, ensure_folder_exists
 
 # find SSVFX/Deadline plugins
-logger = sgtk.LogManager.get_logger(__name__)
+log = sgtk.LogManager.get_logger(__name__)
 eng = sgtk.platform.current_engine()
 
 try:
-    ssvfx_script_path = "C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
-    if os.path.exists(ssvfx_script_path):
-        pipeline_root = "C:\\Users\\shotgunadmin\\Scripts"
+    ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
+    if "SSVFX_PIPELINE_DEV" in os.environ.keys():
+        pipeline_root = os.environ["SSVFX_PIPELINE_DEV"]
+        ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
     else:
         if "SSVFX_PIPELINE" in os.environ.keys():
             pipeline_root =  os.environ["SSVFX_PIPELINE"]
@@ -34,22 +35,22 @@ try:
             if os.path.exists(ssvfx_script_path):
                 pass
             else:
-                logger.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
-            logger.debug("Found env var path: %s" %(ssvfx_script_path,))
+                log.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
+            log.debug("Found env var path: %s" %(ssvfx_script_path,))
         else:
-            logger.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
+            log.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
             pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
             ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
 
     sys.path.append(ssvfx_script_path)
-    from thinkbox.deadline import deadline_manager
-    from thinkbox.deadline import deadline_submission3
+    from thinkbox.deadline import deadline_manager3
+    from thinkbox.deadline import deadline_submission4
     from general.file_functions import file_strings
     from general.data_management import json_manager
     from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
     from shotgun import shotgun_utilities
-except:
-    raise Exception("Could not load on of the studio modules!")
+except Exception as err:
+    raise Exception("Could not load on of the studio modules: %s" % err)
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -168,43 +169,36 @@ class CreateAlembicPlugin(HookBaseClass):
         """
         accept = {"accepted": False}
 
-        
-        if 'file_info' not in item.properties.keys():
+        if 'fields' not in item.properties.keys():
             return accept
 
-        file_info = item.properties['file_info']
+        if 'template' not in item.properties.keys():
+            return accept
+
+        file_info = item.properties['fields']
         extension = file_info["extension"].lower()
 
-        valid_extensions = []
-        for ext in settings["File Extensions"].value.split(","):
-            ext = ext.strip().lstrip(".")
-            valid_extensions.append(ext)
+        valid_extensions = [ ext.strip().lstrip(".") for ext in settings["File Extensions"].value.split(",") ]
 
-        if extension in valid_extensions:
-            # return the accepted info
-            accept = {"accepted": True}
-                                 
-        else:
+        if extension not in valid_extensions:
             self.logger.debug(
                 "%s is not in the valid extensions list for Version creation" %
                 (extension,)
             )
-            accept = {"accepted": False}
             return accept
 
+        else:
+            accept = {"accepted": True}
+
         # test for appropriate outsource_root template
-        template = item.properties['template']
+        template = item.properties.get('template')
 
         if template:
             self.logger.debug("Associated template is: %s" %(template.name))
-            if template.name == "incoming_outsource_shot_folder_root":
+            if template.name == "maya_shot_outsource_work_file":
                 accept = {"accepted": True}
-            elif template.name == "incoming_outsource_assets_root":
-                accept = {"accepted": True}
-            else:
-                accept = {"accepted": False}
-                self.logger.debug("Path does not confrom to outsource templates")
-            
+
+
         return accept
 
     def validate(self, settings, item):
@@ -313,41 +307,53 @@ class CreateAlembicPlugin(HookBaseClass):
         # self.logger.debug(item.properties.to_dict())
 
         # publisher = self.parent
-        self.dl_submission = deadline_submission3.DeadlineSubmission()
+        self.dl_submission = deadline_submission4.DeadlineSubmission()
 
-        project_info = item.properties.get("project_info")
-        entity_info = item.properties.get("entity_info")
+        # create deadline files
+        self.create_dl_info_files( item )
+
+        # create submission files
+        job_info_file, plugin_info_file = self._create_submission_files( item )
+
+        # send submission job to deadline
+        self.send_to_dl( job_info_file, plugin_info_file )
+
+        # project_info = item.properties.get("project_info")
+        # entity_info = item.properties.get("entity_info")
         
 
-        item.properties["output_root"] = os.path.split(item.properties['publish_path'])[0]
-        item.properties["output_main"] = os.path.split(item.properties['publish_path'])[1]
-        item.properties["output_ext"] = os.path.splitext(item.properties['publish_path'])[1]
+        # item.properties["output_root"] = os.path.split(item.properties['publish_path'])[0]
+        # item.properties["output_main"] = os.path.split(item.properties['publish_path'])[1]
+        # item.properties["output_ext"] = os.path.splitext(item.properties['publish_path'])[1]
                         
-        content_info_dict = {}
-        item.properties["content_info"] = content_info_dict
+        # content_info_dict = {}
+        # item.properties["content_info"] = content_info_dict
 
-        process_info = self.set_process_info(self.dl_submission,
-                        "MayaBatch",
-                        "alembic-cache",
-                        {},
-                        project_info,
-                        entity_info,
-                        item)
+        # process_info = self.set_process_info(self.dl_submission,
+        #                 "MayaBatch",
+        #                 "alembic-cache",
+        #                 {},
+        #                 project_info,
+        #                 entity_info,
+        #                 item)
 
-        if not os.path.exists(item.properties["output_root"]):
-            os.makedirs(item.properties["output_root"])
-            self.logger.debug("Making dir: %s" % (item.properties["output_root"]))
+        # if not os.path.exists(item.properties["output_root"]):
+        #     os.makedirs(item.properties["output_root"])
+        #     self.logger.debug("Making dir: %s" % (item.properties["output_root"]))
 
-        self.send_to_dl(self.dl_submission, process_info, item) 
+        # self.send_to_dl(self.dl_submission, process_info, item) 
 
         # handle copying of work to publish if templates are in play
         # self._copy_work_to_publish(settings, item)
-        if (item.properties['template'] and
-        item.properties.fields):
-            if item.properties['template'].name == "incoming_outsource_shot_folder_root":
-                maya_shot_work = publisher.engine.get_template_by_name('maya_shot_work')
-                item.properties['work_template'] =  maya_shot_work
-                self._copy_outsource_to_work(settings, item)
+        # if (item.properties['template'] and
+        # item.properties.fields):
+        #     if item.properties['template'].name == "incoming_outsource_shot_folder_root":
+        #         maya_shot_work = publisher.engine.get_template_by_name('maya_shot_work')
+        #         item.properties['work_template'] =  maya_shot_work
+        #         self._copy_outsource_to_work(settings, item)
+
+        maya_shot_work = publisher.engine.get_template_by_name('maya_shot_work')
+        self._copy_outsource_to_work( settings, item, maya_shot_work )
     
     def finalize(self, settings, item):
         """
@@ -415,7 +421,7 @@ class CreateAlembicPlugin(HookBaseClass):
 
         :param item: Item to process
         """   
-        self.dm = deadline_manager.DeadlineManager()
+        self.dm = deadline_manager3.DeadlineManager()
 
         try:
             deadline_submission = self.dm.get_dl_cmd("%s %s %s" % (draft_info['job_info_file'], draft_info['plugin_info_file'], item.properties['path']))
@@ -454,7 +460,7 @@ class CreateAlembicPlugin(HookBaseClass):
         create_publish = True
         publish_file_type = "Alembic Cache"
         publish_file_name = item.properties['publish_name']
-        publish_file_version = entity_info['version_number']
+        publish_file_version = item.properties['version_data'].get('version_number')
         publish_file_task = None
         copy_to_location = False
         copy_location = None
@@ -565,29 +571,34 @@ class CreateAlembicPlugin(HookBaseClass):
         #         info_json_key = 'info_json_0%s'%str(index+1)
         #         process_info.update({info_json_key:i})
 
-        job_info_file,plugin_info_file = self.create_dl_info_files(dl_module, project_info, entity_info, process_info)
+        # job_info_file,plugin_info_file = self.create_dl_info_files(dl_module, project_info, entity_info, process_info)
+        job_info_file,plugin_info_file = self.create_dl_info_files(dl_module, item)
         process_info.update({'job_info_file':job_info_file})
         process_info.update({'plugin_info_file':plugin_info_file})
 
         return process_info
 
-    def create_dl_info_files(self, dl_module, project_info_dict, entity_info, process_info_dict):
+    # def create_dl_info_files(self, dl_module, project_info_dict, entity_info, process_info_dict):
+    def create_dl_info_files(self, dl_module, item):
         
         job_info = None
         plugin_info = None
 
-        total_info = dict(
-        project_info = project_info_dict,
-        entity_info = entity_info,
-        process_info = process_info_dict
-        )
+        # total_info = dict(
+        # project_info = project_info_dict,
+        # entity_info = entity_info,
+        # process_info = process_info_dict
+        # )
+
+        total_info = item.to_dict().get('global_properties')
+        process_plugin = item.properties['set_software'].get('code')
 
         job_info = self.create_job_info(dl_module,
                             total_info, 
-                            process_info_dict['plugin_name'])
+                            process_plugin)
         plugin_info = self.create_plugin_info(dl_module,
                             total_info, 
-                            process_info_dict['plugin_name'])  
+                            process_plugin)
 
         return(job_info, plugin_info)
 
@@ -675,63 +686,81 @@ class CreateAlembicPlugin(HookBaseClass):
         
         return publish_match
 
-    def _copy_outsource_to_work(self, settings, item):
+    def _copy_outsource_to_work(self, settings, item, template):
 
-        work_template = item.properties.get("work_template")
-        if not work_template:
+        # work_template = item.properties.get("work_template")
+        # if not work_template:
+        if not template:
             self.logger.debug(
-                "No work template set on the item. "
+                "No workfiles template set on the item. "
                 "Skipping copy file to publish location."
             )
             return
 
-        # by default, the path that was collected for publishing
-        outsource_files = [item.properties.path]
-        # ---- copy the outsource files to the work location
-
-        if not item.properties.fields:
+        if not item.properties.get('fields'):
             self.logger.debug(
                 "No item fields supplied from collector."
-                "Required to resolve template paths."
+                "Cannot resolve template paths."
             )
             return
 
-        for outsource_file in outsource_files:
+        # copy the outsource files to the work location
+        # by default, the path that was collected for publishing
+        outsource_file = item.properties['path']
+        work_file = template.apply_fields( item.properties['fields'] )
 
-            # if not work_template.validate(outsource_file):
-            #     self.logger.warning(
-            #         "Work file '%s' did not match work template '%s'. "
-            #         "Publishing in place." % (outsource_file, work_template)
+        # copy the file
+        try:
+            work_folder = os.path.dirname(work_file)
+            ensure_folder_exists(work_folder)
+            copy_file(outsource_file, work_file)
+        except Exception:
+            raise Exception(
+                "Failed to copy outsource file from '%s' to '%s'.\n%s" %
+                (outsource_file, work_file, traceback.format_exc())
+            )
+
+        self.logger.debug(
+            "Copied work file '%s' to work file '%s'." %
+            (outsource_file, work_file)
+        )     
+
+        # for outsource_file in outsource_files:
+
+        #     # if not work_template.validate(outsource_file):
+        #     #     self.logger.warning(
+        #     #         "Work file '%s' did not match work template '%s'. "
+        #     #         "Publishing in place." % (outsource_file, work_template)
+        #     #     )
+        #     #     return
+
+        #     # work_fields = work_template.get_fields(outsource_file)
+
+        #     # missing_keys = work_template.missing_keys(work_fields)
+
+        #     # if missing_keys:
+        #     #     self.logger.warning(
+        #     #         "Work file '%s' missing keys required for the publish "
+        #     #         "template: %s" % (outsource_file, missing_keys)
+        #     #     )
+        #     #     return
+
+        #     work_file = work_template.apply_fields(item.properties.fields)
+        #     self.logger.debug(">>>>> work_file: %s" % str(work_file))
+        #     self.logger.debug(">>>>> outsource_file: %s" % str(outsource_file))
+
+            # # copy the file
+            # try:
+            #     work_folder = os.path.dirname(work_file)
+            #     ensure_folder_exists(work_folder)
+            #     copy_file(outsource_file, work_file)
+            # except Exception:
+            #     raise Exception(
+            #         "Failed to copy outsource file from '%s' to '%s'.\n%s" %
+            #         (outsource_file, work_file, traceback.format_exc())
             #     )
-            #     return
 
-            # work_fields = work_template.get_fields(outsource_file)
-
-            # missing_keys = work_template.missing_keys(work_fields)
-
-            # if missing_keys:
-            #     self.logger.warning(
-            #         "Work file '%s' missing keys required for the publish "
-            #         "template: %s" % (outsource_file, missing_keys)
-            #     )
-            #     return
-
-            work_file = work_template.apply_fields(item.properties.fields)
-            self.logger.debug(">>>>> work_file: %s" % str(work_file))
-            self.logger.debug(">>>>> outsource_file: %s" % str(outsource_file))
-
-            # copy the file
-            try:
-                work_folder = os.path.dirname(work_file)
-                ensure_folder_exists(work_folder)
-                copy_file(outsource_file, work_file)
-            except Exception:
-                raise Exception(
-                    "Failed to copy outsource file from '%s' to '%s'.\n%s" %
-                    (outsource_file, work_file, traceback.format_exc())
-                )
-
-            self.logger.debug(
-                "Copied work file '%s' to work file '%s'." %
-                (outsource_file, work_file)
-            )                
+            # self.logger.debug(
+            #     "Copied work file '%s' to work file '%s'." %
+            #     (outsource_file, work_file)
+            # )                

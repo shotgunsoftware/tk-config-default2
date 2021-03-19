@@ -235,28 +235,37 @@ class UploadVersionPlugin(HookBaseClass):
                 (extension,)
             )
         
-        exclude_descriptors=["distort","undistort", "persp", "cones"]
+        exclude_descriptors = [ "distort", "undistort", "persp", "cones" ]
+        exclude_templates = [ "incoming_outsource_shot_nuke_render", 
+                                "incoming_outsource_shot_matchmove_render", 
+                                "incoming_outsource_shot_undistorted" 
+                                ]
         # reject distort/undistort outsource items
         if item.properties.get('template'):
-            if (item.properties.get('template').name == "incoming_outsource_shot_descriptor" or
-            item.properties.get('template').name == "shot_plate_main_undistorted"):
-                self.logger.debug("Removing template %s from Version for Review" %(item.properties.get('template').name ))
-                accept.update({'checked': False})
-                accept.update({'enabled': False})
-                accept.update({'visible': False})
-                accept = {"accepted": False}
-            
-            if item.properties.get('template').name == "incoming_outsource_shot_matchmove_render":
-                if 'descriptor' in item.properties.fields.keys():
+            if item.properties.get('template').name in exclude_templates:
+                if 'descriptor' in item.properties["fields"].keys():
                     if item.properties.fields['descriptor'] in exclude_descriptors:
-                        self.logger.debug("Removing template %s:%s from Version for Review" %(item.properties.get('template').name,
-                                                                                            item.properties.fields['descriptor']))
+                        self.logger.debug(
+                                        "Removing template %s : %s from Version for Review" % (
+                                            item.properties.get('template').name,
+                                            item.properties.fields['descriptor']
+                                            )
+                                        )
                         accept.update({'checked': False})
                         accept.update({'enabled': False})
                         accept.update({'visible': False})
                         accept = {"accepted": False}
+                else:
+                    self.logger.debug(
+                                    "Removing template %s from Version for Review as Undistort" % (
+                                        item.properties.get('template').name,
+                                        )
+                                    )
+                    accept.update({'checked': False})
+                    accept.update({'enabled': False})
+                    accept.update({'visible': False})
+                    accept = {"accepted": False}
 
-        self.logger.warning(">>>>> uv_settings: %s" % settings['File Extensions'].value )
         return accept
 
     def validate(self, settings, item):
@@ -291,7 +300,7 @@ class UploadVersionPlugin(HookBaseClass):
         if not item.properties.get("step"):
             self.logger.error("Missing step info")
 
-        if not item.properties['entity'].get("main_plate"):
+        if not item.properties['entity_info'].get("main_plate") and item.properties.get("sg_slap_comp"):
             raise Exception("Missing Main Plate: Cannot complete Slap Comp")
 
         # Check for a Version with same Version name   
@@ -338,6 +347,7 @@ class UploadVersionPlugin(HookBaseClass):
 
         # append discription to existing version_data
         item.properties['version_data'].update( { "description": item.description } )
+        self.logger.warning( ">>>>> image? %s" % item.properties['version_data']['image'] )
             
         item.properties['playlist_name'] = "%s%s%s_Resolve_Review_%s" %("%04d" % (now.year),
                                                                         "%02d" % (now.month),
@@ -346,7 +356,7 @@ class UploadVersionPlugin(HookBaseClass):
             
         self.logger.debug("Using review JSON: %s" % ( item.properties['template_paths'].get('review_process_json') ))
 
-        entity_info = item.properties.get('entity')
+        entity_info = item.properties.get('entity_info')
         entity_type = item.properties['fields'].get('type')
 
         # attach any outstanding entity-type specific info to the entity info
@@ -382,6 +392,10 @@ class UploadVersionPlugin(HookBaseClass):
             nuke_settings['content_notes_value'] = {
                                                     'message': item.description
                                                     }
+
+            nuke_settings['SSVFX_SLATE'].update( {
+                                                'notes': item.description
+                                                } )
 
         self._write_dl_json( json_properties['general_settings']['info_json_file'], process_dict )
 
@@ -654,8 +668,8 @@ class UploadVersionPlugin(HookBaseClass):
             raise Exception( "Could not find global_properties in item dictionary" )
         
         try:
-            self.dl_submission.gather_job_info2( item_dict )
-            self.dl_submission.gather_plugin_info2( item_dict )  
+            self.dl_submission.gather_job_info( item_dict )
+            self.dl_submission.gather_plugin_info( item_dict )  
         except Exception as err:
             raise Exception( "Unable to create job info file: %s" % err )
 

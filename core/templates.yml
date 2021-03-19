@@ -330,6 +330,10 @@ paths:
     general_review_process_json:
         definition: admin/processing/json/processing_review_settings.json
         root_name: 'project_pipeline'
+    
+    alembic_review_process_json:
+        definition: admin/processing/json/processing_incoming_alembic.json
+        root_name: 'project_pipeline'
 
     shot_review_process_json:
         definition: admin/processing/json/shot_processing_review_settings.json
