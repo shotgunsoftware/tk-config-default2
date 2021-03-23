@@ -169,7 +169,7 @@ apps.tk-nuke-quickreview.location:
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.4.2
+  version: v1.5.0
 
 # ---- Flame apps
 
