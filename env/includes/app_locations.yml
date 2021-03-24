@@ -47,7 +47,7 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.20.2
+  version: v1.20.3
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -135,7 +135,7 @@ apps.tk-shotgun-launchvredreview.location:
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
-  version: v0.5.3
+  version: v0.6.0
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -163,13 +163,13 @@ apps.tk-houdini-mantranode.location:
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview
-  version: v1.0.3
+  version: v1.1.0
 
 # writenode
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.4.2
+  version: v1.5.0
 
 # ---- Flame apps
 
@@ -177,13 +177,13 @@ apps.tk-nuke-writenode.location:
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.9.3
+  version: v1.10.1
 
 # flame review
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.3.0
+  version: v1.4.1
 
 # ---- Mari apps
 
