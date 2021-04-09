@@ -14,7 +14,7 @@ jobs:
         ref: 4ejaars_source
     - run: git config user.name github-actions
     - run: git config user.email github-actions@github.com
-    - run: git fetch origin master:master
+    - run: git pull origin master
     - run: git add .
     - run: git commit -m "Github Actions"
     - run: git push
@@ -29,7 +29,7 @@ jobs:
         ref: 3ejaars_source
     - run: git config user.name github-actions
     - run: git config user.email github-actions@github.com
-    - run: git fetch origin master:master
+    - run: git pull origin master
     - run: git add .
     - run: git commit -m "Github Actions"
     - run: git push
