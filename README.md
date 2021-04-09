@@ -1,4 +1,5 @@
 ![version](https://img.shields.io/github/v/release/nfa-vfxim/nfa-shotgun-configuration?include_prereleases&style=flat-square)
+[![multi root actions](https://github.com/nfa-vfxim/nfa-shotgun-configuration/actions/workflows/github-actions-pull.yml/badge.svg)](https://github.com/nfa-vfxim/nfa-shotgun-configuration/actions/workflows/github-actions-pull.yml)
 
 # nfa-shotgun-configuration
 
