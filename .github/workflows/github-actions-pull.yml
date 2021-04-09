@@ -1,0 +1,37 @@
+name: Github Actions Pull
+on:
+  pull_request:
+    types: [closed]
+jobs:
+  update-4ejaars_source-branch:
+   runs-on: ubuntu-latest
+   steps:
+    - run: echo "This job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "This job is running on a ${{ runner.os }} server."
+    - run: echo "This job will update the 4ejaars_source branch."
+    - uses: actions/checkout@v2
+      with: 
+        ref: 4ejaars_source
+    - run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git fetch origin master:master
+        git add .
+        git commit -m "Github Actions"
+        git push
+  update-3ejaars_source-branch:
+   runs-on: ubuntu-latest
+   steps:
+    - run: echo "This job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "This job is running on a ${{ runner.os }} server."
+    - run: echo "This job will update the 3ejaars_source branch."
+    - uses: actions/checkout@v2
+      with: 
+        ref: 3ejaars_source
+    - run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git fetch origin master:master
+        git add .
+        git commit -m "Github Actions"
+        git push
