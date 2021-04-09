@@ -11,7 +11,7 @@
 # Metadata defining the behaviour and requirements for this configuration
 
 # More verbose description of this item
-display_name: "Default Config"
+display_name: "Default NFA Config"
 description: "A VFX Example Config and our default configuration."
 
 # Required minimum versions for this item to run
