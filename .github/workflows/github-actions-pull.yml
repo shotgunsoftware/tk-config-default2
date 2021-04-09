@@ -18,6 +18,7 @@ jobs:
     - run: git fetch origin master
     - run: git merge -s recursive -X theirs origin/master --allow-unrelated-histories
     - run: git add .
+    - run: git status
     - run: git commit -m "Github Actions"
     - run: git push
   update-3ejaars_source-branch:
@@ -35,5 +36,6 @@ jobs:
     - run: git fetch origin master
     - run: git merge -s recursive -X theirs origin/master --allow-unrelated-histories
     - run: git add .
+    - run: git status
     - run: git commit -m "Github Actions"
     - run: git push
