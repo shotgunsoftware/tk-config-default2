@@ -16,7 +16,7 @@ jobs:
     - run: git config user.email github-actions@github.com
     - run: git config pull.rebase false
     - run: git fetch origin master
-    - run: git merge -s recursive -X theirs origin/master
+    - run: git merge -s recursive -X theirs origin/master --allow-unrelated-histories
     - run: git add .
     - run: git commit -m "Github Actions"
     - run: git push
@@ -33,7 +33,7 @@ jobs:
     - run: git config user.email github-actions@github.com
     - run: git config pull.rebase false
     - run: git fetch origin master
-    - run: git merge -s recursive -X theirs origin/master
+    - run: git merge -s recursive -X theirs origin/master --allow-unrelated-histories
     - run: git add .
     - run: git commit -m "Github Actions"
     - run: git push
