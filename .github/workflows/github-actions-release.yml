@@ -14,7 +14,7 @@ jobs:
       env:
        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-       args: Automatic 4ejaars_source release, tracking master.
+       args: 'Automatic 4ejaars_source release, tracking master.'
   release-3ejaars_source-branch:
    runs-on: ubuntu-latest
    steps:
@@ -26,4 +26,4 @@ jobs:
       env:
        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-       args: Automatic 3ejaars_source release, tracking master.
+       args: 'Automatic 3ejaars_source release, tracking master.'
