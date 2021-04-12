@@ -1,0 +1,29 @@
+name: Github Actions Release
+on:
+  release:
+    types: [published]
+jobs:
+  release-4ejaars_source-branch:
+   runs-on: ubuntu-latest
+   steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 4ejaars_source
+    - name: Create a 4ejaars_source Release
+      uses: elgohr/Github-Release-Action@master
+      env:
+       GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+       args: Automatic 4ejaars_source release, tracking master.
+  release-3ejaars_source-branch:
+   runs-on: ubuntu-latest
+   steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 3ejaars_source
+    - name: Create a 3ejaars_source Release
+      uses: elgohr/Github-Release-Action@master
+      env:
+       GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+       args: Automatic 3ejaars_source release, tracking master.
