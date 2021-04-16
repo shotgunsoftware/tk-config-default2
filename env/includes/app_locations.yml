@@ -147,7 +147,7 @@ apps.tk-hiero-export.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-hiero-export
-  version: 0.5.3.2
+  version: 0.6.0.1
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -197,14 +197,14 @@ apps.tk-nuke-quickreview.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-quickreview
-  version: 1.0.3.3
+  version: 1.1.0.1
 
 # writenode
 apps.tk-nuke-writenode.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-writenode
-  version: 1.4.2.4
+  version: 1.5.0.1
 
 # ---- Maya apps
 apps.tk-maya-playblast.location:

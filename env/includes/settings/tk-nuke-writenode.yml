@@ -36,7 +36,7 @@ settings.tk-nuke-writenode.shot:
   template_script_work: nuke_shot_work
   write_nodes:
   - file_type: exr
-    name: exr, 32 bit
+    name: exr, lossless, zip, 32 bit
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
@@ -47,7 +47,7 @@ settings.tk-nuke-writenode.shot:
     tank_type: Rendered Image
     tile_color: []
   - file_type: exr
-    name: exr, 16 bit
+    name: exr, lossless, zip, 16 bit
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
@@ -57,4 +57,26 @@ settings.tk-nuke-writenode.shot:
       datatype: 16 bit half
     tank_type: Rendered Image
     tile_color: []
+  - file_type: exr
+    name: exr, lossy, dwaa, 16 bit
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_dwaa_render_pub
+    render_template: nuke_shot_dwaa_render_work
+    settings:
+      datatype: 16 bit half
+      compression: dwaa
+    tank_type: Rendered Image
+    tile_color: []
+  - file_type: png
+    name: png, lossy, 8 bit
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_png_render_pub
+    render_template: nuke_shot_png_render_work
+    settings:
+      datatype: 8 bit
+      colorspace: Output - sRGB
   location: "@apps.tk-nuke-writenode.location"
