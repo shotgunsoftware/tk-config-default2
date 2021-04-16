@@ -440,6 +440,14 @@ paths:
     definition: "@shot_root/nuke/render/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
   nuke_shot_render_pub:
     definition: "@comp_shotrender/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
+  nuke_shot_dwaa_render_work:
+    definition: "@shot_root/nuke/render/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
+  nuke_shot_dwaa_render_pub:
+    definition: "@comp_shotrender/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
+  nuke_shot_png_render_work:
+    definition: "@shot_root/nuke/render/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.png"
+  nuke_shot_png_render_pub:
+    definition: "@comp_shotrender/{name}/v{version}/{width}x{height}/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.png"
   # review output
   shot_quicktime_quick:
     definition: "@shot_review/quickdaily/{projectcode}_sc{Sequence}_sh{Shot}_{name}_{nuke.output}_{iteration}.mov"
