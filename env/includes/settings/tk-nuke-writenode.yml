@@ -79,4 +79,6 @@ settings.tk-nuke-writenode.shot:
     settings:
       datatype: 8 bit
       colorspace: Output - sRGB
+    tank_type: Rendered Image
+    tile_color: []
   location: "@apps.tk-nuke-writenode.location"
