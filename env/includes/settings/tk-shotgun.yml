@@ -46,6 +46,12 @@ settings.tk-shotgun.asset_step:
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 
+# playlist
+settings.tk-shotgun.playlist:
+  apps:
+    tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
+  location: "@engines.tk-shotgun.location"
+
 # project
 settings.tk-shotgun.project:
   apps:
@@ -56,14 +62,6 @@ settings.tk-shotgun.project:
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
-  location: "@engines.tk-shotgun.location"
-
-# version
-settings.tk-shotgun.version:
-  apps:
-    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-    tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
-    tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
   location: "@engines.tk-shotgun.location"
 
 # publishedfile
@@ -105,4 +103,12 @@ settings.tk-shotgun.shot_step:
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# version
+settings.tk-shotgun.version:
+  apps:
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
+    tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
   location: "@engines.tk-shotgun.location"

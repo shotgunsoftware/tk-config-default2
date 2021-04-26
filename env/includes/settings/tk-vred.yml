@@ -74,4 +74,13 @@ settings.tk-vred.version:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: ""}
+  accepted_published_file_types: [ VRED Scene, Alias File, Catpart File, Jt File, Igs File ]
+  location: "@engines.tk-vred.location"
+
+# playlist for tk-shotgun-launchvredreview
+settings.tk-vred.playlist:
+  apps:
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: ""}
   location: "@engines.tk-vred.location"
