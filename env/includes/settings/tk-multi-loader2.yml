@@ -367,6 +367,8 @@ settings.tk-multi-loader2.vred:
     Fbx File: [import]
     VRED Scene: [import]
     Osb File: [import]
+    Image: [import_sceneplate]
+    Rendered Image: [import_sceneplate]
   entities:
   - caption: Assets
     entity_type: Asset

@@ -324,6 +324,10 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {published_file_type: VRED Scene}
     - actions: [import]
       filters: {published_file_type: Osb File}
+    - actions: [import_sceneplate]
+      filters: {published_file_type: Image}
+    - actions: [import_sceneplate]
+      filters: {published_file_type: Rendered Image}
     - actions: [publish_clipboard]
       filters: {}
     Task:
