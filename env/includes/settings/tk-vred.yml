@@ -45,6 +45,25 @@ settings.tk-vred.asset_step:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.vred.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred.asset_step"
+    tk-multi-scenebuilder:
+      location: "@apps.tk-multi-scenebuilder.location"
+      presets:
+        - title: Default
+          actions:
+            - context:
+                - [ entity.Asset.parents, in, '{context.entity}' ]
+                - [ task.Task.content, is, Model ]
+                - [ task.Task.step.Step.code, is, Model ]
+              action_mappings:
+                Alias File: import
+        - title: CatPart
+          actions:
+            - context:
+                - [ entity.Asset.parents, in, '{context.entity}' ]
+                - [ task.Task.content, is, Class-A ]
+                - [ task.Task.step.Step.code, is, Class-A ]
+              action_mappings:
+                Catpart File: import
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

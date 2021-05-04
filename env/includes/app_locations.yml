@@ -45,9 +45,10 @@ apps.tk-multi-launchapp.location:
 
 # loader2
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.20.3
+  type: git_branch
+  branch: SHOT-3728-loader-api
+  path: https://github.com/shotgunsoftware/tk-multi-loader2.git
+  version: 791a711
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -66,6 +67,13 @@ apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
   version: v1.1.1
+
+# scenebuilder
+apps.tk-multi-scenebuilder.location:
+  type: git_branch
+  branch: SHOT-3705
+  path: https://github.com/shotgunsoftware/tk-multi-scenebuilder.git
+  version: a22f9e3
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
