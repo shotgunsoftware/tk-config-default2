@@ -316,7 +316,7 @@ class CreateAlembicPlugin(HookBaseClass):
         job_info_file, plugin_info_file = self._create_submission_files( item )
 
         # send submission job to deadline
-        self.send_to_dl( job_info_file, plugin_info_file )
+        self.send_to_dl( job_info_file, plugin_info_file, item )
 
         # project_info = item.properties.get("project_info")
         # entity_info = item.properties.get("entity_info")
@@ -414,7 +414,8 @@ class CreateAlembicPlugin(HookBaseClass):
             sequence=is_sequence
         )
 
-    def send_to_dl(self, dl_module, draft_info, item):
+    # def send_to_dl(self, dl_module, draft_info, item):
+    def send_to_dl(self, job_info_file, plugin_info_file, item):
         """
         Runs cmd function to send image sequence to DL.
         Needs to be of type file.type.sequence.
@@ -579,28 +580,46 @@ class CreateAlembicPlugin(HookBaseClass):
         return process_info
 
     # def create_dl_info_files(self, dl_module, project_info_dict, entity_info, process_info_dict):
-    def create_dl_info_files(self, dl_module, item):
+    # def create_dl_info_files(self, dl_module, item):
         
-        job_info = None
-        plugin_info = None
+    #     job_info = None
+    #     plugin_info = None
 
-        # total_info = dict(
-        # project_info = project_info_dict,
-        # entity_info = entity_info,
-        # process_info = process_info_dict
-        # )
+    #     # total_info = dict(
+    #     # project_info = project_info_dict,
+    #     # entity_info = entity_info,
+    #     # process_info = process_info_dict
+    #     # )
 
-        total_info = item.to_dict().get('global_properties')
-        process_plugin = item.properties['set_software'].get('code')
+    #     total_info = item.to_dict().get('global_properties')
+    #     process_plugin = item.properties['set_software'].get('code')
 
-        job_info = self.create_job_info(dl_module,
-                            total_info, 
-                            process_plugin)
-        plugin_info = self.create_plugin_info(dl_module,
-                            total_info, 
-                            process_plugin)
+    #     job_info = self.create_job_info(dl_module,
+    #                         total_info, 
+    #                         process_plugin)
+    #     plugin_info = self.create_plugin_info(dl_module,
+    #                         total_info, 
+    #                         process_plugin)
 
-        return(job_info, plugin_info)
+    #     return(job_info, plugin_info)
+
+    def create_dl_info_files(self, item):
+        """
+        Create the files for the individual Quicktime jobs Deadline will create
+
+        :param item: item to submit for data collection
+        """
+
+        item_dict = item.to_dict().get('global_properties')
+
+        if not item_dict:
+            raise Exception( "Could not find global_properties in item dictionary" )
+        
+        try:
+            self.dl_submission.gather_job_info( item_dict )
+            self.dl_submission.gather_plugin_info( item_dict )  
+        except Exception as err:
+            raise Exception( "Unable to create job info file: %s" % err )
 
     def create_job_info(self, dl_module, total_info, plugin_name):
 

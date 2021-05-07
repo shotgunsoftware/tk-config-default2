@@ -192,7 +192,7 @@ class SceneOperation(HookClass):
 
                 # save script:
                 nuke.scriptSaveAs(file_path, -1)
-            except Exception, e:
+            except Exception as e:
                 # something went wrong so reset to old path:
                 nuke.root()["name"].setValue(old_path)
                 raise TankError("Failed to save scene %s", e)
@@ -516,7 +516,6 @@ class SceneOperation(HookClass):
                     nuke.Root()['colorManagement'].setValue('OCIO')
                     nuke.Root()['OCIO_config'].setValue('custom')
                     nuke.Root()['customOCIOConfigPath'].setValue(shot_info['sg_shot_ocio']['local_path_windows'].replace('\\', '/'))
-                    nuke.Root()['reloadConfig'].execute()
                     
                     # Check for viewers and clean out the list of viewer processes
                     if len(nuke.allNodes('Viewer')) < 1:
@@ -529,6 +528,9 @@ class SceneOperation(HookClass):
                         for i in nuke.ViewerProcess.registeredNames():
                             if 'rec709' not in i:
                                 nuke.ViewerProcess.unregister(i)            
+
+                    # Finaly, reload the OCIO
+                    nuke.Root()['reloadConfig'].execute()
             
             elif color_info:
 
