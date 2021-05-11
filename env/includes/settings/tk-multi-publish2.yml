@@ -31,6 +31,7 @@ settings.tk-multi-publish2.standalone:
     hook: "{self}/upload_version.py"
     settings: {}
   help_url: *help_url
+  task_required: True
   location: "@apps.tk-multi-publish2.location"
 
 ################################################################################
