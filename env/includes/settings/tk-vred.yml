@@ -40,6 +40,8 @@ settings.tk-vred.asset_step:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-breakdown: "@settings.tk-multi-breakdown.vred"
+    tk-multi-breakdown2:
+      location: "@apps.tk-multi-breakdown2.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.vred"
     tk-multi-publish2: "@settings.tk-multi-publish2.vred.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
