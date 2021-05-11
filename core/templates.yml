@@ -37,6 +37,8 @@ keys:
         type: str
     Asset:
         type: str
+    HumanUser:
+        type: str
     name:
         type: str
         filter_by: alphanumeric
@@ -436,6 +438,7 @@ paths:
 
     asset_alembic_cache:
         definition: '@asset_root/publish/caches/{name}.v{version}.abc'
+        root_name: 'publish'
 
 
     #
@@ -444,17 +447,19 @@ paths:
 
     # The location of WIP files
     photoshop_asset_work:
-        definition: '@asset_root/work/photoshop/{name}.v{version}.psd'
+        definition: '@asset_root/work/{HumanUser}/photoshop/{name}.v{version}.psd'
     asset_work_area_photoshop:
         definition: '@asset_root/work/photoshop'
     # The location of backups of WIP files
     photoshop_asset_snapshot:
-        definition: '@asset_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
+        definition: '@asset_root/work/{HumanUser}/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
     # The location of published files
     asset_publish_area_photoshop:
         definition: '@asset_root/publish/photoshop'
+        root_name: 'publish'
     photoshop_asset_publish:
         definition: '@asset_root/publish/photoshop/{name}.v{version}.psd'
+        root_name: 'publish'
 
     #
     # after effects
@@ -494,19 +499,21 @@ paths:
 
     # define the location of a work area
     asset_work_area_maya:
-        definition: '@asset_root/work/maya'
+        definition: '@asset_root/work/{HumanUser}/maya'
     # define the location of a publish area
     asset_publish_area_maya:
         definition: '@asset_root/publish/maya'
+        root_name: 'publish'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/work/maya/{name}.v{version}.{maya_extension}'
+        definition: '@asset_root/work/{HumanUser}/maya/{name}.v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+        definition: '@asset_root/work/{HumanUser}/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_asset_publish:
         definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
+        root_name: 'publish'
 
 
     #
@@ -625,35 +632,43 @@ paths:
 
     # define the location of a work area
     asset_work_area_alias:
-        definition: '@asset_root/work/alias'
+        definition: '@asset_root/work/{HumanUser}/alias'
     # define the location of a publish area
     asset_publish_area_alias:
         definition: '@asset_root/publish/alias'
+        root_name: 'publish'
     # The location of WIP files
     alias_asset_work:
-        definition: '@asset_root/work/alias/{name}.v{version}.wire'
+        definition: '@asset_root/work/{HumanUser}/alias/{name}.v{version}.wire'
     # The location of backups of WIP files
     alias_asset_snapshot:
-        definition: '@asset_root/work/alias/snapshots/{name}.v{version}.{timestamp}.wire'
+        definition: '@asset_root/work/{HumanUser}/alias/snapshots/{name}.v{version}.{timestamp}.wire'
     # The location of published Alias files
     alias_asset_publish:
         definition: '@asset_root/publish/alias/{name}.v{version}.wire'
+        root_name: 'publish'
 
     # Alias translations
 
     # The location of the reference created on the fly by Alias when importing a file as ref
     alias_asset_reference_publish:
         definition: '@asset_root/publish/alias/translations/{name}_{alias.extension}.v{version}.wref'
+        root_name: 'publish'
     alias_asset_igs_publish:
         definition: '@asset_root/publish/alias/translations/{name}.v{version}.igs'
+        root_name: 'publish'
     alias_asset_catpart_publish:
         definition: '@asset_root/publish/alias/translations/{name}.v{version}.CATPart'
+        root_name: 'publish'
     alias_asset_jt_publish:
         definition: '@asset_root/publish/alias/translations/{name}.v{version}.jt'
+        root_name: 'publish'
     alias_asset_stp_publish:
         definition: '@asset_root/publish/alias/translations/{name}.v{version}.stp'
+        root_name: 'publish'
     alias_asset_wref_publish:
         definition: '@asset_root/publish/alias/translations/{name}.v{version}.wref'
+        root_name: 'publish'
 
     #
     # VRED
@@ -661,35 +676,39 @@ paths:
 
     # define the location of a work area
     asset_work_area_vred:
-        definition: '@asset_root/work/vred'
+        definition: '@asset_root/work/{HumanUser}/vred'
     # define the location of a publish area
     asset_publish_area_vred:
         definition: '@asset_root/publish/vred'
+        root_name: 'publish'
     # The location of WIP files
     vred_asset_work:
-        definition: '@asset_root/work/vred/{name}.v{version}.vpb'
+        definition: '@asset_root/work/{HumanUser}/vred/{name}.v{version}.vpb'
     # The location of backups of WIP files
     vred_asset_snapshot:
-        definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.vpb'
+        definition: '@asset_root/work/{HumanUser}/vred/snapshots/{name}.v{version}.{timestamp}.vpb'
     # The location of published VRED files
     vred_asset_publish:
         definition: '@asset_root/publish/vred/{name}.v{version}.vpb'
+        root_name: 'publish'
 
     # define the location of the WIP render images
     vred_asset_render_work:
-        definition: '@asset_root/work/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
+        definition: '@asset_root/work/{HumanUser}/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
 
     # define the location of the WIP renderings for an image sequence
     vred_asset_render_sequence_work:
-        definition: '@asset_root/work/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
+        definition: '@asset_root/work/{HumanUser}/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
 
     # define the location of the published render images
     vred_asset_render_publish:
         definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
+        root_name: 'publish'
 
     # define the location of the published renderings for an image sequence
     vred_asset_render_sequence_publish:
         definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
+        root_name: 'publish'
 
 
 #
