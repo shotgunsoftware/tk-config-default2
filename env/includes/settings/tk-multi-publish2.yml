@@ -258,6 +258,7 @@ settings.tk-multi-publish2.nuke.asset_step:
     settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
+    settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
     settings: {}
