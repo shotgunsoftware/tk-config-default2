@@ -27,6 +27,8 @@ settings.tk-multi-publish2.standalone:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_file.py:{config}/tk-multi-publish2/publish_file_standalone.py"
     settings:
+        Default Publish Templates:
+            asset: asset_publish_default_template
         Publish Templates:
             Alias:
                 asset: alias_asset_publish
