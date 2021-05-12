@@ -104,7 +104,12 @@ class BasicSceneCollector(HookBaseClass):
                 "extensions": ["doc", "docx", "xls", "xlsx", "ppt", "pptx"],
                 "icon": self._get_icon_path("office.png", icons_folders=icons_folders),
                 "item_type": "file.office",
-            }
+            },
+            "OBJ File": {
+                "extensions": ["obj"],
+                "icon": self._get_icon_path("3d_model.png", icons_folders=icons_folders),
+                "item_type": "file.obj",
+            },
         }
         # update the base settings
         base_file_info.update(automotive_file_info)
