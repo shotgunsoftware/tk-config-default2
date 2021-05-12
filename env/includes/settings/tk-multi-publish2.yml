@@ -25,8 +25,11 @@ settings.tk-multi-publish2.standalone:
   collector: "{self}/collector.py"
   publish_plugins:
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py"
-    settings: {}
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_file.py:{config}/tk-multi-publish2/publish_file_standalone.py"
+    settings:
+        Publish Templates:
+            Alias:
+                asset: alias_asset_publish
   - name: Upload for review
     hook: "{self}/upload_version.py"
     settings: {}
