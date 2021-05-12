@@ -171,6 +171,12 @@ keys:
         type: str
         shotgun_entity_type: Project
         shotgun_field_name: name
+    
+    # Generic file_extension variable
+    file_extension:
+        type: str
+        alias: extension
+
 
 
 #
@@ -437,6 +443,14 @@ paths:
 
     ##########################################################################################
     # Asset pipeline
+
+    #
+    # Default published files
+    #
+
+    asset_publish_default_template:
+        definition: '@asset_root/publish/{project_name}_{Asset}_{Step}_{name}.v{version}.{file_extension}'
+        root_name: 'publish'
 
 
     #
