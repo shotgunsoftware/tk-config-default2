@@ -110,6 +110,11 @@ class BasicSceneCollector(HookBaseClass):
                 "icon": self._get_icon_path("3d_model.png", icons_folders=icons_folders),
                 "item_type": "file.obj",
             },
+            "FBX File": {
+                "extensions": ["fbx"],
+                "icon": self._get_icon_path("fbx.png", icons_folders=icons_folders),
+                "item_type": "file.fbx",
+            },
         }
         # update the base settings
         base_file_info.update(automotive_file_info)
