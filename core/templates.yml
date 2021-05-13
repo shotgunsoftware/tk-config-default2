@@ -445,11 +445,15 @@ paths:
     # Asset pipeline
 
     #
-    # Default published files
+    # Generic default published files
     #
 
     asset_publish_default_template:
-        definition: '@asset_root/publish/{project_name}_{Asset}_{Step}_{name}.v{version}.{file_extension}'
+        definition: '@asset_root/publish/generic/{project_name}_{Asset}_{Step}_{name}.v{version}.{file_extension}'
+        root_name: 'publish'
+
+    image_asset_publish:
+        definition: '@asset_root/publish/images/{project_name}_{Asset}_{Step}_{name}.v{version}.{file_extension}'
         root_name: 'publish'
 
 

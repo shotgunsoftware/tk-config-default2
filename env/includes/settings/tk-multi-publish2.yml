@@ -32,6 +32,8 @@ settings.tk-multi-publish2.standalone:
         Publish Templates:
             Alias:
                 asset: alias_asset_publish
+            Image:
+                asset: image_asset_publish
   - name: Upload for review
     hook: "{self}/upload_version.py"
     settings: {}
