@@ -7,7 +7,6 @@
 # By accessing, using, copying or modifying this work you indicate your
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Autodesk, Inc.
-
 import os
 import sgtk
 
@@ -118,8 +117,13 @@ class BasicSceneCollector(HookBaseClass):
         }
         # update the base settings
         base_file_info.update(automotive_file_info)
+        # Hack for SHOT-3763
+        # tk-multi-publish2 does not do any comparison to see if the extension is already declared
+        # and you try to override it so it has been a fluke that Py2 returns FBX ahead of MoBu FBX
+        # This puts FBX higher in the dict for Py3 and seems to have no affect on Py2
+        sorted_base_file_info = {key: val for key, val in sorted(base_file_info.items(), key = lambda ele: ele[0])}
 
-        return base_file_info
+        return sorted_base_file_info
 
     def process_file(self, settings, parent_item, path):
         """
