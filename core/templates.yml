@@ -467,6 +467,12 @@ paths:
     photoshop_asset_publish:
         definition: '@asset_root/publish/photoshop/{project_name}_{Asset}_{Step}_{name}.v{version}.psd'
         root_name: 'publish'
+    photoshop_asset_png_publish:
+        definition: '@asset_root/publish/photoshop/{project_name}_{Asset}_{Step}_{name}.v{version}.png'
+        root_name: 'publish'
+    photoshop_asset_jpg_publish:
+        definition: '@asset_root/publish/photoshop/{project_name}_{Asset}_{Step}_{name}.v{version}.jpg'
+        root_name: 'publish'
 
     #
     # after effects
