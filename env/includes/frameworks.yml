@@ -99,6 +99,10 @@ frameworks:
   # lmv - provides LMV conversion tools
   tk-framework-lmv_v0.x.x:
     location:
-      version: v0.1.3
-      type: app_store
-      name: tk-framework-lmv
+#      version: v0.1.3
+#      type: app_store
+#      name: tk-framework-lmv
+      type: git_branch
+      branch: automotive-pipeline
+      path: https://github.com/shotgunsoftware/tk-framework-lmv.git
+      version: a12742c
