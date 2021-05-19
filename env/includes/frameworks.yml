@@ -17,12 +17,10 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      type: dev
-      path: Y:\SGTK\devs\tk-framework-adobe
-#      type: git_branch
-#      path: https://github.com/shotgunsoftware/tk-framework-adobe.git
-#      branch: automotive-pipeline
-#      version: 1847a5b
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-adobe.git
+      branch: automotive-pipeline
+      version: 69dcdbd
 #      version: v1.1.2
 #      type: app_store
 #      name: tk-framework-adobe

@@ -10,12 +10,13 @@
 import os
 import tempfile
 
+import alias_api
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class PhotoshopActions(HookBaseClass):
+class AliasActions(HookBaseClass):
     """
     Photoshop Shotgun Panel Actions that apply to all DCCs
     """
@@ -60,8 +61,8 @@ class PhotoshopActions(HookBaseClass):
                 {
                     "name": "import_note_attachments",
                     "params": None,
-                    "caption": "Import Note attachment(s) as layer(s)",
-                    "description": "This will create a new layer for each image attached to the note.",
+                    "caption": "Import Note attachment(s) as canvas image(s)",
+                    "description": "This will create a new canvas for each image attached to the note.",
                 }
             )
 
@@ -79,7 +80,7 @@ class PhotoshopActions(HookBaseClass):
         """
 
         if name == "import_note_attachments":
-            self._import_note_attachments_as_layer(sg_data)
+            self._import_note_attachments_as_canvas(sg_data)
 
         else:
             try:
@@ -88,9 +89,8 @@ class PhotoshopActions(HookBaseClass):
                 # base class doesn't have the method, so ignore and continue
                 pass
 
-    def _import_note_attachments_as_layer(self, sg_data):
+    def _import_note_attachments_as_canvas(self, sg_data):
         """"""
-        engine = sgtk.platform.current_engine()
 
         tmp_folder = tempfile.mkdtemp(prefix="sgtk_notes")
 
@@ -103,4 +103,4 @@ class PhotoshopActions(HookBaseClass):
             if a["name"].endswith(".png"):
                 tmp_path = os.path.join(tmp_folder, a["name"])
                 self.parent.shotgun.download_attachment(a, tmp_path)
-                engine.adobe.add_as_layer(tmp_path)
+                alias_api.create_texture_node(tmp_path)
