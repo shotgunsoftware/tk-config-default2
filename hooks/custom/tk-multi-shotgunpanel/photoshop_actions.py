@@ -100,7 +100,14 @@ class PhotoshopActions(HookBaseClass):
 
         # download all the attachments on disk
         for a in sg_note["attachments"]:
-            if a["name"].endswith(".png"):
-                tmp_path = os.path.join(tmp_folder, a["name"])
+            # TODO: modify tk-alias to include .jpg extension to the attachment name in order to avoid having this ugly
+            # check
+            if a["name"].endswith(".png") or a["name"] == "Variant Image":
+                file_name = (
+                    "{}.jpg".format(a["name"])
+                    if a["name"] == "Variant Image"
+                    else a["name"]
+                )
+                tmp_path = os.path.join(tmp_folder, file_name)
                 self.parent.shotgun.download_attachment(a, tmp_path)
                 engine.adobe.add_as_layer(tmp_path)
