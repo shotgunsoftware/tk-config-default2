@@ -88,9 +88,13 @@ apps.tk-multi-setframerange.location:
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:
-  type: app_store
-  name: tk-multi-shotgunpanel
-  version: v1.7.1
+  # type: app_store
+  # name: tk-multi-shotgunpanel
+  # version: v1.7.1
+  type: git_branch
+  branch: master
+  path: https://github.com/shotgunsoftware/tk-multi-shotgunpanel
+  version: 2bd7b25
 
 # snapshot
 apps.tk-multi-snapshot.location:
