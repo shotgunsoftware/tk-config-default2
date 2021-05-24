@@ -475,7 +475,18 @@ class UploadVersionPlugin(HookBaseClass):
             item.properties['shot'].update({'sg_frame_handles' : None})
 
         # Aux files
-        draft_py=os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+        draft_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+        if not os.path.exists( draft_path ):
+            draft_path = os.path.join(pipeline_root,"ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+
+        if item.properties.get('nuke_review_script'):
+            seq_ext = os.path.splitext( item.properties['path'] )[-1]
+            if seq_ext in [ ".jpg",".jpeg",".png", ]:
+                review_path = os.path.splitext( item.properties['nuke_review_script'] )[0]
+                item.properties['nuke_review_script'] = review_path + "_jpeg.nk"
+
+        draft_py=draft_path
+        # draft_py=os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
         # draft_py=os.path.join("C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
         item.properties["script_file"] = draft_py
 
