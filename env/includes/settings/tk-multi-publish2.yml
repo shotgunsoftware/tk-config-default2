@@ -543,7 +543,7 @@ settings.tk-multi-publish2.alias.asset_step:
 
 # asset_step
 settings.tk-multi-publish2.vred.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/custom/tk-multi-publish2/vred_collector.py"
   collector_settings:
       Work Template: vred_asset_work
   publish_plugins:
@@ -572,5 +572,11 @@ settings.tk-multi-publish2.vred.asset_step:
    - name: Upload for review
      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
      settings: {}
+   - name: Publish Material
+     hook: "{config}/custom/tk-multi-publish2/vred_publish_material.py"
+     settings:
+       Library Project ID: 419
+       Publish Material Template: material_project_publish
+       Pipeline Config Name: Dev Barbara
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
