@@ -577,6 +577,5 @@ settings.tk-multi-publish2.vred.asset_step:
      settings:
        Library Project ID: 419
        Publish Material Template: material_project_publish
-       Pipeline Config Name: Dev Barbara
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
