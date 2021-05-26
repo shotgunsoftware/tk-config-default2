@@ -57,6 +57,9 @@ settings.tk-alias.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  new_file_template:
+    Modeling:
+      Exterior: "data/templates/new_file/Modeling/Exterior/new_file_template.wire"
   location: "@engines.tk-alias.location"
 
 # project
@@ -70,4 +73,7 @@ settings.tk-alias.project:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
+  new_file_template:
+    Modeling:
+      Exterior: "data/templates/new_file/Modeling/new_file_template.wire"
   location: "@engines.tk-alias.location"
