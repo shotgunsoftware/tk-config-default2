@@ -39,6 +39,8 @@ keys:
         type: str
     HumanUser:
         type: str
+    Material:
+        type: str
     name:
         type: str
         #filter_by: alphanumeric
@@ -216,6 +218,15 @@ paths:
         definition: 'editorial/publish/{name}_v{version}.hrox'
     hiero_project_publish_area:
         definition: 'editorial/publish'
+
+    #
+    # Materials
+    #
+    material_project_publish:
+        definition: 'materials/MAT_{Material}'
+        root_name: 'publish'
+
+    # The location of the material
 
 
     ##########################################################################################
