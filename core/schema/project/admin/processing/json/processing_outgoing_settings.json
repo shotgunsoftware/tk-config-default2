@@ -5,40 +5,45 @@
             {"header_value": "Info", "cell_key": "status_value"},
             {"header_value": "Version", "cell_key": "code" },
             {"header_value": "Task", "cell_key": "sg_task"},
-            {"header_value": "Previous Client Version", "cell_key": "client_code"},
+            {"header_value": "Previous Client Version", "cell_key": "prev_client_code"},
+            {"header_value": "Next Client Version", "cell_key": "next_client_code"},
             {"header_value": "Action Status", "cell_key": "sg_status_list"},
             {"header_value": "Artist", "cell_key": "user"},
             {"header_value": "In - Out", "cell_key":"frame_range"},
             {"header_value": "Source Name", "cell_key":"sg_main_plate_name"},
-            {"header_value": "LUT", "cell_key": "sg_shot_lut"},
-            {"header_value": "OCIO", "cell_key": "sg_shot_ocio"}
+            {"header_value": "Linked Color", "cell_key":"sg_linked_color"}
         ]
     },
     "primary":{
         "client-version-dnxhd":{
             "title" : "Client DNxHD",
+            "plugin": "Nuke",            
+            "info" : "Avid QT for client submission.",
+            "client_process": true,
             "comment" : "",      
-            "output_directory": "admin\\outgoing\\submissions\\v000s\\{Shot}_dnx",
-            "output_file": "{Shot}{vendor_id}_v000_dnxhd",
-            "qt_template": "resolve_review_mov_252",
-            "content_info": {"TargetAge": "sg_target_age"},
+            "output_root": "primary",               
+            "output_directory": "",
+            "output_file": "{output_file}_DNxHD",
+            "output_file_ext": "mov",           
+            "output_file_additional": "",
+            "dependencies": false,
+            "batch_dependencies": true,            
+            "content_info": {},
             "add_to_review_playlist": false,
             "main_transform": false,
+            "main_transform_switch": 2,
+            "secondary_process_switch": 4,
             "create_version": false,
             "update_version": false,
-            "set_lut": true,                  
+            "color_required": true,
+            "set_lut": false,
+            "set_cdl": false,
             "set_ocio": false,
             "slate_enabled": true,
             "burnin_enabled": true,            
             "logo_burnin_merge": true,   
-            "main_lut_settings": {
-                "colorspaceIn": "linear",          
-                "colorspaceOut": "Gamma2.2"
-            },                          
-            "main_ocio_settings": {
-                "in_colorspace": "linear",          
-                "out_colorspace": "linear"
-            },               
+            "main_lut_settings": {},                          
+            "main_ocio_settings": {},               
             "quicktime_format":{
                 "type": "CustomNonProjectEntity01",
                 "id": 5,
@@ -50,8 +55,7 @@
                 "name": "DNXHD"
             },        
             "main_read_settings": {
-                "raw": false,
-                "colorspace": "linear"
+                "raw": true
             },
             "main_reformat_settings": {
                 "black_outside": true,
@@ -59,59 +63,101 @@
                 "pbb": true
             },
             "main_write_settings": {
-                "meta_codec": "AVdn",
-                "raw": false,
-                "colorspace": "Gamma2.2"
-            }   
+                "raw": true
+            }
+        },        
+        "client-version-h264":{
+            "title" : "Client h264",
+            "plugin": "Nuke",            
+            "info" : "QT for client submission.",
+            "client_process": true,
+            "comment" : "",
+            "plugin_in_script_alt": "admin/processing/nuke_scripts/processing_outgoing_h264.nk",            
+            "output_root": "primary",               
+            "output_directory": "",
+            "output_file": "{output_file}_h264",
+            "output_file_ext": "mov",           
+            "output_file_additional": "",
+            "dependencies": false,
+            "batch_dependencies": true,            
+            "content_info": {},
+            "add_to_review_playlist": false,
+            "main_transform": false,
+            "main_transform_switch": 2,
+            "incoming_switch": 0,
+            "create_version": false,
+            "update_version": false,
+            "color_required": true,
+            "set_lut": false,
+            "set_cdl": false,
+            "set_ocio": false,
+            "slate_enabled": true,
+            "burnin_enabled": true,            
+            "logo_burnin_merge": true,   
+            "main_lut_settings": {
+                "colorspaceIn": "linear",          
+                "colorspaceOut": "linear"
+            },                          
+            "main_ocio_settings": {},               
+            "quicktime_format":{
+                "type": "CustomNonProjectEntity01",
+                "id": 5,
+                "name": "FHD"
+            },
+            "quicktime_codec":{
+                "type": "CustomNonProjectEntity08",
+                "id": 2,
+                "name": "H264"                
+            },        
+            "main_read_settings": {
+                "raw": true
+            },
+            "main_reformat_settings": {
+                "black_outside": true,
+                "center": true,
+                "pbb": true
+            },
+            "main_write_settings": {
+                "raw": true
+            }
         },
-        "client-version-uhd":{
-            "title" : "Client UHD",
-            "comment" : "",      
-            "output_directory": "admin\\outgoing\\submissions\\v000s\\{Shot}_dnx",
-            "output_file": "{Shot}{vendor_id}_v000_dnxhd",
-            "qt_template": "resolve_review_mov_252",
-            "content_info": {"TargetAge": "sg_target_age"},
+        "fileset":{
+            "title" : "Client EXRs",
+            "client_process": true,                       
+            "plugin": "Copy",
+            "info" : "Client EXRs copy to submission with naming convention.",
+            "comment" : "",
+            "output_root": "primary",
+            "output_directory": "",
+            "output_file": "",
+            "output_file_ext": "exr",
+            "dependencies": false,
+            "batch_dependencies": true,
+            "dependent_script_file": "\\\\10.80.8.252\\VFX_Pipeline\\Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_fileset.py",
+            "zip_output": false,
+            "content_info": {},
             "add_to_review_playlist": false,
             "main_transform": false,
             "create_version": false,
             "update_version": false,
-            "set_lut": true,                  
+            "create_publish": false,
+            "color_required": false,
+            "set_lut": false,            
             "set_ocio": false,
-            "slate_enabled": true,
-            "burnin_enabled": true,            
-            "logo_burnin_merge": true,   
-            "main_lut_settings": {
-                "colorspaceIn": "linear",          
-                "colorspaceOut": "Gamma2.2"
-            },                          
-            "main_ocio_settings": {
-                "in_colorspace": "linear",          
-                "out_colorspace": "linear"
-            },               
-            "quicktime_format":{
-                "type": "CustomNonProjectEntity01",
-                "id": 5,
-                "name": "FHD"
-            },
-            "quicktime_codec":{
-                "type": "CustomNonProjectEntity08",
-                "id": 1,
-                "name": "DNXHD"
-            },        
-            "main_read_settings": {
-                "raw": false,
-                "colorspace": "linear"
-            },
-            "main_reformat_settings": {
-                "black_outside": true,
-                "center": true,
-                "pbb": true
-            },
-            "main_write_settings": {
-                "meta_codec": "AVdn",
-                "raw": false,
-                "colorspace": "Gamma2.2"
-            }   
+            "set_cdl": false,
+            "set_reformat": false,            
+            "slate_enabled": true,   
+            "burnin_enabled": false,
+            "logo_burnin_merge": false,    
+            "main_crop_settings": {},
+            "main_lut_settings": {},                         
+            "main_ocio_settings": {},
+            "file_ocio_settings": {},             
+            "quicktime_format":{},
+            "quicktime_codec":{},          
+            "main_read_settings": {},
+            "main_reformat_settings": {},
+            "main_write_settings": {}
         }        
     },
     "secondary":{

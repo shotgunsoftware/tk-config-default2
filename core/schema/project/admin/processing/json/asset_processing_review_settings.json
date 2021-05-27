@@ -143,15 +143,15 @@
             "set_ocio": false,
             "slate": true,
             "incoming_switch": 1,
-            "main_color_switch": 3,            
+            "main_color_switch": 2,            
             "main_ocio_settings": {
                 "in_colorspace": "linear",          
                 "out_colorspace": "linear"
             },               
             "quicktime_format":{
                 "type": "CustomNonProjectEntity01",
-                "id": 40,
-                "name": "UHD"
+                "id": 177,
+                "name": "ellington_halfres"
             },
             "quicktime_codec":{
                 "type": "CustomNonProjectEntity08",
@@ -169,7 +169,7 @@
             },
             "main_write_settings": {
                 "meta_codec": "apco",
-                "raw": false,
+                "raw": true,
                 "colorspace": "Gamma2.2"
             }   
         },
@@ -182,14 +182,15 @@
             "create_version": true,
             "update_version": true,
             "set_ocio": false,
-            "slate": false,        
+            "slate": false,
+            "main_color_switch": 2,
             "main_ocio_settings": {
                 "out_colorspace": "paint_grade.rec709g24"
             },        
             "quicktime_format":{
                 "type": "CustomNonProjectEntity01",
-                "id": 41,
-                "name": "HDR"
+                "id": 177,
+                "name": "ellington_halfres"
             },
             "quicktime_codec":{
                 "type": "CustomNonProjectEntity08",
@@ -208,7 +209,7 @@
             "main_write_settings": {
                 "meta_codec": "avc1",
                 "colorspace": "Gamma2.2",
-                "raw": false
+                "raw": true
             }
         }
     }

@@ -1,0 +1,447 @@
+{
+    "settings":{
+        "table_headers":[
+            {"header_value": "#", "cell_key":"option", "sel_button": true},
+            {"header_value": "Info", "cell_key": "status_value"},
+            {"header_value": "Entity", "cell_key": "code"},
+            {"header_value": "In - Out", "cell_key": "frame_range"},
+            {"header_value": "Previous Client Version", "cell_key": "prev_client_code"},
+            {"header_value": "Next Client Version", "cell_key": "next_client_code"},            
+            {"header_value": "Main Plate", "cell_key": "sg_main_plate"},
+            {"header_value": "BG Plate", "cell_key": "sg_bg_plate"},
+            {"header_value": "Elem Plate", "cell_key":"sg_elem_plate"},
+            {"header_value": "Ref Plate", "cell_key":"sg_ref_plate"},
+            {"header_value": "Lineup Sheet", "cell_key":"sg_lineup"},            
+            {"header_value": "Linked Color", "cell_key":"sg_linked_color"}            
+        ]
+    },    
+    "primary":{
+        "processes":{
+            "incoming-version":{
+                "process_settings":{
+                    "title" : "Internal",
+                    "description" : "Internal version Zero",
+                    "output_root": "secondary",
+                    "output_directory": "editorial/v000",
+                    "output_file": "{Source}_v000",
+                    "output_file_ext": "mov",
+                    "create_version": true,
+                    "update_version": true,                    
+                    "create_publish": false,                    
+                    "update_client_version": false,
+                    "dependencies": false,
+                    "color_required": true,
+                    "client_process": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_incoming.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "camera_switch":  {"which":0},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},       
+                    "content_vendor_burnin":{"disable":true},
+                    "main_timecode": {"disable":false},
+                    "format":{},
+                    "main_read": {
+                        "raw": true
+                    },
+                    "main_write": {
+                        "file_type": "mov",
+                        "meta_codec": "apco",
+                        "mov32_fps": 23.976,
+                        "raw": true,
+                        "mov64_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            }, 
+            "incoming-cut-ref":{
+                "process_settings":{
+                    "title" : "Internal CutRef",   
+                    "description" : "Internal version with Crop/Color to match CutRef",
+                    "output_root": "secondary",             
+                    "output_directory": "editorial/v000",
+                    "output_file": "{Source}_v000_cutref",
+                    "output_file_ext": "mov",
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,                    
+                    "update_client_version": false,   
+                    "dependencies": false,
+                    "color_required": true,
+                    "client_process": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_outgoing.nk"
+
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},              
+                    "color_switch": {"which":1},
+                    "transform_switch": {"which":2},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},                                         
+                    "main_ocio": {
+                        "disable": true,                        
+                        "in_colorspace": "ACES - ACES2065-1",
+                        "out_colorspace": "Input - ARRI - V3 LogC (EI800) - Wide Gamut"           
+                    },        
+                    "main_read": {
+                        "raw": true,
+                        "colorspace": "linear"
+                    },
+                    "main_write": {
+                        "file_type": "mov",
+                        "meta_codec": "AVdn",
+                        "raw": true,
+                        "meta_encoder": "mov32",
+                        "mov32_codec": "AVdn",
+                        "mov32_fps": 23.97999573,
+                        "mov32_write_timecode": true,
+						"mov32_keyframerate": 0,
+                        "mov32_settings": "000000000000000000000000000001d27365616e000000010000000100000000000001be76696465000000010000000f00000000000000227370746c0000000100000000000000004156646e000000000020000003ff000000207470726c000000010000000000000000000000000017f9db00000000000000246472617400000001000000000000000000000000000000530000010000000100000000156d70736f00000001000000000000000000000000186d66726100000001000000000000000000000000000000187073667200000001000000000000000000000000000000156266726100000001000000000000000000000000166d70657300000001000000000000000000000000002868617264000000010000000000000000000000000000000000000000000000000000000000000016656e647300000001000000000000000000000000001663666c67000000010000000000000000004400000018636d66720000000100000000000000004156494400000014636c757400000001000000000000000000000038636465630000000100000000000000004156494400000001000000020000000100000011000000030000000000000000000000000000001c766572730000000100000000000000000003001c00010000"
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            },
+            "convert-aces":{
+                "process_settings":{
+                    "title" : "Convert ACES",
+                    "description" : "Internal Plate Color Conversion",
+                    "process_type": "acescg",
+                    "output_root": "primary",       
+                    "output_directory": "shots/{Shot}/rushes/acescg/{Plate}/{Source}",
+                    "output_file": "{Source}",
+                    "output_file_ext": "exr",
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": true,
+                    "update_client_version": false,   
+                    "dependencies": false,
+                    "color_required": false,
+                    "client_process": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_incoming.nk"
+
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "color_switch": {"which":2},
+                    "transform_switch": {"which":0},
+                    "slate_switch": {"disable":true},
+                    "burnin_switch": {"disable":true},  
+                    "main_timecode": {"disable":true},
+                    "main_read": {"raw": true},                    
+                    "main_write": {
+                        "file_type": "exr",
+                        "raw": true,
+                        "metadata": "all metadata",
+                        "create_directories": true
+                    }                       
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 4,
+                    "priority": 50,
+                    "concurrent_task": 4,
+                    "machine_limit": 4,
+                    "publish_file_type": null
+                }                
+            },
+            "client-version-dnxhd":{
+                "process_settings":{
+                    "title" : "Client DNxHD v000",
+                    "description" : "Client DNxHD v000",
+                    "output_root": "primary",
+                    "output_directory": "admin/outgoing/submissions/v000/DNxHD115",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "mov",
+                    "version_start_number": 0,
+                    "dependencies": false,
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,                    
+                    "update_client_version": false,                       
+                    "color_required": true,
+                    "client_process": true,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_outgoing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "color_switch": {"which":1},
+                    "transform_switch": {"which":1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},                    
+                    "main_lut": {
+                        "colorspaceIn": "linear",          
+                        "colorspaceOut": "linear"
+                    },                          
+                    "main_ocio": {
+                        "disable": true,                        
+                        "in_colorspace": "ACES - ACES2065-1",
+                        "out_colorspace": "Input - ARRI - V3 LogC (EI800) - Wide Gamut"
+                    },               
+                    "format":{
+                        "type": "CustomNonProjectEntity01",
+                        "id": 5,
+                        "name": "FHD"
+                    },      
+                    "main_read": {
+                        "raw": true
+                    },
+                    "main_write": {
+                        "file_type": "mov",
+                        "meta_codec": "AVdn",
+                        "raw": true,
+                        "meta_encoder": "mov32",
+                        "mov32_codec": "AVdn",
+                        "mov32_fps": 23.97999573,
+                        "mov32_write_timecode": true,
+						"mov32_keyframerate": 0,
+                        "mov32_settings": "000000000000000000000000000001d27365616e000000010000000100000000000001be76696465000000010000000f00000000000000227370746c0000000100000000000000004156646e000000000020000003ff000000207470726c000000010000000000000000000000000017fae100000000000000246472617400000001000000000000000000000000000000530000010000000100000000156d70736f00000001000000000000000000000000186d66726100000001000000000000000000000000000000187073667200000001000000000000000000000000000000156266726100000001000000000000000000000000166d70657300000001000000000000000000000000002868617264000000010000000000000000000000000000000000000000000000000000000000000016656e647300000001000000000000000000000000001663666c67000000010000000000000000004400000018636d66720000000100000000000000004156494400000014636c757400000001000000000000000000000038636465630000000100000000000000004156494400000001000000020000000100000010000000030000000000000000000000000000001c766572730000000100000000000000000003001c00010000"
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            },
+            "client-version-h264":{
+                "process_settings":{
+                    "title" : "Client h264 v000",
+                    "description" : "Client h264 v000",
+                    "output_root": "primary",
+                    "output_directory": "admin/outgoing/submissions/v000/H264",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": false,
+                    "version_start_number": 0,
+                    "dependencies": false,
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,                    
+                    "update_client_version": false,                       
+                    "color_required": true,
+                    "client_process": true,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_outgoing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "color_switch": {"which":1},
+                    "transform_switch": {"which":1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},
+                    "main_timecode": {"disable":true},
+                    "main_read": {
+                        "raw": true
+                    },
+                    "main_write": {
+                        "file_type": "mov",
+                        "raw": true,
+                        "meta_codec": "avc1",
+                        "mov32_codec": "avc1",
+                        "meta_encoder": "mov32",
+                        "mov64_codec": "ap4h",
+                        "mov32_fps": 23.97999573,
+                        "mov32_settings": "0000000000000000000000000000019a7365616e0000000100000001000000000000018676696465000000010000000e00000000000000227370746c00000001000000000000000061766331000000000018000003ff000000207470726c000000010000000000000000000003ff0017fae100000001000000246472617400000001000000000000000000000000000000530000010000000100000000156d70736f00000001000000000000000000000000186d66726100000001000000000000000000000000000000187073667200000001000000000000000000000000000000156266726100000001000000000000000001000000166d70657300000001000000000000000000000000002868617264000000010000000000000000000000000000000000000000000000000000000000000016656e647300000001000000000000000000000000001663666c67000000010000000000000000004400000018636d66720000000100000000000000006170706c00000014636c75740000000100000000000000000000001c766572730000000100000000000000000003001c00010000",
+                        "mov32_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            },
+            "client-version-exr":{
+                "process_settings":{
+                    "title" :  "EXRs v000",
+                    "description" : "EXR version Zero",
+                    "output_root": "primary",            
+                    "output_directory": "admin/outgoing/submissions/v000/2K/{output_file}",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "exr",
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,                    
+                    "update_client_version": false,
+                    "dependencies": true,
+                    "dependent_job_suffix": "support_files",
+                    "dependent_linked_files": ["sg_shot_lut", "sg_shot_ccc"],                    
+                    "dependent_output_directory": "2160x1080/support_files",
+                    "dependent_output_file": "{output_file}",
+                    "dependent_output_file_ext": "",
+                    "dependent_output_source": "{entity_root}/lut",
+                    "dependent_script_file":"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox//python/file_transfer2.py",
+                    "color_required": true,
+                    "client_process": true,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_outgoing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "color_switch": {"which":2},
+                    "camera_switch":  {"which":0},
+                    "transform_switch": {"which":2},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":true},
+                    "content_vendor_burnin":{"disable":true},                    
+                    "main_lut": {
+                        "disable": true,
+                        "colorspaceIn": "linear",          
+                        "colorspaceOut": "Gamma2.2"
+                    },                           
+                    "main_ocio": {"disable": true},
+                    "main_read": {
+                        "raw": true,
+                        "colorspace": "linear"
+                    },
+                    "main_write": {
+                        "file_type": "exr",
+                        "metadata": "all metadata",
+                        "compression": "PIZ Wavelet (32 scanlines)",
+                        "create_directories": true,
+                        "raw": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 4,
+                    "priority": 50,
+                    "concurrent_task": 4,
+                    "machine_limit": 4,
+                    "publish_file_type": null
+                }
+            },  
+            "client-version-ProRes":{
+                "process_settings":{
+                    "title" :  "ProRes v000",
+                    "description" : "ProRes version Zero",
+                    "output_root": "primary",            
+                    "output_directory": "admin/outgoing/submissions/v000/ProRes/{output_file}",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "mov",
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,                    
+                    "update_client_version": false,
+                    "dependencies": false,
+                    "dependent_job_suffix": "support_files",
+                    "dependent_linked_files": ["sg_shot_lut", "sg_shot_ccc"],                    
+                    "dependent_output_directory": "2160x1080/support_files",
+                    "dependent_output_file": "{output_file}",
+                    "dependent_output_file_ext": "",
+                    "dependent_output_source": "{entity_root}/lut",
+                    "dependent_script_file":"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox//python/file_transfer2.py",
+                    "color_required": true,
+                    "client_process": true,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_outgoing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "color_switch": {"which":1},
+                    "camera_switch":  {"which":0},
+                    "transform_switch": {"which":2},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":true},
+                    "content_vendor_burnin":{"disable":true},                    
+                    "main_lut": {
+                        "colorspaceIn": "linear",          
+                        "colorspaceOut": "linear"
+                    },                           
+                    "main_ocio": {"disable": true},
+                    "main_read": {
+                        "raw": true,
+                        "colorspace": "linear"
+                    },
+                    "main_write": {
+                        "file_type": "mov",
+                        "meta_codec": "apch",
+                        "mov64_codec": "apch",
+                        "mov64_fps": 23.98,
+                        "create_directories": true,
+                        "raw": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            }         
+        },
+        "pump_settings":{
+            "main_plates_exclude_from_loader_efl" : true,
+            "script_file" :"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/epic_process_pump.py"
+        }
+    },
+    "secondary":{}
+
+}

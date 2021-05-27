@@ -1,0 +1,129 @@
+{
+    "settings":{
+        "table_headers":[
+            {"header_value": "#", "cell_key":"option", "sel_button": true},
+            {"header_value": "Info", "cell_key": "status_value"},
+            {"header_value": "Entity", "cell_key": "code"},
+            {"header_value": "In - Out", "cell_key": "frame_range"},           
+            {"header_value": "Main Plate", "cell_key": "sg_main_plate"},
+            {"header_value": "BG Plate", "cell_key": "sg_bg_plate"},
+            {"header_value": "Elem Plate", "cell_key":"sg_elem_plate"},
+            {"header_value": "Ref Plate", "cell_key":"sg_ref_plate"}         
+        ]
+    },    
+    "primary":{
+        "processes":{
+            "smartvectors":{
+                "process_settings":{
+                    "title" : "SmartVectors",
+                    "description" : "Renders smartvector based on a Shot based switch number, that correlates to the nuke script",
+                    "output_root": "primary",
+                    "output_directory": "shots\\{Shot}\\renders\\nuke\\element\\smartvector\\{Shot}_smartvector_v001",
+                    "output_file": "{Entity}_smartvector_v001",
+                    "output_file_ext": "exr",
+                    "create_version": false,
+                    "update_version": false,                    
+                    "create_publish": true,                    
+                    "update_client_version": false,
+                    "dependencies": false,
+                    "color_required": false,
+                    "client_process": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/processing_rendering.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "camera_switch":  {"which":0},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},       
+                    "content_vendor_burnin":{"disable":true},
+                    "format":{},
+                    "main_timecode": {"disable":true},
+                    "main_read": {
+                        "raw": true
+                    },
+                    "main_write": {
+                        "file_type": "exr",                        
+                        "raw": true,
+                        "datatype": "16 bit",
+                        "compression": "none",
+                        "metadata": "all metadata"
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_nuke_linux",
+                    "secondary_pool": "vfx_nuke_linux",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            }, 
+            "denoise":{
+                "process_settings":{
+                    "title" : "Denoise",
+                    "description" : "Renders denoise based on a Shot based switch number, that correlates to the nuke script",
+                    "output_root": "primary",
+                    "output_directory": "shots\\{Shot}\\renders\\nuke\\element\\denoise\\{Shot}_denoise_v001",
+                    "output_file": "{Entity}_denoise_v001",
+                    "output_file_ext": "exr",
+                    "add_to_review_playlist": false,
+                    "dependencies": false,
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": true,                    
+                    "update_client_version": false,                       
+                    "color_required": false,
+                    "client_process": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/processing_rendering.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":0},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":2},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},
+                    "main_timecode": {"disable":true},
+                    "main_read": {
+                        "raw": true
+                    },
+                    "main_write": {
+                        "file_type": "exr",
+                        "raw": true,
+                        "datatype": "16 bit",
+                        "compression": "none",
+                        "metadata": "all metadata"
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_nuke_linux",
+                    "secondary_pool": "vfx_nuke_linux",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            }            
+        },
+        "pump_settings":{
+            "main_plates_exclude_from_loader_efl" : true,
+            "script_file" :"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/process_pump.py"
+        }
+    },
+    "secondary":{}
+
+}
