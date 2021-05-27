@@ -209,7 +209,7 @@ settings.tk-multi-shotgunpanel.hiero:
 
 # photoshop
 settings.tk-multi-shotgunpanel.photoshop:
-  actions_hook: "{self}/general_actions.py"
+  actions_hook: "{self}/general_actions.py:{config}/custom/tk-multi-shotgunpanel/photoshop_actions.py"
   action_mappings:
     PublishedFile:
     - actions: [add_as_a_layer, open_file]
@@ -227,6 +227,9 @@ settings.tk-multi-shotgunpanel.photoshop:
       filters: {}
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+    Note:
+    - actions: [import_note_attachments]
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
 
@@ -299,7 +302,10 @@ settings.tk-multi-shotgunpanel.alias:
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
-  actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
+    Note:
+    - actions: [import_note_attachments]
+      filters: {}
+  actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py:{config}/custom/tk-multi-shotgunpanel/alias_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
 
 # VRED

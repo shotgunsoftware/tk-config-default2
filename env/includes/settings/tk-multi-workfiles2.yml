@@ -49,6 +49,7 @@ settings.tk-multi-workfiles2: &settings_tk-multi-workfiles2
       filters:
       link_field: entity
       hierarchy: [step]
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 # launches at startup.
@@ -73,6 +74,7 @@ settings.tk-multi-workfiles2.launch_at_startup:
       filters:
       link_field: entity
       hierarchy: [step]
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 ################################################################################
@@ -251,6 +253,8 @@ settings.tk-multi-workfiles2.maya.asset_step:
       filters:
       link_field: entity
       hierarchy: [step]
+  saveas_default_name: filename
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 # shot_step
@@ -367,6 +371,8 @@ settings.tk-multi-workfiles2.photoshop.asset_step:
       filters:
       link_field: entity
       hierarchy: [step]
+  saveas_default_name: filename
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 # shot_step
@@ -559,6 +565,7 @@ settings.tk-multi-workfiles2.alias:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 # asset_step
@@ -583,6 +590,8 @@ settings.tk-multi-workfiles2.alias.asset_step:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  saveas_default_name: filename
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 ################################################################################
@@ -608,6 +617,8 @@ settings.tk-multi-workfiles2.vred:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  saveas_default_name: filename
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 # asset_step
@@ -632,6 +643,8 @@ settings.tk-multi-workfiles2.vred.asset_step:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  saveas_default_name: filename
+  hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
 ################################################################################

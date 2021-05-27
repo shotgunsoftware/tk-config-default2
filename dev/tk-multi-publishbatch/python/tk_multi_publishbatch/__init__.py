@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Shotgun Software Inc.
+# Copyright (c) 2021 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -8,14 +8,15 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-# this configuration file defines which version of the toolkit
-# core API that should be used at runtime.
 
-location:
-#  type: app_store
-#  name: tk-core
-#  version: v0.19.19
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-core.git
-  version: bad3218
+def show_dialog(app, tree_file=None):
+    """
+    Show the main dialog ui
+
+    :param app: The parent App
+    """
+
+    # defer imports so that the app works gracefully in batch modes
+    from .dialog import AppDialog
+
+    app.engine.show_dialog("Batch Publish Report", app, AppDialog, tree_file=tree_file)

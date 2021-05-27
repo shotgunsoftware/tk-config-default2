@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Shotgun Software Inc.
+# Copyright (c) 2015 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -8,14 +8,8 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-# this configuration file defines which version of the toolkit
-# core API that should be used at runtime.
+# the type of dynamic content
+type: "project"
 
-location:
-#  type: app_store
-#  name: tk-core
-#  version: v0.19.19
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-core.git
-  version: bad3218
+# name of project root as defined in roots.yml
+root_name: "publish"

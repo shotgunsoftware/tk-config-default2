@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/tk-multi-progress">
+        <file>publish_complete.png</file>
+        <file>publish_failed.png</file>
+        <file>publish_in_progress.png</file>
+    </qresource>
+</RCC>
