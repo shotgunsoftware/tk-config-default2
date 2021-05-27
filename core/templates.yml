@@ -740,3 +740,6 @@ strings:
 
     # define how new Mari projects should be named
     mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
+
+    # define template files to import on creating new file
+    alias_new_file_template_path: "data/templates/new_file/{Step}/{sg_asset_type}/new_file_template.wire"
