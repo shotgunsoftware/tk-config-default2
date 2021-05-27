@@ -104,6 +104,11 @@ engines.tk-shotgun.location:
 
 # VRED
 engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v2.0.10
+  # type: app_store
+  # name: tk-vred
+  # version: v2.0.10
+  type: git_branch
+  branch: app
+  path: https://github.com/shotgunsoftware/tk-vred.git
+  version: c766136
+

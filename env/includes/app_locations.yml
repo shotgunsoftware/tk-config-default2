@@ -78,7 +78,7 @@ apps.tk-multi-reviewsubmission.location:
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
-  version: v0.4.0
+  version: v0.4.1
 
 # setframerange
 apps.tk-multi-setframerange.location:
@@ -88,13 +88,9 @@ apps.tk-multi-setframerange.location:
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:
-  # type: app_store
-  # name: tk-multi-shotgunpanel
-  # version: v1.7.1
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-multi-shotgunpanel
-  version: 2bd7b25
+  type: app_store
+  name: tk-multi-shotgunpanel
+  version: v1.7.2
 
 # snapshot
 apps.tk-multi-snapshot.location:
