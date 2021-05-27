@@ -332,6 +332,8 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {published_file_type: Rendered Image}
     - actions: [publish_clipboard]
       filters: {}
+    - actions: [import_zip]
+      filters: {published_file_type: Zip File}
     Task:
     - actions: [assign_task, task_to_ip]
       filters: {}

@@ -369,6 +369,7 @@ settings.tk-multi-loader2.vred:
     Osb File: [import]
     Image: [import_sceneplate]
     Rendered Image: [import_sceneplate]
+    Zip File: [import_zip]
   entities:
   - caption: Assets
     entity_type: Asset
