@@ -110,5 +110,5 @@ engines.tk-vred.location:
   type: git_branch
   branch: app
   path: https://github.com/shotgunsoftware/tk-vred.git
-  version: 7ba42be
+  version: 5ff6a3e
 
