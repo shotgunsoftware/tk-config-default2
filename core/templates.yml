@@ -655,6 +655,11 @@ paths:
         definition: '@asset_root/publish/alias/{project_name}_{Asset}_{Step}_{name}.v{version}.wire'
         root_name: 'publish'
 
+    # define template files to import on creating new file
+    alias_new_file_template:
+        definition: "assets/template_files/alias/{sg_asset_type}_{Step}_new_file.wire"
+
+
     # Alias translations
 
     # The location of the reference created on the fly by Alias when importing a file as ref
@@ -740,6 +745,3 @@ strings:
 
     # define how new Mari projects should be named
     mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
-
-    # define template files to import on creating new file
-    alias_new_file_template_path: "data/templates/new_file/{Step}/{sg_asset_type}/new_file_template.wire"
