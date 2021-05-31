@@ -50,6 +50,11 @@ settings.tk-multi-workfiles2: &settings_tk-multi-workfiles2
         link_field: entity
         hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
+  my_tasks_filters:
+    - ["sg_status_list", "is_not", "fin"]
+    - ['task_assignees', 'is', '{context.user}']
+    - ["sg_status_list", "is_not", "omt"]
+    - ["sg_status_list", "is_not", "wtg"]
 
 # launches at startup.
 settings.tk-multi-workfiles2.launch_at_startup:
