@@ -18,91 +18,62 @@ engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
   version: v0.5.11
-
 engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
   version: v1.1.6
-
-# After Effects
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
   version: v0.2.1
-
-# Alias
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
   version: v2.0.11
-
-# Desktop
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
   version: v2.6.0
-
-# Desktop2
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.4.3
-
-# Flame
+  version: v1.5.0
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
   version: v1.16.2
-
-# Houdini
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
   version: v1.7.2
-
-# Mari
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
   version: v1.2.4
-
-# Maya
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
   version: v0.11.0
-
-# Motion Builder
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
   version: v0.5.2
-
-# Nuke
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.14.0
-
-# Photoshop
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
   version: v1.8.2
-
-# Shell
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
   version: v0.8.1
-
-# Shotgun
 engines.tk-shotgun.location:
   type: app_store
   name: tk-shotgun
   version: v0.9.0
-
-# VRED
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
