@@ -51,7 +51,7 @@ apps.tk-multi-pythonconsole.location:
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
-  version: v1.1.1
+  version: v1.2.0
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
