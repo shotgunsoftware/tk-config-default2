@@ -27,7 +27,7 @@ frameworks:
       name: tk-framework-adminui
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.1.1
+      version: v0.2.0
       type: app_store
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
