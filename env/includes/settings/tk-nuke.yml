@@ -62,12 +62,12 @@ settings.tk-nuke.hiero.project:
   spreadsheet_context_menu:
   - app_instance: tk-hiero-openinshotgun
     keep_in_menu: false
-    name: "Open in Shotgun"
+    name: "Open in ShotGrid"
     requires_selection: true
   timeline_context_menu:
   - app_instance: tk-hiero-openinshotgun
     keep_in_menu: false
-    name: "Open in Shotgun"
+    name: "Open in ShotGrid"
     requires_selection: true
   menu_favourites:
   - app_instance: tk-multi-workfiles2
@@ -262,12 +262,12 @@ settings.tk-nuke.nukestudio.project:
   spreadsheet_context_menu:
   - app_instance: tk-hiero-openinshotgun
     keep_in_menu: false
-    name: "Open in Shotgun"
+    name: "Open in ShotGrid"
     requires_selection: true
   timeline_context_menu:
   - app_instance: tk-hiero-openinshotgun
     keep_in_menu: false
-    name: "Open in Shotgun"
+    name: "Open in ShotGrid"
     requires_selection: true
   menu_favourites:
   - app_instance: tk-multi-workfiles2
