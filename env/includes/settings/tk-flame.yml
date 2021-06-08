@@ -31,7 +31,7 @@ settings.tk-flame.project:
   location: "@engines.tk-flame.location"
   context_menu: [
     { name : "Load...", app_instance: "tk-multi-loader2", display_name: "ShotGrid Loader..."},
-    { name : "ShotGrid Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "ShotGrid Panel..."}
+    { name : "Shotgun Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "ShotGrid Panel..."}
   ]
 
 # shot
@@ -45,5 +45,5 @@ settings.tk-flame.shot:
   location: "@engines.tk-flame.location"
   context_menu: [
     { name : "Load...", app_instance: "tk-multi-loader2", display_name: "ShotGrid Loader..."},
-    { name : "ShotGrid Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "ShotGrid Panel..."}
+    { name : "Shotgun Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "ShotGrid Panel..."}
   ]
