@@ -325,7 +325,7 @@ settings.tk-multi-loader2.alias:
     Stl File: [import, import_as_reference]
     Jt File: [import, import_as_reference]
     Catpart File: [import, import_as_reference]
-    Fbx File: [import]
+    Fbx File: [import, import_as_reference]
     Image: [texture_node]
     Photoshop Image: [texture_node]
     Tif File: [texture_node]
