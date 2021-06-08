@@ -646,7 +646,7 @@ paths:
     # The location of published Alias files
     alias_asset_publish:
         # definition: '@asset_root/work/alias/{name}.v{version}.wire' # DW Changed for our custom setup
-        definition: '@asset_root/work/alias/{project_name}_{Asset}_{Step}_{name}_A{version}.wire'
+        definition: '@asset_root/publish/alias/{project_name}_{Asset}_{Step}_{name}_A{version}.wire'
 
     # Alias translations
 
