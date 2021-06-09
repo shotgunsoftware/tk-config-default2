@@ -124,6 +124,7 @@ settings.tk-multi-loader2.maya:
     Image: [texture_node, image_plane]
     Maya Scene: [reference, import]
     Motion Builder FBX: [reference, import]
+    Fbx File: [reference, import]
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
