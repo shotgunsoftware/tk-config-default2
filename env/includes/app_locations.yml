@@ -75,7 +75,7 @@ apps.tk-multi-workfiles2.location:
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
-  version: v1.1.0
+  version: v1.2.0
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
