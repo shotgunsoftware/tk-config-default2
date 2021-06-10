@@ -107,7 +107,7 @@ apps.tk-houdini-alembicnode.location:
 apps.tk-houdini-mantranode.location:
   type: app_store
   name: tk-houdini-mantranode
-  version: v0.4.1
+  version: v0.5.0
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview
