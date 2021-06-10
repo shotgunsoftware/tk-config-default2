@@ -403,6 +403,7 @@ settings.tk-multi-loader2.blender:
     Dae File: [import]
     Collada File: [import]
     Bvh File: [import]
+    FBX File: [import]
     Motion Capture File: [import]
     Svg File: [import]
     Scalable Vector Graphics File: [import]
@@ -445,4 +446,3 @@ settings.tk-multi-loader2.blender:
     hierarchy: [entity, content]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
-  
