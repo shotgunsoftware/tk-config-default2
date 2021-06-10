@@ -20,3 +20,11 @@ includes:
 settings.tk-multi-setframerange.3dsmax:
   hook_frame_operation: "{engine}/tk-multi-setframerange/basic/frame_operations.py"
   location: "@apps.tk-multi-setframerange.location"
+
+################################################################################
+
+# blender
+settings.tk-multi-setframerange.blender:
+  hook_frame_operation: "{engine}/tk-multi-setframerange/frame_operations_tk-blender.py"
+  location: "@apps.tk-multi-setframerange.location"
+  

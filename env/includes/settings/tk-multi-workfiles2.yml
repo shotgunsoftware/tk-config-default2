@@ -656,3 +656,60 @@ settings.tk-multi-workfiles2.mari:
       link_field: entity
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
+# -- blender
+
+settings.tk-multi-workfiles2.blender.project:
+  allow_task_creation: true
+  create_new_task_hook: "{self}/create_new_task.py"
+  custom_actions_hook: "{self}/custom_actions.py"
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+  file_extensions: []
+  hook_copy_file: "{self}/copy_file.py"
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-blender.py"
+  launch_at_startup: false
+  my_tasks_extra_display_fields: []
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  show_my_tasks: true
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
+  location: "@apps.tk-multi-workfiles2.location"
+
+
+# asset_step
+settings.tk-multi-workfiles2.blender.asset_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-blender.py"
+  template_publish: blender_asset_publish
+  template_publish_area: asset_publish_area_blender
+  template_work: blender_asset_work
+  template_work_area: asset_work_area_blender
+  location: "@apps.tk-multi-workfiles2.location"
+
+
+# shot_step
+settings.tk-multi-workfiles2.blender.shot_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-blender.py"
+  template_publish: blender_shot_publish
+  template_publish_area: shot_publish_area_blender
+  template_work: blender_shot_work
+  template_work_area: shot_work_area_blender
+  location: "@apps.tk-multi-workfiles2.location"
+  

@@ -166,3 +166,24 @@ settings.tk-multi-snapshot.vred.asset_step:
   template_work: vred_asset_work
   hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
   location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Blender
+
+# asset step
+settings.tk-multi-snapshot.blender.asset_step:
+  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-blender.py"
+  template_snapshot: blender_asset_snapshot
+  template_work: blender_asset_work
+  hook_thumbnail: "{engine}/thumbnail.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.blender.shot_step:
+  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-blender.py"
+  template_snapshot: blender_shot_snapshot
+  template_work: blender_shot_work
+  hook_thumbnail: "{engine}/thumbnail.py"
+  location: "@apps.tk-multi-snapshot.location"
+  

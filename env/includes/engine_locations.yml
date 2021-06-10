@@ -78,10 +78,8 @@ engines.tk-vred.location:
   type: app_store
   name: tk-vred
   version: v2.1.0
-# Blender
 engines.tk-blender.location:
   type: git
-  branch: master
-  path: https://github.com/diegogarciahuerta/tk-blender.git
+  path: https://github.com/diegogarciahuerta/tk-blender
   version: v1.1.1
   

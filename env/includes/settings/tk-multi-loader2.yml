@@ -393,3 +393,56 @@ settings.tk-multi-loader2.vred:
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
+
+# blender
+settings.tk-multi-loader2.blender:
+  actions_hook: '{engine}/tk-multi-loader2/tk-blender_actions.py'
+  action_mappings:
+    Alembic Cache: [import]
+    Abc File: [import]
+    Dae File: [import]
+    Collada File: [import]
+    Bvh File: [import]
+    Motion Capture File: [import]
+    Svg File: [import]
+    Scalable Vector Graphics File: [import]
+    Ply File: [import]
+    Stanford File: [import]
+    Stl File: [import]
+    Glb File: [import]
+    Gltf File: [import]
+    Obj File: [import]
+    Wavefront File: [import]
+    X3d File: [import]
+    Wrl File: [import]
+    X3d Extensible 3D File: [import]
+    Blender Project File: [link, append]
+    Wav File: [asSequencerSound]
+    Sound File: [asSequencerSound]
+    Movie File: [asSequencerMovie, asCompositorNodeMovieClip]
+    Image File: [asSequencerImage, asCompositorNodeImage]
+    Texture File: [asSequencerImage, asCompositorNodeImage]
+    Sound: [asSequencerSound]
+    Movie: [asSequencerMovie, asCompositorNodeMovieClip]
+    Image: [asSequencerImage, asCompositorNodeImage]
+    Texture: [asSequencerImage, asCompositorNodeImage]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, "{context.project}"]
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, "{context.project}"]
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, "{context.user}"]
+    - [project, is, "{context.project}"]
+    hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+  
