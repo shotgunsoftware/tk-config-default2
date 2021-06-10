@@ -33,6 +33,7 @@ includes:
 - ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-blender.yml
 
 ################################################################################
 # configuration for all engines to load in a shot context
@@ -49,6 +50,7 @@ engines:
   tk-aftereffects: "@settings.tk-aftereffects.shot"
   tk-shell: "@settings.tk-shell.shot"
   tk-shotgun: "@settings.tk-shotgun.shot"
+  tk-blender: "@settings.tk-blender.shot"
 
 ################################################################################
 # reference all of the common frameworks

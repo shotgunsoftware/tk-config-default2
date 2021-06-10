@@ -30,6 +30,7 @@ includes:
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-blender.yml
 
 ################################################################################
 # configuration for all engines to load in a sequence context
@@ -43,6 +44,7 @@ engines:
   tk-nuke: "@settings.tk-nuke.sequence"
   tk-shell: "@settings.tk-shell.sequence"
   tk-shotgun: "@settings.tk-shotgun.sequence"
+  tk-blender: "@settings.tk-blender.sequence"
 
 ################################################################################
 # reference all of the common frameworks
