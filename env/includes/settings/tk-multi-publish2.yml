@@ -190,7 +190,7 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
     settings:
         Publish Template: asset_alembic_cache
-  - name: Publish FBX to Shotgun for Alias
+  - name: Publish FBX to ShotGrid for Alias
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_fbx.py"
     settings:
         Publish Template: maya_asset_fbx_publish
