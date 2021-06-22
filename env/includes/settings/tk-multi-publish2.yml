@@ -253,11 +253,11 @@ settings.tk-multi-publish2.nuke.asset_step:
   collector_settings:
       Work Template: nuke_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
-    settings: {}
   - name: Version for review
     hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    settings: {}
+  - name: Publish to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
     settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
@@ -279,11 +279,11 @@ settings.tk-multi-publish2.nuke.shot_step:
   collector_settings:
       Work Template: nuke_shot_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
-    settings: { }
   - name: Version for review
     hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    settings: {}
+  - name: Publish to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
     settings: {}
   # - name: Upload for review
   #   hook: "{self}/upload_version.py"
