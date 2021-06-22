@@ -25,7 +25,7 @@ settings.tk-multi-publish2.standalone:
   collector: "{self}/collector.py:{config}/tk-multi-publish2/collector.py"
   publish_plugins:
   - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_file.py"
     settings: {}
   - name: Upload for review
     hook: "{self}/upload_version.py"

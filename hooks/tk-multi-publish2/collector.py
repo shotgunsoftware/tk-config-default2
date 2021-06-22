@@ -76,7 +76,7 @@ class BasicSceneCollector(HookBaseClass):
             published_file_types = self.parent.shotgun.find(
                 "PublishedFileType",
                 [],
-                ["code", "image", "sg_item_type", "sg_extensions"],
+                ["code", "image", "sg_item_type", "sg_extensions", "sg_templates"],
             )
 
             for pft in published_file_types:
@@ -89,12 +89,19 @@ class BasicSceneCollector(HookBaseClass):
                     )
                     continue
 
+                publish_templates = {}
+                if pft["sg_templates"] is not None:
+                    for x in pft["sg_templates"].strip("}{").split(","):
+                        k, v = x.split(":")
+                        publish_templates[k.strip()] = v.strip()
+
                 self._common_file_info[pft["code"]] = {
                     "extensions": [
                         x.strip() for x in pft["sg_extensions"].strip("][").split(",")
                     ],
                     "item_type": pft["sg_item_type"],
                     "icon": self._get_icon_path_from_sg(pft),
+                    "publish_templates": publish_templates,
                 }
 
         return self._common_file_info
@@ -151,4 +158,11 @@ class BasicSceneCollector(HookBaseClass):
             parent_item, path, frame_sequence
         )
         file_item.properties.publish_type = file_item.type_display
+
+        for display in self._common_file_info:
+            if display == file_item.type_display:
+                file_item.properties.publish_templates = self._common_file_info[
+                    display
+                ].get("publish_templates")
+
         return file_item
