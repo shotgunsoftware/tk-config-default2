@@ -1,6 +1,6 @@
 # Shotgun Pipeline Toolkit configuration file. This file was automatically
 # created during the latest core update.
 location:
-  name: tk-core
   type: app_store
-  version: v0.19.18
+  name: tk-core
+  version: v0.20.1
