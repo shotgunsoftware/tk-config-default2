@@ -274,18 +274,6 @@ paths:
     incoming_outsource_asset_folder_root:
         definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}'
         root_name: 'project_pipeline'
-
-    incoming_outsource_shot_version_jpg:
-        definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.{SEQ}.jpg'
-        root_name: 'project_pipeline'
-
-    incoming_outsource_shot_version_jpeg:
-        definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.{SEQ}.jpeg'
-        root_name: 'project_pipeline'
-
-    incoming_outsource_shot_version_exr:
-        definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.{SEQ}.exr'
-        root_name: 'project_pipeline'
         
     deadline_temp_folder: 
         definition: 'admin/temp/'
@@ -384,7 +372,7 @@ paths:
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
     #     root_name: 'secondary'                
 
-    # The location of shot rushes refernces, proxy jpegs and quicktimes
+    # The location of shot rushes references, proxy jpegs and quicktimes
     shot_rushes_root:
         definition: '@rushes_root/'
         root_name: 'project_pipeline' 
