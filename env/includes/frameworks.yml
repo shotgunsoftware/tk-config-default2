@@ -45,9 +45,13 @@ frameworks:
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.9.4
-      type: app_store
-      name: tk-framework-qtwidgets
+#      version: v2.9.4
+#      type: app_store
+#      name: tk-framework-qtwidgets
+      type: git_branch
+      branch: SHOT-3330
+      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
+      version: 5b8e5d7
 
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
@@ -59,7 +63,7 @@ frameworks:
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.7.10
+      version: v5.8.0
       type: app_store
       name: tk-framework-shotgunutils
 
