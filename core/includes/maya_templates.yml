@@ -120,9 +120,9 @@ paths:
         definition: '@asset_root/publish/maya/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
         root_name: 'project_pipeline'
     # # The location of published maya geometry files
-    # asset_alembic_cache:
-    #     definition: '@asset_root/publish/maya/geometry/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
-    #     root_name: 'project_pipeline'
+    asset_alembic_cache:
+        definition: '@asset_root/publish/maya/geometry/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
     # The location of published maya shader files
     maya_shader_network_publish:
         definition: '@asset_root/publish/maya/surfacing/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
