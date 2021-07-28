@@ -102,13 +102,29 @@ class SceneOperation(HookClass):
         # Shotgun Search to retrieve basic information about the project
         proj_id = context.project['id']
         
-        sg_info = self.eng.shotgun.find_one("Project", 
-                                            [["id", "is", proj_id]], 
-                                            ["sg_frame_rate",
-                                            "sg_format_width",
-                                            "sg_format_height",
-                                            "sg_3d_settings",
-                                            "sg_project_color_management"])
+        sg_info = self.eng.shotgun.find_one(
+            "Project", 
+            [["id", "is", proj_id]], 
+            ["sg_frame_rate",
+            "sg_format_width",
+            "sg_format_height",
+            "sg_3d_settings",
+            "sg_project_color_management"])
+
+        # Check if all the information is presented
+        required = ('sg_frame_rate',)
+        lost = [k for k, v in sg_info.items() if not v and v in required]
+        if lost:
+            lost_data = '", "'.join(lost)
+            if cmds.about(batch=True):
+                raise ValueError('The vital \"{key}\" data has been lost!'.format(key=lost_data))
+            else:
+                from PySide2.QtWidgets import QMessageBox
+                QMessageBox.warning(
+                    None, 'Shotgrid data Warning', (
+                        'The vital Shotgrid \"{key}\" data has been lost!'.format(key=lost_data) + '\n'
+                        'You can continue to work, but probably will not be able to publish,\n'
+                        'or send it to the farm.'))
 
         # package CustomEntity03 fields into sg_info
         for index,key in enumerate(sg_info['sg_3d_settings']):
