@@ -205,10 +205,10 @@ settings.tk-multi-publish2.maya.asset_step:
     settings:
         Publish Template: maya_asset_camera_publish
         Cameras: ["cam_main*"]
-  # - name: Publish to Shotgun
-  #   hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
-  #   settings:
-  #       Publish Template: asset_alembic_cache
+  - name: Publish to Alembic
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+    settings:
+        Publish Template: asset_alembic_cache
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -231,11 +231,15 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
-  - name: Publish to Shotgun
+  - name: Publish to Camera
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_camera.py"
     settings:
         Publish Template: maya_shot_camera_publish
         Cameras: ["cam_main"]
+  - name: Publish to Alembic
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+    settings:
+        Publish Template: maya_shot_cache_alembic_abc
   - name: Publish to Shaders
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_shader_network.py"
     settings:
