@@ -9,7 +9,7 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
-import pprint
+# import pprint
 import maya.cmds as cmds
 import maya.mel as mel
 import sgtk
