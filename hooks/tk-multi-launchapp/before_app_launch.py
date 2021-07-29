@@ -23,6 +23,8 @@ import tempfile
 
 GLOBAL_PIPELINE_DIR = "//10.80.8.252/VFX_Pipeline"
 # GLOBAL_PIPELINE_DIR = "C:/Users/rthompson/Scripts/Pipeline"
+OCIO_CONFIG = '/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/config.ocio'
+
 
 class BeforeAppLaunch(tank.Hook):
     """
@@ -31,13 +33,12 @@ class BeforeAppLaunch(tank.Hook):
 
     """
 
-
     log = sgtk.LogManager.get_logger(__name__)
-   
+
     def _has_envstr(self, env_paths, srch_str):
         found = False
         for idx in range(len(env_paths)):
-            if (env_paths[idx] == srch_str) and (len(env_paths[idx]==len(srch_str))):
+            if (env_paths[idx] == srch_str) and (len(env_paths[idx] == len(srch_str))):
                 found = True
         return found
 
@@ -58,13 +59,17 @@ class BeforeAppLaunch(tank.Hook):
 
         if "SSVFX_PIPELINE_DEV" in os.environ.keys():
             # Set local studio scripts dirs based on DEV env var
-            self.log.debug("%s - %s" % (os.environ["SSVFX_PIPELINE_DEV"] ,"Pipeline"))
-            os.environ["SSVFX_PIPELINE"] = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE_DEV"] ,"Pipeline"))
-            self.log.debug("Added DEV dir %s" %(os.environ["SSVFX_PIPELINE"]))
+            self.log.debug(
+                "%s - %s" % (os.environ["SSVFX_PIPELINE_DEV"], "Pipeline"))
+            os.environ["SSVFX_PIPELINE"] = os.path.normpath(
+                os.path.join(os.environ["SSVFX_PIPELINE_DEV"], "Pipeline"))
+            self.log.debug("Added DEV dir %s" % (os.environ["SSVFX_PIPELINE"]))
         else:
             # On non-dev machines - set global path
-            os.environ["SSVFX_PIPELINE"] = os.path.normpath(os.path.join(GLOBAL_PIPELINE_DIR,"Pipeline"))
-            self.log.debug("Added GLOBAL dir %s" %(os.environ["SSVFX_PIPELINE"]))
+            os.environ["SSVFX_PIPELINE"] = os.path.normpath(
+                os.path.join(GLOBAL_PIPELINE_DIR, "Pipeline"))
+            self.log.debug(
+                "Added GLOBAL dir %s" % (os.environ["SSVFX_PIPELINE"]))
 
         if engine_name == "tk-nuke":
             """---------------------------------------------------------------
@@ -74,16 +79,18 @@ class BeforeAppLaunch(tank.Hook):
             if system == "win32":
                 # Windows
                 # ssvfx_scripts_path = os.path.join(GLOBAL_PIPELINE_DIR, "ssvfx_scripts" )
-                nuke_path= os.path.join(os.environ["SSVFX_PIPELINE"], "ssvfx_nuke_path" )
+                nuke_path = os.path.join(
+                    os.environ["SSVFX_PIPELINE"], "ssvfx_nuke_path")
 
                 try:
                     for i in os.environ:
                         if i == "NUKE_PATH":
                             if nuke_path not in os.getenv(i):
-                                os.environ[i] += os.pathsep + nuke_path                
+                                os.environ[i] += os.pathsep + nuke_path
                     self.log.debug("Setting NUKE_PATH to %s " % (nuke_path,))
                 except:
-                    self.log.debug("!!! Issue setting NUKE_PATH to %s " % (nuke_path,))
+                    self.log.debug(
+                        "!!! Issue setting NUKE_PATH to %s " % (nuke_path,))
 
                 try:
                     if os.path.exists("H:\\"):
@@ -93,11 +100,12 @@ class BeforeAppLaunch(tank.Hook):
                     self.log.debug("Error unable to set env paths : %s", err)
 
                 try:
-                    if not os.path.exists( "H:\\NUKE_TEMP" ):
-                        self.log.debug("Could not locate NUKE_TEMP: creating...")
-                        os.makedirs( "H:\\NUKE_TEMP" )
+                    if not os.path.exists("H:\\NUKE_TEMP"):
+                        self.log.debug(
+                            "Could not locate NUKE_TEMP: creating...")
+                        os.makedirs("H:\\NUKE_TEMP")
                 except:
-                    self.log.error( "Could not create NUKE_TEMP directory" )
+                    self.log.error("Could not create NUKE_TEMP directory")
             elif system == "darwin":
                 # Mac
                 pass
@@ -111,26 +119,33 @@ class BeforeAppLaunch(tank.Hook):
             ------------------------------------------------------------------"""
             self.log.debug("before_app_launch - tk-maya")
 
-            startup_path = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\ssvfx_scripts\\software\\maya\\maya_startup"))
-            scripts_path = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\ssvfx_scripts\\software\\maya\\maya_scripts"))
-            comlib_path = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\ssvfx_scripts\\software\\common_lib"))
-            studio_shelf_path = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\ssvfx_scripts\\software\\maya\\maya_shelves"))
-            ssvfx_scripts = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\ssvfx_scripts\\software\\maya"))
+            startup_path = os.path.normpath(os.path.join(
+                os.environ["SSVFX_PIPELINE"], "\\Pipeline\\ssvfx_scripts\\software\\maya\\maya_startup"))
+            scripts_path = os.path.normpath(os.path.join(
+                os.environ["SSVFX_PIPELINE"], "\\Pipeline\\ssvfx_scripts\\software\\maya\\maya_scripts"))
+            comlib_path = os.path.normpath(os.path.join(
+                os.environ["SSVFX_PIPELINE"], "\\Pipeline\\ssvfx_scripts\\software\\common_lib"))
+            studio_shelf_path = os.path.normpath(os.path.join(
+                os.environ["SSVFX_PIPELINE"], "\\Pipeline\\ssvfx_scripts\\software\\maya\\maya_shelves"))
+            ssvfx_scripts = os.path.normpath(os.path.join(
+                os.environ["SSVFX_PIPELINE"], "\\Pipeline\\ssvfx_scripts\\software\\maya"))
 
-            ocio_config = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\external_scripts\\OpenColorIO-Configs\\aces_1.0.3\\config.ocio"))
+            ocio_config = os.path.normpath(os.path.join(
+                os.environ["SSVFX_PIPELINE"], OCIO_CONFIG))
 
             ### Global Render Preset path and Environment Variable ###
             ### Commented out but not yet deleted in case of emergency. ###
             # global_render_preset = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\ssvfx_scripts\\software\\maya\\maya_presets\\light"))
             # os.environ["MAYA_RENDER_SETUP_GLOBAL_PRESETS_PATH"] = os.path.normpath(global_render_preset)
 
-            # MAYA-81014 The QtWebEngine module might cause instabilities on all platforms 
-            # in some scenarios and is not officially supported yet. 
-            # On Windows, the MAYA_ENABLE_WEBENGINE environment variable needs to be set in order 
-            # to use QtWebEngineWidgets module. Otherwise Maya could hang. 
+            # MAYA-81014 The QtWebEngine module might cause instabilities on all platforms
+            # in some scenarios and is not officially supported yet.
+            # On Windows, the MAYA_ENABLE_WEBENGINE environment variable needs to be set in order
+            # to use QtWebEngineWidgets module. Otherwise Maya could hang.
             os.environ["OCIO"] = ocio_config
             os.environ["MAYA_ENABLE_WEBENGINE"] = "1"
-            os.environ["MAYA_SCRIPT_PATH"] = os.path.normpath(scripts_path)+";"+os.path.normpath(comlib_path)
+            os.environ["MAYA_SCRIPT_PATH"] = os.path.normpath(
+                scripts_path) + ";" + os.path.normpath(comlib_path)
             os.environ["MAYA_SHELF_PATH"] = os.path.normpath(studio_shelf_path)
 
             # Shelf Path
@@ -139,8 +154,10 @@ class BeforeAppLaunch(tank.Hook):
                     # module Path also in Python path
                     scripts_env = os.getenv(i)
                     if not self._has_envstr(scripts_env, ssvfx_scripts):
-                        os.environ[i] += os.pathsep + ssvfx_scripts + os.pathsep + comlib_path
-                        self.log.debug("PYTHONPATH has Module_path added %s " % ssvfx_scripts)
+                        os.environ[i] += os.pathsep + \
+                            ssvfx_scripts + os.pathsep + comlib_path
+                        self.log.debug(
+                            "PYTHONPATH has Module_path added %s " % ssvfx_scripts)
                     else:
                         self.log.debug("Module_path already in PYTHONPATH")
 
@@ -150,84 +167,90 @@ class BeforeAppLaunch(tank.Hook):
             ------------------------------------------------------------------"""
             self.log.debug(">>>>> Before app launch - %s " % str(engine_name))
 
-            # common library path
-            comlib_path = os.path.normpath(os.path.join(GLOBAL_PIPELINE_DIR,"\\Pipeline\\ssvfx_scripts\\software\\common_lib"))
-
             os.environ["HOUDINI_BUFFEREDSAVE"] = "1"
-            # HOUDINI_BUFFEREDSAVE -> When enabled .hip files are first 
-            # saved to a memory buffer and then written to disk. 
-            # This is useful when saving over the network from Windows 2000 machines, 
+            # HOUDINI_BUFFEREDSAVE -> When enabled .hip files are first
+            # saved to a memory buffer and then written to disk.
+            # This is useful when saving over the network from Windows 2000 machines,
             # or other places where seeking to the network is expensive.
             os.environ["HOUDINI_ACCESS_MODE"] = "2"
             # Allow access to Alembic's over the network
             # Method 2 simply checks the file attributes.
             os.environ["HOUDINI_NO_START_PAGE_SPLASH"] = "1"
             os.environ["HOUDINI_NO_SPLASH"] = "1"
-            os.environ["HOUDINI_OTLSCAN_PATH"] = "$QOTL/base;$QOTL/future;$QOTL/experimental;$HOUDINI_OTLSCAN_PATH;$TS;$MOPS/otls;$AELIB/otls;&"
-            # 19/09 added variables 
+
+            os.environ["HOUDINI_OTLSCAN_PATH"] = os.pathsep.join((
+                '$QOTL/base', '$QOTL/future', '$QOTL/experimental', '$TS', '$MOPS/otls', '$AELIB/otls', '&'))
+            # 19/09 added variables
             os.environ["HOUDINI_GALLERY_PATH"] = "$AELIB/gallery;&"
             os.environ["HOUDINI_TOOLBAR_PATH"] = "$AELIB/toolbar;&"
             os.environ["HOUDINI_SCRIPT_PATH"] = "$AELIB/scripts;&"
             os.environ["HOUDINI_VEX_PATH"] = "$AELIB/vex/include;&"
 
-            os.environ["HDA"] =  os.path.normpath(os.path.join(GLOBAL_PIPELINE_DIR,"\\Pipeline\\Plugins\\3D\\houdini\\hda"))
-            os.environ["QLIB"]= "$HDA/qLib-dev"
-            os.environ["QOTL"]= "$QLIB/otls"
+            os.environ["HDA"] = os.path.normpath(os.path.join(
+                GLOBAL_PIPELINE_DIR, "\\Pipeline\\Plugins\\3D\\houdini\\hda"))
+            os.environ["QLIB"] = "$HDA/qLib-dev"
+            os.environ["QOTL"] = "$QLIB/otls"
             os.environ["TS"] = "$HDA/ts"
             os.environ["AELIB"] = "$HDA/Aelib"
             os.environ["MOPS"] = "$HDA/MOPS"
             os.environ["HOUBG"] = "$HDA/hou_bg_render"
 
             # set path for OCIO
-            ocio_config = os.path.normpath(os.path.join(os.environ["SSVFX_PIPELINE"] ,"\\Pipeline\\external_scripts\\OpenColorIO-Configs\\aces_1.0.3\\config.ocio"))
-            os.environ["OCIO"] = ocio_config
+            os.environ["OCIO"] = os.path.normpath(os.path.join(
+                os.environ["SSVFX_PIPELINE"], OCIO_CONFIG))
 
             if sys.platform == "win32":
-                user_env=os.getenv("USERPROFILE")
-                tempDir=user_env+"\\AppData\\Local\\houdini\\Temp"
+                user_env = os.getenv("USERPROFILE")
+                tempDir = user_env + "\\AppData\\Local\\houdini\\Temp"
                 os.environ["HOUDINI_TEMP_DIR"] = os.path.normpath(tempDir)
                 if not os.path.exists(tempDir):
                     os.makedirs(tempDir)
-                backupDir=user_env+"\\AppData\\Local\\houdini\\Backup\\"
-                os.environ["HOUDINI_BACKUP_DIR"] = os.path.normpath(backupDir)           
+                backupDir = user_env + "\\AppData\\Local\\houdini\\Backup\\"
+                os.environ["HOUDINI_BACKUP_DIR"] = os.path.normpath(backupDir)
                 if not os.path.exists(backupDir):
                     os.makedirs(backupDir)
-                        
+
                 # HOUDINI_USER_PREF_DIR crucila for the houdini.env file
-                houdini_user_pref=user_env+"\\Documents\\houdini16.5\\"
-                os.environ["HOUDINI_USER_PREF_DIR"] = os.path.normpath(houdini_user_pref)
+                # houdini_user_pref = user_env + "\\Documents\\houdini16.5\\"
+                # os.environ["HOUDINI_USER_PREF_DIR"] = os.path.normpath(houdini_user_pref)
 
                 # Deadline Menu Script Path
-                DEADLINE_SUBMITTER_PATH="\\AppData\\Local\\Thinkbox\\Deadline10\\submitters\\HoudiniSubmitter;&"
+                DEADLINE_SUBMITTER_PATH = "\\AppData\\Local\\Thinkbox\\Deadline10\\submitters\\HoudiniSubmitter;"
                 # Deadline Submission Script Path
-                DEADLINE_REPO="\\\\10.80.8.206\\DeadlineRepository10\\submission\\Houdini\\Main"
-                DEADLINE_CLIENTCMD_PATH="\\Documents\\houdini16.5\\python2.7libs;"
+                DEADLINE_REPO = "\\\\10.80.8.206\\DeadlineRepository10\\submission\\Houdini\\Main"
+                DEADLINE_CLIENTCMD_PATH = os.getenv('HOUDINI_USER_PREF_DIR') + '/python2.7libs'
 
-                win_user=os.getenv("USERPROFILE")
-                deadlinepath=os.path.normpath(win_user+DEADLINE_SUBMITTER_PATH)
-                houdiniPathBuff=os.getenv("HOUDINI_PATH").replace('&','').replace(r'\r\n','')
-                houdiniPath=houdiniPathBuff+deadlinepath+os.pathsep+comlib_path
-                deadline_clientcmd_path=win_user+DEADLINE_CLIENTCMD_PATH.replace("\\","/")
-                pypath=os.getenv("PYTHONPATH")
-                deadlinecmd=os.path.normpath(deadline_clientcmd_path)
+                # common library path
+                comlib_path = os.path.normpath(os.path.join(
+                    GLOBAL_PIPELINE_DIR, "\\Pipeline\\ssvfx_scripts\\software\\common_lib"))
+
+                win_user = os.getenv("USERPROFILE")
+                deadline_clientcmd_path = win_user + \
+                    DEADLINE_CLIENTCMD_PATH.replace("\\", "/")
+                pypath = os.getenv("PYTHONPATH")
+                deadlinecmd = os.path.normpath(deadline_clientcmd_path)
                 # remove the carage return append deadline cmd
-                os.environ["PYTHONPATH"]=pypath.replace(r'\r\n','')+os.pathsep+deadlinecmd+comlib_path
-                houdiniMenuPathBuff=os.getenv("HOUDINI_MENU_PATH")
-                if houdiniMenuPathBuff is not None:
-                    houdiniMenuPath=houdiniMenuPathBuff+deadlinepath
-                else:
-                    houdiniMenuPath="$HOUDINI_MENU_PATH;"+deadlinepath
-                os.environ["HOUDINI_MENU_PATH"]=os.path.normpath(houdiniMenuPath)
-                self.log.debug(">>>>> Updated HOUDINI_PATH to include Deadline.\nHOUDINI_PATH %s"%str(houdiniPath))
-                deadline_repo_path=DEADLINE_REPO.replace( "\\", "/" )
-                deadline_clientcmd_path=win_user+DEADLINE_CLIENTCMD_PATH.replace("\\","/")
+                os.environ["PYTHONPATH"] = pypath.replace(
+                    r'\r\n', '') + os.pathsep + deadlinecmd + comlib_path
+                # HOUDINI_PATH
+                deadlinepath = os.path.normpath(
+                    win_user + DEADLINE_SUBMITTER_PATH)
+                # houdini_path_buff = os.getenv("HOUDINI_PATH").replace('&','').replace(r'\r\n','')
+                # houdini_path = houdini_path_buff + deadlinepath + os.pathsep + comlib_path
+                # self.log.debug(">>>>> Updated HOUDINI_PATH to include Deadline.\nHOUDINI_PATH %s"%str(houdini_path))
+                # HOUDINI_MENU_PATH
+                houdini_menu_path_buff = os.getenv("HOUDINI_MENU_PATH") or "$HOUDINI_MENU_PATH;"
+                os.environ["HOUDINI_MENU_PATH"] = os.path.normpath(
+                    houdini_menu_path_buff + deadlinepath)
+
+                deadline_repo_path = DEADLINE_REPO.replace("\\", "/")
                 if deadline_repo_path not in sys.path:
                     self.log.debug(">>>>> Adding Deadline Repo sys Path")
                     sys.path.append(os.path.normpath(deadline_repo_path))
                 if comlib_path not in sys.path:
                     self.log.debug(">>>>> Adding ssvfx common sg lib to sys Path")
                     sys.path.append(os.path.normpath(comlib_path))
-                # add root for .ass storage
+                # Add root for .ass storage
                 os.environ["HOUDINI_ASS_CACHES_ROOT"] = "\\10.80.8.252\\projects\\caches"
         else:
             """---------------------------------------------------------------
