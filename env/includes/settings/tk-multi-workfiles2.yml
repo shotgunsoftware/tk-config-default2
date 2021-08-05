@@ -564,7 +564,7 @@ settings.tk-multi-workfiles2.alias:
       filters:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
-  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py:{config}/custom/tk-multi-workfiles2/alias_scene_operation.py"
   hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"
 
@@ -589,7 +589,7 @@ settings.tk-multi-workfiles2.alias.asset_step:
       filters:
         - [task_assignees.Group.users, is, '{context.user}']
         - [task_assignees, is, '{context.user}']
-  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py:{config}/custom/tk-multi-workfiles2/alias_scene_operation.py"
   saveas_default_name: filename
   hook_workfiles_management: "{config}/custom/tk-multi-workfiles2/workfiles_management.py"
   location: "@apps.tk-multi-workfiles2.location"

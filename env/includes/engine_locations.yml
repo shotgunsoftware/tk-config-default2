@@ -32,9 +32,13 @@ engines.tk-aftereffects.location:
 
 # Alias
 engines.tk-alias.location:
-  type: app_store
-  name: tk-alias
-  version: v2.0.11
+#  type: app_store
+#  name: tk-alias
+#  version: v2.0.11
+  type: git_branch
+  branch: automotive-pipeline
+  path: https://github.com/shotgunsoftware/tk-alias.git
+  version: 79c9dda
 
 # Desktop
 engines.tk-desktop.location:
@@ -111,4 +115,3 @@ engines.tk-vred.location:
   branch: app
   path: https://github.com/shotgunsoftware/tk-vred.git
   version: 5ff6a3e
-
