@@ -207,14 +207,25 @@ class BeforeAppLaunch(tank.Hook):
             # On Windows, the MAYA_ENABLE_WEBENGINE environment variable needs to be set in order 
             # to use QtWebEngineWidgets module. Otherwise Maya could hang.
             self.add_var_to_environ("MAYA_ENABLE_WEBENGINE", "1")
+            self.add_var_to_environ("MAYA_OPENCL_IGNORE_DRIVER_VERSION", "1")
+            self.add_var_to_environ("MAYA_NO_WARNING_FOR_MISSING_DEFAULT_RENDERER", "1")
+            self.add_var_to_environ("MAYA_DISABLE_CIP", "1")
+            self.add_var_to_environ("MAYA_DISABLE_CER", "1")
             self.add_var_to_environ("MAYA_SCRIPT_PATH",
-                                    self.get_pipeline_path("ssvfx_scripts\\software\\maya\\maya_scripts"))
+                                    self.get_pipeline_path("ssvfx_scripts/software/maya/maya_scripts"))
             self.add_var_to_environ("MAYA_SHELF_PATH",
-                                    self.get_pipeline_path("ssvfx_scripts\\software\\maya\\maya_shelves"))
-            self.add_var_to_environ('PYTHONPATH',
-                                    self.get_pipeline_path("ssvfx_scripts\\software\\maya"))
+                                    self.get_pipeline_path("ssvfx_scripts/software/maya/maya_shelves"))
             self.add_var_to_environ('PYTHONPATH',
                                     self.get_pipeline_path('ssvfx_maya', check_version=True))
+            self.add_var_to_environ('PYTHONPATH',
+                                    self.get_pipeline_path("ssvfx_scripts/software/maya"))
+            # make sure all apps use consistent ocio
+            self.add_var_to_environ("OCIO",
+                self.get_pipeline_path(
+                    "external_scripts/OpenColorIO-Configs/aces_1.0.3/config.ocio"))
+            # self.add_var_to_environ('MAYA_PLUG_IN_PATH', '')
+            # self.add_var_to_environ('MAYA_MODULE_PATH', '')
+
 
         elif engine_name == "tk-houdini":
             """---------------------------------------------------------------
@@ -231,23 +242,38 @@ class BeforeAppLaunch(tank.Hook):
             self.add_var_to_environ("HOUDINI_ACCESS_MODE", "2", reset=True)
             self.add_var_to_environ("HOUDINI_NO_START_PAGE_SPLASH", "1", reset=True)
             self.add_var_to_environ("HOUDINI_NO_SPLASH", "1", reset=True)
-            self.add_var_to_environ("HOUDINI_OTLSCAN_PATH",
-                                    "$QOTL/base;$QOTL/future;$QOTL/experimental;$HOUDINI_OTLSCAN_PATH;"
-                                    "$TS;$MOPS/otls;$AELIB/otls;&", reset=True)
+            self.add_var_to_environ("PYTHONIOENCODING", "UTF-8", reset=True)
+            # self.add_var_to_environ("HDF5_DISABLE_VERSION_CHECK", "2", reset=True)
+
+            self.add_var_to_environ("HOUDINI_PATH",
+                '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini;&', reset=True)
+
+            self.add_var_to_environ("HDA", os.path.normpath(os.path.join(
+                                           GLOBAL_PIPELINE_DIR, "/Pipeline/Plugins/3D/houdini/hda")), reset=True)
+            self.add_var_to_environ("QLIB", "$HDA/qLib-dev", reset=True)
+            self.add_var_to_environ("QOTL", "$QLIB/otls", reset=True)
+            self.add_var_to_environ("TS", "$HDA/ts", reset=True)
+            self.add_var_to_environ("MOPS", "$HDA/MOPS", reset=True)
+            self.add_var_to_environ("HOUBG", "$HDA/hou_bg_render", reset=True)
+            self.add_var_to_environ("AELIB", "$HDA/Aelib", reset=True)
             # 19/09 added variables 
             self.add_var_to_environ("HOUDINI_GALLERY_PATH", "$AELIB/gallery;&", reset=True)
             self.add_var_to_environ("HOUDINI_TOOLBAR_PATH", "$AELIB/toolbar;&", reset=True)
             self.add_var_to_environ("HOUDINI_SCRIPT_PATH", "$AELIB/scripts;&", reset=True)
             self.add_var_to_environ("HOUDINI_VEX_PATH", "$AELIB/vex/include;&", reset=True)
+            self.add_var_to_environ("HOUDINI_OTLSCAN_PATH",
+                                    "$QOTL/base;$QOTL/future;$QOTL/experimental;"
+                                    "$TS;$MOPS/otls;$AELIB/otls;&", reset=True)
 
-            self.add_var_to_environ("HDA", os.path.normpath(os.path.join(
-                                           GLOBAL_PIPELINE_DIR, "\\Pipeline\\Plugins\\3D\\houdini\\hda")), reset=True)
-            self.add_var_to_environ("QLIB", "$HDA/qLib-dev", reset=True)
-            self.add_var_to_environ("QOTL", "$QLIB/otls", reset=True)
-            self.add_var_to_environ("TS", "$HDA/ts", reset=True)
-            self.add_var_to_environ("AELIB", "$HDA/Aelib", reset=True)
-            self.add_var_to_environ("MOPS", "$HDA/MOPS", reset=True)
-            self.add_var_to_environ("HOUBG", "$HDA/hou_bg_render", reset=True)
+            # add root for .ass storage
+            os.environ["HOUDINI_ASS_CACHES_ROOT"] = "//10.80.8.252/projects/caches"
+            # self.add_var_to_environ("HOUDINI_DSO_PATH", '')
+
+            # Arnold paths
+            # htoa_root = 'path/to/htoa-win/htoa'
+            # path_env = os.environ['PATH']
+            # os.environ['PATH'] = os.pathsep.join([path_env, htoa_root + '/scripts/bin'])
+            # self.add_var_to_environ('HOUDINI_PATH', htoa_root)
 
             if sys.platform == "win32":
                 userprofile = os.getenv("USERPROFILE")
@@ -262,38 +288,34 @@ class BeforeAppLaunch(tank.Hook):
                     os.makedirs(backup_dir)
                 self.add_var_to_environ("HOUDINI_BACKUP_DIR", os.path.normpath(backup_dir), reset=True)
 
-                # HOUDINI_USER_PREF_DIR crucila for the houdini.env file
-                houdini_user_pref = userprofile + "\\Documents\\houdini16.5\\"
-                self.add_var_to_environ("HOUDINI_USER_PREF_DIR", os.path.normpath(houdini_user_pref), reset=True)
+                # HOU_VERSION = '17.5'
 
-                # Deadline Menu Script Path and Submission Script Path
-                DEADLINE_CLIENTCMD_PATH = "\\Documents\\houdini16.5\\python2.7libs;"
+                # HOUDINI_USER_PREF_DIR crucila for the houdini.env file
+                # houdini_user_pref = userprofile + "\\Documents\\houdini16.5\\"
+                # self.add_var_to_environ("HOUDINI_USER_PREF_DIR", os.path.normpath(houdini_user_pref), reset=True)
 
                 deadline_submitter_path = os.path.normpath(userprofile + "\\AppData\\Local\\Thinkbox\\Deadline10\\submitters\\HoudiniSubmitter;&")
-                houdini_path_buff = os.getenv("HOUDINI_PATH").replace('&', '').replace(r'\r\n', '')
-                houdini_path = houdini_path_buff + deadline_submitter_path
-                self.log.debug(">>>>> Updated HOUDINI_PATH to include Deadline.\nHOUDINI_PATH %s" % str(houdini_path))
+                # houdini_path_buff = os.getenv("HOUDINI_PATH").replace('&', '').replace(r'\r\n', '')
+                # houdini_path = houdini_path_buff + deadline_submitter_path
+                # self.log.debug(">>>>> Updated HOUDINI_PATH to include Deadline.\nHOUDINI_PATH %s" % str(houdini_path))
 
-                deadline_clientcmd_path = userprofile + DEADLINE_CLIENTCMD_PATH.replace("\\", "/")
-                pypath = os.getenv("PYTHONPATH")
-                deadlinecmd = os.path.normpath(deadline_clientcmd_path)
-                # remove the carage return append deadline cmd
-                os.environ["PYTHONPATH"] = pypath.replace(r'\r\n', '') + os.pathsep + deadlinecmd
+                # Deadline Menu Script Path and Submission Script Path
+                # deadline_clientcmd_path = "\\Documents\\houdini{hou_version}\\python2.7libs;".format(
+                #     hou_version=HOU_VERSION)
+                # Deadline clientcmd path
+                # deadlinecmd = os.path.normpath(
+                #     userprofile + deadline_clientcmd_path)
+                # pypath = os.getenv("PYTHONPATH")
+                # os.environ["PYTHONPATH"] = os.pathsep.join([pypath, deadlinecmd])
 
-                houdini_menu_path_buff = os.getenv("HOUDINI_MENU_PATH")
-                if houdini_menu_path_buff is not None:
-                    houdini_menu_path = houdini_menu_path_buff + deadline_submitter_path
-                else:
-                    houdini_menu_path = "$HOUDINI_MENU_PATH;" + deadline_submitter_path
+                houdini_menu_path_buff = os.getenv("HOUDINI_MENU_PATH") or "$HOUDINI_MENU_PATH;"
+                houdini_menu_path = houdini_menu_path_buff + deadline_submitter_path
                 self.add_var_to_environ("HOUDINI_MENU_PATH", os.path.normpath(houdini_menu_path), reset=True)
 
-                DEADLINE_REPO = "\\\\10.80.8.206\\DeadlineRepository10\\submission\\Houdini\\Main"
-                deadline_repo_path = DEADLINE_REPO.replace("\\", "/")
-                if deadline_repo_path not in sys.path:
+                DEADLINE_REPO = "//10.80.8.206/DeadlineRepository10/submission/Houdini/Main"
+                if DEADLINE_REPO not in sys.path:
                     self.log.debug(">>>>> Adding Deadline Repo sys Path")
-                    sys.path.append(os.path.normpath(deadline_repo_path))
-                # add root for .ass storage
-                os.environ["HOUDINI_ASS_CACHES_ROOT"] = "\\10.80.8.252\\projects\\caches"
+                    sys.path.append(os.path.normpath(DEADLINE_REPO))
         else:
             """---------------------------------------------------------------
                 UNSUPPORTED ENGINE                           
