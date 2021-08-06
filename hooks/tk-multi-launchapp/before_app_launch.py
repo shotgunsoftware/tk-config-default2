@@ -246,10 +246,10 @@ class BeforeAppLaunch(tank.Hook):
             # self.add_var_to_environ("HDF5_DISABLE_VERSION_CHECK", "2", reset=True)
 
             self.add_var_to_environ("HOUDINI_PATH",
-                '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini;&', reset=True)
+                '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini;&')
 
             self.add_var_to_environ("HDA", os.path.normpath(os.path.join(
-                                           GLOBAL_PIPELINE_DIR, "/Pipeline/Plugins/3D/houdini/hda")), reset=True)
+                                           GLOBAL_PIPELINE_DIR, "/Pipeline/Plugins/3D/houdini/hda;&")))
             self.add_var_to_environ("QLIB", "$HDA/qLib-dev", reset=True)
             self.add_var_to_environ("QOTL", "$QLIB/otls", reset=True)
             self.add_var_to_environ("TS", "$HDA/ts", reset=True)
@@ -257,13 +257,13 @@ class BeforeAppLaunch(tank.Hook):
             self.add_var_to_environ("HOUBG", "$HDA/hou_bg_render", reset=True)
             self.add_var_to_environ("AELIB", "$HDA/Aelib", reset=True)
             # 19/09 added variables 
-            self.add_var_to_environ("HOUDINI_GALLERY_PATH", "$AELIB/gallery;&", reset=True)
-            self.add_var_to_environ("HOUDINI_TOOLBAR_PATH", "$AELIB/toolbar;&", reset=True)
-            self.add_var_to_environ("HOUDINI_SCRIPT_PATH", "$AELIB/scripts;&", reset=True)
-            self.add_var_to_environ("HOUDINI_VEX_PATH", "$AELIB/vex/include;&", reset=True)
+            self.add_var_to_environ("HOUDINI_GALLERY_PATH", "$AELIB/gallery;&", reset=False)
+            self.add_var_to_environ("HOUDINI_TOOLBAR_PATH", "$AELIB/toolbar;&", reset=False)
+            self.add_var_to_environ("HOUDINI_SCRIPT_PATH", "$AELIB/scripts;&", reset=False)
+            self.add_var_to_environ("HOUDINI_VEX_PATH", "$AELIB/vex/include;&", reset=False)
             self.add_var_to_environ("HOUDINI_OTLSCAN_PATH",
                                     "$QOTL/base;$QOTL/future;$QOTL/experimental;"
-                                    "$TS;$MOPS/otls;$AELIB/otls;&", reset=True)
+                                    "$TS;$MOPS/otls;$AELIB/otls;&")
 
             # add root for .ass storage
             os.environ["HOUDINI_ASS_CACHES_ROOT"] = "//10.80.8.252/projects/caches"
@@ -276,14 +276,14 @@ class BeforeAppLaunch(tank.Hook):
             # self.add_var_to_environ('HOUDINI_PATH', htoa_root)
 
             if sys.platform == "win32":
-                userprofile = os.getenv("USERPROFILE")
+                userprofile = os.getenv("USERPROFILE").replace('\\', '/')
 
-                temp_dir = userprofile + "\\AppData\\Local\\houdini\\Temp"
+                temp_dir = userprofile + "/AppData/Local/houdini/Temp"
                 if not os.path.exists(temp_dir):
                     os.makedirs(temp_dir)
                 self.add_var_to_environ("HOUDINI_TEMP_DIR", os.path.normpath(temp_dir), reset=True)
 
-                backup_dir = userprofile + "\\AppData\\Local\\houdini\\Backup\\"
+                backup_dir = userprofile + "/AppData/Local/houdini/Backup/"
                 if not os.path.exists(backup_dir):
                     os.makedirs(backup_dir)
                 self.add_var_to_environ("HOUDINI_BACKUP_DIR", os.path.normpath(backup_dir), reset=True)
