@@ -9,10 +9,11 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
-# import pprint
 import maya.cmds as cmds
 import maya.mel as mel
 import sgtk
+
+from tank_vendor import six
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -147,7 +148,7 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         item.properties["publish_template"] = publish_template
 
         # check that the AbcExport command is available!
-        if not mel.eval("exists \"AbcExport\""):
+        if not mel.eval('exists "AbcExport"'):
             self.logger.debug(
                 "Item not accepted because alembic export command 'AbcExport' "
                 "is not available. Perhaps the plugin is not enabled?"
@@ -159,10 +160,7 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         # natively.
         item.context_change_allowed = False
 
-        return {
-            "accepted": accepted,
-            "checked": True
-        }
+        return {"accepted": accepted, "checked": True}
 
     def validate(self, settings, item):
         """
@@ -184,10 +182,7 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
             # the session still requires saving. provide a save button.
             # validation fails.
             error_msg = "The Maya session has not been saved."
-            self.logger.error(
-                error_msg,
-                extra=_get_save_as_action()
-            )
+            self.logger.error(error_msg, extra=_get_save_as_action())
             raise Exception(error_msg)
 
         # get the normalized path
@@ -214,8 +209,10 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         # ensure the fields work for the publish template
         missing_keys = publish_template.missing_keys(work_fields)
         if missing_keys:
-            error_msg = "Work file '%s' missing keys required for the " \
-                        "publish template: %s" % (path, missing_keys)
+            error_msg = (
+                "Work file '%s' missing keys required for the "
+                "publish template: %s" % (path, missing_keys)
+            )
             self.logger.error(error_msg)
             raise Exception(error_msg)
 
@@ -225,14 +222,12 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         item.properties["path"] = publish_template.apply_fields(work_fields)
         item.properties["publish_path"] = item.properties["path"]
 
-
         # use the work file's version number when publishing
         if "version" in work_fields:
             item.properties["publish_version"] = work_fields["version"]
 
         # run the base class validation
-        return super(MayaSessionGeometryPublishPlugin, self).validate(
-            settings, item)
+        return super(MayaSessionGeometryPublishPlugin, self).validate(settings, item)
 
     def publish(self, settings, item):
         """
@@ -259,15 +254,30 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         # face sets for use in Mari.
         alembic_args = [
             # only renderable objects (visible and not templated)
-            "-renderableOnly",
+            # "-renderableOnly",
             # write shading group set assignments (Maya 2015+)
-            "-writeFaceSets",
+            # "-writeFaceSets",
+            '-attr',
+            'aiSubdivType',
+            '-attr',
+            'aiSubdivIterations',
+            '-attr',
+            'aiOpaque',
             # write uv's (only the current uv set gets written)
-            "-uvWrite"
+            '-uvWrite',
+            # '-worldSpace',
+            '-writeVisibility',
+            # '-writeUVSets'
+            '-dataFormat ogawa',
+            '-root',
+            # Selected root node
+            item.properties.get('node') or '',
         ]
 
         # find the animated frame range to use:
         start_frame, end_frame = _find_scene_animation_range()
+        if sgtk.platform.current_engine().context.task['name'] not in ('animation',):
+            end_frame = start_frame
         if start_frame and end_frame:
             alembic_args.append("-fr %d %d" % (start_frame, end_frame))
 
@@ -277,13 +287,13 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
 
         # build the export command.  Note, use AbcExport -help in Maya for
         # more detailed Alembic export help
-        abc_export_cmd = ("AbcExport -j \"%s\"" % " ".join(alembic_args))
+        abc_export_cmd = ('AbcExport -j "%s"' % " ".join(alembic_args))
 
         # ...and execute it:
         try:
             self.parent.log_debug("Executing command: %s" % abc_export_cmd)
             mel.eval(abc_export_cmd)
-        except Exception, e:
+        except Exception as e:
             self.logger.error("Failed to export Geometry: %s" % e)
             return
 
@@ -319,8 +329,8 @@ def _session_path():
     """
     path = cmds.file(query=True, sn=True)
 
-    if isinstance(path, unicode):
-        path = path.encode("utf-8")
+    if path is not None:
+        path = six.ensure_str(path)
 
     return path
 
@@ -345,6 +355,6 @@ def _get_save_as_action():
         "action_button": {
             "label": "Save As...",
             "tooltip": "Save the current session",
-            "callback": callback
+            "callback": callback,
         }
     }
