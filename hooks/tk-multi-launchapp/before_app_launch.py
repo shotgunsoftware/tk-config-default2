@@ -251,24 +251,23 @@ class BeforeAppLaunch(tank.Hook):
                 '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini;&')
 
             self.add_var_to_environ("HDA", os.path.normpath(os.path.join(
-                                           GLOBAL_PIPELINE_DIR, "/Pipeline/Plugins/3D/houdini/hda;&")))
-            # self.add_var_to_environ("QLIB", "/Pipeline/Plugins/3D/houdini/hda/qLib-dev", reset=False)
-            # self.add_var_to_environ("QOTL", "/Pipeline/Plugins/3D/houdini/hda/qLib-dev/otls", reset=False)
-            # self.add_var_to_environ("TS", "/Pipeline/Plugins/3D/houdini/hda/ts", reset=False)
-            # self.add_var_to_environ("MOPS", "/Pipeline/Plugins/3D/houdini/hda/MOPS", reset=False)
-            # self.add_var_to_environ("HOUBG", "/Pipeline/Plugins/3D/houdini/hda/hou_bg_render", reset=False)
-            # self.add_var_to_environ("AELIB", "/Pipeline/Plugins/3D/houdini/hda/Aelib", reset=False)
-            self.add_var_to_environ("HOUDINI_GALLERY_PATH", "//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/Aelib/gallery;&", reset=False)
-            self.add_var_to_environ("HOUDINI_TOOLBAR_PATH", "//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/Aelib/toolbar;&", reset=False)
-            self.add_var_to_environ("HOUDINI_SCRIPT_PATH", "//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/Aelib/scripts;&", reset=False)
-            self.add_var_to_environ("HOUDINI_VEX_PATH", "//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/Aelib/vex/include;&", reset=False)
-            self.add_var_to_environ("HOUDINI_OTLSCAN_PATH",
-                                    '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/qLib-dev/base;'
-                                    '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/qLib-dev/future;'
-                                    '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/qLib-dev/experimental;'
-                                    '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/ts;'
-                                    '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/MOPS/otls;'
-                                    '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini/hda/Aelib/otls;&')
+                                           GLOBAL_PIPELINE_DIR, "/Pipeline/Plugins/3D/houdini/hda")))
+            self.add_var_to_environ('HOUDINI_GALLERY_PATH', '$HDA/Aelib/gallery;&', reset=False)
+            self.add_var_to_environ('HOUDINI_TOOLBAR_PATH',
+                                    '$HDA/Aelib/toolbar;'
+                                    '$HDA/hou_bg_render/toolbar;&', reset=False)
+            self.add_var_to_environ('HOUDINI_SCRIPT_PATH',
+                                    '$HDA/Aelib/scripts;'
+                                    '$HDA/hou_bg_render/scripts;&', reset=False)
+            self.add_var_to_environ('HOUDINI_VEX_PATH', '$HDA/Aelib/vex/include;&', reset=False)
+            self.add_var_to_environ('HOUDINI_OTLSCAN_PATH',
+                                    '$HDA/qLib-dev/otls;'
+                                    '$HDA/qLib-dev/otls/base;'
+                                    '$HDA/qLib-dev/otls/future;'
+                                    '$HDA/qLib-dev/otls/experimental;'
+                                    '$HDA/ts;'
+                                    '$HDA/MOPS/otls;'
+                                    '$HDA/Aelib/otls;&', reset=False)
 
             # add root for .ass storage
             os.environ["HOUDINI_ASS_CACHES_ROOT"] = "//10.80.8.252/projects/caches"
@@ -291,11 +290,11 @@ class BeforeAppLaunch(tank.Hook):
                 # HOU_VERSION = '17.5'
                 # Arnold paths
                 # htoa_root = userprofile + '/htoa/htoa-5.1.0_r9289183_houdini-17.5.460/htoa-5.1.0_r9289183_houdini-${HOUDINI_VERSION}'
-                htoa_root = userprofile + '/htoa/htoa-5.1.0_r9289183_houdini-17.5.460/htoa-5.1.0_r9289183_houdini-17.5.460'
-                path_env = os.environ['PATH']
-                os.environ['PATH'] = os.pathsep.join([path_env, htoa_root + '/scripts/bin'])
-                self.add_var_to_environ('HOUDINI_PATH', htoa_root)
-                self.add_var_to_environ('PXR_PLUGINPATH_NAME', htoa_root + '/hydra')
+                # htoa_root = userprofile + '/htoa/htoa-5.1.0_r9289183_houdini-17.5.460/htoa-5.1.0_r9289183_houdini-17.5.460'
+                # path_env = os.environ['PATH']
+                # os.environ['PATH'] = os.pathsep.join([path_env, htoa_root + '/scripts/bin'])
+                # self.add_var_to_environ('HOUDINI_PATH', htoa_root)
+                # self.add_var_to_environ('PXR_PLUGINPATH_NAME', htoa_root + '/hydra')
 
                 # HOUDINI_USER_PREF_DIR crucila for the houdini.env file
                 # houdini_user_pref = userprofile + "\\Documents\\houdini16.5\\"
