@@ -33,7 +33,7 @@ class BeforeAppLaunch(tank.Hook):
     log = sgtk.LogManager.get_logger(__name__)
 
     @staticmethod
-    def clean_path(path):
+    def _clean_path(path):
         """ Fix slashes, carriage returns and trailing & and ;
         :param path:    <string> path to clean
         :return:        <string> clean path
@@ -52,11 +52,13 @@ class BeforeAppLaunch(tank.Hook):
         :param srch_str: <string>
         :return:
         """
-        srch_str = self.clean_path(path=srch_str)
+        srch_str = self._clean_path(path=srch_str)
         if not isinstance(env_paths, list):
             env_paths = env_paths.split(os.pathsep) if os.pathsep in env_paths else [env_paths]
         for env_path in env_paths:
-            env_path = self.clean_path(path=env_path)
+            if env_path == '&':
+                continue
+            env_path = self._clean_path(path=env_path)
             if env_path == srch_str:
                 return True
         return False
@@ -153,8 +155,11 @@ class BeforeAppLaunch(tank.Hook):
             self.log.info("Variable %s already in %s" % (envvar, envkey))
         else:
             # remove the carriage return (Houdini)
-            cur_var = os.getenv(envkey)
-            cur_var = self.clean_path(path=cur_var)
+            cur_var = os.getenv(envkey).replace(r'\r\n', '')
+            if cur_var.endswith('&'):
+                cur_var = cur_var.rstrip('&')
+            if cur_var.endswith(os.pathsep):
+                cur_var = cur_var.rstrip(os.pathsep)
             os.environ[envkey] = cur_var + os.pathsep + envvar
             self.log.info("Appending %s to %s" % (envvar, envkey))
 
@@ -179,9 +184,11 @@ class BeforeAppLaunch(tank.Hook):
                                 reset=True)
         self.log.debug("Setting GLOBAL Pipeline dir: %s" % (os.environ["SSVFX_PIPELINE"]))
 
-        # all apps use ssvfx_scripts, add that first
+        # all apps use ssvfx_scripts and ssvfx_sg, add that first
         self.add_var_to_environ('PYTHONPATH',
                                 self.get_pipeline_path(package_name='ssvfx_scripts'))
+        self.add_var_to_environ('PYTHONPATH',
+                                self.get_pipeline_path(package_name='ssvfx_sg'))
         # make sure all apps use consistent ocio
         if engine_name != 'tk-nuke':
             self.add_var_to_environ("OCIO",
@@ -288,7 +295,7 @@ class BeforeAppLaunch(tank.Hook):
                                     '$HDA/Aelib/otls;&', reset=False)
 
             # add root for .ass storage
-            os.environ["HOUDINI_ASS_CACHES_ROOT"] = "//10.80.8.252/projects/caches"
+            self.add_var_to_environ("HOUDINI_ASS_CACHES_ROOT", "//10.80.8.252/projects/caches", reset=True)
             # self.add_var_to_environ("HOUDINI_DSO_PATH", '')
 
             if sys.platform == "win32":
@@ -319,12 +326,12 @@ class BeforeAppLaunch(tank.Hook):
                 # houdini_user_pref = userprofile + "\\Documents\\houdini16.5\\"
                 # self.add_var_to_environ("HOUDINI_USER_PREF_DIR", os.path.normpath(houdini_user_pref), reset=True)
 
+                # Deadline Menu Script Path and Submission Script Path
                 deadline_submitter_path = os.path.normpath(os.path.join(local_app_data, "Thinkbox", "Deadline10", "submitters", "HoudiniSubmitter;&"))
                 # houdini_path_buff = os.getenv("HOUDINI_PATH").replace('&', '').replace(r'\r\n', '')
                 # houdini_path = houdini_path_buff + deadline_submitter_path
                 # self.log.debug(">>>>> Updated HOUDINI_PATH to include Deadline.\nHOUDINI_PATH %s" % str(houdini_path))
 
-                # Deadline Menu Script Path and Submission Script Path
                 # HOUDINI PATH
                 houdini_path = os.pathsep.join(['$HOUDINI_PATH',
                                                 self.get_pipeline_path("Plugins/3D/houdini"),
