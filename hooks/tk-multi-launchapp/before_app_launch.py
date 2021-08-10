@@ -131,7 +131,7 @@ class BeforeAppLaunch(tank.Hook):
                 version = self.version_config.get(package_name)
                 self.log.info('stable %s version set in pipeline config: %s' % (package_name, version))
                 if not os.path.exists(os.path.join(package_path, version)):
-                    self.log.info('requested version has not been released, falling back to latest')
+                    self.log.warning('requested version has not been released, falling back to latest')
                     version = None
             if not version:
                 self.log.info('finding latest version..')
@@ -174,9 +174,9 @@ class BeforeAppLaunch(tank.Hook):
         :param engine_name (str) The name of the engine associated with the
             software about to be launched.
         """
-        self.log.debug(">>>>> Before app launch - %s " % str(engine_name))
+        self.log.info(">>>>> Before app launch - %s " % str(engine_name))
         system = sys.platform
-        # todo we should be clearing the local PATH and PYTHONPATHS here, to create isolated environments
+        # todo we should be clearing the PATH and PYTHONPATHS here, to create isolated environments
 
         # On non-dev machines - set global path
         self.add_var_to_environ(envkey="SSVFX_PIPELINE",
@@ -275,16 +275,16 @@ class BeforeAppLaunch(tank.Hook):
             # self.add_var_to_environ("HOUDINI_PATH",
             #     '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini;&')
 
-            self.add_var_to_environ("HDA",
+            self.add_var_to_environ('HDA',
                                     self.get_pipeline_path('Plugins/3D/houdini/hda'), reset=True)
-            self.add_var_to_environ('HOUDINI_GALLERY_PATH', '$HDA/Aelib/gallery;&', reset=False)
+            self.add_var_to_environ('HOUDINI_GALLERY_PATH', '$HDA/Aelib/gallery;&')
             self.add_var_to_environ('HOUDINI_TOOLBAR_PATH',
                                     '$HDA/Aelib/toolbar;'
-                                    '$HDA/hou_bg_render/toolbar;&', reset=False)
+                                    '$HDA/hou_bg_render/toolbar;&')
             self.add_var_to_environ('HOUDINI_SCRIPT_PATH',
                                     '$HDA/Aelib/scripts;'
-                                    '$HDA/hou_bg_render/scripts;&', reset=False)
-            self.add_var_to_environ('HOUDINI_VEX_PATH', '$HDA/Aelib/vex/include;&', reset=False)
+                                    '$HDA/hou_bg_render/scripts;&')
+            self.add_var_to_environ('HOUDINI_VEX_PATH', '$HDA/Aelib/vex/include;&')
             self.add_var_to_environ('HOUDINI_OTLSCAN_PATH',
                                     '$HDA/qLib-dev/otls;'
                                     '$HDA/qLib-dev/otls/base;'
@@ -292,7 +292,7 @@ class BeforeAppLaunch(tank.Hook):
                                     '$HDA/qLib-dev/otls/experimental;'
                                     '$HDA/ts;'
                                     '$HDA/MOPS/otls;'
-                                    '$HDA/Aelib/otls;&', reset=False)
+                                    '$HDA/Aelib/otls;&')
 
             # add root for .ass storage
             self.add_var_to_environ("HOUDINI_ASS_CACHES_ROOT", "//10.80.8.252/projects/caches", reset=True)
@@ -348,10 +348,10 @@ class BeforeAppLaunch(tank.Hook):
                 houdini_menu_path = houdini_menu_path_buff + deadline_submitter_path
                 self.add_var_to_environ("HOUDINI_MENU_PATH", os.path.normpath(houdini_menu_path), reset=True)
 
-                DEADLINE_REPO = "//10.80.8.206/DeadlineRepository10/submission/Houdini/Main"
-                if DEADLINE_REPO not in sys.path:
-                    self.log.debug(">>>>> Adding Deadline Repo sys Path")
-                    sys.path.append(os.path.normpath(DEADLINE_REPO))
+                deadline_repo_path = "//10.80.8.206/DeadlineRepository10/submission/Houdini/Main"
+                if deadline_repo_path not in sys.path:
+                    self.log.info(">>>>> Adding Deadline Repo to sys path")
+                    sys.path.append(os.path.normpath(deadline_repo_path))
         else:
             """---------------------------------------------------------------
                 UNSUPPORTED ENGINE                           
