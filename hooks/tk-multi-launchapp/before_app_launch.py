@@ -85,6 +85,12 @@ class BeforeAppLaunch(tank.Hook):
         package_path = None
         root_path = None
         package_name = os.path.normpath(package_name)
+        postfix = os.pathsep + '&'
+        if package_name.endswith(postfix):
+            package_name = package_name.rstrip(postfix)
+        else:
+            postfix = ''
+
         roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE')]
         if GLOBAL_PIPELINE_DIR not in roots:
             roots.append(GLOBAL_PIPELINE_DIR)
@@ -115,9 +121,8 @@ class BeforeAppLaunch(tank.Hook):
                 self.log.info('finding latest version..')
                 version = self.get_latest_package_version(package_path)
             if version:
-                return os.path.normpath(os.path.join(package_path, version))
-
-        return os.path.normpath(package_path)
+                return os.path.normpath(os.path.join(package_path, version + postfix))
+        return os.path.normpath(package_path + postfix)
 
     def add_var_to_environ(self, envkey, envvar, reset=False):
         """
@@ -133,7 +138,13 @@ class BeforeAppLaunch(tank.Hook):
         elif self._has_envstr(env_paths=os.getenv(envkey), srch_str=envvar):
             self.log.info("Variable %s already in %s" % (envvar, envkey))
         else:
-            os.environ[envkey] += os.pathsep + envvar
+            # remove the carriage return (Houdini)
+            cur_var = os.getenv(envkey).replace(r'\r\n', '')
+            if cur_var.endswith('&'):
+                cur_var = cur_var.rstrip('&')
+            if cur_var.endswith(os.pathsep):
+                cur_var = cur_var.rstrip(os.pathsep)
+            os.environ[envkey] = cur_var + os.pathsep + envvar
             self.log.info("Appending %s to %s" % (envvar, envkey))
 
     def execute(self, app_path, app_args, version, engine_name, **kwargs):
@@ -161,9 +172,10 @@ class BeforeAppLaunch(tank.Hook):
         self.add_var_to_environ('PYTHONPATH',
                                 self.get_pipeline_path(package_name='ssvfx_scripts'))
         # make sure all apps use consistent ocio
-        self.add_var_to_environ("OCIO",
-                                self.get_pipeline_path(
-                                    "external_scripts\\OpenColorIO-Configs\\aces_1.0.3\\config.ocio"))
+        if engine_name != 'tk-nuke':
+            self.add_var_to_environ("OCIO",
+                                    self.get_pipeline_path(
+                                        "external_scripts\\OpenColorIO-Configs\\aces_1.0.3\\config.ocio"))
 
         if engine_name == "tk-nuke":
             """---------------------------------------------------------------
@@ -226,7 +238,6 @@ class BeforeAppLaunch(tank.Hook):
             # self.add_var_to_environ('MAYA_PLUG_IN_PATH', '')
             # self.add_var_to_environ('MAYA_MODULE_PATH', '')
 
-
         elif engine_name == "tk-houdini":
             """---------------------------------------------------------------
                 HOUDINI ENGINE                            
@@ -272,7 +283,6 @@ class BeforeAppLaunch(tank.Hook):
             # add root for .ass storage
             os.environ["HOUDINI_ASS_CACHES_ROOT"] = "//10.80.8.252/projects/caches"
             # self.add_var_to_environ("HOUDINI_DSO_PATH", '')
-
 
             if sys.platform == "win32":
                 userprofile = os.getenv("USERPROFILE").replace('\\', '/')

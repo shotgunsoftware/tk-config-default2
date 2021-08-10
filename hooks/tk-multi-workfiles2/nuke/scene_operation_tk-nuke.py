@@ -504,6 +504,15 @@ class SceneOperation(HookClass):
 
         If the step_name is Roto, no color is applied.
         '''
+
+        os_var = ""
+        if nuke.env.get('WIN32'):
+            os_var = 'local_path_windows'
+        elif nuke.env.get('LINUX'):
+            os_var = 'local_path_linux'
+        elif nuke.env.get('MACOS'):
+            os_var = 'local_path_mac'
+
         if step_name == "Roto":
             nuke.tprint('Roto, No Color Applied')
         else:
@@ -515,7 +524,7 @@ class SceneOperation(HookClass):
                     nuke.tprint('Setting shot-linked OCIO')
                     nuke.Root()['colorManagement'].setValue('OCIO')
                     nuke.Root()['OCIO_config'].setValue('custom')
-                    nuke.Root()['customOCIOConfigPath'].setValue(shot_info['sg_shot_ocio']['local_path_windows'].replace('\\', '/'))
+                    nuke.Root()['customOCIOConfigPath'].setValue(shot_info['sg_shot_ocio'][os_var].replace('\\', '/'))
                     
                     # Check for viewers and clean out the list of viewer processes
                     if len(nuke.allNodes('Viewer')) < 1:
@@ -550,9 +559,12 @@ class SceneOperation(HookClass):
                     nuke.Root()['int16Lut'].setValue(color_info['sg_int16lut'])
 
                 if color_info['sg_color_management_config_file']:
-                    nuke.Root()['customOCIOConfigPath'].setValue(color_info['sg_color_management_config_file'])
+                    nuke.Root()['customOCIOConfigPath'].setValue(color_info['sg_color_management_config_file'].get(os_var,""))
                 else:
                     nuke.Root()['customOCIOConfigPath'].setValue("")      
+
+                if  nuke.NUKE_VERSION_MAJOR > 11:
+                    nuke.Root()['reloadConfig'].execute()
                                   
                 if color_info['sg_viewerprocess']:
                     try:

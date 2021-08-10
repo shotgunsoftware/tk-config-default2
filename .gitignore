@@ -1,4 +1,6 @@
 # ---- ignore special files written during config setup
+.idea/
+.vscode/
 
 core/app_store.yml
 core/install_location.yml
