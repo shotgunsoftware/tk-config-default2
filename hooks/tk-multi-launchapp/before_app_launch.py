@@ -124,7 +124,7 @@ class BeforeAppLaunch(tank.Hook):
                 return os.path.normpath(os.path.join(package_path, version + postfix))
         return os.path.normpath(package_path + postfix)
 
-    def add_var_to_environ(self, envkey, envvar, reset=False):
+    def add_var_to_environ(self, envkey, envvar, reset=False, before=False):
         """
         :param envkey:  <str>   Environment key to variable
         :param envvar:    <str>   Path to add to environment variable
@@ -137,6 +137,8 @@ class BeforeAppLaunch(tank.Hook):
             self.log.info("Setting %s to %s" % (envkey, envvar))
         elif self._has_envstr(env_paths=os.getenv(envkey), srch_str=envvar):
             self.log.info("Variable %s already in %s" % (envvar, envkey))
+        elif before:
+            os.environ[envkey] = envvar + os.pathsep + os.environ[envkey]
         else:
             # remove the carriage return (Houdini)
             cur_var = os.getenv(envkey).replace(r'\r\n', '')
@@ -175,7 +177,8 @@ class BeforeAppLaunch(tank.Hook):
         if engine_name != 'tk-nuke':
             self.add_var_to_environ("OCIO",
                                     self.get_pipeline_path(
-                                        "external_scripts\\OpenColorIO-Configs\\aces_1.0.3\\config.ocio"))
+                                        "external_scripts/OpenColorIO-Configs/aces_1.0.3/config.ocio"),
+                                    reset=True)
 
         if engine_name == "tk-nuke":
             """---------------------------------------------------------------
@@ -224,17 +227,15 @@ class BeforeAppLaunch(tank.Hook):
             self.add_var_to_environ("MAYA_DISABLE_CIP", "1")
             self.add_var_to_environ("MAYA_DISABLE_CER", "1")
             self.add_var_to_environ("MAYA_SCRIPT_PATH",
+                                    self.get_pipeline_path("ssvfx_maya/mayamel"), before=True)
+            self.add_var_to_environ("MAYA_SCRIPT_PATH",
                                     self.get_pipeline_path("ssvfx_scripts/software/maya/maya_scripts"))
-            self.add_var_to_environ("MAYA_SHELF_PATH",
-                                    self.get_pipeline_path("ssvfx_scripts/software/maya/maya_shelves"))
+            # self.add_var_to_environ("MAYA_SHELF_PATH",
+            #                         self.get_pipeline_path("ssvfx_scripts/software/maya/maya_shelves"))
             self.add_var_to_environ('PYTHONPATH',
                                     self.get_pipeline_path('ssvfx_maya', check_version=True))
             self.add_var_to_environ('PYTHONPATH',
                                     self.get_pipeline_path("ssvfx_scripts/software/maya"))
-            # make sure all apps use consistent ocio
-            self.add_var_to_environ("OCIO",
-                self.get_pipeline_path(
-                    "external_scripts/OpenColorIO-Configs/aces_1.0.3/config.ocio"))
             # self.add_var_to_environ('MAYA_PLUG_IN_PATH', '')
             # self.add_var_to_environ('MAYA_MODULE_PATH', '')
 
