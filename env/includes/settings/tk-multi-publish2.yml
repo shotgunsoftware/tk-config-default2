@@ -516,9 +516,22 @@ settings.tk-multi-publish2.alias.asset_step:
      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
      settings: {}
    - name: Publish to Shotgun
-     hook: "{self}/publish_file.py:{config}/custom/tk-multi-publish2/batch_publish.py:{config}/custom/tk-multi-publish2/batch_publish_alias_session.py"
+     hook: "{self}/publish_file.py:{config}/custom/tk-multi-publish2/batch_publish.py:{config}/custom/tk-multi-publish2/batch_publish_alias_session.py:{config}/custom/tk-multi-publish2/alias_sanity_checks.py"
      settings:
        Publish Template: alias_asset_publish
+       Check List:
+         - name: Null Node Deletion
+           description: Check that the current scene doesn't contain any null nodes.
+           function: delete_null_nodes
+         - name: Surface Orientation Check
+           description: Check that all the surfaces have the same orientation.
+           function:
+         - name: Shader Information Check
+           description: Check that the surface has at least one shader or belongs to one layer.
+           function:
+         - name: Zero Transform Operation
+           description:
+           function: zero_transform_top_level
    - name: Create 3D Version for Review
      hook: "{self}/upload_version.py:{config}/custom/tk-multi-publish2/batch_publish.py:{engine}/tk-multi-publish2/basic/upload_version.py:{config}/custom/tk-multi-publish2/batch_publish_alias_version.py"
      settings:

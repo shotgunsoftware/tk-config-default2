@@ -38,7 +38,7 @@ engines.tk-alias.location:
   type: git_branch
   branch: automotive-pipeline
   path: https://github.com/shotgunsoftware/tk-alias.git
-  version: 79c9dda
+  version: 5b73eac
 
 # Desktop
 engines.tk-desktop.location:
