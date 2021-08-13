@@ -131,6 +131,10 @@ paths:
     maya_asset_camera_publish:
         definition: '@asset_root/publish/maya/cameras/{Asset}_{task_name}[_{name}]_v{version}.abc'
         root_name: 'project_pipeline'
+    # The location of published maya assembly definition files
+    maya_asset_assembly_publish:
+        definition: '@asset_root/publish/maya/{Asset}_{task_name}[_{name}]_assembly_v{version}.{maya_extension}'
+        root_name: 'project_pipeline'
     
     ########################################SHOT OUTPUT
     # version output
