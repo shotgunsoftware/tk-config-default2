@@ -30,6 +30,16 @@ class PrePublishHook(HookBaseClass):
 
         # engine = sgtk.platform.current_engine()
 
+        # Check for the right scene stuff
+        # TODO move this part to a checker module
+        # Check for the unknown reference nodes
+        for ref_node in cmds.ls(type='reference'):
+            try:
+                cmds.referenceQuery(ref_node, filename=True)
+            except Exception as e:
+                cmds.lockNode(ref_node, lock=False)
+                cmds.delete(ref_node)
+
         message = None
         selection = cmds.ls(assemblies=True, selection=True, long=True)
         if not selection:

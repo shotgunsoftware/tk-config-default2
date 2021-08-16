@@ -404,17 +404,7 @@ class MayaSessionCollector(HookBaseClass):
             "mesh.png"
         )
 
-        # Check for the right scene stuff
-        # TODO move this part to a checker module
-        # Check for the unknown reference nodes
-        for ref_node in cmds.ls(type='reference'):
-            try:
-                cmds.referenceQuery(ref_node, filename=True)
-            except Exception as e:
-                cmds.lockNode(ref_node, lock=False)
-                cmds.delete(ref_node)
-
-        # iterate over all top-level transforms and create mesh items
+        # iterate over selected top-level transforms and create mesh items
         # for any mesh.
         for object in cmds.ls(assemblies=True, sl=True):
 
