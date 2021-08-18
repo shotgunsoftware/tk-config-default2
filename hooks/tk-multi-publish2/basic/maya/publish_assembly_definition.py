@@ -16,6 +16,7 @@ import sgtk
 from tank_vendor import six
 
 from ssvfx_maya.mayapy import assemblies
+reload(assemblies)
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -150,7 +151,7 @@ class MayaSessionAssemblyPublishPlugin(HookBaseClass):
 
         # we've validated the publish template. add it to the item properties
         # for use in subsequent methods
-        item.properties["publish_template"] = publish_template
+        item.local_properties.publish_template = publish_template
 
         # because a publish template is configured, disable context change. This
         # is a temporary measure until the publisher handles context switching
@@ -197,8 +198,7 @@ class MayaSessionAssemblyPublishPlugin(HookBaseClass):
 
         # get the configured work file template
         work_template = item.properties.get("work_template")
-        publish_template = item.properties.get("publish_template")
-        print('PUBLISH TEMPLATE VALIDATE', publish_template)
+        publish_template = item.local_properties.publish_template
 
         # get the current scene path and extract fields from it using the work
         # template:
@@ -217,9 +217,10 @@ class MayaSessionAssemblyPublishPlugin(HookBaseClass):
         # create the publish path by applying the fields. store it in the item's
         # properties. This is the path we'll create and then publish in the base
         # publish plugin. Also set the publish_path to be explicit.
-        item.properties["path"] = publish_template.apply_fields(work_fields)
-        item.properties["publish_path"] = item.properties["path"]
-        print('PUBLISH PATH VALIDATE', item.properties["path"])
+        # item.properties["path"] = publish_template.apply_fields(work_fields)
+        # item.properties["publish_path"] = item.properties["path"]
+        item.local_properties['path'] = publish_template.apply_fields(work_fields)
+        item.local_properties['publish_path'] = item.local_properties.path
 
         # use the work file's version number when publishing
         if "version" in work_fields:
@@ -241,24 +242,21 @@ class MayaSessionAssemblyPublishPlugin(HookBaseClass):
         publisher = self.parent
 
         # get the path to create and publish
-        publish_path = item.properties["path"]
+        publish_path = item.local_properties["path"]
         print('PUBLISH PATH', publish_path)
 
         # ensure the publish folder exists:
         publish_folder = os.path.dirname(publish_path)
         self.parent.ensure_folder_exists(publish_folder)
 
+        # Now that the path has been generated, hand it off to the
+        super(MayaSessionAssemblyPublishPlugin, self).publish(settings, item)
+
         # Publish assembly definition from the modeling task
         if sgtk.platform.current_engine().context.task['name'] == 'model':
             # Ensure the publish template is defined and valid and that we also have
             # assembly_template = publisher.get_template_by_name('maya_asset_assembly_publish')
-            assemblies.make_assembly_definition()
-
-        self.logger.debug('settings: %r', settings)
-        self.logger.debug('item: %r', item)
-
-        # Now that the path has been generated, hand it off to the
-        super(MayaSessionAssemblyPublishPlugin, self).publish(settings, item)
+            assemblies.make_assembly_definition(def_path=publish_path)
 
 
 def _find_scene_animation_range():

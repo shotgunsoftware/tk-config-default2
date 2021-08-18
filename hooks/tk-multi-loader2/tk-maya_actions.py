@@ -202,6 +202,9 @@ class MayaActions(HookBaseClass):
         if name == "reference":
             self._create_reference(path, sg_publish_data)
 
+        if name == "assembly_reference":
+            self._create_assembly_reference(path, sg_publish_data)
+
         if name == "import":
             self._do_import(path, sg_publish_data)
 
@@ -297,6 +300,27 @@ class MayaActions(HookBaseClass):
             mergeNamespacesOnClash=False,
             namespace=namespace,
         )
+
+    def _create_assembly_reference(self, path, sg_publish_data):
+        '''
+        Create an assembly reference with the same settings Maya would use
+        if you used the create settings dialog.
+
+        :param path: Path to file.
+        :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.
+        '''
+        if not os.path.exists(path):
+            raise Exception("File not found on disk - '%s'" % path)
+
+        if not cmds.pluginInfo('sceneAssembly.mll', query=True, loaded=True):
+            cmds.loadPlugin('sceneAssembly.mll')
+
+        namespace = self._get_namespace(sg_publish_data)
+        asm_ref = cmds.assembly(name=namespace + '_ar', type='assemblyReference')
+        cmds.setAttr(asm_ref + '.definition', path, type='string')
+        cmds.namespace(ren=(
+            cmds.assembly(asm_ref, query=True, rns=True),
+            asm_ref.replace('_ar', '_ns')))
 
     def _do_import(self, path, sg_publish_data):
         """
