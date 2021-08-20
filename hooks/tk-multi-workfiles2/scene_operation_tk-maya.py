@@ -17,7 +17,11 @@ import sgtk
 
 from sgtk import TankError
 from sgtk.platform.qt import QtCore, QtGui
-import logging
+
+from ssvfx_maya.mayapy import scene_assembly
+from general.basic_utils import get_logger
+
+logger = get_logger('scene_operations')
 
 HookClass = sgtk.get_hook_baseclass()
 
@@ -261,6 +265,9 @@ class SceneOperation(HookClass):
             # Set initial render options         
             mtools.set_default_renderer(sg_info)
             self._initial_scene_operations()
+
+            # Assemble a scene with a task correspondent content
+            scene_assembly.assemble()
 
             # cant set proj paths as file path is empty
             self.log.debug(">>>>> prepare_new proj_name: %s type:%s step:%s entity:%s" % (
