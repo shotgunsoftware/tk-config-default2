@@ -32,17 +32,33 @@ class BeforeAppLaunch(tank.Hook):
     _version_config = None
     log = sgtk.LogManager.get_logger(__name__)
 
+    @staticmethod
+    def _clean_path(path):
+        """ Fix slashes, carriage returns and trailing & and ;
+        :param path:    <string> path to clean
+        :return:        <string> clean path
+        """
+        path = path.replace(r'\r\n', '')
+        path = os.path.normpath(path)
+        if path.endswith('&'):
+            path = path.rstrip('&')
+        if path.endswith(os.pathsep):
+            path = path.rstrip(os.pathsep)
+        return path
+
     def _has_envstr(self, env_paths, srch_str):
         """ searches an environment variable to check if an entry has already been added
         :param env_paths: <string>
         :param srch_str: <string>
         :return:
         """
-        srch_str = os.path.normpath(srch_str)
+        srch_str = self._clean_path(path=srch_str)
         if not isinstance(env_paths, list):
             env_paths = env_paths.split(os.pathsep) if os.pathsep in env_paths else [env_paths]
         for env_path in env_paths:
-            env_path = os.path.normpath(env_path)
+            if env_path == '&':
+                continue
+            env_path = self._clean_path(path=env_path)
             if env_path == srch_str:
                 return True
         return False
@@ -115,7 +131,7 @@ class BeforeAppLaunch(tank.Hook):
                 version = self.version_config.get(package_name)
                 self.log.info('stable %s version set in pipeline config: %s' % (package_name, version))
                 if not os.path.exists(os.path.join(package_path, version)):
-                    self.log.info('requested version has not been released, falling back to latest')
+                    self.log.warning('requested version has not been released, falling back to latest')
                     version = None
             if not version:
                 self.log.info('finding latest version..')
@@ -160,9 +176,9 @@ class BeforeAppLaunch(tank.Hook):
         :param engine_name (str) The name of the engine associated with the
             software about to be launched.
         """
-        self.log.debug(">>>>> Before app launch - %s " % str(engine_name))
+        self.log.info(">>>>> Before app launch - %s " % str(engine_name))
         system = sys.platform
-        # todo we should be clearing the local PATH and PYTHONPATHS here, to create isolated environments
+        # todo we should be clearing the PATH and PYTHONPATHS here, to create isolated environments
 
         # On non-dev machines - set global path
         self.add_var_to_environ(envkey="SSVFX_PIPELINE",
@@ -170,9 +186,11 @@ class BeforeAppLaunch(tank.Hook):
                                 reset=True)
         self.log.debug("Setting GLOBAL Pipeline dir: %s" % (os.environ["SSVFX_PIPELINE"]))
 
-        # all apps use ssvfx_scripts, add that first
+        # all apps use ssvfx_scripts and ssvfx_sg, add that first
         self.add_var_to_environ('PYTHONPATH',
                                 self.get_pipeline_path(package_name='ssvfx_scripts'))
+        self.add_var_to_environ('PYTHONPATH',
+                                self.get_pipeline_path(package_name='ssvfx_sg'))
         # make sure all apps use consistent ocio
         if engine_name != 'tk-nuke':
             self.add_var_to_environ("OCIO",
@@ -244,7 +262,7 @@ class BeforeAppLaunch(tank.Hook):
                 HOUDINI ENGINE                            
             ------------------------------------------------------------------"""
             self.log.debug(">>>>> Before app launch - %s " % str(engine_name))
-            # HOUDINI_BUFFEREDSAVE -> When enabled .hip files are first 
+            # HOUDINI_BUFFEREDSAVE -> When enabled .hip files are first
             # saved to a memory buffer and then written to disk. 
             # This is useful when saving over the network from Windows 2000 machines, 
             # or other places where seeking to the network is expensive.
@@ -257,21 +275,21 @@ class BeforeAppLaunch(tank.Hook):
             self.add_var_to_environ("PYTHONIOENCODING", "UTF-8", reset=True)
             # self.add_var_to_environ("HDF5_DISABLE_VERSION_CHECK", "2", reset=True)
 
-            # We cannot reset the next variables, `cause they olready have
+            # We cannot reset the next variables, `cause they already have
             # certain values set up by Shotgrid and users
-            self.add_var_to_environ("HOUDINI_PATH",
-                '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini;&')
+            # self.add_var_to_environ("HOUDINI_PATH",
+            #     '//10.80.8.252/VFX_Pipeline/Pipeline/Plugins/3D/houdini;&')
 
-            self.add_var_to_environ("HDA", os.path.normpath(os.path.join(
-                                           GLOBAL_PIPELINE_DIR, "/Pipeline/Plugins/3D/houdini/hda")))
-            self.add_var_to_environ('HOUDINI_GALLERY_PATH', '$HDA/Aelib/gallery;&', reset=False)
+            self.add_var_to_environ('HDA',
+                                    self.get_pipeline_path('Plugins/3D/houdini/hda'), reset=True)
+            self.add_var_to_environ('HOUDINI_GALLERY_PATH', '$HDA/Aelib/gallery;&')
             self.add_var_to_environ('HOUDINI_TOOLBAR_PATH',
                                     '$HDA/Aelib/toolbar;'
-                                    '$HDA/hou_bg_render/toolbar;&', reset=False)
+                                    '$HDA/hou_bg_render/toolbar;&')
             self.add_var_to_environ('HOUDINI_SCRIPT_PATH',
                                     '$HDA/Aelib/scripts;'
-                                    '$HDA/hou_bg_render/scripts;&', reset=False)
-            self.add_var_to_environ('HOUDINI_VEX_PATH', '$HDA/Aelib/vex/include;&', reset=False)
+                                    '$HDA/hou_bg_render/scripts;&')
+            self.add_var_to_environ('HOUDINI_VEX_PATH', '$HDA/Aelib/vex/include;&')
             self.add_var_to_environ('HOUDINI_OTLSCAN_PATH',
                                     '$HDA/qLib-dev/otls;'
                                     '$HDA/qLib-dev/otls/base;'
@@ -279,24 +297,26 @@ class BeforeAppLaunch(tank.Hook):
                                     '$HDA/qLib-dev/otls/experimental;'
                                     '$HDA/ts;'
                                     '$HDA/MOPS/otls;'
-                                    '$HDA/Aelib/otls;&', reset=False)
+                                    '$HDA/Aelib/otls;&')
 
             # add root for .ass storage
-            os.environ["HOUDINI_ASS_CACHES_ROOT"] = "//10.80.8.252/projects/caches"
+            self.add_var_to_environ("HOUDINI_ASS_CACHES_ROOT", "//10.80.8.252/projects/caches", reset=True)
             # self.add_var_to_environ("HOUDINI_DSO_PATH", '')
 
             if sys.platform == "win32":
+                # ### Users/username/AppData/Local
+                local_app_data = os.getenv('LOCALAPPDATA')
                 userprofile = os.getenv("USERPROFILE").replace('\\', '/')
-
-                temp_dir = userprofile + "/AppData/Local/houdini/Temp"
+                # temp directory
+                temp_dir = os.path.normpath(os.path.join(local_app_data, "houdini", "Temp"))
                 if not os.path.exists(temp_dir):
                     os.makedirs(temp_dir)
-                self.add_var_to_environ("HOUDINI_TEMP_DIR", os.path.normpath(temp_dir), reset=True)
-
-                backup_dir = userprofile + "/AppData/Local/houdini/Backup/"
+                self.add_var_to_environ("HOUDINI_TEMP_DIR", temp_dir, reset=True)
+                # backup directory
+                backup_dir = os.path.normpath(os.path.join(local_app_data, "houdini", "Backup"))
                 if not os.path.exists(backup_dir):
                     os.makedirs(backup_dir)
-                self.add_var_to_environ("HOUDINI_BACKUP_DIR", os.path.normpath(backup_dir), reset=True)
+                self.add_var_to_environ("HOUDINI_BACKUP_DIR", backup_dir, reset=True)
 
                 # HOU_VERSION = '17.5'
                 # Arnold paths
@@ -307,32 +327,36 @@ class BeforeAppLaunch(tank.Hook):
                 # self.add_var_to_environ('HOUDINI_PATH', htoa_root)
                 # self.add_var_to_environ('PXR_PLUGINPATH_NAME', htoa_root + '/hydra')
 
-                # HOUDINI_USER_PREF_DIR crucila for the houdini.env file
+                # HOUDINI_USER_PREF_DIR crucial for the houdini.env file
                 # houdini_user_pref = userprofile + "\\Documents\\houdini16.5\\"
                 # self.add_var_to_environ("HOUDINI_USER_PREF_DIR", os.path.normpath(houdini_user_pref), reset=True)
 
-                deadline_submitter_path = os.path.normpath(userprofile + "/AppData/Local/Thinkbox/Deadline10/submitters/HoudiniSubmitter;&")
+                # Deadline Menu Script Path and Submission Script Path
+                deadline_submitter_path = os.path.normpath(os.path.join(local_app_data, "Thinkbox", "Deadline10", "submitters", "HoudiniSubmitter;&"))
                 # houdini_path_buff = os.getenv("HOUDINI_PATH").replace('&', '').replace(r'\r\n', '')
                 # houdini_path = houdini_path_buff + deadline_submitter_path
                 # self.log.debug(">>>>> Updated HOUDINI_PATH to include Deadline.\nHOUDINI_PATH %s" % str(houdini_path))
 
-                # Deadline Menu Script Path and Submission Script Path
-                # deadline_clientcmd_path = "\\Documents\\houdini{hou_version}\\python2.7libs;".format(
-                #     hou_version=HOU_VERSION)
-                # Deadline clientcmd path
-                # deadlinecmd = os.path.normpath(
-                #     userprofile + deadline_clientcmd_path)
-                # pypath = os.getenv("PYTHONPATH")
-                # os.environ["PYTHONPATH"] = os.pathsep.join([pypath, deadlinecmd])
+                # HOUDINI PATH
+                houdini_path = os.pathsep.join(['$HOUDINI_PATH',
+                                                self.get_pipeline_path("Plugins/3D/houdini"),
+                                                deadline_submitter_path])
+                self.add_var_to_environ("HOUDINI_PATH", houdini_path)
+
+                # <Repository>\submission\Houdini\Client\CallDeadlineCommand.py is copied to this directory
+                # deadline_clientcmd_path = os.path.normpath(os.path.join(houdini_user_pref, "python2.7libs;&"))
+                # self.add_var_to_environ("PYTHONPATH", deadline_clientcmd_path)
 
                 houdini_menu_path_buff = os.getenv("HOUDINI_MENU_PATH") or "$HOUDINI_MENU_PATH;"
+                if not houdini_menu_path_buff.endswith(os.pathsep):
+                    houdini_menu_path_buff += os.pathsep
                 houdini_menu_path = houdini_menu_path_buff + deadline_submitter_path
                 self.add_var_to_environ("HOUDINI_MENU_PATH", os.path.normpath(houdini_menu_path), reset=True)
 
-                DEADLINE_REPO = "//10.80.8.206/DeadlineRepository10/submission/Houdini/Main"
-                if DEADLINE_REPO not in sys.path:
-                    self.log.debug(">>>>> Adding Deadline Repo sys Path")
-                    sys.path.append(os.path.normpath(DEADLINE_REPO))
+                deadline_repo_path = "//10.80.8.206/DeadlineRepository10/submission/Houdini/Main"
+                if deadline_repo_path not in sys.path:
+                    self.log.info(">>>>> Adding Deadline Repo to sys path")
+                    sys.path.append(os.path.normpath(deadline_repo_path))
         else:
             """---------------------------------------------------------------
                 UNSUPPORTED ENGINE                           
