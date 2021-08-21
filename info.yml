@@ -12,7 +12,7 @@
 
 # More verbose description of this item
 display_name: "Default NFA Config"
-description: "A VFX Example Config and our default configuration."
+description: "ShotGrid configuration used at the Netherlands Filmacademy."
 
 # Required minimum versions for this item to run
 requires_shotgun_version: "v7.2.0"

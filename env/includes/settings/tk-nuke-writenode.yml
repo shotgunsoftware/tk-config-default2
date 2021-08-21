@@ -36,49 +36,69 @@ settings.tk-nuke-writenode.shot:
   template_script_work: nuke_shot_work
   write_nodes:
   - file_type: exr
-    name: exr, lossless, zip, 32 bit
+    name: ShotGridWrite, exr16
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
     publish_template: nuke_shot_render_pub
     render_template: nuke_shot_render_work
     settings:
-      datatype: 32 bit float
-    tank_type: Rendered Image
-    tile_color: []
-  - file_type: exr
-    name: exr, lossless, zip, 16 bit
-    promote_write_knobs: []
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_render_pub
-    render_template: nuke_shot_render_work
-    settings:
+      colorspace: scene_linear
       datatype: 16 bit half
+      channels: rgba
     tank_type: Rendered Image
-    tile_color: []
+    tile_color: [188, 188, 0]
   - file_type: exr
-    name: exr, lossy, dwaa, 16 bit
+    name: ShotGridWrite, exr32
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_render_pub
+    render_template: nuke_shot_render_work
+    settings:
+      colorspace: scene_linear
+      datatype: 32 bit float
+      channels: rgba
+    tank_type: Rendered Image
+    tile_color: [255, 165, 0]
+  - file_type: exr
+    name: ShotGridWrite, dwaa16
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
     publish_template: nuke_shot_dwaa_render_pub
     render_template: nuke_shot_dwaa_render_work
     settings:
+      colorspace: scene_linear
       datatype: 16 bit half
-      compression: dwaa
+      compression: DWAA
+      channels: rgba
     tank_type: Rendered Image
-    tile_color: []
-  - file_type: png
-    name: png, lossy, 8 bit
+    tile_color: [181, 255, 0]
+  - file_type: tiff
+    name: ShotGridWrite, tiff16
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_shot_png_render_pub
-    render_template: nuke_shot_png_render_work
+    publish_template: nuke_shot_tiff_render_pub
+    render_template: nuke_shot_tiff_render_work
     settings:
-      datatype: 8 bit
-      colorspace: Output - sRGB
+      colorspace: matte_paint
+      datatype: 16 bit
+      compression: Deflate
+      channels: rgb
     tank_type: Rendered Image
-    tile_color: []
+    tile_color: [158, 255, 247]
+  - file_type: jpeg
+    name: ShotGridWrite, jpg8
+    promote_write_knobs: []
+    proxy_publish_template:
+    proxy_render_template:
+    publish_template: nuke_shot_jpg_render_pub
+    render_template: nuke_shot_jpg_render_work
+    settings:
+      colorspace: Output - sRGB
+      channels: rgb
+    tank_type: Rendered Image
+    tile_color: [214, 255, 107]
   location: "@apps.tk-nuke-writenode.location"
