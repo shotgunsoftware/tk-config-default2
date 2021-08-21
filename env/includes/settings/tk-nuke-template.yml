@@ -1,0 +1,9 @@
+includes:
+    - ../app_locations.yml
+
+    ################################################################################
+
+
+settings.tk-nuke-template.shot_step:
+  template_nuke_script: nuke_template_file
+  location: "@apps.tk-nuke-template.location"

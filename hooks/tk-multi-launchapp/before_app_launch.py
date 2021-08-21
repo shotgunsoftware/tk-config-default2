@@ -24,16 +24,4 @@ class BeforeAppLaunch(tank.Hook):
     """
 
     def execute(self, app_path, app_args, version, engine_name, **kwargs):
-
-        if engine_name == "tk-nuke":
-            # Get current project directory
-            root_location = self.parent.tank.roots.get('primary')
-
-            # Defining location of Nuke repository
-            repo_location = '00_pipeline/nuke/repository'
-
-            # Combining root_location and repo_location to make the path
-            path = os.path.join(root_location,repo_location)
-
-            # Appending NUKE_PATH environment to existing environment
-            tank.util.append_path_to_env_var("NUKE_PATH", path)
+        pass

@@ -24,6 +24,7 @@ includes:
 - ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-nuke-writenode.yml
+- ./tk-nuke-template.yml
 
 ################################################################################
 # Hiero
@@ -125,6 +126,8 @@ settings.tk-nuke.project:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
+    tk-nuke-template:
+      location: "@apps.tk-nuke-template.location"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-nuke.location"
@@ -154,7 +157,7 @@ settings.tk-nuke.shot:
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
   menu_favourites:
-  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Open... }
   location: "@engines.tk-nuke.location"
 
 # shot_step
@@ -175,6 +178,7 @@ settings.tk-nuke.shot_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.shot_step"
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
+    tk-nuke-template: "@settings.tk-nuke-template.shot_step"
     tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}

@@ -640,3 +640,37 @@ settings.tk-multi-workfiles2.vred.asset_step:
         - [task_assignees, is, "{context.user}"]
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
   location: "@apps.tk-multi-workfiles2.location"
+
+  # -- substancepainter
+
+settings.tk-multi-workfiles2.substancepainter.project:
+  allow_task_creation: true
+  create_new_task_hook: "{self}/create_new_task.py"
+  custom_actions_hook: "{self}/custom_actions.py"
+  entities:
+  - caption: Assets
+    entity_type: Task
+    filters:
+    - [entity, type_is, Asset]
+    hierarchy: [entity.Asset.sg_asset_type, entity, step, content]
+  - caption: Shots
+    entity_type: Task
+    filters:
+    - [entity, type_is, Shot]
+    hierarchy: [entity.Shot.sg_sequence, entity, step, content]
+  file_extensions: []
+  hook_copy_file: "{self}/copy_file.py"
+  hook_filter_publishes: default
+  hook_filter_work_files: default
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-substancepainter.py"
+  launch_at_startup: false
+  my_tasks_extra_display_fields: []
+  saveas_default_name: scene
+  saveas_prefer_version_up: false
+  show_my_tasks: true
+  template_publish:
+  template_publish_area:
+  template_work:
+  template_work_area:
+  version_compare_ignore_fields: []
+  location: "@apps.tk-multi-workfiles2.location"

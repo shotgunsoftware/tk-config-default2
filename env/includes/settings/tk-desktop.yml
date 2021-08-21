@@ -33,6 +33,8 @@ settings.tk-desktop.project:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-devutils:
       location: "@apps.tk-multi-devutils.location"
+    tk-desktop-timecard:
+      location: "@apps.tk-desktop-timecard.location"
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
@@ -41,22 +43,23 @@ settings.tk-desktop.project:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
   groups:
   - matches:
+    - "*Timelog*"
+    name: Filmacademy
+  - matches:
     - "*Fla*"
+    - "*Nuke*"
+    - "*Photoshop*"
+    - "*After*"
+    - "*Effects*"
+    name: 2D
+  - matches:
     - "*Houdini*"
     - "*Mari*"
     - "*Max*"
     - "*Maya*"
     - "*Motion*"
-    - "*Nuke*"
-    - "*Photoshop*"
-    - "*After*"
-    - "*Effects*"
-    name: Creative Tools
+    name: 3D
   - matches:
     - "*Hiero*"
-    name: Editorial Tools
-  - matches:
-    - "*Alias*"
-    - "*VRED*"
-    name: Automotive Tools
+    name: Project Tools
   location: "@engines.tk-desktop.location"
