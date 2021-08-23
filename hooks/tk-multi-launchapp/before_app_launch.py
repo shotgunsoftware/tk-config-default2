@@ -19,8 +19,9 @@ import json
 import tank
 import sgtk
 
-GLOBAL_PIPELINE_DIR = "//10.80.8.252/VFX_Pipeline"
+# GLOBAL_PIPELINE_DIR = "//10.80.8.252/VFX_Pipeline"
 # GLOBAL_PIPELINE_DIR = "C:/Users/rthompson/Scripts/Pipeline"
+GLOBAL_PIPELINE_DIR = "//10.80.8.252/VFX_Pipeline/Pipeline/Configs/pipe_test_config_dima"
 OCIO_CONFIG = '/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/config.ocio'
 
 
