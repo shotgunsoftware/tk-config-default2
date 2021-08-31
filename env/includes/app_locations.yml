@@ -28,6 +28,14 @@ apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
   version: v1.8.0
+
+# breakdown2
+apps.tk-multi-breakdown2.location:
+  type: app_store
+  name: tk-multi-breakdown2
+  version: v0.1.0
+
+# demo
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
@@ -37,9 +45,15 @@ apps.tk-multi-launchapp.location:
   name: tk-multi-launchapp
   version: v0.12.0
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.21.0
+#  type: app_store
+#  name: tk-multi-loader2
+#  version: v1.20.3
+  type: git_branch
+  branch: SHOT-3728-loader-api
+  path: https://github.com/shotgunsoftware/tk-multi-loader2.git
+  version: 791a7
+
+# publish2
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
@@ -128,4 +142,7 @@ apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
   version: v1.3.0
+apps.tk-multi-scenebuilder.location:
+  type: dev
+  path: "{CONFIG_FOLDER}/dev/tk-multi-scenebuilder"
 frameworks: '@frameworks'

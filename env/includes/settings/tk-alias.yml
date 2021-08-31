@@ -44,11 +44,26 @@ settings.tk-alias.asset_step:
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-breakdown: "@settings.tk-multi-breakdown.alias"
+    tk-multi-breakdown2:
+      location: "@apps.tk-multi-breakdown2.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.alias"
     tk-multi-publish2: "@settings.tk-multi-publish2.alias.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.alias.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias.asset_step"
+    tk-multi-scenebuilder:
+      extra_fields: ["entity.Asset.tags"]
+      presets:
+        - title: Default
+          actions:
+            - context:
+                - [ entity.Asset.parents, in, '{context.entity}' ]
+                - [ task.Task.content, is, '{context.task.name}' ]
+                - [ task.Task.step, is, '{context.step}' ]
+              action_mappings:
+                Alias File: import_as_reference
+      actions_hook: "{self}/extra_build_actions.py:{config}/custom/tk-multi-scenebuilder/alias_extra_build_actions.py"
+      location: "@apps.tk-multi-scenebuilder.location"
   reference_template: alias_asset_reference_publish
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
