@@ -144,5 +144,5 @@ apps.tk-mari-projectmanager.location:
   version: v1.3.0
 apps.tk-multi-scenebuilder.location:
   type: dev
-  path: "{CONFIG_FOLDER}/dev/tk-multi-scenebuilder"
+  path: W:\sgtk_dev\tk-multi-scenebuilder
 frameworks: '@frameworks'
