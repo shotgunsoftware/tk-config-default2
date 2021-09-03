@@ -17,6 +17,12 @@ includes:
 ################################################################################
 # location descriptors for apps used in this configuration
 
+apps.tk-desktop-libraryimporter.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-desktop-libraryimporter
+  version: 0.2.1
+
 apps.tk-desktop-timecard.location:
   type: github_release
   organization: nfa-vfxim
@@ -219,6 +225,12 @@ apps.tk-nuke-template.location:
   organization: nfa-vfxim
   repository: tk-nuke-template
   version: 0.1.1
+
+apps.tk-nuke-versiondropper.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-nuke-versiondropper
+  version: 0.1.0
 
 # ---- Maya apps
 apps.tk-maya-playblast.location:
