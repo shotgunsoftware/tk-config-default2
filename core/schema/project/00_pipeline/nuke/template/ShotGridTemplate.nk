@@ -388,6 +388,7 @@ Reformat {
 }
 Crop {
  box {{root.format.x} {root.format.y} {root.format.r} {root.format.t}}
+ crop false
  name Crop1
  label "Matches to project settings"
  xpos 80
@@ -395,7 +396,6 @@ Crop {
 }
 Dot {
  name Dot4
- selected true
  xpos 114
  ypos 5807
 }
