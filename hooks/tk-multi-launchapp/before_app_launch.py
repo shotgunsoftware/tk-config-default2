@@ -25,7 +25,8 @@ if os.getenv('SSVFX_PIPELINE_DEV') and os.path.exists(os.getenv('SSVFX_PIPELINE_
         sg_path = None
 if sg_path is None:
     # FIXME put this in environment PATH, Engineering?
-    sys.path.append(os.path.normpath("//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_sg"))
+    # sys.path.append(os.path.normpath("//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_sg"))
+    sys.path.append(os.path.normpath("//10.80.8.252/VFX_Pipeline/Pipeline/Configs/pipe_test_config_dima/Pipeline/ssvfx_sg"))
 
 from ss_config.hooks.tk_multi_launchapp.before_app_launch import SsBeforeAppLaunch
 
