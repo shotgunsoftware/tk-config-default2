@@ -278,6 +278,9 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         start_frame, end_frame = _find_scene_animation_range()
         if sgtk.platform.current_engine().context.task['name'] not in ('animation',):
             end_frame = start_frame
+        # Add one more frame for motion blur for animation
+        elif sgtk.platform.current_engine().context.task['name'] == 'animation':
+            end_frame += 1
         if start_frame and end_frame:
             alembic_args.append("-fr %d %d" % (start_frame, end_frame))
 
