@@ -41,13 +41,27 @@ class PrePublishHook(HookBaseClass):
                 cmds.delete(ref_node)
 
         message = None
-        selection = cmds.ls(assemblies=True, selection=True, long=True)
-        if not selection:
-            message = 'Please, select a geometry group to export to Alembic.'
-        elif len(selection) > 1:
-            message = 'Please, select only one geometry group to export to Alembic.'
+        # Get groups only
+        groups = [a for a in cmds.ls(assemblies=True) if not cmds.listRelatives(a, shapes=1)]
+        if groups:
+            if sgtk.platform.current_engine().context.entity['type'] == 'Asset':
+                if len(groups) > 1:
+                    # Only one group must be selected
+                    selection = cmds.ls(assemblies=True, selection=True, long=True)
+                    if not selection:
+                        message = 'Please, select a geometry group to publish.'
+                    elif len(selection) > 1:
+                        message = 'Please, select only one geometry group to publish.'
+                else:
+                    cmds.select(groups[0])
+            elif sgtk.platform.current_engine().context.entity['type'] == 'Shot':
+                if not cmds.ls(assemblies=True, selection=True, long=True):
+                    message = 'Please, select a geometry groups to publish.'
+        else:
+            message = 'Please, create a group with your geometry to publish.'
         if message:
-            QMessageBox.warning(None, 'Export to Alembic', message)
+            QMessageBox.warning(None, 'Geometry Publishing', message)
             return False
+
 
         return True
