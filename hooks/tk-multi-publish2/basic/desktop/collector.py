@@ -569,7 +569,7 @@ class BasicSceneCollector(HookBaseClass):
                 }
 
             # A commented print for development 
-            self.logger.warning(">>>>> user_info: %s" % self.user_info)
+            # self.logger.warning(">>>>> user_info: %s" % self.user_info)
 
             if info['single']: 
                 if info.get('full_path'):

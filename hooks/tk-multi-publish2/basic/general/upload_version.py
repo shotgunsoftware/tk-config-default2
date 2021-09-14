@@ -616,17 +616,17 @@ class UploadVersionPlugin(HookBaseClass):
                         "Plugin=Python",
                         "Priority=55",
                         "MachineLimit=1",
-                        "Pool=rthompson_test",
-                        "SecondaryPool=rthompson_test",
+                        "Pool=vfx_processing",
+                        "SecondaryPool=vfx_processing",
                         "ExtraInfo0=%s" % item.properties['project_info']['name'],
                         ]
 
         # submission script switch for dev
         script_file = item.properties['json_properties']['general_settings']['script_file']
-        if "SSVFX_PIPELINE_DEV" in os.environ.keys():
-            dev_root = os.environ["SSVFX_PIPELINE_DEV"]
-            script_location = os.path.join( "Pipeline", "ssvfx_scripts", "thinkbox", "python", "submission_process_submit.py" )
-            script_file = os.path.join( dev_root, script_location )
+        # if "SSVFX_PIPELINE_DEV" in os.environ.keys():
+        #     dev_root = os.environ["SSVFX_PIPELINE_DEV"]
+        #     script_location = os.path.join( "Pipeline", "ssvfx_scripts", "thinkbox", "python", "submission_process_submit.py" )
+        #     script_file = os.path.join( dev_root, script_location )
 
         submission_plugin_info = [
                             "ScriptFile=%s" % script_file,
@@ -646,10 +646,6 @@ class UploadVersionPlugin(HookBaseClass):
         """
 
         item_dict = item.to_dict().get('global_properties')
-
-        self.logger.warning(">>>>> item_dict")
-        for key,value in item_dict.items():
-            self.logger.warning("    >>>>> %s: %s" % (key,value) )
 
         if not item_dict:
             raise Exception( "Could not find global_properties in item dictionary" )
@@ -770,7 +766,6 @@ class UploadVersionPlugin(HookBaseClass):
 
     ### TODO: Add thumbnail dependency to replace Pump job on farm
     # def thumbnail_dependency(self, item):
-
 
     #     dl_result = item.properties.get('dl_result')
     #     if not dl_result:
