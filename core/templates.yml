@@ -144,6 +144,15 @@ keys:
         type: str
         shotgun_entity_type: Task
         shotgun_field_name: content
+    mari.channel:
+        type: str
+        alias: channel
+    mari.layer:
+        type: str
+        alias: layer
+    mari.project_name:
+        type: str
+        alias: name
 
 
     # Maya supports two extension types.
@@ -479,3 +488,12 @@ paths:
         definition: '@asset_context/'
         root_name: 'project_pipeline'   
 
+
+    asset_mari_texture_tif:
+        definition: '@asset_root/publish/mari/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.tif'
+        root_name: 'project_pipe_test_pix'
+
+strings:
+
+    # Define a new Mari project name
+    mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
