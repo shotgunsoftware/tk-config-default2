@@ -1,0 +1,3309 @@
+#! C:/Program Files/Nuke11.3v4/nuke-11.3.4.dll -nx
+#write_info main_write file:"" format:"1920 1080 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1000 1092" fps:"24" colorspace:"Output - Rec.709" datatype:"unknown" transfer:"unknown" views:"main" timecode:"00:00:00:01" colorManagement:"Nuke"
+version 11.3 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1904" h="1001" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1241" stretch="1"/>
+            <splitter orientation="2">
+                <split size="559"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                    <page id="uk.co.thefoundry.scripteditor.1"/>
+                </dock>
+                <split size="394"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //pix_artist/project_pipeline/pipeline2021/admin/processing/nuke_scripts/2021/pump_processing.nk
+ frame 1001
+ first_frame 1000
+ last_frame 1092
+ lock_range true
+ format "4448 3096 0 0 4448 3096 1 respect_AMLFOG_Anamorphic_PA2"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ FrameListMode Global
+ addUserKnob {1 CustomFrameList l customFrameList}
+ CustomFrameList 1040-1144
+ addUserKnob {1 Department l department}
+ Department Comp
+ addUserKnob {1 Pool l pool}
+ Pool vfx_nuke
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ SecondaryPool vfx_nuke
+ addUserKnob {1 Group l group}
+ Group none
+ addUserKnob {1 Priority l priority}
+ Priority 50
+ addUserKnob {1 MachineLimit l machineLimit}
+ MachineLimit 6
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ IsBlacklist False
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ SubmitSuspended False
+ addUserKnob {1 ChunkSize l chunkSize}
+ ChunkSize 5
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ ConcurrentTasks 1
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ LimitConcurrentTasks True
+ addUserKnob {1 Threads l threads}
+ Threads 0
+ addUserKnob {1 SubmitScene l submitScene}
+ SubmitScene True
+ addUserKnob {1 BatchMode l batchMode}
+ BatchMode True
+ addUserKnob {1 ContinueOnError l continueOnError}
+ ContinueOnError False
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ UseNodeRange True
+ addUserKnob {1 UseGpu l useGpu}
+ UseGpu False
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ ChooseGpu 0
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ EnforceRenderOrder False
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ DeadlineRenderMode "Use Scene Settings"
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ PerformanceProfiler False
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ ReloadPlugin False
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0xb4ffaaff
+ label "CAMERA TRANSFORM"
+ note_font_size 50
+ xpos -1127
+ ypos -2839
+ bdwidth 1480
+ bdheight 659
+ z_order -10
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0xff5555ff
+ label "COLOR\n"
+ note_font_size 50
+ xpos -1129
+ ypos -1852
+ bdwidth 1483
+ bdheight 592
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode10
+ tile_color 0x85789aff
+ label SLAP
+ note_font_size 50
+ xpos -2215
+ ypos -4850
+ bdwidth 818
+ bdheight 1129
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode11
+ tile_color 0x71c67100
+ label "CLIENT REF"
+ note_font_size 42
+ xpos -855
+ ypos 567
+ bdwidth 490
+ bdheight 330
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode12
+ tile_color 0xb4aaffff
+ label "CLIENT FILESET\n\n\n\n\n\nIf a Shot is tagged with a Client Fileset entity \nthen the PUMP switch value of this entity is used "
+ note_font_size 50
+ xpos 1115
+ ypos -1033
+ bdwidth 1291
+ bdheight 505
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0xff9455ff
+ label "PLATE COLOR \nCONVERT\n"
+ note_font_size 50
+ xpos -1139
+ ypos -3591
+ bdwidth 1395
+ bdheight 537
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0x6788a8ff
+ label "DELIVERY TRANSFORM\n"
+ note_font_size 50
+ xpos -1130
+ ypos -1034
+ bdwidth 1510
+ bdheight 504
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode7
+ tile_color 0xaaaaaa00
+ label DISTORTION
+ note_font_size 42
+ xpos -2052
+ ypos -4295
+ bookmark false
+ bdwidth 327
+ bdheight 246
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode8
+ tile_color 0xaaaaaa00
+ label "CG RENDER"
+ note_font_size 42
+ xpos -2051
+ ypos -4742
+ bookmark false
+ bdwidth 325
+ bdheight 430
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode9
+ label UHD
+ note_font_size 50
+ xpos -463
+ ypos -950
+ bdwidth 486
+ bdheight 348
+}
+BackdropNode {
+ inputs 0
+ name burnin_text_backdrop
+ tile_color 0x3037ff
+ label "BURN IN"
+ note_font_size 25
+ xpos -859
+ ypos -269
+ bookmark false
+ bdwidth 475
+ bdheight 344
+}
+BackdropNode {
+ inputs 0
+ name read_backdrop
+ tile_color 0x64ef64ff
+ label "READ\n\nBased on sequential files found in rushes folder.\nFile data processed by PUMP."
+ note_font_size 15
+ xpos -1327
+ ypos -5429
+ bookmark false
+ bdwidth 498
+ bdheight 292
+}
+BackdropNode {
+ inputs 0
+ name write_backdrop
+ tile_color 0xa9b200ff
+ label WRITE
+ note_font_size 25
+ xpos -1461
+ ypos 565
+ bookmark false
+ bdwidth 533
+ bdheight 341
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode13
+ label h264
+ note_font_size 50
+ xpos -1102
+ ypos -949
+ bdwidth 433
+ bdheight 359
+ z_order 1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode15
+ tile_color 0x7171c600
+ label "LIN AP1 -> AWG"
+ note_font_size 12
+ xpos -752
+ ypos -3439
+ bdwidth 286
+ bdheight 366
+ z_order 1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode18
+ tile_color 0x7171c600
+ label "AWG -> LIN  AP1"
+ note_font_size 20
+ xpos -1101
+ ypos -3437
+ bdwidth 282
+ bdheight 358
+ z_order 1
+}
+OCIOColorSpace {
+ inputs 0
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACES2065-1"
+ name slap_ocio_color
+ xpos -2185
+ ypos -4519
+}
+Read {
+ inputs 0
+ file_type mov
+ file //pix_artist/project_tareco/tareco/shots/405_064_9020/rushes/mov/405_064_9020_MP01_v01.mov
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 468
+ origlast 468
+ origset true
+ raw true
+ mov32_codec {{0} "AVID DNxHD Codec (AVID - AVdn)"}
+ mov32_pixel_format {{0} "default (YCbCr  8-bit 422 (2vuy))" "RGBA  8-bit" "RGBA  16-bit (b64a)" "YCbCrA 8-bit 444 (v408)" "YCbCrA 8-bit 444 Biased (r408)" "YCbCr  8-bit 422 (2vuy)"}
+ name Read53
+ xpos -495
+ ypos 660
+}
+FrameHold {
+ first_frame 240
+ name FrameHold23
+ xpos -495
+ ypos 781
+}
+Read {
+ inputs 0
+ file_type exr
+ format "2132 1550 0 0 2132 1550 2 "
+ first 1001
+ last 1068
+ origfirst 1001
+ origlast 1068
+ origset true
+ on_error black
+ raw true
+ name slap_read
+ xpos -1948
+ ypos -4665
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[value slap_read.file]"
+ old_expression_markers {{0 -1}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify center
+ yjustify center
+ transforms {{0 2}
+   }
+ cursor_position 22
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name slap_source_burnin
+ tile_color 0xffffffff
+ label "\nExpression to the main_read file value"
+ note_font_color 0xe9ff55ff
+ xpos -1948
+ ypos -4462
+}
+Reformat {
+ format "4448 3096 0 0 4448 3096 1 proj_format_1"
+ name slap_reformat
+ label "Expression to the main_read format value"
+ note_font_color 0xdfff00ff
+ xpos -1948
+ ypos -4383
+}
+NoOp {
+ name slap_undistort
+ tile_color 0xff0000ff
+ note_font_size 20
+ xpos -1948
+ ypos -4161
+}
+Read {
+ inputs 0
+ file_type exr
+ localizationPolicy on
+ format "4448 3096 0 0 4448 3096 1 respect_AMLFOG_Anamorphic_PA2"
+ first 1001
+ last 1092
+ origfirst 1001
+ origlast 1092
+ origset true
+ version 2
+ raw true
+ name main_read
+ xpos -1300
+ ypos -5278
+}
+Dot {
+ name Dot6
+ xpos -1266
+ ypos -5172
+}
+set N2bd7dc00 [stack 0]
+Dot {
+ name Dot25
+ xpos -1787
+ ypos -5172
+}
+Dot {
+ name Dot26
+ xpos -1787
+ ypos -3943
+}
+Merge2 {
+ inputs 2
+ name slap_merge
+ xpos -1948
+ ypos -3947
+}
+Dot {
+ name Dot27
+ xpos -1914
+ ypos -3851
+}
+push $N2bd7dc00
+Switch {
+ inputs 2
+ name slap_switch
+ xpos -1300
+ ypos -3855
+}
+Dot {
+ name Dot15
+ xpos -1266
+ ypos -3567
+}
+set N2bd7c400 [stack 0]
+Dot {
+ name Dot16
+ xpos -1778
+ ypos -3567
+}
+NoOp {
+ name NoOp3
+ label "Use this pipe to bypass all transform from main_read\n"
+ xpos -1812
+ ypos -1718
+}
+Dot {
+ name Dot18
+ xpos -1778
+ ypos -523
+}
+push $N2bd7c400
+Dot {
+ name Dot14
+ xpos -1266
+ ypos -3366
+}
+set N3d4c9400 [stack 0]
+Dot {
+ name Dot41
+ xpos -966
+ ypos -3366
+}
+set N3d4c9000 [stack 0]
+Dot {
+ name Dot29
+ xpos -608
+ ypos -3362
+}
+OCIOFileTransform {
+ file //pix_artist/project_ellington/ellington/luts/OCIO/configs/ssvfx_ocio/luts/ACES_to_ACEScg.spimtx
+ direction inverse
+ working_space linear
+ name OCIOFileTransform4
+ label "ACES AP1 -> ACES AP0\n\[value direction]"
+ xpos -642
+ ypos -3315
+}
+OCIOFileTransform {
+ file //pix_artist/project_ellington/ellington/luts/OCIO/configs/ssvfx_ocio/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
+ direction inverse
+ working_space linear
+ name OCIOFileTransform3
+ label "ACES AP0 -> AWG\n\[value direction]"
+ xpos -642
+ ypos -3250
+}
+Dot {
+ name Dot9
+ xpos -608
+ ypos -3138
+}
+push $N3d4c9000
+OCIOFileTransform {
+ file //pix_artist/project_ellington/ellington/luts/OCIO/configs/ssvfx_ocio/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
+ working_space linear
+ name OCIOFileTransform7
+ label "AWG -> AP0\n\[value direction]"
+ xpos -1000
+ ypos -3324
+}
+OCIOFileTransform {
+ file //pix_artist/project_ellington/ellington/luts/OCIO/configs/ssvfx_ocio/luts/ACES_to_ACEScg.spimtx
+ working_space linear
+ name OCIOFileTransform6
+ label "AP0 -> AP1\n\[value direction]"
+ xpos -1000
+ ypos -3252
+}
+Dot {
+ name Dot42
+ xpos -961
+ ypos -3178
+}
+push $N3d4c9400
+Switch {
+ inputs 3
+ which 1
+ name plate_switch
+ tile_color 0xff9455ff
+ label "If the rushes for the project has been converted \nto a different colorspace to origin\nI.E. Convert to ACESCG. \nThen this pipe is required to revert the colorspace\n to origing before the delivery transform and color is applied"
+ note_font_color 0x1f0022ff
+ xpos -1300
+ ypos -3171
+}
+Dot {
+ name Dot32
+ xpos -1266
+ ypos -2954
+}
+set N3d4e8c00 [stack 0]
+Dot {
+ name Dot31
+ xpos 1452
+ ypos -2972
+}
+NoOp {
+ name NoOp1
+ xpos 1418
+ ypos -828
+}
+Dot {
+ name Dot30
+ xpos 1452
+ ypos -577
+}
+push $N3d4e8c00
+Dot {
+ name Dot22
+ xpos -980
+ ypos -2907
+}
+set N3d509c00 [stack 0]
+Dot {
+ name Dot3
+ xpos -659
+ ypos -2907
+}
+set N3d509800 [stack 0]
+Dot {
+ name Dot34
+ xpos -342
+ ypos -2907
+}
+set N3d509400 [stack 0]
+Dot {
+ name Dot35
+ xpos 4
+ ypos -2907
+}
+Dot {
+ name Dot36
+ xpos 4
+ ypos -2102
+}
+push $N3d509400
+Dot {
+ name Dot38
+ xpos -342
+ ypos -2102
+}
+push $N3d509800
+Dot {
+ name Dot39
+ xpos -659
+ ypos -2102
+}
+push $N3d509c00
+Dot {
+ name Dot40
+ xpos -980
+ ypos -2108
+}
+push $N3d4e8c00
+Switch {
+ inputs 5
+ which 1
+ name camera_switch
+ tile_color 0xb4ffaaff
+ label "Add switch details here if required.\n0: No effect\n1:\n"
+ xpos -1300
+ ypos -2043
+}
+Dot {
+ name Dot13
+ xpos -1266
+ ypos -1929
+}
+set N3d51b800 [stack 0]
+Dot {
+ name Dot21
+ xpos -1044
+ ypos -1929
+}
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace1
+ label "\[value colorspace_in] -> \[value colorspace_out]"
+ xpos -1078
+ ypos -1743
+}
+OCIOColorSpace {
+ in_colorspace "ACES - ACES2065-1"
+ out_colorspace "Output - Rec.709"
+ name main_ocio_color
+ xpos -1078
+ ypos -1655
+ disable true
+}
+OCIOCDLTransform {
+ slope {1 1 1}
+ offset {1 1 1}
+ power {1 1 1}
+ working_space linear
+ name shot_ccc
+ xpos -1078
+ ypos -1578
+ disable true
+}
+OCIOCDLTransform {
+ slope {1.154299974 1.108999968 1.062000036}
+ offset {0.04679999873 0.09589999914 0.09459999949}
+ power {1.526900053 1.526900053 1.526900053}
+ saturation 0.7519999743
+ working_space Gamma1.8
+ read_from_file true
+ file //pix_artist/project_outfit/outfit/luts/601_LDV_1000_PLT01_V0001.ccc
+ version 2
+ cccid 601_LDV_1000_PLT01_V0001
+ name seq_ccc
+ xpos -1078
+ ypos -1509
+ disable true
+}
+Vectorfield {
+ vfield_file //pix_artist/project_ellington/ellington/luts/MASA_ELLINGTON_R709.cube
+ version 129
+ file_type cube
+ name main_lut
+ xpos -1078
+ ypos -1437
+}
+Dot {
+ name Dot11
+ xpos -1044
+ ypos -1230
+}
+push $N3d51b800
+Switch {
+ inputs 2
+ which 1
+ name color_switch
+ tile_color 0xff5555ff
+ label "Pulls switch which value from process json\nto decide which color pipe to run\n"
+ xpos -1300
+ ypos -1245
+}
+Dot {
+ name Dot12
+ xpos -1266
+ ypos -1090
+}
+set N3d553400 [stack 0]
+Dot {
+ name Dot23
+ xpos -948
+ ypos -1090
+}
+set N3d553000 [stack 0]
+Dot {
+ name Dot10
+ xpos -253
+ ypos -1090
+}
+Reformat {
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ resize fit
+ filter Impulse
+ black_outside true
+ name Reformat9
+ xpos -287
+ ypos -825
+}
+Dot {
+ name Dot33
+ xpos -253
+ ypos -717
+}
+push $N3d553000
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ name Reformat2
+ xpos -982
+ ypos -807
+}
+Dot {
+ name Dot37
+ xpos -948
+ ypos -713
+}
+push $N3d553400
+Switch {
+ inputs 4
+ which 1
+ name transform_switch
+ label "This should apply the global transform for the media. \nFor example FHD (1920x1080) for DNxHD"
+ xpos -1300
+ ypos -597
+}
+Switch {
+ inputs 2
+ name bypass_switch
+ xpos -1300
+ ypos -527
+}
+Dot {
+ name Dot20
+ xpos -1266
+ ypos -425
+}
+set N3d56c800 [stack 0]
+Dot {
+ name Dot5
+ xpos -1780
+ ypos -425
+}
+Group {
+ name SSVFX_SLATE
+ label v1.2.2
+ xpos -1814
+ ypos -128
+ addUserKnob {20 Slate}
+ addUserKnob {6 show_bool l "" +STARTLINE +STARTLINE}
+ show_bool true
+ addUserKnob {1 show l "Show Title:" t show -STARTLINE}
+ show show
+ addUserKnob {3 show_line l "" -STARTLINE}
+ show_line -2
+ addUserKnob {26 ""}
+ addUserKnob {6 epBool l "" t "Shows episode" -STARTLINE}
+ addUserKnob {1 ep l Episode -STARTLINE}
+ ep episode
+ addUserKnob {3 ep_line l "" -STARTLINE}
+ ep_line -1
+ addUserKnob {6 shot_bool l "" +STARTLINE +STARTLINE}
+ shot_bool true
+ addUserKnob {1 shot l Shot: t shot -STARTLINE}
+ shot shot
+ addUserKnob {3 shot_line l "" -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {6 version_bool l "" +STARTLINE +STARTLINE}
+ version_bool true
+ addUserKnob {1 version l Version: t version -STARTLINE}
+ version version
+ addUserKnob {3 version_line l "" -STARTLINE}
+ version_line 3
+ addUserKnob {6 vendor_bool l "" +STARTLINE +STARTLINE}
+ vendor_bool true
+ addUserKnob {1 vendor l Vendor: t vendor -STARTLINE}
+ vendor vendor
+ addUserKnob {3 vendor_line l "" -STARTLINE}
+ vendor_line 2
+ addUserKnob {26 ""}
+ addUserKnob {6 frame_bool l "" +STARTLINE +STARTLINE}
+ frame_bool true
+ addUserKnob {3 start_frame l Frames: -STARTLINE}
+ start_frame {{first_frame}}
+ addUserKnob {3 end_frame l "" -STARTLINE}
+ end_frame {{last_frame}}
+ addUserKnob {3 frame_line l Line -STARTLINE}
+ frame_line 4
+ addUserKnob {26 ""}
+ addUserKnob {6 date_bool l "" +STARTLINE +STARTLINE}
+ date_bool true
+ addUserKnob {1 date l Date t date -STARTLINE}
+ date "\[date %m-%d-%Y]"
+ addUserKnob {3 date_line l "" -STARTLINE}
+ date_line 5
+ addUserKnob {6 lens_bool l "" +STARTLINE +STARTLINE}
+ lens_bool true
+ addUserKnob {1 lens l "Lens Info:" -STARTLINE}
+ lens lens
+ addUserKnob {3 lens_line l "" -STARTLINE}
+ lens_line 6
+ addUserKnob {26 ""}
+ addUserKnob {6 artist_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 artist l "Artist Name:" -STARTLINE}
+ artist name
+ addUserKnob {3 artist_line l "" -STARTLINE}
+ artist_line 7
+ addUserKnob {26 ""}
+ addUserKnob {6 c1_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c1_key -STARTLINE}
+ c1_key "Custom 1:"
+ addUserKnob {1 c1_value -STARTLINE}
+ c1_value "Custom 1 V"
+ addUserKnob {3 c1_line l "" -STARTLINE}
+ c1_line 9
+ addUserKnob {26 ""}
+ addUserKnob {6 c2_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c2_key -STARTLINE}
+ c2_key "Custom 2:"
+ addUserKnob {1 c2_value -STARTLINE}
+ c2_value "Custom 2 V"
+ addUserKnob {3 c2_line l "" -STARTLINE}
+ c2_line 10
+ addUserKnob {26 ""}
+ addUserKnob {6 c3_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c3_key -STARTLINE}
+ c3_key "Custom 3:"
+ addUserKnob {1 c3_value -STARTLINE}
+ c3_value "Custom 3 V"
+ addUserKnob {3 c3_line l "" -STARTLINE}
+ c3_line 11
+ addUserKnob {26 ""}
+ addUserKnob {6 c4_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c4_key -STARTLINE}
+ c4_key "Custom 4:"
+ addUserKnob {1 c4_value -STARTLINE}
+ c4_value "Custom 4 V"
+ addUserKnob {3 c4_line l "" -STARTLINE}
+ c4_line 12
+ addUserKnob {26 ""}
+ addUserKnob {6 c5_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c5_key -STARTLINE}
+ c5_key "Custom 5:"
+ addUserKnob {1 c5_value -STARTLINE}
+ c5_value "Custom 5 V"
+ addUserKnob {3 c5_line l "" -STARTLINE}
+ c5_line 13
+ addUserKnob {26 ""}
+ addUserKnob {26 ""}
+ addUserKnob {6 notes_bool l "" +STARTLINE +STARTLINE}
+ notes_bool true
+ addUserKnob {1 notes l Notes -STARTLINE}
+ notes notesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotenotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotessnotesnotesnotesnotesnotesnotesnotesnotesnotes
+ addUserKnob {3 notes_line l "" -STARTLINE}
+ notes_line 14
+ addUserKnob {26 ""}
+ addUserKnob {41 format +INVISIBLE T SLATE.format}
+ addUserKnob {14 input_format l "Input Format" t "Input Format" R 0 100}
+ input_format {{"\[python \{nuke.toNode(nuke.tcl(\"full_name \[topnode] \")).width()\}]"} {"\[python \{nuke.toNode(nuke.tcl(\"full_name \[topnode] \")).height()\}]"}}
+ addUserKnob {7 p_a l "Pixel Aspect Ratio" t "Pixel Aspect Ratio" -STARTLINE R 0 2}
+ p_a {{"\[python \{nuke.toNode(nuke.tcl(\"full_name \[topnode] \")).pixelAspect()\}]"}}
+ addUserKnob {20 formatControls l "Format Controls"}
+ addUserKnob {41 TYPE_POS T CONTROL_NULL.TYPE_POS}
+ addUserKnob {41 TYPE_SCALE T CONTROL_NULL.TYPE_SCALE}
+ addUserKnob {41 TYPE_LEADING T CONTROL_NULL.TYPE_LEADING}
+ addUserKnob {41 TYPE_VALUE_SEP T CONTROL_NULL.TYPE_VALUE_SEP}
+ addUserKnob {41 TYPE_UNIT T CONTROL_NULL.TYPE_UNIT}
+ addUserKnob {41 TEXTBOX T CONTROL_NULL.TEXTBOX}
+ addUserKnob {26 ""}
+ addUserKnob {41 THUMB_POS T CONTROL_NULL.THUMB_POS}
+ addUserKnob {41 THUMB_SCALE T CONTROL_NULL.THUMB_SCALE}
+ addUserKnob {26 ""}
+ addUserKnob {41 LOGO_SCALE -STARTLINE T CONTROL_NULL.LOGO_SCALE}
+ addUserKnob {41 LOGO_POS T CONTROL_NULL.LOGO_POS}
+ addUserKnob {41 BG_LOGO_SCALE T CONTROL_NULL.BG_LOGO_SCALE}
+ addUserKnob {41 BG_LOGO_POS T CONTROL_NULL.BG_LOGO_POS}
+ addUserKnob {26 ""}
+ addUserKnob {41 BW_GRAD_POS T CONTROL_NULL.BW_GRAD_POS}
+ addUserKnob {41 COLOUR_GRAD_POS T CONTROL_NULL.COLOUR_GRAD_POS}
+ addUserKnob {26 ""}
+ addUserKnob {41 GRID l "GRID UNITS" T CONTROL_NULL.GRID}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x888888ff
+  label BW_GRAD
+  note_font_size 42
+  xpos 1166
+  ypos -524
+  bookmark false
+  bdwidth 683
+  bdheight 259
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x888888ff
+  label COLOUR_GRAD
+  note_font_size 42
+  xpos 1168
+  ypos -206
+  bookmark false
+  bdwidth 683
+  bdheight 405
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode3
+  tile_color 0x888888ff
+  label LOGO
+  note_font_size 42
+  xpos 1163
+  ypos 278
+  bookmark false
+  bdwidth 683
+  bdheight 405
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode4
+  tile_color 0x888888ff
+  label THUMB
+  note_font_size 42
+  xpos 4349
+  ypos 2351
+  bookmark false
+  bdwidth 1213
+  bdheight 424
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode5
+  tile_color 0x888888ff
+  label BG_LOGO
+  note_font_size 42
+  xpos 1158
+  ypos -1123
+  bookmark false
+  bdwidth 683
+  bdheight 405
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode6
+  tile_color 0x888888ff
+  label TEXT
+  note_font_size 42
+  xpos 2036
+  ypos 515
+  bookmark false
+  bdwidth 5772
+  bdheight 1640
+ }
+ BackdropNode {
+  inputs 0
+  name RELEASE_NOTES
+  label "Release Notes:\n\n\n\n-----------------------------------\n\nV1.2.1\n\n-Added release notes\n\t\n-Capturing format info from topnode\n-Added Width/Height/Pixel Aspect Ratio Field\n\n-Fixed formatting of text for anamorphic aspect ratio\n\n-Exposed formatting controls outside gizmo\n\n-----------------------------------\n\nV1.2.2\n\n-Added Dynamic Slate Scaling based on input size\n-Added Artist field\n-Added 5 Custom Values\n-Added Visiblity Control\n-Added Line Control"
+  note_font "MS Shell Dlg 2 Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 24
+  xpos -1213
+  ypos -1294
+  bdwidth 763
+  bdheight 787
+ }
+ Input {
+  inputs 0
+  name slate_input
+  label /COMP
+  xpos 5430
+  ypos -1635
+ }
+ Dot {
+  name Dot27
+  xpos 5464
+  ypos -1482
+ }
+set N3d594000 [stack 0]
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  resize height
+  black_outside true
+  name Reformat3
+  xpos 5430
+  ypos 2598
+ }
+ Reformat {
+  type scale
+  scale {{(1/CONTROL_NULL.GRID)*CONTROL_NULL.THUMB_SCALE}}
+  black_outside true
+  name Reformat5
+  xpos 5430
+  ypos 2636
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop5
+  xpos 5430
+  ypos 2660
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.THUMB_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.THUMB_POS.y}}
+  center {480 270}
+  name Transform4
+  xpos 5430
+  ypos 2692
+ }
+ Dot {
+  name Dot5
+  xpos 5464
+  ypos 2727
+ }
+push $N3d594000
+ Shuffle {
+  red black
+  green black
+  blue black
+  alpha black
+  name Shuffle2
+  xpos 875
+  ypos -1476
+ }
+ Reformat {
+  type "to box"
+  box_width {{input.width}}
+  box_height {{input.height}}
+  box_fixed true
+  box_pixel_aspect {{input.pixel_aspect}}
+  name SLATE_REFORMAT
+  xpos 635
+  ypos -1476
+ }
+ Dot {
+  name Dot26
+  xpos 562
+  ypos -1473
+ }
+ Dot {
+  name Dot11
+  xpos 562
+  ypos -1349
+ }
+set N3d5d3000 [stack 0]
+ Dot {
+  name Dot2
+  xpos 1615
+  ypos -1349
+ }
+set N3d5d2c00 [stack 0]
+ Dot {
+  name Dot3
+  xpos 1730
+  ypos -1349
+ }
+ Dot {
+  name Dot6
+  xpos 2493
+  ypos -1349
+ }
+ Dot {
+  name Dot7
+  xpos 2473
+  ypos 731
+ }
+set N3d5d2000 [stack 0]
+ Dot {
+  name Dot16
+  xpos 2604
+  ypos 731
+ }
+set N3d5e9c00 [stack 0]
+ Dot {
+  name Dot24
+  xpos 2714
+  ypos 731
+ }
+set N3d5e9800 [stack 0]
+ Dot {
+  name Dot25
+  xpos 2845
+  ypos 731
+ }
+set N3d5e9400 [stack 0]
+ Dot {
+  name Dot8
+  xpos 2963
+  ypos 731
+ }
+set N3d5e9000 [stack 0]
+ Dot {
+  name Dot17
+  xpos 3120
+  ypos 731
+ }
+set N3d5e8c00 [stack 0]
+ Dot {
+  name Dot9
+  xpos 3274
+  ypos 731
+ }
+set N3d5e8800 [stack 0]
+ Dot {
+  name Dot18
+  xpos 3430
+  ypos 731
+ }
+set N3d5e8400 [stack 0]
+ Dot {
+  name Dot10
+  xpos 3586
+  ypos 731
+ }
+set N3d5e8000 [stack 0]
+ Dot {
+  name Dot19
+  xpos 3742
+  ypos 731
+ }
+set N3d5fdc00 [stack 0]
+ Dot {
+  name Dot12
+  xpos 3898
+  ypos 731
+ }
+set N3d5fd800 [stack 0]
+ Dot {
+  name Dot20
+  xpos 4054
+  ypos 731
+ }
+set N3d5fd400 [stack 0]
+ Dot {
+  name Dot13
+  xpos 4210
+  ypos 731
+ }
+set N3d5fd000 [stack 0]
+ Dot {
+  name Dot21
+  xpos 4366
+  ypos 731
+ }
+set N3d5fcc00 [stack 0]
+ Dot {
+  name Dot14
+  xpos 4522
+  ypos 731
+ }
+set N3d5fc800 [stack 0]
+ Dot {
+  name Dot22
+  xpos 4678
+  ypos 731
+ }
+set N3d5fc400 [stack 0]
+ Dot {
+  name Dot29
+  xpos 4841
+  ypos 732
+ }
+set N3d5fc000 [stack 0]
+ Dot {
+  name Dot30
+  xpos 4997
+  ypos 732
+ }
+set N3d613c00 [stack 0]
+ Dot {
+  name Dot31
+  xpos 5181
+  ypos 730
+ }
+set N3d613800 [stack 0]
+ Dot {
+  name Dot32
+  xpos 5337
+  ypos 730
+ }
+set N3d613400 [stack 0]
+ Dot {
+  name Dot33
+  xpos 5623
+  ypos 732
+ }
+set N3d613000 [stack 0]
+ Dot {
+  name Dot34
+  xpos 5779
+  ypos 732
+ }
+set N3d612c00 [stack 0]
+ Dot {
+  name Dot35
+  xpos 5987
+  ypos 732
+ }
+set N3d612800 [stack 0]
+ Dot {
+  name Dot36
+  xpos 6143
+  ypos 732
+ }
+set N3d612400 [stack 0]
+ Dot {
+  name Dot37
+  xpos 6335
+  ypos 731
+ }
+set N3d612000 [stack 0]
+ Dot {
+  name Dot38
+  xpos 6491
+  ypos 731
+ }
+set N3d62bc00 [stack 0]
+ Dot {
+  name Dot39
+  xpos 6691
+  ypos 732
+ }
+set N3d62b800 [stack 0]
+ Dot {
+  name Dot40
+  xpos 6847
+  ypos 732
+ }
+set N3d62b400 [stack 0]
+ Dot {
+  name Dot15
+  xpos 7358
+  ypos 730
+ }
+set N3d62b000 [stack 0]
+ Dot {
+  name Dot23
+  xpos 7514
+  ypos 730
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.notes]"
+  old_message {{110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115}
+    }
+  old_expression_markers {{0 229}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  transforms {{0 2}
+    }
+  kern_values {{0 0 0 0.004 1 0 2 0 3 0 1 1 2 1 3 1}
+    }
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value8
+  xpos 7480
+  ypos 836
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform21
+  xpos 7480
+  ypos 927
+ }
+push $N3d62b000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Notes:
+  old_message {{78 111 116 101 115 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key8
+  label "\[value message]"
+  xpos 7320
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge22
+  xpos 7324
+  ypos 962
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)-SLATE_REFORMAT.height}}
+  center {960 540}
+  name Transform12
+  xpos 7320
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-notes_line}}
+ }
+ Dot {
+  name Dot28
+  xpos 7354
+  ypos 2064
+ }
+push $N3d62b400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c5_value]"
+  old_message {{67 117 115 116 111 109 32 53 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value15
+  xpos 6813
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform34
+  xpos 6813
+  ypos 929
+ }
+push $N3d62b800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c5_key]"
+  old_message {{67 117 115 116 111 109 32 53 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key15
+  label "\[value message]"
+  xpos 6657
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge31
+  xpos 6657
+  ypos 964
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform35
+  xpos 6657
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c5_line)}}
+ }
+push $N3d62bc00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c4_value]"
+  old_message {{67 117 115 116 111 109 32 52 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value14
+  xpos 6457
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform32
+  xpos 6457
+  ypos 928
+ }
+push $N3d612000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c4_key]"
+  old_message {{67 117 115 116 111 109 32 52 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key14
+  label "\[value message]"
+  xpos 6301
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge30
+  xpos 6301
+  ypos 963
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform33
+  xpos 6301
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c4_line)}}
+ }
+push $N3d612400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c3_value]"
+  old_message {{67 117 115 116 111 109 32 51 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value13
+  xpos 6109
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform30
+  xpos 6109
+  ypos 929
+ }
+push $N3d612800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c3_key]"
+  old_message {{67 117 115 116 111 109 32 51 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key13
+  label "\[value message]"
+  xpos 5953
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge29
+  xpos 5953
+  ypos 964
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform31
+  xpos 5953
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c3_line)}}
+ }
+push $N3d612c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c2_value]"
+  old_message {{67 117 115 116 111 109 32 50 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value12
+  xpos 5745
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform28
+  xpos 5745
+  ypos 929
+ }
+push $N3d613000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c2_key]"
+  old_message {{67 117 115 116 111 109 32 50 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key12
+  label "\[value message]"
+  xpos 5589
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge28
+  xpos 5589
+  ypos 964
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform29
+  xpos 5589
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c2_line)}}
+ }
+push $N3d613400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c1_value]"
+  old_message {{67 117 115 116 111 109 32 49 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 22
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value11
+  xpos 5303
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform26
+  xpos 5303
+  ypos 927
+ }
+push $N3d613800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c1_key]"
+  old_message {{67 117 115 116 111 109 32 49 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key11
+  label "\[value message]"
+  xpos 5147
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge26
+  xpos 5147
+  ypos 962
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform27
+  xpos 5147
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c1_line)}}
+ }
+push $N3d613c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.artist]"
+  old_message {{110 97 109 101}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 20
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value10
+  xpos 4963
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform22
+  xpos 4963
+  ypos 927
+ }
+push $N3d5fc000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Artist
+  old_message {{65 114 116 105 115 116}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 6
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key10
+  label "\[value message]"
+  xpos 4807
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge24
+  xpos 4807
+  ypos 963
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform25
+  xpos 4807
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(artist_line)}}
+ }
+push $N3d5fc400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.lens]"
+  old_message {{108 101 110 115}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value7
+  label "\[value message]"
+  xpos 4644
+  ypos 831
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform20
+  xpos 4644
+  ypos 928
+ }
+push $N3d5fc800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "Lens Info:"
+  old_message {{76 101 110 115 32 73 110 102 111 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 10
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key7
+  label "\[value message]"
+  xpos 4488
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge21
+  xpos 4488
+  ypos 963
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform11
+  xpos 4488
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(lens_line)}}
+ }
+push $N3d5fcc00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.date]"
+  old_message {{48 56 45 49 55 45 50 48 50 49}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value6
+  xpos 4332
+  ypos 831
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform19
+  xpos 4332
+  ypos 910
+ }
+push $N3d5fd000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Date:
+  old_message {{68 97 116 101 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 5
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key6
+  label "\[value message]"
+  xpos 4176
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge20
+  xpos 4176
+  ypos 981
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform10
+  xpos 4176
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(date_line)}}
+ }
+push $N3d5fd400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.start_frame] - \[value parent.last_frame]\n"
+  old_message {{49 48 48 48 32 45 32 49 48 57 50 10}
+    }
+  old_expression_markers {{0 3 7 10}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 55
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value5
+  selected true
+  xpos 4020
+  ypos 830
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform18
+  xpos 4020
+  ypos 928
+ }
+push $N3d5fd800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Frames:
+  old_message {{70 114 97 109 101 115 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 7
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key5
+  label "\[value message]"
+  xpos 3864
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge19
+  xpos 3864
+  ypos 977
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform9
+  xpos 3864
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(frame_line)}}
+ }
+push $N3d5fdc00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value content_vendor_burnin.message]\n"
+  old_message {{83 83 86 70 88 10}
+    }
+  old_expression_markers {{0 4}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 38
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value4
+  xpos 3708
+  ypos 831
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform17
+  xpos 3708
+  ypos 892
+ }
+push $N3d5e8000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Vendor:
+  old_message {{86 101 110 100 111 114 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 7
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key4
+  label "\[value message]"
+  xpos 3552
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge18
+  xpos 3552
+  ypos 974
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform8
+  xpos 3552
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(vendor_line)}}
+ }
+push $N3d5e8400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.version]"
+  old_message {{118 101 114 115 105 111 110}
+    }
+  old_expression_markers {{0 6}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 21
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value3
+  xpos 3396
+  ypos 830
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform16
+  xpos 3396
+  ypos 892
+ }
+push $N3d5e8800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Version:
+  old_message {{86 101 114 115 105 111 110 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 8
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key3
+  label "\[value message]"
+  xpos 3240
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge17
+  xpos 3240
+  ypos 970
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform7
+  xpos 3240
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(version_line)}}
+ }
+push $N3d5e8c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.shot]"
+  old_message {{115 104 111 116}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value2
+  xpos 3084
+  ypos 832
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform15
+  xpos 3084
+  ypos 899
+ }
+push $N3d5e9000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Shot:
+  old_message {{83 104 111 116 58}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 5
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key2
+  label "\[value message]"
+  xpos 2929
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge16
+  xpos 2934
+  ypos 971
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform6
+  xpos 2934
+  ypos 999
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(shot_line)}}
+ }
+push $N3d5e9400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.ep]"
+  old_message {{101 112 105 115 111 100 101}
+    }
+  old_expression_markers {{0 6}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value9
+  xpos 2811
+  ypos 838
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform14
+  xpos 2811
+  ypos 910
+ }
+push $N3d5e9800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Episode:
+  old_message {{69 112 105 115 111 100 101 58}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 8
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key9
+  label "\[value message]"
+  xpos 2680
+  ypos 855
+ }
+ Merge2 {
+  inputs 2
+  name Merge5
+  xpos 2680
+  ypos 948
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform23
+  xpos 2680
+  ypos 981
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(ep_line)}}
+ }
+push $N3d5e9c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.show]"
+  old_message {{115 104 111 119}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value1
+  xpos 2570
+  ypos 847
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform5
+  xpos 2570
+  ypos 910
+ }
+push $N3d5d2000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Show:
+  old_message {{83 104 111 119 58}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656 x3 1} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 5
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key1
+  label "\[value message]"
+  xpos 2439
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge15
+  xpos 2439
+  ypos 927
+ }
+ Multiply {
+  channels rgba
+  value {{show_bool}}
+  name Multiply2
+  label "\[value value]"
+  xpos 2439
+  ypos 969
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform24
+  xpos 2439
+  ypos 1017
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(show_line)}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge23
+  xpos 2439
+  ypos 1053
+  disable {{"parent.epBool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge7
+  xpos 2439
+  ypos 1143
+  disable {{"shot_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge8
+  xpos 2439
+  ypos 1287
+  disable {{"version_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge9
+  xpos 2439
+  ypos 1359
+  disable {{"vendor_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge10
+  xpos 2439
+  ypos 1449
+  disable {{"frame_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge11
+  xpos 2439
+  ypos 1521
+  disable {{"date_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge12
+  xpos 2433
+  ypos 1593
+  disable {{"lens_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge25
+  xpos 2433
+  ypos 1647
+  disable {{"artist_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge27
+  xpos 2437
+  ypos 1701
+  disable {{"c1_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge32
+  xpos 2437
+  ypos 1773
+  disable {{"c2_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge33
+  xpos 2437
+  ypos 1845
+  disable {{"c3_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge34
+  xpos 2437
+  ypos 1917
+  disable {{"c4_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge35
+  xpos 2437
+  ypos 1989
+  disable {{"c5_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge13
+  xpos 2437
+  ypos 2043
+  disable {{"notes_bool == 1 ? 0 : 1"}}
+ }
+ Crop {
+  box {0 0 {SLATE_REFORMAT.width} {SLATE_REFORMAT.height}}
+  name Crop6
+  xpos 2437
+  ypos 2079
+ }
+ Read {
+  inputs 0
+  file_type png
+  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  localizationPolicy off
+  origset true
+  premultiplied true
+  name logo_read_2
+  xpos 1716
+  ypos 353
+ }
+ Crop {
+  box {2927.02002 190.0200043 3617.100098 379.0599976}
+  reformat true
+  crop false
+  name Crop3
+  xpos 1716
+  ypos 495
+ }
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  center false
+  black_outside true
+  name Reformat9
+  xpos 1716
+  ypos 549
+ }
+ Transform {
+  translate {{(input.width/CONTROL_NULL.GRID)*(CONTROL_NULL.LOGO_POS.x)} {(input.width/CONTROL_NULL.GRID)*(CONTROL_NULL.LOGO_POS.y)}}
+  scale {{CONTROL_NULL.LOGO_SCALE/CONTROL_NULL.GRID}}
+  name Transform3
+  xpos 1716
+  ypos 590
+ }
+ ColorBars {
+  inputs 0
+  format "4096 2160 0 0 4096 2160 1 4K_DCP"
+  PAL true
+  name ColorBarsTester
+  xpos 1696
+  ypos -177
+ }
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  resize fill
+  center false
+  name Reformat7
+  xpos 1696
+  ypos -111
+ }
+ Reformat {
+  type "to box"
+  box_width {{input.width}}
+  box_height {{(input.height)/CONTROL_NULL.GRID}}
+  box_fixed true
+  black_outside true
+  name Reformat2
+  xpos 1696
+  ypos -70
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop2
+  xpos 1696
+  ypos -34
+ }
+ Transform {
+  translate {{curve} {((SLATE_REFORMAT.height)/CONTROL_NULL.GRID)*CONTROL_NULL.COLOUR_GRAD_POS.y}}
+  center {960 33.5}
+  name Transform2
+  xpos 1696
+  ypos 117
+ }
+ Dot {
+  name Dot4
+  xpos 1730
+  ypos 162
+ }
+push $N3d5d2c00
+ Shuffle1 {
+  red black
+  green black
+  blue black
+  alpha white
+  name Shuffle1
+  xpos 1581
+  ypos -482
+ }
+ Expression {
+  temp_name0 v
+  temp_expr0 int(x/width*11)/10
+  temp_name1 size
+  temp_expr1 "height  / 16"
+  expr0 y<height-size?v:r
+  expr1 y<height-size?v:g
+  expr2 y<height-size?v:b
+  expr3 1
+  name bw_chips
+  xpos 1581
+  ypos -402
+ }
+ Reformat {
+  type "to box"
+  box_width {{input.width}}
+  box_height {{(input.height)/CONTROL_NULL.GRID}}
+  box_fixed true
+  black_outside true
+  name Reformat1
+  xpos 1581
+  ypos -351
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop1
+  xpos 1581
+  ypos -324
+ }
+ Transform {
+  translate {{curve} {"((\[topnode].height)/CONTROL_NULL.GRID)*CONTROL_NULL.BW_GRAD_POS.y"}}
+  center {960 33.5}
+  name Transform1
+  xpos 1581
+  ypos -300
+ }
+ Read {
+  inputs 0
+  file_type png
+  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+  localizationPolicy off
+  format "891 891 0 0 891 891 1 "
+  origset true
+  version 2
+  premultiplied true
+  name logo_read_3
+  xpos 1456
+  ypos -1083
+ }
+ Posterize {
+  Colors 1.2
+  name Posterize2
+  xpos 1456
+  ypos -987
+  disable true
+ }
+ Crop {
+  box {198.1999969 253.6000061 681.4000244 847.2000122}
+  reformat true
+  crop false
+  name Crop4
+  xpos 1456
+  ypos -957
+ }
+ Clamp {
+  name Clamp1
+  xpos 1456
+  ypos -879
+ }
+ Multiply {
+  value 0.005
+  name Multiply1
+  xpos 1456
+  ypos -843
+ }
+ Transform {
+  scale {{CONTROL_NULL.BG_LOGO_SCALE}}
+  center {0 {input.height}}
+  name Transform13
+  xpos 1456
+  ypos -801
+ }
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  resize height
+  center false
+  name Reformat6
+  xpos 1456
+  ypos -765
+ }
+push $N3d5d3000
+ Grid {
+  number {{CONTROL_NULL.GRID}}
+  color 0.034
+  name Grid1
+  xpos 528
+  ypos -1233
+  disable true
+ }
+ Merge2 {
+  inputs 2
+  name Merge14
+  xpos 528
+  ypos -765
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge1
+  xpos 528
+  ypos -300
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge2
+  xpos 528
+  ypos 159
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge3
+  xpos 528
+  ypos 590
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge6
+  xpos 528
+  ypos 2079
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge4
+  xpos 528
+  ypos 2724
+ }
+ Dot {
+  name Dot1
+  xpos 562
+  ypos 2796
+ }
+ Reformat {
+  type "to box"
+  box_width {{parent.input_format.w}}
+  box_height {{(parent.input_format.h)}}
+  box_fixed true
+  box_pixel_aspect {{(parent.p_a)}}
+  resize height
+  name Reformat8
+  xpos 528
+  ypos 2872
+  disable true
+ }
+ Output {
+  name Output1
+  xpos 528
+  ypos 2925
+ }
+ Read {
+  inputs 0
+  file_type png
+  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  localizationPolicy off
+  origset true
+  premultiplied true
+  in_colorspace linear
+  out_colorspace linear
+  name logo_read_1
+  xpos 1441
+  ypos -1227
+ }
+ NoOp {
+  inputs 0
+  name CONTROL_NULL
+  xpos 353
+  ypos -1233
+  addUserKnob {20 User}
+  addUserKnob {12 TYPE_POS t TYPE_POS}
+  TYPE_POS {1.5 24}
+  addUserKnob {16 TYPE_SCALE t TYPE_SCALE}
+  TYPE_SCALE 0.6
+  addUserKnob {16 TYPE_LEADING t TYPE_LEADING}
+  TYPE_LEADING 1
+  addUserKnob {16 TYPE_VALUE_SEP t TYPE_VALUE_SEP}
+  TYPE_VALUE_SEP 4
+  addUserKnob {12 TYPE_UNIT t TYPE_UNIT}
+  TYPE_UNIT {{(SLATE_REFORMAT.width/GRID)} {(SLATE_REFORMAT.height/GRID)*TYPE_LEADING}}
+  addUserKnob {16 TEXTBOX}
+  TEXTBOX 11
+  addUserKnob {26 ""}
+  addUserKnob {12 THUMB_POS t THUMB_POS}
+  THUMB_POS {17 13}
+  addUserKnob {3 THUMB_SCALE t THUMB_SCALE}
+  THUMB_SCALE 14
+  addUserKnob {26 ""}
+  addUserKnob {3 LOGO_SCALE t LOGO_SCALE}
+  LOGO_SCALE 3
+  addUserKnob {12 LOGO_POS t LOGO_POS}
+  LOGO_POS {27 0.5}
+  addUserKnob {16 BG_LOGO_SCALE t BG_LOGO_SCALE}
+  BG_LOGO_SCALE 2
+  addUserKnob {12 BG_LOGO_POS t BG_LOGO_POS}
+  addUserKnob {26 ""}
+  addUserKnob {12 BW_GRAD_POS}
+  BW_GRAD_POS {0 5}
+  addUserKnob {12 COLOUR_GRAD_POS t COLOUR_GRAD_POS}
+  COLOUR_GRAD_POS {0 4}
+  addUserKnob {26 ""}
+  addUserKnob {3 GRID l "GRID UNITS"}
+  GRID 32
+ }
+end_group
+Dot {
+ name Dot1
+ xpos -1780
+ ypos 335
+}
+push $N3d56c800
+Dot {
+ name Dot8
+ xpos -631
+ ypos -425
+}
+Text2 {
+ font_size_toolbar 70
+ font_width_toolbar 100
+ font_height_toolbar 100
+ box {10 {height-75 x1000 1040} {width-box.x x1000 1910} {height-1 x1000 1065}}
+ xjustify center
+ transforms {{0 2}
+   }
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ font_size 70
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_project_burnin
+ xpos -615
+ ypos -243
+ disable true
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "  /\n"
+ old_message {{32 32 47 10}
+   }
+ box {60 {height-75} {width-box.x} {height-1}}
+ transforms {{0 2}
+   }
+ cursor_position 2
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_vendor_burnin_slash
+ xpos -615
+ ypos -199
+ disable true
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message SVX
+ old_message {{83 86 88}
+   }
+ box {10 {height-75} {width-box.x} {height-1}}
+ transforms {{0 2}
+   }
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_vendor_burnin1
+ xpos -741
+ ypos -199
+ disable true
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[value SSVFX_SLATE.vendor]"
+ old_message {{118 101 110 100 111 114}
+   }
+ old_expression_markers {{0 5}
+   }
+ box {10 {height-100 x1001 1005} {width-box.x x1001 1910} {height-3 x1001 1081}}
+ transforms {{0 2}
+   }
+ cursor_position 26
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_version_burnin
+ xpos -844
+ ypos -199
+}
+Dot {
+ name Dot7
+ xpos -810
+ ypos -158
+}
+Dot {
+ name Dot17
+ xpos -444
+ ypos -158
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[clock format \[clock seconds] -format %d/%m/%Y]"
+ old_message {{49 56 47 48 56 47 50 48 50 49}
+   }
+ old_expression_markers {{0 9}
+   }
+ box {10 {height-100} {width-box.x} {height-3}}
+ xjustify right
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 0 70 1 70 2 70 3 70 4 70 5 70 6 70 7 70 8 70 9 70}
+   }
+ cursor_position 47
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_date_burnin
+ xpos -478
+ ypos -207
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[value SSVFX_SLATE.version]"
+ old_message {{118 101 114 115 105 111 110}
+   }
+ old_expression_markers {{0 6}
+   }
+ box {10 0 {width/2.5-box.x} 100}
+ yjustify bottom
+ transforms {{0 2}
+   }
+ cursor_position 27
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_notes_burnin
+ xpos -851
+ ypos 5
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message SSVFX
+ old_message {{83 83 86 70 88}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify center
+ yjustify bottom
+ transforms {{0 2}
+   }
+ cursor_position 5
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_vendor_burnin
+ xpos -734
+ ypos 5
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\n"
+ old_message {{10}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify center
+ yjustify bottom
+ transforms {{0 2}
+   }
+ cursor_position 1
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_lensinfo_burnin
+ xpos -618
+ ypos 5
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[format %04d \[expr \[value frame]]] of \[format %04d \[expr \[value last_frame]]] "
+ old_message {{49 48 48 49 32 111 102 32 49 48 57 50 32}
+   }
+ old_expression_markers {{0 3 8 11}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify right
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_framecounter_burnin
+ xpos -477
+ ypos 5
+}
+Dot {
+ name Dot19
+ xpos -443
+ ypos 177
+}
+push $N3d56c800
+Switch {
+ inputs 2
+ which 1
+ name burnin_switch
+ xpos -1304
+ ypos 171
+}
+Switch {
+ inputs 2
+ which {{"(frame == root.first_frame || frame == root.first_frame) ? 1 : 0"}}
+ name slate_switch
+ xpos -1304
+ ypos 331
+}
+AddTimeCode {
+ startcode 00:00:00:00
+ metafps false
+ frame {{"\[ expr \[frames \{first\}] ]"}}
+ useFrame true
+ name main_timecode
+ label "\nCalculates timecode based on 0:00:00:00 starting at frame 0000. \nSo for clips starting at frame 1000, timecode would be 00:00:41:16\n\nPlease embed \"frame accurate\" timecode for both editorial and vfx quicktimes."
+ xpos -1304
+ ypos 635
+}
+set N3dbf5800 [stack 0]
+FrameHold {
+ first_frame 1073
+ name FrameHold2
+ xpos -798
+ ypos 661
+}
+Read {
+ inputs 0
+ file_type mov
+ file //pix_artist/project_tareco/tareco/admin/incoming/turnover/processing/20210204/SVX_REF_210203_01/SVX_REF_210203_01/405_064_9020_MP01_v01_ShotRef_SVX_210203.mov
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 468
+ origlast 468
+ origset true
+ raw true
+ decoder mov32
+ mov32_codec {{0} "AVID DNxHD Codec (AVID - AVdn)"}
+ mov32_pixel_format {{0} "default (YCbCr  8-bit 422 (2vuy))" "RGBA  8-bit" "RGBA  16-bit (b64a)" "YCbCrA 8-bit 444 (v408)" "YCbCrA 8-bit 444 Biased (r408)" "YCbCr  8-bit 422 (2vuy)"}
+ name Read48
+ xpos -639
+ ypos 656
+}
+FrameHold {
+ first_frame 81
+ name FrameHold22
+ xpos -639
+ ypos 783
+}
+Merge2 {
+ inputs 2
+ operation difference
+ name Merge1
+ xpos -798
+ ypos 789
+}
+NoOp {
+ inputs 0
+ name content_textscalar_burnin
+ xpos -567
+ ypos -90
+ addUserKnob {20 User}
+ addUserKnob {3 content_textscalar_burnin l "Global Text scalar"}
+ content_textscalar_burnin 18
+}
+push $N3dbf5800
+Write {
+ colorspace "Output - Rec.709"
+ raw true
+ file_type mov
+ meta_codec AVdn
+ mov32_codec AVdn
+ mov32_keyframerate 0
+ mov32_settings 000000000000000000000000000001d27365616e000000010000000100000000000001be76696465000000010000000f00000000000000227370746c0000000100000000000000004156646e000000000020000003ff000000207470726c000000010000000000000000000000000017f9db00000000000000246472617400000001000000000000000000000000000000530000010000000100000000156d70736f00000001000000000000000000000000186d66726100000001000000000000000000000000000000187073667200000001000000000000000000000000000000156266726100000001000000000000000000000000166d70657300000001000000000000000000000000002868617264000000010000000000000000000000000000000000000000000000000000000000000016656e647300000001000000000000000000000000001663666c67000000010000000000000000004400000018636d66720000000100000000000000004156494400000014636c757400000001000000000000000000000038636465630000000100000000000000004156494400000001000000020000000100000010000000030000000000000000000000000000001c766572730000000100000000000000000003001c00010000
+ mov32_write_timecode true
+ mov32_advanced 1
+ mov32_pixel_format {{0} "default (YCbCr  8-bit 422 (2vuy))" "RGBA  8-bit" "RGBA  16-bit (b64a)" "YCbCrA 8-bit 444 Biased (r408)" "YCbCr  8-bit 422 (2vuy)"}
+ mov64_codec AVdn
+ mov64_dnxhd_codec_profile "DNxHD 422 8-bit 145Mbit"
+ mov64_write_timecode true
+ mov64_advanced 1
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 40000000
+ mov64_quality_min 2
+ mov64_quality_max 31
+ mov64_gop_size 12
+ mov64_b_frames 0
+ create_directories true
+ checkHashOnRead false
+ version 35
+ name main_write
+ xpos -1304
+ ypos 771
+ postage_stamp true
+}
+Viewer {
+ frame_range 1000-1092
+ name Viewer1
+ xpos -1304
+ ypos 857
+}

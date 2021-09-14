@@ -52,6 +52,13 @@ from shotgun import shotgun_utilities
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
+if "win" in sys.platform:
+    system_path_variable = "windows_path"
+    system_root_variable = "local_path_windows"
+elif sys.platform == "linux":
+    system_path_variable = "linux_path"
+    system_root_variable = "local_path_linux"
+
 class BasicSceneCollector(HookBaseClass):
     """
     A basic collector that handles files and general objects.
@@ -142,7 +149,7 @@ class BasicSceneCollector(HookBaseClass):
                 },
                 "Motion Builder FBX": {
                     "extensions": ["fbx"],
-                    "icon": self._get_icon_path("motionbuilder.png"),
+                    "icon": self._get_icon_path("fbx.png"),
                     "item_type": "file.motionbuilder",
                 },
                 "Nuke Script": {
@@ -248,7 +255,7 @@ class BasicSceneCollector(HookBaseClass):
         software_fields = [
         'code',
         'products',
-        'windows_path',
+        system_path_variable,
         'version_names',
         'sg_pipeline_tools'
         ]
@@ -366,24 +373,14 @@ class BasicSceneCollector(HookBaseClass):
         local_storage = publisher.shotgun.find("LocalStorage",
             [],
             ["code",
-            "windows_path",
+            system_path_variable,
             "linux_path",
             "mac_path"])
-        
-        if "win" in sys.platform:
-            path_root = "windows_path"
-            sg_root = "local_path_windows"
-        elif sys.platform == "linux":
-            path_root = "linux_path"
-            sg_root = "local_path_linux"
 
         proj_sg_root = proj_info.get('sg_root')
-        if not proj_sg_root:
-            local_storage_match = None
-        else:
-            local_storage_match = next((ls for ls in local_storage if ls[path_root] in proj_sg_root.get(sg_root)), None)
-        
-        proj_info['local_storage'] = local_storage_match
+        proj_info['local_storage'] = None
+        if proj_sg_root:
+            proj_info['local_storage'] = next((ls for ls in local_storage if ls[system_path_variable] in proj_sg_root.get(system_root_variable)), None)
 
         if proj_info['sg_3d_settings']:
             sg_3d_settings = publisher.shotgun.find("CustomNonProjectEntity03",
@@ -572,20 +569,20 @@ class BasicSceneCollector(HookBaseClass):
                 }
 
             # A commented print for development 
-            # self.logger.warning(">>>>> fields: %s" % properties['fields'])
+            self.logger.warning(">>>>> user_info: %s" % self.user_info)
 
             if info['single']: 
                 if info.get('full_path'):
                     path = info.get('full_path')
                 properties['sequence_paths'] = [path]
-                self._collect_file(parent_item, path, info, render_folders, properties)
+                self._collect_file(parent_item, path, properties)
             else:
                 if info.get('directory'):
                     path = info.get('directory')
                 properties['sequence_paths'] = [ os.path.join( os.path.normpath(path), i ) for i in os.listdir( path ) ]
-                self._collect_folder(parent_item, path, info, render_folders, properties)
+                self._collect_folder(parent_item, path, properties)
 
-    def _collect_file(self, parent_item, path, path_info, render_folders, properties, frame_sequence=False):
+    def _collect_file(self, parent_item, path, properties, frame_sequence=False):
         """
         Process the supplied file path.
 
@@ -639,7 +636,7 @@ class BasicSceneCollector(HookBaseClass):
 
         return file_item
 
-    def _collect_folder(self, parent_item, folder, path_info, render_folders, properties):
+    def _collect_folder(self, parent_item, folder, properties):
         """
         Process the supplied folder path.
 
@@ -687,9 +684,7 @@ class BasicSceneCollector(HookBaseClass):
             file_item.set_icon_from_path(icon_path)
 
             # use the first frame of the seq as the thumbnail
-            thumbnail_path = file_item.set_thumbnail_from_path(first_frame_file)
-            if not thumbnail_path:
-                file_item.properties['thumbnail_path'] = first_frame_file
+            file_item.properties['thumbnail_path'] = file_item.set_thumbnail_from_path(first_frame_file) or first_frame_file
 
             # disable thumbnail creation since we get it for free
             file_item.thumbnail_enabled = False
@@ -939,7 +934,7 @@ class BasicSceneCollector(HookBaseClass):
         item.properties['json_properties'] = self._json_properties( item )
         
         # A commented print for development 
-        # self.logger.warning(">>>>> version_data: %s" % item.properties['version_data'])
+        # self.logger.warning( ">>>>> thumbnail?: %s" % item.properties['thumbnail_path'] )
 
         return item
 
@@ -1046,7 +1041,7 @@ class BasicSceneCollector(HookBaseClass):
         :param project_id: ID number of the current project
         :param entity_id: ID number of the current entity (Shot/Asset)
         '''
-        if not (project_id and entity_id):
+        if not project_id or entity_id:
             self.logger.warning("Could not find Main Plate.")
             return
 
@@ -1132,17 +1127,18 @@ class BasicSceneCollector(HookBaseClass):
         info_json_template = publisher.engine.get_template_by_name('info_json_file')  
         review_process_json_template = publisher.engine.get_template_by_name("general_review_process_json")
         alembic_json_template = publisher.engine.get_template_by_name("alembic_review_process_json")
+        alembic_output_template = publisher.engine.get_template_by_name('alembic_output_json')  
         workfiles_template = None
 
         # find templates for the correct entity type
-        if item['type'] in [ 'shot', 'Shot', 'SHOT' ]:
+        if item['type'].lower() == "shot":
             temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
             info_json_template = publisher.engine.get_template_by_name('info_json_file')
             qt_template = publisher.engine.get_template_by_name('resolve_shot_review_mov')
             qt_template_secondary =  publisher.engine.get_template_by_name('resolve_shot_review_mov_secondary')
             workfiles_template =  publisher.engine.get_template_by_name('nuke_shot_work')
 
-        elif item['type'] in [ 'asset', 'Asset', 'ASSET' ]:
+        elif item['type'].lower() == "asset":
             temp_root_template = publisher.engine.get_template_by_name("temp_asset_render_root")
             info_json_template = publisher.engine.get_template_by_name('asset_json_file')
             qt_template = publisher.engine.get_template_by_name('resolve_asset_review_mov')
@@ -1158,6 +1154,7 @@ class BasicSceneCollector(HookBaseClass):
                             'qt_template_secondary': qt_template_secondary,
                             'workfiles_template': workfiles_template,
                             'alembic_template': alembic_json_template,
+                            'alembic_output_template': alembic_output_template,
                             }
 
         return extra_templates
@@ -1181,12 +1178,15 @@ class BasicSceneCollector(HookBaseClass):
         review_process_json = templates['review_process_json_template'].apply_fields( fields )
         alembic_json_template = templates['alembic_template'].apply_fields( fields )
 
+        job_file_dir = os.path.join( temp_root, "deadline", "submission" )
+
         template_paths = {
                             'temp_root': temp_root,
                             'nuke_review_file': nuke_review_file,
                             'review_process_json': review_process_json,
                             'workfiles_directory': workfiles_directory,
                             'alembic_template': alembic_json_template,
+                            'job_file_dir': job_file_dir,
                             }
         
         for i in template_paths:
@@ -1288,9 +1288,15 @@ class BasicSceneCollector(HookBaseClass):
         templates = item.properties.get('extra_templates')
         codecs = item.properties.get('codec_info')
 
+        # Render json
         info_json_file = templates['info_json_template'].apply_fields( item.properties.get('resolve_fields') )
         info_json_file = re.sub("(\s+)", "-", info_json_file)
         json_properties['general_settings']['info_json_file'] = info_json_file
+
+        # Alembic json
+        alembic_json_file = templates['alembic_output_template'].apply_fields( item.properties.get('resolve_fields') )
+        alembic_json_file = re.sub("(\s+)", "-", alembic_json_file)
+        json_properties['general_settings']['alembic_json_file'] = alembic_json_file
 
         # set primary or secondary
         process_type = item.properties['step'].get('sg_review_process_type').lower()     
@@ -1299,25 +1305,27 @@ class BasicSceneCollector(HookBaseClass):
         process_jobs = process_dict['processes']
 
         ### dev print ###
-        # self.logger.warning(">>>>> process_type: %s" % process_type)
+        # self.logger.warning(">>>>> info_json_file: %s" % json_properties['general_settings']['info_json_file'])
         
         # collect values and append them to the appropriate settings dictionary
-        for i in process_jobs:
-            key = str(i)
-            current_process = process_jobs[key]
+        for job in process_jobs:
+            job_name = str(job)
+            current_process = process_jobs[job_name]
             process_settings = current_process.get('process_settings') or {}
             nuke_settings = current_process.get('nuke_settings') or {}
+            deadline_settings = current_process.get('deadline_settings') or {}
             
             resolve_fields = item.properties.get('resolve_fields').copy()
-            resolve_fields.update({'name': key})
+            resolve_fields.update({'name': job_name})
 
-            if process_settings.get('plugin_in_script_alt') and item.properties['project_info'].get('sg_root'):
-                review_script_path = os.path.join( item.properties['project_info']['sg_root']['local_path_windows'], 
-                                                process_settings['plugin_in_script_alt'] )
+            if process_settings.get('plugin_in_script') and item.properties['project_info'].get('sg_root'):
+                review_script_path = os.path.join( item.properties['project_info']['sg_root'][system_root_variable], 
+                                                process_settings['plugin_in_script'] )
                 review_script_path = os.path.normpath( review_script_path )
             else:
                 review_script_path = item.properties['template_paths'].get('nuke_review_file')
-
+                
+            self.logger.info( "%s using nuke template: %s" % (job_name, review_script_path) )
 
             process_codec = nuke_settings.get('quicktime_codec').get('id')
             if not process_codec and process_codec != 0:
@@ -1329,20 +1337,20 @@ class BasicSceneCollector(HookBaseClass):
             
             output_root = os.path.split(review_output)[0]
             output_main = os.path.split(review_output)[1]
-            output_ext = os.path.splitext(review_output)[1]
+            output_ext = process_settings.get('output_file_ext') or os.path.splitext(review_output)[1]
             
             # set temp_root here because it's used in a lot of places
             temp_root = item.properties['template_paths'].get('temp_root')
 
             dl_root = os.path.join( temp_root, "deadline" )
             nuke_out_root = os.path.join( dl_root, "%s_%s.nk" )
-            nuke_out_script = nuke_out_root % ( re.sub("(\s+)", "-", item.properties.get('version_data')['code']), key )
+            nuke_out_script = nuke_out_root % ( re.sub("(\s+)", "-", item.properties.get('version_data')['code']), job_name )
 
             # check for .job file root and create it if missing
-            dirname = os.path.join( temp_root, "deadline", key)
+            dirname = os.path.join( temp_root, "deadline", job_name)
 
             version_name = item.properties['version_data'].get('code')
-            basename = "%s_%s" % (version_name, key)
+            basename = "%s_%s" % (version_name, job_name)
             variable_path = os.path.join( dirname, basename )
 
             job_info_file = "%s_job_info.job" % variable_path
@@ -1370,7 +1378,7 @@ class BasicSceneCollector(HookBaseClass):
 
             # deadline_settings from item info
             batch_name =  (item.properties['version_data']['code'] + "_submit") or ""
-            job_name = ("%s_%s" % (item.properties['version_data']['code'], key)) or ""
+            job_name = ("%s_%s" % (item.properties['version_data']['code'], job_name)) or ""
             content_output_file = output_main or ""
             content_output_file_total = output_main or ""
             content_output_file_ext = output_ext or ""
@@ -1380,7 +1388,7 @@ class BasicSceneCollector(HookBaseClass):
 
             slate_frames = item.properties['project_info'].get('sg_delivery_slate_count')
             if not slate_frames:
-                slate_frames = 1
+                slate_frames = 0
 
             head_in = 1
             tail_out = 1
@@ -1390,30 +1398,16 @@ class BasicSceneCollector(HookBaseClass):
             
             slate_range = "%s-%s" % ( ( head_in - slate_frames ), tail_out )
 
-            # deadline_settings from item json
-            deadline_values = json_properties['deadline_settings']
-
-            primary_pool = deadline_values.get('primary_pool')
-            secondary_pool = deadline_values.get('secondary_pool')
-            chunk_size = deadline_values.get('chunk_size')
-            priority = deadline_values.get('priority')
-            concurrent_task = deadline_values.get('concurrent_task')
-            machine_limit = deadline_values.get('machine_limit')
-            update_client_version = deadline_values.get('update_client_version')
-            create_publish = deadline_values.get('create_publish')
-            copy_to_location = deadline_values.get('copy_to_location')
-            copy_location = deadline_values.get('copy_location')
-
             set_software = item.properties['set_software'] or {}
             item_software = item.properties['set_software'].get('products')
 
-            publish_file_type = deadline_values.get('publish_file_type')
+            publish_file_type = deadline_settings.get('publish_file_type')
             if item_software == "Maya" and item.properties['step']['id'] == 4:
                 publish_file_type = "Alembic Cache"
 
             current_process['process_settings'].update( {  
                                         "plugin_name": item_software,
-                                        "plugin_path": set_software['windows_path'],
+                                        "plugin_path": set_software[system_path_variable],
                                         "plugin_version": set_software['version_names'],
                                         "review_output": review_output,
                                         "user": user,
@@ -1465,7 +1459,7 @@ class BasicSceneCollector(HookBaseClass):
                 if item.properties['entity_info'].get("main_plate"):
                    
                     main_plate = item.properties['entity_info'].get("main_plate")
-                    plate_path = main_plate['path'].get('local_path_windows').replace("\\","/")
+                    plate_path = main_plate['path'].get(system_root_variable).replace("\\","/")
 
                     current_process['nuke_settings']['main_read'].update( {
                                             'file': plate_path,
@@ -1483,7 +1477,7 @@ class BasicSceneCollector(HookBaseClass):
             shot_ccc_file = ""
             shot_ccc = item.properties['entity_info'].get('sg_shot_ccc')
             if shot_ccc != None:
-                shot_ccc_file = shot_ccc.get('local_path_windows').replace("\\", "/")
+                shot_ccc_file = shot_ccc.get(system_root_variable).replace("\\", "/")
             current_process['nuke_settings']['shot_ccc'] = {
                                         'read_from_file': True,
                                         'file': shot_ccc_file,
@@ -1493,7 +1487,7 @@ class BasicSceneCollector(HookBaseClass):
             vfield_file = ""
             vfield = item.properties['entity_info'].get('sg_shot_lut')
             if vfield != None:
-                vfield_file = vfield.get('local_path_windows').replace("\\", "/")
+                vfield_file = vfield.get(system_root_variable).replace("\\", "/")
             current_process['nuke_settings']['main_lut'] = {
                                         'vfield_file': vfield_file,
                                         'disable': vfield_file == "",
@@ -1518,45 +1512,11 @@ class BasicSceneCollector(HookBaseClass):
                                                                     'which': slap_switch
                                                                     }
 
-                # current_process['nuke_settings']['slap_reformat'] = {
-                #                 'format': output_format_name or "main_read_format",
-                #                 'disable': output_format_name == "",
-                #                 }
-
             ### SLATE Group ###
-            # Show title
-            current_process['nuke_settings']['show_title_value'] = {
-                                                                    'message': item.properties['project_info'].get('name')
-                                                                    }
-            # Name
-            current_process['nuke_settings']['content_name_value'] = {
-                                                                    'message': item.properties['entity_info'].get('code')
-                                                                    }
-            # Version
-            current_process['nuke_settings']['content_version_value'] = {
-                                                                    'message': version_name
-                                                                    }
             # Vendor
             set_vendor = item.properties.get('vendor') 
             if not set_vendor:
                 set_vendor = item.properties['user_info'].get('name')
-                            
-            current_process['nuke_settings']['content_vendor_value'] = {
-                                                                    'message': set_vendor,
-                                                                    }
-            # # Frame Range w/ Handles
-            # current_process['nuke_settings']['content_frameswithhandles_value'] = {
-            #                                                         'message': item.properties.get('frame_range')
-            #                                                         }
-
-            # Frame Range
-            current_process['nuke_settings']['content_frames_value'] = {
-                                                                    'message': item.properties.get('frame_range')
-                                                                    }
-            # Lens Info
-            current_process['nuke_settings']['content_lens_value'] = {
-                                                                    'message': item.properties['entity_info'].get('sg_lens_info')
-                                                                    }
 
             # Slate Node
             current_process['nuke_settings']['SSVFX_SLATE'] = {
@@ -1568,13 +1528,6 @@ class BasicSceneCollector(HookBaseClass):
                                                             'notes': None,
                                                             # 'format': None,
                                                             }
-            
-
-            ### BURN-IN ###
-            current_process['nuke_settings']['content_vendor_burnin'] = {
-                                                                    'message': set_vendor,
-                                                                    'disable': set_vendor == None
-                                                                    }
 
             ### OUTPUT ###
             current_process['nuke_settings']['main_write'] = {
@@ -1587,19 +1540,9 @@ class BasicSceneCollector(HookBaseClass):
                                         "batch_name": batch_name,
                                         "job_name": job_name,
                                         "output_file": content_output_file,
-                                        "output_file_ext": content_output_file_ext,
+                                        "output_file_ext": "",#content_output_file_ext,
                                         "content_output_file_total": content_output_file_total,
                                         "output_root": content_output_root,
-                                        "primary_pool": primary_pool,
-                                        "secondary_pool": secondary_pool,
-                                        "chunk_size": chunk_size,
-                                        "priority": priority,
-                                        "concurrent_task": concurrent_task,
-                                        "machine_limit": machine_limit,
-                                        "update_client_version": update_client_version,
-                                        "create_publish": create_publish,
-                                        "copy_location": copy_location,
-                                        "copy_to_location": copy_to_location,
                                         "publish_file_type": publish_file_type,
                                         "frame_range": slate_range,
                                         "job_dependencies": job_dependencies,
@@ -1629,6 +1572,9 @@ class BasicSceneCollector(HookBaseClass):
         process_dict['entity_info'].update( { 
             "copy_destination": item.properties['template_paths'].get('workfiles_directory') 
             } )
+
+        # as a quick final step just append the primary/secondary process dictionary to the item properties
+        item.properties['process_dict'] = process_dict
 
         return json_properties
 

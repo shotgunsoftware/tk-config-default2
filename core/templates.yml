@@ -203,6 +203,7 @@ paths:
     temp_asset_render_root: assets/temp/{sg_asset_type}/{Asset}/renders
     info_json_file: shots/temp/{Shot}/json/{Shot}_{task_name}[_{name}]_v{version}.json
     asset_json_file: assets/temp/{sg_asset_type}/{Asset}/renders/json/{Asset}_{task_name}[_{name}]_v{version}.json
+    alembic_output_json: shots/temp/{Shot}/json/{Shot}_{task_name}_alembic_v{version}.json
 
     #Shots
     incoming_outsource_shot_root:

@@ -386,7 +386,7 @@ class BasicPathInfo(HookBaseClass):
         # logger.warning(">>>>> Collecting initial_path_info_returns...")
 
         from general.file_functions import path_finder
-        find_path = path_finder.PathFinder()
+        find_path = path_finder.PathFinder( logger )
 
         # run path_finder
         ignore_folder_list = path.get('ignore_folder_list') or []
@@ -400,7 +400,7 @@ class BasicPathInfo(HookBaseClass):
             finder_path = path
 
         self.logger.warning(">>>>> Collecting path: %s" % finder_path)
-        path_info_returns = find_path.get_folder_contents( finder_path, ignore_folder_list, seek_folder_list, file_ext_ignore=["db"] )
+        path_info_returns = find_path.get_folder_contents( finder_path, ignore_folder_list, seek_folder_list, file_ext_ignore=["db"], legacy=False )
         path_info = { 'all_fields':{}, 'path_info_returns': path_info_returns }
 
         # for i in path_info_returns:

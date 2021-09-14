@@ -457,6 +457,8 @@ class BasicFilePublishPlugin(HookBaseClass):
             publish_status = "cmpt"
             self.logger.debug("No associated Version found. PublishedFile will have no linked Version.")
 
+        self.logger.warning( "publish_file-version: %s" % version )
+
         publish_data = {
             "tk": publisher.sgtk,
             "context": item.context,

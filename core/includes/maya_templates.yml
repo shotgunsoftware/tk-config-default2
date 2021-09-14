@@ -82,7 +82,7 @@ paths:
         root_name: 'project_pipeline'
 
     maya_shot_outsource_version_abc:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/{Shot}_{outsource_task}[_{name}]_v{version}.abc'
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/{Shot}[_{outsource_task}][_{name}]_v{version}.abc'
         root_name: 'project_pipeline'
         
     # The location of backups of WIP files

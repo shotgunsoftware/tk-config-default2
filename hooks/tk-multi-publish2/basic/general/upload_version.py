@@ -303,6 +303,20 @@ class UploadVersionPlugin(HookBaseClass):
         if not item.properties['entity_info'].get("main_plate") and item.properties.get("sg_slap_comp"):
             raise Exception("Missing Main Plate: Cannot complete Slap Comp")
 
+        if not item.properties['template_paths'].get('job_file_dir'):
+            self.logger.error("Missing directory info for writing job files")
+
+        job_file_dir = item.properties['template_paths']['job_file_dir']
+        if not os.path.exists( job_file_dir ):
+            os.makedirs( job_file_dir )
+
+        if not os.access(job_file_dir, os.W_OK):
+            self.logger.error("User does not have permission to write files to this directory: %s" % job_file_dir )
+
+        # TODO: add check for missing frames in render sequence
+        # if [ frame for frame in item.properties['sequence_paths'] if os.path.exists( frame ) ]:
+        #     self.logger.error("Missing frames in render sequence")
+
         # Check for a Version with same Version name   
         if item.properties['existing_version']['version']:
             existing_version = item.properties['existing_version']['version']
@@ -322,6 +336,7 @@ class UploadVersionPlugin(HookBaseClass):
         self.logger.debug("Task: %s" % (item.context.task,))
         self.logger.debug("Step: %s" % (item.context.step,))
         self.logger.debug("Description: %s" % (item.description,))
+        self.logger.debug("Job File Directory: %s" % (job_file_dir,))
 
         # Nuke-specific sanity checks
         if publisher.engine.name == "tk-nuke":
@@ -337,6 +352,8 @@ class UploadVersionPlugin(HookBaseClass):
                 item.properties['failed_check'] = False
                 raise Exception("A Sanity Check has failed. This item cannot be validated.")
 
+        # self.logger.warning( ">>>>> properties: %s" % item.properties.keys() )
+
         review_process = item.properties.get("step")
 
         review_process_type = review_process['sg_review_process_type']
@@ -347,7 +364,7 @@ class UploadVersionPlugin(HookBaseClass):
 
         # append discription to existing version_data
         item.properties['version_data'].update( { "description": item.description } )
-        self.logger.warning( ">>>>> image? %s" % item.properties['version_data']['image'] )
+        # self.logger.warning( ">>>>> image? %s" % item.properties['version_data']['image'] )
             
         item.properties['playlist_name'] = "%s%s%s_Resolve_Review_%s" %("%04d" % (now.year),
                                                                         "%02d" % (now.month),
@@ -379,8 +396,8 @@ class UploadVersionPlugin(HookBaseClass):
 
         json_properties = item.properties.get('json_properties')
 
-        process_type = item.properties['step'].get('sg_review_process_type').lower()        
-        process_dict =  json_properties[process_type]
+        # process_type = item.properties['step'].get('sg_review_process_type').lower()        
+        process_dict =  item.properties.get('process_dict')
         process_dict['entity_info']['description'] = item.description
 
         for process in process_dict['processes']:
@@ -397,7 +414,15 @@ class UploadVersionPlugin(HookBaseClass):
                                                 'notes': item.description
                                                 } )
 
+            if process_dict['processes'][process]['process_settings'].get('create_version'):
+                item.properties['version_data'].update({
+                    "sg_path_to_movie": process_dict['processes'][process]['process_settings'].get('review_output')
+                })
+
         self._write_dl_json( json_properties['general_settings']['info_json_file'], process_dict )
+
+        # for key in item.properties['process_dict']:
+        #     self.logger.warning( ">>>>> %s: %s" % (key, item.properties['process_dict'][key]) )
 
         self.logger.debug( ">>>>> END UPLOAD_VERSION VALIDATION >>>>>")
 
@@ -414,8 +439,8 @@ class UploadVersionPlugin(HookBaseClass):
         """
         publisher = self.parent
         self.dl_submission = deadline_submission4.DeadlineSubmission()
-        jm = json_manager.JsonManager()
-        sg_writer = shotgun_utilities.ShotgunWriter(shotgun=publisher.shotgun)
+        # jm = json_manager.JsonManager()
+        # sg_writer = shotgun_utilities.ShotgunWriter(shotgun=publisher.shotgun)
 
         self.logger.debug(
             "Populated Version data...",
@@ -443,6 +468,7 @@ class UploadVersionPlugin(HookBaseClass):
                                 "image": item.properties['version_data'].get('image'),
                                 "frame_range": item.properties['version_data'].get('frame_range'),
                                 "sg_path_to_frames": item.properties['version_data'].get('sg_path_to_frames'),
+                                "sg_path_to_movie": item.properties['version_data'].get('sg_path_to_movie'),
                                 "sg_version_number": item.properties['version_data'].get('version_number'),
                             }
 
@@ -458,7 +484,7 @@ class UploadVersionPlugin(HookBaseClass):
             
             if version:
                 self.logger.info("Version info:  %s" % (str(version.get('code') ) ) )
-                item.properties["sg_version_data"] = version
+                item.properties["version_info"] = version
                 if 'version_data' in item.properties.keys():
                     item.properties['version_data'].update({'id':version['id']})   
                 else:
@@ -473,7 +499,19 @@ class UploadVersionPlugin(HookBaseClass):
         job_info_file, plugin_info_file = self._create_submission_files( item )
 
         # send submission job to deadline
-        self.send_to_dl( job_info_file, plugin_info_file )
+        if not job_info_file:
+            raise Exception( "Missing job info file" )
+        elif not plugin_info_file:
+            raise Exception( "Missing plugin info file" )
+
+        self.dm = deadline_manager3.DeadlineManager3()
+        item.properties['dl_result'] = self.dm.get_dl_cmd("%s %s" % ( job_info_file, plugin_info_file))
+
+        # self.thumbnail_dependency(item)
+
+        self.logger.warning(">>>>> FINISHED VERSION PUBLISH >>>>>")
+
+        # self.send_to_dl( job_info_file, plugin_info_file )
     
     def finalize(self, settings, item):
         """
@@ -528,10 +566,12 @@ class UploadVersionPlugin(HookBaseClass):
             name_path = path
             is_sequence = False
 
-        return publisher.util.get_publish_name(
-            name_path,
-            sequence=is_sequence
-        )
+        return_name = publisher.util.get_publish_name(
+                                                        name_path,
+                                                        sequence=is_sequence
+                                                    )
+
+        return return_name
 
     def get_version_thumbnail(self, item):
          
@@ -556,34 +596,6 @@ class UploadVersionPlugin(HookBaseClass):
         
         return ampm
 
-    def send_to_dl(self, job_info_file, plugin_info_file):
-        """
-        Runs cmd function to send image sequence to DL.
-        Needs to be of type file.type.sequence.
-
-        :param item: Item to process
-        """   
-        self.dm = deadline_manager3.DeadlineManager3()
-
-        if not ( job_info_file and plugin_info_file ):
-            if not job_info_file:
-                raise Exception( "Missing job info file" )
-            else:
-                raise Exception( "Missing plugin info file" )
-
-        deadline_submission = self.dm.get_dl_cmd("%s %s" % ( job_info_file, plugin_info_file))
-
-    def replace_slashes(self, path):
-        """
-        Simple function to replace back with forward slashes
-
-        :param path: path to replace slashes
-        """
-        if not path:
-            return
-        else:
-            return path.replace("\\","/")
-
     def _create_submission_files(self, item):
         """
         Create job files for Deadline python job that will create the appropriate Quicktime jobs
@@ -591,14 +603,7 @@ class UploadVersionPlugin(HookBaseClass):
         :param item: collector item with info needed to fill out the file variables
         """
         # create path/directories to the job file storage location
-        job_file_dir = os.path.join( 
-                                    item.properties['template_paths'].get('temp_root'), 
-                                    "deadline",
-                                    "submission" 
-                                    )
-        
-        if not os.path.exists( job_file_dir ):
-            os.makedirs( job_file_dir )
+        job_file_dir = item.properties['template_paths']['job_file_dir']
 
         output_name = "%s_%s" % ( item.properties['version_data']['code'], "submission" )
 
@@ -629,29 +634,7 @@ class UploadVersionPlugin(HookBaseClass):
                             "Version=2.7",
                             ]
 
-        # write job files
-        writer = open( submission_job_file, "w" )
-        try:
-            for i in submission_job_info:
-                writer.write( "%s\n" % i )
-
-            writer.close()
-
-        except:
-            writer.close()
-            raise Exception( "Error writing job info file")
-
-        # write plugin files
-        writer = open( submission_plugin_file, "w" )
-        try:
-            for i in submission_plugin_info:
-                writer.write( "%s\n" % i )
-
-            writer.close()
-
-        except:
-            writer.close()
-            raise Exception( "Error writing job info file")
+        submission_job_file, submission_plugin_file = self.create_dl_job_files( submission_job_file, submission_job_info, submission_plugin_file, submission_plugin_info )
 
         return submission_job_file, submission_plugin_file
 
@@ -663,6 +646,10 @@ class UploadVersionPlugin(HookBaseClass):
         """
 
         item_dict = item.to_dict().get('global_properties')
+
+        self.logger.warning(">>>>> item_dict")
+        for key,value in item_dict.items():
+            self.logger.warning("    >>>>> %s: %s" % (key,value) )
 
         if not item_dict:
             raise Exception( "Could not find global_properties in item dictionary" )
@@ -700,7 +687,12 @@ class UploadVersionPlugin(HookBaseClass):
             raise Exception( "Failed to write JSON to %s" % json_path )
 
     def reset_properties(self, item):
+        '''
+        Toggles between slap comp and version for review renders
+        '''
         
+        #TO DO: Get the plugin name to reflect the actual change in the Publisher
+
         publisher = self.parent
 
         shotgun_url = publisher.sgtk.shotgun_url
@@ -750,4 +742,169 @@ class UploadVersionPlugin(HookBaseClass):
             via the project's <a href='%s'>Media</a> page, <a href='%s'>RV</a>, or
             the <a href='%s'>Shotgun Review</a> mobile app.
             """ % (media_page_url, review_url, review_url)
+
+    def create_dl_job_files(self, submission_job_file, submission_job_info, submission_plugin_file, submission_plugin_info):
+        # job_dir, job_name = os.path.split(submission_job_file)
+        # pugin_dir, pugin_name = os.path.split(submission_plugin_file)
+
+        # if not os.path.exists( job_dir ):
+        #     os.makedirs( job_dir )
+        # if not os.path.exists( pugin_dir ):
+        #     os.makedirs( pugin_dir )
+        
+        # write job files
+        job_writer = open( submission_job_file, "w" )
+        for i in submission_job_info:
+            job_writer.write( "%s\n" % i )
+
+        job_writer.close()
+
+        # write plugin files
+        plugin_writer = open( submission_plugin_file, "w" )
+        for i in submission_plugin_info:
+            plugin_writer.write( "%s\n" % i )
+
+        plugin_writer.close()
+
+        return submission_job_file, submission_plugin_file
+
+    def thumbnail_dependency(self, item):
+
+
+        dl_result = item.properties.get('dl_result')
+        if not dl_result:
+            return
+        
+        process_dict = item.properties.get('process_dict')
+        if not process_dict:
+            return
+        
+        self.logger.warning(">>>>> process_dict >>>>>")
+        thumbnail_dict = item.properties['json_properties'].get('thumbnail')
+        if not thumbnail_dict:
+            return
+
+        self.logger.warning(">>>>> thumbnail_dict >>>>>")
+        processes = process_dict.get('processes')
+        if not processes:
+            return
+
+        self.logger.warning(">>>>> processes >>>>>")
+        if "win" in sys.platform:
+            path_root = "windows_path"
+            sg_root = "local_path_windows"
+        elif sys.platform == "linux":
+            path_root = "linux_path"
+            sg_root = "local_path_linux"
+
+        for process in processes:
+            # If you're not making a version you don't need a thumbnail
+            if not processes[process]['process_settings']['create_version']:
+                continue
+
+            self.logger.warning(">>>>> Preparing thubnail info for %s" % process ) 
+            
+            temp_root = os.path.join(process_dict['project_info']['sg_root'][sg_root],"admin", "processing", "temp").replace("\\","/")
+
+            thumb_job_id = None
+            thumb_job_info_file = "%s/%s/%s/%s-thumb_job_info.job" % (temp_root,"deadline","thumbnails",item.properties['version_data'].get('code'))
+            thumb_plugin_info_file = "%s/%s/%s/%s-thumb_plugin_info.job" % (temp_root,"deadline","thumbnails",item.properties['version_data'].get('code'))  
+
+            find_id = re.search(r"JobID=(.+)\n", dl_result)
+            if find_id:
+                job_id = find_id.group(1)
+
+            thumb_job_info = [
+                        "BatchName=%s" % processes[process]['deadline_settings'].get('batch_name'),
+                        "Name=%s-thumbnail" % (item.properties['version_data'].get('code')),
+                        "Plugin=Python",
+                        "Priority=55",
+                        "MachineLimit=1",
+                        "Pool=%s" % thumbnail_dict['job_info'].get('pool'),
+                        "SecondaryPool=%s" % thumbnail_dict['job_info'].get('secondary_pool'),
+                        "ExtraInfo0=%s" % process_dict['project_info']['name'],
+                        "Frames=0-1",
+                        "ChunkSize=1000000",
+                        "JobDependencies=%s"%(job_id),
+                        "UserName=%s" %( processes[process]['process_settings'].get('user') )
+                        ]
+            thumb_plugin_info = [
+                        "ScriptFile=%s" % thumbnail_dict['plugin_info'].get('script_file'),
+                        "Arguments=%s,%s" % (process, item.properties['json_properties']['general_settings']['info_json_file'] ),
+                        "Version=2.7",
+                        ]
+
+            thumb_job_info, thumb_plugin_info = self.create_dl_job_files(thumb_job_info_file, thumb_job_info, thumb_plugin_info_file, thumb_plugin_info)
+
+            
+            if (thumb_job_info and thumb_plugin_info):
+                self.logger.info("Both dependent job files found: %s and %s " %(thumb_job_info,thumb_plugin_info))
+                start_time = time.time()
+                deadline_submission = self.dm.get_dl_cmd("%s %s" % ( thumb_job_info, thumb_plugin_info))
+                self.logger.info(deadline_submission)
+                self.logger.info("--- Deadline Submission took %s seconds ---" % (str(time.time() - start_time)))
+                for line in deadline_submission.splitlines():
+                    if line.startswith("JobID="):
+                        d_dl_job_id = line[6:]        
+                self.logger.warning(">>>>> submitted job ID: %s" % d_dl_job_id)
+            else:
+                self.logger.error("Issue writing on of the DL .job files") 
+
+
+
+    def dependent_job_submission(self, depend_process_dict, depend_job_id, json_file,job_key):
+        '''
+        Using the existing json file update
+        the relevant input paths sourced from
+        the associated output file. 
+        '''
+
+        # Create draft info files for DL
+        d_dl_job_id = None
+        d_job_info_file = "%s/%s/%s/%s-depend_job_info.job" % (temp_root,"deadline","python",version_name)
+        d_plugin_info_file = "%s/%s/%s/%s-depend_plugin_info.job" % (temp_root,"deadline","python",version_name)
+
+        dependent_pool = "vfx_processing"
+        if depend_process_dict['process_settings'].get('dependent_pool'):
+            dependent_pool = depend_process_dict['process_settings'].get('dependent_pool')
+
+        d_job_info = [
+                        "BatchName=%s" % batch_name,
+                        "Name=%s-%s" % (version_name, depend_process_dict['process_settings']['dependent_job_suffix']),
+                        "Plugin=Python",
+                        "Priority=55",
+                        "MachineLimit=1",
+                        "Pool=%s" % dependent_pool,
+                        "SecondaryPool=%s" % dependent_pool,
+                        "ExtraInfo0=%s" % json_data['project_info']['name'],
+                        "Frames=0-1",
+                        "ChunkSize=1000000",
+                        "JobDependencies=%s"%(depend_job_id),
+                        "UserName=%s" %(json_data['project_info']['user'],)
+                        ]
+        d_plugin_info = [
+                        "ScriptFile=%s" % depend_process_dict['process_settings']['dependent_script_file'],
+                        "Arguments=%s,%s" % (job_key,json_file),
+                        "Version=2.7",
+                        ]
+        d_job_extra_info = dict(
+            # ProcessType=job_key.encode('utf-8'),
+        )
+
+        d_job_info,d_plugin_info =  create_dl_job_files(d_job_info_file, d_plugin_info_file, d_job_info, d_plugin_info,d_job_extra_info)
+
+        if (d_job_info and d_plugin_info):
+            logger.info("Both dependent job files found: %s and %s " %(d_job_info,d_plugin_info))
+            start_time = time.time()
+            dl_manager = deadline_manager2.DeadlineManager()
+            deadline_submission = dl_manager.get_dl_cmd(job_info_file = d_job_info_file, plugin_info_file = d_plugin_info_file)
+            logger.info(deadline_submission)
+            logger.info("--- Deadline Submission took %s seconds ---" % (str(time.time() - start_time)))
+            for line in deadline_submission.splitlines():
+                if line.startswith("JobID="):
+                    d_dl_job_id = line[6:]        
+        else:
+            logger.error("Issue writing on of the DL .job files")   
+
+        return d_dl_job_id
 
