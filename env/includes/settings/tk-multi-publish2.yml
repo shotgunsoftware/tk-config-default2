@@ -23,6 +23,7 @@ publish_help_url: &help_url "https://support.shotgunsoftware.com/hc/en-us/articl
 
 settings.tk-multi-publish2.standalone:
   display_name: Submit
+  pre_publish: "{self}/collector.py:{config}/tk-multi-publish2/basic/desktop/pre_publish.py"
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/desktop/collector.py"
   path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/desktop/path_info.py"
   enable_manual_load: true
