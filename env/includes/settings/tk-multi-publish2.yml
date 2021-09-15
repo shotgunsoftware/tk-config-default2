@@ -215,6 +215,10 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_assembly_definition.py"
     settings:
         Publish Template: maya_asset_assembly_publish
+  - name: Publish Arnold Stand-in
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
+    settings:
+        Publish Template: maya_asset_standin_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
