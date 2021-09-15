@@ -10,12 +10,11 @@
 
 import os
 import maya.cmds as cmds
-import maya.mel as mel
 import sgtk
 
 from tank_vendor import six
 
-from ssvfx_maya.mayapy import assemblies
+from mayapy import assemblies
 reload(assemblies)
 
 HookBaseClass = sgtk.get_hook_baseclass()
