@@ -40,7 +40,7 @@ frameworks:
       type: git_branch
       branch: SHOT-3330
       path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      version: 5b8e5d7
+      version: 610a5ec
       # version: v2.10.0
       # type: app_store
       # name: tk-framework-qtwidgets
