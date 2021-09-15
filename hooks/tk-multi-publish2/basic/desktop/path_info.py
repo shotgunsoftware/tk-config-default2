@@ -9,8 +9,7 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
-import re
-
+from tank.util import sgre as re
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -21,15 +20,15 @@ HookBaseClass = sgtk.get_hook_baseclass()
 # this implementation assumes the version number is of the form 'v###'
 # coming just before an optional extension in the file/folder name and just
 # after a '.', '_', or '-'.
-VERSION_REGEX = re.compile("(.*)([._-])v(\d+)\.?([^.]+)?$", re.IGNORECASE)
+
+VERSION_REGEX = re.compile(r"(.+)([._-])v(\d+)\.?([^.]+)?\.?([^.]+)?$", re.IGNORECASE)
 
 # a regular expression used to extract the frame number from the file.
 # this implementation assumes the version number is of the form '.####'
 # coming just before the extension in the filename and just after a '.', '_',
 # or '-'.
-FRAME_REGEX = re.compile("(.*)([._-])(\d+)\.([^.]+)$", re.IGNORECASE)
 
-VERSION_STRING_REGEX = re.compile("([._-])v(\d+)\.?([^.]+)?")
+FRAME_REGEX = re.compile(r"(.*)([._-])(\d+)\.([^.]+)$", re.IGNORECASE)
 
 class BasicPathInfo(HookBaseClass):
     """
@@ -60,14 +59,14 @@ class BasicPathInfo(HookBaseClass):
 
         :return: A publish display name for the provided path.
         """
-        # TODO if a submission is a variation of submission. i.e. Mattes/Creative Optional
 
         publisher = self.parent
+
         logger = publisher.logger
         logger.debug("Getting publish name for path: %s ..." % (path,))
 
-        path_info = publisher.util.get_file_path_components(path)
-        filename = path_info["filename"]
+        path_info_returns = publisher.util.get_file_path_components(path)
+        filename = path_info_returns["filename"]
 
         version_pattern_match = re.search(VERSION_REGEX, filename)
         frame_pattern_match = re.search(FRAME_REGEX, filename)
@@ -76,37 +75,24 @@ class BasicPathInfo(HookBaseClass):
             # found a version number, use the other groups to remove it
             prefix = version_pattern_match.group(1)
             self.logger.debug("Found version pattern match: %s" % (prefix))
+
             extension = version_pattern_match.group(4) or ""
             if extension:
                 publish_name = "%s.%s" % (prefix, extension)
             else:
                 publish_name = prefix
-
         elif frame_pattern_match and sequence:
             # found a frame number, meplace it with #s
             prefix = frame_pattern_match.group(1)
-            version_string_pattern_match = re.search(VERSION_STRING_REGEX, prefix)
-            if version_string_pattern_match:
-                self.logger.debug("Found version string pattern match: %s" % (prefix))
-                prefix = re.sub(version_string_pattern_match.group(0), "", prefix) 
-            else:
-                self.logger.debug("Could not find version string pattern match.")
-            publish_name = "%s" % prefix
-
-        elif frame_pattern_match and not sequence:
-            prefix = frame_pattern_match.group(1)
-            version_string_pattern_match = re.search(VERSION_STRING_REGEX, prefix)
-            if version_string_pattern_match:
-                self.logger.debug("Found version string pattern match: %s" % (prefix))
-                prefix = re.sub(version_string_pattern_match.group(0), "", prefix) 
-            else:
-                self.logger.debug("Could not find version string pattern match.")
-            publish_name =prefix
+            frame_sep = frame_pattern_match.group(2)
+            frame = frame_pattern_match.group(3)
+            display_str = "#" * len(frame)
+            extension = frame_pattern_match.group(4) or ""
+            publish_name = "%s%s%s.%s" % (prefix, frame_sep, display_str, extension)
         else:
-            self.logger.debug("Couldn't find pattern match. Using filename.")
             publish_name = filename
 
-        self.logger.debug("Publish name: %s" % (publish_name,))
+        logger.debug("Returning publish name: %s" % (publish_name,))
         return publish_name
 
     def get_version_number(self, path):
@@ -125,63 +111,66 @@ class BasicPathInfo(HookBaseClass):
         publisher = self.parent
 
         logger = publisher.logger
-        self.logger.debug("Getting version number for path: %s" % (path,))
+        logger.debug("Getting version number for path: %s ..." % (path,))
 
-        path_info = publisher.util.get_file_path_components(path)
-        filename = path_info["filename"]
-        self.logger.debug("Checking filename for version: " + filename)
+        path_info_returns = publisher.util.get_file_path_components(path)
+        filename = path_info_returns["filename"]
+
         # default if no version number detected
         version_number = None
 
         # if there's a version in the filename, extract it
-        version_pattern_match = re.search(VERSION_STRING_REGEX, filename)
+        version_pattern_match = re.search(VERSION_REGEX, filename)
 
         if version_pattern_match:
-            version_number = int(version_pattern_match.group(2))
+            version_number = int(version_pattern_match.group(3))
 
-        self.logger.debug("Returning version number: %s" % (version_number,))
+        logger.debug("Returning version number: %s" % (version_number,))
         return version_number
 
     def get_frame_sequence_path(self, path, frame_spec=None):
-        """
-        Given a path with a frame number, return the sequence path where the
-        frame number is replaced with a given frame specification such as
-        ``{FRAME}`` or ``%04d`` or ``$F``.
 
-        :param path: The input path with a frame number
-        :param frame_spec: The frame specification to replace the frame number
-            with.
+        return self.initial_path_info_returns( path )
+        # """
+        # Given a path with a frame number, return the sequence path where the
+        # frame number is replaced with a given frame specification such as
+        # ``{FRAME}`` or ``%04d`` or ``$F``.
 
-        :return: The full frame sequence path
-        """
+        # :param path: The input path with a frame number
+        # :param frame_spec: The frame specification to replace the frame number
+        #     with.
 
-        publisher = self.parent
-        path_info = publisher.util.get_file_path_components(path)
+        # :return: The full frame sequence path
+        # """
 
-        # see if there is a frame number
-        frame_pattern_match = re.search(FRAME_REGEX, path_info["filename"])
+        # publisher = self.parent
+        # path_info_returns = publisher.util.get_file_path_components(path)
 
-        if not frame_pattern_match:
-            # no frame number detected. carry on.
-            return None
+        # # see if there is a frame number
+        # frame_pattern_match = re.search(FRAME_REGEX, path_info_returns["filename"])
 
-        prefix = frame_pattern_match.group(1)
-        frame_sep = frame_pattern_match.group(2)
-        frame_str = frame_pattern_match.group(3)
-        extension = frame_pattern_match.group(4) or ""
+        # if not frame_pattern_match:
+        #     # no frame number detected. carry on.
+        #     return None
 
-        # make sure we maintain the same padding
-        if not frame_spec:
-            padding = len(frame_str)
-            frame_spec = "%%0%dd" % (padding,)
+        # prefix = frame_pattern_match.group(1)
+        # frame_sep = frame_pattern_match.group(2)
+        # frame_str = frame_pattern_match.group(3)
+        # extension = frame_pattern_match.group(4) or ""
 
-        seq_filename = "%s%s%s" % (prefix, frame_sep, frame_spec)
+        # # make sure we maintain the same padding
+        # if not frame_spec:
+        #     padding = len(frame_str)
+        #     frame_spec = "%%0%dd" % (padding,)
 
-        if extension:
-            seq_filename = "%s.%s" % (seq_filename, extension)
+        # seq_filename = "%s%s%s" % (prefix, frame_sep, frame_spec)
 
-        # build the full sequence path
-        return os.path.join(path_info["folder"], seq_filename)
+        # if extension:
+        #     seq_filename = "%s.%s" % (seq_filename, extension)
+
+
+        # # build the full sequence path
+        # return os.path.join(path_info_returns["folder"], seq_filename)
 
     def get_frame_sequences(self, folder, extensions=None, frame_spec=None):
         """
@@ -227,8 +216,7 @@ class BasicPathInfo(HookBaseClass):
         publisher = self.parent
         logger = publisher.logger
 
-        logger.debug(
-            "Looking for sequences in folder: '%s'..." % (folder,))
+        logger.debug("Looking for sequences in folder: '%s'..." % (folder,))
 
         # list of already processed file names
         processed_names = {}
@@ -282,7 +270,7 @@ class BasicPathInfo(HookBaseClass):
             # seq pattern
             processed_names[file_no_frame] = {
                 "sequence_path": seq_path,
-                "file_list": [file_path]
+                "file_list": [file_path],
             }
 
         # build the final list of sequence paths to return
@@ -316,8 +304,8 @@ class BasicPathInfo(HookBaseClass):
         logger = publisher.logger
         logger.debug("Getting version %s of path: %s ..." % (version, path))
 
-        path_info = publisher.util.get_file_path_components(path)
-        filename = path_info["filename"]
+        path_info_returns = publisher.util.get_file_path_components(path)
+        filename = path_info_returns["filename"]
 
         # see if there's a version in the supplied path
         version_pattern_match = re.search(VERSION_REGEX, filename)
@@ -332,7 +320,7 @@ class BasicPathInfo(HookBaseClass):
         version_filename = "%s.%s%s" % (basename, version, ext)
 
         # construct the new, full path
-        version_path = os.path.join(path_info["folder"], version_filename)
+        version_path = os.path.join(path_info_returns["folder"], version_filename)
 
         logger.debug("Returning version path: %s" % (version_path,))
         return version_path
@@ -360,8 +348,8 @@ class BasicPathInfo(HookBaseClass):
         # default
         next_version_path = None
 
-        path_info = publisher.util.get_file_path_components(path)
-        filename = path_info["filename"]
+        path_info_returns = publisher.util.get_file_path_components(path)
+        filename = path_info_returns["filename"]
 
         # see if there's a version in the supplied path
         version_pattern_match = re.search(VERSION_REGEX, filename)
@@ -386,7 +374,189 @@ class BasicPathInfo(HookBaseClass):
                 new_filename = "%s.%s" % (new_filename, extension)
 
             # build the new path in the same folder
-            next_version_path = os.path.join(path_info["folder"], new_filename)
+            next_version_path = os.path.join(path_info_returns["folder"], new_filename)
 
         logger.debug("Returning next version path: %s" % (next_version_path,))
         return next_version_path
+
+    def initial_path_info_returns(self, path):
+        publisher = self.parent
+        logger = publisher.logger
+
+        # logger.warning(">>>>> Collecting initial_path_info_returns...")
+
+        from general.file_functions import path_finder
+        find_path = path_finder.PathFinder( logger )
+
+        # run path_finder
+        ignore_folder_list = path.get('ignore_folder_list') or []
+        seek_folder_list = path.get('seek_folder_list') or []
+        path = path.get('path')
+
+        ext = os.path.splitext(path)[-1]
+        if ext:
+            finder_path = os.path.dirname(path)
+        else:
+            finder_path = path
+
+        self.logger.warning(">>>>> Collecting path: %s" % finder_path)
+        path_info_returns = find_path.get_folder_contents( finder_path, ignore_folder_list, seek_folder_list, file_ext_ignore=["db"], legacy=False )
+        path_info = { 'all_fields':{}, 'path_info_returns': path_info_returns }
+
+        # for i in path_info_returns:
+        #     self.logger.warning(">>>>> i: %s" % i)
+
+        # initialize templates
+        tk = sgtk.sgtk_from_path(path)
+        root_template = tk.template_from_path( path )
+        path_info['all_fields']['root_template'] = root_template
+
+        for item in path_info_returns:
+            if item['file_range'] == 0:
+                item['single'] = True
+            elif not ext:
+                item['single'] = item['file_range'].split('-')[0] == item['file_range'].split('-')[-1]
+            else:
+                frame = re.search( r"(\d{3,10})%s$" % ext, path ).group(1)
+                item['file_range'] = "%s-%s" % ( frame, frame )
+                item['single'] = True
+
+            frames = str( item['file_range'] ).split('-')
+
+            # collect template and template fields
+            tmp_path = ''
+            work_template = None
+            if item['single']:
+                tmp_path = item['padded_file_name']
+                if item['file_range'] != 0:
+                    full_path = re.sub( item['hash_padding'].replace('.', ''), frames[0], tmp_path )
+                else:
+                    full_path = item['padded_file_name']
+
+                work_template = tk.template_from_path( tmp_path )
+
+                item['full_path'] = full_path
+            
+            elif item.get('relative_path') in [None, "."]:
+                tmp_path = item['padded_file_name']
+                work_template = tk.template_from_path( tmp_path )
+
+            else:
+                tmp_path = os.path.join( path, item['relative_path'] ).replace("\\", "/")
+                item['directory'] = tmp_path
+                work_template = tk.template_from_path( tmp_path )
+
+            if not work_template:
+                self.logger.warning( ">>>>> Could not find template for %s. Continuing..." % tmp_path )
+                continue
+
+            item['base_template'] = work_template
+
+            if item.get('base_template'):
+                curr_fields = work_template.get_fields(tmp_path)
+                item['fields'] = curr_fields
+                if not curr_fields.get("extension"):
+                    item['fields'].update( { "extension": ext } )
+
+            # Add fields specific to shot/asset
+            if "Shot" in item['fields'].keys():
+                item['fields'].update( {
+                        'Entity': curr_fields['Shot'],
+                        'type': "Shot"
+                    })
+
+            elif "Asset" in curr_fields.keys():
+                item['fields'].update({
+                        'Entity': curr_fields['Asset'],
+                        'type': "Asset"                        
+                    })
+
+            # set workfiles directory for any copy functions
+            self._set_workfile_dir( path, item, tk )
+
+            # set outsource/process
+            item['process_plugin_info'] = self._set_process( work_template )
+
+            # upadate all_info with any outstanding key:value pairs
+            for key in item['fields'].keys():
+                if not path_info['all_fields'].get(key):
+                    path_info['all_fields'][key] = item['fields'][key]
+                else:
+                    pass
+
+        return path_info
+
+    def _set_workfile_dir(self, path, item, tk):
+
+        publisher = self.parent
+        logger = publisher.logger
+
+        template = item.get('base_template')
+
+        if not template:
+            logger.warning("Could not get template from %s" % ( path ) )
+            return
+
+        fields = item.get('fields')
+
+        if template.name == "incoming_outsource_shot_version_psd":
+            fields['task_name'] = fields['task_name'].lower()
+            item['workfile_dir'] = tk.get_template_by_name('psd_shot_work')
+        
+        if template.name == "incoming_outsource_shot_version_tif":
+            fields['task_name'] = fields['task_name'].lower()
+            item['workfile_dir'] = tk.get_template_by_name('psd_shot_version_tif')          
+
+        if item.get('workfile_dir'):
+            item['publish_path'] = item['workfile_dir'].apply_fields(fields)
+        else:
+            item['workfile_dir'] = None
+            item['publish_path'] = None
+
+    def _set_process(self, template):
+
+        process_info = {
+            "outsource": False,
+            "software": "Nuke",
+
+            }
+
+        if not template:
+            return process_info
+
+        # determine if outsource
+        if template.name in [
+            "incoming_outsource_shot_folder_root",
+            "incoming_outsource_assets_root",
+            "incoming_outsource_shot_3de_file",
+            "maya_shot_outsource_work_file",
+            "maya_shot_outsource_version_abc",
+            "maya_asset_outsource_work_file",
+            "maya_asset_outsource_version_abc",
+            "incoming_outsource_shot_nuke_render",
+            "incoming_outsource_shot_matchmove_render",
+            "incoming_outsource_shot_undistorted",
+            ]:
+            
+            process_info['outsource'] = True
+
+        # determine if Maya .ma/.mb File
+        if template.name in [
+            "maya_shot_outsource_work_file",
+            "maya_asset_outsource_work_file",
+            "maya_shot_work",
+            "maya_asset_work",
+            ]:
+
+            process_info['software'] = "Maya"
+
+        # determine if alembic
+        if template.name in [
+            "maya_shot_outsource_work_file",
+            "maya_asset_outsource_work_file",
+            ]:
+
+            process_info['process'] = "Alembic"
+
+        return process_info
+

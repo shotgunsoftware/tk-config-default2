@@ -12,21 +12,20 @@ import os
 import sys
 import re
 import pprint
-import time
-import datetime
-import shutil
+import json
 import sgtk
 import traceback
 from sgtk.util.filesystem import copy_file, ensure_folder_exists
 
 # find SSVFX/Deadline plugins
-logger = sgtk.LogManager.get_logger(__name__)
+log = sgtk.LogManager.get_logger(__name__)
 eng = sgtk.platform.current_engine()
 
 try:
-    ssvfx_script_path = "C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
-    if os.path.exists(ssvfx_script_path):
-        pipeline_root = "C:\\Users\\shotgunadmin\\Scripts"
+    ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
+    if "SSVFX_PIPELINE_DEV" in os.environ.keys():
+        pipeline_root = os.environ["SSVFX_PIPELINE_DEV"]
+        ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
     else:
         if "SSVFX_PIPELINE" in os.environ.keys():
             pipeline_root =  os.environ["SSVFX_PIPELINE"]
@@ -34,22 +33,18 @@ try:
             if os.path.exists(ssvfx_script_path):
                 pass
             else:
-                logger.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
-            logger.debug("Found env var path: %s" %(ssvfx_script_path,))
+                log.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
+            log.debug("Found env var path: %s" %(ssvfx_script_path,))
         else:
-            logger.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
+            log.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
             pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
             ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
 
     sys.path.append(ssvfx_script_path)
-    from thinkbox.deadline import deadline_manager
-    from thinkbox.deadline import deadline_submission3
-    from general.file_functions import file_strings
-    from general.data_management import json_manager
-    from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
+    from thinkbox.deadline import deadline_manager3
     from shotgun import shotgun_utilities
-except:
-    raise Exception("Could not load on of the studio modules!")
+except Exception as err:
+    raise Exception("Could not load on of the studio modules: %s" % err)
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -168,43 +163,36 @@ class CreateAlembicPlugin(HookBaseClass):
         """
         accept = {"accepted": False}
 
-        
-        if 'file_info' not in item.properties.keys():
+        if 'fields' not in item.properties.keys():
             return accept
 
-        file_info = item.properties['file_info']
+        if 'template' not in item.properties.keys():
+            return accept
+
+        file_info = item.properties['fields']
         extension = file_info["extension"].lower()
 
-        valid_extensions = []
-        for ext in settings["File Extensions"].value.split(","):
-            ext = ext.strip().lstrip(".")
-            valid_extensions.append(ext)
+        valid_extensions = [ ext.strip().lstrip(".") for ext in settings["File Extensions"].value.split(",") ]
 
-        if extension in valid_extensions:
-            # return the accepted info
-            accept = {"accepted": True}
-                                 
-        else:
+        if extension not in valid_extensions:
             self.logger.debug(
                 "%s is not in the valid extensions list for Version creation" %
                 (extension,)
             )
-            accept = {"accepted": False}
             return accept
 
+        else:
+            accept = {"accepted": True}
+
         # test for appropriate outsource_root template
-        template = item.properties['template']
+        template = item.properties.get('template')
 
         if template:
             self.logger.debug("Associated template is: %s" %(template.name))
-            if template.name == "incoming_outsource_shot_folder_root":
+            if template.name == "maya_shot_outsource_work_file":
                 accept = {"accepted": True}
-            elif template.name == "incoming_outsource_assets_root":
-                accept = {"accepted": True}
-            else:
-                accept = {"accepted": False}
-                self.logger.debug("Path does not confrom to outsource templates")
-            
+
+
         return accept
 
     def validate(self, settings, item):
@@ -225,6 +213,10 @@ class CreateAlembicPlugin(HookBaseClass):
         if not item.context.task:
             raise Exception("Need task info!")
 
+        if not item.description:
+            raise Exception("Need to fill in description detailing submitted work!")
+
+        ### PUBLISH FILE VALIDATION ###
         project_info = item.properties.get("project_info")
         if not project_info['local_storage']:
             self.logger.warning("No local storage defined - this may be required for future processes such as publishing files")
@@ -281,7 +273,7 @@ class CreateAlembicPlugin(HookBaseClass):
         self.logger.info("A Publish will be created in Shotgun and linked to:")
         self.logger.info("  %s" % (maya_shot_cache_alembic_abc,))
 
-
+        # gather remaining publish data
         temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
         temp_root = temp_root_template.apply_fields(item.properties.fields)
         self.test_template(item, temp_root, 'temp_root')
@@ -294,6 +286,70 @@ class CreateAlembicPlugin(HookBaseClass):
             self.logger.warning(item.properties['publish_task_id'])
         except:
             pass
+
+        #### ALEMBIC-SPECIFIC VALIDATION/FILE GENERATION ###
+        # refine JSON values and generate .job files for Deadline
+        json_properties = item.properties.get('json_properties')
+
+        process_type = item.properties['step'].get('sg_review_process_type').lower()        
+        process_dict =  json_properties[process_type]
+        json_path = json_properties['general_settings']['alembic_json_file']
+
+        if not json_path:
+            raise Exception( "Missing path to deadline json file" )
+
+        # update values for alembic render
+        plugin_info_file = None
+        job_info_file = None
+        for process in process_dict['processes']:
+            alembic_process = process_dict['processes'][process]
+            # process settings
+            alembic_process['process_settings']['review_output'] = publish_path
+            alembic_process['process_settings']['plugin_name'] = "MayaBatch"
+
+            # deadline_settings
+            alembic_process['deadline_settings']['output_file'] = publish_code
+            alembic_process['deadline_settings']['content_output_file_total'] = publish_path
+            alembic_process['deadline_settings']['output_root'] = os.path.dirname( publish_path )
+            alembic_process['deadline_settings']['frame_range'] = "%s-%s" % ( item.properties['entity_info']['sg_head_in'], item.properties['entity_info']['sg_tail_out'] )
+
+            plugin_info_file = alembic_process['deadline_settings']['plugin_info_file']
+            job_info_file = alembic_process['deadline_settings']['job_info_file']
+
+        item.properties['alembic_job_files'] = {
+                                                "plugin_info_file": plugin_info_file,
+                                                "job_info_file": job_info_file,
+                                                }
+
+        # create json storage dir
+        if not os.path.exists( os.path.dirname( json_path ) ):
+            os.makedirs( os.path.dirname( json_path ) )
+
+        # create alembic output dir
+        if not os.path.exists( os.path.dirname( publish_path ) ):
+            os.makedirs( os.path.dirname( publish_path ) )
+
+
+        self.logger.warning(">>>>> writing to json file: %s" % json_path)
+
+        file_write = open( json_path, "w+" )
+        json_data = json.dumps(process_dict, sort_keys=False,
+                                indent=4, separators=(',', ': '), default=str)
+        file_write.write(json_data)
+        file_write.flush()
+        file_write.close()
+
+        self.gather_job_info( process_dict )
+        self.gather_plugin_info( process_dict )
+
+        if not ( job_info_file and plugin_info_file ):
+            if not job_info_file:
+                raise Exception( "Missing job info file" )
+            else:
+                raise Exception( "Missing plugin info file" )
+
+        # for i in item.properties:
+        #     self.logger.warning(">>>>> %s: %s" % ( i, item.properties[i] ) )
 
         return True
 
@@ -309,45 +365,19 @@ class CreateAlembicPlugin(HookBaseClass):
 
         publisher = self.parent
 
-        # self.logger.debug(">>>>> item.properties at START Publish")
-        # self.logger.debug(item.properties.to_dict())
-
-        # publisher = self.parent
-        self.dl_submission = deadline_submission3.DeadlineSubmission()
-
-        project_info = item.properties.get("project_info")
-        entity_info = item.properties.get("entity_info")
+        info_files = item.properties['alembic_job_files']
         
+        self.dm = deadline_manager3.DeadlineManager3()
+        # deadline_submission = self.dm.get_dl_cmd("%s %s %s" % (draft_info['job_info_file'], draft_info['plugin_info_file'], item.properties['path']))
+        self.dm.get_dl_cmd( "%s %s %s" % ( info_files.get('job_info_file'), info_files.get('plugin_info_file'), item.properties['path'] ) )
 
-        item.properties["output_root"] = os.path.split(item.properties['publish_path'])[0]
-        item.properties["output_main"] = os.path.split(item.properties['publish_path'])[1]
-        item.properties["output_ext"] = os.path.splitext(item.properties['publish_path'])[1]
-                        
-        content_info_dict = {}
-        item.properties["content_info"] = content_info_dict
+        maya_shot_work = publisher.engine.get_template_by_name('maya_shot_work')
+        self._copy_outsource_to_work( item, maya_shot_work )
 
-        process_info = self.set_process_info(self.dl_submission,
-                        "MayaBatch",
-                        "alembic-cache",
-                        {},
-                        project_info,
-                        entity_info,
-                        item)
+        self.publish_file_publish( item )
 
-        if not os.path.exists(item.properties["output_root"]):
-            os.makedirs(item.properties["output_root"])
-            self.logger.debug("Making dir: %s" % (item.properties["output_root"]))
 
-        self.send_to_dl(self.dl_submission, process_info, item) 
-
-        # handle copying of work to publish if templates are in play
-        # self._copy_work_to_publish(settings, item)
-        if (item.properties['template'] and
-        item.properties.fields):
-            if item.properties['template'].name == "incoming_outsource_shot_folder_root":
-                maya_shot_work = publisher.engine.get_template_by_name('maya_shot_work')
-                item.properties['work_template'] =  maya_shot_work
-                self._copy_outsource_to_work(settings, item)
+        self.logger.info( "Published Alembic Cache to SG" )
     
     def finalize(self, settings, item):
         """
@@ -408,227 +438,6 @@ class CreateAlembicPlugin(HookBaseClass):
             sequence=is_sequence
         )
 
-    def send_to_dl(self, dl_module, draft_info, item):
-        """
-        Runs cmd function to send image sequence to DL.
-        Needs to be of type file.type.sequence.
-
-        :param item: Item to process
-        """   
-        self.dm = deadline_manager.DeadlineManager()
-
-        try:
-            deadline_submission = self.dm.get_dl_cmd("%s %s %s" % (draft_info['job_info_file'], draft_info['plugin_info_file'], item.properties['path']))
-        except:
-            raise Exception("Failed in the DL submission process.")          
-        finally:
-            self.logger.debug("Sucessfully Sent job to DL.")
-            for line in deadline_submission.splitlines():
-                if not line:
-                    pass
-                else:
-                    self.logger.debug("--- %s "% (line,))
-        
-        # self.logger.info("Version Submission Complete!\nVersion has been sent to SG and the QT sent to DL")
-    
-    def replace_slashes(self, path):
-        """
-        Simple function to replace back with forward slashes
-        """
-        if not path:
-            return
-        else:
-            return path.replace("\\","/")
-
-    def set_process_info(self, dl_module, plugin_name, process_name, plugin_settings, project_info, entity_info, item, multiple_task_list=None):
-        
-        process_info = None
-        # DL vairables
-        batch_name = (item.properties['publish_name'] + "_submit") or ""
-        job_name = (item.properties['publish_name']) or ""
-        plate_type = ""        
-        create_version = False
-        project_root_name = None
-        update_version = False
-        update_client_version = False
-        create_publish = True
-        publish_file_type = "Alembic Cache"
-        publish_file_name = item.properties['publish_name']
-        publish_file_version = entity_info['version_number']
-        publish_file_task = None
-        copy_to_location = False
-        copy_location = None
-        plugin_path = None
-        zip_output = False
-        plugin_version = None
-        comment = ""
-        title = "alembic_cache"        
-        department = "VFX"
-        group="artist"
-        priority = 55
-        primary_pool = "vfx_maya"
-        secondary_pool = "vfx_maya"
-        machine_limit = 1
-        concurrent_task = 1
-        chunk_size = 1000000
-
-        # # Content variables
-        content_info = item.properties.get('content_info') or ""
-        content_output_file = item.properties.get('output_main') or ""
-        content_output_file_total = item.properties.get('output_main') or ""
-        content_output_file_ext = item.properties.get('output_ext') or ""
-        content_output_root = item.properties.get('output_root') or ""
-        content_output_file_total = os.path.join(content_output_root,content_output_file)
-        job_dependencies = ""
-        frame_range = item.properties.get("frame_range") or None
-        slate_enabled = False
-        burnin_enabled = False
-        plugin_in_script = None
-        plugin_out_script = None
-        temp_root = self.replace_slashes(item.properties['temp_root'])
-        script_file = None
-
-        user_name = ""
-        try:
-            user_info = item.properties.get("user_info")    
-            if( user_info and 
-            len(user_info)==1):
-                user_name = user_info[0]['login']
-        except:
-            self.logger.warning("Could not get user_name info")
-
-        try:
-            publish_file_task = item.properties.get('publish_task_id')
-        except:
-            self.logger.warning("Could not get publish_task_id info")
-
-        if item.properties['project_info']['local_storage']:
-            project_root_name = item.properties['project_info']['local_storage']['code']
-
-        software_maya = next((soft for soft in item.properties['software_info'] if soft['products'] == "Maya"), None)
-        if software_maya:
-            plugin_version = software_maya['version_names']
-
-        process_info = dict(
-            batch_name = batch_name,
-            job_name = job_name, 
-            process_name = process_name, 
-            content_info = content_info,
-            plate_type = plate_type,
-            create_version = create_version,
-            update_version = update_version,
-            update_client_version = update_client_version,
-            create_publish = create_publish,
-            publish_file_type = publish_file_type,
-            publish_file_task = publish_file_task,
-            publish_file_name = publish_file_name,
-            publish_file_version = publish_file_version,
-            copy_to_location = copy_to_location,
-            copy_location = copy_location,
-            zip_output = zip_output,
-            user = user_name,      
-            title = title,
-            comment = comment,
-            department = department,
-            group= group,
-            priority = priority,
-            primary_pool = primary_pool,
-            secondary_pool = secondary_pool,
-            machine_limit = machine_limit,
-            concurrent_task = concurrent_task,
-            chunk_size = chunk_size,                
-            frame_range =frame_range,
-            content_output_file = content_output_file,
-            content_output_file_ext =content_output_file_ext,  
-            content_output_file_total = content_output_file_total,          
-            content_output_root = content_output_root,
-            job_dependencies = job_dependencies,
-            plugin_name = plugin_name,
-            plugin_path = plugin_path,
-            plugin_version = plugin_version,
-            plugin_settings = plugin_settings,
-            plugin_in_script = plugin_in_script,
-            plugin_out_script = plugin_out_script,
-            slate_enabled = slate_enabled,
-            burnin_enabled = burnin_enabled,
-            script_file = script_file,
-            project_root_name = project_root_name,              
-            sg_temp_root = temp_root
-            )
-        
-        # for pk, in process_info.items():
-            
-
-        # if multiple_task_list != None:
-        #     process_info.update({'info_json_count':len(multiple_task_list)})
-        #     for index, i in enumerate(multiple_task_list):
-        #         info_json_key = 'info_json_0%s'%str(index+1)
-        #         process_info.update({info_json_key:i})
-
-        job_info_file,plugin_info_file = self.create_dl_info_files(dl_module, project_info, entity_info, process_info)
-        process_info.update({'job_info_file':job_info_file})
-        process_info.update({'plugin_info_file':plugin_info_file})
-
-        return process_info
-
-    def create_dl_info_files(self, dl_module, project_info_dict, entity_info, process_info_dict):
-        
-        job_info = None
-        plugin_info = None
-
-        total_info = dict(
-        project_info = project_info_dict,
-        entity_info = entity_info,
-        process_info = process_info_dict
-        )
-
-        job_info = self.create_job_info(dl_module,
-                            total_info, 
-                            process_info_dict['plugin_name'])
-        plugin_info = self.create_plugin_info(dl_module,
-                            total_info, 
-                            process_info_dict['plugin_name'])  
-
-        return(job_info, plugin_info)
-
-    def create_job_info(self, dl_module, total_info, plugin_name):
-
-        job_info = None
-        try:
-            job_info = self.dl_submission.gather_job_info(
-            total_info,
-            )
-        except Exception as err:
-            raise Exception("Unable to create %s job info file %s" % (plugin_name, err))
-        finally:
-            job_info = job_info.replace("/","\\")
-            self.logger.debug("Created %s job info file for %s." % (plugin_name,total_info['process_info']['process_name']),
-                    extra={
-                    "action_show_folder": {
-                        "path": job_info
-                    }
-            })
-        return job_info
-
-    def create_plugin_info(self, dl_module, total_info, plugin_name):
-
-        plugin_info = None
-        try:
-            plugin_info = self.dl_submission.gather_plugin_info(
-                total_info,
-                )
-        except Exception as err:
-            raise Exception("Unable to create %s plugin info file %s" % (plugin_name, err))
-        finally:
-            plugin_info = plugin_info.replace("/","\\")
-            self.logger.debug("Created %s plugin info file for %s" % (plugin_name,total_info['process_info']['process_name']),
-                    extra={
-                    "action_show_folder": {
-                        "path": plugin_info
-                    }
-                    })
-            return plugin_info
-
     def test_template(self, item, template, property_key, exists=False):
         """
         Test to see if the template was found and raise error if not
@@ -675,63 +484,361 @@ class CreateAlembicPlugin(HookBaseClass):
         
         return publish_match
 
-    def _copy_outsource_to_work(self, settings, item):
+    def _copy_outsource_to_work(self, item, template):
 
-        work_template = item.properties.get("work_template")
-        if not work_template:
+        # work_template = item.properties.get("work_template")
+        # if not work_template:
+        if not template:
             self.logger.debug(
-                "No work template set on the item. "
+                "No workfiles template set on the item. "
                 "Skipping copy file to publish location."
             )
             return
 
-        # by default, the path that was collected for publishing
-        outsource_files = [item.properties.path]
-        # ---- copy the outsource files to the work location
-
-        if not item.properties.fields:
+        if not item.properties.get('fields'):
             self.logger.debug(
                 "No item fields supplied from collector."
-                "Required to resolve template paths."
+                "Cannot resolve template paths."
             )
             return
 
-        for outsource_file in outsource_files:
+        # copy the outsource files to the work location
+        # by default, the path that was collected for publishing
+        outsource_file = item.properties['path']
+        work_file = template.apply_fields( item.properties['fields'] )
 
-            # if not work_template.validate(outsource_file):
-            #     self.logger.warning(
-            #         "Work file '%s' did not match work template '%s'. "
-            #         "Publishing in place." % (outsource_file, work_template)
-            #     )
-            #     return
+        # copy the file
+        try:
+            work_folder = os.path.dirname(work_file)
+            ensure_folder_exists(work_folder)
+            copy_file(outsource_file, work_file)
+        except Exception:
+            raise Exception(
+                "Failed to copy outsource file from '%s' to '%s'.\n%s" %
+                (outsource_file, work_file, traceback.format_exc())
+            )
 
-            # work_fields = work_template.get_fields(outsource_file)
+        self.logger.debug(
+            "Copied work file '%s' to work file '%s'." %
+            (outsource_file, work_file)
+        )        
 
-            # missing_keys = work_template.missing_keys(work_fields)
+    def gather_job_info(self, info_dict):
+        """
+        Sets up the deadline job info 
 
-            # if missing_keys:
-            #     self.logger.warning(
-            #         "Work file '%s' missing keys required for the publish "
-            #         "template: %s" % (outsource_file, missing_keys)
-            #     )
-            #     return
+        :param info_dict: loaded data for the content that will inform all relevant requirements
+        """
 
-            work_file = work_template.apply_fields(item.properties.fields)
-            self.logger.debug(">>>>> work_file: %s" % str(work_file))
-            self.logger.debug(">>>>> outsource_file: %s" % str(outsource_file))
+        # Collect basic JSON components to simplify organizing 
+        project_info = info_dict['project_info']
+        entity_info = info_dict['entity_info']
+        processes_dict =  info_dict.get('processes')
 
-            # copy the file
-            try:
-                work_folder = os.path.dirname(work_file)
-                ensure_folder_exists(work_folder)
-                copy_file(outsource_file, work_file)
-            except Exception:
-                raise Exception(
-                    "Failed to copy outsource file from '%s' to '%s'.\n%s" %
-                    (outsource_file, work_file, traceback.format_exc())
-                )
+        # loop through processes to set up appropriate values for job file
+        for i in processes_dict:
+            key = str(i)
+            if not processes_dict[key]:
+                continue
 
+            process_settings = processes_dict[key]['process_settings']
+            deadline_settings = processes_dict[key]['deadline_settings']
+
+            job_info_file = deadline_settings.get('job_info_file')
+            if not job_info_file:
+                self.logger.warning("No job_info_file found!")
+                break
+            if not os.path.exists( os.path.dirname( job_info_file ) ):
+                os.makedirs( os.path.dirname( job_info_file ) )
+
+            # set output locations
+            output_filename = deadline_settings['output_file']
+            output_directory = deadline_settings['output_root']
+            if deadline_settings.get('job_dependencies'):
+                output_filename = deadline_settings['output_file']
+                output_directory = deadline_settings['output_root']
+
+            basic_job_info = dict(
+                BatchName= deadline_settings['batch_name'],
+                OnJobComplete= "Nothing",
+                Plugin= process_settings['plugin_name'],
+                MachineLimit= deadline_settings['machine_limit'],
+                ConcurrentTasks= deadline_settings['concurrent_task'],
+                ChunkSize= deadline_settings['chunk_size'],
+                Department= deadline_settings.get('department'),
+                Group= deadline_settings.get('group'),
+                Priority= deadline_settings['priority'],
+                Name= deadline_settings['job_name'],
+                OutputFilename0= output_filename,
+                OutputDirectory0= output_directory,
+                Pool= deadline_settings['primary_pool'],
+                SecondaryPool= deadline_settings['secondary_pool'],
+                UserName= process_settings['user'],
+                Frames= deadline_settings['frame_range'],
+                ExtraInfo0= project_info['name'],
+            )
+
+            job_extra_info = dict(
+                ProjectID= project_info['id'],
+                ProjectName= project_info['name'],
+                ContentType= info_dict['entity_info']['type'],                
+                ContentID= entity_info['id'],
+                PublishFileType= deadline_settings['publish_file_type'],
+                ProcessType= key,
+                CreateVersion= process_settings['create_version'],
+                UpdateVersion= process_settings['update_version'],
+                CreatePublish= process_settings['create_publish'],
+                UpdateClientVersion= process_settings['update_client_version'],
+                FileExtension=deadline_settings['output_file_ext']
+            )
+
+            if 'version_info' in info_dict.keys():
+                version_info = info_dict['version_info']
+                job_extra_info['VersionName']= version_info.get('code')
+                job_extra_info['VersionID']= version_info.get('id')
+                job_extra_info['PipelineStep']= version_info['sg_task']['name']
+                job_extra_info['InFile']= version_info['sg_path_to_frames'],
+                job_extra_info['TaskID']= version_info['sg_task']['id']
+                job_extra_info['Description']= version_info.get('description')                          
+
+            # write the actual job file to disk
+            job_info_file = deadline_settings['job_info_file']
+            writer = open( job_info_file, "w" )
+
+            for i in basic_job_info:
+                try:
+                    writer.write( "%s=%s\n" % ( i, basic_job_info[i] ) )
+                except:
+                    writer.write( "%s=%s\n" % ( i, basic_job_info[i].encode('utf-8') ) )
+            
+            for i, j in enumerate(job_extra_info.keys()):
+                ev_num = str(i)
+                try:
+                    writer.write( "ExtraInfoKeyValue%s=%s=%s\n" % ( ev_num, j, job_extra_info[j] ) )
+                except:
+                    writer.write( "ExtraInfoKeyValue%s=%s=%s\n" % ( ev_num, j, job_extra_info[j].encode('utf-8') ) )
+            
+            writer.close()
+            self.logger.info("Created JOBINFO %s " % (job_info_file))
+    
+    def gather_plugin_info(self, info_dict):
+        """
+            Sets up the deadline job info 
+            :param info_dict loaded data for the content that will inform all relevant requirements
+        """
+
+        if 'json_properties'in info_dict.keys():
+            json_properties = info_dict['json_properties']
+            process_type = info_dict['step'].get('sg_review_process_type').lower()        
+            processes_dict =  json_properties[process_type].get('processes')
+        else:
+            processes_dict =  info_dict.get('processes')
+
+        # Flatten the dictionary to prepare it for writing to plugin file
+        # NOTE: DL files can't be nested dictionaries/lists
+        def flatten_dict(my_dict, existing_dict, prev_key=None):
+            for k, v in my_dict.items():
+                safe_name = k
+                if prev_key:
+                    safe_name =  "%s_%s" % (prev_key.split("_")[0], k)
+
+                if not isinstance(v, dict):
+                    existing_dict[safe_name] = v
+                else:
+                    flatten_dict(v, existing_dict, prev_key=k)
+            return existing_dict  
+
+        # loop through processes to set up appropriate values for job file
+        for i in processes_dict:
+            key = str(i)
+
+            if not processes_dict[key]:
+                self.logger.warning("No data found for %s" %(key))
+                continue            
+            process_settings = processes_dict[key]['process_settings']
+            deadline_settings = processes_dict[key]['deadline_settings']
+            alembic_settings = processes_dict[key]['alembic_settings']
+
+            plugin_info_file = deadline_settings.get('plugin_info_file')
+            if not os.path.exists( os.path.dirname( plugin_info_file ) ):
+                os.makedirs( os.path.dirname( plugin_info_file ) )
+
+            set_string = "ScriptArg%s=%s=%s\n"
+            root_list = []
+            for j in processes_dict[key]:
+                root_list.extend( flatten_dict( processes_dict[key][j], {} ).items() )
+
+            # alembic-specific additions read from project's alembic setting json
+            write_list = []
+            write_list.append( "Version=%s\n" % process_settings['plugin_version'] )
+            write_list.append( "AlembicAttributePrefix=%s\n" % alembic_settings['alembic_attribute_prefix'] )
+            write_list.append( "AlembicAttributes=%s\n" % alembic_settings['alembic_attributes'] )
+            write_list.append( "AlembicFormatOption=%s\n" % alembic_settings['alembic_format_option'] )
+            write_list.append( "AlembicHighSubFrame=%s\n" % alembic_settings['alembic_high_subframe'] )
+            write_list.append( "AlembicJob=%s\n" % alembic_settings['alembic_job'] )
+            write_list.append( "AlembicLowSubFrame=%s\n" % alembic_settings['alembic_low_subframe'] )
+            write_list.append( "AlembicSelection=%s\n" % alembic_settings['alembic_selection'] )
+            write_list.append( "AlembicSubFrames=%s\n" % alembic_settings['alembic_subframes'] )
+            write_list.append( "Animation=%s\n" % alembic_settings['animation'] )
+            write_list.append( "Build=%s\n" % alembic_settings['build'] )
+            write_list.append( "EnableOpenColorIO=%s\n" % alembic_settings['enable_open_colorIO'] )
+            write_list.append( "IgnoreError211=%s\n" % alembic_settings['ignore_error_211'] )
+
+            write_list.append( "OutputFile=%s\n" % deadline_settings['output_file'] )
+            write_list.append( "OutputFilePath=%s\n" % deadline_settings['output_root'] )
+
+            write_list.extend( [ set_string % (j,k,l) for j,(k,l) in enumerate(root_list) ] )
+            
+            # write the actual plugin file to disk
+            writer = open(plugin_info_file, "w")
+
+            for info_dict in write_list:
+                writer.write(info_dict)
+
+            writer.close()
+
+            self.logger.info("Created PLUGININFO %s " % (plugin_info_file))
+
+    def publish_file_publish(self, item):
+        """
+        Executes the publish logic for the given item and settings.
+
+        :param settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the settings property. The values are `Setting`
+            instances.
+        :param item: Item to process
+        """
+
+        publisher = self.parent
+
+        # ---- determine the information required to publish
+
+        # We allow the information to be pre-populated by the collector or a
+        # base class plugin. They may have more information than is available
+        # here such as custom type or template settings.
+
+        publish_name = item.properties['publish_name']
+        publish_path = item.properties['publish_path']
+        publish_type = item.properties['publish_type']
+        publish_dependencies_paths = []
+        publish_thumbnail = item.get_property("thumbnail_path")
+        publish_user = item.get_property("publish_user", default_value=None)
+        publish_version = self.get_publish_version( item )
+
+        # Test if there is sufficient info for thumbnail
+        if publish_thumbnail:
+            self.logger.debug("Found first frame for thumbnail:")
+            self.logger.debug(publish_thumbnail)
+        else:
+            self.logger.debug("No thumbnail file given.")
+
+        self.logger.debug("Publish name: %s" % (publish_name,))
+
+        # arguments for publish registration
+        self.logger.info("Registering publish...")
+
+        publish_data = {
+            "tk": publisher.sgtk,
+            "context": item.context,
+            "path": publish_path,
+            "name": publish_name,
+            "comment": item.description,
+            "version_number": publish_version,
+        }
+        item.properties.publish_fields = {
+            "sg_fields": {"sg_status_list": "cmpt",}
+            }
+
+        item.properties.publish_kwargs = {
+            "version_entity": None,
+            "thumbnail_path": publish_thumbnail, 
+            "created_by": publish_user,
+            "published_file_type": publish_type,
+            "dependency_paths": publish_dependencies_paths,
+            "dependency_ids": [],
+            }
+            
+
+        # catch-all for any extra kwargs that should be passed to register_publish.
+        publish_kwargs = item.get_property("publish_kwargs", default_value={})
+        publish_fields = item.get_property("publish_fields", default_value={})
+        
+        # add extra kwargs
+        publish_data.update(publish_kwargs)
+        publish_data.update(publish_fields)
+
+        # log the publish data for debugging
+        self.logger.debug(
+            "Populated Publish data...",
+            extra={
+                "action_show_more_info": {
+                    "label": "Publish Data",
+                    "tooltip": "Show the complete Publish data dictionary",
+                    "text": "<pre>%s</pre>" % (pprint.pformat(publish_data),)
+                }
+            }
+        )
+
+        # create the publish and stash it in the item properties for other
+        # plugins to use.
+        item.properties.sg_publish_data = sgtk.util.register_publish(**publish_data)
+        self.logger.info("Publish registered!")
+        self.logger.debug(
+            "Shotgun Publish data...",
+            extra={
+                "action_show_more_info": {
+                    "label": "Shotgun Publish Data",
+                    "tooltip": "Show the complete Shotgun Publish Entity dictionary",
+                    "text": "<pre>%s</pre>" % (pprint.pformat(item.properties.sg_publish_data),)
+                }
+            }
+        )
+
+    def get_publish_version(self, item):
+        """
+        Get the publish version for the supplied settings and item.
+
+        :param settings: This plugin instance's configured settings
+        :param item: The item to determine the publish version for
+
+        Extracts the publish version via the configured work template if
+        possible. Will fall back to using the path info hook.
+        """
+
+        # publish version explicitly set or defined on the item
+        publish_version = item.get_property("publish_version")
+        if publish_version:
+            return publish_version
+
+        # fall back to the template/path_info logic
+        publisher = self.parent
+        path = item.properties.path
+
+        work_template = item.properties.get("work_template")
+        work_fields = None
+        publish_version = None
+
+        if work_template:
+            if work_template.validate(path):
+                self.logger.debug(
+                    "Work file template configured and matches file.")
+                work_fields = work_template.get_fields(path)
+
+        if work_fields:
+            # if version number is one of the fields, use it to populate the
+            # publish information
+            if "version" in work_fields:
+                publish_version = work_fields.get("version")
+                self.logger.debug(
+                    "Retrieved version number via work file template.")
+
+        else:
             self.logger.debug(
-                "Copied work file '%s' to work file '%s'." %
-                (outsource_file, work_file)
-            )                
+                "Using path info hook to determine publish version.")
+            publish_version = publisher.util.get_version_number(path)
+            if publish_version is None:
+                publish_version = 1
+
+        return publish_version
+
+

@@ -1,12 +1,12 @@
-# Copyright (c) 2017 Shotgun Software Inc.
+# Copyright (c) 2017 ShotGrid Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# This work is provided "AS IS" and subject to the ShotGrid Pipeline Toolkit
 # Source Code License included in this distribution package. See LICENSE.
 # By accessing, using, copying or modifying this work you indicate your
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
-# not expressly granted therein are reserved by Shotgun Software Inc.
+# agreement to the ShotGrid Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by ShotGrid Software Inc.
 
 ################################################################################
 
@@ -28,11 +28,11 @@ settings.tk-multi-publish2.standalone:
   enable_manual_load: true
 
   publish_plugins:
-  - name: Slap Comp for Review
-    hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
-    settings: {}
+  # - name: Slap Comp for Review
+  #   hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
+  #   settings: {}
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/desktop/publish_file.py"
@@ -205,7 +205,7 @@ settings.tk-multi-publish2.maya.asset_step:
     settings:
         Publish Template: maya_asset_camera_publish
         Cameras: ["cam_main*"]
-  # - name: Publish to Shotgun
+  # - name: Publish to ShotGrid
   #   hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
   #   settings:
   #       Publish Template: asset_alembic_cache
@@ -231,7 +231,7 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
-  - name: Publish to Shotgun
+  - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_camera.py"
     settings:
         Publish Template: maya_shot_camera_publish
@@ -254,7 +254,7 @@ settings.tk-multi-publish2.nuke.asset_step:
       Work Template: nuke_asset_work
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
@@ -280,7 +280,7 @@ settings.tk-multi-publish2.nuke.shot_step:
       Work Template: nuke_shot_work
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"

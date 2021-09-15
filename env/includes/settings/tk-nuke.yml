@@ -67,7 +67,7 @@ settings.tk-nuke.hiero.project:
   timeline_context_menu:
   - app_instance: tk-hiero-openinshotgun
     keep_in_menu: false
-    name: "Open in ShotGrid"
+    name: "Open in Shotgun"
     requires_selection: true
   menu_favourites:
   - app_instance: tk-multi-workfiles2

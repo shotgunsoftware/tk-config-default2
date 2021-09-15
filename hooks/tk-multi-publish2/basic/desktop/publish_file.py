@@ -275,7 +275,7 @@ class BasicFilePublishPlugin(HookBaseClass):
         accept = {"accepted": True}
 
         # check pipeline step to determine if it should be checked/unchecked
-        if item.properties.publish_to_shotgun:
+        if item.properties.sg_publish_to_shotgun:
             accept.update({'checked': True})
             # log the accepted file and display a button to reveal it in the fs
             self.logger.info(
@@ -293,13 +293,15 @@ class BasicFilePublishPlugin(HookBaseClass):
             accept.update({'visible': False})
             accept = {"accepted": False}
 
-        try:
-            if item.properties['template_file']:
-                if item.properties['template_file'].name == "maya_shot_outsource_work_file":
-                    self.logger.warning(item.properties['template_file'])
+        template = item.properties.get('template')
+        if template:
+            if item.properties['template'].name == "maya_shot_outsource_work_file":
+                    self.logger.warning("Outsource Workfile will not be published to Shotgun.")
+                    accept.update({'checked': False})
+                    accept.update({'enabled': False})
+                    accept.update({'visible': False})
                     accept = {"accepted": False}
-        except:
-            pass
+
         # return the accepted info
         return accept
 
@@ -454,6 +456,8 @@ class BasicFilePublishPlugin(HookBaseClass):
         else:
             publish_status = "cmpt"
             self.logger.debug("No associated Version found. PublishedFile will have no linked Version.")
+
+        self.logger.warning( "publish_file-version: %s" % version )
 
         publish_data = {
             "tk": publisher.sgtk,

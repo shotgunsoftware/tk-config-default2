@@ -29,7 +29,7 @@ VERSION_REGEX = re.compile("(.*)([._-])v(\d+)\.?([^.]+)?$", re.IGNORECASE)
 # or '-'.
 FRAME_REGEX = re.compile("(.*)([._-])(\d+)\.([^.]+)$", re.IGNORECASE)
 
-VERSION_STRING_REGEX = re.compile("([._-])v(\d+)\.?([^.]+)?")
+VERSION_STRING_REGEX = re.compile("([._-])v(\d+)\.?([^.]+)?", re.IGNORECASE)
 
 class BasicPathInfo(HookBaseClass):
     """

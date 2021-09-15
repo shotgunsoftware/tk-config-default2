@@ -77,9 +77,6 @@ paths:
     nuke_shot_render_root:
         definition: '@render_root/nuke/{task_name}/version/{Shot}_{task_name}[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
-    nuke_shot_render_pub_root:
-        definition: '@render_root/nuke/{task_name}/publish/{Shot}_{task_name}_v{version}'
-        root_name: 'project_pipeline'
     nuke_shot_element_render_root:
         definition: '@render_root/nuke/{task_name}/element/{Shot}_elem[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
@@ -95,137 +92,140 @@ paths:
         # definition: '@render_root/nuke/element/SmartVector/{Shot}_{task_name}[_{nuke.output}]_v{version}'
         definition: '@render_root/nuke/element/SmartVector/{Shot}_SmartVector[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
-    nuke_shot_test_render_root:
-        definition: '@temp_shot_root/renders/nuke/{task_name}/test/{Shot}_test[_{nuke.output}]_v{version}'
-        root_name: 'project_pipeline'
     # version output
     nuke_shot_render_jpeg:
-        definition: '@nuke_shot_render_root/{Shot}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@render_root/nuke/{task_name}/version/{Shot}_{task_name}[_{nuke.output}]_v{version}/{Shot}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_shot_render_exr:
-        definition: '@nuke_shot_render_root/{Shot}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@render_root/nuke/{task_name}/version/{Shot}_{task_name}[_{nuke.output}]_v{version}/{Shot}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_shot_render_dpx:
-        definition: '@nuke_shot_render_root/{Shot}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@render_root/nuke/{task_name}/version/{Shot}_{task_name}[_{nuke.output}]_v{version}/{Shot}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'
     # publish output
     nuke_shot_render_pub_jpeg:
-        definition: '@nuke_shot_render_pub_root/{Shot}_{task_name}_v{version}.{SEQ}.jpeg'
+        definition: '@render_root/nuke/{task_name}/publish/{Shot}_{task_name}_v{version}/{Shot}_{task_name}_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_shot_render_pub_dpx:
-        definition: '@nuke_shot_render_pub_root/{Shot}_{task_name}_v{version}.{SEQ}.dpx'
+        definition: '@render_root/nuke/{task_name}/publish/{Shot}_{task_name}_v{version}/{Shot}_{task_name}_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'
     nuke_shot_render_pub_exr:
-        definition: '@nuke_shot_render_pub_root/{Shot}_{task_name}_v{version}.{SEQ}.exr'
+        definition: '@render_root/nuke/{task_name}/publish/{Shot}_{task_name}_v{version}/{Shot}_{task_name}_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     # element output
     nuke_shot_render_element_jpeg:
-        definition: '@nuke_shot_element_render_root/{Shot}_elem[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@render_root/nuke/{task_name}/element/{Shot}_elem[_{nuke.output}]_v{version}/{Shot}_elem[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_shot_render_element_exr:
-        definition: '@nuke_shot_element_render_root/{Shot}_elem[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@render_root/nuke/{task_name}/element/{Shot}_elem[_{nuke.output}]_v{version}/{Shot}_elem[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_shot_render_element_dpx:
-        definition: '@nuke_shot_element_render_root/{Shot}_elem[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@render_root/nuke/{task_name}/element/{Shot}_elem[_{nuke.output}]_v{version}/{Shot}_elem[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'
     # denoise output
     nuke_shot_render_denoise_jpeg:
-        definition: '@nuke_shot_denoise_render_root/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@render_root/nuke/element/denoise/{Shot}_denoise[_{nuke.output}]_v{version}/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_shot_render_denoise_exr:
-        definition: '@nuke_shot_denoise_render_root/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@render_root/nuke/element/denoise/{Shot}_denoise[_{nuke.output}]_v{version}/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_shot_render_denoise_dpx:
-        definition: '@nuke_shot_denoise_render_root/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@render_root/nuke/element/denoise/{Shot}_denoise[_{nuke.output}]_v{version}/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'   
     # stmap output
     nuke_shot_render_stmap_jpeg:
-        definition: '@nuke_shot_stmap_render_root/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@render_root/nuke/element/STMap/{Shot}_STMap[_{nuke.output}]_v{version}/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_shot_render_stmap_exr:
-        definition: '@nuke_shot_stmap_render_root/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@render_root/nuke/element/STMap/{Shot}_STMap[_{nuke.output}]_v{version}/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_shot_render_stmap_dpx:
-        definition: '@nuke_shot_stmap_render_root/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@render_root/nuke/element/STMap/{Shot}_STMap[_{nuke.output}]_v{version}/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'        
     # smartvector output
     nuke_shot_render_smartvector_jpeg:
-        definition: '@nuke_shot_smartvector_render_root/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@render_root/nuke/element/SmartVector/{Shot}_SmartVector[_{nuke.output}]_v{version}/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_shot_render_smartvector_exr:
-        definition: '@nuke_shot_smartvector_render_root/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@render_root/nuke/element/SmartVector/{Shot}_SmartVector[_{nuke.output}]_v{version}/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_shot_render_smartvector_dpx:
-        definition: '@nuke_shot_smartvector_render_root/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@render_root/nuke/element/SmartVector/{Shot}_SmartVector[_{nuke.output}]_v{version}/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'              
     # render movie    
     nuke_shot_render_mov:
         definition: '@temp_shot_root/renders/nuke/{task_name}/review/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.mov'
         root_name: 'project_pipeline'
     nuke_shot_render_mov_secondary:
-        definition: '@nuke_shot_render_mov'
+        definition: '@temp_shot_root/renders/nuke/{task_name}/review/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.mov'
         root_name: 'secondary'         
     nuke_shot_render_filmstrip:
         definition: '@temp_shot_root/renders/nuke/{task_name}/review/{Shot}_{task_name}[_{nuke.output}]_v{version}/{Shot}_{task_name}[_{nuke.output}]_v{version}.png'
         root_name: 'project_pipeline'
+    nuke_asset_render_mov:
+        definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
+        root_name: 'project_pipeline'
+    nuke_asset_render_mov_secondary:
+        definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
+        root_name: 'secondary'   
+    nuke_asset_render_filmstrip:
+        definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.png'
+        root_name: 'project_pipeline'      
     # test output
     nuke_shot_render_test_jpeg:
-        definition: '@nuke_shot_test_render_root/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@temp_shot_root/renders/nuke/{task_name}/test/{Shot}_test[_{nuke.output}]_v{version}/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'secondary'
     nuke_shot_render_test_exr:
-        definition: '@nuke_shot_test_render_root/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@temp_shot_root/renders/nuke/{task_name}/test/{Shot}_test[_{nuke.output}]_v{version}/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'secondary'
     nuke_shot_render_test_dpx:
-        definition: '@nuke_shot_test_render_root/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@temp_shot_root/renders/nuke/{task_name}/test/{Shot}_test[_{nuke.output}]_v{version}/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'secondary'      
     ########################################ASSET OUTPUT     
     nuke_asset_render_root:
         definition: '@asset_render_root/nuke/{task_name}/version/{Asset}_{task_name}[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
-    nuke_asset_publish_root:
-        definition: '@asset_render_root/nuke/{task_name}/publish'
-        root_name: 'project_pipeline'
     nuke_asset_element_render_root:
         definition: '@asset_render_root/nuke/{task_name}/element/{Asset}_elem[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
     nuke_asset_denoise_render_root:
-        definition: '@asset_render_root/nuke/element/denoise/{Asset}_denoise[_{nuke.output}]_v{version}'
+        definition: '@asset_render_root/nuke/element/denoise/{Asset}_{task_name}[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
     nuke_asset_stmap_render_root:
-        definition: '@asset_render_root/nuke/element/STMap/{Asset}_stmap[_{nuke.output}]_v{version}'
+        definition: '@asset_render_root/nuke/element/STMap/{Asset}_{task_name}[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
     nuke_asset_smartvector_render_root:
-        definition: '@asset_render_root/nuke/element/SmartVector/{Asset}_SmartVector[_{nuke.output}]_v{version}'
+        definition: '@asset_render_root/nuke/element/SmartVector/{Asset}_{task_name}[_{nuke.output}]_v{version}'
         root_name: 'project_pipeline'
     # version output
     nuke_asset_render_jpeg:
-        definition: '@nuke_asset_render_root/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@asset_render_root/nuke/{task_name}/version/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_asset_render_exr:
-        definition: '@nuke_asset_render_root/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_render_root/nuke/{task_name}/version/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_asset_render_dpx:
-        definition: '@nuke_asset_render_root/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@asset_render_root/nuke/{task_name}/version/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'
     # publish output
     nuke_asset_render_pub_jpeg:
-        definition: '@nuke_asset_publish_root/{Asset}_{task_name}_v{version}/{Asset}_{task_name}_v{version}.{SEQ}.jpeg'
+        definition: '@asset_render_root/nuke/{task_name}/publish/{Asset}_{task_name}_v{version}/{Asset}_{task_name}_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_asset_render_pub_exr:
-        definition: '@nuke_asset_publish_root/{Asset}_{task_name}_v{version}/{Asset}_{task_name}_v{version}.{SEQ}.exr'
+        definition: '@asset_render_root/nuke/{task_name}/publish/{Asset}_{task_name}_v{version}/{Asset}_{task_name}_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_asset_render_pub_dpx:
-        definition: '@nuke_asset_publish_root/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@asset_render_root/nuke/{task_name}/publish/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'            
     # element output
     nuke_asset_render_element_jpeg:
-        definition: '@nuke_asset_element_render_root/{Asset}_elem[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@asset_render_root/nuke/{task_name}/element/{Asset}_elem[_{nuke.output}]_v{version}/{Asset}_elem[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_asset_render_element_exr:
-        definition: '@nuke_asset_element_render_root/{Asset}_elem[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_render_root/nuke/{task_name}/element/{Asset}_elem[_{nuke.output}]_v{version}/{Asset}_elem[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_asset_render_element_dpx:
-        definition: '@nuke_asset_element_render_root/{Asset}_elem[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@asset_render_root/nuke/{task_name}/element/{Asset}_elem[_{nuke.output}]_v{version}/{Asset}_elem[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'                
     # test output     
     nuke_asset_render_test_jpeg:
@@ -236,17 +236,7 @@ paths:
         root_name: 'secondary'
     nuke_asset_render_test_dpx:
         definition: '@temp_asset_render_root/nuke/{task_name}/test/{Asset}_test[_{nuke.output}]_v{version}/{Asset}_test[_{nuke.output}]_v{version}.{SEQ}.dpx'
-        root_name: 'secondary'
-    # render movie
-    nuke_asset_render_mov:
-        definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
-        root_name: 'project_pipeline'
-    nuke_asset_render_mov_secondary:
-        definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
-        root_name: 'secondary'
-    nuke_asset_render_filmstrip:
-        definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.png'
-        root_name: 'project_pipeline'
+        root_name: 'secondary'               
     # review output
     nuke_asset_render_movie:
         definition: '@temp_asset_render_root/nuke/{task_name}/review/{Asset}_{task_name}_review[_{nuke.output}]_v{version}/{Asset}_{nuke.output}_v{version}.mov'
@@ -256,33 +246,33 @@ paths:
         root_name: 'project_pipeline'
     # denoise output
     nuke_asset_render_denoise_jpeg:
-        definition: '@nuke_asset_denoise_render_root/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@asset_render_root/nuke/element/denoise/{Asset}_denoise[_{nuke.output}]_v{version}/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_asset_render_denoise_exr:
-        definition: '@nuke_asset_denoise_render_root/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_render_root/nuke/element/denoise/{Asset}_denoise[_{nuke.output}]_v{version}/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_asset_render_denoise_dpx:
-        definition: '@nuke_asset_denoise_render_root/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@asset_render_root/nuke/element/denoise/{Asset}_denoise[_{nuke.output}]_v{version}/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'   
     # smartvector output
     nuke_asset_render_smartvector_jpeg:
-        definition: '@nuke_asset_smartvector_render_root/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@asset_render_root/nuke/element/SmartVector/{Asset}_SmartVector[_{nuke.output}]_v{version}/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_asset_render_smartvector_exr:
-        definition: '@nuke_asset_smartvector_render_root/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_render_root/nuke/element/SmartVector/{Asset}_SmartVector[_{nuke.output}]_v{version}/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_asset_render_smartvector_dpx:
-        definition: '@nuke_asset_smartvector_render_root/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@asset_render_root/nuke/element/SmartVector/{Asset}_SmartVector[_{nuke.output}]_v{version}/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'
     # stmap output
     nuke_asset_render_stmap_jpeg:
-        definition: '@nuke_asset_stmap_render_root/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@asset_render_root/nuke/element/stmap/{Asset}_stmap[_{nuke.output}]_v{version}/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
     nuke_asset_render_stmap_exr:
-        definition: '@nuke_asset_stmap_render_root/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_render_root/nuke/element/stmap/{Asset}_stmap[_{nuke.output}]_v{version}/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
     nuke_asset_render_stmap_dpx:
-        definition: '@nuke_asset_stmap_render_root/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@asset_render_root/nuke/element/stmap/{Asset}_stmap[_{nuke.output}]_v{version}/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'            
     
 strings:
