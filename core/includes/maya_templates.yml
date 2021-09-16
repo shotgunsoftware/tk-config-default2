@@ -136,7 +136,7 @@ paths:
         definition: '@asset_root/publish/maya/{Asset}_{task_name}[_{name}]_assembly_v{version}.{maya_extension}'
         root_name: 'project_pipeline'
     maya_asset_standin_publish:
-        definition: '@asset_root/publish/maya/{Asset}_{task_name}[_{name}]_v{version}.ass.gz'
+        definition: '@asset_root/publish/maya/standin/{Asset}_{task_name}[_{name}]_v{version}.ass'
         root_name: 'project_pipeline'
     
     ########################################SHOT OUTPUT
