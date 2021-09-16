@@ -131,6 +131,7 @@ settings.tk-multi-loader2.maya:
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
     Maya Shader Network: [import, reference]
+    Standin: [import, reference]
   entities:
   - caption: Assets
     entity_type: Asset
