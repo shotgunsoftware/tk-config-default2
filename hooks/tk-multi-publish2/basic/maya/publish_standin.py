@@ -125,8 +125,14 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         """
 
         accepted = True
+        # Check if we in the surface task context 
+        if not sgtk.platform.current_engine().context.task[
+                'name'].lower().startswith('surface'):
+            accepted = False
+
         publisher = self.parent
         template_name = settings["Publish Template"].value
+        self.logger.debug(dir(publisher))
 
         # ensure a work file template is available on the parent item
         work_template = item.parent.properties.get("work_template")
@@ -250,7 +256,7 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         # ...and execute it:
         try:
-            self.parent.log_debug("Executing command: %s" % abc_export_cmd)
+            self.parent.log_debug("Publishing a Stand-in to: %s" % publish_path)
             arnold_standin.export_standin(publish_path.replace("\\", "/"))
         except Exception as e:
             self.logger.error("Failed to export Geometry: %s" % e)
