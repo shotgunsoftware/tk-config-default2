@@ -154,7 +154,8 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         # we've validated the publish template. add it to the item properties
         # for use in subsequent methods
-        item.properties["publish_template"] = publish_template
+        item.local_properties.publish_template = publish_template
+        # item.properties["publish_template"] = publish_template
 
         # because a publish template is configured, disable context change. This
         # is a temporary measure until the publisher handles context switching
@@ -201,7 +202,8 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         # get the configured work file template
         work_template = item.parent.properties.get("work_template")
-        publish_template = item.properties.get("publish_template")
+        publish_template = item.local_properties.publish_template
+        # publish_template = item.properties.get("publish_template")
 
         # get the current scene path and extract fields from it using the work
         # template:
@@ -220,8 +222,10 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         # create the publish path by applying the fields. store it in the item's
         # properties. This is the path we'll create and then publish in the base
         # publish plugin. Also set the publish_path to be explicit.
-        item.properties["path"] = publish_template.apply_fields(work_fields)
-        item.properties["publish_path"] = item.properties["path"]
+        item.local_properties['path'] = publish_template.apply_fields(work_fields)
+        item.local_properties['publish_path'] = item.local_properties.path
+        # item.properties["path"] = publish_template.apply_fields(work_fields)
+        # item.properties["publish_path"] = item.properties["path"]
 
         # use the work file's version number when publishing
         if "version" in work_fields:
@@ -243,7 +247,8 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         publisher = self.parent
 
         # get the path to create and publish
-        publish_path = item.properties["path"]
+        # publish_path = item.properties["path"]
+        publish_path = item.local_properties["path"]
 
         # ensure the publish folder exists:
         publish_folder = os.path.dirname(publish_path)
