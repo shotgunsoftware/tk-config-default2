@@ -15,18 +15,15 @@ to set environment variables or run scripts as part of the app initialization.
 """
 import os
 import sys
-sg_path = None
-if os.getenv('SSVFX_PIPELINE_DEV') and os.path.exists(os.getenv('SSVFX_PIPELINE_DEV')):
-    sg_path = os.path.join(os.getenv('SSVFX_PIPELINE_DEV'), 'Pipeline', 'ssvfx_sg')
+
+roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE'), "//10.80.8.252/VFX_Pipeline"]
+for root_path in roots:
+    if not root_path:
+        continue
+    sg_path = os.path.join(root_path, 'Pipeline', 'ssvfx_sg')
     if os.path.exists(sg_path):
         sys.path.append(os.path.normpath(sg_path))
-        print('adding ssvfx_sg from dev: %s' % sg_path)
-    else:
-        sg_path = None
-if sg_path is None:
-    # FIXME put this in environment PATH, Engineering?
-    # sys.path.append(os.path.normpath("//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_sg"))
-    sys.path.append(os.path.normpath("//10.80.8.252/VFX_Pipeline/Pipeline/Configs/pipe_test_config_dima/Pipeline/ssvfx_sg"))
+        break
 
 from ss_config.hooks.tk_multi_launchapp.before_app_launch import SsBeforeAppLaunch
 
