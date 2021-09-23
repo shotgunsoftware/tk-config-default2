@@ -158,15 +158,15 @@ settings.tk-multi-publish2.houdini.shot_step:
 
 # asset_step
 settings.tk-multi-publish2.mari.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/mari/collector.py"
   publish_plugins:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
+  - name: Publish to EXR
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/mari/publish_mari_textures.py"
     settings:
-      Publish Template: asset_mari_texture_tif
+      Publish Template: asset_mari_texture_exr
   - name: Upload for review
     hook: "{self}/upload_version.py"
     settings: {}
