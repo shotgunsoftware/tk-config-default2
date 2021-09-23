@@ -8,10 +8,8 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-import os, sys
+import os
 import pprint
-import traceback
-import nuke
 
 import sgtk
 from sgtk.util.filesystem import copy_file, ensure_folder_exists
