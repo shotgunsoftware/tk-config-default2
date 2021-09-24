@@ -8,11 +8,15 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-import mari
 import os
-import pprint
 import re
+import json
+import pprint
+# import subprocess
+
+import mari
 import sgtk
+import converter
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -168,8 +172,13 @@ class MariTexturesPublishPlugin(HookBaseClass):
         # natively.
         if settings.get("Publish Template").value:
             item.context_change_allowed = False
+        
+        checked = True
+        layer = item.properties.get('mari_layer_name')
+        if layer:
+            checked = False
 
-        return {"accepted": True, "checked": True}
+        return {"accepted": checked, "checked": checked}
 
     def validate(self, settings, item):
         """
@@ -283,7 +292,7 @@ class MariTexturesPublishPlugin(HookBaseClass):
 
         fields["version"] = version
 
-        publish_path = publish_template.apply_fields(fields)
+        publish_path = publish_template.apply_fields(fields).replace(' ', '_')
 
         # get the path in a normalized state. no trailing separator, separators
         # are appropriate for current os, no double separators, etc.
@@ -331,6 +340,22 @@ class MariTexturesPublishPlugin(HookBaseClass):
                 self.logger.error(
                     "Channel '%s' doesn't appear to have any layers!" % channel.name()
                 )
+
+        # Export as Arnold TX files
+        channel_exrs = list()
+        self.logger.info("Converting exr to tx...")
+        for patch in geo.patchList():
+            uv_ind = patch.uvIndex() + 1001
+            exr_path = path.replace('$UDIM', str(uv_ind).encode('utf-8'))
+            if not os.path.isfile(exr_path):
+                continue
+            channel_exrs.append(exr_path)
+        if channel_exrs:
+            json_path = channel_exrs[0].rsplit('.', 2)[0] + '.json'
+            json.dump(channel_exrs, open(json_path, 'w'), indent=4)
+            converter.init_deadline_job(
+                json_path=json_path,
+                frames='1001-' + str(1000 + len(channel_exrs)))
 
         # arguments for publish registration
         self.logger.info("Registering publish...")
