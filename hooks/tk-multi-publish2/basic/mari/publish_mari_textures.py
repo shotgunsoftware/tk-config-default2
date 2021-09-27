@@ -16,7 +16,7 @@ import pprint
 
 import mari
 import sgtk
-import converter
+from thinkbox.python import converter
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
