@@ -31,7 +31,7 @@ apps.tk-multi-breakdown.location:
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.3.0
+  version: v1.3.1
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
