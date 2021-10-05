@@ -222,8 +222,9 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         # create the publish path by applying the fields. store it in the item's
         # properties. This is the path we'll create and then publish in the base
         # publish plugin. Also set the publish_path to be explicit.
-        item.local_properties['path'] = publish_template.apply_fields(work_fields)
-        item.local_properties['publish_path'] = item.local_properties.path
+        item.properties['path'] = publish_template.apply_fields(work_fields)
+        item.local_properties['path'] = item.properties.path
+        item.local_properties['publish_path'] = item.properties.path
         # item.properties["path"] = publish_template.apply_fields(work_fields)
         # item.properties["publish_path"] = item.properties["path"]
 
@@ -244,7 +245,7 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         :param item: Item to process
         """
 
-        publisher = self.parent
+        # publisher = self.parent
 
         # get the path to create and publish
         # publish_path = item.properties["path"]
@@ -259,13 +260,14 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         # if start_frame and end_frame:
         #     pass
 
-        # ...and execute it:
         try:
             self.parent.log_debug("Publishing a Stand-in to: %s" % publish_path)
             arnold_standin.export_standin(publish_path.replace("\\", "/"))
         except Exception as e:
             self.logger.error("Failed to export Geometry: %s" % e)
             return
+
+        assert os.path.isfile(publish_path), 'Unable to find a published file: ' + publish_path
 
         # Now that the path has been generated, hand it off to the
         super(MayaArnoldStandinPublishPlugin, self).publish(settings, item)
