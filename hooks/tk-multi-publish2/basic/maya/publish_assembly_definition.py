@@ -125,6 +125,11 @@ class MayaSessionAssemblyPublishPlugin(HookBaseClass):
         """
 
         accepted = True
+        # Check if we in the model task context 
+        if not sgtk.platform.current_engine().context.task[
+                'name'].lower().startswith('model'):
+            accepted = False
+
         publisher = self.parent
         template_name = settings["Publish Template"].value
         print('PUBLISH TEMPLATE NAME', template_name)
@@ -157,7 +162,7 @@ class MayaSessionAssemblyPublishPlugin(HookBaseClass):
         # natively.
         item.context_change_allowed = False
 
-        return {"accepted": True, "checked": True}
+        return {"accepted": accepted, "checked": True}
 
     def validate(self, settings, item):
         """
