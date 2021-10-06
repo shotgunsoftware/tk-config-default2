@@ -269,6 +269,9 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         assert os.path.isfile(publish_path), 'Unable to find a published file: ' + publish_path
 
+        # set the publish type in the item's properties. the base plugin will
+        # use this when registering the file with Shotgun
+        item.properties["publish_type"] = "Standin"
         # Now that the path has been generated, hand it off to the
         super(MayaArnoldStandinPublishPlugin, self).publish(settings, item)
 
