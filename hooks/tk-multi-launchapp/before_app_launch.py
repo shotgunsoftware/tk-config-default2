@@ -27,6 +27,7 @@ for root_path in roots:
 
 from ss_config.hooks.tk_multi_launchapp.before_app_launch import SsBeforeAppLaunch
 
+
 class BeforeAppLaunch(SsBeforeAppLaunch):
     """
     Hook to set up the system prior to app launch.
