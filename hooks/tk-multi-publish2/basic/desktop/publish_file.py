@@ -339,7 +339,7 @@ class BasicFilePublishPlugin(HookBaseClass):
         if re.search(r".abc$", publish_name):
             publish_name = re.sub(r".abc$", "", publish_name)
             item.properties['publish_name'] = publish_name
-        self.logger.warning(publish_name)
+        self.logger.warning('publish name: %s' % publish_name)
         self.logger.info("Review process: %s" % (self.review_process['sg_review_process_type']))
 
         # ---- check for conflicting publishes of this path with a status

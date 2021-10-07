@@ -38,7 +38,7 @@ frameworks:
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.4.7
+      version: v1.5.1
       type: app_store
       name: tk-framework-desktopserver
 
@@ -59,7 +59,7 @@ frameworks:
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.8.0
+      version: v5.8.1
       type: app_store
       name: tk-framework-shotgunutils
 
@@ -80,7 +80,7 @@ frameworks:
   # desktopclient - A client for Shotgun Create
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.1.1
+      version: v0.2.0
       type: app_store
       name: tk-framework-desktopclient
 
