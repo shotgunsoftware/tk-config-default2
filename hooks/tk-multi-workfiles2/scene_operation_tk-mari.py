@@ -1,4 +1,4 @@
-﻿# Copyright (c) 2017 Shotgun Software Inc.
+# Copyright (c) 2015 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -8,11 +8,12 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 # ### OVERRIDDEN IN SSVFX_SG ###
-from ss_config.hooks.tk_multi_publish2.mari.collector import SSMariTexturesPublishPlugin
+from ss_config.hooks.tk_multi_workfiles2.scene_operation_tk_mari import SsSceneOperation
 
 
-class MariTexturesPublishPlugin(SSMariTexturesPublishPlugin):
+class SceneOperation(SsSceneOperation):
     """
-    Plugin for publishing an open mari session.
+    Hook called to perform an operation with the
+    current scene
     """
     pass
