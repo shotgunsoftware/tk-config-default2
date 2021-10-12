@@ -139,6 +139,15 @@ keys:
     default: ma
     alias: extension
 
+  # Photoshop supports two file extensions because of file sizes.
+  photoshop_extension:
+    type: str
+    choices:
+      psd: Photoshop Document (.psd)
+      psb: Photoshop Big (.psb)
+    default: psd
+    alias: extension
+
 
   texture_extension:
       type: str
@@ -168,10 +177,8 @@ paths:
 
   sequence_root: 03_workfiles/shots/{Sequence}
 
-  asset_publish: 04_publish/01_assets/{Asset}/{Step}
-  shot_publish: 04_publish/02_shots/{Sequence}/{Shot}/{Step}
-
-  alembic_caches_pub: 04_publish/03_caches/{Asset}/{Step}
+  asset_publish: 04_publish/assets/{Asset}/{Step}
+  shot_publish: 04_publish/shots/{Sequence}/{Shot}/{Step}
 
   cg_assetrender: 05_renders/cg/assets/{Asset}/{Step}
   cg_shotrender: 05_renders/cg/shots/{Sequence}/{Shot}
@@ -207,6 +214,29 @@ paths:
     definition: "@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_v{version}.obj"
 
   ##########################################################################################
+
+  # USD paths
+  usd_asset_publish:
+    definition: "@asset_publish/usd/{name}/v{version}/{projectcode}_{Asset}_{Step}_{name}_v{version}.usd"
+  usd_shot_publish:
+    definition: "@shot_publish/usd/{name}/v{version}/{projectcode}_{Shot}_{Step}_{name}_v{version}.usd"
+
+  ##########################################################################################
+
+  # Template files
+  nuke_template_file:
+    definition: "00_pipeline/nuke/template/ShotGridTemplate.nk"
+
+  houdini_template_directory:
+    definition: "00_pipeline/houdini/templates"
+
+  ##########################################################################################
+
+  # Template files
+  houdini_otls:
+    definition: "00_pipeline/houdini/otls"
+
+
   # Sequence level paths
   #
 
@@ -220,17 +250,17 @@ paths:
 
   # The location of WIP files
   photoshop_shot_work:
-    definition: "@shot_root/photoshop/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.psd"
+    definition: "@shot_root/photoshop/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{photoshop_extension}"
   shot_work_area_photoshop:
     definition: "@shot_root/photoshop"
   # The location of backups of WIP files
   photoshop_shot_snapshot:
-    definition: "@shot_root/photoshop/snapshots/{projectcode}_{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.psd"
+    definition: "@shot_root/photoshop/snapshots/{projectcode}_{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.{photoshop_extension}"
   # The location of published files
   shot_publish_area_photoshop:
     definition: "@shot_publish/photoshop"
   photoshop_shot_publish:
-    definition: "@shot_publish/photoshop/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.psd"
+    definition: "@shot_publish/photoshop/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{photoshop_extension}"
 
   #
   # After Effects
@@ -278,6 +308,9 @@ paths:
   # The location of published maya files
   maya_shot_publish:
     definition: "@shot_publish/maya/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{maya_extension}"
+  # Alembic
+  maya_shot_abc:
+    definition: "@shot_publish/abc/{projectcode}_{Shot}_{Step}_abc_{name}_v{version}/{projectcode}_{Shot}_{Step}_{name}_v{version}.abc"
 
   #
   # Houdini
@@ -359,9 +392,6 @@ paths:
   # define the location of a publish area
   shot_publish_area_nuke:
     definition: "@shot_publish/nuke"
-  # Location of the template file
-  nuke_template_file:
-    definition: "00_pipeline/nuke/template/ShotGridTemplate.nk"
   # The location of WIP script files
   nuke_shot_work:
     definition: "@shot_root/nuke/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.nk"
@@ -409,12 +439,6 @@ paths:
   ##########################################################################################
   # Asset pipeline
 
-  #
-  # Alembic caches
-  #
-
-  asset_alembic_cache:
-    definition: "@alembic_caches_pub/{projectcode}_{Asset}_{Step}_cache_{name}_v{version}.abc"
 
   #
   # Photoshop
@@ -422,17 +446,17 @@ paths:
 
   # The location of WIP files
   photoshop_asset_work:
-    definition: "@asset_root/photoshop/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.psd"
+    definition: "@asset_root/photoshop/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.{photoshop_extension}"
   asset_work_area_photoshop:
     definition: "@asset_root/photoshop"
   # The location of backups of WIP files
   photoshop_asset_snapshot:
-    definition: "@asset_root/photoshop/snapshots/{name}.v{version}.{timestamp}.psd"
+    definition: "@asset_root/photoshop/snapshots/{name}.v{version}.{timestamp}.{photoshop_extension}"
   # The location of published files
   asset_publish_area_photoshop:
     definition: "@asset_publish/photoshop"
   photoshop_asset_publish:
-    definition: "@asset_publish/photoshop/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.psd"
+    definition: "@asset_publish/photoshop/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{photoshop_extension}"
 
   #
   # after effects
@@ -484,6 +508,9 @@ paths:
   # The location of published maya files
   maya_asset_publish:
     definition: "@asset_publish/maya/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.{maya_extension}"
+  # Alembic
+  maya_asset_abc:
+    definition: "@asset_publish/abc/{projectcode}_{Asset}_{Step}_{name}_v{version}.abc"
 
   #
   # Houdini
@@ -513,7 +540,7 @@ paths:
   # File publish caches
   houdini_asset_publish_file_cache:
     definition: "@asset_publish/cache/bgeo/{name}/v{version}/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
-  # Houdini rewiew files
+  # Houdini review files
   houdini_asset_review:
     definition: "@cg_assetrender/mov/{projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov"
 
@@ -547,13 +574,13 @@ paths:
     definition: "@asset_publish/mobu"
   # The location of WIP files
   mobu_asset_work:
-    definition: "@asset_root/mobu/{name}.v{version}.fbx"
+    definition: "@asset_root/mobu/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.fbx"
   # The location of backups of WIP files
   mobu_asset_snapshot:
-    definition: "@asset_root/mobu/snapshots/{name}.v{version}.{timestamp}.fbx"
+    definition: "@asset_root/mobu/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.fbx"
   # The location of published Motionbuilder files
   mobu_asset_publish:
-    definition: "@asset_publish/mobu/{name}.v{version}.fbx"
+    definition: "@asset_publish/mobu/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.fbx"
 
   #
   # Nuke

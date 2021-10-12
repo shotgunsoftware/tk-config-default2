@@ -15,13 +15,48 @@ to set environment variables or run scripts as part of the app initialization.
 """
 
 import os
-import tank
+from sgtk.util import shotgun
 import sgtk
 
-class BeforeAppLaunch(tank.Hook):
+
+class BeforeAppLaunch(sgtk.Hook):
     """
     Hook to set up the system prior to app launch.
     """
 
     def execute(self, app_path, app_args, version, engine_name, **kwargs):
-        pass
+        if engine_name == "tk-houdini":
+            ########################################
+            """Setting render engine environment"""
+            # Get ShotGrid connection
+            sg = shotgun.get_sg_connection()
+
+            # Finding current project name
+            current_engine = sgtk.platform.current_engine()
+            current_context = current_engine.context
+            project_name = current_context.project["name"]
+
+            # Finding render engine entity
+            render_engine = sg.find_one("Project", [["name", "is", project_name]], ["sg_render_engine"]).get(
+                'sg_render_engine')
+
+            # Setting render engine environment
+            self.parent.log_info("Set renderengine environment to %s" % render_engine)
+            os.environ["RENDER_ENGINE"] = render_engine
+
+            ########################################
+            """Setting OTL scan path"""
+
+            # Set OTL path
+            primary_location = self.parent.sgtk.roots.get('primary')
+
+            # Get core
+            tk = sgtk.sgtk_from_path(primary_location)
+
+            # Get template
+            houdini_otls_template = tk.templates["houdini_otls"]
+            otls_path = houdini_otls_template.apply_fields(current_context).replace(os.sep, '/')
+
+            # Add environment
+            sgtk.util.append_path_to_env_var("HOUDINI_OTLSCAN_PATH ", otls_path)
+            self.parent.log_info("Added otlscan path %s" % otls_path)

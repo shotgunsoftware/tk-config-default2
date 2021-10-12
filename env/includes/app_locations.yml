@@ -36,7 +36,7 @@ apps.tk-multi-startup.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-startup
-  version: 0.1.1
+  version: 0.2.0
 
 # about
 apps.tk-multi-about.location:
@@ -49,7 +49,7 @@ apps.tk-multi-breakdown.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-breakdown
-  version: 1.8.0.1
+  version: 1.8.0.2
 
 # demo
 apps.tk-multi-demo.location:
@@ -68,14 +68,14 @@ apps.tk-multi-loader2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-loader2
-  version: 1.21.0.1
+  version: 1.21.0.2
 
 # publish2
 apps.tk-multi-publish2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-publish2
-  version: 2.5.5.2
+  version: 2.5.5.3
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -125,7 +125,7 @@ apps.tk-multi-workfiles2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-workfiles2
-  version: 0.13.0.1
+  version: 0.13.0.2
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -160,7 +160,7 @@ apps.tk-hiero-export.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-hiero-export
-  version: 0.6.0.2
+  version: 0.6.0.3
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -201,7 +201,21 @@ apps.tk-houdini-arnold.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-arnold
-  version: 0.3.2
+  version: 0.3.4
+
+# houdini usd
+apps.tk-houdini-usdrop.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini-usdrop
+  version: 0.1.0
+
+# houdini usd
+apps.tk-houdini-template.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini-template
+  version: 0.1.0
 
 # ---- Nuke apps
 

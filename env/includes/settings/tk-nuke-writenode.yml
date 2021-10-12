@@ -45,7 +45,7 @@ settings.tk-nuke-writenode.shot:
     settings:
       colorspace: scene_linear
       datatype: 16 bit half
-      channels: rgba
+      channels: rgb
     tank_type: Rendered Image
     tile_color: [188, 188, 0]
   - file_type: exr
@@ -58,7 +58,7 @@ settings.tk-nuke-writenode.shot:
     settings:
       colorspace: scene_linear
       datatype: 32 bit float
-      channels: rgba
+      channels: rgb
     tank_type: Rendered Image
     tile_color: [255, 165, 0]
   - file_type: exr
@@ -72,7 +72,7 @@ settings.tk-nuke-writenode.shot:
       colorspace: scene_linear
       datatype: 16 bit half
       compression: DWAA
-      channels: rgba
+      channels: rgb
     tank_type: Rendered Image
     tile_color: [133, 189, 0]
   - file_type: tiff
