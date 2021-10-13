@@ -280,7 +280,7 @@ paths:
   aftereffects_shot_publish:
     definition: "@shot_publish/afx/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.aep"
   aftereffects_shot_render_pub_mono:
-    definition: "@shot_publish/publish/elements/{name}/v{version}/{width}x{height}/{projectcode}_{Sequence}_{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
+    definition: "@shot_publish/{afx.comp}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
   # The following template uses {afx.mov.ext} this is a special key, that will be only there
   # in the beta to support different extensions on mac and windows, while using the same
   # output module (Lossless with Alpha)
@@ -310,7 +310,7 @@ paths:
     definition: "@shot_publish/maya/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{maya_extension}"
   # Alembic
   maya_shot_abc:
-    definition: "@shot_publish/abc/{projectcode}_{Shot}_{Step}_abc_{name}_v{version}/{projectcode}_{Shot}_{Step}_{name}_v{version}.abc"
+    definition: "@shot_publish/abc/{name}/v{version}/{projectcode}_{Shot}_{Step}_{name}_v{version}.abc"
 
   #
   # Houdini
@@ -333,33 +333,33 @@ paths:
     definition: "@shot_publish/houdini/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.hipnc"
   # Alembic caches
   houdini_shot_work_alembic_cache:
-    definition: "@shot_root/houdini/cache/alembic/{houdini.node}/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.abc"
+    definition: "@shot_root/houdini/cache/alembic/{houdini.node}/v{version}/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.abc"
   # File work caches
   houdini_shot_work_file_cache:
-    definition: "@shot_root/houdini/cache/bgeo/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
+    definition: "@shot_root/houdini/cache/bgeo/{name}/v{version}/{projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
   # File publish caches
   houdini_shot_publish_file_cache:
-    definition: "@shot_publish/cache/bgeo/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
+    definition: "@shot_publish/cache/bgeo/{name}/v{version}/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
   # Houdini review files
   houdini_shot_review:
     definition: "@cg_shotrender/mov/{projectcode}_{Sequence}_{Shot}_sRGB_v{version}/{projectcode}_{Sequence}_{Shot}_sRGB_v{version}.mov"
 
   # Rendered images
   houdini_shot_render:
-    definition: "@cg_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.exr"
+    definition: "@cg_shotrender/{name}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.exr"
 
   # Additional mantra outputs
   houdini_shot_ifd:
-    definition: "@cg_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_v{version}/ifds/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ifd"
+    definition: "@cg_shotrender/{name}/v{version}/ifds/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ifd"
 
   houdini_shot_dcm:
-    definition: "@cg_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_v{version}/dcms/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.dcm"
+    definition: "@cg_shotrender/{name}/v{version}/dcms/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.dcm"
 
   houdini_shot_extra_plane:
-    definition: "@cg_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_{aov_name}_v{version}/{aov_name}/{projectcode}_{Sequence}_{Shot}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    definition: "@cg_shotrender/{name}/v{version}/{aov_name}/{projectcode}_{Sequence}_{Shot}_{name}_{aov_name}_v{version}.{SEQ}.exr"
 
   houdini_shot_ass:
-    definition: "@cg_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_v{version}/ass/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ass"
+    definition: "@cg_shotrender/{name}/v{version}/ass/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ass"
 
 
   #
@@ -403,21 +403,21 @@ paths:
     definition: "@shot_publish/nuke/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.nk"
   # write node outputs
   nuke_shot_render_work:
-    definition: "@shot_root/nuke/render/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}.{SEQ}.exr"
+    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}.{SEQ}.exr"
   nuke_shot_render_pub:
-    definition: "@comp_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}.{SEQ}.exr"
+    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}.{SEQ}.exr"
   nuke_shot_dwaa_render_work:
-    definition: "@shot_root/nuke/render/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
+    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
   nuke_shot_dwaa_render_pub:
-    definition: "@comp_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
+    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
   nuke_shot_tiff_render_work:
-    definition: "@shot_root/nuke/render/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_tiff_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.tiff"
+    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.tiff"
   nuke_shot_tiff_render_pub:
-    definition: "@comp_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_tiff_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.tiff"
+    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.tiff"
   nuke_shot_jpg_render_work:
-    definition: "@shot_root/nuke/render/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_jpg_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_v{version}.{SEQ}.jpg"
+    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_v{version}.{SEQ}.jpg"
   nuke_shot_jpg_render_pub:
-    definition: "@comp_shotrender/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_jpg_v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_v{version}.{SEQ}.jpg"
+    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_v{version}.{SEQ}.jpg"
   # review output
   shot_quicktime_quick:
     definition: "@comp_shotrender/mov/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_{iteration}.mov"
@@ -476,7 +476,7 @@ paths:
   aftereffects_asset_publish:
     definition: "@asset_publish/afx/{projectcode}_{Asset}_{Step}_pub_v{version}.aep"
   aftereffects_asset_render_pub_mono:
-    definition: "@comp_assetrender/{projectcode}_{Asset}_{name}_{afx.comp}_v{version}/{projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
+    definition: "@comp_assetrender/{afx.comp}/v{version}/{projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
   # The following template uses {afx.mov.ext} this is a special key, that will be only there
   # in the beta to support different extensions on mac and windows, while using the same
   # output module (Lossless with Alpha)
@@ -546,20 +546,20 @@ paths:
 
   # Rendered images
   houdini_asset_render:
-    definition: "@cg_assetrender/{projectcode}_{Asset}_{Step}_{name}_v{version}/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.exr"
+    definition: "@cg_assetrender/{name}/v{version}/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.exr"
 
   # Additional mantra outputs
   houdini_asset_ifd:
-    definition: "@cg_assetrender/{projectcode}_{Asset}_{Step}_{name}_v{version}/ifds/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
+    definition: "@cg_assetrender/{name}/v{version}/ifds/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
 
   houdini_asset_dcm:
-    definition: "@cg_assetrender/{projectcode}_{Asset}_{Step}_{name}_v{version}/dcms/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
+    definition: "@cg_assetrender/{name}/v{version}/dcms/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
 
   houdini_asset_extra_plane:
-    definition: "@cg_assetrender/{projectcode}_{Asset}_{Step}_{name}_v{version}/{aov_name}/{projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    definition: "@cg_assetrender/{name}/v{version}/{aov_name}/{projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
 
   houdini_asset_ass:
-    definition: "@cg_assetrender/{projectcode}_{Asset}_{Step}_{name}_v{version}/ass/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"
+    definition: "@cg_assetrender/{name}/v{version}/ass/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"
 
 
   #
@@ -594,9 +594,9 @@ paths:
     definition: "@asset_root/publish"
   # outputs from the Shotgun Write Node for assets
   nuke_asset_render:
-    definition: "@asset_root/renders/{projectcode}_{Asset}_{Step}_{name}_{nuke.output}_v{version}/{projectcode}_{Asset}_{Step}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
+    definition: "@asset_root/renders/{nuke.output}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
   nuke_asset_render_pub:
-    definition: "@comp_assetrender/{projectcode}_{Asset}_{Step}_{name}_{nuke.output}_v{version}/{projectcode}_{Asset}_{Step}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
+    definition: "@comp_assetrender/{nuke.output}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
   # review output
   nuke_asset_render_movie:
     definition: "@comp_assetrender/mov/{projectcode}_{Asset}_{Step}_{name}_{nuke.output}_sRGB_v{version}.mov"

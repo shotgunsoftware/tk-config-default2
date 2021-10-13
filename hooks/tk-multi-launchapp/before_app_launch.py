@@ -41,8 +41,12 @@ class BeforeAppLaunch(sgtk.Hook):
                 'sg_render_engine')
 
             # Setting render engine environment
-            self.parent.log_info("Set renderengine environment to %s" % render_engine)
-            os.environ["RENDER_ENGINE"] = render_engine
+            if not render_engine is None:
+                self.parent.log_info("Set render_engine environment to %s" % render_engine)
+                os.environ["RENDER_ENGINE"] = render_engine
+
+            else:
+                self.parent.log_info("No render engine entity set in ShotGrid project")
 
             ########################################
             """Setting OTL scan path"""
