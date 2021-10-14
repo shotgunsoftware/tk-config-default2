@@ -8,7 +8,7 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 # ### OVERRIDDEN IN SSVFX_SG ###
-from ss_config.hooks.tk_multi_publish2.mari.collector import SSMariTexturesPublishPlugin
+from ss_config.hooks.tk_multi_publish2.mari.publish_mari_textures import SSMariTexturesPublishPlugin
 
 
 class MariTexturesPublishPlugin(SSMariTexturesPublishPlugin):
