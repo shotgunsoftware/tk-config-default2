@@ -19,6 +19,7 @@ includes:
   - ./tk-houdini-mantranode.yml
   - ./tk-houdini-flipbook.yml
   - ./tk-houdini-arnold.yml
+  - ./tk-houdini-renderman.yml
   - ./tk-houdini-usdrop.yml
   - ./tk-houdini-template.yml
   - ./tk-multi-loader2.yml
@@ -64,6 +65,7 @@ settings.tk-houdini.asset_step:
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
     tk-houdini-flipbook: "@settings.tk-houdini-flipbook.asset_step"
     tk-houdini-arnold: "@settings.tk-houdini-arnold.asset_step"
+    tk-houdini-renderman: "@settings.tk-houdini-renderman.asset_step"
     tk-houdini-usdrop: "@settings.tk-houdini-usdrop.asset_step"
     tk-houdini-template: "@settings.tk-houdini-template.asset_step"
   menu_favourites:
@@ -138,6 +140,7 @@ settings.tk-houdini.shot_step:
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
     tk-houdini-flipbook: "@settings.tk-houdini-flipbook.shot_step"
     tk-houdini-arnold: "@settings.tk-houdini-arnold.shot_step"
+    tk-houdini-renderman: "@settings.tk-houdini-renderman.shot_step"
     tk-houdini-usdrop: "@settings.tk-houdini-usdrop.shot_step"
     tk-houdini-template: "@settings.tk-houdini-template.shot_step"
   menu_favourites:
