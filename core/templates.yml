@@ -348,7 +348,10 @@ paths:
   houdini_shot_render:
     definition: "@cg_shotrender/{name}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.exr"
 
-  # Additional mantra outputs
+  # Additional outputs
+  houdini_shot_extra_plane:
+    definition: "@cg_shotrender/{name}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+
   houdini_shot_ifd:
     definition: "@cg_shotrender/{name}/v{version}/ifds/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ifd"
 
@@ -356,7 +359,7 @@ paths:
     definition: "@cg_shotrender/{name}/v{version}/dcms/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.dcm"
 
   houdini_shot_extra_plane:
-    definition: "@cg_shotrender/{name}/v{version}/{aov_name}/{projectcode}_{Sequence}_{Shot}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    definition: "@cg_shotrender/{name}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{aov_name}_v{version}.{SEQ}.exr"
 
   houdini_shot_ass:
     definition: "@cg_shotrender/{name}/v{version}/ass/{projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ass"
@@ -548,15 +551,15 @@ paths:
   houdini_asset_render:
     definition: "@cg_assetrender/{name}/v{version}/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.exr"
 
-  # Additional mantra outputs
+  # Additional outputs
+  houdini_asset_extra_plane:
+    definition: "@cg_assetrender/{name}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+
   houdini_asset_ifd:
     definition: "@cg_assetrender/{name}/v{version}/ifds/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
 
   houdini_asset_dcm:
     definition: "@cg_assetrender/{name}/v{version}/dcms/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
-
-  houdini_asset_extra_plane:
-    definition: "@cg_assetrender/{name}/v{version}/{aov_name}/{projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
 
   houdini_asset_ass:
     definition: "@cg_assetrender/{name}/v{version}/ass/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"

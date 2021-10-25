@@ -203,6 +203,13 @@ apps.tk-houdini-arnold.location:
   repository: tk-houdini-arnold
   version: 0.3.5
 
+# houdini renderman
+apps.tk-houdini-renderman.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini-renderman
+  version: 0.1.0
+
 # houdini usd
 apps.tk-houdini-usdrop.location:
   type: github_release
