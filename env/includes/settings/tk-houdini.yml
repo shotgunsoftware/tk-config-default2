@@ -22,6 +22,7 @@ includes:
   - ./tk-houdini-renderman.yml
   - ./tk-houdini-usdrop.yml
   - ./tk-houdini-template.yml
+  - ./tk-multi-deadlinereviewsubmission.yml
   - ./tk-multi-loader2.yml
   - ./tk-multi-publish2.yml
   - ./tk-multi-screeningroom.yml
@@ -68,6 +69,7 @@ settings.tk-houdini.asset_step:
     tk-houdini-renderman: "@settings.tk-houdini-renderman.asset_step"
     tk-houdini-usdrop: "@settings.tk-houdini-usdrop.asset_step"
     tk-houdini-template: "@settings.tk-houdini-template.asset_step"
+    tk-multi-deadlinereviewsubmission: "@settings.tk-multi-deadlinereviewsubmission.cg.asset"
   menu_favourites:
     - { app_instance: tk-multi-workfiles2, name: File Open... }
     - { app_instance: tk-multi-snapshot, name: Snapshot... }
@@ -143,6 +145,7 @@ settings.tk-houdini.shot_step:
     tk-houdini-renderman: "@settings.tk-houdini-renderman.shot_step"
     tk-houdini-usdrop: "@settings.tk-houdini-usdrop.shot_step"
     tk-houdini-template: "@settings.tk-houdini-template.shot_step"
+    tk-multi-deadlinereviewsubmission: "@settings.tk-multi-deadlinereviewsubmission.cg.shot"
   menu_favourites:
     - { app_instance: tk-multi-workfiles2, name: File Open... }
     - { app_instance: tk-multi-snapshot, name: Snapshot... }
