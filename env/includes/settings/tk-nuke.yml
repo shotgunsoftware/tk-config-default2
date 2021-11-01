@@ -19,6 +19,7 @@ includes:
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-reviewsubmission.yml
+- ./tk-multi-deadlinereviewsubmission.yml
 - ./tk-multi-screeningroom.yml
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-snapshot.yml
@@ -173,7 +174,7 @@ settings.tk-nuke.shot_step:
       location: "@apps.tk-multi-setframerange.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
     tk-multi-publish2: "@settings.tk-multi-publish2.nuke.shot_step"
-    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.shot"
+    tk-multi-deadlinereviewsubmission: "@settings.tk-multi-deadlinereviewsubmission.comp.shot"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.nuke.shot_step"

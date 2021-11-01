@@ -342,7 +342,7 @@ paths:
     definition: "@shot_publish/cache/bgeo/{name}/v{version}/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
   # Houdini review files
   houdini_shot_review:
-    definition: "@cg_shotrender/mov/{projectcode}_{Sequence}_{Shot}_sRGB_v{version}/{projectcode}_{Sequence}_{Shot}_sRGB_v{version}.mov"
+    definition: "@cg_shotrender/mov/{projectcode}_{Sequence}_{Shot}_sRGB_v{version}.mov"
 
   # Rendered images
   houdini_shot_render:
