@@ -65,6 +65,19 @@ settings.tk-nuke-writenode.asset:
             datatype: 32 bit float
             channels: rgba
             compression: zip
+
+    - category_name: mattepainting
+      write_nodes:
+        - name: tiff (deflate 16 bit)
+          file_type: tiff
+          render_template: nuke_asset_render
+          publish_template: nuke_asset_render_pub
+          tile_color: 2095579135
+          settings:
+            colorspace: Input - ADX - ADX10
+            datatype: 16 bit
+            channels: rgb
+            compression: Deflate
   location: "@apps.tk-nuke-writenode.location"
 
 # shot
