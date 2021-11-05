@@ -18,87 +18,118 @@ includes:
 # asset
 settings.tk-nuke-writenode.asset:
   template_script_work: nuke_asset_work
-  write_nodes:
-  - file_type: exr
-    name: Exr
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_asset_render_pub
-    render_template: nuke_asset_render
-    settings: {}
-    tank_type: Rendered Image
-    tile_color: []
-    promote_write_knobs: []
+  categories:
+    - category_name: main
+      write_nodes:
+          - name: exr (dwaa 16bit)
+            file_type: exr
+            render_template: nuke_asset_render
+            publish_template: nuke_asset_render_pub
+            tile_color: 4292673791
+            settings:
+              colorspace: scene_linear
+              datatype: 16 bit half
+              channels: rgb
+              compression: dwaa
+
+    - category_name: prerender
+      default_category: True
+      write_nodes:
+        - name: exr (dwaa 16bit)
+          file_type: exr
+          render_template: nuke_asset_render
+          publish_template: nuke_asset_render_pub
+          tile_color: 2365546239
+          settings:
+            colorspace: scene_linear
+            datatype: 16 bit half
+            channels: rgba
+            compression: DWAA
+        - name: exr (zip 16bit)
+          file_type: exr
+          render_template: nuke_asset_render
+          publish_template: nuke_asset_render_pub
+          tile_color: 2365546239
+          settings:
+            colorspace: scene_linear
+            datatype: 16 bit half
+            channels: rgba
+            compression: zip
+        - name: exr (zip 32bit)
+          file_type: exr
+          render_template: nuke_asset_render
+          publish_template: nuke_asset_render_pub
+          tile_color: 2365546239
+          settings:
+            colorspace: scene_linear
+            datatype: 32 bit float
+            channels: rgba
+            compression: zip
   location: "@apps.tk-nuke-writenode.location"
 
 # shot
 settings.tk-nuke-writenode.shot:
   template_script_work: nuke_shot_work
-  write_nodes:
-  - file_type: exr
-    name: ShotGridWrite, exr16
-    promote_write_knobs: []
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_render_pub
-    render_template: nuke_shot_render_work
-    settings:
-      colorspace: scene_linear
-      datatype: 16 bit half
-      channels: rgb
-    tank_type: Rendered Image
-    tile_color: [188, 188, 0]
-  - file_type: exr
-    name: ShotGridWrite, exr32
-    promote_write_knobs: []
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_render_pub
-    render_template: nuke_shot_render_work
-    settings:
-      colorspace: scene_linear
-      datatype: 32 bit float
-      channels: rgb
-    tank_type: Rendered Image
-    tile_color: [255, 165, 0]
-  - file_type: exr
-    name: ShotGridWrite, dwaa16
-    promote_write_knobs: []
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_dwaa_render_pub
-    render_template: nuke_shot_dwaa_render_work
-    settings:
-      colorspace: scene_linear
-      datatype: 16 bit half
-      compression: DWAA
-      channels: rgb
-    tank_type: Rendered Image
-    tile_color: [133, 189, 0]
-  - file_type: tiff
-    name: ShotGridWrite, tiff16
-    promote_write_knobs: []
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_tiff_render_pub
-    render_template: nuke_shot_tiff_render_work
-    settings:
-      colorspace: Input - ADX - ADX10
-      datatype: 16 bit
-      compression: Deflate
-      channels: rgb
-    tank_type: Rendered Image
-    tile_color: [158, 255, 247]
-  - file_type: jpeg
-    name: ShotGridWrite, jpg8
-    promote_write_knobs: []
-    proxy_publish_template:
-    proxy_render_template:
-    publish_template: nuke_shot_jpg_render_pub
-    render_template: nuke_shot_jpg_render_work
-    settings:
-      colorspace: Output - sRGB
-      channels: rgb
-    tank_type: Rendered Image
-    tile_color: [214, 255, 107]
+  categories:
+    - category_name: main
+      write_nodes:
+        - name: exr (dwaa 16bit)
+          file_type: exr
+          render_template: nuke_shot_render_work
+          publish_template: nuke_shot_render_pub
+          tile_color: 4292673791
+          settings:
+            colorspace: scene_linear
+            datatype: 16 bit half
+            channels: rgb
+            compression: zip
+          main_output: True
+
+    - category_name: prerender
+      default_category: True
+      write_nodes:
+          - name: exr (dwaa 16bit)
+            file_type: exr
+            render_template: nuke_shot_render_work
+            publish_template: nuke_shot_render_pub
+            tile_color: 2365546239
+            settings:
+              colorspace: scene_linear
+              datatype: 16 bit half
+              channels: rgba
+              compression: DWAA
+          - name: exr (zip 16bit)
+            file_type: exr
+            render_template: nuke_shot_render_work
+            publish_template: nuke_shot_render_pub
+            tile_color: 2365546239
+            settings:
+              colorspace: scene_linear
+              datatype: 16 bit half
+              channels: rgba
+              compression: zip
+          - name: exr (zip 32bit)
+            file_type: exr
+            render_template: nuke_shot_render_work
+            publish_template: nuke_shot_render_pub
+            tile_color: 2365546239
+            settings:
+              colorspace: scene_linear
+              datatype: 32 bit float
+              channels: rgba
+              compression: zip
+
+    - category_name: mattepainting
+      write_nodes:
+          - name: tiff (deflate 16 bit)
+            file_type: tiff
+            render_template: nuke_shot_render_work
+            publish_template: nuke_shot_render_pub
+            tile_color: 2095579135
+            settings:
+              colorspace: Input - ADX - ADX10
+              datatype: 16 bit
+              channels: rgb
+              compression: Deflate
+
   location: "@apps.tk-nuke-writenode.location"

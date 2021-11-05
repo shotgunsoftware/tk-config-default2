@@ -406,21 +406,9 @@ paths:
     definition: "@shot_publish/nuke/{projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.nk"
   # write node outputs
   nuke_shot_render_work:
-    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}.{SEQ}.exr"
+    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
   nuke_shot_render_pub:
-    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_zip_v{version}.{SEQ}.exr"
-  nuke_shot_dwaa_render_work:
-    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
-  nuke_shot_dwaa_render_pub:
-    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_dwaa_v{version}.{SEQ}.exr"
-  nuke_shot_tiff_render_work:
-    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.tiff"
-  nuke_shot_tiff_render_pub:
-    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.tiff"
-  nuke_shot_jpg_render_work:
-    definition: "@shot_root/nuke/render/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_v{version}.{SEQ}.jpg"
-  nuke_shot_jpg_render_pub:
-    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_v{version}.{SEQ}.jpg"
+    definition: "@comp_shotrender/{nuke.output}/v{version}/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.exr"
   # review output
   shot_quicktime_quick:
     definition: "@comp_shotrender/mov/{projectcode}_{Sequence}_{Shot}_{name}_{nuke.output}_sRGB_{iteration}.mov"
