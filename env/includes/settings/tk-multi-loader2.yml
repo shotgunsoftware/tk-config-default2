@@ -152,7 +152,7 @@ settings.tk-multi-loader2.maya:
 # nuke
 settings.tk-multi-loader2.nuke:
   action_mappings:
-    Alembic Cache: [read_node]
+    Alembic Cache: [geo_node]
     Flame Render: [read_node]
     Flame Quicktime: [read_node]
     Image: [read_node]
@@ -161,6 +161,7 @@ settings.tk-multi-loader2.nuke:
     Photoshop Image: [read_node]
     Rendered Image: [read_node]
     Texture: [read_node]
+    USD: [geo_node, camera_node]
   entities:
   - caption: Assets
     entity_type: Asset
