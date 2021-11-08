@@ -224,7 +224,7 @@ settings.tk-multi-publish2.maya.shot_step:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_usd.py"
     settings:
-      Publish Template: shot_usd_publish
+      Publish Template: usd_shot_publish
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
     settings:
