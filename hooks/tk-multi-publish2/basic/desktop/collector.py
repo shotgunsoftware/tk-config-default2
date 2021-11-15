@@ -1258,8 +1258,6 @@ class BasicSceneCollector(HookBaseClass):
 
         file_info = item.properties['fields']
         extension = file_info["extension"].lower()
-        self.logger.warning( ">>>>> extension: %s" % extension )
-        self.logger.warning( ">>>>> template: %s" % item.properties.get('template').name )
 
         if (extension in ["mb", "ma"]
         and item.properties.get('template').name in [
@@ -1269,7 +1267,7 @@ class BasicSceneCollector(HookBaseClass):
             ]):
             json_file = item.properties['template_paths'].get('alembic_template')
 
-        self.logger.warning( ">>>>> review_process_json: %s" % json_file )
+        # self.logger.warning( ">>>>> review_process_json: %s" % json_file )
 
         if not os.path.exists(json_file):
             raise Exception("Unable to read Json data from file: %s" % json_file)
