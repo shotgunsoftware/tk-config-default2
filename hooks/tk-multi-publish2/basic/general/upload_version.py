@@ -14,13 +14,10 @@ import sys
 import re
 import sgtk
 import datetime
-import time
 import json
 
 # from software.nuke.nuke_python import submission_sanity_checks as ssc
 # submission_tools = ssc.NukeSanityChecks()
-
-log = sgtk.LogManager.get_logger(__name__)
 
 try:
     ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
@@ -34,10 +31,10 @@ try:
             if os.path.exists(ssvfx_script_path):
                 pass
             else:
-                log.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
-            log.debug("Found env var path: %s" %(ssvfx_script_path,))
+                print("!!!!!! Could not find %s" %(ssvfx_script_path,))
+            print("Found env var path: %s" %(ssvfx_script_path,))
         else:
-            log.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
+            print("SSVFX_PIPELINE not in env var keys. Using explicit")
             pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
             ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
 

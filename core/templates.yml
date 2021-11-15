@@ -60,6 +60,9 @@ keys:
     name:
         type: str
         filter_by: '^[0-9a-zA-Z-]+$'
+    process:
+        type: str
+        filter_by: '^[0-9a-zA-Z-]+$'
     name_with_underscores:
         type: str
         alias: name
@@ -203,7 +206,7 @@ paths:
     temp_asset_render_root: assets/temp/{sg_asset_type}/{Asset}/renders
     info_json_file: shots/temp/{Shot}/json/{Shot}_{task_name}[_{name}]_v{version}.json
     asset_json_file: assets/temp/{sg_asset_type}/{Asset}/renders/json/{Asset}_{task_name}[_{name}]_v{version}.json
-    alembic_output_json: shots/temp/{Shot}/json/{Shot}_{task_name}_alembic_v{version}.json
+    alembic_output_json: shots/temp/[{Shot}][{Asset}]/json/[{Shot}][{Asset}]_{task_name}_alembic_v{version}.json
 
     #Shots
     incoming_outsource_shot_root:
@@ -331,9 +334,29 @@ paths:
     general_review_process_json:
         definition: admin/processing/json/processing_review_settings.json
         root_name: 'project_pipeline'
+
+    general_review_process_json:
+        definition: admin/processing/json/processing_review_settings.json
+        root_name: 'project_pipeline'
     
     alembic_review_process_json:
         definition: admin/processing/json/processing_incoming_alembic.json
+        root_name: 'project_pipeline'
+
+    shot_review_process_json2:
+        definition: admin/processing/json/shot_review_settings.json
+        root_name: 'project_pipeline'
+
+    asset_review_process_json2:
+        definition: admin/processing/json/asset_review_settings.json
+        root_name: 'project_pipeline'
+
+    shot_submission_json_file: 
+        definition: '@processing_root/temp/json/submissions/{Shot}/{Shot}_{task_name}[_{name}]_v{version}.json'
+        root_name: 'project_pipeline'
+
+    asset_submission_json_file: 
+        definition: '@processing_root/temp/json/submissions/{sg_asset_type}/{Asset}/{Asset}_{task_name}[_{name}]_v{version}.json'
         root_name: 'project_pipeline'
 
     shot_review_process_json:
@@ -371,16 +394,16 @@ paths:
         definition: '@shot_context/renders/process/{Codec}/{Shot}_v{version}.mov'
         root_name: 'project_pipeline'  
     resolve_shot_review_mov: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}][_{process}]_v{version}.mov'
         root_name: 'project_pipeline'        
     resolve_shot_review_mov_secondary: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}][_{process}]_v{version}.mov'
         root_name: 'secondary'                
     resolve_asset_review_mov: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{name}]_v{version}.mov'
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{name}][_{process}]_v{version}.mov'
         root_name: 'project_pipeline'        
     resolve_asset_review_mov_secondary: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{name}]_v{version}.mov'
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{name}][_{process}]_v{version}.mov'
         root_name: 'secondary'                
     # resolve_review_mov: 
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
@@ -389,7 +412,7 @@ paths:
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
     #     root_name: 'secondary'                
 
-    # The location of shot rushes refernces, proxy jpegs and quicktimes
+    # The location of shot rushes references, proxy jpegs and quicktimes
     shot_rushes_root:
         definition: '@rushes_root/'
         root_name: 'project_pipeline' 

@@ -140,9 +140,6 @@ paths:
     maya_shot_render_stub:
         definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}'
         root_name: 'project_pipeline'
-    # maya_shot_render_reader:
-    #     definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{ext}'
-    #     root_name: 'project_pipeline'
     maya_shot_render_layer:
         definition: '@maya_shot_render_stub/{maya.layer_name}'
         root_name: 'project_pipeline'
@@ -208,9 +205,6 @@ paths:
     maya_asset_renders_stub:
         definition: '@asset_render_root/maya/{task_name}/version/{Asset}_{task_name}[_{name}]_v{version}'
         root_name: 'project_pipeline'
-    # maya_shot_render_reader:
-    #     definition: '@render_root/maya/{task_name}/version/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.{ext}'
-    #     root_name: 'project_pipeline'
     maya_asset_renders_layer:
         definition: '@maya_asset_renders_stub/{maya.layer_name}'
         root_name: 'project_pipeline'

@@ -12,9 +12,6 @@ import os
 import sys
 import re
 import pprint
-import time
-import datetime
-import shutil
 import json
 import sgtk
 import traceback
