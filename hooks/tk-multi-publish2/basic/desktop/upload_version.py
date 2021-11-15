@@ -9,51 +9,39 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
+import re
 import pprint
-import sys
-import sgtk
 import datetime
 import time
-import re
+import sgtk
 
 # find SSVFX/Deadline plugins
+from thinkbox.deadline import deadline_manager
+from thinkbox.deadline import deadline_submission3
+from general.file_functions import file_strings
+from general.data_management import json_manager
+from shotgun import shotgun_utilities
+
+
+ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
+if os.path.exists(ssvfx_script_path):
+    pipeline_root = "C:\\Users\\shotgunadmin\\Scripts"
+elif "SSVFX_PIPELINE_DEV" in os.environ.keys():
+    pipeline_root =  os.environ["SSVFX_PIPELINE_DEV"]
+elif "SSVFX_PIPELINE" in os.environ.keys():
+    pipeline_root =  os.environ["SSVFX_PIPELINE"]
+else:
+    pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
+
 log = sgtk.LogManager.get_logger(__name__)
-
-try:
-    ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
-    if os.path.exists(ssvfx_script_path):
-        pipeline_root = "C:\\Users\\shotgunadmin\\Scripts"
-    else:
-        if "SSVFX_PIPELINE" in os.environ.keys():
-            pipeline_root =  os.environ["SSVFX_PIPELINE"]
-            ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
-            if os.path.exists(ssvfx_script_path):
-                pass
-            else:
-                log.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
-            log.debug("Found env var path: %s" %(ssvfx_script_path,))
-        else:
-            log.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
-            pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
-            ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
-
-    sys.path.append(ssvfx_script_path)
-    from thinkbox.deadline import deadline_manager
-    from thinkbox.deadline import deadline_submission3
-    from general.file_functions import file_strings
-    from general.data_management import json_manager
-    from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
-    from shotgun import shotgun_utilities
-except:
-    raise Exception("Could not load on of the studio modules!")
-
 HookBaseClass = sgtk.get_hook_baseclass()
+
 
 class UploadVersionPlugin(HookBaseClass):
     """
     Plugin for sending quicktimes and images to shotgun for review.
     """
-                                                             
+
     @property
     def icon(self):
         """
@@ -96,7 +84,6 @@ class UploadVersionPlugin(HookBaseClass):
         via the project's <a href='%s'>Media</a> page, <a href='%s'>RV</a>, or
         the <a href='%s'>Shotgun Review</a> mobile app.
         """ % (media_page_url, review_url, review_url)
-
 
     @property
     def settings(self):
@@ -204,31 +191,33 @@ class UploadVersionPlugin(HookBaseClass):
             else:
                 accept.update({'checked': False})
                 accept.update({'enabled': False})
-                accept.update({'visible': False})   
-                accept = {"accepted": False}        
-                                 
+                accept.update({'visible': False})
+                accept = {"accepted": False}
+
         else:
             self.logger.debug(
                 "%s is not in the valid extensions list for Version creation" %
                 (extension,)
             )
-        
-        exclude_descriptors=["distort","undistort", "persp", "cones"]
+
+        exclude_descriptors = ["distort", "undistort", "persp", "cones"]
         # reject distort/undistort outsource items
         if item.properties.get('template'):
             if (item.properties.get('template').name == "incoming_outsource_shot_descriptor" or
-            item.properties.get('template').name == "shot_plate_main_undistorted"):
-                self.logger.debug("Removing template %s from Version for Review" %(item.properties.get('template').name ))
+                    item.properties.get('template').name == "shot_plate_main_undistorted"):
+                self.logger.debug(
+                    "Removing template %s from Version for Review" % (item.properties.get('template').name))
                 accept.update({'checked': False})
                 accept.update({'enabled': False})
                 accept.update({'visible': False})
                 accept = {"accepted": False}
-            
+
             if item.properties.get('template').name == "incoming_outsource_shot_matchmove_render":
                 if 'descriptor' in item.properties.fields.keys():
                     if item.properties.fields['descriptor'] in exclude_descriptors:
-                        self.logger.debug("Removing template %s:%s from Version for Review" %(item.properties.get('template').name,
-                                                                                            item.properties.fields['descriptor']))
+                        self.logger.debug(
+                            "Removing template %s:%s from Version for Review" % (item.properties.get('template').name,
+                                                                                 item.properties.fields['descriptor']))
                         accept.update({'checked': False})
                         accept.update({'enabled': False})
                         accept.update({'visible': False})
@@ -248,7 +237,7 @@ class UploadVersionPlugin(HookBaseClass):
         :param item: Item to process
 
         :returns: True if item is valid, False otherwise.
-        """ 
+        """
         # publish_thumbnail = self.get_publish_thumbnail(settings, item)
         publisher = self.parent
         sg_reader = shotgun_utilities.ShotgunReader(shotgun=publisher.shotgun)
@@ -265,7 +254,8 @@ class UploadVersionPlugin(HookBaseClass):
             raise Exception("Need to fill in description detailing submitted work!")
 
         if not item.properties.get("frame_range"):
-            self.logger.warning("Could not get frame range from item. Needed for the creation of the QT. Sending as a single frame render.")
+            self.logger.warning(
+                "Could not get frame range from item. Needed for the creation of the QT. Sending as a single frame render.")
 
         self.logger.debug("Type: %s" % (item.context.entity,))
         self.logger.debug("Task: %s" % (item.context.task,))
@@ -273,17 +263,17 @@ class UploadVersionPlugin(HookBaseClass):
         self.logger.debug("Description: %s" % (item.description,))
 
         if not item.properties.get("step"):
-            review_process = publisher.shotgun.find_one("Step", 
-                [['id', 'is', item.context.step['id']]], 
-                item.properties["step_fields"])
+            review_process = publisher.shotgun.find_one("Step",
+                                                        [['id', 'is', item.context.step['id']]],
+                                                        item.properties["step_fields"])
         else:
             review_process = item.properties.get("step")
 
         review_process_type = review_process['sg_review_process_type']
         review_process_entity_type = review_process['entity_type']
-        item.properties['review_process_type']=review_process_type.lower()
-        self.logger.info("Review process info: %s - %s" %(review_process_entity_type,
-                                                        item.properties.get("review_process_type")))
+        item.properties['review_process_type'] = review_process_type.lower()
+        self.logger.info("Review process info: %s - %s" % (review_process_entity_type,
+                                                           item.properties.get("review_process_type")))
         # Check for a Version with same Version name   
         version_name = ""
         publish_name = item.properties.get("publish_name")
@@ -301,14 +291,14 @@ class UploadVersionPlugin(HookBaseClass):
             version_name = publish_name + version_number
 
         existing_version_data = [
-            ['project', 'is', {'type': 'Project','id': item.context.project['id']}],
+            ['project', 'is', {'type': 'Project', 'id': item.context.project['id']}],
             ["code", "is", version_name]
         ]
-        
-        existing_version = publisher.shotgun.find_one("Version", 
-                                                    existing_version_data,
-                                                    ["code"])
-        
+
+        existing_version = publisher.shotgun.find_one("Version",
+                                                      existing_version_data,
+                                                      ["code"])
+
         if existing_version:
             self.logger.warning(
                 "Version already exists with the same name!",
@@ -318,7 +308,7 @@ class UploadVersionPlugin(HookBaseClass):
                         "tooltip": "Reveal the conflicting version in Shotgun.",
                         "entity": existing_version
                     }
-                })                                                                                                      
+                })
             raise Exception("Version exists with same name: %s " % (existing_version['code'],))
         else:
             version_thumbnail = self.get_version_thumbnail(item)
@@ -345,40 +335,39 @@ class UploadVersionPlugin(HookBaseClass):
             'YYYY': now.year,
             'MM': now.month,
             'DD': now.day
-        }    
+        }
 
-        if item.context.entity['type'] in [ 'shot', 'Shot', 'SHOT' ]:
+        if item.context.entity['type'].lower() == 'shot':
             info_json_template = publisher.engine.get_template_by_name('info_json_file')
             temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
             review_process_json_template = publisher.engine.get_template_by_name("shot_review_process_json")
-            
-            resolve_fields.update( { 'Shot': publish_name } )
 
-        elif item.context.entity['type'] in [ 'asset', 'Asset', 'ASSET' ]:
+            resolve_fields.update({'Shot': publish_name})
+
+        elif item.context.entity['type'] in ['asset', 'Asset', 'ASSET']:
             temp_root_template = publisher.engine.get_template_by_name("temp_asset_render_root")
             info_json_template = publisher.engine.get_template_by_name('asset_json_file')
             review_process_json_template = publisher.engine.get_template_by_name("asset_review_process_json")
-            
-            resolve_fields.update( {
-                                    'Asset': publish_name,
-                                    'sg_asset_type': item.properties['fields'].get('sg_asset_type')
-                                    } )
+
+            resolve_fields.update({'Asset': publish_name,
+                                   'sg_asset_type': item.properties['fields'].get('sg_asset_type')
+                                   })
 
         fields = {}
         # item.properties['fields'] = fields
         item.properties['info_json_template'] = info_json_template
         item.properties['resolve_fields'] = resolve_fields
-        item.properties['playlist_name'] = "%s%s%s_Resolve_Review_%s" %("%04d" % (now.year),
-                                                                        "%02d" % (now.month),
-                                                                        "%02d" % (now.day),
-                                                                        str(ampm))
+        item.properties['playlist_name'] = "%s%s%s_Resolve_Review_%s" % ("%04d" % (now.year),
+                                                                         "%02d" % (now.month),
+                                                                         "%02d" % (now.day),
+                                                                         str(ampm))
         temp_root = temp_root_template.apply_fields(resolve_fields)
         nuke_review_file = nuke_review_template.apply_fields(fields)
         review_process_json = review_process_json_template.apply_fields(fields)
 
         temp_root = re.sub("(\s+)", "-", temp_root)
         nuke_review_file = re.sub("(\s+)", "-", nuke_review_file)
-        review_process_json  = re.sub("(\s+)", "-", review_process_json)
+        review_process_json = re.sub("(\s+)", "-", review_process_json)
 
         self.logger.debug("Using review JSON: %s" % (review_process_json))
         self.test_template(item, temp_root, 'temp_root')
@@ -387,122 +376,122 @@ class UploadVersionPlugin(HookBaseClass):
 
         # Get entity info from SG
         entity_filter = [
-            ['project', 'is', {'type': 'Project','id': item.context.project['id']}],
+            ['project', 'is', {'type': 'Project', 'id': item.context.project['id']}],
             ["code", "is", item.context.entity['name']]
         ]
-           
+
         if item.context.entity['type'] == "Shot":
             shot_info = publisher.shotgun.find_one("Shot",
-                                                    entity_filter,
-                                                    [
-                                                    "code",
-                                                    "id",
-                                                    "description",
-                                                    "created_by",
-                                                    "sg_episode",
-                                                    "sg_shot_lut",
-                                                    "sg_shot_audio",
-                                                    "sg_status_list",
-                                                    "sg_project_name",
-                                                    "sg_plates_processed_date",
-                                                    "sg_shot_lut",
-                                                    "sg_shot_ocio",
-                                                    "sg_without_ocio",
-                                                    "sg_head_in",
-                                                    "sg_tail_out",
-                                                    "sg_lens_info",
-                                                    "sg_plate_proxy_scale",
-                                                    "sg_frame_handles",
-                                                    "sg_shot_ccc",
-                                                    "sg_seq_ccc",
-                                                    "sg_vfx_work",
-                                                    "sg_scope_of_work",
-                                                    "sg_editorial_notes",
-                                                    "sg_sequence"
-                                                    "sg_main_plate",
-                                                    "sg_latest_version",
-                                                    "sg_latest_client_version",
-                                                    "sg_gamma",
-                                                    "sg_target_age",
-                                                    "sg_shot_transform",
-                                                    "sg_main_plate_camera"
-                                                    ])
+                                                   entity_filter,
+                                                   [
+                                                       "code",
+                                                       "id",
+                                                       "description",
+                                                       "created_by",
+                                                       "sg_episode",
+                                                       "sg_shot_lut",
+                                                       "sg_shot_audio",
+                                                       "sg_status_list",
+                                                       "sg_project_name",
+                                                       "sg_plates_processed_date",
+                                                       "sg_shot_lut",
+                                                       "sg_shot_ocio",
+                                                       "sg_without_ocio",
+                                                       "sg_head_in",
+                                                       "sg_tail_out",
+                                                       "sg_lens_info",
+                                                       "sg_plate_proxy_scale",
+                                                       "sg_frame_handles",
+                                                       "sg_shot_ccc",
+                                                       "sg_seq_ccc",
+                                                       "sg_vfx_work",
+                                                       "sg_scope_of_work",
+                                                       "sg_editorial_notes",
+                                                       "sg_sequence"
+                                                       "sg_main_plate",
+                                                       "sg_latest_version",
+                                                       "sg_latest_client_version",
+                                                       "sg_gamma",
+                                                       "sg_target_age",
+                                                       "sg_shot_transform",
+                                                       "sg_main_plate_camera"
+                                                   ])
             shot_info_dict = {}
             shot_info.update({"type": "Shot"})
-            shot_info.update({"main_plate":self._get_published_main_plate(sg_reader, item)})
+            shot_info.update({"main_plate": self._get_published_main_plate(sg_reader, item)})
             if shot_info['sg_main_plate_camera']:
-                shot_info.update({"main_plate_camera":self._get_main_plate_camera(sg_reader, item, shot_info['sg_main_plate_camera'])})
-                self.logger.info("Main plate camera - %s" %(shot_info['main_plate_camera']['code']))
+                shot_info.update({"main_plate_camera": self._get_main_plate_camera(sg_reader, item,
+                                                                                   shot_info['sg_main_plate_camera'])})
+                self.logger.info("Main plate camera - %s" % (shot_info['main_plate_camera']['code']))
             if item.properties.get('version_data'):
-                shot_info.update({"version":item.properties.get('version_data')})
+                shot_info.update({"version": item.properties.get('version_data')})
             for i in shot_info.keys():
-                shot_info_dict.update({i:shot_info[i]})
+                shot_info_dict.update({i: shot_info[i]})
             item.properties['entity_info'] = shot_info_dict
 
         elif item.context.entity['type'] == "Asset":
             asset_info = publisher.shotgun.find_one("Asset",
                                                     entity_filter,
                                                     [
-                                                    "code",
-                                                    "id",
-                                                    "description",
-                                                    "created_by",
-                                                    "sg_status_list",
-                                                    "sg_head_in",
-                                                    "sg_tail_out",
-                                                    "sg_lens_info",
-                                                    "sg_vfx_work",
-                                                    "sg_scope_of_work",
-                                                    "sg_editorial_notes",
-                                                    "sg_latest_version",
-                                                    "sg_latest_client_version"
+                                                        "code",
+                                                        "id",
+                                                        "description",
+                                                        "created_by",
+                                                        "sg_status_list",
+                                                        "sg_head_in",
+                                                        "sg_tail_out",
+                                                        "sg_lens_info",
+                                                        "sg_vfx_work",
+                                                        "sg_scope_of_work",
+                                                        "sg_editorial_notes",
+                                                        "sg_latest_version",
+                                                        "sg_latest_client_version"
                                                     ])
             asset_info_dict = {}
             asset_info.update({"type": "Asset"})
             if item.properties.get('version_data'):
-                asset_info.update({"version":item.properties.get('version_data')})            
+                asset_info.update({"version": item.properties.get('version_data')})
             for i in asset_info.keys():
-                asset_info_dict.update({i:asset_info[i]})
+                asset_info_dict.update({i: asset_info[i]})
             item.properties['entity_info'] = asset_info_dict
         else:
             # Set shot specifics to None
             item.properties['shot'] = {}
             item.properties['content_info'] = None
-            item.properties['shot'].update({'sg_lens_info' : None})
-            item.properties['shot'].update({'sg_gamma' : None})
+            item.properties['shot'].update({'sg_lens_info': None})
+            item.properties['shot'].update({'sg_gamma': None})
             item.properties['shot_lut'] = None
             item.properties['lut_pick'] = "None-(Log)"
-            item.properties['shot'].update({'sg_frame_handles' : None})
+            item.properties['shot'].update({'sg_frame_handles': None})
 
         # Aux files
-        draft_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
-        if not os.path.exists( draft_path ):
-            draft_path = os.path.join(pipeline_root,"ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+        draft_path = os.path.join(pipeline_root, "Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
+        if not os.path.exists(draft_path):
+            draft_path = os.path.join(pipeline_root, "ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
 
         if item.properties.get('nuke_review_script'):
-            seq_ext = os.path.splitext( item.properties['path'] )[-1]
-            if seq_ext in [ ".jpg",".jpeg",".png", ]:
-                review_path = os.path.splitext( item.properties['nuke_review_script'] )[0]
+            seq_ext = os.path.splitext(item.properties['path'])[-1]
+            if seq_ext in [".jpg", ".jpeg", ".png", ]:
+                review_path = os.path.splitext(item.properties['nuke_review_script'])[0]
                 item.properties['nuke_review_script'] = review_path + "_jpeg.nk"
 
-        draft_py=draft_path
+        draft_py = draft_path
         # draft_py=os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
         # draft_py=os.path.join("C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts\\thinkbox\\draft\\draft_process_submit.py")
         item.properties["script_file"] = draft_py
 
         codecs = item.properties.get("codec_info")
-        if (len(item.properties.get("project_info")['sg_review_qt_codecs'])>0 and codecs): 
-            review_codecs = item.properties.get("project_info")['sg_review_qt_codecs']  
-            if review_codecs:
-                for i in review_codecs:
-                    codec_match = next((codec for codec in codecs if codec['code'] == i['name']), None) 
-                    review_codec = codec_match['sg_nuke_code']
-                    self.logger.debug("Nuke codec name: %s" % (review_codec,))
-            item.properties['review_codec'] = review_codec
+        if item.properties.get("project_info")['sg_review_qt_codecs'] and codecs:
+            review_codecs = item.properties.get("project_info")['sg_review_qt_codecs']
+            for i in review_codecs:
+                codec_match = next((codec for codec in codecs if codec['code'] == i['name']), None)
+                review_codec = codec_match['sg_nuke_code']
+                self.logger.debug("Nuke codec name: %s" % review_codec)
+                item.properties['review_codec'] = review_codec
         else:
-            raise Exception("Not enough info for submission. Needs review codec info from SG.")                            
+            raise Exception("Not enough info for submission. Needs review codec info from SG.")
 
-        # Input
+            # Input
         item.properties['input_path'] = get_file_string.get_input_file_format(item.properties.path)
         self.logger.debug("Input path: %s" % item.properties['input_path'])
 
@@ -510,7 +499,7 @@ class UploadVersionPlugin(HookBaseClass):
         # submission and creation of the QTs. Now we need to loop through the alternative jobs
 
         return True
-        
+
     def publish(self, settings, item):
         """
         Executes the publish logic for the given item and settings.
@@ -531,7 +520,7 @@ class UploadVersionPlugin(HookBaseClass):
                 "action_show_more_info": {
                     "label": "Version Data",
                     "tooltip": "Show the complete Version data dictionary",
-                    "text": "<pre>%s</pre>" % (pprint.pformat( item.properties.get("version_data")),)
+                    "text": "<pre>%s</pre>" % (pprint.pformat(item.properties.get("version_data")),)
                 }
             }
         )
@@ -546,28 +535,28 @@ class UploadVersionPlugin(HookBaseClass):
                 self.logger.info("Version info:  %s" % (str(version['code'])))
                 item.properties.sg_version_data = version
                 if 'version' in item.properties['entity_info'].keys():
-                    item.properties['entity_info']['version'].update({'id':version['id']})   
+                    item.properties['entity_info']['version'].update({'id': version['id']})
                 else:
-                    item.properties['entity_info']['version']=version
+                    item.properties['entity_info']['version'] = version
         except:
             raise Exception("Failed to upload Version to SG ")
         finally:
             self.logger.info("Version upload complete!")
 
         total_info_dict = dict(
-        project_info = item.properties.get("project_info"),
-        entity_info = item.properties.get("entity_info"),
+            project_info=item.properties.get("project_info"),
+            entity_info=item.properties.get("entity_info"),
         )
         # Create the json file
         review_output = None
         process_info_list = []
         review_process_json = item.properties.get('review_process_json')
-        review_process_json_dict = self.read_json_file(jm,total_info_dict,review_process_json)
+        review_process_json_dict = self.read_json_file(jm, total_info_dict, review_process_json)
 
-        process_dict =  review_process_json_dict[item.properties.get('review_process_type')]
-        
+        process_dict = review_process_json_dict[item.properties.get('review_process_type')]
+
         for i in process_dict.keys():
-            self.logger.info("Creating process files for %s" % (i))            
+            self.logger.info("Creating process files for %s" % (i))
             resolve_fields = item.properties.get('resolve_fields')
             resolve_fields.update({'name': str(i)})
 
@@ -575,14 +564,15 @@ class UploadVersionPlugin(HookBaseClass):
                 self.logger.warning("No version number find from path. Setting to version Zero")
                 resolve_fields['version'] = 000
             if 'plugin_in_script_alt' in process_dict[str(i)].keys():
-                item.properties['nuke_review_script'] = os.path.join(total_info_dict['project_info']['sg_root']['local_path_windows'], 
-                                                process_dict[str(i)]['plugin_in_script_alt'])
+                item.properties['nuke_review_script'] = os.path.join(
+                    total_info_dict['project_info']['sg_root']['local_path_windows'],
+                    process_dict[str(i)]['plugin_in_script_alt'])
             self.logger.info("Update nuke script: %s" % (item.properties['nuke_review_script']))
 
             info_json_file = item.properties['info_json_template'].apply_fields(resolve_fields)
-            info_json_file = re.sub("(\s+)", "-", info_json_file)            
-            info_json_file = self.test_template(item, info_json_file, 'info_json_file')                
-            process_info_list.append(info_json_file)  
+            info_json_file = re.sub("(\s+)", "-", info_json_file)
+            info_json_file = self.test_template(item, info_json_file, 'info_json_file')
+            process_info_list.append(info_json_file)
 
             review_template = publisher.engine.get_template_by_name(process_dict[str(i)]['qt_template_secondary'])
             review_output = review_template.apply_fields(resolve_fields)
@@ -591,35 +581,36 @@ class UploadVersionPlugin(HookBaseClass):
             item.properties["output_root"] = os.path.split(review_output)[0]
             item.properties["output_main"] = os.path.split(review_output)[1]
             item.properties["output_ext"] = os.path.splitext(review_output)[1]
-                        
+
             item.properties['nuke_out_script'] = os.path.join(item.properties.get('temp_root'),
-                                                                "deadline", 
-                                                                "%s_%s.nk" % (re.sub("(\s+)", "-", item.properties.get('version_data')['code']), 
+                                                              "deadline",
+                                                              "%s_%s.nk" % (re.sub("(\s+)", "-",
+                                                                                   item.properties.get('version_data')[
+                                                                                       'code']),
                                                                             str(i)))
 
-            item.properties['entity_info'].update({'create_version':process_dict[str(i)]['create_version']})
-            item.properties['entity_info'].update({'update_version':process_dict[str(i)]['update_version']})
+            item.properties['entity_info'].update({'create_version': process_dict[str(i)]['create_version']})
+            item.properties['entity_info'].update({'update_version': process_dict[str(i)]['update_version']})
 
             content_info_dict = {}
-            if (process_dict[str(i)]['content_info'] and 
-            isinstance(process_dict[str(i)]['content_info'], dict)):
-                for k,v in process_dict[str(i)]['content_info'].items():
+            if (process_dict[str(i)]['content_info'] and
+                    isinstance(process_dict[str(i)]['content_info'], dict)):
+                for k, v in process_dict[str(i)]['content_info'].items():
                     try:
                         content_info_dict[str(k)] = item.properties.get("entity_info")[str(v)]
                     except:
                         self.logger.debug("!!! Issue getting content info for %s" % (str(v)))
 
-      
             item.properties["content_info"] = content_info_dict
 
             process_info = self.set_process_info(self.dl_submission,
-                            "Nuke",
-                            str(i),
-                            process_dict[str(i)],
-                            item.properties.get("project_info"),
-                            item.properties.get("software_info"),
-                            item.properties.get("entity_info"),
-                            item)
+                                                 "Nuke",
+                                                 str(i),
+                                                 process_dict[str(i)],
+                                                 item.properties.get("project_info"),
+                                                 item.properties.get("software_info"),
+                                                 item.properties.get("entity_info"),
+                                                 item)
 
             total_info_dict.update({'process_info': process_info})
             if process_dict[str(i)]['add_to_review_playlist']:
@@ -631,38 +622,41 @@ class UploadVersionPlugin(HookBaseClass):
                     version['id']
                 )
                 if not added_verions:
-                    self.logger.debug("Playlist %s already has Verion %s" %(item.properties.get('playlist_name'),version['code']))
+                    self.logger.debug(
+                        "Playlist %s already has Verion %s" % (item.properties.get('playlist_name'), version['code']))
                 else:
-                    self.logger.debug("Updated Playlist %s with Verion %s" %(item.properties.get('playlist_name'),version['code']))
+                    self.logger.debug(
+                        "Updated Playlist %s with Verion %s" % (item.properties.get('playlist_name'), version['code']))
             info_json_file = self.write_json_file(jm,
-                        total_info_dict, 
-                        info_json_file)  
+                                                  total_info_dict,
+                                                  info_json_file)
 
             # log results  
-            self.logger.debug("Review template: %s" %(str(process_dict[str(i)])))
-            self.logger.debug("Review output: %s" %(str(review_output)))
-            self.logger.debug("JSON file: %s" %(str(info_json_file)))
+            self.logger.debug("Review template: %s" % (str(process_dict[str(i)])))
+            self.logger.debug("Review output: %s" % (str(review_output)))
+            self.logger.debug("JSON file: %s" % (str(info_json_file)))
 
-        item.properties['process_info_list']=process_info_list
+        item.properties['process_info_list'] = process_info_list
 
         # Send the QT creation job to the farm
         try:
             draft_info = self.set_process_info(self.dl_submission,
-                            "DraftPlugin",
-                            'draft-update',
-                            {"create_version": False,"update_version": False, "update_client_version": False},
-                            item.properties.get("project_info"),
-                            item.properties.get("software_info"),
-                            item.properties.get("entity_info"),
-                            item,
-                            multiple_task_list = item.properties.get("process_info_list"))
+                                               "DraftPlugin",
+                                               'draft-update',
+                                               {"create_version": False, "update_version": False,
+                                                "update_client_version": False},
+                                               item.properties.get("project_info"),
+                                               item.properties.get("software_info"),
+                                               item.properties.get("entity_info"),
+                                               item,
+                                               multiple_task_list=item.properties.get("process_info_list"))
 
-            self.send_to_dl(self.dl_submission, draft_info, item) 
+            self.send_to_dl(self.dl_submission, draft_info, item)
         except:
             raise Exception("Failed to send QT job to DL")
-        finally:            
+        finally:
             self.logger.info("Version upload complete!")
-    
+
     def finalize(self, settings, item):
         """
         Execute the finalization pass. This pass executes once all the publish
@@ -687,30 +681,30 @@ class UploadVersionPlugin(HookBaseClass):
             return item.context.project
         else:
             return None
-    
-    def _get_published_main_plate(self, sg_reader, item):
-   
-        published_main_plate = sg_reader.get_pushlished_file(item.context.project['id'], 
-                                                                        "Main Plate", 
-                                                                        "Shot", 
-                                                                        entity_id=item.context.entity['id'], 
-                                                                        get_latest=True)
-        
-        self.logger.info("Got main plate of entity %s - %s" %(str(item.context.entity['id']),published_main_plate))
 
-        return published_main_plate       
-    
+    def _get_published_main_plate(self, sg_reader, item):
+
+        published_main_plate = sg_reader.get_pushlished_file(item.context.project['id'],
+                                                             "Main Plate",
+                                                             "Shot",
+                                                             entity_id=item.context.entity['id'],
+                                                             get_latest=True)
+
+        self.logger.info("Got main plate of entity %s - %s" % (str(item.context.entity['id']), published_main_plate))
+
+        return published_main_plate
+
     def _get_main_plate_camera(self, sg_reader, item, camera_data):
 
         publisher = self.parent
         return publisher.shotgun.find_one("Camera",
-                                            [['id', 'is', camera_data['id']]],
-                                            ['code',
-                                            'sg_format_width',
-                                            'sg_format_height',
-                                            'sg_pixel_aspect_ratio',
-                                            'sg_pump_incoming_transform_switch'])
-            
+                                          [['id', 'is', camera_data['id']]],
+                                          ['code',
+                                           'sg_format_width',
+                                           'sg_format_height',
+                                           'sg_pixel_aspect_ratio',
+                                           'sg_pump_incoming_transform_switch'])
+
     def get_publish_name(self, settings, item):
         """
         Get the publish name for the supplied settings and item.
@@ -729,7 +723,7 @@ class UploadVersionPlugin(HookBaseClass):
         # fall back to the path_info logic
         publisher = self.parent
         path = item.properties.path
-        
+
         if "sequence_paths" in item.properties:
             # generate the name from one of the actual files in the sequence
             name_path = item.properties.sequence_paths[0]
@@ -744,27 +738,23 @@ class UploadVersionPlugin(HookBaseClass):
         )
 
     def get_version_thumbnail(self, item):
-         
-         thumbnail_path = None
 
-         thumbnail_path = item.get_property("thumbnail_path")
+        thumbnail_path = None
 
-         return thumbnail_path
+        thumbnail_path = item.get_property("thumbnail_path")
+
+        return thumbnail_path
 
     def get_ampm(self, now):
         """
         Get the AM or PM string value for further use
         :param time: now datetime based function
         """
-        ampm =""
         if int(now.strftime("%H")) < 11:
-            ampm = "AM"
+            return "AM"
         elif int(now.strftime("%H")) < 16:
-            ampm = "PM"            
-        else:   
-            ampm = "LATE"
-        
-        return ampm
+            return "PM"
+        return "LATE"
 
     def send_to_dl(self, dl_module, draft_info, item):
         """
@@ -772,39 +762,36 @@ class UploadVersionPlugin(HookBaseClass):
         Needs to be of type file.type.sequence.
 
         :param item: Item to process
-        """   
+        """
         self.dm = deadline_manager.DeadlineManager()
 
         try:
-            deadline_submission = self.dm.get_dl_cmd("%s %s" %(draft_info['job_info_file'], draft_info['plugin_info_file']))
+            deadline_submission = self.dm.get_dl_cmd(
+                "%s %s" % (draft_info['job_info_file'], draft_info['plugin_info_file']))
         except:
-            raise Exception("Failed in the DL submission process.")          
-        finally:
+            raise Exception("Failed in the DL submission process.")
+        else:
             self.logger.debug("Sucessfully Sent job to DL.")
             for line in deadline_submission.splitlines():
-                if not line:
-                    pass
-                else:
-                    self.logger.debug("--- %s "% (line,))
-        
+                if line:
+                    self.logger.debug("--- %s " % (line,))
         self.logger.info("Version Submission Complete!\nVersion has been sent to SG and the QT sent to DL")
-    
+
     def replace_slashes(self, path):
         """
         Simple function to replace back with forward slashes
         """
         if not path:
             return
-        else:
-            return path.replace("\\","/")
+        return path.replace("\\", "/")
 
-    def set_process_info(self, dl_module, plugin_name, process_name, plugin_settings, project_info, software_info, entity_info, item, multiple_task_list=None):
-        
-        process_info = None
+    def set_process_info(self, dl_module, plugin_name, process_name, plugin_settings, project_info, software_info,
+                         entity_info, item, multiple_task_list=None):
+
         # DL vairables
-        batch_name = (entity_info['version']['code']+"_submit") or ""
-        job_name = entity_info['version']['code']+ "_" + process_name or ""
-        plate_type = entity_info['version']['code'] or ""        
+        batch_name = (entity_info['version']['code'] + "_submit") or ""
+        job_name = entity_info['version']['code'] + "_" + process_name or ""
+        plate_type = entity_info['version']['code'] or ""
         create_version = entity_info['create_version'] or False
         update_version = entity_info['update_version'] or False
         update_client_version = False
@@ -818,19 +805,19 @@ class UploadVersionPlugin(HookBaseClass):
         zip_output = False
         # user = project_info['artist_name'] or ""
         comment = ""
-        title = "artist_submit"        
+        title = "artist_submit"
         department = "VFX"
-        group="artist"
+        group = "artist"
         priority = 55
         primary_pool = "draft_submission"
         secondary_pool = "draft_submission"
         if process_name == "shotgun-version":
             priority = 50
             primary_pool = "update_sg"
-            secondary_pool = "update_sg"            
+            secondary_pool = "update_sg"
         if plugin_name == "DraftPlugin":
-            primary_pool = "vfx_processing" #"dduffy_test"#
-            secondary_pool = "vfx_processing" #"dduffy_test"#
+            primary_pool = "vfx_processing"  # "dduffy_test"#
+            secondary_pool = "vfx_processing"  # "dduffy_test"#
         machine_limit = 1
         concurrent_task = 1
         chunk_size = 1000000
@@ -841,27 +828,25 @@ class UploadVersionPlugin(HookBaseClass):
         content_output_file_total = item.properties.get('output_main') or ""
         content_output_file_ext = item.properties.get('output_ext') or ""
         content_output_root = item.properties.get('output_root') or ""
-        content_output_file_total = os.path.join(content_output_root,content_output_file)
+        content_output_file_total = os.path.join(content_output_root, content_output_file)
         job_dependencies = ""
         frame_range = item.properties.get("frame_range") or "1-1"
-        if 'slate' in  plugin_settings.keys():
-            if not plugin_settings['slate']:
-                pass
-            else:
+        if 'slate' in plugin_settings.keys():
+            if plugin_settings['slate']:
                 if len(frame_range.split("-")) == 1:
                     frame_range = "%s-%s" % (frame_range, frame_range)
                 else:
-                    first_frame= frame_range.split("-")[0]
-                    last_frame= frame_range.split("-")[1]
+                    first_frame = frame_range.split("-")[0]
+                    last_frame = frame_range.split("-")[1]
                     frame_range = "%s-%s" % (first_frame, last_frame)
-            
+
         # Software Variables
-        software_nuke = next((soft for soft in software_info if soft['products'] == plugin_name and soft['sg_pipeline_tools'] == True), None)
-        try:
-            plugin_version = software_nuke['version_names']
-            plugin_path = software_nuke['windows_path']
-        except:
-            pass
+        software_nuke = next(
+            (soft for soft in software_info if soft['products'] == plugin_name and soft['sg_pipeline_tools'] is True),
+            None)
+        if software_nuke:
+            plugin_version = software_nuke.get('version_names')
+            plugin_path = software_nuke.get('windows_path')
 
         slate_enabled = project_info['sg_review_qt_slate']
         burnin_enabled = project_info['sg_review_burn_in']
@@ -871,116 +856,103 @@ class UploadVersionPlugin(HookBaseClass):
         script_file = self.replace_slashes(item.properties['script_file']) or None
 
         user_name = ""
-        try:
-            user_info = item.properties.get("user_info")    
-            if( user_info and 
-            len(user_info)==1):
-                user_name = user_info[0]['login']
-        except:
+        user_info = item.properties.get("user_info")
+        if user_info and len(user_info) == 1:
+            user_name = user_info[0]['login']
+        if not user_name:
             self.logger.warning("Could not get user_name info")
-        
-        vendor = ""
-        try:
-            vendor = item.properties.get("vendor")    
-        except:
-            self.logger.warning("Could not get user_name info")
+
+        vendor = item.properties.get("vendor", "")
+        if not vendor:
+            self.logger.warning("Could not get vendor info")
         camera_switch = None
         try:
             camera_switch = entity_info['main_plate_camera']['sg_pump_incoming_transform_switch']
         except:
             pass
-        main_transform_switch = None
-        try:
-            main_transform_switch = plugin_settings['main_transform_switch']
-        except:
-            pass
+        main_transform_switch = plugin_settings.get('main_transform_switch')
 
-        if item.properties.get('template'):
-            if (item.properties.get('template').name == "incoming_outsource_shot_version_tif" or
-            item.properties.get('template').name =="incoming_outsource_shot_version_seq_tif"):
-                self.logger.info("Shot tiff found gathering settings for Version process.")
-                process_type = "dmp"   
+        if item.properties.get('template') and item.properties.get('template').name in [
+            "incoming_outsource_shot_version_tif", "incoming_outsource_shot_version_seq_tif"]:
+            self.logger.info("Shot tiff found gathering settings for Version process.")
+            process_type = "dmp"
         else:
             self.logger.warning("Could not set process_type")
 
         process_info = dict(
-            batch_name = batch_name,
-            job_name = job_name, 
-            process_name = process_name, 
-            process_type = process_type,
-            content_info = content_info,
-            plate_type = plate_type,
-            create_version = create_version,
-            update_version = update_version,
-            update_client_version = update_client_version,
-            create_publish = create_publish,
-            publish_file_type = publish_file_type,
-            copy_to_location = copy_to_location,
-            copy_location = copy_location,
-            zip_output = zip_output,
-            user = user_name,    
-            vendor = vendor,  
-            title = title,
-            comment = comment,
-            department = department,
-            group= group,
-            priority = priority,
-            primary_pool = primary_pool,
-            secondary_pool = secondary_pool,
-            machine_limit = machine_limit,
-            concurrent_task = concurrent_task,
-            chunk_size = chunk_size,                
-            frame_range =frame_range,
-            content_output_file = content_output_file,
-            content_output_file_ext =content_output_file_ext,  
-            content_output_file_total = content_output_file_total,          
-            content_output_root = content_output_root,
-            camera_switch = camera_switch,
-            job_dependencies = job_dependencies,
-            plugin_name = plugin_name,
-            plugin_path = plugin_path,
-            plugin_version = plugin_version,
-            plugin_settings = plugin_settings,
-            plugin_in_script = plugin_in_script,
-            plugin_out_script = plugin_out_script,
-            slate_enabled = slate_enabled,
-            burnin_enabled = burnin_enabled,
-            script_file = script_file,
-            sg_temp_root = temp_root,
-            main_transform_switch = main_transform_switch
-            )
-        
-        if multiple_task_list != None:
-            process_info.update({'info_json_count':len(multiple_task_list)})
-            for index, i in enumerate(multiple_task_list):
-                info_json_key = 'info_json_0%s'%str(index+1)
-                process_info.update({info_json_key:i})
+            batch_name=batch_name,
+            job_name=job_name,
+            process_name=process_name,
+            process_type=process_type,
+            content_info=content_info,
+            plate_type=plate_type,
+            create_version=create_version,
+            update_version=update_version,
+            update_client_version=update_client_version,
+            create_publish=create_publish,
+            publish_file_type=publish_file_type,
+            copy_to_location=copy_to_location,
+            copy_location=copy_location,
+            zip_output=zip_output,
+            user=user_name,
+            vendor=vendor,
+            title=title,
+            comment=comment,
+            department=department,
+            group=group,
+            priority=priority,
+            primary_pool=primary_pool,
+            secondary_pool=secondary_pool,
+            machine_limit=machine_limit,
+            concurrent_task=concurrent_task,
+            chunk_size=chunk_size,
+            frame_range=frame_range,
+            content_output_file=content_output_file,
+            content_output_file_ext=content_output_file_ext,
+            content_output_file_total=content_output_file_total,
+            content_output_root=content_output_root,
+            camera_switch=camera_switch,
+            job_dependencies=job_dependencies,
+            plugin_name=plugin_name,
+            plugin_path=plugin_path,
+            plugin_version=plugin_version,
+            plugin_settings=plugin_settings,
+            plugin_in_script=plugin_in_script,
+            plugin_out_script=plugin_out_script,
+            slate_enabled=slate_enabled,
+            burnin_enabled=burnin_enabled,
+            script_file=script_file,
+            sg_temp_root=temp_root,
+            main_transform_switch=main_transform_switch
+        )
 
-        job_info_file,plugin_info_file = self.create_dl_info_files(dl_module, project_info, entity_info, process_info)
-        process_info.update({'job_info_file':job_info_file})
-        process_info.update({'plugin_info_file':plugin_info_file})
+        if multiple_task_list is not None:
+            process_info.update({'info_json_count': len(multiple_task_list)})
+            for index, i in enumerate(multiple_task_list):
+                info_json_key = 'info_json_0%s' % str(index + 1)
+                process_info.update({info_json_key: i})
+
+        job_info_file, plugin_info_file = self.create_dl_info_files(dl_module, project_info, entity_info, process_info)
+        process_info.update({'job_info_file': job_info_file})
+        process_info.update({'plugin_info_file': plugin_info_file})
 
         return process_info
 
     def create_dl_info_files(self, dl_module, project_info_dict, entity_info, process_info_dict):
-        
-        job_info = None
-        plugin_info = None
-
         total_info = dict(
-        project_info = project_info_dict,
-        entity_info = entity_info,
-        process_info = process_info_dict
+            project_info=project_info_dict,
+            entity_info=entity_info,
+            process_info=process_info_dict
         )
 
         job_info = self.create_job_info(dl_module,
-                            total_info, 
-                            process_info_dict['plugin_name'])
+                                        total_info,
+                                        process_info_dict['plugin_name'])
         plugin_info = self.create_plugin_info(dl_module,
-                            total_info, 
-                            process_info_dict['plugin_name'])  
+                                              total_info,
+                                              process_info_dict['plugin_name'])
 
-        return(job_info, plugin_info)
+        return (job_info, plugin_info)
 
     def create_job_info(self, dl_module, total_info, plugin_name):
 
@@ -988,17 +960,18 @@ class UploadVersionPlugin(HookBaseClass):
         try:
             job_info = self.dl_submission.gather_job_info(
                 total_info,
-                )
+            )
         except Exception as err:
             raise Exception("Unable to create %s job info file %s" % (plugin_name, err))
         finally:
-            job_info = job_info.replace("/","\\")
-            self.logger.debug("Created %s job info file for %s." % (plugin_name,total_info['process_info']['process_name']),
-                    extra={
+            job_info = job_info.replace("/", "\\")
+            self.logger.debug(
+                "Created %s job info file for %s." % (plugin_name, total_info['process_info']['process_name']),
+                extra={
                     "action_show_folder": {
                         "path": job_info
                     }
-            })
+                })
         return job_info
 
     def create_plugin_info(self, dl_module, total_info, plugin_name):
@@ -1007,17 +980,18 @@ class UploadVersionPlugin(HookBaseClass):
         try:
             plugin_info = self.dl_submission.gather_plugin_info(
                 total_info,
-                )
+            )
         except Exception as err:
             raise Exception("Unable to create %s plugin info file %s" % (plugin_name, err))
         finally:
-            plugin_info = plugin_info.replace("/","\\")
-            self.logger.debug("Created %s plugin info file for %s" % (plugin_name,total_info['process_info']['process_name']),
-                    extra={
+            plugin_info = plugin_info.replace("/", "\\")
+            self.logger.debug(
+                "Created %s plugin info file for %s" % (plugin_name, total_info['process_info']['process_name']),
+                extra={
                     "action_show_folder": {
                         "path": plugin_info
                     }
-                    })
+                })
             return plugin_info
 
     def write_json_file(self, json_module, info_dict, json_filename):
@@ -1030,31 +1004,26 @@ class UploadVersionPlugin(HookBaseClass):
             )
         except:
             raise Exception("Issue creating JSON file - needed for DL submission!")
-        finally:
-            self.logger.debug("Created info JSON file.",
-                    extra={
-                    "action_show_folder": {
-                        "path": json_filename
-                    }
-                    })
+        self.logger.debug("Created info JSON file.",
+                          extra={
+                              "action_show_folder": {
+                                  "path": json_filename
+                              }
+                          })
 
-            return json_file
+        return json_file
 
     def read_json_file(self, json_module, info_dict, json_filename):
-
-        json_file = None
         try:
             json_file = json_module.read_JsonDataFile(filename=json_filename)
         except:
             raise Exception("Issue reading JSON file - needed for DL submission!")
-        finally:
-            self.logger.debug("Read info JSON file.",
-                    extra={
-                    "action_show_folder": {
-                        "path": json_filename
-                    }
-                    })
-
+        self.logger.debug("Read info JSON file.",
+                          extra={
+                              "action_show_folder": {
+                                  "path": json_filename
+                              }
+                          })
         return json_file
 
     def test_template(self, item, template, property_key, exists=False):
@@ -1064,12 +1033,10 @@ class UploadVersionPlugin(HookBaseClass):
         :param: exists (bool) T/F to see if path exists
         """
         if not template:
-            raise Exception("Could not resolve the ouput path for %s!" %(property_key,))
-        else:
-            if exists:
-                if not os.path.exists(template):
-                    raise Exception("Path doesn't exist %s!" %(property_key,))
-            if property_key:                 
-                item.properties[property_key] = template
-                self.logger.debug("Template: %s - %s" % (property_key,template))
-                return template            
+            raise Exception("Could not resolve the ouput path for %s!" % (property_key,))
+        if exists and not os.path.exists(template):
+            raise Exception("Path doesn't exist %s!" % (property_key,))
+        if property_key:
+            item.properties[property_key] = template
+            self.logger.debug("Template: %s - %s" % (property_key, template))
+            return template

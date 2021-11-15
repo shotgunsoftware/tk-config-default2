@@ -168,7 +168,6 @@ class BasicPathInfo(HookBaseClass):
         # if extension:
         #     seq_filename = "%s.%s" % (seq_filename, extension)
 
-
         # # build the full sequence path
         # return os.path.join(path_info_returns["folder"], seq_filename)
 
@@ -452,11 +451,10 @@ class BasicPathInfo(HookBaseClass):
 
             item['base_template'] = work_template
 
-            if item.get('base_template'):
-                curr_fields = work_template.get_fields(tmp_path)
-                item['fields'] = curr_fields
-                if not curr_fields.get("extension"):
-                    item['fields'].update( { "extension": ext } )
+            curr_fields = work_template.get_fields(tmp_path)
+            item['fields'] = curr_fields
+            if not curr_fields.get("extension"):
+                item['fields'].update( { "extension": ext } )
 
             # Add fields specific to shot/asset
             if "Shot" in item['fields'].keys():
@@ -481,8 +479,6 @@ class BasicPathInfo(HookBaseClass):
             for key in item['fields'].keys():
                 if not path_info['all_fields'].get(key):
                     path_info['all_fields'][key] = item['fields'][key]
-                else:
-                    pass
 
         return path_info
 

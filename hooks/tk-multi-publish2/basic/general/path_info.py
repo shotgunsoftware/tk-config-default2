@@ -10,7 +10,6 @@
 
 import os
 import re
-
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -22,14 +21,13 @@ HookBaseClass = sgtk.get_hook_baseclass()
 # coming just before an optional extension in the file/folder name and just
 # after a '.', '_', or '-'.
 VERSION_REGEX = re.compile("(.*)([._-])v(\d+)\.?([^.]+)?$", re.IGNORECASE)
-
 # a regular expression used to extract the frame number from the file.
 # this implementation assumes the version number is of the form '.####'
 # coming just before the extension in the filename and just after a '.', '_',
 # or '-'.
 FRAME_REGEX = re.compile("(.*)([._-])(\d+)\.([^.]+)$", re.IGNORECASE)
-
 VERSION_STRING_REGEX = re.compile("([._-])v(\d+)\.?([^.]+)?", re.IGNORECASE)
+
 
 class BasicPathInfo(HookBaseClass):
     """
