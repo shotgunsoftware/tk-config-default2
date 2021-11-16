@@ -328,6 +328,70 @@ class CreateAlembicPlugin(HookBaseClass):
         # for i in item.properties:
         #     self.logger.warning(">>>>> %s: %s" % ( i, item.properties[i] ) )
 
+        #### ALEMBIC-SPECIFIC VALIDATION/FILE GENERATION ###
+        # refine JSON values and generate .job files for Deadline
+        json_properties = item.properties.get('json_properties')
+
+        process_type = item.properties['step'].get('sg_review_process_type').lower()        
+        process_dict =  json_properties[process_type]
+        json_path = json_properties['general_settings']['alembic_json_file']
+
+        if not json_path:
+            raise Exception( "Missing path to deadline json file" )
+
+        # update values for alembic render
+        plugin_info_file = None
+        job_info_file = None
+        for process in process_dict['processes']:
+            alembic_process = process_dict['processes'][process]
+            # process settings
+            alembic_process['process_settings']['review_output'] = publish_path
+            alembic_process['process_settings']['plugin_name'] = "MayaBatch"
+
+            # deadline_settings
+            alembic_process['deadline_settings']['output_file'] = publish_code
+            alembic_process['deadline_settings']['content_output_file_total'] = publish_path
+            alembic_process['deadline_settings']['output_root'] = os.path.dirname( publish_path )
+            alembic_process['deadline_settings']['frame_range'] = "%s-%s" % ( item.properties['entity_info']['sg_head_in'], item.properties['entity_info']['sg_tail_out'] )
+
+            plugin_info_file = alembic_process['deadline_settings']['plugin_info_file']
+            job_info_file = alembic_process['deadline_settings']['job_info_file']
+
+        item.properties['alembic_job_files'] = {
+                                                "plugin_info_file": plugin_info_file,
+                                                "job_info_file": job_info_file,
+                                                }
+
+        # create json storage dir
+        if not os.path.exists( os.path.dirname( json_path ) ):
+            os.makedirs( os.path.dirname( json_path ) )
+
+        # create alembic output dir
+        if not os.path.exists( os.path.dirname( publish_path ) ):
+            os.makedirs( os.path.dirname( publish_path ) )
+
+
+        self.logger.warning(">>>>> writing to json file: %s" % json_path)
+
+        file_write = open( json_path, "w+" )
+        json_data = json.dumps(process_dict, sort_keys=False,
+                                indent=4, separators=(',', ': '), default=str)
+        file_write.write(json_data)
+        file_write.flush()
+        file_write.close()
+
+        self.gather_job_info( process_dict )
+        self.gather_plugin_info( process_dict )
+
+        if not ( job_info_file and plugin_info_file ):
+            if not job_info_file:
+                raise Exception( "Missing job info file" )
+            else:
+                raise Exception( "Missing plugin info file" )
+
+        # for i in item.properties:
+        #     self.logger.warning(">>>>> %s: %s" % ( i, item.properties[i] ) )
+
         return True
 
     def publish(self, settings, item):

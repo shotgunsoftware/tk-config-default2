@@ -1,0 +1,162 @@
+{
+    "primary":{
+        "processes":{
+            "create-alembic":{
+                "process_settings":{
+                    "title" : "Dailies Render",
+                    "output_root": "secondary",
+                    "output_file_ext": "abc",
+                    "add_to_review_playlist": true,
+                    "create_version": true,
+                    "update_version": false,
+                    "create_publish": true,                    
+                    "update_client_version": false,                       
+                    "color_required": false,
+                    "client_process": false,              
+                    "plugin_name": "MayaBatch",
+                    "plugin_version": "2018",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":0},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},            
+                    "format":{
+                        "name": "delivery_format"
+                    },     
+                    "quicktime_codec":{
+                        "type": "CustomNonProjectEntity08",
+                        "id": 37,
+                        "name": "ProRes422Proxy"
+                    },      
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_3d",
+                    "secondary_pool": "vfx_3d",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "department": "3D",
+                    "group": "vfx_maya_arnold",
+                    "update_client_version": false,
+                    "create_publish": true,
+                    "copy_to_location": false,
+                    "copy_location": false,
+                    "publish_file_type": "Alembic Cache"
+                },
+                "alembic_settings":{
+                    "alembic_attribute_prefix": "",
+                    "alembic_attributes": "",
+                    "alembic_format_option": "Ogawa",
+                    "alembic_high_subframe": 0.2,
+                    "alembic_job": true,
+                    "alembic_low_subframe": 0.2,
+                    "alembic_selection": "geo",
+                    "alembic_subframes": true,
+                    "animation": 1,
+                    "build": "64bit",
+                    "enable_open_colorIO": 0,
+                    "ignore_error_211": 0
+                }
+            }
+        }
+    },
+    "secondary":{
+        "processes":{
+            "create-alembic":{
+                "process_settings":{
+                    "title" : "Dailies Render",
+                    "output_root": "secondary",
+                    "output_file_ext": "abc",
+                    "add_to_review_playlist": true,
+                    "create_version": true,
+                    "update_version": false,
+                    "create_publish": true,                    
+                    "update_client_version": false,                       
+                    "color_required": false,
+                    "client_process": false,              
+                    "plugin_name": "MayaBatch",
+                    "plugin_version": "2018",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":0},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},            
+                    "format":{
+                        "name": "delivery_format"
+                    },     
+                    "quicktime_codec":{
+                        "type": "CustomNonProjectEntity08",
+                        "id": 37,
+                        "name": "ProRes422Proxy"
+                    },      
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_3d",
+                    "secondary_pool": "vfx_3d",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "department": "3D",
+                    "group": "vfx_maya_arnold",
+                    "update_client_version": false,
+                    "create_publish": true,
+                    "copy_to_location": false,
+                    "copy_location": false,
+                    "publish_file_type": "Alembic Cache"
+                },
+                "alembic_settings":{
+                    "alembic_attribute_prefix": "",
+                    "alembic_attributes": "",
+                    "alembic_format_option": "Ogawa",
+                    "alembic_high_subframe": 0.2,
+                    "alembic_job": true,
+                    "alembic_low_subframe": 0.2,
+                    "alembic_selection": "geo",
+                    "alembic_subframes": true,
+                    "animation": 1,
+                    "build": "64bit",
+                    "enable_open_colorIO": 0,
+                    "ignore_error_211": 0
+                }
+            }
+        }
+    },
+    "general_settings":{
+        "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/pump_processing/submission_process_submit.py"
+    }
+
+}

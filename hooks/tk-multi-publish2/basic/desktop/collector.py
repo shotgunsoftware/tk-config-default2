@@ -34,7 +34,6 @@ elif sys.platform == "linux":
     system_path_variable = "linux_path"
     system_root_variable = "local_path_linux"
 
-
 class BasicSceneCollector(HookBaseClass):
     """
     A basic collector that handles files and general objects.
@@ -59,7 +58,6 @@ class BasicSceneCollector(HookBaseClass):
             "path".
 
     """
-
     @property
     def common_file_info(self):
         """
@@ -187,6 +185,159 @@ class BasicSceneCollector(HookBaseClass):
         part of its environment configuration.
         """
         return {}
+
+    @property
+    def user_info(self):
+
+        publisher = self.parent
+        ctx = publisher.engine.context 
+        user_fields =[
+            'name',
+            'login',
+            'sg_ip_address'
+        ]
+        user_filter =[
+            ['id', 'is', ctx.user['id']],
+        ]
+        user_info = publisher.shotgun.find_one(
+            'HumanUser',
+            user_filter,
+            user_fields
+            )    
+
+        return user_info
+
+    @property
+    def software_info(self):
+        """
+        Test SG for all associated software
+
+        :returns: The SG info of the given softwares
+        """  
+        publisher = self.parent
+
+        software_filters = [
+        ['id', 'is_not', 0],
+        ['version_names', 'is_not', None]
+        ]
+        
+        software_fields = [
+        'code',
+        'products',
+        system_path_variable,
+        'version_names',
+        'sg_pipeline_tools'
+        ]
+
+        software_info = publisher.shotgun.find(
+        'Software',
+        software_filters,
+        software_fields
+        )
+
+        return software_info
+
+    @property
+    def codec_info(self):
+        """
+        Test SG for all associated codec
+
+        :returns: The SG info of the given codecs
+        """  
+        publisher = self.parent
+
+        codec_filters = []
+        
+        codec_fields = ['id',
+                        'code', 
+                        'name', 
+                        'sg_nuke_code', 
+                        'sg_output_folder']
+
+        codec_info = publisher.shotgun.find(
+        'CustomNonProjectEntity08',
+        codec_filters,
+        codec_fields
+        )
+
+        return codec_info
+
+    @property
+    def project_info(self):
+        """
+        A dictionary of relative Project info that is taken from SG Project page
+        """
+
+        publisher = self.parent
+        ctx = publisher.engine.context
+        proj_info = publisher.shotgun.find_one("Project", 
+                                            [['id', 'is', ctx.project['id']]], 
+                                            ['name',
+                                            'id',
+                                            'sg_root',
+                                            'sg_status',
+                                            'sg_date_format',
+                                            'sg_short_name',
+                                            'sg_frame_rate', 
+                                            'sg_vendor_id',
+                                            'sg_frame_handles',
+                                            'sg_data_type',
+                                            'sg_format_width',
+                                            'sg_format_height',
+                                            'sg_delivery_slate_count',
+                                            'sg_client_version_submission',
+                                            'sg_incoming_plate_jpg_',
+                                            'sg_delivery_default_process',
+                                            'sg_incoming_fileset_padding',
+                                            'sg_proxy_format_ratio',
+                                            'sg_format_pixel_aspect_ratio',
+                                            'sg_lut',
+                                            'sg_version_zero_lut',
+                                            'sg_version_zero_slate',
+                                            'sg_version_zero_internal_burn_in',
+                                            'sg_burnin_frames_format',
+                                            'sg_delivery_qt_dual_lut',
+                                            'sg_delivery_format_width',
+                                            'sg_delivery_format_height',
+                                            'sg_delivery_reformat_filter',
+                                            'sg_delivery_fileset_padding',
+                                            'sg_delivery_fileset_slate',
+                                            'sg_zip_fileset_delivery',
+                                            'sg_pixel_aspect_ratio',
+                                            'sg_reformat_plates_to_deliverable',
+                                            'sg_delivery_fileset',
+                                            'sg_delivery_fileset_compression',
+                                            'sg_delivery_qt_bitrate',
+                                            'sg_delivery_qt_slate',
+                                            'sg_delivery_burn_in',
+                                            'sg_delivery_qt_codecs',
+                                            'sg_delivery_qt_formats',
+                                            'sg_delivery_folder_structure',
+                                            'sg_color_space',
+                                            'sg_project_color_management',
+                                            'sg_project_color_management_config',
+                                            'sg_timecode',
+                                            'sg_upload_qt_formats',
+                                            'sg_review_qt_codecs',
+                                            'sg_review_burn_in',
+                                            'sg_review_qt_slate',
+                                            'sg_review_qt_formats',
+                                            'sg_slate_frames_format',
+                                            'sg_frame_leader',
+                                            'sg_review_lut',
+                                            'sg_type',
+                                            'tank_name',
+                                            'sg_3d_settings']
+        )     
+        proj_info.update({'artist_name' : ctx.user['name']})
+
+        formats = publisher.shotgun.find("CustomNonProjectEntity01",
+            [],
+            ['code',
+            'sg_format_height',
+            'sg_format_width',
+            ])
+        proj_info.update({'formats' : formats})
 
     @property
     def user_info(self):
@@ -616,7 +767,6 @@ class BasicSceneCollector(HookBaseClass):
         if item_type.startswith("file.image") or item_type.startswith("file.texture"):
             file_item.set_thumbnail_from_path(path)
             thumbnail_path = path
-
             # disable thumbnail creation since we get it for free
             file_item.thumbnail_enabled = False
         else:
@@ -794,7 +944,7 @@ class BasicSceneCollector(HookBaseClass):
             item_type=item_type,
             type_display=type_display,
             icon_path=icon_path,
-        )
+            )
 
     def _get_icon_path(self, icon_name, icons_folders=None):
         """
@@ -1310,7 +1460,6 @@ class BasicSceneCollector(HookBaseClass):
 
         ### dev print ###
         # self.logger.warning(">>>>> info_json_file: %s" % json_properties['general_settings']['info_json_file'])
-
         # collect values and append them to the appropriate settings dictionary
         for job in process_jobs:
             job_name = str(job)

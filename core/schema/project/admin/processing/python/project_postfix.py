@@ -101,11 +101,6 @@ for key in process_keys:
                 "end_frame": float(last_frame)
             })
 
-        # finally, set slate vendor name
-        slate.update({
-            "vendor": "SSVFX"
-        })
-
         logger.info(">>>>> Updated Slate Node: %s" % slate)
 
 logger.info( ">>>>> Completed Postfix Process, writing json..." )
