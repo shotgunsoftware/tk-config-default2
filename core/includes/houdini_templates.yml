@@ -205,13 +205,13 @@ paths:
         definition: '@render_root/houdini/{task_name}/flip'
         root_name: 'project_pipeline'
     houdini_shot_playblast_output:
-        definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/[{camera}/]{Shot}_{task_name}[_{name}]_v{version}'
+        definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}'
         root_name: 'project_pipeline'
     houdini_shot_playblast_publishing:
-        definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/[{camera}/]{Shot}_{task_name}[_{name}]_v{version}.{HSEQ}.jpg'
+        definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{HSEQ}.jpg'
         root_name: 'project_pipeline'
     houdini_shot_playblast_mov:
-        definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/[{camera}/]{Shot}_{task_name}[_{name}]_v{version}.mov'
+        definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.mov'
         root_name: 'project_pipeline'
 
     ######################################## ASSET OUTPUT       
@@ -267,13 +267,13 @@ paths:
         definition: '@asset_render_root/houdini/{task_name}/flip'
         root_name: 'project_pipeline'
     houdini_asset_playblast_output:
-        definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/[{camera}/]{Asset}_{task_name}[_{name}]_v{version}'
+        definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}'
         root_name: 'project_pipeline'
     houdini_asset_playblast_publishing:
-        definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/[{camera}/]{Asset}_{task_name}[_{name}]_v{version}.{HSEQ}.jpg'
+        definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.{HSEQ}.jpg'
         root_name: 'project_pipeline'
     houdini_asset_playblast_mov:
-        definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/[{camera}/]{Asset}_{task_name}[_{name}]_v{version}.mov'
+        definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
         root_name: 'project_pipeline'
 
 strings:
