@@ -50,13 +50,13 @@ keys:
 
 paths:
     asset_mari_texture_exr:
-        definition: '@asset_root/publish/mari/v{version}/exr/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.exr'
+        definition: '@asset_root/publish/mari/v{version}/{mari.channel}_v{version}/exr/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.exr'
         root_name: 'project_pipeline'
     asset_mari_texture_tx:
-        definition: '@asset_root/publish/mari/v{version}/tx/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.tx'
+        definition: '@asset_root/publish/mari/v{version}/{mari.channel}_v{version}/tx/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.tx'
         root_name: 'project_pipeline'
     asset_mari_texture_rat:
-        definition: '@asset_root/publish/mari/v{version}/rat/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.rat'
+        definition: '@asset_root/publish/mari/v{version}/{mari.channel}_v{version}/rat/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.rat'
         root_name: 'project_pipeline'
 
 strings:
