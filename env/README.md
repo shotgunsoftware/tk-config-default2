@@ -197,4 +197,4 @@ Questions?
 
 If you have any questions or concerns about the structure of this configuration,
 or if you have any ideas for how to improve it, please send an email to
-[knowledge.autodesk.com/contact-support](mailto:knowledge.autodesk.com/contact-support).
+[https://knowledge.autodesk.com/contact-support](https://knowledge.autodesk.com/contact-support).
