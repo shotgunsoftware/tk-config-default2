@@ -17,7 +17,7 @@
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.6.0
+  version: v0.6.1
 engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
@@ -41,7 +41,7 @@ engines.tk-desktop2.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.17.0
+  version: v1.17.1
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
