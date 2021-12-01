@@ -69,7 +69,7 @@ engines.tk-photoshopcc.location:
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
-  version: v0.9.0
+  version: v0.9.1
 engines.tk-shotgun.location:
   type: app_store
   name: tk-shotgun
