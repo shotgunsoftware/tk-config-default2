@@ -71,7 +71,7 @@ apps.tk-multi-snapshot.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.13.0
+  version: v0.13.1
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
