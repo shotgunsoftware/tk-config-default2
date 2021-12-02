@@ -17,64 +17,64 @@
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.6.0
+  version: v0.6.1
 engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
-  version: v1.2.0
+  version: v1.2.2
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
-  version: v0.3.0
+  version: v0.3.1
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.1.1
+  version: v2.1.2
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.6.0
+  version: v2.6.1
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.5.0
+  version: v1.5.1
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.17.0
+  version: v1.17.1
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.8.1
+  version: v1.8.2
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
-  version: v1.3.2
+  version: v1.3.3
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.11.1
+  version: v0.11.2
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
-  version: v0.6.2
+  version: v0.6.3
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.14.1
+  version: v0.14.2
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.9.0
+  version: v1.9.1
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
-  version: v0.9.0
+  version: v0.9.1
 engines.tk-shotgun.location:
   type: app_store
   name: tk-shotgun
-  version: v0.10.0
+  version: v0.10.1
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
-  version: v2.1.1 # Need v2.1.2 before releasing
+  version: v2.1.2
