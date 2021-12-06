@@ -159,15 +159,15 @@ settings.tk-multi-publish2.houdini.shot_step:
 
 # asset_step
 settings.tk-multi-publish2.mari.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/mari/collector.py"
   publish_plugins:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
     settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
+  - name: Publish to EXR
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/mari/publish_mari_textures.py"
     settings:
-      Publish Template: asset_mari_texture_tif
+      Publish Template: asset_mari_texture_exr
   - name: Upload for review
     hook: "{self}/upload_version.py"
     settings: {}
@@ -180,6 +180,7 @@ settings.tk-multi-publish2.mari.asset_step:
 
 # asset step
 settings.tk-multi-publish2.maya.asset_step:
+  pre_publish: "{config}/tk-multi-publish2/basic/maya/pre_publish.py"
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/maya/collector.py"
   collector_settings:
       Work Template: maya_asset_work
@@ -206,10 +207,19 @@ settings.tk-multi-publish2.maya.asset_step:
     settings:
         Publish Template: maya_asset_camera_publish
         Cameras: ["cam_main*"]
-  # - name: Publish to ShotGrid
-  #   hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
-  #   settings:
-  #       Publish Template: asset_alembic_cache
+  - name: Publish to Alembic
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session_geometry.py"
+    settings:
+        # Publish Template: asset_alembic_cache
+        Publish Template: maya_asset_cache_alembic_file
+  - name: Publish Assembly definition
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_assembly_definition.py"
+    settings:
+        Publish Template: maya_asset_assembly_publish
+  - name: Publish Arnold Stand-in
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
+    settings:
+        Publish Template: maya_asset_standin_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -232,11 +242,15 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
-  - name: Publish to ShotGrid
+  - name: Publish to Camera
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_camera.py"
     settings:
         Publish Template: maya_shot_camera_publish
         Cameras: ["cam_main"]
+  - name: Publish to Alembic
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+    settings:
+        Publish Template: maya_shot_cache_alembic_abc
   - name: Publish to Shaders
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_shader_network.py"
     settings:

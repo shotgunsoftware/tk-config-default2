@@ -1,11 +1,11 @@
 ﻿# Copyright (c) 2017 Shotgun Software Inc.
-# 
+#
 # CONFIDENTIAL AND PROPRIETARY
-# 
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit 
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
 # Source Code License included in this distribution package. See LICENSE.
-# By accessing, using, copying or modifying this work you indicate your 
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
@@ -15,10 +15,13 @@ import sgtk
 
 from tank_vendor import six
 
+from mayapy import arnold_standin
+reload(arnold_standin)
+
 HookBaseClass = sgtk.get_hook_baseclass()
 
 
-class MayaSessionGeometryPublishPlugin(HookBaseClass):
+class MayaArnoldStandinPublishPlugin(HookBaseClass):
     """
     Plugin for publishing an open maya session.
 
@@ -66,7 +69,7 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         part of its environment configuration.
         """
         # inherit the settings from the base publish plugin
-        base_settings = super(MayaSessionGeometryPublishPlugin, self).settings or {}
+        base_settings = super(MayaArnoldStandinPublishPlugin, self).settings or {}
 
         # settings specific to this class
         maya_publish_settings = {
@@ -74,8 +77,8 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
                 "type": "template",
                 "default": None,
                 "description": "Template path for published work files. Should"
-                               "correspond to a template defined in "
-                               "templates.yml.",
+                "correspond to a template defined in "
+                "templates.yml.",
             }
         }
 
@@ -122,14 +125,14 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         """
 
         accepted = True
-
         # Check if we in the surface task context 
-        if sgtk.platform.current_engine().context.task[
-                'name'].lower() not in ('model', 'animation'):
+        if not sgtk.platform.current_engine().context.task[
+                'name'].lower().startswith('surface'):
             accepted = False
 
         publisher = self.parent
         template_name = settings["Publish Template"].value
+        self.logger.debug(dir(publisher))
 
         # ensure a work file template is available on the parent item
         work_template = item.parent.properties.get("work_template")
@@ -151,15 +154,8 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
 
         # we've validated the publish template. add it to the item properties
         # for use in subsequent methods
-        item.properties["publish_template"] = publish_template
-
-        # check that the AbcExport command is available!
-        if not mel.eval('exists "AbcExport"'):
-            self.logger.debug(
-                "Item not accepted because alembic export command 'AbcExport' "
-                "is not available. Perhaps the plugin is not enabled?"
-            )
-            accepted = False
+        item.local_properties.publish_template = publish_template
+        # item.properties["publish_template"] = publish_template
 
         # because a publish template is configured, disable context change. This
         # is a temporary measure until the publisher handles context switching
@@ -206,7 +202,8 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
 
         # get the configured work file template
         work_template = item.parent.properties.get("work_template")
-        publish_template = item.properties.get("publish_template")
+        publish_template = item.local_properties.publish_template
+        # publish_template = item.properties.get("publish_template")
 
         # get the current scene path and extract fields from it using the work
         # template:
@@ -225,15 +222,18 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         # create the publish path by applying the fields. store it in the item's
         # properties. This is the path we'll create and then publish in the base
         # publish plugin. Also set the publish_path to be explicit.
-        item.properties["path"] = publish_template.apply_fields(work_fields)
-        item.properties["publish_path"] = item.properties["path"]
+        item.properties['path'] = publish_template.apply_fields(work_fields)
+        item.local_properties['path'] = item.properties.path
+        item.local_properties['publish_path'] = item.properties.path
+        # item.properties["path"] = publish_template.apply_fields(work_fields)
+        # item.properties["publish_path"] = item.properties["path"]
 
         # use the work file's version number when publishing
         if "version" in work_fields:
             item.properties["publish_version"] = work_fields["version"]
 
         # run the base class validation
-        return super(MayaSessionGeometryPublishPlugin, self).validate(settings, item)
+        return super(MayaArnoldStandinPublishPlugin, self).validate(settings, item)
 
     def publish(self, settings, item):
         """
@@ -245,69 +245,35 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         :param item: Item to process
         """
 
-        publisher = self.parent
+        # publisher = self.parent
 
         # get the path to create and publish
-        publish_path = item.properties["path"]
+        # publish_path = item.properties["path"]
+        publish_path = item.local_properties["path"]
 
         # ensure the publish folder exists:
         publish_folder = os.path.dirname(publish_path)
         self.parent.ensure_folder_exists(publish_folder)
 
-        # set the alembic args that make the most sense when working with Mari.
-        # These flags will ensure the export of an Alembic file that contains
-        # all visible geometry from the current scene together with UV's and
-        # face sets for use in Mari.
-        alembic_args = [
-            # only renderable objects (visible and not templated)
-            # "-renderableOnly",
-            # write shading group set assignments (Maya 2015+)
-            # "-writeFaceSets",
-            '-attr',
-            'aiSubdivType',
-            '-attr',
-            'aiSubdivIterations',
-            '-attr',
-            'aiOpaque',
-            # write uv's (only the current uv set gets written)
-            '-uvWrite',
-            # '-worldSpace',
-            '-writeVisibility',
-            # '-writeUVSets'
-            '-dataFormat ogawa',
-            '-root',
-            # Selected root node
-            item.properties.get('node') or '',
-        ]
-
         # find the animated frame range to use:
-        start_frame, end_frame = _find_scene_animation_range()
-        if sgtk.platform.current_engine().context.task['name'] not in ('animation',):
-            end_frame = start_frame
-        # Add one more frame for motion blur for animation
-        elif sgtk.platform.current_engine().context.task['name'] == 'animation':
-            end_frame += 1
-        if start_frame and end_frame:
-            alembic_args.append("-fr %d %d" % (start_frame, end_frame))
+        # start_frame, end_frame = _find_scene_animation_range()
+        # if start_frame and end_frame:
+        #     pass
 
-        # Set the output path: 
-        # Note: The AbcExport command expects forward slashes!
-        alembic_args.append("-file '%s'" % publish_path.replace("\\", "/"))
-
-        # build the export command.  Note, use AbcExport -help in Maya for
-        # more detailed Alembic export help
-        abc_export_cmd = ('AbcExport -j "%s"' % " ".join(alembic_args))
-
-        # ...and execute it:
         try:
-            self.parent.log_debug("Executing command: %s" % abc_export_cmd)
-            mel.eval(abc_export_cmd)
+            self.parent.log_debug("Publishing a Stand-in to: %s" % publish_path)
+            arnold_standin.export_standin(publish_path.replace("\\", "/"))
         except Exception as e:
             self.logger.error("Failed to export Geometry: %s" % e)
             return
 
+        assert os.path.isfile(publish_path), 'Unable to find a published file: ' + publish_path
+
+        # set the publish type in the item's properties. the base plugin will
+        # use this when registering the file with Shotgun
+        item.properties["publish_type"] = "Standin"
         # Now that the path has been generated, hand it off to the
-        super(MayaSessionGeometryPublishPlugin, self).publish(settings, item)
+        super(MayaArnoldStandinPublishPlugin, self).publish(settings, item)
 
 
 def _find_scene_animation_range():

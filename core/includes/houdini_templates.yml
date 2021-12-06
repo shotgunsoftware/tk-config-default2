@@ -210,6 +210,9 @@ paths:
     houdini_shot_playblast_publishing:
         definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.{HSEQ}.jpg'
         root_name: 'project_pipeline'
+    houdini_shot_playblast_mov:
+        definition: '@houdini_shot_playblast_root/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.mov'
+        root_name: 'project_pipeline'
 
     ######################################## ASSET OUTPUT       
     # Rendered images
@@ -268,6 +271,9 @@ paths:
         root_name: 'project_pipeline'
     houdini_asset_playblast_publishing:
         definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.{HSEQ}.jpg'
+        root_name: 'project_pipeline'
+    houdini_asset_playblast_mov:
+        definition: '@houdini_asset_playblast_root/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
         root_name: 'project_pipeline'
 
 strings:

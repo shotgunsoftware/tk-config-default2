@@ -19,6 +19,8 @@ import sgtk
 # plugin class as defined in the configuration.
 HookBaseClass = sgtk.get_hook_baseclass()
 
+from mayapy import shader_manager
+
 
 class MayaShaderPublishPlugin(HookBaseClass):
     """
@@ -188,6 +190,11 @@ class MayaShaderPublishPlugin(HookBaseClass):
         # by default we will accept the item. if any of the checks below fail,
         # we'll set this to False.
         accepted = True
+
+        # Check if we in the surface task context 
+        if not sgtk.platform.current_engine().context.task[
+                'name'].lower().startswith('surface'):
+            accepted = False
 
         # a handle on the instance of the publisher app
         publisher = self.parent
@@ -387,23 +394,28 @@ class MayaShaderPublishPlugin(HookBaseClass):
             self.logger.debug("No shader network found to export and publish.")
             return
 
-        select_nodes = list(shaders)
-        select_nodes.extend(script_nodes)
+        # select_nodes = list(shaders)
+        # select_nodes.extend(script_nodes)
 
-        cmds.select(select_nodes, replace=True)
+        # cmds.select(select_nodes, replace=True)
 
         # write .ma file to the publish path with the shader network definitions
-        cmds.file(
-            publish_path,
-            type='mayaAscii',
-            exportSelected=True,
-            options="v=0",
-            prompt=False,
-            force=True
-        )
+        # cmds.file(
+        #     publish_path,
+        #     type='mayaAscii',
+        #     exportSelected=True,
+        #     options="v=0",
+        #     prompt=False,
+        #     force=True
+        # )
+
 
         # clean up shader hookup nodes. they should exist in publish file only
         _clean_shader_hookup_script_nodes()
+
+        # Export all the material tree and a json file with links
+        # between materials and geometry shapes
+        shader_manager.export_materials(publish_path, main_grp=mesh_object)
 
         # set the publish type in the item's properties. the base plugin will
         # use this when registering the file with Shotgun

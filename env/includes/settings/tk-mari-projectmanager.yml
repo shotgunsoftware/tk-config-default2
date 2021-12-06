@@ -18,3 +18,4 @@ includes:
 settings.tk-mari-projectmanager:
   template_new_project_name: mari_asset_project_name
   location: "@apps.tk-mari-projectmanager.location"
+  get_project_creation_args_hook: "{config}/tk-mari-projectmanager/get_project_creation_args.py"

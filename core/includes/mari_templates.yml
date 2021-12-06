@@ -1,0 +1,64 @@
+# Copyright (c) 2015 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+#
+# This file is one of the central points in the Shotgun Pipeline Toolkit configuration and
+# a counterpart to the folder configuration structure.
+#
+# The folder structure underneath the project folder is used to create folders on disk -
+# templates.yml (this file) refers to those folders. Therefore, the two files need to be
+# in sync. This file contains an overview of all locations that are used by Sgtk.
+#
+# Whenever an app or an engine refers to a location on disk, it is using an entry defined in
+# this file. For more information, see the Shotgun Pipeline Toolkit Documentation.
+#
+# The keys section contains the definitions for all the different keys that are being
+# used by Sgtk. A key is a magic token that is replaced by a value at runtime, for example
+# {Shot}. The section below tells Sgtk which data types and formats to expect for each key.
+
+keys:
+    mari.channel:
+        type: str
+        alias: channel
+    mari.layer:
+        type: str
+        alias: layer
+    mari.project_name:
+        type: str
+        alias: name
+
+# The paths section contains all the the key locations where files are to be stored
+# by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
+# these are defined in the keys section above.
+#
+# Apps use these paths as part of their configuration to define where on disk
+# different files should go.
+#
+# In this default configuration, all of the root_name keys will be set to 'primary'.
+# This is because the default configuration stores all its production data in a single
+# tree and hence uses a single root folder on disk. If you wanted to extend the
+# configuration to span multiple root points, for example because you want to store
+# renders on a different server, you could define an additional root in Shotgun, and
+# then switch any relevant templates to point to that one instead.
+
+paths:
+    asset_mari_texture_exr:
+        definition: '@asset_root/publish/mari/v{version}/{mari.channel}_v{version}/exr/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.exr'
+        root_name: 'project_pipeline'
+    asset_mari_texture_tx:
+        definition: '@asset_root/publish/mari/v{version}/{mari.channel}_v{version}/tx/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.tx'
+        root_name: 'project_pipeline'
+    asset_mari_texture_rat:
+        definition: '@asset_root/publish/mari/v{version}/{mari.channel}_v{version}/rat/{Asset}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.rat'
+        root_name: 'project_pipeline'
+
+strings:
+    # Define a new Mari project name
+    mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"

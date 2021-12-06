@@ -537,8 +537,9 @@ class UploadVersionPlugin(HookBaseClass):
                 if 'version' in item.properties['entity_info'].keys():
                     item.properties['entity_info']['version'].update({'id': version['id']})
                 else:
-                    item.properties['entity_info']['version'] = version
-        except:
+                    item.properties['entity_info']['version']=version
+        except Exception as e:
+            self.logger.error('submit failed with exception: %s' % str(e))
             raise Exception("Failed to upload Version to SG ")
         finally:
             self.logger.info("Version upload complete!")

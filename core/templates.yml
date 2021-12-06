@@ -27,7 +27,7 @@ includes:
 - ./includes/nuke_templates.yml
 - ./includes/max_templates.yml
 - ./includes/photoshop_templates.yml
-
+- ./includes/mari_templates.yml
 #
 # The keys section contains the definitions for all the different keys that are being
 # used by Sgtk. A key is a magic token that is replaced by a value at runtime, for example
@@ -390,13 +390,13 @@ paths:
     # Admin
     shot_lineup_jpeg:
         definition: '@shot_context/editorial/line_up/{name}.jpeg'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_process_scripts_deadline:
         definition: '@shot_context/scripts/deadline'
-        root_name: 'project_pipeline'  
+        root_name: 'project_pipeline'
     shot_process_mov:
         definition: '@shot_context/renders/process/{Codec}/{Shot}_v{version}.mov'
-        root_name: 'project_pipeline'  
+        root_name: 'project_pipeline'
     resolve_shot_review_mov: 
         definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}][_{process}]_v{version}.mov'
         root_name: 'project_pipeline'        
@@ -411,7 +411,7 @@ paths:
         root_name: 'secondary'                
     # resolve_review_mov: 
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
-    #     root_name: 'project_pipeline'        
+    #     root_name: 'project_pipeline'
     # resolve_review_mov_secondary: 
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
     #     root_name: 'secondary'                
@@ -419,89 +419,89 @@ paths:
     # The location of shot rushes references, proxy jpegs and quicktimes
     shot_rushes_root:
         definition: '@rushes_root/'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_rushes_main_jpg:
         definition: '@rushes_root/jpeg/main/'
         root_name: 'project_pipeline'
     shot_plates_root:
         definition: '@plates_root/'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_main_proxy:
         definition: '@plates_root/main/proxy/'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_main_reformat:
         definition: '@plates_root/main/reformat/'
-        root_name: 'project_pipeline'     
+        root_name: 'project_pipeline'
     shot_plates_bg_proxy:
         definition: '@plates_root/background/proxy/'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_bg_reformat:
         definition: '@plates_root/background/reformat/'
-        root_name: 'project_pipeline'     
+        root_name: 'project_pipeline'
     shot_rushes_jpeg:
         definition: '@rushes_root/jpeg/{Shot}_v{version}.{SEQ}.jpeg'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_rushes_mov:
         definition: '@rushes_root/mov/{Shot}_v{version}.mov'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_rushes_filmstrip:
         definition: '@rushes_root/filmstrip/{Shot}_v{version}.jpeg'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plate_main_undistorted: 
         definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/UD/{Rush}_output_v{version}.{SEQ}.{ext}'
         root_name: 'project_pipeline'
     # DPX
     shot_plates_main_dpx:
         definition: '@plates_root/main/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_main_proxy_dpx:
         definition: '@plates_root/main/proxy/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_main_reformat_dpx:
         definition: '@plates_root/main/reformat/{Rush}.{SEQ}.dpx'        
     shot_plates_bg_dpx:
         definition: '@plates_root/background/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_bg_proxy_dpx:
         definition: '@plates_root/background/proxy/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_bg_reformat_dpx:
         definition: '@plates_root/background/reformat/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'              
+        root_name: 'project_pipeline'
     shot_rushes_ref_dpx:
         definition: '@plates_root/reference/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_rushes_elem_dpx:
         definition: '@plates_root/element/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_render_process_version_dpx:
         definition: '@render_root/{task_name}/{Shot}_v{version}/{Shot}_v{version}.{SEQ}.dpx'
         root_name: 'project_pipeline'
     # EXR
     shot_plates_main_exr:
         definition: '@plates_root/main/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_main_proxy_exr:
         definition: '@plates_root/main/proxy/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_main_reformat_exr:
         definition: '@plates_root/main/reformat/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'         
+        root_name: 'project_pipeline'
     shot_plates_bg_exr:
         definition: '@plates_root/background/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_bg_proxy_exr:
         definition: '@plates_root/background/proxy/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_plates_bg_reformat_exr:
         definition: '@plates_root/background/reformat/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'         
+        root_name: 'project_pipeline'
     shot_rushes_ref_exr:
         definition: '@plates_root/reference/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_rushes_elem_exr:
         definition: '@plates_root/element/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline' 
+        root_name: 'project_pipeline'
     shot_render_process_version_exr:
         definition: '@render_root/{task_name}/{Shot}_v{version}/{Shot}_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
@@ -513,7 +513,7 @@ paths:
         root_name: 'secondary'
     shot_render_global:
         definition: '@shot_context/'
-        root_name: 'project_pipeline'   
+        root_name: 'project_pipeline'
 
     # global asset root locations for the different locations to save to
     asset_render_test_global:
@@ -521,5 +521,5 @@ paths:
         root_name: 'secondary'
     asset_render_global:
         definition: '@asset_context/'
-        root_name: 'project_pipeline'   
+        root_name: 'project_pipeline'
 

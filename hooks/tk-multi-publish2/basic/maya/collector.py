@@ -248,11 +248,20 @@ class MayaSessionCollector(HookBaseClass):
         :param parent_item: Parent Item instance
         """
 
+        selected_geo = cmds.ls(assemblies=True, selection=True, long=True)
+        if selected_geo:
+            selected_geo = selected_geo[0]
+        else:
+            return
+
         geo_item = parent_item.create_item(
             "maya.session.geometry",
             "Geometry",
-            "All Session Geometry"
+            "Selected Session Geometry"
         )
+
+        # Add selected geo to export with Alembic
+        geo_item.properties['node'] = selected_geo
 
         # get the icon path to display for this item
         icon_path = os.path.join(
@@ -263,6 +272,9 @@ class MayaSessionCollector(HookBaseClass):
         )
 
         geo_item.set_icon_from_path(icon_path)
+        # print(dir(geo_item))
+        # for k, v in geo_item.to_dict().items():
+        #     logger.warning('%r - %r', k, v)
 
     def collect_playblasts(self, parent_item, project_root):
         """
@@ -392,9 +404,9 @@ class MayaSessionCollector(HookBaseClass):
             "mesh.png"
         )
 
-        # iterate over all top-level transforms and create mesh items
+        # iterate over selected top-level transforms and create mesh items
         # for any mesh.
-        for object in cmds.ls(assemblies=True):
+        for object in cmds.ls(assemblies=True, sl=True):
 
             if not cmds.ls(object, dag=True, type="mesh"):
                 # ignore non-meshes
