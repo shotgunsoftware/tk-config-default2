@@ -20,7 +20,7 @@
                 },
                 "nuke_settings":{
                     "plate_switch": {"which":2},
-                    "color_switch": {"which":0},
+                    "color_switch": {"which":1},
                     "transform_switch": {"which":0},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
@@ -80,7 +80,7 @@
                 },
                 "nuke_settings":{
                     "plate_switch": {"which":2},
-                    "color_switch": {"which":0},
+                    "color_switch": {"which":1},
                     "transform_switch": {"which":1},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
@@ -106,7 +106,12 @@
                     },
                     "main_write": {
                         "knob_order": ["file_type", "meta_codec", "meta_encoder"],
-                        "raw": true
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
                     }
                 },
                 "deadline_settings":{
@@ -232,7 +237,12 @@
                     },
                     "main_write": {
                         "knob_order": ["file_type", "meta_codec", "meta_encoder"],
-                        "raw": true
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
                     }
                 },
                 "deadline_settings":{
@@ -268,7 +278,8 @@
         }
     },
     "general_settings":{
-        "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/pump_processing/submission_process_submit.py"
+        "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/submission_process_submit.py",
+        "postfix_file": "admin/processing/python/submission_postfix.py"
     }
 
 }
