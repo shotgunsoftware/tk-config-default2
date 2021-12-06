@@ -258,7 +258,7 @@ apps.tk-nuke-versiondropper.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-versiondropper
-  version: 0.1.1
+  version: 0.1.2
 
 # ---- Flame apps
 
