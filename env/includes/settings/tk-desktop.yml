@@ -17,6 +17,7 @@ includes:
 - ./tk-multi-launchapp.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
+- ./tk-desktop-libraryimporter.yml
 
 ################################################################################
 
@@ -35,8 +36,7 @@ settings.tk-desktop.project:
       location: "@apps.tk-multi-devutils.location"
     tk-desktop-timecard:
       location: "@apps.tk-desktop-timecard.location"
-    tk-desktop-libraryimporter:
-      location: "@apps.tk-desktop-libraryimporter.location"
+    tk-desktop-libraryimporter: "@settings.tk-desktop-libraryimporter"
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
