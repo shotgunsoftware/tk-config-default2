@@ -91,7 +91,7 @@ apps.tk-shotgun-launchpublish.location:
 apps.tk-shotgun-launchvredreview.location:
   type: app_store
   name: tk-shotgun-launchvredreview
-  version: v1.1.1
+  version: v1.1.2
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
