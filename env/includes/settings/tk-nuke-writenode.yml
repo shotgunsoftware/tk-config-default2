@@ -70,8 +70,8 @@ settings.tk-nuke-writenode.asset:
       write_nodes:
         - name: tiff (deflate 16 bit)
           file_type: tiff
-          render_template: nuke_asset_render
-          publish_template: nuke_asset_render_pub
+          render_template: nuke_asset_tiff_render
+          publish_template: nuke_asset_tiff_render_pub
           tile_color: 2095579135
           settings:
             colorspace: Input - ADX - ADX10
@@ -136,8 +136,8 @@ settings.tk-nuke-writenode.shot:
       write_nodes:
           - name: tiff (deflate 16 bit)
             file_type: tiff
-            render_template: nuke_shot_render_work
-            publish_template: nuke_shot_render_pub
+            render_template: nuke_shot_tiff_render_work
+            publish_template: nuke_shot_tiff_render_pub
             tile_color: 2095579135
             settings:
               colorspace: Input - ADX - ADX10
