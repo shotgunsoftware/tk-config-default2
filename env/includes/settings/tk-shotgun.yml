@@ -49,6 +49,12 @@ settings.tk-shotgun.asset_step:
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 
+# playlist
+settings.tk-shotgun.playlist:
+  apps:
+    tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
+  location: "@engines.tk-shotgun.location"
+
 # project
 settings.tk-shotgun.project:
   apps:
@@ -76,6 +82,7 @@ settings.tk-shotgun.publishedfile_version:
     tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
   location: "@engines.tk-shotgun.location"
 
+# publishedfile
 settings.tk-shotgun.publishedfile:
   apps:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
