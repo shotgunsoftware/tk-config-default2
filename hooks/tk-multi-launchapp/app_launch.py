@@ -17,11 +17,14 @@ This hook is executed to launch the applications.
 import os
 # import sys
 import tank
+import sgtk
+
 
 class AppLaunch(tank.Hook):
     """
     Hook to run an application.
     """
+    log = sgtk.LogManager.get_logger(__name__)
 
     def execute(
         self, app_path, app_args, version, engine_name, software_entity=None, **kwargs
@@ -40,6 +43,7 @@ class AppLaunch(tank.Hook):
 
         :returns: (dict) The two valid keys are 'command' (str) and 'return_code' (int).
         """
+        self.log.info('executing app_launch %s - %s' % (app_path, app_args))
 
         if tank.util.is_linux():
             # on linux, we just run the executable directly

@@ -82,7 +82,7 @@ paths:
         root_name: 'project_pipeline'
 
     maya_shot_outsource_version_abc:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/{Shot}_{outsource_task}[_{name}]_v{version}.abc'
+        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/{Shot}[_{outsource_task}][_{name}]_v{version}.abc'
         root_name: 'project_pipeline'
         
     # The location of backups of WIP files
@@ -150,9 +150,6 @@ paths:
     maya_shot_render_layer:
         definition: '@maya_shot_render_stub/{maya.layer_name}'
         root_name: 'project_pipeline'
-    # maya_shot_render_layer:
-    #     definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/{maya.layer_name}'
-    #     root_name: 'project_pipeline'
     maya_shot_render_thumb_jpeg:
         definition: '@temp_shot_root/thumbnails/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.jpeg'
         root_name: 'secondary'

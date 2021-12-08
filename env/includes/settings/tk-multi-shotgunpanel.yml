@@ -304,8 +304,6 @@ settings.tk-multi-shotgunpanel.alias:
 
 # VRED
 settings.tk-multi-shotgunpanel.vred:
-  shotgun_fields_hook: "{self}/shotgun_fields.py:{engine}/tk-multi-shotgunpanel/basic/shotgun_fields.py"
-  shotgun_filters_hook: "{engine}/tk-multi-shotgunpanel/basic/shotgun_filters.py"
   action_mappings:
     PublishedFile:
     - actions: [import]
@@ -326,17 +324,13 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {published_file_type: VRED Scene}
     - actions: [import]
       filters: {published_file_type: Osb File}
-    - actions: [import_sceneplate]
-      filters: {published_file_type: Image}
-    - actions: [import_sceneplate]
-      filters: {published_file_type: Rendered Image}
     - actions: [publish_clipboard]
       filters: {}
     Task:
     - actions: [assign_task, task_to_ip]
       filters: {}
     Version:
-    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist, load_for_review]
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"

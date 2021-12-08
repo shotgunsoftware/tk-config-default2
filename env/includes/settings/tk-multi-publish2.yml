@@ -1,12 +1,12 @@
-# Copyright (c) 2017 Shotgun Software Inc.
+# Copyright (c) 2017 ShotGrid Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
-# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# This work is provided "AS IS" and subject to the ShotGrid Pipeline Toolkit
 # Source Code License included in this distribution package. See LICENSE.
 # By accessing, using, copying or modifying this work you indicate your
-# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
-# not expressly granted therein are reserved by Shotgun Software Inc.
+# agreement to the ShotGrid Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by ShotGrid Software Inc.
 
 ################################################################################
 
@@ -23,16 +23,17 @@ publish_help_url: &help_url "https://support.shotgunsoftware.com/hc/en-us/articl
 
 settings.tk-multi-publish2.standalone:
   display_name: Submit
+  pre_publish: "{self}/collector.py:{config}/tk-multi-publish2/basic/desktop/pre_publish.py"
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/desktop/collector.py"
   path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/desktop/path_info.py"
   enable_manual_load: true
 
   publish_plugins:
-  - name: Slap Comp for Review
-    hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
-    settings: {}
+  # - name: Slap Comp for Review
+  #   hook: "{config}/tk-multi-publish2/basic/desktop/slap_comp.py"
+  #   settings: {}
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/desktop/publish_file.py"
@@ -268,7 +269,7 @@ settings.tk-multi-publish2.nuke.asset_step:
       Work Template: nuke_asset_work
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
@@ -294,7 +295,7 @@ settings.tk-multi-publish2.nuke.shot_step:
       Work Template: nuke_shot_work
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/desktop/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"

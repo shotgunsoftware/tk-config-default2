@@ -1,0 +1,285 @@
+{
+    "primary":{
+        "processes":{
+            "resolve-version":{
+                "process_settings":{
+                    "title" : "Dailies Render",
+                    "output_root": "secondary",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": true,
+                    "create_version": true,
+                    "update_version": true,
+                    "create_publish": false,                    
+                    "update_client_version": false,                       
+                    "color_required": true,
+                    "client_process": false,              
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":1},
+                    "transform_switch": {"which":0},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},            
+                    "format":{
+                        "name": "delivery_format"
+                    },     
+                    "quicktime_codec":{
+                        "type": "CustomNonProjectEntity08",
+                        "id": 37,
+                        "name": "ProRes422Proxy"
+                    },      
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "update_client_version": false,
+                    "create_publish": false,
+                    "copy_to_location": false,
+                    "copy_location": false,
+                    "publish_file_type": "Version"
+                }
+            },
+            "resolve-cutref":{
+                "process_settings":{
+                    "title" : "Dailies Cutref",
+                    "output_root": "secondary",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": false,
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,                    
+                    "update_client_version": false,                       
+                    "color_required": true,
+                    "client_process": false,                   
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":1},
+                    "transform_switch": {"which":1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},
+                    "main_lut": {
+                        "colorspaceIn": "linear",          
+                        "colorspaceOut": "linear"
+                    },                          
+                    "main_ocio": {},               
+                    "format":{
+                        "type": "CustomNonProjectEntity01",
+                        "id": 5,
+                        "name": "FHD"
+                    },     
+                    "quicktime_codec":{
+                        "type": "CustomNonProjectEntity08",
+                        "id": 37,
+                        "name": "ProRes422Proxy"
+                    },       
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "update_client_version": false,
+                    "create_publish": false,
+                    "copy_to_location": false,
+                    "copy_location": false,
+                    "publish_file_type": "Version"
+                }
+            }
+        }
+    },
+    "secondary":{
+        "processes":{
+            "resolve-version":{
+                "process_settings":{
+                    "title" : "Dailies Render",
+                    "output_root": "secondary",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": true,
+                    "create_version": true,
+                    "update_version": true,
+                    "create_publish": false,                    
+                    "update_client_version": false,                       
+                    "color_required": true,
+                    "client_process": false,              
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":0},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},            
+                    "format":{
+                        "name": "delivery_format"
+                    },     
+                    "quicktime_codec":{
+                        "type": "CustomNonProjectEntity08",
+                        "id": 37,
+                        "name": "ProRes422Proxy"
+                    },      
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "update_client_version": false,
+                    "create_publish": false,
+                    "copy_to_location": false,
+                    "copy_location": false,
+                    "publish_file_type": "Version"
+                }
+            },
+            "resolve-cutref":{
+                "process_settings":{
+                    "title" : "Dailies Cutref",
+                    "output_root": "secondary",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": false,
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,                    
+                    "update_client_version": false,                       
+                    "color_required": true,
+                    "client_process": false,                   
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
+                    "plugin_version": "11.3",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "content_vendor_burnin":{"disable":true},
+                    "main_lut": {
+                        "colorspaceIn": "linear",          
+                        "colorspaceOut": "linear"
+                    },                          
+                    "main_ocio": {},               
+                    "format":{
+                        "type": "CustomNonProjectEntity01",
+                        "id": 5,
+                        "name": "FHD"
+                    },     
+                    "quicktime_codec":{
+                        "type": "CustomNonProjectEntity08",
+                        "id": 37,
+                        "name": "ProRes422Proxy"
+                    },       
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "raw": true,
+                        "file_type": "mov",
+                        "meta_codec": "ap4h",
+                        "mov64_codec": "ap4h",
+                        "mov64_fps": 24,
+                        "mov64_write_timecode": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "update_client_version": false,
+                    "create_publish": false,
+                    "copy_to_location": false,
+                    "copy_location": false,
+                    "publish_file_type": "Version"
+                }
+            }
+        }
+    },
+    "thumbnail":{
+        "job_info":{
+            "plugin": "Python",
+            "priority": "100",
+            "machine_limit": 1,
+            "pool": "vfx_processing",
+            "secondary_pool": "vfx_processing",
+            "chunk": 1000000
+        },
+        "plugin_info":{
+            "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/thumbnail.py",
+            "version": 2.7
+        },
+        "job_extra_info":{
+        }
+    },
+    "general_settings":{
+        "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/submission_process_submit.py",
+        "postfix_file": "admin/processing/python/submission_postfix.py"
+    }
+
+}
