@@ -261,33 +261,21 @@ paths:
     incoming_outsource_asset_root:
         definition: 'admin/incoming/outsource/assets'
         root_name: 'project_pipeline'
-
-    incoming_outsource_asset_version_jpg:
-        definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.jpg'
-        root_name: 'project_pipeline'
-
-    incoming_outsource_asset_version_jpeg:
-        definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.jpeg'
-        root_name: 'project_pipeline'
-
-    incoming_outsource_asset_version_exr:
-        definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.exr'
-        root_name: 'project_pipeline'
     
     #Asset sequence
     incoming_outsource_asset_folder_root:
         definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_version_jpg:
+    incoming_outsource_asset_version_jpg:
         definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.{SEQ}.jpg'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_version_jpeg:
+    incoming_outsource_asset_version_jpeg:
         definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.{SEQ}.jpeg'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_version_exr:
+    incoming_outsource_asset_version_exr:
         definition: '@incoming_outsource_asset_root/{vendor}/{YYYY}_{MM}_{DD}/{Asset}_{outsource_task}[_{name}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
         
@@ -329,14 +317,6 @@ paths:
 
     processing_root:
         definition: 'admin/processing'
-        root_name: 'project_pipeline'
-
-    general_review_process_json:
-        definition: admin/processing/json/processing_review_settings.json
-        root_name: 'project_pipeline'
-    
-    alembic_review_process_json:
-        definition: admin/processing/json/processing_incoming_alembic.json
         root_name: 'project_pipeline'
 
     general_review_process_json:
