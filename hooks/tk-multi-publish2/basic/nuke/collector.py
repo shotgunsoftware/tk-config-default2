@@ -7,6 +7,15 @@
 # By accessing, using, copying or modifying this work you indicate your 
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
+# ### OVERRIDDEN IN SSVFX_SG ###
+
+from ss_config.hooks.tk_multi_publish2.desktop.collector import SsBasicSceneCollector
+
+# class BasicSceneCollector(SsBasicSceneCollector):
+#     """
+#     A basic collector that handles files and general objects.
+#     """
+#     pass
 
 import mimetypes
 import os
@@ -23,8 +32,14 @@ _NUKE_OUTPUTS = {
     "WriteGeo": "file",
 }
 
+if "win" in sys.platform:
+    system_path_variable = "windows_path"
+    system_root_variable = "local_path_windows"
+elif sys.platform == "linux":
+    system_path_variable = "linux_path"
+    system_root_variable = "local_path_linux"
 
-class NukeSessionCollector(HookBaseClass):
+class NukeSessionCollector(SsBasicSceneCollector):
     """
     Collector that operates on the current nuke/nukestudio session. Should
     inherit from the basic collector hook.
@@ -59,263 +74,18 @@ class NukeSessionCollector(HookBaseClass):
                 "type": "template",
                 "default": None,
                 "description": "Template path for artist work files. Should "
-                               "correspond to a template defined in "
-                               "templates.yml. If configured, is made available"
-                               "to publish plugins via the collected item's "
-                               "properties. ",
+                "correspond to a template defined in "
+                "templates.yml. If configured, is made available"
+                "to publish plugins via the collected item's "
+                "properties. ",
             },
         }
 
         # update the base settings with these settings
         collector_settings.update(nuke_session_settings)
 
-        return collector_settings
-
-    @property
-    def project_info(self):
-        """
-        A dictionary of relative Project info that is taken from SG Project page
-        """
-
-        publisher = self.parent
-        ctx = publisher.engine.context
-        proj_info = publisher.shotgun.find_one("Project", 
-                                            [['id', 'is', ctx.project['id']]], 
-                                            ['name',
-                                            'id',
-                                            'sg_root',
-                                            'sg_status',
-                                            'sg_date_format',
-                                            'sg_short_name',
-                                            'sg_frame_rate', 
-                                            'sg_vendor_id',
-                                            'sg_frame_handles',
-                                            'sg_data_type',
-                                            'sg_format_width',
-                                            'sg_format_height',
-                                            'sg_delivery_slate_count',
-                                            'sg_client_version_submission',
-                                            'sg_incoming_plate_jpg_',
-                                            'sg_delivery_default_process',
-                                            'sg_incoming_fileset_padding',
-                                            'sg_proxy_format_ratio',
-                                            'sg_format_pixel_aspect_ratio',
-                                            'sg_lut',
-                                            'sg_version_zero_lut',
-                                            'sg_version_zero_slate',
-                                            'sg_version_zero_internal_burn_in',
-                                            'sg_burnin_frames_format',
-                                            'sg_delivery_qt_dual_lut',
-                                            'sg_delivery_format_width',
-                                            'sg_delivery_format_height',
-                                            'sg_delivery_reformat_filter',
-                                            'sg_delivery_fileset_padding',
-                                            'sg_delivery_fileset_slate',
-                                            'sg_zip_fileset_delivery',
-                                            'sg_pixel_aspect_ratio',
-                                            'sg_reformat_plates_to_deliverable',
-                                            'sg_delivery_fileset',
-                                            'sg_delivery_fileset_compression',
-                                            'sg_delivery_qt_bitrate',
-                                            'sg_delivery_qt_slate',
-                                            'sg_delivery_burn_in',
-                                            'sg_delivery_qt_codecs',
-                                            'sg_delivery_qt_formats',
-                                            'sg_delivery_folder_structure',
-                                            'sg_color_space',
-                                            'sg_project_color_management',
-                                            'sg_project_color_management_config',
-                                            'sg_timecode',
-                                            'sg_upload_qt_formats',
-                                            'sg_review_qt_codecs',
-                                            'sg_review_burn_in',
-                                            'sg_review_qt_slate',
-                                            'sg_review_qt_formats',
-                                            'sg_slate_frames_format',
-                                            'sg_frame_leader',
-                                            'sg_review_lut',
-                                            'sg_type',
-                                            'tank_name',
-                                            'sg_3d_settings']
-        )     
-        proj_info.update({'artist_name' : ctx.user['name']})
-
-        formats = publisher.shotgun.find("CustomNonProjectEntity01",
-        [],
-        ['code',
-        'sg_format_height',
-        'sg_format_width',
-        ])
-        proj_info.update({'formats' : formats})
-
-        local_storage = publisher.shotgun.find("LocalStorage",
-        [],
-        ["code",
-        "windows_path",
-        "linux_path",
-        "mac_path"])
-        
-        if "win" in sys.platform:
-            path_root = "windows_path"
-            sg_root = "local_path_windows"
-        elif sys.platform == "linux":
-            path_root = "linux_path"
-            sg_root = "local_path_linux"
-
-        local_storage_match = next((ls for ls in local_storage if ls[path_root] in proj_info['sg_root'][sg_root]), None)
-        proj_info['local_storage'] = local_storage_match
-
-        if proj_info['sg_3d_settings']:
-            sg_3d_settings = publisher.shotgun.find("CustomNonProjectEntity03",
-            [],
-            ['code',
-            'sg_primary_render_layer',
-            'sg_additional_render_layers',
-            'sg_render_engine',
-            ])
-
-            proj_info.update({'sg_3d_settings' : sg_3d_settings})
-
-        return proj_info         
+        return collector_settings   
     
-    @property
-    def step_fields(self):
-
-        search_fields = [
-            'id', 
-            'code', 
-            'sg_department',
-            'sg_publish_to_shotgun', 
-            'sg_version_for_review', 
-            'sg_slap_comp', 
-            'sg_review_process_type', 
-            'entity_type',
-            ]
-        return search_fields
-
-    @property
-    def step_info(self):
-        '''
-        A collector that gathers all existing pipeline steps to build 2 lists:
-        1) publish_codes: the names of all steps that should be published to Shotgun*
-        2) version_codes: the names of all steps that should publish review versions
-        3) sg_slap_comp: option to create a slap comp Version for review
-
-        *publish_codes also includes all SSVFX Shotgun WriteNode render types
-        ** This needs to be hand-coded at the moment. Sorry...
-        '''
-
-        publisher = self.parent
-        search_fields = self.step_fields
-        steps_info = publisher.shotgun.find("Step", [], search_fields)
-
-        return steps_info
-
-    @property
-    def software_info(self):
-        """
-        Test SG for all associated software
-
-        :returns: The SG info of the given softwares
-        """  
-        publisher = self.parent
-
-        software_filters = [
-        ['id', 'is_not', 0],
-        ['version_names', 'is_not', None]
-        # ['sg_pipeline_tools', 'is', True]
-        ]
-        
-        software_fields = [
-        'code',
-        'products',
-        'windows_path',
-        'version_names',
-        'sg_pipeline_tools'
-        ]
-
-        software_info = publisher.shotgun.find(
-        'Software',
-        software_filters,
-        software_fields
-        )
-
-        return software_info
-
-    @property
-    def codec_info(self):
-        """
-        Test SG for all associated codec
-
-        :returns: The SG info of the given codecs
-        """  
-        publisher = self.parent
-
-        codec_filters = []
-        
-        codec_fields = ['id',
-                        'code', 
-                        'name', 
-                        'sg_nuke_code', 
-                        'sg_output_folder']
-
-        codec_info = publisher.shotgun.find(
-        'CustomNonProjectEntity08',
-        codec_filters,
-        codec_fields
-        )
-
-        return codec_info
-
-    @property
-    def user_info(self):
-
-        publisher = self.parent
-        ctx = publisher.engine.context 
-        user_fields =[
-            'login',
-            'sg_ip_address'
-        ]
-        user_filter =[
-            ['id', 'is', ctx.user['id']],
-        ]
-        user_info = publisher.shotgun.find(
-            'HumanUser',
-            user_filter,
-            user_fields
-            )    
-
-        return user_info
-
-    @property
-    def entity_info(self):
-        """
-        Test SG for all associated entity
-
-        :returns: The SG info of the given entitys
-        """  
-        publisher = self.parent
-
-        entity_type = publisher.context.entity.get("type")
-        entity_id = publisher.context.entity.get("id")
-
-        entity_filters = [["id", "is", entity_id]]
-        
-        entity_fields = ['id',
-                        'code', 
-                        'name', 
-                        'sg_head_in', 
-                        'sg_tail_out']
-
-        entity_info = publisher.shotgun.find_one(entity_type,
-                                                entity_filters,
-                                                entity_fields
-                                                )
-
-        entity_info.update({"context_info": publisher.context.entity})
-
-        return entity_info
-
     def process_current_session(self, settings, parent_item):
         """
         Analyzes the current session open in Nuke/NukeStudio and parents a
@@ -348,6 +118,8 @@ class NukeSessionCollector(HookBaseClass):
             self.collect_sg_writenodes(project_item)
             # self.get_selected_reads(project_item)                                             #### PHASE 2 ####
             self.collect_node_outputs(project_item)
+
+        self.logger.warning(">>>>> process_session complete >>>>>")
 
     def collect_current_nuke_session(self, settings, parent_item):
         """
@@ -576,63 +348,44 @@ class NukeSessionCollector(HookBaseClass):
             )
             return
 
-        version_writes = None
+        # Search for write nodes in node selection
+        # If no node is selected, display error message
+        selected_nodes = nuke.selectedNodes()
 
-        # Check for selected node
-        # This will error if no node is selected,
-        # or pick a random node if more than 1 is selected
-        try:
-            selected_node = nuke.selectedNode()
-        except:
-            selected_node = None
-            self.logger.debug("No write nodes selected")
+        if not selected_nodes:
+            return nuke.message("<b style='color:salmon'>No Nodes Selected</b>")
 
-        if not selected_node:
-            # version_writes = [node for node in sg_writenode_app.get_write_nodes() if node['write_type'].value() == "Version"]
-            return nuke.message("<b style='color:salmon'>No Node Selected</b>")
+        selected_writes = [node for node in selected_nodes if node.Class() in ["WriteTank", "Write"]]
+        if not selected_writes:
+            return nuke.message("<b style='color:salmon'>No Write Nodes Selected</b>")
 
-        if  selected_node.Class() != "WriteTank" or selected_node['write_type'].value() != "Version":
-            return nuke.message("<b style='color:salmon'>No Write Node Selected</b>")
+        # filter selected_nodes for Version from both SsWrite and SGWrite types
+        # To preserve compatibility
+        selected_versions = []
+        for node in selected_writes:
+            knobs = {knob_name:node[knob_name].value() for knob_name in node.knobs()}
+            if "Version" in [knobs.get('ssWriteType'),knobs.get('write_type')]:
+                selected_writes.append(node)
 
-        else:
-            if selected_node.Class() == "WriteTank" and selected_node['write_type'].value() == "Version":
-                version_writes = selected_node
-                self.logger.debug("Single write node selected: %s" % version_writes.name())
+        if not selected_versions:
+            return nuke.message("<b style='color:salmon'>No Version Write Nodes Selected.\n Can't locate render path.</b>")
+        
+        existing_paths = []
+        # for node in selected_versions:
+        for node in selected_versions:
+            # see if any frames have been rendered for this write node
+            rendered_files = sg_writenode_app.get_node_render_files(node)
 
-            elif [selected_node] != nuke.selectedNodes():
-                self.logger.debug("Too many nodes selected. Searching for Version in selection...")
-                found_writes = [node for node in nuke.selectedNodes() if node.Class() == "WriteTank"]
-                version_writes = [node for node in found_writes if node['write_type'].value() == "Version"]
+            # some files rendered, use first frame to get a master path
+            # which can be used for path-based operations
+            folder = os.path.dirname(rendered_files[0][0])
 
+            # Prevent redundancies by checking for node file path in a list
+            if folder in existing_paths:
+                continue
             else:
-                self.logger.debug("Could not identify Version node in selection: Ignoring.")
-                return
-
-        if not version_writes:
-            self.logger.debug("No Version Nodes Available")
-            return
-        elif type(version_writes) == list and len(version_writes) == 1:
-            version_writes = version_writes[0]
-
-        if type(version_writes) != list:
-            self.process_write_node(version_writes, parent_item)
-        else:
-            existing_paths = []
-            # for node in version_writes:
-            for node in version_writes:
-                # see if any frames have been rendered for this write node
-                rendered_files = sg_writenode_app.get_node_render_files(node)
-
-                # some files rendered, use first frame to get a master path
-                # which can be used for path-based operations
-                folder = os.path.dirname(rendered_files[0][0])
-
-                # Prevent redundancies by checking for node file path in a list
-                if folder in existing_paths:
-                    continue
-                else:
-                    self.process_write_node(node, parent_item)
-                    existing_paths.append(folder)
+                self.process_write_node(node, parent_item)
+                existing_paths.append(folder)
 
     def process_write_node(self, node, parent_item):
         '''
@@ -880,73 +633,6 @@ class NukeSessionCollector(HookBaseClass):
             cs = cs[9:-1]
         return cs
 
-    #### IN DEVELOPMENT ####
-    # def get_selected_reads(self, parent_item):
-    #     """
-    #     Process any selected read nodes
-    #     """
-    #     # selected_reads = nuke.selectedNodes()
-    #     selected_reads = [node for node in nuke.selectedNodes() if node.Class() == 'Read']
-
-    #     if not selected_reads:
-    #         self.logger.debug("No Read Nodes Selected")
-    #         return
-
-    #     if len(selected_reads) > 2:
-    #         self.logger.warning("Too Many Reads Selected")
-    #         return
-
-    #     self.logger.warning("Running: get_selected_reads")
-
-    #     existing_paths = []
-    #     for node in selected_reads:
-    #         # some files rendered, use first frame to get a master path
-    #         # which can be used for path-based operations
-    #         folder = os.path.dirname(node['file'].value())
-
-    #         # Prevent redundancies by checking for node file path in a list
-    #         if folder in existing_paths:
-    #             continue
-    #         else:
-    #             self.process_write_node(node, parent_item)
-    #             existing_paths.append(folder)
-
-    # def compare_context(self, node, engine):
-    #     # check node type
-    #     if node.Class() != "Read":
-    #         self.logger.warning("Not a Read node")
-    #         return (False, None)
-
-    #     # check engine for writenode
-    #     if "tk-nuke-writenode" not in engine.apps.keys():
-    #         self.logger.warning("Cannot Generate Session Path: Please Save and Try Again")
-    #         return
-        
-    #     # collect paths to compare and delete write
-    #     new_sg_write = engine.apps["tk-nuke-writenode"].create_new_write_node("Exr", "Version")
-    #     session_path = new_sg_write['cached_path'].value()
-    #     nuke.delete(new_sg_write)
-
-    #     node_path = node['file'].value()
-
-    #     # create context items to compare
-    #     session_context = sgtk.sgtk_from_path(session_path).context_from_path(session_path)
-
-    #     try:
-    #         node_context = sgtk.sgtk_from_path(node_path).context_from_path(node_path)
-    #     except:
-    #         self.logger.warning(">>>>> Failed to find node context")
-    #         return
-
-    #     self.logger.warning(">>>>> contexts")
-    #     self.logger.warning(session_context)
-    #     self.logger.warning(node_context.to_dict())
-
-    #     result = node_context == session_context
-
-    #     return (result, node_context)
-    #### IN DEVELOPMENT ####
-
     def _set_plugins_from_sg(self, step_id):
 
         # Determine if there are plugin visibility settings in Shotgun
@@ -990,6 +676,92 @@ class NukeSessionCollector(HookBaseClass):
         frame_number = r"\.(\d{4,10})\."
                 
         return re.search(frame_number, path)
+
+    def _task_fields(self, curr_fields):
+        '''
+        Generate a list of fields to search for in SG
+
+        :param curr_fields: info derived from the path and used for specificity
+        '''
+        # default field
+        search_fields = [
+            "entity",
+        ]
+
+        # step fields
+        search_fields.extend([
+            "step.Step.id",
+            "step.Step.code",
+            'step.Step.sg_department',
+            'step.Step.sg_publish_to_shotgun',
+            'step.Step.sg_version_for_review',
+            'step.Step.sg_slap_comp',
+            'step.Step.sg_review_process_type',
+            'step.Step.entity_type',
+        ])
+
+        # entity fields
+        entity_type = curr_fields['type']
+        if entity_type == "Shot":
+            search_fields.extend([
+                "entity.Shot.code",
+                "entity.Shot.id",
+                "entity.Shot.type",
+                "entity.Shot.description",
+                "entity.Shot.created_by",
+                "entity.Shot.sg_episode",
+                "entity.Shot.sg_shot_lut",
+                "entity.Shot.sg_shot_audio",
+                "entity.Shot.sg_status_list",
+                "entity.Shot.sg_project_name",
+                "entity.Shot.sg_plates_processed_date",
+                "entity.Shot.sg_shot_lut",
+                "entity.Shot.sg_shot_ocio",
+                "entity.Shot.sg_without_ocio",
+                "entity.Shot.sg_head_in",
+                "entity.Shot.sg_tail_out",
+                "entity.Shot.sg_lens_info",
+                "entity.Shot.sg_plate_proxy_scale",
+                "entity.Shot.sg_frame_handles",
+                "entity.Shot.sg_shot_ccc",
+                "entity.Shot.sg_seq_ccc",
+                "entity.Shot.sg_vfx_work",
+                "entity.Shot.sg_scope_of_work",
+                "entity.Shot.sg_editorial_notes",
+                "entity.Shot.sg_sequence"
+                "entity.Shot.sg_main_plate",
+                "entity.Shot.sg_latest_version",
+                "entity.Shot.sg_latest_client_version",
+                "entity.Shot.sg_gamma",
+                "entity.Shot.sg_target_age",
+                "entity.Shot.sg_shot_transform",
+                "entity.Shot.sg_main_plate_camera",
+                "entity.Shot.sg_main_plate_camera.Camera.code",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_format_width",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_format_height",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_pixel_aspect_ratio",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_pump_incoming_transform_switch",
+            ])
+
+        elif entity_type == "Asset":
+            search_fields.extend([
+                "entity.Asset.code",
+                "entity.Asset.id",
+                "entity.Asset.type",
+                "entity.Asset.description",
+                "entity.Asset.created_by",
+                "entity.Asset.sg_status_list",
+                "entity.Asset.sg_head_in",
+                "entity.Asset.sg_tail_out",
+                "entity.Asset.sg_lens_info",
+                "entity.Asset.sg_vfx_work",
+                "entity.Asset.sg_scope_of_work",
+                "entity.Asset.sg_editorial_notes",
+                "entity.Asset.sg_latest_version",
+                "entity.Asset.sg_latest_client_version"
+            ])
+
+        return search_fields
 
 
 def _session_path():
