@@ -48,9 +48,9 @@ primary:
 
     # these paths will be populated by the associated local storage in Shotgun
     # at setup time.
-    mac_path:
-    linux_path:
-    windows_path:
+    mac_path: null
+    linux_path: /mnt/egg/project
+    windows_path: null
 
     # indicates that this is the default storage root
     default: true
