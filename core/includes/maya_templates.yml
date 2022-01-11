@@ -1,0 +1,51 @@
+#
+# Maya
+#
+
+keys:
+  # Maya supports two extension types.
+  maya_extension:
+      type: str
+      choices:
+          ma: Maya Ascii (.ma)
+          mb: Maya Binary (.mb)
+      default: ma
+      alias: extension
+
+paths:
+  #
+  # Asset
+  #
+  # define the location of a work area
+  asset_work_area_maya:
+      definition: '@asset_root/work/maya'
+  # define the location of a publish area
+  asset_publish_area_maya:
+      definition: '@asset_root/publish/maya'
+  # The location of WIP files
+  maya_asset_work:
+      definition: '@asset_root/work/maya/{name}.v{version}.{maya_extension}'
+  # The location of backups of WIP files
+  maya_asset_snapshot:
+      definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+  # The location of published maya files
+  maya_asset_publish:
+      definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
+  #
+  # Shot
+  #
+  # define the location of a work area
+  shot_work_area_maya:
+      definition: '@shot_root/work/maya'
+  # define the location of a publish area
+  shot_publish_area_maya:
+      definition: '@shot_root/publish/maya'
+  # The location of WIP files
+  maya_shot_work:
+      definition: '@shot_root/work/maya/{name}.v{version}.{maya_extension}'
+  # The location of backups of WIP files
+  maya_shot_snapshot:
+      definition: '@shot_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+  # The location of published maya files
+  maya_shot_publish:
+      definition: '@shot_root/publish/maya/{name}.v{version}.{maya_extension}'
