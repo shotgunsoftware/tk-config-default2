@@ -284,6 +284,30 @@ settings.tk-multi-workfiles2.maya.shot_step:
 
 # ---- nuke
 
+# project
+settings.tk-multi-workfiles2.nuke.project:
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: "@apps.tk-multi-workfiles2.location"
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-nuke.py'
+
 # asset_step
 settings.tk-multi-workfiles2.nuke.asset_step:
   template_publish: nuke_asset_publish
@@ -337,6 +361,7 @@ settings.tk-multi-workfiles2.nuke.shot_step:
       link_field: entity
       hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
+
 
 ################################################################################
 

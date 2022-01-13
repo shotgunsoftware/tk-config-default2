@@ -122,7 +122,7 @@ settings.tk-nuke.project:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
-    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.nuke.project"
     tk-nuke-quickreview:
       location: "@apps.tk-nuke-quickreview.location"
   menu_favourites:
