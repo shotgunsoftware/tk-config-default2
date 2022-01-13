@@ -1,0 +1,26 @@
+# Copyright (c) 2021 Autodesk, Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Autodesk, Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# Alias
+settings.tk-multi-breakdown2.alias:
+  hook_scene_operations: '{self}/tk-alias_scene_operations.py'
+  location: "@apps.tk-multi-breakdown2.location"
+
+# VRED
+settings.tk-multi-breakdown2.vred:
+  hook_scene_operations: '{self}/tk-vred_scene_operations.py'
+  location: "@apps.tk-multi-breakdown2.location"
