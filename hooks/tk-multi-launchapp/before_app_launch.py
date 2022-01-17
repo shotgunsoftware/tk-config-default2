@@ -56,4 +56,4 @@ class BeforeAppLaunch(tank.Hook):
                 logger.debug("NUKE_PATH already set")
                 logger.debug(os.environ.get("NUKE_PATH"))
                 tank.util.append_path_to_env_var("NUKE_PATH", "/mnt/pipeline/dcc/dev/nuke")
-                tank.util.append_path_to_env_var("NUKE_TEMP_DIR", "/tmp/nuke")
+                # tank.util.append_path_to_env_var("NUKE_TEMP_DIR", "/tmp/nuke")

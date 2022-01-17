@@ -110,6 +110,8 @@ class SceneOperation(HookClass):
                 **kwargs
             )
 
+        logger.debug("Operation:{operation}".format(operation=operation))
+
         # If we didn't hit the Hiero or Nuke Studio case above, we can
         # continue with the typical Nuke scene operation logic.
         if file_path:
@@ -172,13 +174,11 @@ class SceneOperation(HookClass):
 
             # now clear the script:
             nuke.scriptClear()
-
             return True
 
         elif operation == "prepare_new":
             logger.debug("Context:{context}".format(context=context))
             self._set_project_settings(context)
-
 
     def _get_current_hiero_project(self):
         """
@@ -318,7 +318,7 @@ class SceneOperation(HookClass):
     def _set_project_settings(self, current_context):
 
         engine = self.parent.engine
-        sgu = SGUtils(engine)
+        sgu = SGUtils(engine, logger)
         sgu.get_project_settings(current_context)
 
 

@@ -169,8 +169,9 @@ paths:
     #
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
-    shot_root: shots/{Shot}/{task_name}
-    asset_root: assets/{sg_asset_type}/{Asset}/{task_name}
+    shot_root: Shots/{Shot}/{task_name}
+    # shot_render_root: Shots/{Shot}/renders/{task_name}
+    asset_root: Assets/{sg_asset_type}/{Asset}/{task_name}
 
     ##########################################################################################
     # Project level paths
@@ -182,17 +183,17 @@ paths:
 
     # The location of WIP files
     hiero_project_work:
-        definition: 'editorial/work/{name}_v{version}.hrox'
+        definition: 'Edit/work/{name}_v{version}.hrox'
     hiero_project_work_area:
-        definition: 'editorial/work'
+        definition: 'Edit/work'
     # The location of backups of WIP files
     hiero_project_snapshot:
-        definition: 'editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
+        definition: 'Edit/work/snapshots/{name}_v{version}_{timestamp}.hrox'
     # The location of published hiero files
     hiero_project_publish:
-        definition: 'editorial/publish/{name}_v{version}.hrox'
+        definition: 'Edit/publish/{name}_v{version}.hrox'
     hiero_project_publish_area:
-        definition: 'editorial/publish'
+        definition: 'Edit/publish'
 
 
     ##########################################################################################
