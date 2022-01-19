@@ -51,6 +51,9 @@ keys:
     version:
         type: int
         format_spec: "03"
+    increment:
+        type: int
+        format_spec: "02"
     version_four:
        type: int
        format_spec: "04"
@@ -169,9 +172,11 @@ paths:
     #
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
-    shot_root: Shots/{Shot}/{task_name}
+    shot_root: Shots/{Sequence}/{Shot}/tasks/{task_name}
     # shot_render_root: Shots/{Shot}/renders/{task_name}
     asset_root: Assets/{sg_asset_type}/{Asset}/{task_name}
+    # sequence_root: sequences/{Sequence}
+    sequence_docs: Shots/{Sequence}/{Sequence}_SEQ
 
     ##########################################################################################
     # Project level paths
@@ -183,17 +188,17 @@ paths:
 
     # The location of WIP files
     hiero_project_work:
-        definition: 'Edit/work/{name}_v{version}.hrox'
+        definition: 'Editorial/work/{name}_v{version}.hrox'
     hiero_project_work_area:
-        definition: 'Edit/work'
+        definition: 'Editorial/work'
     # The location of backups of WIP files
     hiero_project_snapshot:
-        definition: 'Edit/work/snapshots/{name}_v{version}_{timestamp}.hrox'
+        definition: 'Editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
     # The location of published hiero files
     hiero_project_publish:
-        definition: 'Edit/publish/{name}_v{version}.hrox'
+        definition: 'Editorial/publish/{name}_v{version}.hrox'
     hiero_project_publish_area:
-        definition: 'Edit/publish'
+        definition: 'Editorial/publish'
 
 
     ##########################################################################################
