@@ -25,16 +25,31 @@ class BeforeAppLaunch(sgtk.Hook):
     """
 
     def execute(self, app_path, app_args, version, engine_name, **kwargs):
+        # Get ShotGrid connection
+        sg = shotgun.get_sg_connection()
+
+        # Finding current project name
+        current_engine = sgtk.platform.current_engine()
+        current_context = current_engine.context
+        project_name = current_context.project["name"]
+
+        # Get template
+        primary_location = self.parent.sgtk.roots.get('primary')
+
+        # Get core
+        tk = sgtk.sgtk_from_path(primary_location)
+
+        # Get OCIO path
+        ocio_template = tk.templates["ocio_config"]
+        ocio_path = ocio_template.apply_fields(current_context).replace(os.sep, '/')
+
+        if os.path.isfile(ocio_path):
+            os.environ["OCIO"] = ocio_path
+            self.parent.log_info("OCIO config found, set environment")
+
         if engine_name == "tk-houdini":
             ########################################
             """Setting render engine environment"""
-            # Get ShotGrid connection
-            sg = shotgun.get_sg_connection()
-
-            # Finding current project name
-            current_engine = sgtk.platform.current_engine()
-            current_context = current_engine.context
-            project_name = current_context.project["name"]
 
             # Finding render engine entity
             render_engine = sg.find_one("Project", [["name", "is", project_name]], ["sg_render_engine"]).get(
@@ -51,12 +66,6 @@ class BeforeAppLaunch(sgtk.Hook):
             ########################################
             """Setting OTL scan path"""
 
-            # Set OTL path
-            primary_location = self.parent.sgtk.roots.get('primary')
-
-            # Get core
-            tk = sgtk.sgtk_from_path(primary_location)
-
             # Get template
             houdini_otls_template = tk.templates["houdini_otls"]
             otls_path = houdini_otls_template.apply_fields(current_context).replace(os.sep, '/')
@@ -64,3 +73,5 @@ class BeforeAppLaunch(sgtk.Hook):
             # Add environment
             sgtk.util.append_path_to_env_var("HOUDINI_OTLSCAN_PATH ", otls_path)
             self.parent.log_info("Added otlscan path %s" % otls_path)
+
+

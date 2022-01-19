@@ -209,9 +209,9 @@ paths:
 
   ##########################################################################################
 
-  # OBJ Sculpts Standalone Publish Template
-  obj_asset_publish:
-    definition: "@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_v{version}.obj"
+  # OCIO config path
+  ocio_config:
+    definition: "00_pipeline/ocio/config.ocio"
 
   ##########################################################################################
 
@@ -236,7 +236,13 @@ paths:
   houdini_otls:
     definition: "00_pipeline/houdini/otls"
 
+  ##########################################################################################
 
+  # OBJ Sculpts Standalone Publish Template
+  obj_asset_publish:
+    definition: "@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_v{version}.obj"
+
+  ##########################################################################################
   # Sequence level paths
   #
 
