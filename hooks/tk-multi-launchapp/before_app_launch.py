@@ -72,6 +72,5 @@ class BeforeAppLaunch(sgtk.Hook):
 
             # Add environment
             sgtk.util.append_path_to_env_var("HOUDINI_OTLSCAN_PATH ", otls_path)
+
             self.parent.log_info("Added otlscan path %s" % otls_path)
-
-
