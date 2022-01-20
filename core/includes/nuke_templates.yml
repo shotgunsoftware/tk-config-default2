@@ -38,18 +38,20 @@ paths:
     nuke_shot_publish:
         definition: '@shot_root/publish/nuke/{Shot}_{task_name}_v{version}.nk'
     # write node outputs
+    nuke_shot_render_root:
+        definition: '@shot_root/renders'
     nuke_shot_render:
-        definition: '@shot_root/renders/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.{nuke_extension}'
+        definition: '@shot_root/renders/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.{nuke_extension}'
     nuke_shot_render_pub:
         definition: '@shot_root/publish/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.{nuke_extension}'
     nuke_shot_render_mono_dpx:
-        definition: '@shot_root/renders/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@shot_root/renders/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
     nuke_shot_render_pub_mono_dpx:
-        definition: '@shot_root/publish/elements/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@shot_root/publish/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.dpx'
     nuke_shot_render_stereo:
-        definition: '@shot_root/renders/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@shot_root/renders/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
     nuke_shot_render_pub_stereo:
-        definition: '@shot_root/publish/elements/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@shot_root/publish/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
     # review output
     shot_quicktime_quick:
         definition: '@shot_root/review/quickdaily/{Shot}[_{name}]_{iteration}.mov'
@@ -68,9 +70,9 @@ paths:
         definition: '@asset_root/publish'
     # outputs from the Shotgun Write Node for assets
     nuke_asset_render:
-        definition: '@asset_root/renders/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Asset}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_root/renders/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Asset}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
     nuke_asset_render_pub:
-        definition: '@asset_root/publish/elements/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Asset}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_root/publish/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Asset}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
     # review output
     nuke_asset_render_movie:
         definition: '@asset_root/review/{Asset}[_{name}]_{task_name}[_{nuke.output}]_v{version}.mov'

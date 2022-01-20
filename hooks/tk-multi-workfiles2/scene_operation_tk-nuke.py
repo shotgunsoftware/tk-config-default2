@@ -97,6 +97,8 @@ class SceneOperation(HookClass):
         # studio_enabled cases that call through to Nuke Studio and Hiero
         # specific methods.
         engine = self.parent.engine
+        sgu = SGUtils(engine, logger)
+
         if hasattr(engine, "hiero_enabled") and (
             engine.hiero_enabled or engine.studio_enabled
         ):
@@ -143,6 +145,9 @@ class SceneOperation(HookClass):
                 # reset all write nodes:
                 self._reset_write_node_render_paths()
 
+                # set frame range on intial save
+                sgu.set_sg_frame_range(context)
+
                 # save script:
                 nuke.scriptSaveAs(file_path, -1)
             except Exception as e:
@@ -178,7 +183,7 @@ class SceneOperation(HookClass):
 
         elif operation == "prepare_new":
             logger.debug("Context:{context}".format(context=context))
-            self._set_project_settings(context)
+            sgu.set_project_settings(context)
 
     def _get_current_hiero_project(self):
         """
@@ -315,11 +320,6 @@ class SceneOperation(HookClass):
             # add a new project to hiero
             hiero.core.newProject()
 
-    def _set_project_settings(self, current_context):
-
-        engine = self.parent.engine
-        sgu = SGUtils(engine, logger)
-        sgu.get_project_settings(current_context)
 
 
 

@@ -173,7 +173,7 @@ paths:
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
     shot_root: Shots/{Sequence}/{Shot}/tasks/{task_name}
-    # shot_render_root: Shots/{Shot}/renders/{task_name}
+    shot_scan_root: Shots/{Sequence}/{Shot}/SCAN
     asset_root: Assets/{sg_asset_type}/{Asset}/{task_name}
     # sequence_root: sequences/{Sequence}
     sequence_docs: Shots/{Sequence}/{Sequence}_SEQ
