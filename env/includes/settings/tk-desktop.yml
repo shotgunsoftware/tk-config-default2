@@ -42,16 +42,18 @@ settings.tk-desktop.project:
   groups:
   - matches:
     - "*Fla*"
+    - "*Nuke*"
+    - "*Photoshop*"
+    - "*After*"
+    - "*Effects*"
+    name: 2D Tools
+  - matches:
     - "*Houdini*"
     - "*Mari*"
     - "*Max*"
     - "*Maya*"
     - "*Motion*"
-    - "*Nuke*"
-    - "*Photoshop*"
-    - "*After*"
-    - "*Effects*"
-    name: Creative Tools
+    name: 3D Tools
   - matches:
     - "*Hiero*"
     name: Editorial Tools
