@@ -31,9 +31,6 @@ paths:
     # The location of WIP script files
     nuke_shot_work:
         definition: '@shot_root/work/nuke/{Shot}_{task_name}_v{version}[_{increment}].nk'
-    # # The location of WIP script files
-    # nuke_shot_work_minor:
-    #     definition: '@shot_root/work/nuke/{Shot}_{task_name}_v{version}_{minor_version}.nk'
     # The location of backups of WIP files
     nuke_shot_snapshot:
         definition: '@shot_root/work/nuke/snapshots/{Shot}_{task_name}_v{version}_{increment}.nk'

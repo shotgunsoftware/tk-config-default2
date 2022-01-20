@@ -162,8 +162,8 @@ settings.tk-nuke.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
+    # tk-multi-breakdown:
+    #   location: "@apps.tk-multi-breakdown.location"
     tk-multi-setframerange:
       sg_in_frame_field: sg_head_in
       sg_out_frame_field: sg_tail_out
@@ -180,8 +180,9 @@ settings.tk-nuke.shot_step:
     tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot History...,requires_selection: true}
   - {app_instance: tk-multi-publish2, name: Publish...}
   location: "@engines.tk-nuke.location"
 
