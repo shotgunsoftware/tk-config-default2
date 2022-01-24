@@ -30,13 +30,13 @@ paths:
         definition: '@shot_root/publish/nuke'
     # The location of WIP script files
     nuke_shot_work:
-        definition: '@shot_root/work/nuke/{Shot}_{task_name}_v{version}[_{increment}].nk'
+        definition: '@shot_root/work/nuke/{Shot}[_{name}]_{task_name}_v{version}[_{increment}].nk'
     # The location of backups of WIP files
     nuke_shot_snapshot:
-        definition: '@shot_root/work/nuke/snapshots/{Shot}_{task_name}_v{version}_{increment}.nk'
+        definition: '@shot_root/work/nuke/snapshots/{Shot}[_{name}]_{task_name}_v{version}_{increment}.nk'
     # The location of published nuke script files
     nuke_shot_publish:
-        definition: '@shot_root/publish/nuke/{Shot}_{task_name}_v{version}.nk'
+        definition: '@shot_root/publish/nuke/{Shot}[_{name}]_{task_name}_v{version}.nk'
     # write node outputs
     nuke_shot_render_root:
         definition: '@shot_root/renders'
@@ -54,7 +54,7 @@ paths:
         definition: '@shot_root/publish/versions/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}/{width}x{height}/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.{SEQ}.exr'
     # review output
     shot_quicktime_quick:
-        definition: '@shot_root/review/quickdaily/{Shot}[_{name}]_{iteration}.mov'
+        definition: '@shot_root/review/quickdaily/{Shot}[_{name}]_{task_name}_{iteration}.mov'
     nuke_shot_render_movie:
         definition: '@shot_root/review/{Shot}[_{name}]_{task_name}[_{nuke.output}]_v{version}.mov'
 
@@ -80,13 +80,13 @@ paths:
         definition: '@asset_root/review/quickdaily/{Asset}[_{name}]_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/work/nuke/{name}.v{version}.nk'
+        definition: '@asset_root/work/nuke/{Asset}[_{name}]_{task_name}_v{version}[_{increment}].nk.nk'
     # The location of backups of WIP files
     nuke_asset_snapshot:
-        definition: '@asset_root/work/nuke/snapshots/{name}.v{version}_{increment}.nk'
+        definition: '@asset_root/work/nuke/snapshots/{Asset}[_{name}]_{task_name}_v{version}[_{increment}].nk'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
+        definition: '@asset_root/publish/nuke/{Asset}[_{name}]_{task_name}_v{version}[_{increment}].nk.nk'
 strings:
 
     # when a review Version in Shotgun is created inside of Nuke, this is the

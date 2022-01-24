@@ -49,11 +49,25 @@ class BeforeAppLaunch(tank.Hook):
 
         # you can set environment variables like this:
         # os.environ["MY_SETTING"] = "foo bar"
+        engine = sgtk.platform.current_engine()
+
         if engine_name == "tk-nuke":
-            # logger.debug("NUKE_PATH:{}".format(os.environ.get("NUKE_PATH")))
             if os.environ.get("NUKE_PATH"):
-                logger.debug("Temp dir:{}".format(os.environ.get("NUKE_TEMP_DIR")))
-                logger.debug("NUKE_PATH already set")
-                logger.debug(os.environ.get("NUKE_PATH"))
-                tank.util.append_path_to_env_var("NUKE_PATH", "/mnt/pipeline/dcc/dev/nuke")
-                # tank.util.append_path_to_env_var("NUKE_TEMP_DIR", "/tmp/nuke")
+                # better to set NUKE_PATH here rather than machine level env variables
+                # as that will show operators that the are in an off-pipe Nuke, no menus
+                if os.environ.get("PIPELINE_DEV"):
+                    tank.util.append_path_to_env_var("NUKE_PATH", "/mnt/pipeline/dcc/dev/nuke")
+                else:
+                    tank.util.append_path_to_env_var("NUKE_PATH", "/mnt/egg/pipeline/dcc/primary/nuke")
+
+                # Look for project-specific and relatively stored dcc tools
+                for path_ in engine.context.filesystem_locations:
+                    try:
+                        project_pipeline_root = os.path.join(path_, 'Pipeline')
+                        if os.path.exists(project_pipeline_root):
+                            project_nuke_tools = os.path.join(project_pipeline_root, 'dcc', 'nuke')
+                            logger.debug("Adding to NUKE_PATH:{}".format(project_nuke_tools))
+                            tank.util.append_path_to_env_var("NUKE_PATH", project_nuke_tools)
+
+                    except:
+                        pass
