@@ -506,7 +506,7 @@ settings.tk-multi-publish2.alias.asset_step:
    - name: Create 3D Version for Review
      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
      settings:
-       3D Version: True
+       3D Version: False
    - name: Publish CATPart to ShotGrid
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
      settings:
