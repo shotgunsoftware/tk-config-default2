@@ -12,10 +12,6 @@
 # core API that should be used at runtime.
 
 location:
-#  type: app_store
-#  name: tk-core
-#  version: v0.19.19
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-core.git
-  version: bad3218
+ type: app_store
+ name: tk-core
+ version: v0.20.8
