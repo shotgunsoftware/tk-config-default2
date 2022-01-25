@@ -31,9 +31,6 @@ if os.environ.get('PIPELINE_ROOT') and os.path.exists(os.environ['PIPELINE_ROOT'
         print("found using primary")
         from sg.tools.primary.sg_tools.utils.sg_utils import SGUtils
 
-else:
-    print("nope")
-
 class SceneOperation(HookClass):
     """
     Hook called to perform an operation with the
@@ -97,7 +94,7 @@ class SceneOperation(HookClass):
         # studio_enabled cases that call through to Nuke Studio and Hiero
         # specific methods.
         engine = self.parent.engine
-        sgu = SGUtils(engine, logger)
+        sgu = SGUtils(engine, logger=logger)
 
         if hasattr(engine, "hiero_enabled") and (
             engine.hiero_enabled or engine.studio_enabled
