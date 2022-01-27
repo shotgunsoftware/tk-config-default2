@@ -20,6 +20,9 @@ import tank
 import sgtk
 logger = sgtk.platform.get_logger(__name__)
 
+NUKE_DEV = "dcc/dev/nuke"
+NUKE_PRIMARY = "dcc/primary/nuke"
+
 class BeforeAppLaunch(tank.Hook):
     """
     Hook to set up the system prior to app launch.
@@ -52,13 +55,21 @@ class BeforeAppLaunch(tank.Hook):
         engine = sgtk.platform.current_engine()
 
         if engine_name == "tk-nuke":
-            if os.environ.get("NUKE_PATH"):
-                # better to set NUKE_PATH here rather than machine level env variables
+            if os.environ.get("NUKE_PATH") and os.environ.get("PIPELINE_ROOT"):
+                # set NUKE_PATH here rather than machine level env variables
                 # as that will show operators that the are in an off-pipe Nuke, no menus
+                nuke_path = os.path.join(os.environ.get("PIPELINE_ROOT"), NUKE_PRIMARY)
                 if os.environ.get("PIPELINE_DEV"):
-                    tank.util.append_path_to_env_var("NUKE_PATH", "/mnt/pipeline/dcc/dev/nuke")
-                else:
-                    tank.util.append_path_to_env_var("NUKE_PATH", "/mnt/egg/pipeline/dcc/primary/nuke")
+                    nuke_path = os.path.join(os.environ.get("PIPELINE_ROOT"), NUKE_DEV)
+                    # Check if there is a true value for this to
+                    # determine if user is a developer
+                    if os.environ.get("DEV_ROOT") and os.path.exists(os.environ.get("DEV_ROOT")):
+                        # DEV_ROOT is the root location of unique development work
+                        # This should be set by the developer on a local level
+                        nuke_path = os.path.join(os.environ.get("DEV_ROOT"), NUKE_DEV)
+
+                logger.debug("Nuke path set is:{}".format(nuke_path))
+                tank.util.append_path_to_env_var("NUKE_PATH", nuke_path)
 
                 # Look for project-specific and relatively stored dcc tools
                 for path_ in engine.context.filesystem_locations:
@@ -71,3 +82,5 @@ class BeforeAppLaunch(tank.Hook):
 
                     except:
                         pass
+            else:
+                logger.debug("No nuke path set")
