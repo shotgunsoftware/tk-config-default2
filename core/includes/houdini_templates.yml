@@ -11,69 +11,69 @@ paths:
   #
   # define the location of a work area
   asset_work_area_houdini:
-      definition: '@asset_root/work/houdini'
+      definition: '@asset_root/houdini/work'
   # define the location of a publish area
   asset_publish_area_houdini:
       definition: '@asset_root/publish/houdini'
   # The location of WIP files
   houdini_asset_work:
-      definition: '@asset_root/work/houdini/{name}.v{version}.hip'
+      definition: '@asset_root/houdini/work/{name}.v{version}.hip'
   # The location of backups of WIP files
   houdini_asset_snapshot:
-      definition: '@asset_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+      definition: '@asset_root/houdini/work/snapshots/{name}.v{version}.{timestamp}.hip'
   # The location of published houdini files
   houdini_asset_publish:
       definition: '@asset_root/publish/houdini/{name}.v{version}.hip'
   # Alembic caches
   houdini_asset_work_alembic_cache:
-      definition: '@asset_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
+      definition: '@asset_root/houdini/work/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
 
   # Rendered images
   houdini_asset_render:
-      definition: '@asset_root/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+      definition: '@asset_root/houdini/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
 
   # Additional mantra outputs
   houdini_asset_ifd:
-      definition: '@asset_root/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.ifd'
+      definition: '@asset_root/houdini/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.ifd'
 
   houdini_asset_dcm:
-      definition: '@asset_root/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.dcm'
+      definition: '@asset_root/houdini/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.dcm'
 
   houdini_asset_extra_plane:
-      definition: '@asset_root/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+      definition: '@asset_root/houdini/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
 
   #
   # Shot
   #
   # define the location of a work area
   shot_work_area_houdini:
-      definition: '@shot_root/work/houdini'
+      definition: '@shot_root/houdini/work'
   # define the location of a publish area
   shot_publish_area_houdini:
       definition: '@shot_root/publish/houdini'
   # The location of WIP files
   houdini_shot_work:
-      definition: '@shot_root/work/houdini/{name}.v{version}.hip'
+      definition: '@shot_root/houdini/work/{name}.v{version}.hip'
   # The location of backups of WIP files
   houdini_shot_snapshot:
-      definition: '@shot_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+      definition: '@shot_root/houdini/work/snapshots/{name}.v{version}.{timestamp}.hip'
   # The location of published houdini files
   houdini_shot_publish:
       definition: '@shot_root/publish/houdini/{name}.v{version}.hip'
   # Alembic caches
   houdini_shot_work_alembic_cache:
-      definition: '@shot_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Shot}_{name}_v{version}.abc'
+      definition: '@shot_root/houdini/work/cache/alembic/{name}/{houdini.node}/v{version}/{Shot}_{name}_v{version}.abc'
 
   # Rendered images
   houdini_shot_render:
-      definition: '@shot_root/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
+      definition: '@shot_root/houdini/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
 
   # Additional mantra outputs
   houdini_shot_ifd:
-      definition: '@shot_root/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.ifd'
+      definition: '@shot_root/houdini/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.ifd'
 
   houdini_shot_dcm:
-      definition: '@shot_root/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.dcm'
+      definition: '@shot_root/houdini/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.dcm'
 
   houdini_shot_extra_plane:
-      definition: '@shot_root/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
+      definition: '@shot_root/houdini/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'

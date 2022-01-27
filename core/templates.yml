@@ -30,7 +30,7 @@
 includes:
 - ./includes/nuke_templates.yml
 - ./includes/maya_templates.yml
-# - ./includes/houdini_templates.yml
+- ./includes/houdini_templates.yml
 
 keys:
     Sequence:
