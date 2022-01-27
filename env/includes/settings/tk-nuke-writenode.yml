@@ -36,25 +36,24 @@ settings.tk-nuke-writenode.shot:
   template_script_work: nuke_shot_work
   write_nodes:
   - file_type: exr
-    name: Stereo Exr, 32 bit
+    name: Exr, 32 bit
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_shot_render_pub_stereo
-    render_template: nuke_shot_render_stereo
-    settings:
-      datatype: 32 bit float
+    publish_template: nuke_shot_render_pub
+    render_template: nuke_shot_render
+    settings: {datatype: 32 bit float, compression: Zip (1 scanline), channels: all}
     tank_type: Rendered Image
     tile_color: []
     promote_write_knobs: []
   - file_type: exr
-    name: Stereo Exr, 16 bit
+    name: Exr, 16 bit
     promote_write_knobs: []
     proxy_publish_template:
     proxy_render_template:
-    publish_template: nuke_shot_render_pub_stereo
-    render_template: nuke_shot_render_stereo
-    settings:
-      datatype: 16 bit half
+    publish_template: nuke_shot_render_pub
+    render_template: nuke_shot_render
+    settings: {datatype: 16 bit half, compression: Zip (1 scanline), channels: all}
+    promote_write_knobs: []
     tank_type: Rendered Image
     tile_color: []
   - file_type: dpx

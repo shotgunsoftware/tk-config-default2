@@ -94,7 +94,7 @@ class SceneOperation(HookClass):
         # studio_enabled cases that call through to Nuke Studio and Hiero
         # specific methods.
         engine = self.parent.engine
-        sgu = SGUtils(engine, logger=logger)
+        sgu = SGUtils(sgtk, engine, logger=logger)
 
         if hasattr(engine, "hiero_enabled") and (
             engine.hiero_enabled or engine.studio_enabled
@@ -141,9 +141,9 @@ class SceneOperation(HookClass):
 
                 # reset all write nodes:
                 self._reset_write_node_render_paths()
-
+                
                 # set frame range on intial save
-                sgu.set_sg_frame_range(context)
+                sgu.set_sg_frame_range(sgtk, context)
 
                 # save script:
                 nuke.scriptSaveAs(file_path, -1)
