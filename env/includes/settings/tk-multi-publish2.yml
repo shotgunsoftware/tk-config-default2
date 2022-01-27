@@ -266,10 +266,10 @@ settings.tk-multi-publish2.nuke.shot_step:
   - name: Submit for Review
     hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
     settings: {}
-  - name: Update Flame Clip
-    hook: "{engine}/tk-multi-publish2/basic/nuke_update_flame_clip.py"
-    settings:
-        Flame Clip Template: flame_shot_clip
+  # - name: Update Flame Clip
+  #   hook: "{engine}/tk-multi-publish2/basic/nuke_update_flame_clip.py"
+  #   settings:
+  #       Flame Clip Template: flame_shot_clip
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

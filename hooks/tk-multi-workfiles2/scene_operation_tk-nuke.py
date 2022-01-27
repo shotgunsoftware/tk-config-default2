@@ -31,9 +31,6 @@ if os.environ.get('PIPELINE_ROOT') and os.path.exists(os.environ['PIPELINE_ROOT'
         print("found using primary")
         from sg.tools.primary.sg_tools.utils.sg_utils import SGUtils
 
-else:
-    print("nope")
-
 class SceneOperation(HookClass):
     """
     Hook called to perform an operation with the
@@ -97,6 +94,8 @@ class SceneOperation(HookClass):
         # studio_enabled cases that call through to Nuke Studio and Hiero
         # specific methods.
         engine = self.parent.engine
+        sgu = SGUtils(engine, logger=logger)
+
         if hasattr(engine, "hiero_enabled") and (
             engine.hiero_enabled or engine.studio_enabled
         ):
@@ -143,6 +142,9 @@ class SceneOperation(HookClass):
                 # reset all write nodes:
                 self._reset_write_node_render_paths()
 
+                # set frame range on intial save
+                sgu.set_sg_frame_range(context)
+
                 # save script:
                 nuke.scriptSaveAs(file_path, -1)
             except Exception as e:
@@ -178,7 +180,7 @@ class SceneOperation(HookClass):
 
         elif operation == "prepare_new":
             logger.debug("Context:{context}".format(context=context))
-            self._set_project_settings(context)
+            sgu.set_project_settings(context)
 
     def _get_current_hiero_project(self):
         """
@@ -315,11 +317,6 @@ class SceneOperation(HookClass):
             # add a new project to hiero
             hiero.core.newProject()
 
-    def _set_project_settings(self, current_context):
-
-        engine = self.parent.engine
-        sgu = SGUtils(engine, logger)
-        sgu.get_project_settings(current_context)
 
 
 

@@ -158,6 +158,10 @@ settings.tk-multi-loader2.nuke:
     Photoshop Image: [read_node]
     Rendered Image: [read_node]
     Texture: [read_node]
+    Main Plate: [read_node]
+    Element Plate: [read_node]
+    Reference Plate: [read_node]
+    Shot REF: [read_node]
   entities:
   - caption: Assets
     entity_type: Asset

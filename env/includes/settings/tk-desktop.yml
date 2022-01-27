@@ -61,4 +61,5 @@ settings.tk-desktop.project:
     - "*Alias*"
     - "*VRED*"
     name: Automotive Tools
+  show_recents: false
   location: "@engines.tk-desktop.location"
