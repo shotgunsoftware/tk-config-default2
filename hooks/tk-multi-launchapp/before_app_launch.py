@@ -16,12 +16,12 @@ to set environment variables or run scripts as part of the app initialization.
 """
 
 import os
+import sys
 import tank
+
 import sgtk
 logger = sgtk.platform.get_logger(__name__)
 
-NUKE_DEV = "dcc/dev/nuke"
-NUKE_PRIMARY = "dcc/primary/nuke"
 
 class BeforeAppLaunch(tank.Hook):
     """
@@ -52,9 +52,14 @@ class BeforeAppLaunch(tank.Hook):
 
         # you can set environment variables like this:
         # os.environ["MY_SETTING"] = "foo bar"
+
         engine = sgtk.platform.current_engine()
 
         if engine_name == "tk-nuke":
+
+            NUKE_DEV = "dcc/dev/nuke"
+            NUKE_PRIMARY = "dcc/primary/nuke"
+
             if os.environ.get("NUKE_PATH") and os.environ.get("PIPELINE_ROOT"):
                 # set NUKE_PATH here rather than machine level env variables
                 # as that will show operators that the are in an off-pipe Nuke, no menus
