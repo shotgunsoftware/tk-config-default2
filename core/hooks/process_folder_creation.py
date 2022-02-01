@@ -41,7 +41,7 @@ if os.environ.get('PIPELINE_ROOT') and os.path.exists(os.environ['PIPELINE_ROOT'
         logger.debug("SG Tools path set is:{}".format(sgtools_path))
         sys.path.append(sgtools_path)
 
-    from sg_tools.utils.sg_utils import SGFoldersUtils
+from sg_tools.utils.sg_utils import SGFoldersUtils
 
 class ProcessFolderCreation(Hook):
     def execute(self, items, preview_mode, **kwargs):
