@@ -21,24 +21,25 @@ HookClass = sgtk.get_hook_baseclass()
 
 logger = sgtk.platform.get_logger(__name__)
 
-SG_DEV = "sg/tools/dev"
-SG_PRIMARY = "sg/tools/primary"
+SG_TOOLS = "sg"
 
 if os.environ.get('PIPELINE_ROOT') and os.path.exists(os.environ['PIPELINE_ROOT']):
-    sgtools_path = os.path.join(os.environ.get("PIPELINE_ROOT"), SG_PRIMARY)
-    if os.environ.get("PIPELINE_DEV"):
-        sgtools_path = os.path.join(os.environ.get("PIPELINE_ROOT"), SG_PRIMARY)
+
+    sgtools_path = os.path.join(os.environ.get("PIPELINE_ROOT"), SG_TOOLS)
+
+    if os.environ.get("PIPELINE_DEV") and os.environ.get("DEV_ROOT") :
         # Check if there is a true value for this to
         # determine if user is a developer
-        if os.environ.get("DEV_ROOT") and os.path.exists(os.environ.get("DEV_ROOT")):
+        if os.path.exists(os.path.join(os.environ.get("DEV_ROOT"), SG_TOOLS)):
             # DEV_ROOT is the root location of unique development work
             # This should be set by the developer on a local level
-            sgtools_path = os.path.join(os.environ.get("DEV_ROOT"), SG_PRIMARY)
+            sgtools_path = os.path.join(os.environ.get("DEV_ROOT"), SG_TOOLS)
 
     if sgtools_path not in sys.path:
+        nuke.tprint("SG Tools path set is:{}".format(sgtools_path))
         sys.path.append(sgtools_path)
 
-from sg_tools.utils.sg_utils import SGUtils
+    from sg_tools.utils.sg_utils import SGUtils
 
 class SceneOperation(HookClass):
     """
