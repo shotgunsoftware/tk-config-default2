@@ -54,6 +54,7 @@ settings.tk-vred.asset_step:
   render_template: vred_asset_render_work
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: ''}
+  - {app_instance: tk-multi-pythonconsole, name: 'ShotGrid Python Console...'}
   location: "@engines.tk-vred.location"
 
 # project
@@ -69,6 +70,7 @@ settings.tk-vred.project:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   run_at_startup:
   - { app_instance: tk-multi-shotgunpanel, name: '' }
+  - {app_instance: tk-multi-pythonconsole, name: 'ShotGrid Python Console...'}
   location: "@engines.tk-vred.location"
 
 # version for tk-shotgun-launchvredreview
