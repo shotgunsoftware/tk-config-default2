@@ -16,12 +16,12 @@ to set environment variables or run scripts as part of the app initialization.
 """
 
 import os
+import sys
 import tank
+
 import sgtk
 logger = sgtk.platform.get_logger(__name__)
 
-NUKE_DEV = "dcc/dev/nuke"
-NUKE_PRIMARY = "dcc/primary/nuke"
 
 class BeforeAppLaunch(tank.Hook):
     """
@@ -52,21 +52,23 @@ class BeforeAppLaunch(tank.Hook):
 
         # you can set environment variables like this:
         # os.environ["MY_SETTING"] = "foo bar"
+
         engine = sgtk.platform.current_engine()
 
         if engine_name == "tk-nuke":
+
+            DCC_NUKE = "dcc/nuke"
+
             if os.environ.get("NUKE_PATH") and os.environ.get("PIPELINE_ROOT"):
                 # set NUKE_PATH here rather than machine level env variables
                 # as that will show operators that the are in an off-pipe Nuke, no menus
-                nuke_path = os.path.join(os.environ.get("PIPELINE_ROOT"), NUKE_PRIMARY)
-                if os.environ.get("PIPELINE_DEV"):
-                    nuke_path = os.path.join(os.environ.get("PIPELINE_ROOT"), NUKE_DEV)
-                    # Check if there is a true value for this to
-                    # determine if user is a developer
-                    if os.environ.get("DEV_ROOT") and os.path.exists(os.environ.get("DEV_ROOT")):
-                        # DEV_ROOT is the root location of unique development work
-                        # This should be set by the developer on a local level
-                        nuke_path = os.path.join(os.environ.get("DEV_ROOT"), NUKE_DEV)
+                nuke_path = os.path.join(os.environ.get("PIPELINE_ROOT"), DCC_NUKE)
+                if os.environ.get("PIPELINE_DEV") and os.environ.get("DEV_ROOT"):
+                    # Check if user is a developer and DEV_ROOT is
+                    # set and exists on disk
+                    # DEV_ROOT env var should be set by the developer on a local level
+                    if os.path.exists(os.path.join(os.environ.get("DEV_ROOT"),DCC_NUKE)):
+                        nuke_path = os.path.join(os.environ.get("DEV_ROOT"), DCC_NUKE)
 
                 logger.debug("Nuke path set is:{}".format(nuke_path))
                 tank.util.append_path_to_env_var("NUKE_PATH", nuke_path)

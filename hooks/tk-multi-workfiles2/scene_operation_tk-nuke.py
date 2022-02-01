@@ -16,20 +16,30 @@ import sgtk
 
 from sgtk import TankError
 from sgtk.platform.qt import QtGui
-
+from tank.util import append_path_to_env_var
 HookClass = sgtk.get_hook_baseclass()
 
 logger = sgtk.platform.get_logger(__name__)
 
-if os.environ.get('PIPELINE_ROOT') and os.path.exists(os.environ['PIPELINE_ROOT']):
-    sys.path.append(os.environ['PIPELINE_ROOT'])
+SG_TOOLS = "sg"
 
-    if os.environ.get('PIPELINE_DEV'):
-        print("found dev")
-        from sg.tools.dev.sg_tools.utils.sg_utils import SGUtils
-    else:
-        print("found using primary")
-        from sg.tools.primary.sg_tools.utils.sg_utils import SGUtils
+if os.environ.get('PIPELINE_ROOT') and os.path.exists(os.environ['PIPELINE_ROOT']):
+
+    sgtools_path = os.path.join(os.environ.get("PIPELINE_ROOT"), SG_TOOLS)
+
+    if os.environ.get("PIPELINE_DEV") and os.environ.get("DEV_ROOT") :
+        # Check if there is a true value for this to
+        # determine if user is a developer
+        if os.path.exists(os.path.join(os.environ.get("DEV_ROOT"), SG_TOOLS)):
+            # DEV_ROOT is the root location of unique development work
+            # This should be set by the developer on a local level
+            sgtools_path = os.path.join(os.environ.get("DEV_ROOT"), SG_TOOLS)
+
+    if sgtools_path not in sys.path:
+        nuke.tprint("SG Tools path set is:{}".format(sgtools_path))
+        sys.path.append(sgtools_path)
+
+    from sg_tools.utils.sg_utils import SGUtils
 
 class SceneOperation(HookClass):
     """
@@ -141,7 +151,7 @@ class SceneOperation(HookClass):
 
                 # reset all write nodes:
                 self._reset_write_node_render_paths()
-                
+
                 # set frame range on intial save
                 sgu.set_sg_frame_range(sgtk, context)
 
