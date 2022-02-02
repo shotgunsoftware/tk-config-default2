@@ -186,7 +186,7 @@ settings.tk-nuke.shot_step:
   - {app_instance: tk-multi-publish2, name: Publish...}
   favourite_directories:
   - {display_name: Work Files, template_directory: shot_root,  icon: ''}
-  - {display_name: SCANS, template_directory: shot_scan_root,  icon: ''}
+  - {display_name: PLATES, template_directory: shot_plates_root,  icon: ''}
   - {display_name: Renders, template_directory: nuke_shot_render_root,  icon: ''}
   location: "@engines.tk-nuke.location"
 
