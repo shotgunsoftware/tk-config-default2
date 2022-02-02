@@ -27,7 +27,7 @@ paths:
         definition: '@shot_root/nuke'
     # define the location of a publish area
     shot_publish_area_nuke:
-        definition: '@shot_root/publish/nuke'
+        definition: 'Shots/{Sequence}/{Shot}/Review'
     # The location of WIP script files
     nuke_shot_work:
         definition: '@shot_root/nuke/scripts/{Shot}_{task_name}[_{name}]_v{version}[_{increment}].nk'
@@ -36,27 +36,23 @@ paths:
         definition: '@shot_root/nuke/scripts/snapshots/{Shot}_{task_name}[_{name}]_v{version}_{increment}.nk'
     # The location of published nuke script files
     nuke_shot_publish:
-        definition: '@shot_root/publish/nuke/{Shot}_{task_name}[_{name}]_v{version}.nk'
+        definition: '@shot_publish_area_nuke/{task_name}/v{version}/{Shot}_{task_name}[_{name}]_v{version}.nk'
     # write node outputs
     nuke_shot_render_root:
         definition: '@shot_root/renders'
     nuke_shot_render:
         definition: '@shot_root/renders/versions/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.{nuke_extension}'
     nuke_shot_render_pub:
-        definition: '@shot_root/publish/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.{nuke_extension}'
+        definition: '@shot_publish_area_nuke/{task_name}/v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.{nuke_extension}'
     nuke_shot_render_mono_dpx:
         definition: '@shot_root/renders/versions/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.dpx'
     nuke_shot_render_pub_mono_dpx:
-        definition: '@shot_root/publish/versions/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.dpx'
-    nuke_shot_render:
-        definition: '@shot_root/renders/versions/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.exr'
-    nuke_shot_render_pub:
-        definition: '@shot_root/publish/versions/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@shot_publish_area_nuke/{task_name}/v{version}/{width}x{height}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.dpx'
     # review output
     shot_quicktime_quick:
-        definition: '@shot_root/review/quickdaily/{Shot}_{task_name}[_{name}]_{iteration}.mov'
+        definition: '@shot_publish_area_nuke/review/quickdaily/{Shot}_{task_name}[_{name}]_{iteration}.mov'
     nuke_shot_render_movie:
-        definition: '@shot_root/review/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.mov'
+        definition: '@shot_publish_area_nuke/{task_name}/v{version}/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}.mov'
 
     #
     # Asset
@@ -67,12 +63,12 @@ paths:
         definition: '@asset_root/nuke'
     # define the location of a publish area
     asset_publish_area_nuke:
-        definition: '@asset_root/publish'
+        definition: 'Assets/{sg_asset_type}/{Asset}/Review'
     # outputs from the Shotgun Write Node for assets
     nuke_asset_render:
         definition: '@asset_root/renders/versions/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Asset}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.exr'
     nuke_asset_render_pub:
-        definition: '@asset_root/publish/versions/{Shot}_{task_name}[_{name}][_{nuke.output}]_v{version}/{width}x{height}/{Asset}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@asset_publish_area_nuke/{task_name}/v{version}/{width}x{height}/{Asset}_{task_name}[_{name}][_{nuke.output}]_v{version}.{SEQ}.exr'
     # review output
     nuke_asset_render_movie:
         definition: '@asset_root/review/{Asset}_{task_name}[_{name}][_{nuke.output}]_v{version}.mov'
@@ -86,7 +82,7 @@ paths:
         definition: '@asset_root/nuke/scripts/snapshots/{Asset}_{task_name}[_{name}]_v{version}_{increment}.nk'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_root/publish/nuke/{Asset}_{task_name}[_{name}]_v{version}[_{increment}].nk'
+        definition: '@asset_publish_area_nuke/{task_name}/v{version}/{Asset}_{task_name}[_{name}]_v{version}[_{increment}].nk'
 strings:
 
     # when a review Version in Shotgun is created inside of Nuke, this is the
