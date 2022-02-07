@@ -267,6 +267,7 @@ settings.tk-multi-publish2.nuke.asset_step:
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/nuke/collector.py"
   collector_settings:
       Work Template: nuke_asset_work
+  path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/nuke/path_info.py"
   publish_plugins:
   - name: Version for review
     hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
@@ -290,7 +291,7 @@ settings.tk-multi-publish2.nuke.asset_step:
 # shot step
 settings.tk-multi-publish2.nuke.shot_step:
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/nuke/collector.py"
-  path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/general/path_info.py"
+  path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/nuke/path_info.py"
   collector_settings:
       Work Template: nuke_shot_work
   publish_plugins:
