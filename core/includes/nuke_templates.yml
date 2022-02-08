@@ -30,7 +30,7 @@ paths:
         definition: 'Shots/{Sequence}/{Shot}/Review'
     # The location of WIP script files
     nuke_shot_work:
-        definition: '@shot_root/nuke/scripts/{Shot}_{task_name}[_{name}]_v{version}[_{increment}].nk'
+        definition: '@shot_root/nuke/scripts/{Shot}_{task_name}[_{name}]_v{version}.nk'
     # The location of backups of WIP files
     nuke_shot_snapshot:
         definition: '@shot_root/nuke/scripts/snapshots/{Shot}_{task_name}[_{name}]_v{version}_{increment}.nk'
@@ -76,13 +76,13 @@ paths:
         definition: '@asset_root/review/quickdaily/{Asset}[_{name}]_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/nuke/scripts/{Asset}_{task_name}[_{name}]_v{version}[_{increment}].nk'
+        definition: '@asset_root/nuke/scripts/{Asset}_{task_name}[_{name}]_v{version}.nk'
     # The location of backups of WIP files
     nuke_asset_snapshot:
         definition: '@asset_root/nuke/scripts/snapshots/{Asset}_{task_name}[_{name}]_v{version}_{increment}.nk'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_publish_area_nuke/{task_name}/v{version}/{Asset}_{task_name}[_{name}]_v{version}[_{increment}].nk'
+        definition: '@asset_publish_area_nuke/{task_name}/v{version}/{Asset}_{task_name}[_{name}]_v{version}.nk'
 strings:
 
     # when a review Version in Shotgun is created inside of Nuke, this is the
