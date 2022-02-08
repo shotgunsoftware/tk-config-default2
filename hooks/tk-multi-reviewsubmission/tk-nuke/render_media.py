@@ -12,11 +12,11 @@ import sgtk
 import os
 import sys
 import nuke
+import json
 
 from tank_vendor import six
 
 HookBaseClass = sgtk.get_hook_baseclass()
-
 
 class RenderMedia(HookBaseClass):
     """
@@ -27,10 +27,12 @@ class RenderMedia(HookBaseClass):
         super(RenderMedia, self).__init__(*args, **kwargs)
 
         self.__app = self.parent
-
+        self.__sg = self.parent.engine.shotgun
         self._burnin_nk = os.path.join(
             self.__app.disk_location, "resources", "burnin.nk"
         )
+        self._burnin_json = None
+        self._use_burnin_egg = False
 
         tk = sgtk.sgtk_from_path(nuke.Root().name())
         project_context = tk.context_from_entity("Project", self.__app.context.project['id'])
@@ -40,13 +42,17 @@ class RenderMedia(HookBaseClass):
             # Look for project-specific and relatively stored dcc tools
             project_pipeline_root = os.path.join(project_root, 'Pipeline')
             if os.path.exists(project_pipeline_root):
-                reviewsubmission_burnin = os.path.join(project_pipeline_root, 'sg', 'apps', 'tk-multi-reviewsubmission', 'resources', 'burnin.nk')
+                reviewsubmission_burnin = os.path.join(project_pipeline_root, 'sg', 'apps', 'tk-multi-reviewsubmission', 'resources', 'burnin_egg.nk')
                 if os.path.exists(reviewsubmission_burnin):
-                    nuke.tprint("Using this for Nuke review submission: {}".format(project_pipeline_root))
+                    self._use_burnin_egg = True
                     self._burnin_nk = reviewsubmission_burnin
+                    # Also check for accompanying json file with settings
+                    reviewsubmission_burnin_json = os.path.join(project_pipeline_root, 'sg', 'apps', 'tk-multi-reviewsubmission', 'resources', 'burnin_egg.json')
+                    if os.path.exists(reviewsubmission_burnin_json):
+                        self._burnin_json = reviewsubmission_burnin_json
                     break
 
-        nuke.tprint(self._burnin_nk)
+        nuke.tprint("Using this for Nuke review submission: {}".format(self._burnin_nk))
 
         self._font = os.path.join(
             self.__app.disk_location, "resources", "liberationsans_regular.ttf"
@@ -97,89 +103,93 @@ class RenderMedia(HookBaseClass):
         """
         output_node = None
         ctx = self.__app.context
+        if not self._use_burnin_egg:
+            nuke.tprint("Using the SG vanilla burnin.nk")
+            try:
+                # create group where everything happens
+                group = nuke.nodes.Group()
 
-        # create group where everything happens
-        group = nuke.nodes.Group()
+                # now operate inside this group
+                group.begin()
+                # create read node
+                read = nuke.nodes.Read(name="source", file=input_path.replace(os.sep, "/"))
+                read["on_error"].setValue("black")
+                read["first"].setValue(first_frame)
+                read["last"].setValue(last_frame)
+                if color_space:
+                    read["colorspace"].setValue(color_space)
 
-        # now operate inside this group
-        group.begin()
-        try:
-            # create read node
-            read = nuke.nodes.Read(name="source", file=input_path.replace(os.sep, "/"))
-            read["on_error"].setValue("black")
-            read["first"].setValue(first_frame)
-            read["last"].setValue(last_frame)
-            if color_space:
-                read["colorspace"].setValue(color_space)
+                # now create the slate/burnin node
+                burn = nuke.nodePaste(self._burnin_nk)
+                burn.setInput(0, read)
 
-            # now create the slate/burnin node
-            burn = nuke.nodePaste(self._burnin_nk)
-            burn.setInput(0, read)
+                # set the fonts for all text fields
+                burn.node("top_left_text")["font"].setValue(self._font)
+                burn.node("top_right_text")["font"].setValue(self._font)
+                burn.node("bottom_left_text")["font"].setValue(self._font)
+                burn.node("framecounter")["font"].setValue(self._font)
+                burn.node("slate_info")["font"].setValue(self._font)
 
-            # set the fonts for all text fields
-            burn.node("top_left_text")["font"].setValue(self._font)
-            burn.node("top_right_text")["font"].setValue(self._font)
-            burn.node("bottom_left_text")["font"].setValue(self._font)
-            burn.node("framecounter")["font"].setValue(self._font)
-            burn.node("slate_info")["font"].setValue(self._font)
+                # add the logo
+                burn.node("logo")["file"].setValue(self._logo)
 
-            # add the logo
-            burn.node("logo")["file"].setValue(self._logo)
+                # format the burnins
+                version_padding_format = "%%0%dd" % self.__app.get_setting(
+                    "version_number_padding"
+                )
+                version_str = version_padding_format % version
 
-            # format the burnins
-            version_padding_format = "%%0%dd" % self.__app.get_setting(
-                "version_number_padding"
-            )
-            version_str = version_padding_format % version
+                if ctx.task:
+                    version_label = "%s, v%s" % (ctx.task["name"], version_str)
+                elif ctx.step:
+                    version_label = "%s, v%s" % (ctx.step["name"], version_str)
+                else:
+                    version_label = "v%s" % version_str
 
-            if ctx.task:
-                version_label = "%s, v%s" % (ctx.task["name"], version_str)
-            elif ctx.step:
-                version_label = "%s, v%s" % (ctx.step["name"], version_str)
-            else:
-                version_label = "v%s" % version_str
+                burn.node("top_left_text")["message"].setValue(ctx.project["name"])
+                burn.node("top_right_text")["message"].setValue(ctx.entity["name"])
+                burn.node("bottom_left_text")["message"].setValue(version_label)
 
-            burn.node("top_left_text")["message"].setValue(ctx.project["name"])
-            burn.node("top_right_text")["message"].setValue(ctx.entity["name"])
-            burn.node("bottom_left_text")["message"].setValue(version_label)
+                # and the slate
+                slate_str = "Project: %s\n" % ctx.project["name"]
+                slate_str += "%s: %s\n" % (ctx.entity["type"], ctx.entity["name"])
+                slate_str += "Name: %s\n" % name.capitalize()
+                slate_str += "Version: %s\n" % version_str
 
-            # and the slate
-            slate_str = "Project: %s\n" % ctx.project["name"]
-            slate_str += "%s: %s\n" % (ctx.entity["type"], ctx.entity["name"])
-            slate_str += "Name: %s\n" % name.capitalize()
-            slate_str += "Version: %s\n" % version_str
+                if ctx.task:
+                    slate_str += "Task: %s\n" % ctx.task["name"]
+                elif ctx.step:
+                    slate_str += "Step: %s\n" % ctx.step["name"]
 
-            if ctx.task:
-                slate_str += "Task: %s\n" % ctx.task["name"]
-            elif ctx.step:
-                slate_str += "Step: %s\n" % ctx.step["name"]
+                slate_str += "Frames: %s - %s\n" % (first_frame, last_frame)
 
-            slate_str += "Frames: %s - %s\n" % (first_frame, last_frame)
+                burn.node("slate_info")["message"].setValue(slate_str)
 
-            burn.node("slate_info")["message"].setValue(slate_str)
+                # create a scale node
+                scale = self.__create_scale_node(width, height)
+                scale.setInput(0, burn)
 
-            # create a scale node
-            scale = self.__create_scale_node(width, height)
-            scale.setInput(0, burn)
+                # Create the output node
+                output_node = self.__create_output_node(output_path)
+                output_node.setInput(0, scale)
+            finally:
+                group.end()
 
-            # Create the output node
-            output_node = self.__create_output_node(output_path)
-            output_node.setInput(0, scale)
-        finally:
-            group.end()
+            if output_node:
+                # Make sure the output folder exists
+                output_folder = os.path.dirname(output_path)
+                self.__app.ensure_folder_exists(output_folder)
 
-        if output_node:
-            # Make sure the output folder exists
-            output_folder = os.path.dirname(output_path)
-            self.__app.ensure_folder_exists(output_folder)
+                # Render the outputs, first view only
+                nuke.executeMultiple(
+                    [output_node], ([first_frame - 1, last_frame, 1],), [nuke.views()[0]]
+                )
 
-            # Render the outputs, first view only
-            nuke.executeMultiple(
-                [output_node], ([first_frame - 1, last_frame, 1],), [nuke.views()[0]]
-            )
-
-        # Cleanup after ourselves
-        nuke.delete(group)
+            # Cleanup after ourselves
+            nuke.delete(group)
+        else:
+            nuke.tprint("Using EGG custom burnin")
+            self.__render_custom(ctx, input_path, output_path, first_frame,last_frame,version,name,color_space)
 
         return output_path
 
@@ -217,10 +227,16 @@ class RenderMedia(HookBaseClass):
 
         node = nuke.nodes.Write(file_type=wn_settings.get("file_type"))
 
+        wn_settings.get("mov64_codec")
+        # set codec
+        try:
+            node.knob("mov64_codec").setValue(wn_settings.get("mov64_codec"))
+        except:
+            pass
         # apply any additional knob settings provided by the hook. Now that the knob has been
         # created, we can be sure specific file_type settings will be valid.
         for knob_name, knob_value in six.iteritems(wn_settings):
-            if knob_name != "file_type":
+            if knob_name != "file_type" or "mov64_codec":
                 node.knob(knob_name).setValue(knob_value)
 
         # Don't fail if we're in proxy mode. The default Nuke publish will fail if
@@ -263,6 +279,21 @@ class RenderMedia(HookBaseClass):
             if nuke.NUKE_VERSION_MAJOR >= 9:
                 # Nuke 9.0v1 removed ffmpeg and replaced it with the mov64 writer
                 # http://help.thefoundry.co.uk/nuke/9.0/#appendices/appendixc/supported_file_formats.html
+                if self._burnin_json:
+                    nuke.tprint("Found JSON {}".format(self._burnin_json))
+                    burnin_settings_data = None
+                    # Apply settings from json
+                    with open(self._burnin_json, encoding='utf-8') as input_file:
+                        burnin_settings_data = json.load(input_file)
+                    if burnin_settings_data and burnin_settings_data.get('writenode'):
+                        for knob_name, knob_value in six.iteritems(burnin_settings_data['writenode']):
+                            settings[knob_name] = knob_value
+                            # nuke.tprint("{}: {}".format(knob_name, knob_value))
+                            # node.knob(knob_name).setValue(knob_value)
+                            # settings = burnin_settings_data['writenode']
+                        nuke.tprint(settings)
+                        return settings
+
                 settings["file_type"] = "mov64"
                 settings["mov64_codec"] = "jpeg"
                 settings["mov64_quality_max"] = "3"
@@ -272,3 +303,84 @@ class RenderMedia(HookBaseClass):
                 settings["format"] = "MOV format (mov)"
 
         return settings
+
+    def __render_custom(self,
+        ctx,
+        input_path,
+        output_path,
+        first_frame,
+        last_frame,
+        version,
+        name,
+        color_space
+    ):
+
+        if ctx.entity["type"] == "Shot":
+            shot_data = self.__sg.find_one(
+                ctx.entity["type"],
+                [
+                    ["id", "is", ctx.entity["id"]],
+                ],
+                ["sg_shot_lens"]
+            )
+        try:
+            # create group where everything happens
+            group = nuke.nodes.Group()
+
+            # now operate inside this group
+            group.begin()
+            # create read node
+            read = nuke.nodes.Read(name="source", file=input_path.replace(os.sep, "/"))
+            read["on_error"].setValue("black")
+            read["first"].setValue(first_frame)
+            read["last"].setValue(last_frame)
+
+            if color_space:
+                nuke.tprint(color_space)
+                read["colorspace"].setValue(color_space)
+
+            # now create the slate/burnin node
+            burn = nuke.nodePaste(self._burnin_nk)
+            burn.setInput(0, read)
+
+            # format the burnins
+            version_padding_format = "%%0%dd" % self.__app.get_setting(
+                "version_number_padding"
+            )
+            version_str = version_padding_format % version
+
+            if ctx.task:
+                version_name = "{}_{}_v{}".format(ctx.entity["name"], ctx.task["name"], version_str)
+            elif ctx.step:
+                version_name = "{}_{}_v{}".format(ctx.entity["name"], ctx.step["name"], version_str)
+
+
+            burn['version_name'].setValue(version_name)
+            burn['internal_version'].setValue(version_name)
+
+            if ctx.user['name']:
+                burn['sg_user'].setValue(ctx.user['name'])
+                burn.node('Artist')['message'].setValue('[value parent.sg_user]')
+            if shot_data.get('sg_shot_lens'):
+                burn['sg_lens'].setValue(shot_data['sg_shot_lens'])
+                burn.node('Lens2')['message'].setValue('[value parent.sg_lens]')
+
+            # Create the output node
+            output_node = self.__create_output_node(output_path)
+            output_node.setInput(0, burn)
+
+        finally:
+            group.end()
+
+        if output_node:
+            # Make sure the output folder exists
+            output_folder = os.path.dirname(output_path)
+            self.__app.ensure_folder_exists(output_folder)
+
+            # Render the outputs, first view only
+            nuke.executeMultiple(
+                [output_node], ([first_frame - 1, last_frame, 1],), [nuke.views()[0]]
+            )
+
+        # Cleanup after ourselves
+        # nuke.delete(group)
