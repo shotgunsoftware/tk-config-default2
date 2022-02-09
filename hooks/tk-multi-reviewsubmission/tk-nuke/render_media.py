@@ -393,4 +393,4 @@ class RenderMedia(HookBaseClass):
             )
 
         # Cleanup after ourselves
-        # nuke.delete(group)
+        nuke.delete(group)
