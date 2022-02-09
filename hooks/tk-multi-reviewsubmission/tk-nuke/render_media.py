@@ -365,10 +365,13 @@ class RenderMedia(HookBaseClass):
                 burn['sg_lens'].setValue(shot_data['sg_shot_lens'])
                 burn.node('Lens2')['message'].setValue('[value parent.sg_lens]')
 
+            # set color paths
+            burn['auto_load_lut'].execute()
+
             # Create the output node
             output_node = self.__create_output_node(output_path)
             output_node.setInput(0, burn)
-
+            
         finally:
             group.end()
 
