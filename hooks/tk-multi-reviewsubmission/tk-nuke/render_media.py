@@ -51,6 +51,13 @@ class RenderMedia(HookBaseClass):
                     if os.path.exists(reviewsubmission_burnin_json):
                         self._burnin_json = reviewsubmission_burnin_json
                     break
+        
+        for entity_path in self.__app.context.filesystem_locations:
+            if entity_path in nuke.Root().name():
+                entity_reviewsubmission_burnin = os.path.join(entity_path, 'Review', 'resources', 'burnin_egg.nk')
+                if os.path.exists(entity_reviewsubmission_burnin):
+                           self._burnin_nk = entity_reviewsubmission_burnin
+                           break
 
         nuke.tprint("Using this for Nuke review submission: {}".format(self._burnin_nk))
 
