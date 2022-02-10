@@ -295,10 +295,6 @@ class RenderMedia(HookBaseClass):
                     if burnin_settings_data and burnin_settings_data.get('writenode'):
                         for knob_name, knob_value in six.iteritems(burnin_settings_data['writenode']):
                             settings[knob_name] = knob_value
-                            # nuke.tprint("{}: {}".format(knob_name, knob_value))
-                            # node.knob(knob_name).setValue(knob_value)
-                            # settings = burnin_settings_data['writenode']
-                        nuke.tprint(settings)
                         return settings
 
                 settings["file_type"] = "mov64"
@@ -343,8 +339,20 @@ class RenderMedia(HookBaseClass):
             read["last"].setValue(last_frame)
 
             if color_space:
-                nuke.tprint(color_space)
                 read["colorspace"].setValue(color_space)
+
+            if self._burnin_json:
+                burnin_settings_data = None
+                # Apply settings from json
+                with open(self._burnin_json, encoding='utf-8') as input_file:
+                    burnin_settings_data = json.load(input_file)
+                if burnin_settings_data and burnin_settings_data.get('readnode'):
+                    for knob_name, knob_value in six.iteritems(burnin_settings_data['readnode']):
+                        try:
+                            read[knob_name].setValue(knob_value)
+                            nuke.tprint("Read node setting: {}: {}".format(knob_name,knob_value))
+                        except:
+                            nuke.tprint("Issue with applying the value {} to Read knob {}".format(knob_value, knob_name))
 
             # now create the slate/burnin node
             burn = nuke.nodePaste(self._burnin_nk)
