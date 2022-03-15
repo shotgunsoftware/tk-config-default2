@@ -17,6 +17,10 @@ includes:
 ################################################################################
 # location descriptors for apps used in this configuration
 
+apps.tk-multi-batchprocess.location:
+  type: dev
+  path: Y:\SGTK\devs\tk-multi-batchprocess
+
 # ---- Multi apps
 
 # about
@@ -45,9 +49,11 @@ apps.tk-multi-loader2.location:
   name: tk-multi-loader2
   version: v1.21.1
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.6.1
+#  type: app_store
+#  name: tk-multi-publish2
+#  version: v2.6.1
+  type: dev
+  path: Y:\SGTK\devs\tk-multi-publish2
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole

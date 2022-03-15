@@ -27,9 +27,11 @@ engines.tk-aftereffects.location:
   name: tk-aftereffects
   version: v0.3.1
 engines.tk-alias.location:
-  type: app_store
-  name: tk-alias
-  version: v2.1.2
+#  type: app_store
+#  name: tk-alias
+#  version: v2.1.2
+  type: dev
+  path: Y:\SGTK\devs\tk-alias
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -51,9 +53,11 @@ engines.tk-mari.location:
   name: tk-mari
   version: v1.3.3
 engines.tk-maya.location:
-  type: app_store
-  name: tk-maya
-  version: v0.11.2
+#  type: app_store
+#  name: tk-maya
+#  version: v0.11.2
+  type: dev
+  path: Y:\SGTK\devs\tk-maya
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
