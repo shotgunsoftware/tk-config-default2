@@ -19,33 +19,33 @@ import time
 # find SSVFX/Deadline plugins
 log = sgtk.LogManager.get_logger(__name__)
 
-# try:
-#     ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
-#     if os.path.exists(ssvfx_script_path):
-#         pipeline_root = "C:\\Users\\shotgunadmin\\Scripts"
-#     else:
-#         if "SSVFX_PIPELINE" in os.environ.keys():
-#             pipeline_root =  os.environ["SSVFX_PIPELINE"]
-#             ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
-#             if os.path.exists(ssvfx_script_path):
-#                 pass
-#             else:
-#                 log.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
-#             log.debug("Found env var path: %s" %(ssvfx_script_path,))
-#         else:
-#             log.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
-#             pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
-#             ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
-#
-#     sys.path.append(ssvfx_script_path)
-#     from thinkbox.deadline import deadline_manager
-#     from thinkbox.deadline import deadline_submission3
-#     from general.file_functions import file_strings
-#     from general.data_management import json_manager
-#     from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
-#     from shotgun import shotgun_utilities
-# except:
-#     raise Exception("Could not load on of the studio modules!")
+try:
+    ssvfx_script_path = ""#C:\\Users\\shotgunadmin\\Scripts\\Pipeline\\ssvfx_scripts"
+    if os.path.exists(ssvfx_script_path):
+        pipeline_root = "C:\\Users\\shotgunadmin\\Scripts"
+    else:
+        if "SSVFX_PIPELINE" in os.environ.keys():
+            pipeline_root =  os.environ["SSVFX_PIPELINE"]
+            ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
+            if os.path.exists(ssvfx_script_path):
+                pass
+            else:
+                log.debug("!!!!!! Could not find %s" %(ssvfx_script_path,))
+            log.debug("Found env var path: %s" %(ssvfx_script_path,))
+        else:
+            log.debug("SSVFX_PIPELINE not in env var keys. Using explicit")
+            pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
+            ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
+
+    sys.path.append(ssvfx_script_path)
+    from thinkbox.deadline import deadline_manager
+    from thinkbox.deadline import deadline_submission3
+    from general.file_functions import file_strings
+    from general.data_management import json_manager
+    from software.nuke.nuke_command_line  import nuke_cmd_functions as ncmd
+    from shotgun import shotgun_utilities
+except:
+    raise Exception("Could not load on of the studio modules!")
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
