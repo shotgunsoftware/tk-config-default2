@@ -48,7 +48,6 @@ frameworks:
       version: v2.10.0
       type: app_store
       name: tk-framework-qtwidgets
-
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
@@ -62,7 +61,6 @@ frameworks:
       version: v5.8.1
       type: app_store
       name: tk-framework-shotgunutils
-
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
@@ -83,7 +81,6 @@ frameworks:
       version: v0.2.0
       type: app_store
       name: tk-framework-desktopclient
-
   # lmv - provides LMV conversion tools
   tk-framework-lmv_v0.x.x:
     location:
