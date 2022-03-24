@@ -491,7 +491,7 @@ settings.tk-multi-publish2.alias.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
       Work Template: alias_asset_work
-      Batch Processing: True
+      Background Processing: True
   publish_plugins:
    - name: Publish to ShotGrid
      hook: "{self}/publish_file.py"
@@ -506,14 +506,14 @@ settings.tk-multi-publish2.alias.asset_step:
      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
      settings:
        Publish Template: alias_asset_publish
-   - name: Create 3D Version for Review
-     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
-     settings:
-       3D Version: True
-   - name: Publish CATPart to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_catpart_publish
+#   - name: Create 3D Version for Review
+#     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+#     settings:
+#       3D Version: True
+#   - name: Publish CATPart to ShotGrid
+#     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+#     settings:
+#       Publish Template: alias_asset_catpart_publish
 #   - name: Publish Variants to ShotGrid
 #     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_variants.py"
 #     settings: {}

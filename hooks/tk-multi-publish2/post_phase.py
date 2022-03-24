@@ -17,46 +17,74 @@ HookBaseClass = sgtk.get_hook_baseclass()
 
 
 class PostPhase(HookBaseClass):
-    def post_publish(self, tree):
-        """"""
+    """
+    This hook defines methods that are executed after each phase of a publish: validation, publish, and finalization.
+    Each method receives the PublishTree tree instance being used by the publisher,
+    giving full control to further curate the publish tree including the publish items and the tasks attached to them.
+    See the PublishTree documentation for additional details on how to traverse the tree and manipulate it.
+    """
+
+    def post_publish(self, publish_tree):
+        """
+        This method is executed after the publish pass has completed for each
+        item in the tree, before the finalize pass.
+
+        A :ref:`publish-api-tree` instance representing the items that were
+        published is supplied as an argument. The tree can be traversed in this
+        method to inspect the items and process them collectively.
+
+        To glean information about the publish state of particular items, you
+        can iterate over the items in the tree and introspect their
+        :py:attr:`~.api.PublishItem.properties` dictionary. This requires
+        customizing your publish plugins to populate any specific publish
+        information that you want to process collectively here.
+
+        .. warning:: You will not be able to use the item's
+            :py:attr:`~.api.PublishItem.local_properties` in this hook since
+            :py:attr:`~.api.PublishItem.local_properties` are only accessible
+            during the execution of a publish plugin.
+
+        :param publish_tree: The :ref:`publish-api-tree` instance representing
+            the items to be published.
+        """
+
+        # ------------------------------------------------------------------------
+        # Manage background publishing process
+        # ------------------------------------------------------------------------
 
         monitor_data = {"items": []}
 
         current_engine = sgtk.platform.current_engine()
-        batch_app = current_engine.apps.get("tk-multi-batchprocess")
+        bg_publish_app = current_engine.apps.get("tk-multi-bg-publish")
 
-        batch_processing = tree.root_item.properties.get("batch_processing")
-        in_batch_process = tree.root_item.properties.get("in_batch_process")
+        bg_processing = publish_tree.root_item.properties.get("bg_processing")
+        in_bg_process = publish_tree.root_item.properties.get("in_bg_process")
 
-        if not batch_processing or in_batch_process:
+        # we only want to run the actions if we're going to publish in background but we're not already in the
+        # background publishing process
+        if not bg_processing or in_bg_process:
             return
 
-        tmp_folder = os.path.join(tempfile.gettempdir(), "sgtk_batch_publish")
-        if not os.path.exists(tmp_folder):
-            os.makedirs(tmp_folder)
-        fp = tempfile.NamedTemporaryFile(
-            prefix="publish_tree", suffix=".yml", dir=tmp_folder, delete=False
-        )
-        fp.close()
-        self.__TREE_FILE_PATH = fp.name
-        monitor_file_path = self.__TREE_FILE_PATH.replace(".yml", "_monitor.yml")
-
-        # we need to modify the publish tree in order to add extra settings and properties
-        for item in tree:
+        # modify the publish tree in order to add a new property/setting on the fly in order to give
+        # the item/task a unique identifier
+        # this will be very useful to track the tasks progress on the monitor side
+        # we can't rely on names here as some items/tasks can have the same name
+        # at the same time, start to build the monitor tree
+        for item in publish_tree:
 
             item_uuid = str(uuid.uuid4())
             item_data = {
                 "name": item.name,
                 "uuid": item_uuid,
-                "status": batch_app.constants.WAITING_TO_START,
+                "status": bg_publish_app.constants.WAITING_TO_START,
                 "tasks": [],
             }
 
             for task in item.tasks:
-
                 if task.active:
 
-                    # get the first setting we can find to copy it in order to create new settings
+                    # get the first setting we can find
+                    # we'll use it to create a new setting and make sure everything is correctly setup
                     first_setting = next(iter(task.settings.values()))
 
                     uuid_settings = copy.deepcopy(first_setting)
@@ -71,7 +99,7 @@ class PostPhase(HookBaseClass):
                         {
                             "name": task.name,
                             "uuid": uuid_settings.value,
-                            "status": batch_app.constants.WAITING_TO_START,
+                            "status": bg_publish_app.constants.WAITING_TO_START,
                         }
                     )
 
@@ -79,23 +107,63 @@ class PostPhase(HookBaseClass):
                 item.properties.uuid = item_uuid
                 monitor_data["items"].append(item_data)
 
-        tree.save_file(self.__TREE_FILE_PATH)
+        # get the path to the folder where all the files used by the background publishing process will be stored
+        root_folder_path = os.path.join(
+            bg_publish_app.cache_location, current_engine.name
+        )
+        if not os.path.exists(root_folder_path):
+            os.makedirs(root_folder_path)
+        tmp_folder_path = tempfile.mkdtemp(dir=root_folder_path)
+
+        # build the path to these files
+        self.__TREE_FILE_PATH = os.path.join(tmp_folder_path, "publish_tree.yml")
+        monitor_file_path = os.path.join(tmp_folder_path, "monitor.yml")
+
+        # finally, save the publish tree and the monitor data to the files
+        publish_tree.save_file(self.__TREE_FILE_PATH)
         with open(monitor_file_path, "w+") as fp:
             yaml.safe_dump(monitor_data, fp)
 
         self.logger.info(
-            "Publish tree have been saved on disk.",
-            extra={"action_show_folder": {"path": tmp_folder}},
+            "Background Publish files have been saved on disk.",
+            extra={"action_show_folder": {"path": tmp_folder_path}},
         )
 
-    def post_finalize(self, tree):
-        """"""
+        # ------------------------------------------------------------------------
 
-        batch_processing = tree.root_item.properties.get("batch_processing")
-        in_batch_process = tree.root_item.properties.get("in_batch_process")
+    def post_finalize(self, publish_tree):
+        """
+        This method is executed after the finalize pass has completed for each
+        item in the tree.
 
-        if batch_processing and not in_batch_process:
+        A :ref:`publish-api-tree` instance representing the items that were
+        published and finalized is supplied as an argument. The tree can be
+        traversed in this method to inspect the items and process them
+        collectively.
+
+        To glean information about the finalize state of particular items, you
+        can iterate over the items in the tree and introspect their
+        :py:attr:`~.api.PublishItem.properties` dictionary. This requires
+        customizing your publish plugins to populate any specific finalize
+        information that you want to process collectively here.
+
+        .. warning:: You will not be able to use the item's
+            :py:attr:`~.api.PublishItem.local_properties` in this hook since
+            :py:attr:`~.api.PublishItem.local_properties` are only accessible
+            during the execution of a publish plugin.
+
+        :param publish_tree: The :ref:`publish-api-tree` instance representing
+            the items to be published.
+        """
+
+        bg_processing = publish_tree.root_item.properties.get("bg_processing")
+        in_bg_process = publish_tree.root_item.properties.get("in_bg_process")
+
+        # we only want to run the actions if we're going to publish in background mode but we're not already in the
+        # background publishing process
+        if bg_processing and not in_bg_process:
             current_engine = sgtk.platform.current_engine()
-            batch_app = current_engine.apps.get("tk-multi-batchprocess")
-            batch_app.launch_publish_process(self.__TREE_FILE_PATH)
-            batch_app.create_panel()
+            bg_publish_app = current_engine.apps.get("tk-multi-bg-publish")
+            # launch the background publishing process and show the monitor app
+            bg_publish_app.launch_publish_process(self.__TREE_FILE_PATH)
+            bg_publish_app.create_panel()

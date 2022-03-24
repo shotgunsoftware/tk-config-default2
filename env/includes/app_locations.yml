@@ -17,9 +17,9 @@ includes:
 ################################################################################
 # location descriptors for apps used in this configuration
 
-apps.tk-multi-batchprocess.location:
+apps.tk-multi-bg-publish.location:
   type: dev
-  path: Y:\SGTK\devs\tk-multi-batchprocess
+  path: Y:\SGTK\devs\tk-multi-bg-publish
 
 # ---- Multi apps
 

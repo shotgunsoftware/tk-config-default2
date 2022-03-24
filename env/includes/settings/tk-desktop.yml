@@ -31,8 +31,6 @@ settings.tk-desktop.project:
   apps:
     tk-multi-pythonconsole:
       location: "@apps.tk-multi-pythonconsole.location"
-    tk-multi-batchprocess:
-      location: "@apps.tk-multi-batchprocess.location"
     tk-multi-devutils:
       location: "@apps.tk-multi-devutils.location"
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
