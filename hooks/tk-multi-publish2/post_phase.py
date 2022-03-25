@@ -83,22 +83,24 @@ class PostPhase(HookBaseClass):
             for task in item.tasks:
                 if task.active:
 
-                    # get the first setting we can find
-                    # we'll use it to create a new setting and make sure everything is correctly setup
-                    first_setting = next(iter(task.settings.values()))
-
-                    uuid_settings = copy.deepcopy(first_setting)
-                    uuid_settings.default_value = None
-                    uuid_settings.description = "UUID of the current task"
-                    uuid_settings.name = "Task UUID"
-                    uuid_settings.type = "str"
-                    uuid_settings.value = str(uuid.uuid4())
-                    task.settings["Task UUID"] = uuid_settings
+                    # as we can't create a PublishSetting object using the Publish API, convert the task to a dict then
+                    # add the new setting to finally reset the task from the dict
+                    uuid_setting = {
+                        "name": "Task UUID",
+                        "type": "str",
+                        "default_value": None,
+                        "description": "UUID of the current task",
+                        "value": str(uuid.uuid4()),
+                    }
+                    dummy_task_dict = task.to_dict()
+                    dummy_task_dict["settings"]["Task UUID"] = uuid_setting
+                    dummy_task = task.from_dict(dummy_task_dict, None)
+                    task.settings["Task UUID"] = dummy_task.settings["Task UUID"]
 
                     item_data["tasks"].append(
                         {
                             "name": task.name,
-                            "uuid": uuid_settings.value,
+                            "uuid": uuid_setting["value"],
                             "status": bg_publish_app.constants.WAITING_TO_START,
                         }
                     )
