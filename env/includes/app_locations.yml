@@ -103,7 +103,7 @@ apps.tk-hiero-export.location:
 apps.tk-hiero-openinshotgun.location:
   type: app_store
   name: tk-hiero-openinshotgun
-  version: v0.4.1
+  version: v0.4.2
 apps.tk-houdini-alembicnode.location:
   type: app_store
   name: tk-houdini-alembicnode
