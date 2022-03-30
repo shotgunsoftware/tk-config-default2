@@ -53,7 +53,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.11.3
+  version: v0.11.4
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
