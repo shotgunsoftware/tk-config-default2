@@ -52,7 +52,10 @@ class PostPhase(HookBaseClass):
         # Manage background publishing process
         # ------------------------------------------------------------------------
 
-        monitor_data = {"items": []}
+        monitor_data = {
+            "items": [],
+            "session_name": publish_tree.root_item.properties.get("session_name", ""),
+        }
 
         current_engine = sgtk.platform.current_engine()
         bg_publish_app = current_engine.apps.get("tk-multi-bg-publish")
@@ -78,6 +81,7 @@ class PostPhase(HookBaseClass):
                 "uuid": item_uuid,
                 "status": bg_publish_app.constants.WAITING_TO_START,
                 "tasks": [],
+                "is_parent_root": item.parent.is_root,
             }
 
             for task in item.tasks:
