@@ -172,7 +172,6 @@ settings.tk-multi-publish2.maya.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
       Work Template: maya_asset_work
-      Batch Processing: True
   publish_plugins:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
@@ -191,7 +190,6 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
     settings:
         Publish Template: asset_alembic_cache
-  post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
