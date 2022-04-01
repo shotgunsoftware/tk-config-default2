@@ -27,11 +27,10 @@ engines.tk-aftereffects.location:
   name: tk-aftereffects
   version: v0.3.1
 engines.tk-alias.location:
-#  type: app_store
-#  name: tk-alias
-#  version: v2.1.2
-  type: dev
-  path: Y:\SGTK\devs\tk-alias
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-alias.git
+  branch: SHOT-3863-factorize-publish-hooks
+  version: b061095
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -53,11 +52,9 @@ engines.tk-mari.location:
   name: tk-mari
   version: v1.3.3
 engines.tk-maya.location:
-#  type: app_store
-#  name: tk-maya
-#  version: v0.11.2
-  type: dev
-  path: Y:\SGTK\devs\tk-maya
+  type: app_store
+  name: tk-maya
+  version: v0.11.2
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
@@ -79,6 +76,7 @@ engines.tk-shotgun.location:
   name: tk-shotgun
   version: v0.10.1
 engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v2.1.2
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-vred.git
+  branch: SHOT-3863-factorize-publish-hooks
+  version: "9349679"
