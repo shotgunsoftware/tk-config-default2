@@ -10,7 +10,7 @@ jobs:
     - run: echo "This job is running on a ${{ runner.os }} server."
     - run: echo "This job will update the 4ejaars_source branch."
     - uses: actions/checkout@v2
-      with: 
+      with:
         ref: 4ejaars_source
     - run: git config user.name github-actions
     - run: git config user.email github-actions@github.com
@@ -37,3 +37,20 @@ jobs:
     - run: git add .
     - run: git status
     - run: git push
+  update-2ejaars_source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "This job is running on a ${{ runner.os }} server."
+      - run: echo "This job will update the 2ejaars_source branch."
+      - uses: actions/checkout@v2
+        with:
+          ref: 2ejaars_source
+      - run: git config user.name github-actions
+      - run: git config user.email github-actions@github.com
+      - run: git config pull.rebase false
+      - run: git fetch origin master
+      - run: git merge -s recursive -X theirs origin/master --allow-unrelated-histories
+      - run: git add .
+      - run: git status
+      - run: git push
