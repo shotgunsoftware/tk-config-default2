@@ -502,7 +502,10 @@ paths:
     shot_render_process_version_exr:
         definition: '@render_root/{task_name}/{Shot}_v{version}/{Shot}_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
-
+    # RETIME FCURVE EXPORTS
+    shot_retime_curve:
+            definition: '@shot_context/export/retime/{Shot}[_{name}]_v{version}.txt'
+            root_name: 'project_pipeline'
 
     # global shot root locations for the different locations to save to
     shot_render_test_global:

@@ -17,11 +17,11 @@
 engines.tk-3dsmaxplus.location:
   type: app_store
   name: tk-3dsmaxplus
-  version: v0.5.11
+  version: v0.6.0
 engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
-  version: v1.1.6
+  version: v1.2.0
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
@@ -29,7 +29,7 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.1.0
+  version: v2.1.1
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -41,7 +41,7 @@ engines.tk-desktop2.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.16.5
+  version: v1.17.0
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
@@ -77,4 +77,4 @@ engines.tk-shotgun.location:
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
-  version: v2.1.0
+  version: v2.1.1
