@@ -14,6 +14,7 @@ import sys
 import re
 import nuke
 import sgtk
+from nukepy.utils import nuke_utils as nutils
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -23,6 +24,12 @@ _NUKE_OUTPUTS = {
     "WriteGeo": "file",
 }
 
+if "win" in sys.platform:
+    system_path_variable = "windows_path"
+    system_root_variable = "local_path_windows"
+elif sys.platform == "linux":
+    system_path_variable = "linux_path"
+    system_root_variable = "local_path_linux"
 
 class NukeSessionCollector(HookBaseClass):
     """
@@ -72,174 +79,48 @@ class NukeSessionCollector(HookBaseClass):
         return collector_settings
 
     @property
-    def project_info(self):
-        """
-        A dictionary of relative Project info that is taken from SG Project page
-        """
-
+    def user_info(self):
         publisher = self.parent
         ctx = publisher.engine.context
-        proj_info = publisher.shotgun.find_one("Project", 
-                                            [['id', 'is', ctx.project['id']]], 
-                                            ['name',
-                                            'id',
-                                            'sg_root',
-                                            'sg_status',
-                                            'sg_date_format',
-                                            'sg_short_name',
-                                            'sg_frame_rate', 
-                                            'sg_vendor_id',
-                                            'sg_frame_handles',
-                                            'sg_data_type',
-                                            'sg_format_width',
-                                            'sg_format_height',
-                                            'sg_delivery_slate_count',
-                                            'sg_client_version_submission',
-                                            'sg_incoming_plate_jpg_',
-                                            'sg_delivery_default_process',
-                                            'sg_incoming_fileset_padding',
-                                            'sg_proxy_format_ratio',
-                                            'sg_format_pixel_aspect_ratio',
-                                            'sg_lut',
-                                            'sg_version_zero_lut',
-                                            'sg_version_zero_slate',
-                                            'sg_version_zero_internal_burn_in',
-                                            'sg_burnin_frames_format',
-                                            'sg_delivery_qt_dual_lut',
-                                            'sg_delivery_format_width',
-                                            'sg_delivery_format_height',
-                                            'sg_delivery_reformat_filter',
-                                            'sg_delivery_fileset_padding',
-                                            'sg_delivery_fileset_slate',
-                                            'sg_zip_fileset_delivery',
-                                            'sg_pixel_aspect_ratio',
-                                            'sg_reformat_plates_to_deliverable',
-                                            'sg_delivery_fileset',
-                                            'sg_delivery_fileset_compression',
-                                            'sg_delivery_qt_bitrate',
-                                            'sg_delivery_qt_slate',
-                                            'sg_delivery_burn_in',
-                                            'sg_delivery_qt_codecs',
-                                            'sg_delivery_qt_formats',
-                                            'sg_delivery_folder_structure',
-                                            'sg_color_space',
-                                            'sg_project_color_management',
-                                            'sg_project_color_management_config',
-                                            'sg_timecode',
-                                            'sg_upload_qt_formats',
-                                            'sg_review_qt_codecs',
-                                            'sg_review_burn_in',
-                                            'sg_review_qt_slate',
-                                            'sg_review_qt_formats',
-                                            'sg_slate_frames_format',
-                                            'sg_frame_leader',
-                                            'sg_review_lut',
-                                            'sg_type',
-                                            'tank_name',
-                                            'sg_3d_settings']
-        )     
-        proj_info.update({'artist_name' : ctx.user['name']})
-
-        formats = publisher.shotgun.find("CustomNonProjectEntity01",
-        [],
-        ['code',
-        'sg_format_height',
-        'sg_format_width',
-        ])
-        proj_info.update({'formats' : formats})
-
-        local_storage = publisher.shotgun.find("LocalStorage",
-        [],
-        ["code",
-        "windows_path",
-        "linux_path",
-        "mac_path"])
-        
-        if "win" in sys.platform:
-            path_root = "windows_path"
-            sg_root = "local_path_windows"
-        elif sys.platform == "linux":
-            path_root = "linux_path"
-            sg_root = "local_path_linux"
-
-        local_storage_match = next((ls for ls in local_storage if ls[path_root] in proj_info['sg_root'][sg_root]), None)
-        proj_info['local_storage'] = local_storage_match
-
-        if proj_info['sg_3d_settings']:
-            sg_3d_settings = publisher.shotgun.find("CustomNonProjectEntity03",
-            [],
-            ['code',
-            'sg_primary_render_layer',
-            'sg_additional_render_layers',
-            'sg_render_engine',
-            ])
-
-            proj_info.update({'sg_3d_settings' : sg_3d_settings})
-
-        return proj_info         
-    
-    @property
-    def step_fields(self):
-
-        search_fields = [
-            'id', 
-            'code', 
-            'sg_department',
-            'sg_publish_to_shotgun', 
-            'sg_version_for_review', 
-            'sg_slap_comp', 
-            'sg_review_process_type', 
-            'entity_type',
-            ]
-        return search_fields
-
-    @property
-    def step_info(self):
-        '''
-        A collector that gathers all existing pipeline steps to build 2 lists:
-        1) publish_codes: the names of all steps that should be published to Shotgun*
-        2) version_codes: the names of all steps that should publish review versions
-        3) sg_slap_comp: option to create a slap comp Version for review
-
-        *publish_codes also includes all SSVFX Shotgun WriteNode render types
-        ** This needs to be hand-coded at the moment. Sorry...
-        '''
-
-        publisher = self.parent
-        search_fields = self.step_fields
-        steps_info = publisher.shotgun.find("Step", [], search_fields)
-
-        return steps_info
+        user_fields = [
+            'name',
+            'login',
+            'sg_ip_address'
+        ]
+        user_filter = [
+            ['id', 'is', ctx.user['id']],
+        ]
+        user_info = publisher.shotgun.find_one(
+            'HumanUser',
+            user_filter,
+            user_fields
+        )
+        return user_info
 
     @property
     def software_info(self):
         """
         Test SG for all associated software
-
         :returns: The SG info of the given softwares
-        """  
+        """
         publisher = self.parent
 
         software_filters = [
-        ['id', 'is_not', 0],
-        ['version_names', 'is_not', None]
-        # ['sg_pipeline_tools', 'is', True]
+            ['id', 'is_not', 0],
+            ['version_names', 'is_not', None]
         ]
-        
         software_fields = [
-        'code',
-        'products',
-        'windows_path',
-        'version_names',
-        'sg_pipeline_tools'
+            'code',
+            'products',
+            system_path_variable,
+            'version_names',
+            'sg_pipeline_tools'
         ]
-
         software_info = publisher.shotgun.find(
-        'Software',
-        software_filters,
-        software_fields
+            'Software',
+            software_filters,
+            software_fields
         )
-
         return software_info
 
     @property
@@ -248,73 +129,129 @@ class NukeSessionCollector(HookBaseClass):
         Test SG for all associated codec
 
         :returns: The SG info of the given codecs
-        """  
+        """
         publisher = self.parent
 
         codec_filters = []
-        
+
         codec_fields = ['id',
-                        'code', 
-                        'name', 
-                        'sg_nuke_code', 
+                        'code',
+                        'name',
+                        'sg_nuke_code',
                         'sg_output_folder']
 
         codec_info = publisher.shotgun.find(
-        'CustomNonProjectEntity08',
-        codec_filters,
-        codec_fields
+            'CustomNonProjectEntity08',
+            codec_filters,
+            codec_fields
         )
 
         return codec_info
 
     @property
-    def user_info(self):
-
-        publisher = self.parent
-        ctx = publisher.engine.context 
-        user_fields =[
-            'login',
-            'sg_ip_address'
-        ]
-        user_filter =[
-            ['id', 'is', ctx.user['id']],
-        ]
-        user_info = publisher.shotgun.find(
-            'HumanUser',
-            user_filter,
-            user_fields
-            )    
-
-        return user_info
-
-    @property
-    def entity_info(self):
+    def project_info(self):
         """
-        Test SG for all associated entity
-
-        :returns: The SG info of the given entitys
-        """  
+        A dictionary of relative Project info that is taken from SG Project page
+        """
         publisher = self.parent
+        ctx = publisher.engine.context
+        proj_info = publisher.shotgun.find_one("Project",
+                                               [['id', 'is', ctx.project['id']]],
+                                               ['name',
+                                                'id',
+                                                'sg_root',
+                                                'sg_status',
+                                                'sg_date_format',
+                                                'sg_short_name',
+                                                'sg_frame_rate',
+                                                'sg_vendor_id',
+                                                'sg_frame_handles',
+                                                'sg_data_type',
+                                                'sg_format_width',
+                                                'sg_format_height',
+                                                'sg_delivery_slate_count',
+                                                'sg_client_version_submission',
+                                                'sg_incoming_plate_jpg_',
+                                                'sg_delivery_default_process',
+                                                'sg_incoming_fileset_padding',
+                                                'sg_proxy_format_ratio',
+                                                'sg_format_pixel_aspect_ratio',
+                                                'sg_lut',
+                                                'sg_version_zero_lut',
+                                                'sg_version_zero_slate',
+                                                'sg_version_zero_internal_burn_in',
+                                                'sg_burnin_frames_format',
+                                                'sg_delivery_qt_dual_lut',
+                                                'sg_delivery_format_width',
+                                                'sg_delivery_format_height',
+                                                'sg_delivery_reformat_filter',
+                                                'sg_delivery_fileset_padding',
+                                                'sg_delivery_fileset_slate',
+                                                'sg_zip_fileset_delivery',
+                                                'sg_pixel_aspect_ratio',
+                                                'sg_reformat_plates_to_deliverable',
+                                                'sg_delivery_fileset',
+                                                'sg_delivery_fileset_compression',
+                                                'sg_delivery_qt_bitrate',
+                                                'sg_delivery_qt_slate',
+                                                'sg_delivery_burn_in',
+                                                'sg_delivery_qt_codecs',
+                                                'sg_delivery_qt_formats',
+                                                'sg_delivery_folder_structure',
+                                                'sg_color_space',
+                                                'sg_project_color_management',
+                                                'sg_project_color_management_config',
+                                                'sg_timecode',
+                                                'sg_upload_qt_formats',
+                                                'sg_review_qt_codecs',
+                                                'sg_review_burn_in',
+                                                'sg_review_qt_slate',
+                                                'sg_review_qt_formats',
+                                                'sg_slate_frames_format',
+                                                'sg_frame_leader',
+                                                'sg_review_lut',
+                                                'sg_type',
+                                                'tank_name',
+                                                'sg_3d_settings']
+                                               )
+        proj_info.update({'artist_name': ctx.user['name']})
 
-        entity_type = publisher.context.entity.get("type")
-        entity_id = publisher.context.entity.get("id")
+        formats = publisher.shotgun.find("CustomNonProjectEntity01",
+                                         [],
+                                         ['code',
+                                          'sg_format_height',
+                                          'sg_format_width',
+                                          ])
+        proj_info.update({'formats': formats})
 
-        entity_filters = [["id", "is", entity_id]]
-        
-        entity_fields = ['id',
-                        'code', 
-                        'name', 
-                        'sg_head_in', 
-                        'sg_tail_out']
+        local_storage = publisher.shotgun.find("LocalStorage",
+                                               [],
+                                               ["code",
+                                                system_path_variable,
+                                                "linux_path",
+                                                "mac_path"])
 
-        entity_info = publisher.shotgun.find_one(entity_type,
-                                                entity_filters,
-                                                entity_fields
-                                                )
+        proj_sg_root = proj_info.get('sg_root')
+        proj_info['local_storage'] = None
+        if proj_sg_root:
+            proj_info['local_storage'] = next(
+                (ls for ls in local_storage if ls[system_path_variable] in proj_sg_root.get(system_root_variable)),
+                None)
 
-        entity_info.update({"context_info": publisher.context.entity})
+        if proj_info['sg_3d_settings']:
+            sg_3d_settings = publisher.shotgun.find("CustomNonProjectEntity03",
+                                                    [
+                                                        ["id", "is", proj_info['sg_3d_settings'][0].get('id')]
+                                                    ],
+                                                    ['code',
+                                                     'sg_primary_render_layer',
+                                                     'sg_additional_render_layers',
+                                                     'sg_render_engine',
+                                                     ])
 
-        return entity_info
+            proj_info.update({'sg_3d_settings': sg_3d_settings})
+
+        return proj_info
 
     def process_current_session(self, settings, parent_item):
         """
@@ -576,64 +513,39 @@ class NukeSessionCollector(HookBaseClass):
             )
             return
 
-        version_writes = None
-
-        # Check for selected node
-        # This will error if no node is selected,
-        # or pick a random node if more than 1 is selected
-        try:
-            selected_node = nuke.selectedNode()
-        except:
-            selected_node = None
-            self.logger.debug("No write nodes selected")
-
-        if not selected_node:
-            # version_writes = [node for node in sg_writenode_app.get_write_nodes() if node['write_type'].value() == "Version"]
-            return nuke.message("<b style='color:salmon'>No Node Selected</b>")
-
-        if  selected_node.Class() != "WriteTank" or selected_node['write_type'].value() != "Version":
-            return nuke.message("<b style='color:salmon'>No Write Node Selected</b>")
-
-        else:
-            if selected_node.Class() == "WriteTank" and selected_node['write_type'].value() == "Version":
-                version_writes = selected_node
-                self.logger.debug("Single write node selected: %s" % version_writes.name())
-
-            elif [selected_node] != nuke.selectedNodes():
-                self.logger.debug("Too many nodes selected. Searching for Version in selection...")
-                found_writes = [node for node in nuke.selectedNodes() if node.Class() == "WriteTank"]
-                version_writes = [node for node in found_writes if node['write_type'].value() == "Version"]
-
-            else:
-                self.logger.debug("Could not identify Version node in selection: Ignoring.")
-                return
-
-        if not version_writes:
-            self.logger.debug("No Version Nodes Available")
+        selected_nodes = nuke.selectedNodes()
+        if not selected_nodes:
+            nuke.message("<b style='color:salmon'>No Nodes Selected</b>")
             return
-        elif type(version_writes) == list and len(version_writes) == 1:
-            version_writes = version_writes[0]
 
-        if type(version_writes) != list:
-            self.process_write_node(version_writes, parent_item)
-        else:
-            existing_paths = []
-            # for node in version_writes:
-            for node in version_writes:
-                # see if any frames have been rendered for this write node
-                rendered_files = sg_writenode_app.get_node_render_files(node)
+        selected_writes = [node for node in selected_nodes if node.Class() in ["WriteTank", "Write"]]
+        if not selected_writes:
+            nuke.message("<b style='color:salmon'>No Write Nodes Selected</b>")
+            return 
 
-                # some files rendered, use first frame to get a master path
-                # which can be used for path-based operations
-                folder = os.path.dirname(rendered_files[0][0])
+        # filter selected_nodes for Version from both SsWrite and SGWrite types
+        # To preserve compatibility
+        selected_versions = []
+        for node in selected_writes:
+            knobs = {knob_name:node[knob_name].value() for knob_name in node.knobs()}
+            if "Version" in [knobs.get('ssWriteType'),knobs.get('write_type')]:
+                selected_versions.append(node)
 
-                # Prevent redundancies by checking for node file path in a list
-                if folder in existing_paths:
-                    continue
-                else:
-                    self.process_write_node(node, parent_item)
-                    existing_paths.append(folder)
+        if not selected_versions:
+            nuke.message("<b style='color:salmon'>No Version Write Nodes Selected.\nCan't locate render path.</b>")
+            return 
 
+        existing_paths = []
+        for node in selected_versions:
+            knobs = {knob_name:node[knob_name].value() for knob_name in node.knobs()}
+            path = knobs.get('file') or knobs.get('cached_path')
+
+            if path in existing_paths:
+                continue
+            else:
+                self.process_write_node(node, parent_item)
+                existing_paths.append(path)
+                
     def process_write_node(self, node, parent_item):
         '''
         Processing for SG Write Nodes to prepare them for publishing
@@ -644,17 +556,145 @@ class NukeSessionCollector(HookBaseClass):
 
         publisher = self.parent
         engine = publisher.engine
+        ctx = engine.context
 
         sg_writenode_app = engine.apps.get("tk-nuke-writenode")
+
+        knobs = {knob_name:node[knob_name].value() for knob_name in node.knobs()}
+        path = knobs.get('file') or knobs.get('cached_path')
+        rendered_files = nutils.sequence_from_directory( path, split_seqs=True)
+        if not rendered_files:
+            self.logger.error("No rendered files for path %s" % path)
+            return
+
+        if isinstance(rendered_files, list):
+            self.logger.error("Too many paths for %s\nplease check that render is not missing frames." % node.name())
+            return 
+
+        node_path,frame_range = rendered_files.split(" ")
+        node_path = os.path.dirname(node_path)
+        self.logger.info('Processing path: %s' % path)
+
+        path_info = publisher.util.get_frame_sequence_path(
+            {'path': node_path, 'ignore_folder_list': [], 'seek_folder_list': []})
+        curr_fields = path_info.get('all_fields')
 
         # get project info
         project_info = self.project_info
 
-        # get entity_info
-        entity_info = self.entity_info
-
         # get codec info
         codec_info = self.codec_info
+
+        if curr_fields:
+
+            # run one large shotgun search to collect entity, task, and step info
+            search_fields = self._task_fields(curr_fields)
+
+            # some renders don't have a task_name, we assign these to processing
+            task_name = curr_fields.get('task_name') or "processing"
+            filters = [
+                ["project.Project.id", "is", ctx.project['id']],
+                ["content", "is", task_name],
+            ]
+
+            entity_type = "entity.%s" % curr_fields['type']
+            entity_code = "%s.code" % entity_type
+            entity_name = curr_fields['Entity']
+            filters.append([entity_code, "is", entity_name])
+
+            entity_info = self.sgtk.shotgun.find_one("Task", filters, search_fields)
+
+            entity = {}
+            task = {}
+            step = {}
+            camera = {}
+
+            # Parse search results into entity, task, step, and camera
+            for key in entity_info:
+                key_split = key.split(".")
+                set_key = key_split[-1]
+
+                if len(key_split) == 1:
+                    task[key] = entity_info[key]
+
+                if key_split[0] == 'step':
+                    step[set_key] = entity_info[key]
+                elif "sg_main_plate_camera" in key_split:
+                    camera[set_key] = entity_info[key]
+                else:
+                    entity[set_key] = entity_info[key]
+
+            # add task id to current fields (holdover from previous version of script)
+            if task:
+                self.logger.info("Task: %s" % (task))
+                curr_fields['id'] = task['entity']['id']
+
+            # define plugin visibility/enabled
+            if step:
+                step_bools = self._set_plugins_from_sg(step)
+
+            # manual override for non-version renders
+            if not curr_fields.get('task_name'):
+                step_bools['sg_version_for_review'] = False
+                step_bools['sg_publish_to_shotgun'] = True
+
+            self.logger.info("Publish: %s | Version: %s" % (
+                step_bools["sg_publish_to_shotgun"],
+                step_bools["sg_version_for_review"]
+            ))
+
+        entity.update({
+            'type': curr_fields['type'],
+        })
+
+        for info in path_info['path_info_returns']:
+
+            if not info.get('fields'):
+                self.logger.warning(">>>>> Unable to locate fields, bypassing...")
+                continue
+
+            properties = {
+                # class properties to pass
+                'user_info': self.user_info,
+                'codec_info': self.codec_info,
+                'project_info': self.project_info,
+                'software_info': self.software_info,
+
+                # assign properties from path_info values
+                'fields': info['fields'],
+                'folder_name': info['folder_name'],
+                'frame_range': info['file_range'],
+                'template': info['base_template'],
+
+                # step and plugin booleons
+                'step': step,
+                'sg_publish_to_shotgun': step_bools.get('sg_publish_to_shotgun'),
+                'sg_version_for_review': step_bools.get('sg_version_for_review'),
+                # 'sg_slap_comp': layer_bools.get('sg_slap_comp'),
+
+                # other shotgun dictionaries
+                'entity_info': entity,
+                'task': task,
+                'camera': camera,
+
+                # vendor info for outsource
+                'vendor': curr_fields.get('vendor'),
+                'workfile_dir': info.get('workfile_dir'),
+                'publish_path': info.get('publish_path'),
+
+                # templates and other quicktime info
+                'extra_templates': self._get_extra_templates(info['fields']),
+                'process_plugin_info': info['process_plugin_info'],
+                'padded_file_name': info['padded_file_name']
+            }
+
+            for i in properties:
+                self.logger.warning(">>>>> %s: %s" % (i, properties[i]))
+
+        self.logger.warning(">>>>> entity: %s" % entity)
+
+        # # get entity_info and split it 
+        # entity_info = self.entity_info
 
         # see if any frames have been rendered for this write node
         # the except is a fallback in case the shotgun-specific process fails
@@ -702,8 +742,8 @@ class NukeSessionCollector(HookBaseClass):
         # compare initial frame range to Shotgun frame range (if there is one)
         # if they are different, prompt the user to select a range
         sg_range = None
-        if entity_info.get("sg_head_in") and entity_info.get("sg_tail_out"):
-            sg_range = "%s-%s" % (entity_info.get("sg_head_in"), entity_info.get("sg_tail_out") )
+        if entity.get("sg_head_in") and entity.get("sg_tail_out"):
+            sg_range = "%s-%s" % (entity.get("sg_head_in"), entity.get("sg_tail_out") )
 
         first_frame = frame_range.split("-")[0]
         last_frame = frame_range.split("-")[-1]
@@ -844,7 +884,7 @@ class NukeSessionCollector(HookBaseClass):
         item.properties["project_info"] = project_info
 
         # set entity_info
-        item.properties["entity_info"] = entity_info
+        item.properties["entity_info"] = entity
 
         # set codec info
         item.properties["codec_info"] = codec_info
@@ -947,31 +987,31 @@ class NukeSessionCollector(HookBaseClass):
     #     return (result, node_context)
     #### IN DEVELOPMENT ####
 
-    def _set_plugins_from_sg(self, step_id):
+    def _set_plugins_from_sg(self, step):
+        '''
+        Assign correct plugins based on item step
 
-        # Determine if there are plugin visibility settings in Shotgun
-        publish_bool = next((i['sg_publish_to_shotgun'] for i in self.step_info if i['id'] == step_id), None)
-        version_bool = next((i['sg_version_for_review'] for i in self.step_info if i['id'] == step_id), None)
-        slap_bool = next((i['sg_slap_comp'] for i in self.step_info if i['id'] == step_id), None)
-        
-        plugins_dict = {}
+        :param step: The item's task step from Shotgun
+        '''
+
+        # Set plugin defaults
+        plugins_dict = {
+            "sg_publish_to_shotgun": True,
+            "sg_version_for_review": True,
+            "sg_slap_comp": False
+        }
+
         # Determine which plugins to load
-        if step_id == None:
-            self.logger.debug("No Step ID found. Loading defaults.")
-            plugins_dict["publish_to_shotgun"] = True
-            plugins_dict["sg_version_for_review"] = True
-            plugins_dict["sg_slap_comp"] = False
-        else:
-            plugins_dict["publish_to_shotgun"] = publish_bool
-            plugins_dict["sg_slap_comp"] = slap_bool
-            if not version_bool:
-                plugins_dict["sg_version_for_review"] = True
-            else:
-                plugins_dict["sg_version_for_review"] = False
+        for key in plugins_dict:
+            if step.get(key) != None:
+                plugins_dict[key] = step.get(key)
 
-        self.logger.info("Publish: %s | Version: %s | Slap: %s"%(plugins_dict["publish_to_shotgun"],
-                                                plugins_dict["sg_version_for_review"],
-                                                plugins_dict["sg_slap_comp"]))
+            if key == "sg_version_for_review":
+                if not step.get(key):
+                    plugins_dict[key] = True
+                else:
+                    plugins_dict[key] = False
+
         return plugins_dict
 
     def _get_frame_number(self, path):
@@ -990,6 +1030,142 @@ class NukeSessionCollector(HookBaseClass):
         frame_number = r"\.(\d{4,10})\."
                 
         return re.search(frame_number, path)
+
+    def _get_extra_templates(self, item):
+        '''
+        Get assorted templates for assigning input/output locations
+
+        :param item: the collector item for property assignment
+        '''
+        publisher = self.parent
+
+        # find default templates
+        nuke_review_template = publisher.engine.get_template_by_name("nuke_review_template2")
+        review_process_json_template = publisher.engine.get_template_by_name("general_review_process_json")
+        alembic_json_template = publisher.engine.get_template_by_name("alembic_review_process_json")
+        alembic_output_template = publisher.engine.get_template_by_name('alembic_output_json')
+        workfiles_template = None
+
+        # find templates for the correct entity type
+        if item['type'].lower() == "shot":
+            review_process_json_template = publisher.engine.get_template_by_name("shot_review_process_json2")
+            temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
+            info_json_template = publisher.engine.get_template_by_name('shot_submission_json_file')
+            qt_template = publisher.engine.get_template_by_name('resolve_shot_review_mov')
+            qt_template_secondary = publisher.engine.get_template_by_name('resolve_shot_review_mov_secondary')
+            workfiles_template = publisher.engine.get_template_by_name('nuke_shot_work')
+        elif item['type'].lower() == "asset":
+            review_process_json_template = publisher.engine.get_template_by_name("asset_review_process_json2")
+            temp_root_template = publisher.engine.get_template_by_name("temp_asset_render_root")
+            info_json_template = publisher.engine.get_template_by_name('asset_submission_json_file')
+            qt_template = publisher.engine.get_template_by_name('resolve_asset_review_mov')
+            qt_template_secondary = publisher.engine.get_template_by_name('resolve_asset_review_mov_secondary')
+            workfiles_template = publisher.engine.get_template_by_name('nuke_asset_work')
+        else:
+            info_json_template = publisher.engine.get_template_by_name('info_json_file')
+            temp_root_template = publisher.engine.get_template_by_name("temp_shot_root")
+            # fixme defaults for qt_template and qt_template_secondary
+
+        extra_templates = {
+            'nuke_review_template': nuke_review_template,
+            'temp_root_template': temp_root_template,
+            'info_json_template': info_json_template,
+            'review_process_json_template': review_process_json_template,
+            'qt_template': qt_template,
+            'qt_template_secondary': qt_template_secondary,
+            'workfiles_template': workfiles_template,
+            'alembic_template': alembic_json_template,
+            'alembic_output_template': alembic_output_template,
+        }
+
+        return extra_templates
+
+    def _task_fields(self, curr_fields):
+        '''
+        Generate a list of fields to search for in SG
+
+        :param curr_fields: info derived from the path and used for specificity
+        '''
+        # default field
+        search_fields = [
+            "entity",
+        ]
+
+        # step fields
+        search_fields.extend([
+            "step.Step.id",
+            "step.Step.code",
+            'step.Step.sg_department',
+            'step.Step.sg_publish_to_shotgun',
+            'step.Step.sg_version_for_review',
+            'step.Step.sg_slap_comp',
+            'step.Step.sg_review_process_type',
+            'step.Step.entity_type',
+        ])
+
+        # entity fields
+        entity_type = curr_fields['type']
+        if entity_type == "Shot":
+            search_fields.extend([
+                "entity.Shot.code",
+                "entity.Shot.id",
+                "entity.Shot.type",
+                "entity.Shot.description",
+                "entity.Shot.created_by",
+                "entity.Shot.sg_episode",
+                "entity.Shot.sg_shot_lut",
+                "entity.Shot.sg_shot_audio",
+                "entity.Shot.sg_status_list",
+                "entity.Shot.sg_project_name",
+                "entity.Shot.sg_plates_processed_date",
+                "entity.Shot.sg_shot_lut",
+                "entity.Shot.sg_shot_ocio",
+                "entity.Shot.sg_without_ocio",
+                "entity.Shot.sg_head_in",
+                "entity.Shot.sg_tail_out",
+                "entity.Shot.sg_lens_info",
+                "entity.Shot.sg_plate_proxy_scale",
+                "entity.Shot.sg_frame_handles",
+                "entity.Shot.sg_shot_ccc",
+                "entity.Shot.sg_seq_ccc",
+                "entity.Shot.sg_vfx_work",
+                "entity.Shot.sg_scope_of_work",
+                "entity.Shot.sg_editorial_notes",
+                "entity.Shot.sg_sequence"
+                "entity.Shot.sg_main_plate",
+                "entity.Shot.sg_latest_version",
+                "entity.Shot.sg_latest_client_version",
+                "entity.Shot.sg_gamma",
+                "entity.Shot.sg_target_age",
+                "entity.Shot.sg_shot_transform",
+                "entity.Shot.sg_main_plate_camera",
+                "entity.Shot.sg_main_plate_camera.Camera.code",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_format_width",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_format_height",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_pixel_aspect_ratio",
+                "entity.Shot.sg_main_plate_camera.Camera.sg_pump_incoming_transform_switch",
+            ])
+
+        elif entity_type == "Asset":
+            search_fields.extend([
+                "entity.Asset.code",
+                "entity.Asset.id",
+                "entity.Asset.type",
+                "entity.Asset.description",
+                "entity.Asset.created_by",
+                "entity.Asset.sg_status_list",
+                "entity.Asset.sg_head_in",
+                "entity.Asset.sg_tail_out",
+                "entity.Asset.sg_lens_info",
+                "entity.Asset.sg_vfx_work",
+                "entity.Asset.sg_scope_of_work",
+                "entity.Asset.sg_editorial_notes",
+                "entity.Asset.sg_latest_version",
+                "entity.Asset.sg_latest_client_version"
+            ])
+
+        return search_fields
+
 
 
 def _session_path():

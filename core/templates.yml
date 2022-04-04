@@ -120,6 +120,7 @@ keys:
     # identify distorted/undistorted
     descriptor:
         type: str
+        filter_by: '^[0-9a-zA-Z-]+$'
 
     # these are used by the Hiero exporter and pipeline
     YYYY:
@@ -205,8 +206,8 @@ paths:
     temp_shot_root: shots/temp/{Shot}
     temp_asset_render_root: assets/temp/{sg_asset_type}/{Asset}/renders
     info_json_file: shots/temp/{Shot}/json/{Shot}_{task_name}[_{name}]_v{version}.json
-    asset_json_file: assets/temp/{sg_asset_type}/{Asset}/renders/json/{Asset}_{task_name}[_{name}]_v{version}.json
-    alembic_output_json: shots/temp/[{Shot}][{Asset}]/json/[{Shot}][{Asset}]_{task_name}_alembic_v{version}.json
+    alembic_shot_json: shots/temp/[{Shot}][{Asset}]/json/[{Shot}][{Asset}]_{task_name}_alembic_v{version}.json
+    alembic_asset_json: assets/temp/{sg_asset_type}/{Asset}/json/{Asset}_{task_name}_alembic_v{version}.json
 
     #Shots
     incoming_outsource_shot_root:
@@ -218,43 +219,59 @@ paths:
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_undistorted: 
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/UD'
+        definition: '@incoming_outsource_shot_folder_root/UD'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_version_jpg:
-        definition: '@incoming_outsource_shot_folder_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}.{SEQ}.jpg'
+    incoming_outsource_shot_nuke: 
+        definition: '@incoming_outsource_shot_folder_root/nuke'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_version_jpeg:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}.{SEQ}.jpeg'
+    incoming_outsource_shot_renders: 
+        definition: '@incoming_outsource_shot_folder_root/renders'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_version_exr:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}.{SEQ}.exr'
+    incoming_outsource_shot_version_seq:
+        definition: '@incoming_outsource_shot_folder_root.{SEQ}.{ext}'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_version_tif:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}.{SEQ}.tif'
-        root_name: 'project_pipeline'
+    # incoming_outsource_shot_version_jpg:
+    #     definition: '@incoming_outsource_shot_folder_root.{SEQ}.jpg'
+    #     root_name: 'project_pipeline'
+
+    # incoming_outsource_shot_version_jpeg:
+    #     definition: '@incoming_outsource_shot_folder_root.{SEQ}.jpeg'
+    #     root_name: 'project_pipeline'
+
+    # incoming_outsource_shot_version_exr:
+    #     definition: '@incoming_outsource_shot_folder_root.{SEQ}.exr'
+    #     root_name: 'project_pipeline'
+
+    # incoming_outsource_shot_version_tif:
+    #     definition: '@incoming_outsource_shot_folder_root.{SEQ}.tif'
+    #     root_name: 'project_pipeline'
     
-    incoming_outsource_shot_version_psd:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}.{SEQ}.psd'
+    # incoming_outsource_shot_version_psd:
+    #     definition: '@incoming_outsource_shot_folder_root.{SEQ}.psd'
+    #     root_name: 'project_pipeline'
+
+    incoming_outsource_nuke_file:
+        definition: '@incoming_outsource_shot_nuke/{Shot}_{descriptor}[_{name}]_v{version}.{ext}'
         root_name: 'project_pipeline'
 
-    incoming_outsource_shot_descriptor:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/nuke/{descriptor}'
-        root_name: 'project_pipeline'
-    
-    incoming_outsource_shot_matchmove_render:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/renders/{descriptor}'
+    incoming_outsource_nuke_subfolder:
+        definition: '@incoming_outsource_shot_nuke/{descriptor}'
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_nuke_render:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/nuke/{descriptor}/{Shot}_{descriptor}[_{name}]_v{version}.{SEQ}.{ext}'
+        definition: '@incoming_outsource_nuke_subfolder/{Shot}_{descriptor}[_{name}]_v{version}[.{SEQ}].{ext}'
+        root_name: 'project_pipeline'
+    
+    incoming_outsource_shot_matchmove_render:
+        definition: '@incoming_outsource_shot_folder_root/renders/{descriptor}'
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_3de_file:
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/{Shot}_{etc}[_{name}]_v{version}.3de'
+        definition: '@incoming_outsource_shot_folder_root/{Shot}_{etc}[_{name}]_v{version}.3de'
         root_name: 'project_pipeline'
 
     #Assets
@@ -428,7 +445,7 @@ paths:
         definition: '@rushes_root/filmstrip/{Shot}_v{version}.jpeg'
         root_name: 'project_pipeline'
     shot_plate_main_undistorted: 
-        definition: '@incoming_outsource_shot_root/{vendor}/{YYYY}_{MM}_{DD}/{Shot}_{outsource_task}[_{name}]_v{version}/UD/{Rush}_output_v{version}.{SEQ}.{ext}'
+        definition: '@incoming_outsource_shot_folder_root/UD/{Rush}_output_v{version}.{SEQ}.{ext}'
         root_name: 'project_pipeline'
     # DPX
     shot_plates_main_dpx:
