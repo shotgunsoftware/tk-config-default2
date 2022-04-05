@@ -2,19 +2,49 @@ import os, sys, json
 import logging
 import logging.config
 
-# set dev or primary ssvfx_script paths
-ssvfx_script_path = os.path.join( "C:", "Users", os.getenv('username'), "Scripts", "Pipeline" )
-if os.path.exists(ssvfx_script_path):
-    pipeline_root = ssvfx_script_path
-    ssvfx_script_path = os.path.join(pipeline_root,"ssvfx_scripts")
+# Attach ssvfx_scripts to system paths
+if 'SSVFX_PIPELINE' not in os.environ.keys():
+    error = "ERROR! Missing SSVFX_PIPELINE Environment variable! Aborting."
+    print(error)
+    raise ImportError(error)
+
 else:
-    if os.environ.get('SSVFX_PIPELINE'): 
-        pipeline_root =  os.environ["SSVFX_PIPELINE"]
-        ssvfx_script_path = os.path.join(pipeline_root,"Pipeline", "ssvfx_scripts")
-    else:
-        print("SSVFX_PIPELINE not in env var keys. Using explicit")
-        pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
-        ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
+    pipeline_root = os.environ["SSVFX_PIPELINE"]
+    dev_root = os.environ.get("SSVFX_PIPELINE_DEV", "")
+    if os.path.exists(dev_root):
+        pipeline_root = dev_root
+
+ssvfx_script_path = os.path.join(
+    pipeline_root,
+    "Pipeline",
+    "ssvfx_scripts"
+)
+if not os.path.exists(ssvfx_script_path):
+    ssvfx_script_path = os.path.join(
+        pipeline_root,
+        "ssvfx_scripts"
+    )
+
+ssvfx_sg_path = os.path.join(
+    pipeline_root,
+    "Pipeline",
+    "ssvfx_sg"
+)
+if not os.path.exists(ssvfx_sg_path):
+    ssvfx_sg_path = os.path.join(
+        pipeline_root,
+        "ssvfx_sg"
+    )
+
+if ssvfx_script_path not in sys.path:
+    sys.path.append(ssvfx_script_path)
+print("Added ssvfx_scripts path to environment: {}".format(ssvfx_script_path))
+
+if ssvfx_sg_path not in sys.path:
+    sys.path.append(ssvfx_sg_path)
+print("Added ssvfx_sg path to environment: {}".format(ssvfx_sg_path))
+
+from sgpy.sg_api_tools import sg_api_utils
 
 try:
     # Get an instance of a logging
@@ -54,6 +84,32 @@ json_data = json.loads(file_str)
 
 process_jobs = json_data['processes']
 process_keys = list(process_jobs.keys())
+
+############################
+# ## Color Switch 2 Tag ## #
+############################
+
+entity_info = json_data["entity_info"]
+entity_type = entity_info["type"]
+entity_id = entity_info["id"]
+
+sg_find = sg_api_utils.SgApiFind(
+    project_id=json_data["project_info"]["id"]
+)
+shot = sg_find.get_entities(
+    entity_type=entity_type,
+    entity_ids=[entity_id],
+    fields=["tags"],
+    find_one=True,
+)
+color_switch_2 = False
+# tag name: color_switch 2
+color_switch_2_tag_id = 5415
+if shot:
+    tag_ids = [tag["id"] for tag in shot["tags"]]
+    if color_switch_2_tag_id in tag_ids:
+        color_switch_2 = True
+        logger.info("Got color_switch 2 tag! Setting color switch to 2.")
 
 ### Corrective Loop to add nuke node values to JSON file
 for key in process_keys:
@@ -102,6 +158,12 @@ for key in process_keys:
             })
 
         logger.info(">>>>> Updated Slate Node: %s" % slate)
+
+    if job_key == "client-version-dnxhd":
+        if color_switch_2:
+            logger.info( ">>>>> Setting color_switch to 2" )
+            nuke_settings["color_switch"] = {"which": 2}
+            logger.info( ">>>>> color_switch: %s" % nuke_settings['color_switch'] )
 
 logger.info( ">>>>> Completed Postfix Process, writing json..." )
 
