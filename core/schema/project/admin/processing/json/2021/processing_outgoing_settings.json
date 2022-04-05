@@ -21,7 +21,7 @@
                 "process_settings":{
                     "title" : "Client DNxHD",
                     "output_root": "primary",
-                    "output_directory": "",
+                    "output_directory": "{entity}",
                     "output_file": "{output_file}",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": false,
@@ -34,14 +34,14 @@
                     "client_process": true,
                     "batch_dependencies": true,                    
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
-                    "plugin_version": "11.3",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
+                    "plugin_version": "12.2",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_DNxHD.nk"
                 },
                 "nuke_settings":{
-                    "plate_switch": {"which":2},
-                    "color_switch": {"which":1},
-                    "transform_switch": {"which":1},
+                    "plate_switch": {"which": 1},
+                    "color_switch": {"which": 1},
+                    "transform_switch": {"which": 1},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
                     "content_vendor_burnin":{"disable":true},
@@ -60,7 +60,7 @@
                         "raw": true
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "create_directories": true,
                         "raw": true
                     }
                 },
@@ -80,7 +80,7 @@
                 "process_settings":{
                     "title" : "EXRs",
                     "output_root": "primary",            
-                    "output_directory": "",
+                    "output_directory": "{output_file}/4448x3096",
                     "output_file": "{output_file}",
                     "output_file_ext": "exr",
                     "create_version": false,
@@ -91,10 +91,10 @@
                     "color_required": false,
                     "client_process": true,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
-                    "plugin_version": "11.3",
+                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
+                    "plugin_version": "12.2",
                     "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk",
-                    "dependencies": true,
+                    "dependencies": false,
                     "batch_dependencies": true,
                     "dependent_job_suffix": "support_files",
                     "dependent_linked_files": ["sg_shot_lut", "sg_shot_ccc"],
@@ -107,7 +107,6 @@
                 "nuke_settings":{
                     "plate_switch": {"which":2},
                     "color_switch": {"which":0},
-                    "camera_switch":  {"which":0},
                     "transform_switch": {"which":0},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":true},
@@ -123,13 +122,8 @@
                         "colorspace": "linear"
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
-                        "raw": true,
-                        "file_type": "exr",
-                        "channels": "all",
-                        "interleave": "channels",
-                        "first_part": "rgb",
-                        "compression": "PIZ Wavelet (32 scanlines)"
+                        "create_directories": true,
+                        "raw": true
                     }
                 },
                 "deadline_settings":{
@@ -147,7 +141,8 @@
         },
         "pump_settings":{
             "main_plates_exclude_from_loader_efl" : true,
-            "script_file" :"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/pump_processing/ellington_process_pump.py"
+            "postfix_file" : "admin/processing/python/project_postfix.py",
+            "script_file" :"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/pump_processing/postfix_process_pump.py"
         }
     },
     "secondary":{}

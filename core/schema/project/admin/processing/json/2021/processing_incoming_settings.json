@@ -14,52 +14,54 @@
             {"header_value": "Lineup Sheet", "cell_key":"sg_lineup"},            
             {"header_value": "Linked Color", "cell_key":"sg_linked_color"}            
         ]
-    },    
-    "primary":{
-        "processes":{
-            "convert-aces":{
-                "process_settings":{
-                    "title" : "Convert ACES",
-                    "description" : "Internal Plate Color Conversion",
+    },
+    "primary": {
+        "processes": {
+            "convert-aces": {
+                "process_settings": {
+                    "title": "Convert ACES",
+                    "description": "Internal Plate Color Conversion",
                     "process_type": "acescg",
-                    "output_root": "primary",       
+                    "output_root": "primary",
                     "output_directory": "shots/{Shot}/rushes/acescg/{Plate}/{Source}",
                     "output_file": "{Source}",
                     "output_file_ext": "exr",
                     "create_version": false,
                     "update_version": false,
                     "create_publish": true,
-                    "update_client_version": false,   
-                    "dependencies": false,
+                    "update_client_version": false,
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py",
                     "color_required": false,
                     "client_process": false,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
-                    "plugin_version": "11.3",
+                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
+                    "plugin_version": "12.2",
                     "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
-
                 },
-                "nuke_settings":{
-                    "plate_switch": {"which":1},
-                    "color_switch": {"which":0},
-                    "camera_switch": {"which":0},
-                    "transform_switch": {"which":0},
-                    "slate_switch": {"disable":true},
-                    "burnin_switch": {"disable":true},  
-                    "main_timecode": {"disable":true},
+                "nuke_settings": {
+                    "plate_switch": {"which": 1},
+                    "camera_switch": {"which": 0},
+                    "color_switch": {"which": 0},
+                    "transform_switch": {"which": 0},
+                    "slate_switch": {"disable": true},
+                    "burnin_switch": {"disable": true},
+                    "main_timecode": {"disable": true},
                     "main_read": {
                         "knob_order": ["file"],
-                        "raw": true},                    
+                        "raw": true
+                    },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "knob_order": [],
                         "raw": true,
-                        "file_type": "exr",
-                        "compression": "PIZ Wavelet (32 scanlines)",
-                        "metadata": "all metadata",
                         "create_directories": true
-                    }                       
+                    }
                 },
-                "deadline_settings":{
+                "deadline_settings": {
                     "primary_pool": "vfx_processing",
                     "secondary_pool": "vfx_processing",
                     "department": "VFX",
@@ -69,38 +71,51 @@
                     "concurrent_task": 4,
                     "machine_limit": 4,
                     "publish_file_type": null
-                }                
+                }
             },
-            "incoming-version":{
-                "process_settings":{
-                    "title" : "Internal",
-                    "description" : "Internal version Zero",
+            "incoming-version": {
+                "process_settings": {
+                    "title": "Internal",
+                    "description": "Internal version Zero",
                     "output_root": "secondary",
                     "output_directory": "editorial/v000",
                     "output_file": "{Source}_v000",
                     "output_file_ext": "mov",
                     "create_version": true,
-                    "update_version": true,                    
-                    "create_publish": false,                    
+                    "update_version": true,
+                    "update_version_media": true,
+                    "create_publish": false,
                     "update_client_version": false,
-                    "dependencies": false,
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py",
                     "color_required": true,
                     "client_process": false,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
-                    "plugin_version": "11.3",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
+                    "plugin_version": "12.2",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_DNxHD.nk"
                 },
-                "nuke_settings":{
-                    "plate_switch": {"which":0},
-                    "color_switch": {"which":1},
-                    "transform_switch": {"which":0},
-                    "slate_switch": {"disable":false},
-                    "burnin_switch": {"disable":false},       
-                    "content_vendor_burnin":{"disable":true},
-                    "format":{},
+                "nuke_settings": {
+                    "plate_switch": {"which": 0},
+                    "camera_switch": {"which": 0},
+                    "color_switch": {"which": 1},
+                    "transform_switch": {"which": 1},
+                    "slate_switch": {"disable": false},
+                    "burnin_switch": {
+                        "disable": false
+                    },
+                    "content_vendor_burnin": {
+                        "disable": true
+                    },
+                    "format": {},
                     "main_read": {
-                        "knob_order": ["file"],
+                        "knob_order": [
+                            "file"
+                        ],
                         "raw": true
                     },
                     "main_timecode": {
@@ -110,7 +125,11 @@
                         "useFrame": true
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "knob_order": [
+                            "file_type",
+                            "meta_codec"
+                        ],
+                        "create_directories": true,
                         "raw": true,
                         "file_type": "mov",
                         "meta_codec": "ap4h",
@@ -119,7 +138,7 @@
                         "mov64_write_timecode": true
                     }
                 },
-                "deadline_settings":{
+                "deadline_settings": {
                     "primary_pool": "vfx_processing",
                     "secondary_pool": "vfx_processing",
                     "department": "VFX",
@@ -131,54 +150,62 @@
                     "publish_file_type": null
                 }
             },
-            "client-version-dnxhd":{
-                "process_settings":{
-                    "title" : "Client DNxHD v000",
-                    "description" : "Client DNxHD v000",
+            "client-version-dnxhd": {
+                "process_settings": {
+                    "title": "Client DNxHD v000",
+                    "description": "Client DNxHD v000",
                     "output_root": "primary",
-                    "output_directory": "admin/outgoing/submissions/v000",
+                    "output_directory": "admin/outgoing/submissions/v000/{entity}",
                     "output_file": "{output_file}",
                     "output_file_ext": "mov",
                     "version_start_number": 0,
                     "dependencies": false,
                     "create_version": false,
                     "update_version": false,
-                    "create_publish": false,                    
-                    "update_client_version": false,                       
+                    "create_publish": false,
+                    "update_client_version": false,
                     "color_required": true,
                     "client_process": true,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
-                    "plugin_version": "11.3",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
+                    "plugin_version": "12.2",
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_DNxHD.nk"
                 },
-                "nuke_settings":{
-                    "plate_switch": {"which":0},
-                    "color_switch": {"which":1},
-                    "transform_switch": {"which":1},
-                    "slate_switch": {"disable":false},
-                    "burnin_switch": {"disable":false},
-                    "content_vendor_burnin":{"disable":true},                    
+                "nuke_settings": {
+                    "plate_switch": {"which": 0},
+                    "color_switch": {"which": 1},
+                    "transform_switch": {"which": 1},
+                    "slate_switch": {
+                        "disable": false
+                    },
+                    "burnin_switch": {
+                        "disable": false
+                    },
+                    "content_vendor_burnin": {
+                        "disable": true
+                    },
                     "main_lut": {
-                        "colorspaceIn": "linear",          
+                        "colorspaceIn": "linear",
                         "colorspaceOut": "linear"
-                    },                          
-                    "main_ocio": {},               
-                    "format":{
+                    },
+                    "main_ocio": {},
+                    "format": {
                         "type": "CustomNonProjectEntity01",
                         "id": 5,
                         "name": "FHD"
-                    },      
+                    },
                     "main_read": {
-                        "knob_order": ["file"],
+                        "knob_order": [
+                            "file"
+                        ],
                         "raw": true
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
+                        "create_directories": true,
                         "raw": true
                     }
                 },
-                "deadline_settings":{
+                "deadline_settings": {
                     "primary_pool": "vfx_processing",
                     "secondary_pool": "vfx_processing",
                     "department": "VFX",
@@ -189,81 +216,13 @@
                     "machine_limit": 1,
                     "publish_file_type": null
                 }
-            },
-            "client-version-exr":{
-                "process_settings":{
-                    "title" :  "EXRs v000",
-                    "description" : "EXR version Zero",
-                    "output_root": "primary",            
-                    "output_directory": "admin/outgoing/submissions/v000/{output_file}",
-                    "output_file": "{output_file}",
-                    "output_file_ext": "exr",
-                    "create_version": false,
-                    "update_version": false,
-                    "create_publish": false,                    
-                    "update_client_version": false,
-                    "dependencies": true,
-                    "dependent_job_suffix": "support_files",
-                    "dependent_linked_files": ["sg_shot_ccc"],                    
-                    "dependent_output_directory": "support_files",
-                    "dependent_output_file": "{output_file}",
-                    "dependent_output_file_ext": "",
-                    "dependent_output_source": "{entity_root}/lut",
-                    "dependent_script_file":"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/file_transfer2.py",
-                    "color_required": false,
-                    "client_process": true,
-                    "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
-                    "plugin_version": "11.3",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
-                },
-                "nuke_settings":{
-                    "plate_switch": {"which":0},
-                    "camera_switch": {"which":0},
-                    "color_switch": {"which":0},
-                    "transform_switch": {"which":0},
-                    "slate_switch": {"disable":false},
-                    "burnin_switch": {"disable":true},
-                    "content_vendor_burnin":{"disable":true},                    
-                    "main_lut": {
-                        "colorspaceIn": "linear",          
-                        "colorspaceOut": "Gamma2.2"
-                    },                           
-                    "main_ocio": {"disable": true},
-                    "main_read": {
-                        "knob_order": ["file"],
-                        "raw": true,
-                        "colorspace": "linear"
-                    },
-                    "main_write": {
-                        "knob_order": ["file_type"],
-                        "raw": true,
-                        "file_type": "exr",
-                        "channels": "all",
-                        "interleave": "channels",
-                        "first_part": "rgb",
-                        "compression": "PIZ Wavelet (32 scanlines)"
-                    }
-                },
-                "deadline_settings":{
-                    "primary_pool": "vfx_processing",
-                    "secondary_pool": "vfx_processing",
-                    "department": "VFX",
-                    "group": "admin",
-                    "chunk_size": 4,
-                    "priority": 50,
-                    "concurrent_task": 4,
-                    "machine_limit": 4,
-                    "publish_file_type": null
-                }
-            }                    
+            }
         },
-        "pump_settings":{
-            "main_plates_exclude_from_loader_efl" : true,
-            "postfix_file" : "admin/processing/python/project_postfix.py",
-            "script_file" :"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/pump_processing/postfix_process_pump.py"
+        "pump_settings": {
+            "main_plates_exclude_from_loader_efl": true,
+            "postfix_file": "admin/processing/python/project_postfix.py",
+            "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/pump_processing/postfix_process_pump.py"
         }
     },
-    "secondary":{}
-
+    "secondary": {}
 }

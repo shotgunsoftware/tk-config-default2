@@ -9,6 +9,7 @@
                     "add_to_review_playlist": true,
                     "create_version": true,
                     "update_version": true,
+                    "update_version_media": true, 
                     "create_publish": false,                    
                     "update_client_version": false,                       
                     "color_required": true,
@@ -16,7 +17,13 @@
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
                     "plugin_version": "11.3",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk",
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
                 },
                 "nuke_settings":{
                     "plate_switch": {"which":2},
@@ -38,13 +45,8 @@
                         "raw": true
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
-                        "raw": true,
-                        "file_type": "mov",
-                        "meta_codec": "ap4h",
-                        "mov64_codec": "ap4h",
-                        "mov64_fps": 24,
-                        "mov64_write_timecode": true
+                        "knob_order": ["raw"],
+                        "raw": true
                     }
                 },
                 "deadline_settings":{
@@ -105,13 +107,8 @@
                         "raw": true
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
-                        "raw": true,
-                        "file_type": "mov",
-                        "meta_codec": "ap4h",
-                        "mov64_codec": "ap4h",
-                        "mov64_fps": 24,
-                        "mov64_write_timecode": true
+                        "knob_order": ["raw"],
+                        "raw": true
                     }
                 },
                 "deadline_settings":{
@@ -140,6 +137,7 @@
                     "add_to_review_playlist": true,
                     "create_version": true,
                     "update_version": true,
+                    "update_version_media": true,
                     "create_publish": false,                    
                     "update_client_version": false,                       
                     "color_required": true,
@@ -147,7 +145,13 @@
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke11.3v4/Nuke11.3.exe",
                     "plugin_version": "11.3",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk",
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
                 },
                 "nuke_settings":{
                     "plate_switch": {"which":2},
@@ -169,13 +173,8 @@
                         "raw": true
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
-                        "raw": true,
-                        "file_type": "mov",
-                        "meta_codec": "ap4h",
-                        "mov64_codec": "ap4h",
-                        "mov64_fps": 24,
-                        "mov64_write_timecode": true
+                        "knob_order": ["raw"],
+                        "raw": true
                     }
                 },
                 "deadline_settings":{
@@ -236,13 +235,8 @@
                         "raw": true
                     },
                     "main_write": {
-                        "knob_order": ["file_type", "meta_codec", "meta_encoder"],
-                        "raw": true,
-                        "file_type": "mov",
-                        "meta_codec": "ap4h",
-                        "mov64_codec": "ap4h",
-                        "mov64_fps": 24,
-                        "mov64_write_timecode": true
+                        "knob_order": ["raw"],
+                        "raw": true
                     }
                 },
                 "deadline_settings":{
@@ -261,24 +255,8 @@
             }
         }
     },
-    "thumbnail":{
-        "job_info":{
-            "plugin": "Python",
-            "priority": "100",
-            "machine_limit": 1,
-            "pool": "vfx_processing",
-            "secondary_pool": "vfx_processing",
-            "chunk": 1000000
-        },
-        "plugin_info":{
-            "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/thumbnail.py",
-            "version": 2.7
-        },
-        "job_extra_info":{
-        }
-    },
     "general_settings":{
-        "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/submission_process_submit.py"
+        "script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/submission_process_submit.py",
+        "postfix_file": "admin/processing/python/submission_postfix.py"
     }
-
 }
