@@ -23,7 +23,7 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.4.1
+  version: v0.4.2
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
@@ -35,19 +35,19 @@ apps.tk-multi-breakdown2.location:
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.3.2
+  version: v1.3.3
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.12.1
+  version: v0.12.2
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.21.1
+  version: v1.21.2
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.6.1
+  version: v2.6.2
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -67,7 +67,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.8.1
+  version: v1.8.2
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
@@ -95,7 +95,7 @@ apps.tk-shotgun-launchpublish.location:
 apps.tk-shotgun-launchvredreview.location:
   type: app_store
   name: tk-shotgun-launchvredreview
-  version: v1.1.2
+  version: v1.1.3
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
@@ -103,7 +103,7 @@ apps.tk-hiero-export.location:
 apps.tk-hiero-openinshotgun.location:
   type: app_store
   name: tk-hiero-openinshotgun
-  version: v0.4.1
+  version: v0.4.2
 apps.tk-houdini-alembicnode.location:
   type: app_store
   name: tk-houdini-alembicnode
@@ -123,11 +123,11 @@ apps.tk-nuke-writenode.location:
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.10.5
+  version: v1.10.6
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.4.4
+  version: v1.4.5
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
