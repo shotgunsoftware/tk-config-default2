@@ -1,0 +1,56 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# ---- Alias
+
+# asset_step
+settings.tk-multi-data-validation.alias.asset_step:
+  hook_data_validator: "{engine}/tk-multi-data-validation/basic/scene_data_validator.py"
+  rules:
+    - id: layer_is_empty
+      data_type: Layers
+    - id: layer_symmetry
+      data_type: Layers
+    - id: shader_unused
+      data_type: Shaders
+    - id: shader_is_vred_compatible
+      data_type: Shaders
+    - id: node_instances
+      data_type: Model
+    - id: node_pivots_at_origin
+      data_type: Model
+    - id: node_has_zero_transform
+      data_type: Model
+    - id: node_templates
+      data_type: Model
+    - id: node_is_null
+      data_type: Model
+    - id: node_has_construction_history
+      data_type: Model
+    - id: set_empty
+      data_type: Model
+    - id: curves
+      data_type: Model
+    - id: cos_unused
+      data_type: Model
+    - id: cos_construction_history
+      data_type: Model
+    - id: references_exist
+      data_type: Model
+    - id: locators
+      data_type: Model
+  location: "@apps.tk-multi-data-validation.location"
