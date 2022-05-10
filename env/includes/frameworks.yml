@@ -17,33 +17,29 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.3
+      version: v1.1.5
       type: app_store
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.0
+      version: v0.7.2
       type: app_store
       name: tk-framework-adminui
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.2.0
+      version: v0.2.2
       type: app_store
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.4.7
+      version: v1.5.3
       type: app_store
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      type: git_branch
-      branch: SHOT-3330
-      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      version: 610a5ec
-      # version: v2.10.0
-      # type: app_store
-      # name: tk-framework-qtwidgets
+      version: v2.10.3
+      type: app_store
+      name: tk-framework-qtwidgets
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -51,7 +47,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.8.0
+      version: v5.8.5
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
@@ -61,16 +57,16 @@ frameworks:
       name: tk-framework-widget
   tk-framework-widget_v1.x.x:
     location:
-      version: v1.1.0
+      version: v1.1.1
       type: app_store
       name: tk-framework-widget
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.2.0
+      version: v0.3.2
       type: app_store
       name: tk-framework-desktopclient
   tk-framework-lmv_v0.x.x:
     location:
-      version: v0.2.0
+      version: v0.2.2
       type: app_store
       name: tk-framework-lmv

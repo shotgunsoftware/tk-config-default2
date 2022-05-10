@@ -362,15 +362,16 @@ settings.tk-multi-loader2.alias:
 # VRED
 settings.tk-multi-loader2.vred:
   action_mappings:
-    Alias File: [import]
-    Igs File: [import]
-    Stp File: [import]
-    Stl File: [import]
-    Jt File: [import]
-    Catpart File: [import]
-    Fbx File: [import]
-    VRED Scene: [import]
-    Osb File: [import]
+    Alias File: [import, import_with_options, smart_reference]
+    Igs File: [import, import_with_options, smart_reference]
+    Iges File: [ import, import_with_options, smart_reference ]
+    Stp File: [import, import_with_options, smart_reference]
+    Stl File: [import, import_with_options, smart_reference]
+    Jt File: [import, import_with_options, smart_reference]
+    Catpart File: [import, import_with_options, smart_reference]
+    Fbx File: [import, import_with_options, smart_reference]
+    VRED Scene: [import, import_with_options, smart_reference]
+    Osb File: [import, import_with_options, smart_reference]
     Image: [import_sceneplate]
     Rendered Image: [import_sceneplate]
   entities:

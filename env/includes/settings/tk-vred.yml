@@ -14,11 +14,10 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
-- ./tk-multi-breakdown.yml
+- ./tk-multi-breakdown2.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-shotgunpanel.yml
-- ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
 
 ################################################################################
@@ -28,6 +27,8 @@ settings.tk-vred.asset:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred"
   menu_favourites:
@@ -39,22 +40,28 @@ settings.tk-vred.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown: "@settings.tk-multi-breakdown.vred"
-    tk-multi-breakdown2:
-      location: "@apps.tk-multi-breakdown2.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.vred"
     tk-multi-loader2: "@settings.tk-multi-loader2.vred"
     tk-multi-publish2: "@settings.tk-multi-publish2.vred.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
-    tk-multi-snapshot: "@settings.tk-multi-snapshot.vred.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred.asset_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
-  - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
   render_template: vred_asset_render_work
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: ''}
+  - {app_instance: tk-multi-pythonconsole, name: 'ShotGrid Python Console...'}
+  docked_apps:
+    tk-multi-shotgunpanel:
+        pos: right
+        tabbed: True
+    tk-multi-pythonconsole:
+        pos: right
+        tabbed: True
   location: "@engines.tk-vred.location"
 
 # project
@@ -62,12 +69,22 @@ settings.tk-vred.project:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   run_at_startup:
   - { app_instance: tk-multi-shotgunpanel, name: '' }
+  - { app_instance: tk-multi-pythonconsole, name: 'ShotGrid Python Console...' }
+  docked_apps:
+    tk-multi-shotgunpanel:
+        pos: right
+        tabbed: True
+    tk-multi-pythonconsole:
+        pos: right
+        tabbed: True
   location: "@engines.tk-vred.location"
 
 # version for tk-shotgun-launchvredreview

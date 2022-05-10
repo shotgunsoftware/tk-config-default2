@@ -17,7 +17,7 @@ returned by the `pick_environment` hook. These files are:
     building menus in the SG web interface.
 * `asset_step.yml` - Asset context with a pipeline step. This is the environment
     typically associated with an artist's Asset work area.
-* `project.yml` - A Shotgun project context. Often used when launching a
+* `project.yml` - A ShotGrid project context. Often used when launching a
     DCC from SG Desktop, providing apps for further refining the context.
 * `publishedfile_version.yml` - A context for providing functionality when
     viewing PublishedFile or Version entities, typically in SG web interface.
@@ -197,4 +197,4 @@ Questions?
 
 If you have any questions or concerns about the structure of this configuration,
 or if you have any ideas for how to improve it, please send an email to
-[support@shotgunsoftware.com](mailto:support@shotgunsoftware.com).
+[https://knowledge.autodesk.com/contact-support](https://knowledge.autodesk.com/contact-support).
