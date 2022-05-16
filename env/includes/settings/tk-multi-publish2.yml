@@ -270,7 +270,7 @@ settings.tk-multi-publish2.nuke.asset_step:
   path_info: "{self}/path_info.py:{config}/tk-multi-publish2/basic/nuke/path_info.py"
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/nuke/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
@@ -296,7 +296,7 @@ settings.tk-multi-publish2.nuke.shot_step:
       Work Template: nuke_shot_work
   publish_plugins:
   - name: Version for review
-    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/general/upload_version.py"
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/basic/nuke/upload_version.py"
     settings: {}
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/publish_file.py"
