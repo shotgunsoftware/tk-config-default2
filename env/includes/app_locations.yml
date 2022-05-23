@@ -17,12 +17,6 @@ includes:
 ################################################################################
 # location descriptors for apps used in this configuration
 
-apps.tk-multi-bg-publish.location:
-  type: git_branch
-  path: https://github.com/shotgunsoftware/tk-multi-bg-publish.git
-  branch: test-ui
-  version: 749c0b2
-
 # ---- Multi apps
 
 # about
@@ -53,8 +47,8 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  branch: SHOT-3860-publish-manager-logger
-  version: 1d8e3c1
+  branch: master
+  version: 9da8d44
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -87,6 +81,11 @@ apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
   version: v1.2.1
+apps.tk-multi-bg-publish.location:
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-bg-publish.git
+  branch: main
+  version: 194fabe
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders

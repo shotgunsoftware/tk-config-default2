@@ -30,7 +30,7 @@ engines.tk-alias.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-alias.git
   branch: SHOT-3863-factorize-publish-hooks
-  version: b061095
+  version: 8666ae8
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -54,7 +54,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.11.2
+  version: v0.11.4
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
@@ -79,4 +79,4 @@ engines.tk-vred.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-vred.git
   branch: SHOT-3863-factorize-publish-hooks
-  version: "9349679"
+  version: 1ee874c
