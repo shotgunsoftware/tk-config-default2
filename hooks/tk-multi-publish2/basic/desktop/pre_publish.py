@@ -71,6 +71,9 @@ class PrePublishHook(HookBaseClass):
             postfix = ''
 
         roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE')]
+        # Patch in case of missing Pipeline Root
+        # TODO Delete this later
+        roots.append("//10.80.8.252/VFX_Pipeline")
         for root_path in roots:
             if not root_path:
                 continue
