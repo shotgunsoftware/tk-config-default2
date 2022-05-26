@@ -10,11 +10,12 @@
 
 ### THIS MUST BE LOCAL IN ALL CONFIGS TO UPDATE ENVIRONMENT ###
 
-import os, sys
+import os
+import sys
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
-logger = sgtk.LogManager.get_logger(__name__)
+
 
 class PrePublishHook(HookBaseClass):
     """
@@ -22,6 +23,8 @@ class PrePublishHook(HookBaseClass):
     dialog. There may be conditions that need to be checked before allowing
     the user to proceed to publishing.
     """
+    logger = sgtk.LogManager.get_logger(__name__)
+
 
     @staticmethod
     def _clean_path(path):
@@ -70,10 +73,7 @@ class PrePublishHook(HookBaseClass):
         else:
             postfix = ''
 
-        roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE')]
-        # Patch in case of missing Pipeline Root
-        # TODO Delete this later
-        roots.append("//10.80.8.252/VFX_Pipeline")
+        roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE', "//10.80.8.252/VFX_Pipeline")]
         for root_path in roots:
             if not root_path:
                 continue
@@ -117,7 +117,7 @@ class PrePublishHook(HookBaseClass):
             self.get_pipeline_path(package_name='ssvfx_sg')
             ]
 
-        [sys.path.append(os.path.realpath(i)) for i in add_paths if i not in sys.path]
+        [sys.path.append(os.path.realpath(i)) for i in add_paths if i and i not in sys.path]
         self.logger.warning("sys.path: %s" % sys.path)
 
         return True
