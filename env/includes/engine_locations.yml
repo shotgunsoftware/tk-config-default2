@@ -29,11 +29,11 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.1.4
+  version: v2.1.6
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.6.3
+  version: v2.6.4
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
@@ -41,11 +41,11 @@ engines.tk-desktop2.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.17.3
+  version: v1.17.5
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.8.3
+  version: v1.8.4
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
