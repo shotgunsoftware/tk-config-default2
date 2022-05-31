@@ -277,6 +277,8 @@ settings.tk-multi-shotgunpanel.alias:
       filters: {published_file_type: Catproduct File}
     - actions: [import]
       filters: {published_file_type: Fbx File}
+    - actions: [import]
+      filters: {published_file_type: Motion Builder FBX}
     - actions: [texture_node]
       filters: {published_file_type: Image}
     - actions: [texture_node]
@@ -324,6 +326,8 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {published_file_type: Catpart File}
     - actions: [import]
       filters: {published_file_type: Fbx File}
+    - actions: [import]
+      filters: {published_file_type: Motion Builder FBX}
     - actions: [import]
       filters: {published_file_type: VRED Scene}
     - actions: [import]
