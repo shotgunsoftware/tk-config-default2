@@ -191,11 +191,14 @@ paths:
          definition: '@shot_context/maya/{task_name}/caches/bifrost/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}_v{version}.{SEQ}.bif'
          root_name: 'caches'
     # review output
+    maya_shot_playblast_root:
+        definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{name}]_pb_v{version}'
+        root_name: 'project_pipeline'
     maya_shot_playblast_output:
-        definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{name}]_pb_v{version}/{Shot}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{name}]_pb_v{version}'
         root_name: 'project_pipeline'
     maya_shot_playblast_publishing:
-        definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{name}]_pb_v{version}/{Shot}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
+        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
         root_name: 'project_pipeline'
     maya_shot_quicktime_quick:
         definition: '@render_root/maya/{task_name}/review/quickdaily/{Shot}[_{name}]_v{version}_{iteration}.mov'
@@ -233,11 +236,14 @@ paths:
     maya_asset_render_exr_pub:
         definition: '@asset_render_root/maya/{task_name}/publish/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{name}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipeline'
+    maya_asset_playblast_root:
+        definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{name}]_pb_v{version}'
+        root_name: 'project_pipeline'
     maya_asset_playblast_output:
-        definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{name}]_pb_v{version}/{Asset}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{name}]_pb_v{version}'
         root_name: 'project_pipeline'
     maya_asset_playblast_publishing:
-        definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{name}]_pb_v{version}/{Asset}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
+        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
         root_name: 'project_pipeline'
     # # Maya Simulations output
     # maya_asset_sim:
