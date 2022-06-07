@@ -17,22 +17,22 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.4
+      version: v1.1.5
       type: app_store
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.1
+      version: v0.7.2
       type: app_store
       name: tk-framework-adminui
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.2.1
+      version: v0.2.2
       type: app_store
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.5.2
+      version: v1.5.3
       type: app_store
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
@@ -48,7 +48,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.8.4
+      version: v5.8.5
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
@@ -63,11 +63,11 @@ frameworks:
       name: tk-framework-widget
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.3.1
+      version: v0.3.2
       type: app_store
       name: tk-framework-desktopclient
   tk-framework-lmv_v0.x.x:
     location:
-      version: v0.2.1
+      version: v0.2.2
       type: app_store
       name: tk-framework-lmv
