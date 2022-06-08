@@ -152,7 +152,7 @@ paths:
     houdini_shot_render_step_ver:
         definition: '@render_root/houdini/{task_name}/version'
         root_name: 'project_pipeline'
-      houdini_shot_render_root:
+    houdini_shot_render_root:
         definition: '@houdini_shot_render_step_ver/@houdini_shot_hipfile'
         root_name: 'project_pipeline'
     houdini_shot_render_exr:
