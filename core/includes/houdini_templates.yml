@@ -152,14 +152,17 @@ paths:
     houdini_shot_render_step_ver:
         definition: '@render_root/houdini/{task_name}/version'
         root_name: 'project_pipeline'
+      houdini_shot_render_root:
+        definition: '@houdini_shot_render_step_ver/@houdini_shot_hipfile'
+        root_name: 'project_pipeline'
     houdini_shot_render_exr:
-        definition: '@houdini_shot_render_step_ver/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.exr'
+        definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.exr'
         root_name: 'project_pipeline'
     houdini_shot_render_multi_exr:
-        definition: '@houdini_shot_render_step_ver/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{HSEQ}.exr'
+        definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{HSEQ}.exr'
         root_name: 'project_pipeline'
     houdini_shot_render_multi_tiled_exr:
-        definition: '@houdini_shot_render_step_ver/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{tile_index}.{HSEQ}.exr'
+        definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{tile_index}.{HSEQ}.exr'
         root_name: 'project_pipeline'
     # Additional mantra SHOT outputs stay in the project folder
     # ifd is "compiled" hip scene for rendering mantra still has to render it
@@ -174,7 +177,7 @@ paths:
         definition: '@houdini_shot_render_step/dcm/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.dcm'
         root_name: 'project_pipeline'
     houdini_shot_extra_plane:
-        definition: '@houdini_shot_render_step_ver/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version_{aov_name}.{HSEQ}.exr'
+        definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{aov_name}.{HSEQ}.exr'
         root_name: 'project_pipeline'
     # Additional geometry Shot node outputs
     houdini_shot_work_geo_cache:
@@ -231,8 +234,11 @@ paths:
     houdini_asset_render_step_ver:
         definition: '@asset_render_root/houdini/{task_name}/version'
         root_name: 'project_pipeline'
+    houdini_asset_render_root:
+        definition: '@houdini_asset_render_step_ver/@houdini_asset_hipfile'
+        root_name: 'project_pipeline'
     houdini_asset_render_exr:
-        definition: '@houdini_asset_render_step_ver/@houdini_asset_hipfile/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.exr'
+        definition: '@houdini_asset_render_root/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.exr'
         root_name: 'project_pipeline'
     # Additional mantra outputs
     houdini_asset_ifd:
@@ -245,7 +251,7 @@ paths:
         definition: '@houdini_asset_render_step/dcms/@houdini_asset_hipfile/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.dcm'
         root_name: 'project_pipeline'
     houdini_asset_extra_plane:
-        definition: '@houdini_asset_render_step_ver/@houdini_asset_hipfile_{aov_name}/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.exr'
+        definition: '@houdini_asset_render_root_{aov_name}/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.exr'
         root_name: 'project_pipeline'
     # Additional geometry Asset cache node outputs
     houdini_asset_work_geo_cache:
