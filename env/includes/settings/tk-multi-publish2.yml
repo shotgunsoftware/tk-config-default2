@@ -324,6 +324,21 @@ settings.tk-multi-publish2.photoshop.asset_step:
   - name: Upload for review
     hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
     settings: {}
+  - name: Publish PNG to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_image.py"
+    settings:
+      Publish Template: photoshop_asset_png_publish
+      Export Settings:
+        format: PNG
+        PNG8: False
+        quality: 100
+  - name: Publish JPEG to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_image.py"
+    settings:
+      Publish Template: photoshop_asset_jpg_publish
+      Export Settings:
+        format: JPEG
+        quality: 100
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -349,6 +364,21 @@ settings.tk-multi-publish2.photoshop.shot_step:
   - name: Upload for review
     hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
     settings: {}
+  - name: Publish PNG to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_image.py"
+    settings:
+      Publish Template: photoshop_shot_png_publish
+      Export Settings:
+        format: PNG
+        PNG8: False
+        quality: 100
+  - name: Publish JPEG to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_image.py"
+    settings:
+      Publish Template: photoshop_shot_jpg_publish
+      Export Settings:
+        format: JPEG
+        quality: 100
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

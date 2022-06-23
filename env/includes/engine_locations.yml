@@ -63,9 +63,10 @@ engines.tk-nuke.location:
   name: tk-nuke
   version: v0.14.4
 engines.tk-photoshopcc.location:
-  type: app_store
-  name: tk-photoshopcc
-  version: v1.9.2
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-photoshopcc.git
+  version: e6b5fa2
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
