@@ -324,7 +324,7 @@ settings.tk-multi-publish2.photoshop.asset_step:
   - name: Upload for review
     hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
     settings: {}
-  - name: Publish PNG to Shotgun
+  - name: Publish PNG to ShotGrid
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_image.py"
     settings:
       Publish Template: photoshop_asset_png_publish
@@ -332,7 +332,7 @@ settings.tk-multi-publish2.photoshop.asset_step:
         format: PNG
         PNG8: False
         quality: 100
-  - name: Publish JPEG to Shotgun
+  - name: Publish JPEG to ShotGrid
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_image.py"
     settings:
       Publish Template: photoshop_asset_jpg_publish
