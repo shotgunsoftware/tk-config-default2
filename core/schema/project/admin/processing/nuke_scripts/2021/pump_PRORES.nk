@@ -1,5 +1,5 @@
 #! C:/Program Files/Nuke12.2v4/nuke-12.2.4.dll -nx
-#write_info main_write file:"//pix_artist/project_straight_shooter/straight_shooter/admin/processing/nuke_scripts/Tests/ForEditorial/DNX36/101_51G_03Av4.mov" format:"1920 1080 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1000 1092" fps:"24" colorspace:"default (rec709)" datatype:"unknown" transfer:"unknown" views:"main" timecode:"00:00:00:01" colorManagement:"Nuke"
+#write_info main_write file:"" format:"3840 2160 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1000 1092" fps:"24" colorspace:"Output - Rec.709" datatype:"unknown" transfer:"unknown" views:"main" timecode:"00:00:00:01" colorManagement:"Nuke"
 version 12.2 v4
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
@@ -33,7 +33,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 }
 Root {
  inputs 0
- name //pix_artist/project_straight_shooter/straight_shooter/admin/processing/nuke_scripts/2021/pump_DNxHD.nk
+ name //pix_artist/project_straight_shooter/straight_shooter/admin/processing/nuke_scripts/2021/pump_PRORES.nk
  frame 1000
  first_frame 1000
  last_frame 1092
@@ -105,11 +105,11 @@ Root {
 BackdropNode {
  inputs 0
  name BackdropNode2
- tile_color 0x476644ff
+ tile_color 0x446040ff
  label "CAMERA TRANSFORM"
  note_font_size 50
  xpos -1127
- ypos -2841
+ ypos -2840
  bdwidth 1480
  bdheight 659
  z_order -10
@@ -198,7 +198,7 @@ BackdropNode {
  label "Arri Alexa MINI LF\n4448X3096 PA1"
  note_font_size 22
  xpos -766
- ypos -2583
+ ypos -2552
  bdwidth 254
  bdheight 239
 }
@@ -233,7 +233,7 @@ BackdropNode {
  label "Arri Alexa MINI LF\n4448X3096 PA2"
  note_font_size 22
  xpos -1079
- ypos -2589
+ ypos -2560
  bdwidth 254
  bdheight 239
 }
@@ -276,10 +276,10 @@ BackdropNode {
 BackdropNode {
  inputs 0
  name BackdropNode13
- label DNxHD
+ label "PRO RES"
  note_font_size 50
  xpos -1097
- ypos -980
+ ypos -981
  bdwidth 433
  bdheight 359
  z_order 1
@@ -294,6 +294,17 @@ BackdropNode {
  ypos -3439
  bdwidth 286
  bdheight 366
+ z_order 1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode63
+ tile_color 0x355e35ff
+ label update
+ note_font_size 22
+ xpos -953
+ ypos -912
+ bdheight 272
  z_order 1
 }
 FrameHold {
@@ -378,7 +389,7 @@ Read {
  raw true
  name main_read
  xpos -1300
- ypos -5226
+ ypos -5229
 }
 Reformat {
  type "to box"
@@ -397,7 +408,7 @@ Dot {
  xpos -1266
  ypos -5074
 }
-set Nb5aa9c00 [stack 0]
+set Nc3d1d400 [stack 0]
 Dot {
  name Dot25
  xpos -1787
@@ -419,7 +430,7 @@ Dot {
  xpos -1914
  ypos -3851
 }
-push $Nb5aa9c00
+push $Nc3d1d400
 Switch {
  inputs 2
  name slap_switch
@@ -431,13 +442,13 @@ Dot {
  xpos -1266
  ypos -3567
 }
-set Nb5aa8400 [stack 0]
+set Nc547b800 [stack 0]
 Dot {
  name Dot14
  xpos -1266
  ypos -3366
 }
-set Nb619bc00 [stack 0]
+set Nc547b400 [stack 0]
 Dot {
  name Dot29
  xpos -608
@@ -466,7 +477,7 @@ Dot {
  xpos -608
  ypos -3101
 }
-push $Nb619bc00
+push $Nc547b400
 Switch {
  inputs 2
  name plate_switch
@@ -481,25 +492,25 @@ Dot {
  xpos -1266
  ypos -2954
 }
-set Nb619a400 [stack 0]
+set Nc5479c00 [stack 0]
 Dot {
  name Dot22
  xpos -980
  ypos -2907
 }
-set Nb619a000 [stack 0]
+set Nc5479800 [stack 0]
 Dot {
  name Dot3
  xpos -659
  ypos -2907
 }
-set Nb6199c00 [stack 0]
+set Nc5479400 [stack 0]
 Dot {
  name Dot34
  xpos -342
  ypos -2907
 }
-set Nb6199800 [stack 0]
+set Nc5479000 [stack 0]
 Dot {
  name Dot35
  xpos 4
@@ -510,13 +521,13 @@ Dot {
  xpos 4
  ypos -2102
 }
-push $Nb6199800
+push $Nc5479000
 Dot {
  name Dot38
  xpos -342
  ypos -2102
 }
-push $Nb6199c00
+push $Nc5479400
 Reformat {
  type "to box"
  box_width 4448
@@ -526,22 +537,30 @@ Reformat {
  name Reformat20
  label "4448X3096 PA1"
  xpos -693
- ypos -2485
+ ypos -2467
 }
 Transform {
  scale 1.302
  center {2224 1548}
+ black_outside false
  name Transform14
  label "lens ZOOM \n1.302"
  xpos -693
- ypos -2429
+ ypos -2422
+}
+Reformat {
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ resize fit
+ name Reformat34
+ xpos -693
+ ypos -2374
 }
 Dot {
  name Dot39
  xpos -659
  ypos -2102
 }
-push $Nb619a000
+push $Nc5479800
 Reformat {
  type "to box"
  box_width 4448
@@ -549,45 +568,45 @@ Reformat {
  box_fixed true
  box_pixel_aspect 2
  resize none
- name Reformat3
+ name Reformat2
  label "4448X3096 PA2"
  xpos -1014
- ypos -2489
+ ypos -2468
 }
 Transform {
  scale 1.287
  center {2224 1548}
- name Transform1
+ name Transform2
  label "lens ZOOM \n128.7"
  xpos -1014
- ypos -2430
+ ypos -2401
 }
 Dot {
  name Dot40
  xpos -980
  ypos -2108
 }
-push $Nb619a400
+push $Nc5479c00
 Switch {
  inputs 5
  name camera_switch
  tile_color 0xb4ffaaff
  label "Applies Camera Transform\n\[value which]"
  xpos -1300
- ypos -2045
+ ypos -2057
 }
 Dot {
  name Dot13
  xpos -1266
  ypos -1929
 }
-set Nb615ec00 [stack 0]
+set Nc5441800 [stack 0]
 Dot {
  name Dot21
  xpos -1044
  ypos -1929
 }
-set Nb615e800 [stack 0]
+set Nc5441400 [stack 0]
 Dot {
  name Dot2
  xpos -819
@@ -621,7 +640,7 @@ Dot {
  xpos -819
  ypos -1228
 }
-push $Nb615e800
+push $Nc5441400
 Colorspace {
  colorspace_out AlexaV3LogC
  name Colorspace5
@@ -633,20 +652,20 @@ OCIOCDLTransform {
  working_space scene_linear
  name shot_ccc
  xpos -1078
- ypos -1529
+ ypos -1528
 }
 Vectorfield {
  version 1
  name main_lut
  xpos -1078
- ypos -1457
+ ypos -1460
 }
 Dot {
  name Dot11
  xpos -1044
  ypos -1301
 }
-push $Nb615ec00
+push $Nc5441800
 Switch {
  inputs 3
  which 1
@@ -661,19 +680,19 @@ Dot {
  xpos -1266
  ypos -1090
 }
-set Nb6777800 [stack 0]
+set Nc53f2400 [stack 0]
 Dot {
  name Dot23
  xpos -912
  ypos -1090
 }
-set Nb6777400 [stack 0]
+set Nc53f2000 [stack 0]
 Dot {
  name Dot10
  xpos -253
  ypos -1090
 }
-push $Nb619a400
+push $Nc5479c00
 Dot {
  name Dot31
  xpos 1452
@@ -689,7 +708,37 @@ Dot {
  xpos 1452
  ypos -577
 }
-push $Nb5aa8400
+Colorspace {
+ inputs 0
+ colorspace_out AlexaV3LogC
+ name Colorspace3
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -438
+ ypos -923
+}
+Reformat {
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ black_outside true
+ name Reformat4
+ xpos -438
+ ypos -847
+}
+Crop {
+ box {0 0 3840 2160}
+ reformat true
+ crop false
+ name Crop1
+ xpos -438
+ ypos -811
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace6
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -438
+ ypos -761
+}
+push $Nc547b800
 Dot {
  name Dot16
  xpos -1778
@@ -706,48 +755,41 @@ Dot {
  xpos -1778
  ypos -523
 }
-push $Nb6777400
+push $Nc53f2000
 Colorspace {
  colorspace_out AlexaV3LogC
- name Colorspace3
+ name Colorspace29
  label "\[value colorspace_in] ->\[value colorspace_out]"
  xpos -946
- ypos -876
+ ypos -832
 }
 Reformat {
- format "1920 1080 0 0 1920 1080 1 HD_1080"
- resize fit
- name Reformat2
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ name Reformat26
  xpos -946
- ypos -830
+ ypos -782
 }
 Crop {
- box {0 129.7799988 1920 950.1799927}
- name Crop1
- xpos -946
- ypos -794
-}
-Crop {
- box {0 0 1920 1080}
+ box {0 0 3840 2160}
  reformat true
  crop false
- name Crop2
+ name Crop18
  xpos -946
- ypos -758
+ ypos -722
 }
 Colorspace {
  colorspace_in AlexaV3LogC
- name Colorspace6
+ name Colorspace30
  label "\[value colorspace_in] ->\[value colorspace_out]"
  xpos -946
- ypos -703
+ ypos -680
 }
 Dot {
  name Dot37
  xpos -912
  ypos -611
 }
-push $Nb6777800
+push $Nc53f2400
 Switch {
  inputs 2
  which 1
@@ -756,7 +798,6 @@ Switch {
  xpos -1300
  ypos -626
 }
-set Nb673f400 [stack 0]
 Switch {
  inputs 2
  name bypass_switch
@@ -768,7 +809,7 @@ Dot {
  xpos -1266
  ypos -425
 }
-set Nb673ec00 [stack 0]
+set Nc53a8800 [stack 0]
 Dot {
  name Dot5
  xpos -1780
@@ -1009,7 +1050,7 @@ Group {
   xpos 5464
   ypos -1482
  }
-set Nb673c400 [stack 0]
+set Nc5335c00 [stack 0]
  Reformat {
   type "to box"
   box_width {{SLATE_REFORMAT.width}}
@@ -1048,7 +1089,7 @@ set Nb673c400 [stack 0]
   xpos 5464
   ypos 2727
  }
-push $Nb673c400
+push $Nc5335c00
  Shuffle {
   red black
   green black
@@ -1078,13 +1119,13 @@ push $Nb673c400
   xpos 562
   ypos -1349
  }
-set Nb66ed000 [stack 0]
+set Nc52fe800 [stack 0]
  Dot {
   name Dot2
   xpos 1615
   ypos -1349
  }
-set Nb66ecc00 [stack 0]
+set Nc52fe400 [stack 0]
  Dot {
   name Dot3
   xpos 1730
@@ -1100,175 +1141,175 @@ set Nb66ecc00 [stack 0]
   xpos 2473
   ypos 731
  }
-set Nb66abc00 [stack 0]
+set Nc52fd800 [stack 0]
  Dot {
   name Dot16
   xpos 2604
   ypos 731
  }
-set Nb66ab800 [stack 0]
+set Nc52fd400 [stack 0]
  Dot {
   name Dot24
   xpos 2714
   ypos 731
  }
-set Nb66ab400 [stack 0]
+set Nc52fd000 [stack 0]
  Dot {
   name Dot25
   xpos 2845
   ypos 731
  }
-set Nb66ab000 [stack 0]
+set Nc52fcc00 [stack 0]
  Dot {
   name Dot8
   xpos 2963
   ypos 731
  }
-set Nb66aac00 [stack 0]
+set Nc52fc800 [stack 0]
  Dot {
   name Dot17
   xpos 3120
   ypos 731
  }
-set Nb66aa800 [stack 0]
+set Nc52fc400 [stack 0]
  Dot {
   name Dot9
   xpos 3274
   ypos 731
  }
-set Nb66aa400 [stack 0]
+set Nc52c7c00 [stack 0]
  Dot {
   name Dot18
   xpos 3430
   ypos 731
  }
-set Nb66aa000 [stack 0]
+set Nc52c7800 [stack 0]
  Dot {
   name Dot10
   xpos 3586
   ypos 731
  }
-set Nb66a9c00 [stack 0]
+set Nc52c7400 [stack 0]
  Dot {
   name Dot19
   xpos 3742
   ypos 731
  }
-set Nb66a9800 [stack 0]
+set Nc52c7000 [stack 0]
  Dot {
   name Dot12
   xpos 3898
   ypos 731
  }
-set Nb66a9400 [stack 0]
+set Nc52c6c00 [stack 0]
  Dot {
   name Dot20
   xpos 4054
   ypos 731
  }
-set Nb66a9000 [stack 0]
+set Nc52c6800 [stack 0]
  Dot {
   name Dot13
   xpos 4210
   ypos 731
  }
-set Nb66a8c00 [stack 0]
+set Nc52c6400 [stack 0]
  Dot {
   name Dot21
   xpos 4366
   ypos 731
  }
-set Nb66a8800 [stack 0]
+set Nc52c6000 [stack 0]
  Dot {
   name Dot14
   xpos 4522
   ypos 731
  }
-set Nb66a8400 [stack 0]
+set Nc52c5c00 [stack 0]
  Dot {
   name Dot22
   xpos 4678
   ypos 731
  }
-set Nb6677c00 [stack 0]
+set Nc52c5800 [stack 0]
  Dot {
   name Dot29
   xpos 4841
   ypos 732
  }
-set Nb6677800 [stack 0]
+set Nc52c5400 [stack 0]
  Dot {
   name Dot30
   xpos 4997
   ypos 732
  }
-set Nb6677400 [stack 0]
+set Nc52c5000 [stack 0]
  Dot {
   name Dot31
   xpos 5181
   ypos 730
  }
-set Nb6677000 [stack 0]
+set Nc52c4c00 [stack 0]
  Dot {
   name Dot32
   xpos 5337
   ypos 730
  }
-set Nb6676c00 [stack 0]
+set Nc52c4800 [stack 0]
  Dot {
   name Dot33
   xpos 5623
   ypos 732
  }
-set Nb6676800 [stack 0]
+set Nc52c4400 [stack 0]
  Dot {
   name Dot34
   xpos 5779
   ypos 732
  }
-set Nb6676400 [stack 0]
+set Nc529fc00 [stack 0]
  Dot {
   name Dot35
   xpos 5987
   ypos 732
  }
-set Nb6676000 [stack 0]
+set Nc529f800 [stack 0]
  Dot {
   name Dot36
   xpos 6143
   ypos 732
  }
-set Nb6675c00 [stack 0]
+set Nc529f400 [stack 0]
  Dot {
   name Dot37
   xpos 6335
   ypos 731
  }
-set Nb6675800 [stack 0]
+set Nc529f000 [stack 0]
  Dot {
   name Dot38
   xpos 6491
   ypos 731
  }
-set Nb6675400 [stack 0]
+set Nc529ec00 [stack 0]
  Dot {
   name Dot39
   xpos 6691
   ypos 732
  }
-set Nb6675000 [stack 0]
+set Nc529e800 [stack 0]
  Dot {
   name Dot40
   xpos 6847
   ypos 732
  }
-set Nb6674c00 [stack 0]
+set Nc529e400 [stack 0]
  Dot {
   name Dot15
   xpos 7358
   ypos 730
  }
-set Nb6674800 [stack 0]
+set Nc529e000 [stack 0]
  Dot {
   name Dot23
   xpos 7514
@@ -1309,7 +1350,7 @@ set Nb6674800 [stack 0]
   xpos 7480
   ypos 927
  }
-push $Nb6674800
+push $Nc529e000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1359,7 +1400,7 @@ push $Nb6674800
   xpos 7354
   ypos 2064
  }
-push $Nb6674c00
+push $Nc529e400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1395,7 +1436,7 @@ push $Nb6674c00
   xpos 6813
   ypos 929
  }
-push $Nb6675000
+push $Nc529e800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1442,7 +1483,7 @@ push $Nb6675000
   addUserKnob {16 LINE t LINE}
   LINE {{-(c5_line)}}
  }
-push $Nb6675400
+push $Nc529ec00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1478,7 +1519,7 @@ push $Nb6675400
   xpos 6457
   ypos 928
  }
-push $Nb6675800
+push $Nc529f000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1525,7 +1566,7 @@ push $Nb6675800
   addUserKnob {16 LINE t LINE}
   LINE {{-(c4_line)}}
  }
-push $Nb6675c00
+push $Nc529f400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1561,7 +1602,7 @@ push $Nb6675c00
   xpos 6109
   ypos 929
  }
-push $Nb6676000
+push $Nc529f800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1608,7 +1649,7 @@ push $Nb6676000
   addUserKnob {16 LINE t LINE}
   LINE {{-(c3_line)}}
  }
-push $Nb6676400
+push $Nc529fc00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1644,7 +1685,7 @@ push $Nb6676400
   xpos 5745
   ypos 929
  }
-push $Nb6676800
+push $Nc52c4400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1693,7 +1734,7 @@ push $Nb6676800
   addUserKnob {16 LINE t LINE}
   LINE {{-(c2_line)}}
  }
-push $Nb6676c00
+push $Nc52c4800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1729,7 +1770,7 @@ push $Nb6676c00
   xpos 5303
   ypos 927
  }
-push $Nb6677000
+push $Nc52c4c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1777,7 +1818,7 @@ push $Nb6677000
   addUserKnob {16 LINE t LINE}
   LINE {{-(c1_line)}}
  }
-push $Nb6677400
+push $Nc52c5000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1813,7 +1854,7 @@ push $Nb6677400
   xpos 4963
   ypos 927
  }
-push $Nb6677800
+push $Nc52c5400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1860,7 +1901,7 @@ push $Nb6677800
   addUserKnob {16 LINE t LINE}
   LINE {{-(artist_line)}}
  }
-push $Nb6677c00
+push $Nc52c5800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1897,7 +1938,7 @@ push $Nb6677c00
   xpos 4644
   ypos 928
  }
-push $Nb66a8400
+push $Nc52c5c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1944,13 +1985,13 @@ push $Nb66a8400
   addUserKnob {16 LINE t LINE}
   LINE {{-(lens_line)}}
  }
-push $Nb66a8800
+push $Nc52c6000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
   font_height_toolbar 100
   message "\[value parent.date]"
-  old_message {{50 48 50 50 45 48 52 45 49 57}
+  old_message {{50 48 50 50 45 48 53 45 49 49}
     }
   old_expression_markers {{0 9}
     }
@@ -1980,7 +2021,7 @@ push $Nb66a8800
   xpos 4332
   ypos 910
  }
-push $Nb66a8c00
+push $Nc52c6400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2025,7 +2066,7 @@ push $Nb66a8c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(date_line)}}
  }
-push $Nb66a9000
+push $Nc52c6800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2061,7 +2102,7 @@ push $Nb66a9000
   xpos 4020
   ypos 928
  }
-push $Nb66a9400
+push $Nc52c6c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2108,7 +2149,7 @@ push $Nb66a9400
   addUserKnob {16 LINE t LINE}
   LINE {{-(frame_line)}}
  }
-push $Nb66a9800
+push $Nc52c7000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2144,7 +2185,7 @@ push $Nb66a9800
   xpos 3708
   ypos 892
  }
-push $Nb66a9c00
+push $Nc52c7400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2191,7 +2232,7 @@ push $Nb66a9c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(vendor_line)}}
  }
-push $Nb66aa000
+push $Nc52c7800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2227,7 +2268,7 @@ push $Nb66aa000
   xpos 3396
   ypos 892
  }
-push $Nb66aa400
+push $Nc52c7c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2274,7 +2315,7 @@ push $Nb66aa400
   addUserKnob {16 LINE t LINE}
   LINE {{-(version_line)}}
  }
-push $Nb66aa800
+push $Nc52fc400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2311,7 +2352,7 @@ push $Nb66aa800
   xpos 3084
   ypos 899
  }
-push $Nb66aac00
+push $Nc52fc800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2358,7 +2399,7 @@ push $Nb66aac00
   addUserKnob {16 LINE t LINE}
   LINE {{-(shot_line)}}
  }
-push $Nb66ab000
+push $Nc52fcc00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2394,7 +2435,7 @@ push $Nb66ab000
   xpos 2811
   ypos 910
  }
-push $Nb66ab400
+push $Nc52fd000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2439,7 +2480,7 @@ push $Nb66ab400
   addUserKnob {16 LINE t LINE}
   LINE {{-(ep_line)}}
  }
-push $Nb66ab800
+push $Nc52fd400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2475,7 +2516,7 @@ push $Nb66ab800
   xpos 2570
   ypos 910
  }
-push $Nb66abc00
+push $Nc52fd800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2718,7 +2759,7 @@ push $Nb66abc00
   xpos 1730
   ypos 162
  }
-push $Nb66ecc00
+push $Nc52fe400
  Shuffle1 {
   red black
   green black
@@ -2822,7 +2863,7 @@ push $Nb66ecc00
   xpos 1456
   ypos -765
  }
-push $Nb66ed000
+push $Nc52fe800
  Grid {
   number {{CONTROL_NULL.GRID}}
   color 0.034
@@ -2953,7 +2994,7 @@ Dot {
  xpos -1780
  ypos 335
 }
-push $Nb673ec00
+push $Nc53a8800
 Dot {
  name Dot8
  xpos -631
@@ -3083,7 +3124,7 @@ Text2 {
  font_width_toolbar 100
  font_height_toolbar 100
  message "\[clock format \[clock seconds] -format %d/%m/%Y]"
- old_message {{49 50 47 48 53 47 50 48 50 50}
+ old_message {{49 51 47 48 53 47 50 48 50 50}
    }
  old_expression_markers {{0 9}
    }
@@ -3234,7 +3275,7 @@ Dot {
  xpos -443
  ypos 177
 }
-push $Nb673ec00
+push $Nc53a8800
 Switch {
  inputs 2
  which 1
@@ -3259,7 +3300,7 @@ AddTimeCode {
  xpos -1304
  ypos 637
 }
-set Nb59ef800 [stack 0]
+set Nbf705400 [stack 0]
 FrameHold {
  first_frame 1073
  name FrameHold2
@@ -3293,110 +3334,99 @@ StickyNote {
  inputs 0
  name StickyNote1
  label "1-The mov ref for this shot is 1280x720 however tech spec has it at 1920x1080.\n2-For looptest do that want the exr back as 3840x2160 as per tech spec\n3- In the editorail line up pdf for this shot they have the zoom info for dailies framing is that something we will be getting on every shot?"
- xpos -662
- ypos 987
+ xpos -2497
+ ypos 820
 }
 Read {
  inputs 0
  file_type mov
- file //pix_artist/project_straight_shooter/straight_shooter/admin/processing/nuke_scripts/Tests/ForEditorial/DNX36/101_51G_03Av4.mov
- format "1920 1080 0 0 1920 1080 1 HD_1080"
- last 267
- origlast 267
+ file //pix_artist/project_straight_shooter/straight_shooter/admin/incoming/turnover/220413/P015_041222_SSVFX_20220412145810/101_51G_03A_001/H264_720P_QT/101_51G_03A_001.mov
+ format "1280 720 0 0 1280 720 1 HD_720"
+ last 265
+ frame_mode "start at"
+ frame 1001
+ origlast 265
  origset true
  raw true
- name Read9
- xpos -1212
- ypos 1055
-}
-Read {
- inputs 0
- file_type mov
- file //pix_artist/project_straight_shooter/straight_shooter/shots/1051_0020/editorial/cut_ref/1051_Headset_CutRef_041222_SSVFX-SS.mov
- format "1920 1080 0 0 1920 1080 1 HD_1080"
- last 1175
- origlast 1175
- origset true
- raw true
- mov64_decode_video_levels "Video Range"
  name Read3
- xpos -976
- ypos 1044
-}
-Read {
- inputs 0
- file_type jpeg
- file "//pix_artist/project_straight_shooter/straight_shooter/admin/frame_leader/SS FRAMING CHARTS/SS FRAMING CHARTS/SS_4448x3096_SPH-FramingChart.jpg"
- format "4448 3096 0 0 4448 3096 1 respect_AMLFOG_Anamorphic_PA2"
- origset true
- name Read4
- xpos -1423
- ypos 972
-}
-Read {
- inputs 0
- file_type jpeg
- file "//pix_artist/project_straight_shooter/straight_shooter/admin/frame_leader/SS FRAMING CHARTS/SS FRAMING CHARTS/SS_4448x3096_2xANA-FramingChart.jpg"
- format "4448 3096 0 0 4448 3096 1 respect_AMLFOG_Anamorphic_PA2"
- origset true
- name Read5
- xpos -1575
- ypos 984
-}
-Read {
- inputs 0
- file_type exr
- file //pix_artist/project_straight_shooter/straight_shooter/shots/1051_0020/rushes/plate/main/EXR_16Bit_NativeRes/101_51G_03A_001.%04d.exr
- format "4448 3096 0 0 4448 3096 1 respect_AMLFOG_Anamorphic_PA2"
- first 1001
- last 1266
- origfirst 1001
- origlast 1266
- origset true
- raw true
- name Read2
- xpos -1301
- ypos 952
+ xpos -1683
+ ypos 606
 }
 ViewMetaData {
+ inputs 0
  name ViewMetaData1
- xpos -1301
- ypos 1048
+ xpos -1582
+ ypos 972
 }
-push $Nb673f400
-Viewer {
- frame_range 1001-1092
- frame_increment 1
- viewerProcess None
- translate {0.2349999994 -0.326000005}
- name Viewer1
- xpos -885
- ypos -3029
-}
-push $Nb59ef800
+push $Nbf705400
 Write {
- file //pix_artist/project_straight_shooter/straight_shooter/admin/processing/nuke_scripts/Tests/ForEditorial/DNX36/101_51G_03Av4.mov
+ colorspace "Output - Rec.709"
  raw true
  file_type mov
  mov64_format "mov (QuickTime / MOV)"
- mov64_codec AVdn
+ mov64_codec appr
  mov64_fps 23.976
  mov64_dnxhd_codec_profile "DNxHD 422 8-bit 36Mbit"
  mov64_pixel_format {{0} "yuv420p\tYCbCr 4:2:0 8-bit"}
  mov64_quality High
+ mov64_ycbcr_matrix_type "Rec 709"
  mov64_advanced 1
  mov64_write_timecode true
  mov64_gop_size 12
  mov64_b_frames 0
- mov64_bitrate 20000
- mov64_bitrate_tolerance 40000000
- mov64_quality_min 2
- mov64_quality_max 31
+ mov64_bitrate 28000
+ mov64_bitrate_tolerance 0
+ mov64_quality_min 1
+ mov64_quality_max 3
  create_directories true
  checkHashOnRead false
- version 43
+ version 37
  name main_write
  xpos -1304
- ypos 760
+ ypos 769
  postage_stamp true
+}
+Read {
+ inputs 0
+ file_type mov
+ file //pix_artist/project_straight_shooter/straight_shooter/shots/1051_0020/editorial/cut_ref/101_51G_03A_001.mov
+ format "1280 720 0 0 1280 720 1 HD_720"
+ last 265
+ origlast 265
+ origset true
+ name Read5
+ xpos -1847
+ ypos 718
+}
+Read {
+ inputs 0
+ file_type mov
+ file //pix_artist/project_straight_shooter/straight_shooter/shots/1051_0020/editorial/cut_ref/101_51G_03A_001.mov
+ format "1280 720 0 0 1280 720 1 HD_720"
+ last 265
+ frame_mode "start at"
+ frame 1001
+ origlast 265
+ origset true
+ raw true
+ name Read2
+ xpos -1699
+ ypos 760
+}
+FrameHold {
+ first_frame 1009
+ name FrameHold1
+ xpos -1699
+ ypos 856
+}
+push 0
+Viewer {
+ inputs 2
+ frame_range 1001-1092
+ frame_increment 1
+ gain 3.2
+ viewerProcess None
+ name Viewer1
+ xpos -842
+ ypos -3009
 }
