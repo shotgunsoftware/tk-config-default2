@@ -444,7 +444,7 @@ paths:
     shot_rushes_filmstrip:
         definition: '@rushes_root/filmstrip/{Shot}_v{version}.jpeg'
         root_name: 'project_pipeline'
-    shot_plate_main_undistorted: 
+    incoming_outsource_main_undistort: 
         definition: '@incoming_outsource_shot_folder_root/UD/{Rush}_output_v{version}.{SEQ}.{ext}'
         root_name: 'project_pipeline'
     # DPX
