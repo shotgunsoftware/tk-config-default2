@@ -29,7 +29,7 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.1.6
+  version: v2.1.7
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
