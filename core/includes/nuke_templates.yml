@@ -1,7 +1,7 @@
 keys:    
     # Represents the optional output name for frames written by the Shotgun Write Node
     nuke.output:
-        alias: output
+        alias: name
         type: str
         filter_by: alphanumeric
     plate.variant:
