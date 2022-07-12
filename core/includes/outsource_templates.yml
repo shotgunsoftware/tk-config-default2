@@ -1,0 +1,54 @@
+###########################################
+#####  OUTSOURCE SUBMITTER TEMPLATES  #####
+###########################################
+
+keys:
+    outsource_render:
+        type: str
+        # choices: ['nuke', 'renders', 'UD']
+        filter_by: '^[0-9a-zA-Z-]+$'
+        
+    outsource_task:
+        type: str
+        shotgun_entity_type: Task
+        shotgun_field_name: content
+        choices: ['matchmove', 'DMP']
+        default: matchmove
+        alias: task_name
+
+strings:
+    outsource_name: '{Shot}_{outsource_task}_v{version}'
+    outsource_descriptor_name: '{Shot}_{name}_v{version}'
+
+paths:
+    incoming_outsource_shot_folder_root:
+        definition: 'admin/incoming/outsource/shots/{vendor}/{YYYY}_{MM}_{DD}/@outsource_name'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_shot_subfolder_root:
+        definition: '@incoming_outsource_shot_folder_root/{outsource_render}'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_shot_3de_file:
+        definition: '@incoming_outsource_shot_folder_root/{Shot}[_{name}]_v{version}.3de'
+        root_name: 'project_pipeline'
+
+    maya_shot_outsource_version_abc:
+        definition: '@incoming_outsource_shot_folder_root/{Shot}[_{outsource_task}][_{name}]_v{version}.abc'
+        root_name: 'project_pipeline'
+
+    maya_shot_outsource_work_file:
+        definition: '@incoming_outsource_shot_folder_root/@outsource_name.{maya_extension}'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_nuke_file:
+        definition: '@incoming_outsource_shot_subfolder_root/@outsource_descriptor_name.{ext}'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_shot_nuke_render:
+        definition: '@incoming_outsource_shot_subfolder_root/{name}/@outsource_descriptor_name[.{SEQ}].{ext}'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_shot_matchmove_render:
+        definition: '@incoming_outsource_shot_subfolder_root/{name}'
+        root_name: 'project_pipeline'
