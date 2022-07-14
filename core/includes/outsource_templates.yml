@@ -41,6 +41,10 @@ paths:
         definition: '@incoming_outsource_shot_folder_root/@outsource_name.{maya_extension}'
         root_name: 'project_pipeline'
 
+    maya_shot_outsource_notes:
+        definition: '@incoming_outsource_shot_folder_root/{name}[_v{version}].{ext}'
+        root_name: 'project_pipeline'
+
     incoming_outsource_nuke_file:
         definition: '@incoming_outsource_shot_subfolder_root/@outsource_descriptor_name.{ext}'
         root_name: 'project_pipeline'
