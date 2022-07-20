@@ -63,9 +63,9 @@
                     "publish_file_type": "Version"
                 }
             },
-            "resolve-cutref":{
+            "delivery-graded-version":{
                 "process_settings":{
-                    "title" : "Dailies Cutref",
+                    "title" : "Dailies Graded and Cropped Version",
                     "output_root": "secondary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": false,
@@ -74,7 +74,8 @@
                     "create_publish": false,                    
                     "update_client_version": false,                       
                     "color_required": true,
-                    "client_process": false,                   
+                    "client_process": false,
+                    "delivery_graded": true,
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
                     "plugin_version": "12.2",
