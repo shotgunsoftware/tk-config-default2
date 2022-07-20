@@ -9,9 +9,9 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 # ### OVERRIDDEN IN SSVFX_SG ###
-from ss_config.hooks.tk_multi_publish2.desktop.create_alembic import SsCreateAlembicPlugin
+from ss_config.hooks.tk_multi_publish2.outsource.outsource_create_alembic import SsOutsourceCreateAlembicPlugin
 
-class BasicSceneCollector(SsCreateAlembicPlugin):
+class BasicSceneCollector(SsOutsourceCreateAlembicPlugin):
     """
     Plugin for sending quicktimes and images to shotgun for review.
     """

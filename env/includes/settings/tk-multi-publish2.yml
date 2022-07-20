@@ -38,14 +38,17 @@ settings.tk-multi-publish2.standalone:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/desktop/publish_file.py"
     settings: {}
-  - name: Outsource Publish
-    hook: "{config}/tk-multi-publish2/basic/outsource/outsource_publish_file.py"
+  - name: Create Alembic
+    hook: "{config}/tk-multi-publish2/basic/desktop/create_alembic.py"
     settings: {}
   - name: Outsource Version for review
     hook: "{config}/tk-multi-publish2/basic/outsource/outsource_upload_version.py"
     settings: {}
-  - name: Create Alembic
-    hook: "{config}/tk-multi-publish2/basic/desktop/create_alembic.py"
+  - name: Outsource Publish
+    hook: "{config}/tk-multi-publish2/basic/outsource/outsource_publish_file.py"
+    settings: {}
+  - name: Outsource Create Alembic
+    hook: "{config}/tk-multi-publish2/basic/outsource/outsource_create_alembic.py"
     settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
