@@ -17,7 +17,7 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.5
+      version: v1.1.6
       type: app_store
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
@@ -37,10 +37,9 @@ frameworks:
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      type: git_branch
-      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      branch: improvement/view-item-delegate-and-filtering
-      version: 063982a
+      version: v2.10.4
+      type: app_store
+      name: tk-framework-qtwidgets
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
