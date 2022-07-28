@@ -29,7 +29,7 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v2.1.6
+  version: v2.1.7
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -65,7 +65,7 @@ engines.tk-nuke.location:
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.9.2
+  version: v1.9.3
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
