@@ -16,14 +16,14 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                     <page id="Viewer.1"/>
                 </dock>
                 <split size="399"/>
-                <dock id="" activePageId="DAG.1" focus="true">
+                <dock id="" activePageId="DAG.1">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
                 </dock>
             </splitter>
             <split size="615"/>
-            <dock id="" activePageId="Properties.1">
+            <dock id="" activePageId="Properties.1" focus="true">
                 <page id="Properties.1"/>
                 <page id="uk.co.thefoundry.backgroundrenderview.1"/>
             </dock>
@@ -103,10 +103,11 @@ Root {
 }
 BackdropNode {
  inputs 0
- name BackdropNode2
+ name lens_backdrop
  tile_color 0xb4ffaaff
  label "CAMERA TRANSFORM"
  note_font_size 50
+ selected true
  xpos -1127
  ypos -2839
  bdwidth 1480
@@ -372,7 +373,7 @@ Dot {
  xpos -1266
  ypos -5074
 }
-set Na4bb5400 [stack 0]
+set Nc40f5800 [stack 0]
 Dot {
  name Dot25
  xpos -1787
@@ -394,7 +395,7 @@ Dot {
  xpos -1914
  ypos -3851
 }
-push $Na4bb5400
+push $Nc40f5800
 Switch {
  inputs 2
  name slap_switch
@@ -406,7 +407,7 @@ Dot {
  xpos -1266
  ypos -3567
 }
-set Na4b53800 [stack 0]
+set Nc4093c00 [stack 0]
 Dot {
  name Dot16
  xpos -1778
@@ -423,19 +424,19 @@ Dot {
  xpos -1778
  ypos -523
 }
-push $Na4b53800
+push $Nc4093c00
 Dot {
  name Dot14
  xpos -1266
  ypos -3366
 }
-set Na4b52800 [stack 0]
+set Nc4092c00 [stack 0]
 Dot {
  name Dot41
  xpos -961
  ypos -3366
 }
-set Na4b52400 [stack 0]
+set Nc4092800 [stack 0]
 Dot {
  name Dot29
  xpos -608
@@ -462,7 +463,7 @@ Dot {
  xpos -608
  ypos -3138
 }
-push $Na4b52400
+push $Nc4092800
 OCIOFileTransform {
  working_space linear
  name OCIOFileTransform7
@@ -482,7 +483,7 @@ Dot {
  xpos -961
  ypos -3178
 }
-push $Na4b52800
+push $Nc4092c00
 Switch {
  inputs 3
  name plate_switch
@@ -497,7 +498,7 @@ Dot {
  xpos -1266
  ypos -2954
 }
-set Na4b0bc00 [stack 0]
+set Nc4090400 [stack 0]
 Dot {
  name Dot31
  xpos 1452
@@ -513,25 +514,25 @@ Dot {
  xpos 1452
  ypos -577
 }
-push $Na4b0bc00
+push $Nc4090400
 Dot {
  name Dot22
  xpos -980
  ypos -2907
 }
-set Na4b0ac00 [stack 0]
+set Nc4057000 [stack 0]
 Dot {
  name Dot3
  xpos -659
  ypos -2907
 }
-set Na4b0a800 [stack 0]
+set Nc4056c00 [stack 0]
 Dot {
  name Dot34
  xpos -342
  ypos -2907
 }
-set Na4b0a400 [stack 0]
+set Nc4056800 [stack 0]
 Dot {
  name Dot35
  xpos 4
@@ -542,25 +543,25 @@ Dot {
  xpos 4
  ypos -2102
 }
-push $Na4b0a400
+push $Nc4056800
 Dot {
  name Dot38
  xpos -342
  ypos -2102
 }
-push $Na4b0a800
+push $Nc4056c00
 Dot {
  name Dot39
  xpos -659
  ypos -2102
 }
-push $Na4b0ac00
+push $Nc4057000
 Dot {
  name Dot40
  xpos -980
  ypos -2108
 }
-push $Na4b0bc00
+push $Nc4090400
 Switch {
  inputs 5
  name camera_switch
@@ -574,13 +575,13 @@ Dot {
  xpos -1266
  ypos -1929
 }
-set Na4b08800 [stack 0]
+set Nc4054c00 [stack 0]
 Dot {
  name Dot21
  xpos -1044
  ypos -1929
 }
-set Na4b08400 [stack 0]
+set Nc4054800 [stack 0]
 Dot {
  name Dot2
  xpos -819
@@ -614,7 +615,7 @@ Dot {
  xpos -819
  ypos -1228
 }
-push $Na4b08400
+push $Nc4054800
 Colorspace {
  name Colorspace1
  label "\[value colorspace_in] -> \[value colorspace_out]"
@@ -664,7 +665,7 @@ Dot {
  xpos -1044
  ypos -1301
 }
-push $Na4b08800
+push $Nc4054c00
 Switch {
  inputs 3
  name color_switch
@@ -678,13 +679,13 @@ Dot {
  xpos -1266
  ypos -1090
 }
-set Na4ad8800 [stack 0]
+set Nc4020c00 [stack 0]
 Dot {
  name Dot23
  xpos -917
  ypos -1090
 }
-set Na4ad8400 [stack 0]
+set Nc4020800 [stack 0]
 Dot {
  name Dot10
  xpos -253
@@ -704,7 +705,7 @@ Dot {
  xpos -253
  ypos -683
 }
-push $Na4ad8400
+push $Nc4020800
 Reformat {
  format "1920 1080 0 0 1920 1080 1 HD_1080"
  black_outside true
@@ -746,7 +747,7 @@ Dot {
  xpos -917
  ypos -671
 }
-push $Na4ad8800
+push $Nc4020c00
 Switch {
  inputs 4
  name transform_switch
@@ -762,11 +763,10 @@ Switch {
 }
 Dot {
  name Dot20
- selected true
  xpos -1266
  ypos -310
 }
-set Nc04bf000 [stack 0]
+set Nc3fcc800 [stack 0]
 Dot {
  name Dot5
  xpos -1611
@@ -1007,7 +1007,7 @@ Group {
   xpos 5464
   ypos -1482
  }
-set Nc04bc800 [stack 0]
+set Ndebd9c00 [stack 0]
  Reformat {
   type "to box"
   box_width {{SLATE_REFORMAT.width}}
@@ -1046,7 +1046,7 @@ set Nc04bc800 [stack 0]
   xpos 5464
   ypos 2727
  }
-push $Nc04bc800
+push $Ndebd9c00
  Shuffle {
   red black
   green black
@@ -1076,13 +1076,13 @@ push $Nc04bc800
   xpos 562
   ypos -1349
  }
-set Nc0b15400 [stack 0]
+set Ndeb8e800 [stack 0]
  Dot {
   name Dot2
   xpos 1615
   ypos -1349
  }
-set Nc0b15000 [stack 0]
+set Ndeb8e400 [stack 0]
  Dot {
   name Dot3
   xpos 1730
@@ -1098,175 +1098,175 @@ set Nc0b15000 [stack 0]
   xpos 2473
   ypos 731
  }
-set Nc0b14400 [stack 0]
+set Ndeb8d800 [stack 0]
  Dot {
   name Dot16
   xpos 2604
   ypos 731
  }
-set Nc0a23c00 [stack 0]
+set Ndeb8d400 [stack 0]
  Dot {
   name Dot24
   xpos 2714
   ypos 731
  }
-set Nc0a23800 [stack 0]
+set Ndeb8d000 [stack 0]
  Dot {
   name Dot25
   xpos 2845
   ypos 731
  }
-set Nc0a23400 [stack 0]
+set Ndeb8cc00 [stack 0]
  Dot {
   name Dot8
   xpos 2963
   ypos 731
  }
-set Nc0a23000 [stack 0]
+set Ndeb8c800 [stack 0]
  Dot {
   name Dot17
   xpos 3120
   ypos 731
  }
-set Nc0a22c00 [stack 0]
+set Ndeb8c400 [stack 0]
  Dot {
   name Dot9
   xpos 3274
   ypos 731
  }
-set Nc0a22800 [stack 0]
+set Ndeb5fc00 [stack 0]
  Dot {
   name Dot18
   xpos 3430
   ypos 731
  }
-set Nc0a22400 [stack 0]
+set Ndeb5f800 [stack 0]
  Dot {
   name Dot10
   xpos 3586
   ypos 731
  }
-set Nc0a22000 [stack 0]
+set Ndeb5f400 [stack 0]
  Dot {
   name Dot19
   xpos 3742
   ypos 731
  }
-set Nc0a21c00 [stack 0]
+set Ndeb5f000 [stack 0]
  Dot {
   name Dot12
   xpos 3898
   ypos 731
  }
-set Nc0a21800 [stack 0]
+set Ndeb5ec00 [stack 0]
  Dot {
   name Dot20
   xpos 4054
   ypos 731
  }
-set Nc0a21400 [stack 0]
+set Ndeb5e800 [stack 0]
  Dot {
   name Dot13
   xpos 4210
   ypos 731
  }
-set Nc0a21000 [stack 0]
+set Ndeb5e400 [stack 0]
  Dot {
   name Dot21
   xpos 4366
   ypos 731
  }
-set Nc0a20c00 [stack 0]
+set Ndeb5e000 [stack 0]
  Dot {
   name Dot14
   xpos 4522
   ypos 731
  }
-set Nc0a20800 [stack 0]
+set Ndeb5dc00 [stack 0]
  Dot {
   name Dot22
   xpos 4678
   ypos 731
  }
-set Nc0a20400 [stack 0]
+set Ndeb5d800 [stack 0]
  Dot {
   name Dot29
   xpos 4841
   ypos 732
  }
-set Nc09f3c00 [stack 0]
+set Ndeb5d400 [stack 0]
  Dot {
   name Dot30
   xpos 4997
   ypos 732
  }
-set Nc09f3800 [stack 0]
+set Ndeb5d000 [stack 0]
  Dot {
   name Dot31
   xpos 5181
   ypos 730
  }
-set Nc09f3400 [stack 0]
+set Ndeb5cc00 [stack 0]
  Dot {
   name Dot32
   xpos 5337
   ypos 730
  }
-set Nc09f3000 [stack 0]
+set Ndeb5c800 [stack 0]
  Dot {
   name Dot33
   xpos 5623
   ypos 732
  }
-set Nc09f2c00 [stack 0]
+set Ndeb5c400 [stack 0]
  Dot {
   name Dot34
   xpos 5779
   ypos 732
  }
-set Nc09f2800 [stack 0]
+set Ndeb3bc00 [stack 0]
  Dot {
   name Dot35
   xpos 5987
   ypos 732
  }
-set Nc09f2400 [stack 0]
+set Ndeb3b800 [stack 0]
  Dot {
   name Dot36
   xpos 6143
   ypos 732
  }
-set Nc09f2000 [stack 0]
+set Ndeb3b400 [stack 0]
  Dot {
   name Dot37
   xpos 6335
   ypos 731
  }
-set Nc09f1c00 [stack 0]
+set Ndeb3b000 [stack 0]
  Dot {
   name Dot38
   xpos 6491
   ypos 731
  }
-set Nc09f1800 [stack 0]
+set Ndeb3ac00 [stack 0]
  Dot {
   name Dot39
   xpos 6691
   ypos 732
  }
-set Nc09f1400 [stack 0]
+set Ndeb3a800 [stack 0]
  Dot {
   name Dot40
   xpos 6847
   ypos 732
  }
-set Nc09f1000 [stack 0]
+set Ndeb3a400 [stack 0]
  Dot {
   name Dot15
   xpos 7358
   ypos 730
  }
-set Nc09f0c00 [stack 0]
+set Ndeb3a000 [stack 0]
  Dot {
   name Dot23
   xpos 7514
@@ -1307,7 +1307,7 @@ set Nc09f0c00 [stack 0]
   xpos 7480
   ypos 927
  }
-push $Nc09f0c00
+push $Ndeb3a000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1357,7 +1357,7 @@ push $Nc09f0c00
   xpos 7354
   ypos 2064
  }
-push $Nc09f1000
+push $Ndeb3a400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1393,7 +1393,7 @@ push $Nc09f1000
   xpos 6813
   ypos 929
  }
-push $Nc09f1400
+push $Ndeb3a800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1440,7 +1440,7 @@ push $Nc09f1400
   addUserKnob {16 LINE t LINE}
   LINE {{-(c5_line)}}
  }
-push $Nc09f1800
+push $Ndeb3ac00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1476,7 +1476,7 @@ push $Nc09f1800
   xpos 6457
   ypos 928
  }
-push $Nc09f1c00
+push $Ndeb3b000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1523,7 +1523,7 @@ push $Nc09f1c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(c4_line)}}
  }
-push $Nc09f2000
+push $Ndeb3b400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1559,7 +1559,7 @@ push $Nc09f2000
   xpos 6109
   ypos 929
  }
-push $Nc09f2400
+push $Ndeb3b800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1606,7 +1606,7 @@ push $Nc09f2400
   addUserKnob {16 LINE t LINE}
   LINE {{-(c3_line)}}
  }
-push $Nc09f2800
+push $Ndeb3bc00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1642,7 +1642,7 @@ push $Nc09f2800
   xpos 5745
   ypos 929
  }
-push $Nc09f2c00
+push $Ndeb5c400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1691,7 +1691,7 @@ push $Nc09f2c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(c2_line)}}
  }
-push $Nc09f3000
+push $Ndeb5c800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1727,7 +1727,7 @@ push $Nc09f3000
   xpos 5303
   ypos 927
  }
-push $Nc09f3400
+push $Ndeb5cc00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1775,7 +1775,7 @@ push $Nc09f3400
   addUserKnob {16 LINE t LINE}
   LINE {{-(c1_line)}}
  }
-push $Nc09f3800
+push $Ndeb5d000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1811,7 +1811,7 @@ push $Nc09f3800
   xpos 4963
   ypos 927
  }
-push $Nc09f3c00
+push $Ndeb5d400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1858,7 +1858,7 @@ push $Nc09f3c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(artist_line)}}
  }
-push $Nc0a20400
+push $Ndeb5d800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1895,7 +1895,7 @@ push $Nc0a20400
   xpos 4644
   ypos 928
  }
-push $Nc0a20800
+push $Ndeb5dc00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1942,7 +1942,7 @@ push $Nc0a20800
   addUserKnob {16 LINE t LINE}
   LINE {{-(lens_line)}}
  }
-push $Nc0a20c00
+push $Ndeb5e000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1978,7 +1978,7 @@ push $Nc0a20c00
   xpos 4332
   ypos 910
  }
-push $Nc0a21000
+push $Ndeb5e400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2023,7 +2023,7 @@ push $Nc0a21000
   addUserKnob {16 LINE t LINE}
   LINE {{-(date_line)}}
  }
-push $Nc0a21400
+push $Ndeb5e800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2059,7 +2059,7 @@ push $Nc0a21400
   xpos 4020
   ypos 928
  }
-push $Nc0a21800
+push $Ndeb5ec00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2106,7 +2106,7 @@ push $Nc0a21800
   addUserKnob {16 LINE t LINE}
   LINE {{-(frame_line)}}
  }
-push $Nc0a21c00
+push $Ndeb5f000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2140,7 +2140,7 @@ push $Nc0a21c00
   xpos 3708
   ypos 892
  }
-push $Nc0a22000
+push $Ndeb5f400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2187,7 +2187,7 @@ push $Nc0a22000
   addUserKnob {16 LINE t LINE}
   LINE {{-(vendor_line)}}
  }
-push $Nc0a22400
+push $Ndeb5f800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2223,7 +2223,7 @@ push $Nc0a22400
   xpos 3396
   ypos 892
  }
-push $Nc0a22800
+push $Ndeb5fc00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2270,7 +2270,7 @@ push $Nc0a22800
   addUserKnob {16 LINE t LINE}
   LINE {{-(version_line)}}
  }
-push $Nc0a22c00
+push $Ndeb8c400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2307,7 +2307,7 @@ push $Nc0a22c00
   xpos 3084
   ypos 899
  }
-push $Nc0a23000
+push $Ndeb8c800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2354,7 +2354,7 @@ push $Nc0a23000
   addUserKnob {16 LINE t LINE}
   LINE {{-(shot_line)}}
  }
-push $Nc0a23400
+push $Ndeb8cc00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2390,7 +2390,7 @@ push $Nc0a23400
   xpos 2811
   ypos 910
  }
-push $Nc0a23800
+push $Ndeb8d000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2435,7 +2435,7 @@ push $Nc0a23800
   addUserKnob {16 LINE t LINE}
   LINE {{-(ep_line)}}
  }
-push $Nc0a23c00
+push $Ndeb8d400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2471,7 +2471,7 @@ push $Nc0a23c00
   xpos 2570
   ypos 910
  }
-push $Nc0b14400
+push $Ndeb8d800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2714,7 +2714,7 @@ push $Nc0b14400
   xpos 1730
   ypos 162
  }
-push $Nc0b15000
+push $Ndeb8e400
  Shuffle1 {
   red black
   green black
@@ -2818,7 +2818,7 @@ push $Nc0b15000
   xpos 1456
   ypos -765
  }
-push $Nc0b15400
+push $Ndeb8e800
  Grid {
   number {{CONTROL_NULL.GRID}}
   color 0.034
@@ -2949,7 +2949,7 @@ Dot {
  xpos -1611
  ypos 247
 }
-push $Nc04bf000
+push $Nc3fcc800
 Dot {
  name Dot8
  xpos -983
@@ -3019,7 +3019,7 @@ Group {
   xpos 454
   ypos -233
  }
-set Nc1dcf000 [stack 0]
+set Ndf1ac800 [stack 0]
  Dot {
   name Dot30
   xpos 617
@@ -3064,7 +3064,7 @@ set Nc1dcf000 [stack 0]
   addUserKnob {1 value_bottom_right}
   value_bottom_right "\[value parent.value_bottom_right]"
  }
-push $Nc1dcf000
+push $Ndf1ac800
  Dot {
   name Dot31
   xpos 290
@@ -3076,7 +3076,7 @@ push $Nc1dcf000
   xpos 256
   ypos -94
  }
-push $Nc1dcf000
+push $Ndf1ac800
  Dissolve {
   inputs 2
   which {{control.hard_mask_opacity}}
@@ -3268,7 +3268,7 @@ Dot {
  xpos -983
  ypos 86
 }
-push $Nc04bf000
+push $Nc3fcc800
 Switch {
  inputs 2
  which 1
@@ -3293,7 +3293,7 @@ AddTimeCode {
  xpos -1304
  ypos 635
 }
-set Nc0579000 [stack 0]
+set Ndf160400 [stack 0]
 FrameHold {
  first_frame 1073
  name FrameHold2
@@ -3314,7 +3314,7 @@ Merge2 {
  xpos -798
  ypos 789
 }
-push $Nc0579000
+push $Ndf160400
 Write {
  colorspace "Output - Rec.709"
  raw true
