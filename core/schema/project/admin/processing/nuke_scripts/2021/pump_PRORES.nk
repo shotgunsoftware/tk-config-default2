@@ -3,27 +3,27 @@
 version 12.2 v4
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="0" w="2557" h="1528" screen="0">
+    <window x="0" y="0" w="1917" h="1008" screen="0">
         <splitter orientation="1">
             <split size="40"/>
             <dock id="" hideTitles="1" activePageId="Toolbar.1">
                 <page id="Toolbar.1"/>
             </dock>
-            <split size="1894" stretch="1"/>
+            <split size="1254" stretch="1"/>
             <splitter orientation="2">
-                <split size="872"/>
+                <split size="567"/>
                 <dock id="" activePageId="Viewer.1">
                     <page id="Viewer.1"/>
                 </dock>
-                <split size="614"/>
-                <dock id="" activePageId="DAG.1" focus="true">
+                <split size="399"/>
+                <dock id="" activePageId="DAG.1">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
                 </dock>
             </splitter>
             <split size="615"/>
-            <dock id="" activePageId="Properties.1">
+            <dock id="" activePageId="Properties.1" focus="true">
                 <page id="Properties.1"/>
                 <page id="uk.co.thefoundry.backgroundrenderview.1"/>
             </dock>
@@ -33,7 +33,7 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 }
 Root {
  inputs 0
- name //pix_artist/project_straight_shooter/straight_shooter/admin/processing/nuke_scripts/2021/pump_PRORES.nk
+ name Z:/Pipeline/Configs/pipeline2021_config_rthompson/config/core/schema/project/admin/processing/nuke_scripts/2021/pump_PRORES.nk
  frame 1000
  first_frame 1000
  last_frame 1092
@@ -104,10 +104,11 @@ Root {
 }
 BackdropNode {
  inputs 0
- name BackdropNode2
+ name lens_backdrop
  tile_color 0x446040ff
  label "CAMERA TRANSFORM"
  note_font_size 50
+ selected true
  xpos -1127
  ypos -2840
  bdwidth 1480
@@ -197,6 +198,7 @@ BackdropNode {
  tile_color 0x8e8e6fff
  label "Arri Alexa MINI LF\n4448X3096 PA1"
  note_font_size 22
+ selected true
  xpos -766
  ypos -2552
  bdwidth 254
@@ -232,22 +234,11 @@ BackdropNode {
  tile_color 0x8e8e3800
  label "Arri Alexa MINI LF\n4448X3096 PA2"
  note_font_size 22
+ selected true
  xpos -1079
  ypos -2560
  bdwidth 254
  bdheight 239
-}
-BackdropNode {
- inputs 0
- name burnin_text_backdrop
- tile_color 0x3037ff
- label "BURN IN"
- note_font_size 25
- xpos -859
- ypos -269
- bookmark false
- bdwidth 475
- bdheight 344
 }
 BackdropNode {
  inputs 0
@@ -408,7 +399,7 @@ Dot {
  xpos -1266
  ypos -5074
 }
-set Nc3d1d400 [stack 0]
+set Nc2e44c00 [stack 0]
 Dot {
  name Dot25
  xpos -1787
@@ -430,7 +421,7 @@ Dot {
  xpos -1914
  ypos -3851
 }
-push $Nc3d1d400
+push $Nc2e44c00
 Switch {
  inputs 2
  name slap_switch
@@ -442,13 +433,13 @@ Dot {
  xpos -1266
  ypos -3567
 }
-set Nc547b800 [stack 0]
+set Nc2de3000 [stack 0]
 Dot {
  name Dot14
  xpos -1266
  ypos -3366
 }
-set Nc547b400 [stack 0]
+set Nc2de2c00 [stack 0]
 Dot {
  name Dot29
  xpos -608
@@ -477,7 +468,7 @@ Dot {
  xpos -608
  ypos -3101
 }
-push $Nc547b400
+push $Nc2de2c00
 Switch {
  inputs 2
  name plate_switch
@@ -492,25 +483,25 @@ Dot {
  xpos -1266
  ypos -2954
 }
-set Nc5479c00 [stack 0]
+set Nc2de1400 [stack 0]
 Dot {
  name Dot22
  xpos -980
  ypos -2907
 }
-set Nc5479800 [stack 0]
+set Nc2de1000 [stack 0]
 Dot {
  name Dot3
  xpos -659
  ypos -2907
 }
-set Nc5479400 [stack 0]
+set Nc2de0c00 [stack 0]
 Dot {
  name Dot34
  xpos -342
  ypos -2907
 }
-set Nc5479000 [stack 0]
+set Nc2de0800 [stack 0]
 Dot {
  name Dot35
  xpos 4
@@ -521,13 +512,13 @@ Dot {
  xpos 4
  ypos -2102
 }
-push $Nc5479000
+push $Nc2de0800
 Dot {
  name Dot38
  xpos -342
  ypos -2102
 }
-push $Nc5479400
+push $Nc2de0c00
 Reformat {
  type "to box"
  box_width 4448
@@ -536,6 +527,7 @@ Reformat {
  resize none
  name Reformat20
  label "4448X3096 PA1"
+ selected true
  xpos -693
  ypos -2467
 }
@@ -545,6 +537,7 @@ Transform {
  black_outside false
  name Transform14
  label "lens ZOOM \n1.302"
+ selected true
  xpos -693
  ypos -2422
 }
@@ -552,6 +545,7 @@ Reformat {
  format "3840 2160 0 0 3840 2160 1 UHD_4K"
  resize fit
  name Reformat34
+ selected true
  xpos -693
  ypos -2374
 }
@@ -560,7 +554,7 @@ Dot {
  xpos -659
  ypos -2102
 }
-push $Nc5479800
+push $Nc2de1000
 Reformat {
  type "to box"
  box_width 4448
@@ -570,6 +564,7 @@ Reformat {
  resize none
  name Reformat2
  label "4448X3096 PA2"
+ selected true
  xpos -1014
  ypos -2468
 }
@@ -578,6 +573,7 @@ Transform {
  center {2224 1548}
  name Transform2
  label "lens ZOOM \n128.7"
+ selected true
  xpos -1014
  ypos -2401
 }
@@ -586,7 +582,7 @@ Dot {
  xpos -980
  ypos -2108
 }
-push $Nc5479c00
+push $Nc2de1400
 Switch {
  inputs 5
  name camera_switch
@@ -600,13 +596,13 @@ Dot {
  xpos -1266
  ypos -1929
 }
-set Nc5441800 [stack 0]
+set Nc2da0800 [stack 0]
 Dot {
  name Dot21
  xpos -1044
  ypos -1929
 }
-set Nc5441400 [stack 0]
+set Nc2da0400 [stack 0]
 Dot {
  name Dot2
  xpos -819
@@ -640,7 +636,7 @@ Dot {
  xpos -819
  ypos -1228
 }
-push $Nc5441400
+push $Nc2da0400
 Colorspace {
  colorspace_out AlexaV3LogC
  name Colorspace5
@@ -665,7 +661,7 @@ Dot {
  xpos -1044
  ypos -1301
 }
-push $Nc5441800
+push $Nc2da0800
 Switch {
  inputs 3
  which 1
@@ -680,19 +676,19 @@ Dot {
  xpos -1266
  ypos -1090
 }
-set Nc53f2400 [stack 0]
+set Nc2d6d400 [stack 0]
 Dot {
  name Dot23
  xpos -912
  ypos -1090
 }
-set Nc53f2000 [stack 0]
+set Nc2d6d000 [stack 0]
 Dot {
  name Dot10
  xpos -253
  ypos -1090
 }
-push $Nc5479c00
+push $Nc2de1400
 Dot {
  name Dot31
  xpos 1452
@@ -738,7 +734,7 @@ Colorspace {
  xpos -438
  ypos -761
 }
-push $Nc547b800
+push $Nc2de3000
 Dot {
  name Dot16
  xpos -1778
@@ -755,7 +751,7 @@ Dot {
  xpos -1778
  ypos -523
 }
-push $Nc53f2000
+push $Nc2d6d000
 Colorspace {
  colorspace_out AlexaV3LogC
  name Colorspace29
@@ -789,7 +785,7 @@ Dot {
  xpos -912
  ypos -611
 }
-push $Nc53f2400
+push $Nc2d6d400
 Switch {
  inputs 2
  which 1
@@ -807,19 +803,19 @@ Switch {
 Dot {
  name Dot20
  xpos -1266
- ypos -425
+ ypos -140
 }
-set Nc53a8800 [stack 0]
+set Nde283400 [stack 0]
 Dot {
  name Dot5
- xpos -1780
- ypos -425
+ xpos -1611
+ ypos -140
 }
 Group {
  name SSVFX_SLATE
  label v1.2.2
- xpos -1814
- ypos -132
+ xpos -1645
+ ypos 55
  addUserKnob {20 Slate}
  addUserKnob {6 show_bool l "" +STARTLINE +STARTLINE}
  show_bool true
@@ -1050,7 +1046,7 @@ Group {
   xpos 5464
   ypos -1482
  }
-set Nc5335c00 [stack 0]
+set Nde280c00 [stack 0]
  Reformat {
   type "to box"
   box_width {{SLATE_REFORMAT.width}}
@@ -1089,7 +1085,7 @@ set Nc5335c00 [stack 0]
   xpos 5464
   ypos 2727
  }
-push $Nc5335c00
+push $Nde280c00
  Shuffle {
   red black
   green black
@@ -1119,13 +1115,13 @@ push $Nc5335c00
   xpos 562
   ypos -1349
  }
-set Nc52fe800 [stack 0]
+set Nde241800 [stack 0]
  Dot {
   name Dot2
   xpos 1615
   ypos -1349
  }
-set Nc52fe400 [stack 0]
+set Nde241400 [stack 0]
  Dot {
   name Dot3
   xpos 1730
@@ -1141,175 +1137,175 @@ set Nc52fe400 [stack 0]
   xpos 2473
   ypos 731
  }
-set Nc52fd800 [stack 0]
+set Nde240800 [stack 0]
  Dot {
   name Dot16
   xpos 2604
   ypos 731
  }
-set Nc52fd400 [stack 0]
+set Nde240400 [stack 0]
  Dot {
   name Dot24
   xpos 2714
   ypos 731
  }
-set Nc52fd000 [stack 0]
+set Nde1f7c00 [stack 0]
  Dot {
   name Dot25
   xpos 2845
   ypos 731
  }
-set Nc52fcc00 [stack 0]
+set Nde1f7800 [stack 0]
  Dot {
   name Dot8
   xpos 2963
   ypos 731
  }
-set Nc52fc800 [stack 0]
+set Nde1f7400 [stack 0]
  Dot {
   name Dot17
   xpos 3120
   ypos 731
  }
-set Nc52fc400 [stack 0]
+set Nde1f7000 [stack 0]
  Dot {
   name Dot9
   xpos 3274
   ypos 731
  }
-set Nc52c7c00 [stack 0]
+set Nde1f6c00 [stack 0]
  Dot {
   name Dot18
   xpos 3430
   ypos 731
  }
-set Nc52c7800 [stack 0]
+set Nde1f6800 [stack 0]
  Dot {
   name Dot10
   xpos 3586
   ypos 731
  }
-set Nc52c7400 [stack 0]
+set Nde1f6400 [stack 0]
  Dot {
   name Dot19
   xpos 3742
   ypos 731
  }
-set Nc52c7000 [stack 0]
+set Nde1f6000 [stack 0]
  Dot {
   name Dot12
   xpos 3898
   ypos 731
  }
-set Nc52c6c00 [stack 0]
+set Nde1f5c00 [stack 0]
  Dot {
   name Dot20
   xpos 4054
   ypos 731
  }
-set Nc52c6800 [stack 0]
+set Nde1f5800 [stack 0]
  Dot {
   name Dot13
   xpos 4210
   ypos 731
  }
-set Nc52c6400 [stack 0]
+set Nde1f5400 [stack 0]
  Dot {
   name Dot21
   xpos 4366
   ypos 731
  }
-set Nc52c6000 [stack 0]
+set Nde1f5000 [stack 0]
  Dot {
   name Dot14
   xpos 4522
   ypos 731
  }
-set Nc52c5c00 [stack 0]
+set Nde1f4c00 [stack 0]
  Dot {
   name Dot22
   xpos 4678
   ypos 731
  }
-set Nc52c5800 [stack 0]
+set Nde1f4800 [stack 0]
  Dot {
   name Dot29
   xpos 4841
   ypos 732
  }
-set Nc52c5400 [stack 0]
+set Nde1f4400 [stack 0]
  Dot {
   name Dot30
   xpos 4997
   ypos 732
  }
-set Nc52c5000 [stack 0]
+set Nde1d3c00 [stack 0]
  Dot {
   name Dot31
   xpos 5181
   ypos 730
  }
-set Nc52c4c00 [stack 0]
+set Nde1d3800 [stack 0]
  Dot {
   name Dot32
   xpos 5337
   ypos 730
  }
-set Nc52c4800 [stack 0]
+set Nde1d3400 [stack 0]
  Dot {
   name Dot33
   xpos 5623
   ypos 732
  }
-set Nc52c4400 [stack 0]
+set Nde1d3000 [stack 0]
  Dot {
   name Dot34
   xpos 5779
   ypos 732
  }
-set Nc529fc00 [stack 0]
+set Nde1d2c00 [stack 0]
  Dot {
   name Dot35
   xpos 5987
   ypos 732
  }
-set Nc529f800 [stack 0]
+set Nde1d2800 [stack 0]
  Dot {
   name Dot36
   xpos 6143
   ypos 732
  }
-set Nc529f400 [stack 0]
+set Nde1d2400 [stack 0]
  Dot {
   name Dot37
   xpos 6335
   ypos 731
  }
-set Nc529f000 [stack 0]
+set Nde1d2000 [stack 0]
  Dot {
   name Dot38
   xpos 6491
   ypos 731
  }
-set Nc529ec00 [stack 0]
+set Nde1d1c00 [stack 0]
  Dot {
   name Dot39
   xpos 6691
   ypos 732
  }
-set Nc529e800 [stack 0]
+set Nde1d1800 [stack 0]
  Dot {
   name Dot40
   xpos 6847
   ypos 732
  }
-set Nc529e400 [stack 0]
+set Nde1d1400 [stack 0]
  Dot {
   name Dot15
   xpos 7358
   ypos 730
  }
-set Nc529e000 [stack 0]
+set Nde1d1000 [stack 0]
  Dot {
   name Dot23
   xpos 7514
@@ -1350,7 +1346,7 @@ set Nc529e000 [stack 0]
   xpos 7480
   ypos 927
  }
-push $Nc529e000
+push $Nde1d1000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1400,7 +1396,7 @@ push $Nc529e000
   xpos 7354
   ypos 2064
  }
-push $Nc529e400
+push $Nde1d1400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1436,7 +1432,7 @@ push $Nc529e400
   xpos 6813
   ypos 929
  }
-push $Nc529e800
+push $Nde1d1800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1483,7 +1479,7 @@ push $Nc529e800
   addUserKnob {16 LINE t LINE}
   LINE {{-(c5_line)}}
  }
-push $Nc529ec00
+push $Nde1d1c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1519,7 +1515,7 @@ push $Nc529ec00
   xpos 6457
   ypos 928
  }
-push $Nc529f000
+push $Nde1d2000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1566,7 +1562,7 @@ push $Nc529f000
   addUserKnob {16 LINE t LINE}
   LINE {{-(c4_line)}}
  }
-push $Nc529f400
+push $Nde1d2400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1602,7 +1598,7 @@ push $Nc529f400
   xpos 6109
   ypos 929
  }
-push $Nc529f800
+push $Nde1d2800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1649,7 +1645,7 @@ push $Nc529f800
   addUserKnob {16 LINE t LINE}
   LINE {{-(c3_line)}}
  }
-push $Nc529fc00
+push $Nde1d2c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1685,7 +1681,7 @@ push $Nc529fc00
   xpos 5745
   ypos 929
  }
-push $Nc52c4400
+push $Nde1d3000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1734,7 +1730,7 @@ push $Nc52c4400
   addUserKnob {16 LINE t LINE}
   LINE {{-(c2_line)}}
  }
-push $Nc52c4800
+push $Nde1d3400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1770,7 +1766,7 @@ push $Nc52c4800
   xpos 5303
   ypos 927
  }
-push $Nc52c4c00
+push $Nde1d3800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1818,7 +1814,7 @@ push $Nc52c4c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(c1_line)}}
  }
-push $Nc52c5000
+push $Nde1d3c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1854,7 +1850,7 @@ push $Nc52c5000
   xpos 4963
   ypos 927
  }
-push $Nc52c5400
+push $Nde1f4400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1901,7 +1897,7 @@ push $Nc52c5400
   addUserKnob {16 LINE t LINE}
   LINE {{-(artist_line)}}
  }
-push $Nc52c5800
+push $Nde1f4800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1938,7 +1934,7 @@ push $Nc52c5800
   xpos 4644
   ypos 928
  }
-push $Nc52c5c00
+push $Nde1f4c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -1985,13 +1981,13 @@ push $Nc52c5c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(lens_line)}}
  }
-push $Nc52c6000
+push $Nde1f5000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
   font_height_toolbar 100
   message "\[value parent.date]"
-  old_message {{50 48 50 50 45 48 53 45 49 49}
+  old_message {{50 48 50 50 45 48 56 45 48 51}
     }
   old_expression_markers {{0 9}
     }
@@ -2021,7 +2017,7 @@ push $Nc52c6000
   xpos 4332
   ypos 910
  }
-push $Nc52c6400
+push $Nde1f5400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2066,7 +2062,7 @@ push $Nc52c6400
   addUserKnob {16 LINE t LINE}
   LINE {{-(date_line)}}
  }
-push $Nc52c6800
+push $Nde1f5800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2102,7 +2098,7 @@ push $Nc52c6800
   xpos 4020
   ypos 928
  }
-push $Nc52c6c00
+push $Nde1f5c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2149,15 +2145,13 @@ push $Nc52c6c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(frame_line)}}
  }
-push $Nc52c7000
+push $Nde1f6000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
   font_height_toolbar 100
   message "\[value content_vendor_burnin.message]\n"
-  old_message {{83 83 86 70 88 10}
-    }
-  old_expression_markers {{0 4}
+  old_message {{91 118 97 108 117 101 32 99 111 110 116 101 110 116 95 118 101 110 100 111 114 95 98 117 114 110 105 110 46 109 101 115 115 97 103 101 93 10}
     }
   box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
   yjustify bottom
@@ -2185,7 +2179,7 @@ push $Nc52c7000
   xpos 3708
   ypos 892
  }
-push $Nc52c7400
+push $Nde1f6400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2232,7 +2226,7 @@ push $Nc52c7400
   addUserKnob {16 LINE t LINE}
   LINE {{-(vendor_line)}}
  }
-push $Nc52c7800
+push $Nde1f6800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2268,7 +2262,7 @@ push $Nc52c7800
   xpos 3396
   ypos 892
  }
-push $Nc52c7c00
+push $Nde1f6c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2315,7 +2309,7 @@ push $Nc52c7c00
   addUserKnob {16 LINE t LINE}
   LINE {{-(version_line)}}
  }
-push $Nc52fc400
+push $Nde1f7000
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2352,7 +2346,7 @@ push $Nc52fc400
   xpos 3084
   ypos 899
  }
-push $Nc52fc800
+push $Nde1f7400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2399,7 +2393,7 @@ push $Nc52fc800
   addUserKnob {16 LINE t LINE}
   LINE {{-(shot_line)}}
  }
-push $Nc52fcc00
+push $Nde1f7800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2435,7 +2429,7 @@ push $Nc52fcc00
   xpos 2811
   ypos 910
  }
-push $Nc52fd000
+push $Nde1f7c00
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2480,7 +2474,7 @@ push $Nc52fd000
   addUserKnob {16 LINE t LINE}
   LINE {{-(ep_line)}}
  }
-push $Nc52fd400
+push $Nde240400
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2516,7 +2510,7 @@ push $Nc52fd400
   xpos 2570
   ypos 910
  }
-push $Nc52fd800
+push $Nde240800
  Text2 {
   font_size_toolbar 100
   font_width_toolbar 100
@@ -2759,7 +2753,7 @@ push $Nc52fd800
   xpos 1730
   ypos 162
  }
-push $Nc52fe400
+push $Nde241400
  Shuffle1 {
   red black
   green black
@@ -2863,7 +2857,7 @@ push $Nc52fe400
   xpos 1456
   ypos -765
  }
-push $Nc52fe800
+push $Nde241800
  Grid {
   number {{CONTROL_NULL.GRID}}
   color 0.034
@@ -2991,304 +2985,342 @@ push $Nc52fe800
 end_group
 Dot {
  name Dot1
- xpos -1780
- ypos 335
+ xpos -1611
+ ypos 417
 }
-push $Nc53a8800
+push $Nde283400
 Dot {
  name Dot8
- xpos -631
- ypos -425
+ xpos -983
+ ypos -140
 }
-Text2 {
- font_size_toolbar 70
- font_width_toolbar 100
- font_height_toolbar 100
- box {10 {height-75 x1000 1040} {width-box.x x1000 1910} {height-1 x1000 1065}}
- xjustify center
- transforms {{0 2}
-   }
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- font_size 70
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_project_burnin
- xpos -615
- ypos -243
+Group {
+ name SSVFX_BURNIN
+ label v1.0
+ xpos -1017
+ ypos 49
+ addUserKnob {20 BURN_IN l "Burn In"}
+ addUserKnob {26 Text l "<b>Text Controls </b>"}
+ addUserKnob {7 type_size l "Type Size" t "Type height in pixels" R 1 100}
+ type_size 25.5
+ addUserKnob {26 frame_padding l "<b>Frame Padding </b>"}
+ addUserKnob {7 frame_padding_top l Top -STARTLINE R 0 100}
+ addUserKnob {7 frame_padding_left l Left -STARTLINE R 0 100}
+ addUserKnob {7 frame_padding_bottom l Bottom R 0 100}
+ addUserKnob {7 frame_padding_right l Right -STARTLINE R 0 100}
+ addUserKnob {26 hardmask l "<b>Hard Mask</b>"}
+ addUserKnob {7 value_hardmask_size l size t "in pixels" -STARTLINE R 0 100}
+ addUserKnob {7 value_hardmask_opacity l opacity -STARTLINE}
+ value_hardmask_opacity 1
+ addUserKnob {6 value_hardmask_enabled l "" t "toggle hard mask" -STARTLINE}
+ value_hardmask_enabled true
+ addUserKnob {26 ""}
+ addUserKnob {1 value_top_left l "Top Left"}
+ value_top_left "\[value SSVFX_SLATE.shot]"
+ addUserKnob {6 value_top_left_enabled l "" t enable -STARTLINE}
+ value_top_left_enabled true
+ addUserKnob {1 value_top_centre l "Top Centre"}
+ addUserKnob {6 value_top_centre_enabled l "" t enable -STARTLINE}
+ value_top_centre_enabled true
+ addUserKnob {1 value_top_right l "Top Right"}
+ value_top_right "\[clock format \[clock seconds] -format %Y-%m-%d]"
+ addUserKnob {6 value_top_right_enabled l "" -STARTLINE}
+ value_top_right_enabled true
+ addUserKnob {1 value_bottom_left l "Bottom Left"}
+ addUserKnob {6 value_bottom_left_enabled l "" -STARTLINE}
+ value_bottom_left_enabled true
+ addUserKnob {1 value_bottom_centre l "Bottom Centre"}
+ addUserKnob {6 value_bottom_centre_enabled l "" -STARTLINE}
+ value_bottom_centre_enabled true
+ addUserKnob {1 value_bottom_right l "Bottom Right"}
+ value_bottom_right "\[value SSVFX_SLATE.version]\n"
+ addUserKnob {6 value_bottom_right_enabled l "" -STARTLINE}
+ value_bottom_right_enabled true
 }
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message "  /\n"
- old_message {{32 32 47 10}
-   }
- box {60 {height-75} {width-box.x} {height-1}}
- transforms {{0 2}
-   }
- cursor_position 2
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_vendor_burnin_slash
- xpos -615
- ypos -201
- disable true
-}
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message "                                                                                                                                               STRAIGHT SHOOTER"
- old_message {{32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 83 84 82 65 73 71 72 84 32 83 72 79 79 84 69 82}
-   }
- box {10 {height-75} {width-box.x} {height-1}}
- transforms {{0 2}
-   }
- cursor_position 143
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_vendor_burnin1
- xpos -737
- ypos -224
-}
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message "\[value SSVFX_SLATE.shot]"
- old_message {{115 104 111 116}
-   }
- old_expression_markers {{0 3}
-   }
- box {10 {height-100 x1001 1005} {width-box.x x1001 1910} {height-3 x1001 1081}}
- transforms {{0 2}
-   }
- cursor_position 23
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_version_burnin
- xpos -875
- ypos -208
-}
-Dot {
- name Dot7
- xpos -810
- ypos -158
-}
-Dot {
- name Dot17
- xpos -444
- ypos -158
-}
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message "\[clock format \[clock seconds] -format %d/%m/%Y]"
- old_message {{49 51 47 48 53 47 50 48 50 50}
-   }
- old_expression_markers {{0 9}
-   }
- box {10 {height-100} {width-box.x} {height-3}}
- xjustify right
- transforms {{0 2}
-   }
- font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 0 70 1 70 2 70 3 70 4 70 5 70 6 70 7 70 8 70 9 70}
-   }
- cursor_position 47
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_date_burnin
- xpos -478
- ypos -207
-}
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message "\[value SSVFX_SLATE.version]\n"
- old_message {{118 101 114 115 105 111 110 10}
-   }
- old_expression_markers {{0 6}
-   }
- box {10 0 {width/2.5-box.x} 100}
- yjustify bottom
- transforms {{0 2}
-   }
- cursor_position 28
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_notes_burnin
- xpos -851
- ypos 5
-}
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message SSVFX
- old_message {{83 83 86 70 88}
-   }
- box {10 0 {width-box.x} 100}
- xjustify center
- yjustify bottom
- transforms {{0 2}
-   }
- cursor_position 5
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_vendor_burnin
- xpos -734
- ypos 29
- disable true
-}
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message "  Lens\n"
- old_message {{32 32 76 101 110 115 10}
-   }
- box {10 0 {width-box.x} 100}
- xjustify center
- yjustify bottom
- transforms {{0 2}
-   }
- cursor_position 2
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_lensinfo_burnin
- xpos -618
- ypos 5
-}
-Text2 {
- font_size_toolbar 100
- font_width_toolbar 100
- font_height_toolbar 100
- message "\[format %04d \[expr \[value frame]]] of \[format %04d \[expr \[value last_frame]]] "
- old_message {{49 48 48 48 32 111 102 32 49 48 57 50 32}
-   }
- old_expression_markers {{0 3 8 11}
-   }
- box {10 0 {width-box.x} 100}
- xjustify right
- yjustify bottom
- transforms {{0 2}
-   }
- font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
- global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
- scale {1 1}
- cursor_initialised true
- autofit_bbox false
- initial_cursor_position {{2066.5 25.5}
-   }
- group_animations {{0} imported: 0 selected: items: "root transform/"}
- animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
-   }
- enable_shadows true
- shadow_distance 2
- name content_framecounter_burnin
- xpos -477
- ypos 5
-}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  label "Release Notes:\n\nv 1.0 First Pass"
+  xpos 768
+  ypos -230
+  bookmark false
+  bdwidth 391
+  bdheight 310
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 420
+  ypos -315
+ }
+ Dot {
+  name Dot29
+  xpos 454
+  ypos -233
+ }
+set Nde80b400 [stack 0]
+ Dot {
+  name Dot30
+  xpos 617
+  ypos -233
+ }
+ NoOp {
+  name control
+  xpos 583
+  ypos -105
+  addUserKnob {20 User}
+  addUserKnob {14 input_format l "Input Format" R 0 100}
+  input_format {{input.width} {input.height}}
+  addUserKnob {7 type_size t "type size in pixels" R 0 100}
+  type_size {{parent.type_size}}
+  addUserKnob {7 type_size_calc R 0 100}
+  type_size_calc {{type_size/100}}
+  addUserKnob {26 ""}
+  addUserKnob {7 frame_padding_top}
+  frame_padding_top {{parent.frame_padding_top}}
+  addUserKnob {7 frame_padding_bottom}
+  frame_padding_bottom {{parent.frame_padding_bottom}}
+  addUserKnob {7 frame_padding_right}
+  frame_padding_right {{parent.frame_padding_right}}
+  addUserKnob {7 frame_padding_left}
+  frame_padding_left {{parent.frame_padding_left}}
+  addUserKnob {26 ""}
+  addUserKnob {7 hard_mask R 0 100}
+  hard_mask {{parent.value_hardmask_size}}
+  addUserKnob {7 hard_mask_opacity}
+  hard_mask_opacity {{parent.value_hardmask_opacity}}
+  addUserKnob {26 ""}
+  addUserKnob {1 value_top_left}
+  value_top_left "\[value parent.value_top_left]"
+  addUserKnob {1 value_top_centre}
+  value_top_centre "\[value parent.value_top_centre]"
+  addUserKnob {1 value_top_right}
+  value_top_right "\[value parent.value_top_right]"
+  addUserKnob {1 value_bottom_left}
+  value_bottom_left "\[value parent.value_bottom_left]"
+  addUserKnob {1 value_bottom_centre}
+  value_bottom_centre "\[value parent.value_bottom_centre]"
+  addUserKnob {1 value_bottom_right}
+  value_bottom_right "\[value parent.value_bottom_right]"
+ }
+push $Nde80b400
+ Dot {
+  name Dot31
+  xpos 290
+  ypos -233
+ }
+ Crop {
+  box {0 {control.hard_mask} {control.width} {control.height-control.hard_mask}}
+  name Crop1
+  xpos 256
+  ypos -94
+ }
+push $Nde80b400
+ Dissolve {
+  inputs 2
+  which {{control.hard_mask_opacity}}
+  name Dissolve1
+  xpos 420
+  ypos -100
+  disable {{!parent.value_hardmask_enabled}}
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value control.value_top_left]"
+  old_message {{115 104 111 116}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {{control.frame_padding_left} {control.frame_padding_bottom} {(control.input_format.w)-(control.frame_padding_right)} {(control.input_format.h)-(control.frame_padding_top)}}
+  transforms {{0 2}
+    }
+  cursor_position 30
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{control.type_size_calc}}
+  center {1920 810}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1620}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1920 810 0 0 1 1 0 0 0 0}
+    }
+  name top_left
+  xpos 420
+  ypos -21
+  disable {{!parent.value_top_left_enabled}}
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value control.value_top_centre]"
+  old_expression_markers {{0 -1}
+    }
+  box {{control.frame_padding_left} {control.frame_padding_bottom} {(control.input_format.w)-(control.frame_padding_right)} {(control.input_format.h)-(control.frame_padding_top)}}
+  xjustify center
+  transforms {{0 2}
+    }
+  cursor_position 31
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{control.type_size_calc}}
+  center {1920 810}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1620}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1920 810 0 0 1 1 0 0 0 0}
+    }
+  name top_centre
+  xpos 420
+  ypos 27
+  disable {{!value_top_centre_enabled}}
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value control.value_top_right]"
+  old_message {{50 48 50 50 45 48 56 45 48 51}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{control.frame_padding_left} {control.frame_padding_bottom} {(control.input_format.w)-(control.frame_padding_right)} {(control.input_format.h)-(control.frame_padding_top)}}
+  xjustify right
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 0 1620 1 1620 2 1620 3 1620 4 1620 5 1620 6 1620 7 1620}
+    }
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{control.type_size_calc}}
+  center {1920 810}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1620}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1920 810 0 0 1 1 0 0 0 0}
+    }
+  name top_right
+  xpos 420
+  ypos 75
+  disable {{!parent.value_top_right_enabled}}
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value control.value_bottom_left]"
+  old_expression_markers {{0 -1}
+    }
+  box {{control.frame_padding_left} {control.frame_padding_bottom} {(control.input_format.w)-(control.frame_padding_right)} {(control.input_format.h)-(control.frame_padding_top)}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 27
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{control.type_size_calc}}
+  center {1920 810}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1620}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1920 810 0 0 1 1 0 0 0 0}
+    }
+  name bottom_left
+  xpos 420
+  ypos 171
+  disable {{!parent.value_bottom_left_enabled}}
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value control.value_bottom_centre]"
+  old_expression_markers {{0 -1}
+    }
+  box {{control.frame_padding_left} {control.frame_padding_bottom} {(control.input_format.w)-(control.frame_padding_right)} {(control.input_format.h)-(control.frame_padding_top)}}
+  xjustify center
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 27
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{control.type_size_calc}}
+  center {1920 810}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1620}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1920 810 0 0 1 1 0 0 0 0}
+    }
+  name bottom_centre
+  xpos 420
+  ypos 219
+  disable {{!parent.value_bottom_centre_enabled}}
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value control.value_bottom_right]"
+  old_message {{118 101 114 115 105 111 110 10}
+    }
+  old_expression_markers {{0 7}
+    }
+  box {{control.frame_padding_left} {control.frame_padding_bottom} {(control.input_format.w)-(control.frame_padding_right)} {(control.input_format.h)-(control.frame_padding_top)}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 1 100 2 100 3 100 0 1620 1 1620 2 1620 3 1620}
+    }
+  cursor_position 27
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{control.type_size_calc}}
+  center {1920 810}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1620}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1920 810 0 0 1 1 0 0 0 0}
+    }
+  name bottom_right
+  xpos 420
+  ypos 254
+  disable {{!parent.value_bottom_right_enabled}}
+ }
+ Output {
+  name Output1
+  xpos 420
+  ypos 363
+ }
+end_group
 Dot {
  name Dot19
- xpos -443
- ypos 177
+ xpos -983
+ ypos 256
 }
-push $Nc53a8800
+push $Nde283400
 Switch {
  inputs 2
  which 1
  name burnin_switch
  xpos -1304
- ypos 171
+ ypos 253
 }
 Switch {
  inputs 2
  which {{"(frame == root.first_frame || frame == root.first_frame) ? 1 : 0"}}
  name slate_switch
  xpos -1304
- ypos 332
+ ypos 414
 }
 AddTimeCode {
  startcode 00:00:00:00
@@ -3300,7 +3332,7 @@ AddTimeCode {
  xpos -1304
  ypos 637
 }
-set Nbf705400 [stack 0]
+set Nde75b000 [stack 0]
 FrameHold {
  first_frame 1073
  name FrameHold2
@@ -3321,44 +3353,7 @@ Merge2 {
  xpos -798
  ypos 789
 }
-NoOp {
- inputs 0
- name content_textscalar_burnin
- xpos -567
- ypos -92
- addUserKnob {20 User}
- addUserKnob {3 content_textscalar_burnin l "Global Text scalar"}
- content_textscalar_burnin 18
-}
-StickyNote {
- inputs 0
- name StickyNote1
- label "1-The mov ref for this shot is 1280x720 however tech spec has it at 1920x1080.\n2-For looptest do that want the exr back as 3840x2160 as per tech spec\n3- In the editorail line up pdf for this shot they have the zoom info for dailies framing is that something we will be getting on every shot?"
- xpos -2497
- ypos 820
-}
-Read {
- inputs 0
- file_type mov
- file //pix_artist/project_straight_shooter/straight_shooter/admin/incoming/turnover/220413/P015_041222_SSVFX_20220412145810/101_51G_03A_001/H264_720P_QT/101_51G_03A_001.mov
- format "1280 720 0 0 1280 720 1 HD_720"
- last 265
- frame_mode "start at"
- frame 1001
- origlast 265
- origset true
- raw true
- name Read3
- xpos -1683
- ypos 606
-}
-ViewMetaData {
- inputs 0
- name ViewMetaData1
- xpos -1582
- ypos 972
-}
-push $Nbf705400
+push $Nde75b000
 Write {
  colorspace "Output - Rec.709"
  raw true
@@ -3386,47 +3381,9 @@ Write {
  ypos 769
  postage_stamp true
 }
-Read {
- inputs 0
- file_type mov
- file //pix_artist/project_straight_shooter/straight_shooter/shots/1051_0020/editorial/cut_ref/101_51G_03A_001.mov
- format "1280 720 0 0 1280 720 1 HD_720"
- last 265
- origlast 265
- origset true
- name Read5
- xpos -1847
- ypos 718
-}
-Read {
- inputs 0
- file_type mov
- file //pix_artist/project_straight_shooter/straight_shooter/shots/1051_0020/editorial/cut_ref/101_51G_03A_001.mov
- format "1280 720 0 0 1280 720 1 HD_720"
- last 265
- frame_mode "start at"
- frame 1001
- origlast 265
- origset true
- raw true
- name Read2
- xpos -1699
- ypos 760
-}
-FrameHold {
- first_frame 1009
- name FrameHold1
- xpos -1699
- ypos 856
-}
-push 0
 Viewer {
- inputs 2
- frame_range 1001-1092
- frame_increment 1
- gain 3.2
- viewerProcess None
+ frame_range 1000-1092
  name Viewer1
- xpos -842
- ypos -3009
+ xpos -1304
+ ypos 853
 }
