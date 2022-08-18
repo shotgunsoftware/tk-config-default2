@@ -73,6 +73,9 @@ def dict_nav( dictionary, sequence ):
     for key in sequence:
         sub_dict = sub_dict.get(key)
 
+        if key == sequence[-1]:
+            return sub_dict
+
         if not isinstance(sub_dict, dict):
             return sub_dict
 
