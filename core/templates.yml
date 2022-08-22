@@ -29,6 +29,7 @@ includes:
 - ./includes/photoshop_templates.yml
 - ./includes/mari_templates.yml
 - ./includes/outsource_templates.yml
+- ./includes/submitter_templates.yml
 #
 # The keys section contains the definitions for all the different keys that are being
 # used by Sgtk. A key is a magic token that is replaced by a value at runtime, for example
@@ -64,10 +65,6 @@ keys:
     process:
         type: str
         filter_by: '^[0-9a-zA-Z-]+$'
-    name_with_underscores:
-        type: str
-        alias: name
-        filter_by: '^[0-9a-zA-Z_]+$'
     Codec:
         type: str
         filter_by: alphanumeric        
@@ -249,13 +246,13 @@ paths:
         definition: admin/processing/json/asset_review_settings.json
         root_name: 'project_pipeline'
 
-    shot_submission_json_file: 
-        definition: '@processing_root/temp/json/submissions/{Shot}/{Shot}_{task_name}[_{name}]_v{version}.json'
-        root_name: 'project_pipeline'
+    # shot_submission_json_file: 
+    #     definition: '@processing_root/temp/json/submissions/{Shot}/{Shot}_{task_name}[_{name}]_v{version}.json'
+    #     root_name: 'project_pipeline'
 
-    asset_submission_json_file: 
-        definition: '@processing_root/temp/json/submissions/{sg_asset_type}/{Asset}/{Asset}_{task_name}[_{name}]_v{version}.json'
-        root_name: 'project_pipeline'
+    # asset_submission_json_file: 
+    #     definition: '@processing_root/temp/json/submissions/{sg_asset_type}/{Asset}/{Asset}_{task_name}[_{name}]_v{version}.json'
+    #     root_name: 'project_pipeline'
 
     shot_review_process_json:
         definition: admin/processing/json/shot_processing_review_settings.json
