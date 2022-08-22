@@ -2,7 +2,7 @@
 #####  OUTSOURCE SUBMITTER TEMPLATES  #####
 ###########################################
 
-# keys:
+keys:
     underscore_name:
         type: str
         filter_by: '^[0-9a-zA-Z_]+$'
