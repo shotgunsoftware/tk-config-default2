@@ -27,10 +27,10 @@ settings.tk-nuke-writenode.asset:
             publish_template: nuke_asset_render_pub
             tile_color: 4292673791
             settings:
-              colorspace: scene_linear
+              colorspace: ACES - ACES2065-1
               datatype: 16 bit half
               channels: rgb
-              compression: dwaa
+              compression: DWAA
 
     - category_name: prerender
       default_category: True
@@ -54,7 +54,7 @@ settings.tk-nuke-writenode.asset:
             colorspace: scene_linear
             datatype: 16 bit half
             channels: rgba
-            compression: zip
+            compression: Zip (1 scanline)
         - name: exr (zip 32bit)
           file_type: exr
           render_template: nuke_asset_render
@@ -64,7 +64,7 @@ settings.tk-nuke-writenode.asset:
             colorspace: scene_linear
             datatype: 32 bit float
             channels: rgba
-            compression: zip
+            compression: Zip (1 scanline)
 
     - category_name: mattepainting
       write_nodes:
@@ -92,10 +92,10 @@ settings.tk-nuke-writenode.shot:
           publish_template: nuke_shot_render_pub
           tile_color: 4292673791
           settings:
-            colorspace: scene_linear
+            colorspace: ACES - ACES2065-1
             datatype: 16 bit half
             channels: rgb
-            compression: zip
+            compression: DWAA
           main_output: True
 
     - category_name: prerender
@@ -120,7 +120,7 @@ settings.tk-nuke-writenode.shot:
               colorspace: scene_linear
               datatype: 16 bit half
               channels: rgba
-              compression: zip
+              compression: Zip (1 scanline)
           - name: exr (zip 32bit)
             file_type: exr
             render_template: nuke_shot_render_work
@@ -130,7 +130,7 @@ settings.tk-nuke-writenode.shot:
               colorspace: scene_linear
               datatype: 32 bit float
               channels: rgba
-              compression: zip
+              compression: Zip (1 scanline)
 
     - category_name: mattepainting
       write_nodes:
