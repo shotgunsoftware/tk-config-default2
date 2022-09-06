@@ -192,9 +192,9 @@ class MayaShaderPublishPlugin(HookBaseClass):
         accepted = True
 
         # Check if we in the surface task context 
-        if not sgtk.platform.current_engine().context.task[
-                'name'].lower().startswith('surface'):
-            accepted = False
+        # if not sgtk.platform.current_engine().context.task[
+        #         'name'].lower().startswith('surface'):
+        #    accepted = False
 
         # a handle on the instance of the publisher app
         publisher = self.parent

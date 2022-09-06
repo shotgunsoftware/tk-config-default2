@@ -124,9 +124,9 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         accepted = True
 
         # Check if we in the surface task context 
-        if sgtk.platform.current_engine().context.task[
-                'name'].lower() not in ('model', 'animation'):
-            accepted = False
+        # if sgtk.platform.current_engine().context.task[
+        #       'name'].lower() not in ('model', 'animation'):
+        #    accepted = False
 
         publisher = self.parent
         template_name = settings["Publish Template"].value
