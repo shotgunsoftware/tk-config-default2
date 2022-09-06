@@ -126,9 +126,9 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         accepted = True
         # Check if we in the surface task context 
-        if not sgtk.platform.current_engine().context.task[
-                'name'].lower().startswith('surface'):
-            accepted = False
+        # if not sgtk.platform.current_engine().context.task[
+        #        'name'].lower().startswith('surface'):
+        #    accepted = False
 
         publisher = self.parent
         template_name = settings["Publish Template"].value
@@ -262,12 +262,17 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         try:
             self.parent.log_debug("Publishing a Stand-in to: %s" % publish_path)
-            arnold_standin.export_standin(publish_path.replace("\\", "/"))
+            status = arnold_standin.export_standin(publish_path.replace("\\", "/"), animation_on=True)
         except Exception as e:
             self.logger.error("Failed to export Geometry: %s" % e)
             return
 
-        assert os.path.isfile(publish_path), 'Unable to find a published file: ' + publish_path
+        # search for a static standin or animated one
+        if status in [0, 1]:
+            self.logger.info('Found published file: ' + str(publish_path))
+        else:
+            raise AssertionError('Unable to find a published file : ' + str(publish_path))
+        # assert os.path.isfile(publish_path), 'Unable to find a published file: ' + publish_path
 
         # set the publish type in the item's properties. the base plugin will
         # use this when registering the file with Shotgun
