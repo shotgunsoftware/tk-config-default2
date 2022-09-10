@@ -1,2 +1,9 @@
 # Project settings
 .idea/
+
+roots.yml
+
+__pycache__
+.vscode
+.DS_Store
+.pyc

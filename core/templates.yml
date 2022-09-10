@@ -57,8 +57,6 @@ keys:
     type: int
   height:
     type: int
-  segment_name:
-    type: str
 
   # Represents the optional output name for frames written by the ShotGrid Write Node
   write.output:
@@ -181,13 +179,23 @@ paths:
   shot_publish: 04_publish/shots/{Sequence}/{Shot}/{Step}
 
   cg_assetrender: 05_renders/cg/assets/{Asset}/{Step}
-  cg_shotrender: 05_renders/cg/shots/sc{Sequence}/{Shot}
+  cg_shotrender: 05_renders/cg/shots/{Sequence}/{Shot}
   comp_assetrender: 05_renders/comp/assets/{Asset}/{Step}
-  comp_shotrender: 05_renders/comp/shots/sc{Sequence}/{Shot}
+  comp_shotrender: 05_renders/comp/shots/Sequence}/{Shot}
+
+  delivery: 05_renders/delivery
 
   ##########################################################################################
   # Project level paths
   #
+
+  #
+  # Shot Delivery Path
+  #
+
+  shot_delivery:
+    definition: "@delivery/{Projectcode}_sc{Sequence}_{Shot}_v{version}/{Projectcode}_sc{Sequence}_{Shot}_v{version}.{SEQ}.exr"
+
 
   #
   # Hiero
