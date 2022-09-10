@@ -18,6 +18,7 @@ includes:
 - ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
 - ./tk-desktop-libraryimporter.yml
+- ./tk-desktop-deliveries.yml
 
 ################################################################################
 
@@ -34,8 +35,7 @@ settings.tk-desktop.project:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-devutils:
       location: "@apps.tk-multi-devutils.location"
-    tk-desktop-timecard:
-      location: "@apps.tk-desktop-timecard.location"
+    tk-desktop-deliveries: "@settings.tk-desktop-deliveries"
     tk-desktop-libraryimporter: "@settings.tk-desktop-libraryimporter"
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
@@ -45,7 +45,7 @@ settings.tk-desktop.project:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
   groups:
   - matches:
-    - "*Timelog*"
+    - "*Deliveries*"
     name: Filmacademy
   - matches:
     - "*Fla*"

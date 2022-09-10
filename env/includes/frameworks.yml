@@ -17,38 +17,33 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.3
       type: app_store
       name: tk-framework-adobe
-
+      version: v1.1.6
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.0
       type: app_store
       name: tk-framework-adminui
-
+      version: v0.7.2
   # aliastranslations - provides Alias translation tools
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.2.0
       type: app_store
       name: tk-framework-aliastranslations
-
+      version: v0.2.2
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.5.0
       type: app_store
       name: tk-framework-desktopserver
-
+      version: v1.5.3
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.10.0
       type: app_store
       name: tk-framework-qtwidgets
-
+      version: v2.10.5
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
@@ -59,10 +54,9 @@ frameworks:
   # shotgunutils v5 - Shotgun Related Utilities
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.8.0
       type: app_store
       name: tk-framework-shotgunutils
-
+      version: v5.8.5
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
@@ -72,19 +66,17 @@ frameworks:
 
   tk-framework-widget_v1.x.x:
     location:
-      version: v1.1.0
       type: app_store
       name: tk-framework-widget
-
+      version: v1.1.1
   # desktopclient - A client for Shotgun Create
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.1.1
       type: app_store
       name: tk-framework-desktopclient
-
+      version: v0.3.2
   tk-framework-lmv_v0.x.x:
     location:
-      version: v0.2.0
       type: app_store
       name: tk-framework-lmv
+      version: v0.2.2
