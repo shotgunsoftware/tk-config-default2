@@ -3,15 +3,15 @@ on:
   pull_request:
     types: [closed]
 jobs:
-  update-4ejaars_source-branch:
+  update-s4-branch:
    runs-on: ubuntu-latest
    steps:
     - run: echo "This job was automatically triggered by a ${{ github.event_name }} event."
     - run: echo "This job is running on a ${{ runner.os }} server."
-    - run: echo "This job will update the 4ejaars_source branch."
+    - run: echo "This job will update the s4 branch."
     - uses: actions/checkout@v2
       with:
-        ref: 4ejaars_source
+        ref: s4
     - run: git config user.name github-actions
     - run: git config user.email github-actions@github.com
     - run: git config pull.rebase false
@@ -20,15 +20,15 @@ jobs:
     - run: git add .
     - run: git status
     - run: git push
-  update-3ejaars_source-branch:
+  update-s3-branch:
    runs-on: ubuntu-latest
    steps:
     - run: echo "This job was automatically triggered by a ${{ github.event_name }} event."
     - run: echo "This job is running on a ${{ runner.os }} server."
-    - run: echo "This job will update the 3ejaars_source branch."
+    - run: echo "This job will update the s3 branch."
     - uses: actions/checkout@v2
       with: 
-        ref: 3ejaars_source
+        ref: s3
     - run: git config user.name github-actions
     - run: git config user.email github-actions@github.com
     - run: git config pull.rebase false
@@ -37,15 +37,15 @@ jobs:
     - run: git add .
     - run: git status
     - run: git push
-  update-2ejaars_source-branch:
+  update-s2-branch:
     runs-on: ubuntu-latest
     steps:
       - run: echo "This job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "This job is running on a ${{ runner.os }} server."
-      - run: echo "This job will update the 2ejaars_source branch."
+      - run: echo "This job will update the s2 branch."
       - uses: actions/checkout@v2
         with:
-          ref: 2ejaars_source
+          ref: s2
       - run: git config user.name github-actions
       - run: git config user.email github-actions@github.com
       - run: git config pull.rebase false
