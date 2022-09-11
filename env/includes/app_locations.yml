@@ -245,7 +245,7 @@ apps.tk-nuke-writenode.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-writenode
-  version: 2.1.0
+  version: 2.1.1
 
 # template
 apps.tk-nuke-template.location:
