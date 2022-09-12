@@ -95,7 +95,7 @@ apps.tk-multi-deadlinereviewsubmission.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-deadlinereviewsubmission
-  version: 0.2.0
+  version: 0.2.1
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
