@@ -179,6 +179,12 @@ paths:
     maya_shot_cache_alembic_abc:
          definition: '@shot_context/maya/{task_name}/caches/alembic/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}.abc'
          root_name: 'caches'
+    maya_shot_cache_standin:
+        definition: '@shot_context/maya/{task_name}/caches/standin/{Shot}_{task_name}_standin_cache[_{name}]_v{version}'
+        root_name: 'caches'
+    maya_shot_cache_standin_ass:
+        definition: '@shot_context/maya/{task_name}/caches/standin/{Shot}_{task_name}_standin_cache[_{name}]_v{version}/{Shot}_{task_name}_standin-cache[_{name}]_v{version}.ass'
+        root_name: 'caches'
     maya_shot_cache_bifrost:
          definition: '@shot_context/maya/{task_name}/caches/bifrost/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}_v{version}.{SEQ}.bif'
          root_name: 'caches'
