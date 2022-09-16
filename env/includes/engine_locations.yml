@@ -51,9 +51,13 @@ engines.tk-mari.location:
   name: tk-mari
   version: v1.3.3
 engines.tk-maya.location:
-  type: app_store
-  name: tk-maya
-  version: v0.11.4
+#  type: app_store
+#  name: tk-maya
+#  version: v0.11.4
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-maya.git
+  branch: SHOT-4029-maya-DV
+  version: 0e30cea
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
