@@ -41,6 +41,7 @@ settings.tk-houdini-template.shot_step:
   pipeline_steps:
     - "Matchmove"
     - "Animation"
+    - "GroomFX"
     - "Effects"
     - "Layout"
     - "Lighting"
