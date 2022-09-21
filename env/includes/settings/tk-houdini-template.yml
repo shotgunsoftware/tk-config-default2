@@ -29,13 +29,20 @@ includes:
 settings.tk-houdini-template.asset_step:
   pipeline_steps:
     - "Shading"
+    - "Modeling"
     - "Layout"
+    - "Grooming"
+    - "Rigging"
   templates_directory: houdini_template_directory
   file_extension: ".hipnc"
   location: "@apps.tk-houdini-template.location"
 
 settings.tk-houdini-template.shot_step:
   pipeline_steps:
+    - "Matchmove"
+    - "Animation"
+    - "GroomFX"
+    - "Effects"
     - "Layout"
     - "Lighting"
   templates_directory: houdini_template_directory
