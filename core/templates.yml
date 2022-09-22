@@ -28,6 +28,7 @@ includes:
 - ./includes/max_templates.yml
 - ./includes/photoshop_templates.yml
 - ./includes/mari_templates.yml
+- ./includes/equalize_templates.yml
 - ./includes/outsource_templates.yml
 - ./includes/submitter_templates.yml
 #
@@ -287,19 +288,7 @@ paths:
         root_name: 'project_pipeline'
     shot_process_mov:
         definition: '@shot_context/renders/process/{Codec}/{Shot}_v{version}.mov'
-        root_name: 'project_pipeline'
-    resolve_shot_review_mov: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}][_{process}]_v{version}.mov'
-        root_name: 'project_pipeline'        
-    resolve_shot_review_mov_secondary: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}][_{process}]_v{version}.mov'
-        root_name: 'secondary'                
-    resolve_asset_review_mov: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{name}][_{process}]_v{version}.mov'
-        root_name: 'project_pipeline'        
-    resolve_asset_review_mov_secondary: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{name}][_{process}]_v{version}.mov'
-        root_name: 'secondary'                
+        root_name: 'project_pipeline'               
     # resolve_review_mov: 
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
     #     root_name: 'project_pipeline'

@@ -12,10 +12,27 @@ keys:
 #     outsource_descriptor_name: '{Shot}_{name}_v{version}'
 
 paths:
+    ### Shot Locations ###
     shot_submission_json_file: 
         definition: '@processing_root/temp/json/submissions/{Shot}/{Shot}_{task_name}[_{underscore_name}]_v{version}.json'
         root_name: 'project_pipeline'
 
+    ### Asset Locations ###
     asset_submission_json_file: 
         definition: '@processing_root/temp/json/submissions/{sg_asset_type}/{Asset}/{Asset}_{task_name}[_{underscore_name}]_v{version}.json'
         root_name: 'project_pipeline'
+
+    ### Review Locations ###
+    resolve_shot_review_mov: 
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{underscore_name}][_{process}]_v{version}.mov'
+        root_name: 'project_pipeline'        
+    resolve_shot_review_mov_secondary: 
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{underscore_name}][_{process}]_v{version}.mov'
+        root_name: 'secondary'                
+    resolve_asset_review_mov: 
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{underscore_name}][_{process}]_v{version}.mov'
+        root_name: 'project_pipeline'        
+    resolve_asset_review_mov_secondary: 
+        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{underscore_name}][_{process}]_v{version}.mov'
+        root_name: 'secondary' 
+
