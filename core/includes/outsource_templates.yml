@@ -45,14 +45,18 @@ paths:
         definition: '@incoming_outsource_shot_folder_root/{name}[_v{version}].{ext}'
         root_name: 'project_pipeline'
 
-    incoming_outsource_nuke_file:
-        definition: '@incoming_outsource_shot_subfolder_root/@outsource_descriptor_name.{ext}'
-        root_name: 'project_pipeline'
-
     incoming_outsource_shot_nuke_render:
-        definition: '@incoming_outsource_shot_subfolder_root/{name}/@outsource_descriptor_name[.{SEQ}].{ext}'
+        definition: '@incoming_outsource_shot_subfolder_root/[{name}/]@outsource_descriptor_name[.{SEQ}].{ext}'
         root_name: 'project_pipeline'
 
     incoming_outsource_shot_matchmove_render:
         definition: '@incoming_outsource_shot_subfolder_root/{name}'
         root_name: 'project_pipeline'
+
+    incoming_outsource_render_copy:
+        definition: '@render_root/maya/{task_name}/v{version}/{outsource_render}/[{name}/]@outsource_descriptor_name[.{SEQ}].{ext}'
+        root_name: 'project_pipeline'
+
+    incoming_outsource_camera_copy:
+        definition: '@shot_context/maya/{outsource_task}/caches/alembic/{Shot}[_{outsource_task}][_{name}]_v{version}.abc'
+        root_name: 'caches'
