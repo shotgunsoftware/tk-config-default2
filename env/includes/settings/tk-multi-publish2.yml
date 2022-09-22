@@ -264,6 +264,10 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_shader_network.py"
     settings:
         Publish Template: maya_shader_network_publish
+  - name: Publish Arnold Stand-in
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
+    settings:
+      Publish Template: maya_shot_cache_standin_ass
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
