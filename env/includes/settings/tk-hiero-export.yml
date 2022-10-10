@@ -17,7 +17,7 @@ includes:
 
 settings.tk-hiero-export:
   custom_template_fields:
-  - {description: Projectcode of project, keyword: Projectcode}
+  - {description: Projectcode of project, keyword: projectcode}
   nuke_script_toolkit_write_nodes:
   - {category: 'main', output: 'main', data_type: 'exr (dwaa 16bit)'}
   template_nuke_script_path: nuke_shot_work
