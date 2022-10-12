@@ -65,7 +65,7 @@ engines.tk-nuke.location:
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.9.3
+  version: v1.9.4
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
