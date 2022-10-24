@@ -18,7 +18,7 @@ includes:
 # ---- Alias
 
 settings.tk-multi-data-validation.alias:
-  hook_data_validation: "{engine}/tk-multi-data-validation/basic/scene_data_validation.py"
+  hook_data_validation: "{engine}/tk-multi-data-validation/basic/data_validation.py"
   rules:
     - id: layer_is_empty
       data_type: Layers
