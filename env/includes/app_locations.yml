@@ -32,10 +32,14 @@ apps.tk-multi-breakdown2.location:
   type: app_store
   name: tk-multi-breakdown2
   version: v0.2.5
+apps.tk-multi-data-validation.location:
+  type: app_store
+  name: tk-multi-data-validation
+  version: v0.1.2
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.3.4
+  version: v1.3.5
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
@@ -43,7 +47,7 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.22.0
+  version: v1.22.1
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
