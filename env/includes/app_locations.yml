@@ -31,11 +31,15 @@ apps.tk-multi-breakdown.location:
 apps.tk-multi-breakdown2.location:
   type: app_store
   name: tk-multi-breakdown2
-  version: v0.2.4
+  version: v0.2.5
+apps.tk-multi-data-validation.location:
+  type: app_store
+  name: tk-multi-data-validation
+  version: v0.1.2
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.3.4
+  version: v1.3.5
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
@@ -43,7 +47,7 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.22.0
+  version: v1.22.1
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
@@ -67,7 +71,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.8.2
+  version: v1.8.3
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
@@ -75,11 +79,15 @@ apps.tk-multi-snapshot.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.13.1
+  version: v0.13.2
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
   version: v1.2.1
+apps.tk-multi-bg-publish.location:
+  type: app_store
+  name: tk-multi-bg-publish
+  version: v0.1.0
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders

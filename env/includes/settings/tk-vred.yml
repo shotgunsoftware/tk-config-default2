@@ -19,6 +19,7 @@ includes:
 - ./tk-multi-publish2.yml
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-workfiles2.yml
+- ./tk-multi-data-validation.yml
 
 ################################################################################
 
@@ -47,6 +48,9 @@ settings.tk-vred.asset_step:
     tk-multi-publish2: "@settings.tk-multi-publish2.vred.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred.asset_step"
+    tk-multi-data-validation: "@settings.tk-multi-data-validation.vred"
+    tk-multi-bg-publish:
+      location: "@apps.tk-multi-bg-publish.location"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
@@ -55,11 +59,18 @@ settings.tk-vred.asset_step:
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: ''}
   - {app_instance: tk-multi-pythonconsole, name: 'ShotGrid Python Console...'}
+  - { app_instance: tk-multi-data-validation, name: 'Data Validation...' }
   docked_apps:
     tk-multi-shotgunpanel:
         pos: right
         tabbed: True
     tk-multi-pythonconsole:
+        pos: right
+        tabbed: True
+    tk-multi-data-validation:
+        pos: right
+        tabbed: True
+    tk-multi-breakdown2:
         pos: right
         tabbed: True
   location: "@engines.tk-vred.location"
@@ -73,16 +84,21 @@ settings.tk-vred.project:
       location: "@apps.tk-multi-pythonconsole.location"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred"
+    tk-multi-data-validation: "@settings.tk-multi-data-validation.vred"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   run_at_startup:
   - { app_instance: tk-multi-shotgunpanel, name: '' }
   - { app_instance: tk-multi-pythonconsole, name: 'ShotGrid Python Console...' }
+  - { app_instance: tk-multi-data-validation, name: 'Data Validation...' }
   docked_apps:
     tk-multi-shotgunpanel:
         pos: right
         tabbed: True
     tk-multi-pythonconsole:
+        pos: right
+        tabbed: True
+    tk-multi-data-validation:
         pos: right
         tabbed: True
   location: "@engines.tk-vred.location"
