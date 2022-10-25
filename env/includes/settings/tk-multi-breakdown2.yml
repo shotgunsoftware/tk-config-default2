@@ -20,11 +20,6 @@ settings.tk-multi-breakdown2.alias:
   hook_scene_operations: '{self}/tk-alias_scene_operations.py'
   location: "@apps.tk-multi-breakdown2.location"
 
-# Maya
-settings.tk-multi-breakdown2.maya:
-  hook_scene_operations: '{self}/tk-maya_scene_operations.py'
-  location: "@apps.tk-multi-breakdown2.location"
-
 # VRED
 settings.tk-multi-breakdown2.vred:
   hook_scene_operations: '{self}/tk-vred_scene_operations.py'
