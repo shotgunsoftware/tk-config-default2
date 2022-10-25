@@ -151,7 +151,8 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
 
         # we've validated the publish template. add it to the item properties
         # for use in subsequent methods
-        item.properties["publish_template"] = publish_template
+        # item.properties["publish_template"] = publish_template
+        item.local_properties.publish_template = publish_template
 
         # check that the AbcExport command is available!
         if not mel.eval('exists "AbcExport"'):
@@ -206,7 +207,8 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
 
         # get the configured work file template
         work_template = item.parent.properties.get("work_template")
-        publish_template = item.properties.get("publish_template")
+        publish_template = item.local_properties.publish_template
+        # publish_template = item.properties.get("publish_template")
 
         # get the current scene path and extract fields from it using the work
         # template:
@@ -226,7 +228,9 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         # properties. This is the path we'll create and then publish in the base
         # publish plugin. Also set the publish_path to be explicit.
         item.properties["path"] = publish_template.apply_fields(work_fields)
-        item.properties["publish_path"] = item.properties["path"]
+        #item.properties["publish_path"] = item.properties["path"]
+        item.local_properties['abc_path'] = item.properties.path
+        item.local_properties['abc_publish_path'] = item.properties.path
 
         # use the work file's version number when publishing
         if "version" in work_fields:
@@ -248,7 +252,7 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         publisher = self.parent
 
         # get the path to create and publish
-        publish_path = item.properties["path"]
+        publish_path = item.local_properties["abc_path"]
 
         # ensure the publish folder exists:
         publish_folder = os.path.dirname(publish_path)
@@ -301,13 +305,53 @@ class MayaSessionGeometryPublishPlugin(HookBaseClass):
         # ...and execute it:
         try:
             self.parent.log_debug("Executing command: %s" % abc_export_cmd)
+            self.parent.log_debug("Publishing to: %s" % publish_path)
             mel.eval(abc_export_cmd)
         except Exception as e:
             self.logger.error("Failed to export Geometry: %s" % e)
             return
 
+        # Check if the published file exists
+        assert os.path.isfile(publish_path), 'Unable to find a published file: ' + publish_path
+
         # Now that the path has been generated, hand it off to the
         super(MayaSessionGeometryPublishPlugin, self).publish(settings, item)
+
+    def finalize(self, settings, item):
+        """
+        Execute the finalization pass. This pass executes once
+        all the publish tasks have completed, and can for example
+        be used to version up files.
+
+        :param settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the settings property. The values are `Setting`
+            instances.
+        :param item: Item to process
+        """
+
+        publisher = self.parent
+
+        # get the data for the publish that was just created in SG
+        publish_data = item.properties.sg_publish_data
+
+        # ensure conflicting publishes have their status cleared
+        publisher.util.clear_status_for_conflicting_publishes(
+            item.context, publish_data
+        )
+
+        self.logger.info("Cleared the status of all previous, conflicting publishes")
+
+        path = item.local_properties["abc_path"]
+        self.logger.info(
+            "Publish created for file: %s" % (path,),
+            extra={
+                "action_show_in_shotgun": {
+                    "label": "Show Publish",
+                    "tooltip": "Open the Publish in ShotGrid.",
+                    "entity": publish_data,
+                }
+            },
+        )
 
 
 def _find_scene_animation_range():

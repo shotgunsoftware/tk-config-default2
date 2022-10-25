@@ -223,8 +223,8 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         # properties. This is the path we'll create and then publish in the base
         # publish plugin. Also set the publish_path to be explicit.
         item.properties['path'] = publish_template.apply_fields(work_fields)
-        item.local_properties['path'] = item.properties.path
-        item.local_properties['publish_path'] = item.properties.path
+        item.local_properties['ass_path'] = item.properties.path
+        item.local_properties['ass_publish_path'] = item.properties.path
         # item.properties["path"] = publish_template.apply_fields(work_fields)
         # item.properties["publish_path"] = item.properties["path"]
 
@@ -249,7 +249,7 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         # get the path to create and publish
         # publish_path = item.properties["path"]
-        publish_path = item.local_properties["path"]
+        publish_path = item.local_properties["ass_path"]
 
         # ensure the publish folder exists:
         publish_folder = os.path.dirname(publish_path)
@@ -262,13 +262,12 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         try:
             self.parent.log_debug("Publishing a Stand-in to: %s" % publish_path)
-            status = arnold_standin.export_standin(publish_path.replace("\\", "/"), animation_on=True)
+            arnold_standin.export_standin(publish_path.replace("\\", "/"), animation_on=True)
         except Exception as e:
             self.logger.error("Failed to export Geometry: %s" % e)
-            return
 
         # search for a static standin or animated one
-        if status in [0, 1]:
+        if os.listdir(os.path.dirname(publish_path)):
             self.logger.info('Found published file: ' + str(publish_path))
         else:
             raise AssertionError('Unable to find a published file : ' + str(publish_path))
@@ -279,6 +278,42 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
         item.properties["publish_type"] = "Standin"
         # Now that the path has been generated, hand it off to the
         super(MayaArnoldStandinPublishPlugin, self).publish(settings, item)
+
+    def finalize(self, settings, item):
+        """
+        Execute the finalization pass. This pass executes once
+        all the publish tasks have completed, and can for example
+        be used to version up files.
+
+        :param settings: Dictionary of Settings. The keys are strings, matching
+            the keys returned in the settings property. The values are `Setting`
+            instances.
+        :param item: Item to process
+        """
+
+        publisher = self.parent
+
+        # get the data for the publish that was just created in SG
+        publish_data = item.properties.sg_publish_data
+
+        # ensure conflicting publishes have their status cleared
+        publisher.util.clear_status_for_conflicting_publishes(
+            item.context, publish_data
+        )
+
+        self.logger.info("Cleared the status of all previous, conflicting publishes")
+
+        path = item.local_properties["ass_path"]
+        self.logger.info(
+            "Publish created for file: %s" % (path,),
+            extra={
+                "action_show_in_shotgun": {
+                    "label": "Show Publish",
+                    "tooltip": "Open the Publish in ShotGrid.",
+                    "entity": publish_data,
+                }
+            },
+        )
 
 
 def _find_scene_animation_range():
