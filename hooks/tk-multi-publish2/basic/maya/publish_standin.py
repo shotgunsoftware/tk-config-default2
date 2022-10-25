@@ -202,7 +202,7 @@ class MayaArnoldStandinPublishPlugin(HookBaseClass):
 
         # get the configured work file template
         work_template = item.parent.properties.get("work_template")
-        publish_template = item.local_properties.publish_template
+        publish_template = item.get_property("publish_template")
         # publish_template = item.properties.get("publish_template")
 
         # get the current scene path and extract fields from it using the work
