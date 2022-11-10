@@ -37,6 +37,11 @@ keys:
     maya.camera_name:
         type: str
         filter_by: '^[0-9a-zA-Z_]+$'
+
+    maya.techpass_name:
+        alias: tech_pass
+        type: str
+        filter_by: alphanumeric
   
     # Maya supports two extension types.
     maya_extension:
@@ -193,7 +198,7 @@ paths:
         definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{name}]_pb_v{version}'
         root_name: 'project_pipeline'
     maya_shot_playblast_output:
-        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
         root_name: 'project_pipeline'
     maya_shot_playblast_publishing:
         definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
@@ -238,7 +243,7 @@ paths:
         definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{name}]_pb_v{version}'
         root_name: 'project_pipeline'
     maya_asset_playblast_output:
-        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
         root_name: 'project_pipeline'
     maya_asset_playblast_publishing:
         definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'

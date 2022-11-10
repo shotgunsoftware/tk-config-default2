@@ -50,6 +50,9 @@ settings.tk-multi-publish2.standalone:
   - name: Outsource Create Alembic
     hook: "{config}/tk-multi-publish2/basic/outsource/outsource_create_alembic.py"
     settings: {}
+  - name: FFMPEG Upload Version (DEV)
+    hook: "{config}/tk-multi-publish2/basic/development/upload_version.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
