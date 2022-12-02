@@ -28,8 +28,6 @@ settings.tk-multi-data-validation.alias:
       data_type: Shaders
     - id: shader_is_vred_compatible
       data_type: Shaders
-    - id: node_instances
-      data_type: Model
     - id: node_pivots_at_origin
       data_type: Model
     - id: node_has_zero_transform
