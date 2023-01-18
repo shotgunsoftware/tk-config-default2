@@ -75,6 +75,11 @@ class PostPhase(HookBaseClass):
         # at the same time, start to build the monitor tree
         for item in publish_tree:
 
+            # if the item has a thumbnail, download it and make sure we can access it later in the bg process
+            thumbnail_path = item.get_thumbnail_as_path()
+            if thumbnail_path:
+                item._thumbnail_path = thumbnail_path
+
             item_uuid = str(uuid.uuid4())
             item_data = {
                 "name": item.name,
