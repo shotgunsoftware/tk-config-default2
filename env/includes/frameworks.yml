@@ -37,9 +37,13 @@ frameworks:
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.10.5
-      type: app_store
-      name: tk-framework-qtwidgets
+#      version: v2.10.5
+#      type: app_store
+#      name: tk-framework-qtwidgets
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets
+      branch: improvement/search-widget-editing-finished
+      version: a64ccdc
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15

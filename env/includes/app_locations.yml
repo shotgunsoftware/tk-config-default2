@@ -77,9 +77,13 @@ apps.tk-multi-snapshot.location:
   name: tk-multi-snapshot
   version: v0.9.1
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.13.3
+#  type: app_store
+#  name: tk-multi-workfiles2
+#  version: v0.13.3
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-workfiles2
+  branch: SG-29639/improve-search-filter
+  version: 9ef992d
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
