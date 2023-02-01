@@ -181,7 +181,7 @@ paths:
   cg_assetrender: 05_renders/cg/assets/{Asset}/{Step}
   cg_shotrender: 05_renders/cg/shots/{Sequence}/{Shot}
   comp_assetrender: 05_renders/comp/assets/{Asset}/{Step}
-  comp_shotrender: 05_renders/comp/shots/Sequence}/{Shot}
+  comp_shotrender: 05_renders/comp/shots/{Sequence}/{Shot}
 
   delivery: 05_renders/delivery
 
