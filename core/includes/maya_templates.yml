@@ -270,3 +270,6 @@ paths:
     maya_asset_cache_alembic_file:
          definition: '@maya_asset_cache_area/geometry/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.abc'
          root_name: 'caches'
+    maya_asset_cache_standin_file:
+         definition: '@maya_asset_cache_area/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.ass'
+         root_name: 'caches'
