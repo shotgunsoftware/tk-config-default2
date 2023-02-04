@@ -35,7 +35,7 @@ jobs:
 
     - name: Release main to s2
       run: |
-          git checkout release/s3
+          git checkout release/s2
           git pull
           git merge --no-ff main -m "Automatic merge main for release s2"
           git push
