@@ -12,4 +12,5 @@
 type: "project"
 
 # name of project root as defined in roots.yml
-root_name: "project_pipeline"
+root_name: 'project_pipe_test_pix'
+#root_name: 'project_shogun_pix'

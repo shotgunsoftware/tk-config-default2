@@ -16,31 +16,32 @@ includes:
 ################################################################################
 
 # asset step
-settings.tk-houdini-mantranode.asset_step:
+settings.tk-houdini-arnoldnode.asset_step:
   work_file_template: houdini_asset_work
-  default_node_name: sg_mantra_out
+  default_node_name: sg_arnold_out
   output_profiles:
   - name: Default Render
     settings: {}
     color: [.88, .78, .64]
     output_render_template: houdini_asset_render_exr
-    output_ifd_template: houdini_asset_ifd
-    output_dcm_template: houdini_asset_dcm
-    output_extra_plane_template: houdini_asset_extra_plane
-  location: "@apps.tk-houdini-mantranode.location"
+    output_ass_template: houdini_asset_ass
+    #output_dcm_template: houdini_asset_dcm
+    #output_extra_plane_template: houdini_asset_extra_plane
+  
+  location: "@apps.tk-houdini-arnoldnode.location"
 
 # shot step
-settings.tk-houdini-mantranode.shot_step:
+settings.tk-houdini-arnoldnode.shot_step:
   work_file_template: houdini_shot_work
-  default_node_name: sg_mantra_out
+  default_node_name: sg_arnold_out
   output_profiles:
   - name: Default Render
     settings: {}
     color: [.88, .78, .64]
     output_render_template: houdini_shot_render_exr
-    output_ifd_template: houdini_shot_ifd
-    output_dcm_template: houdini_shot_dcm
-    output_extra_plane_template: houdini_shot_extra_plane
-  location: "@apps.tk-houdini-mantranode.location"
+    output_ass_template: houdini_shot_ass
+    #output_dcm_template: houdini_shot_dcm
+    #output_extra_plane_template: houdini_shot_extra_plane
+  location: "@apps.tk-houdini-arnoldnode.location"
   display_name: "Mantra Render Output Node"
   description: "Support for the SGToolkit Mantra render output node in Houdini."

@@ -17,12 +17,14 @@ includes:
 - ./tk-houdini-alembicnode.yml
 - ./tk-houdini-mantranode.yml
 - ./tk-houdini-geometrynode.yml
+- ./tk-houdini-arnoldnode.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
+
 
 ################################################################################
 
@@ -54,6 +56,7 @@ settings.tk-houdini.asset_step:
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
     tk-houdini-geometrynode: "@settings.tk-houdini-geometrynode.asset_step"
+    tk-houdini-arnoldnode: "@settings.tk-houdini-arnoldnode.asset_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
@@ -120,7 +123,8 @@ settings.tk-houdini.shot_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.shot_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.shot_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
-    tk-houdini-geometrynode: "@settings.tk-houdini-geometrynode.shot_step"
+    #tk-houdini-geometrynode: "@settings.tk-houdini-geometrynode.asset_step"
+    tk-houdini-arnoldnode: "@settings.tk-houdini-arnoldnode.shot_step"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}

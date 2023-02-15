@@ -17,9 +17,9 @@ keys:
 paths:
     equalize_shot_work:
         definition: '@shot_root/equalize/{Shot}_{task_name}[_{name}]_v{version}.{equalize_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     equalize_asset_work:
         definition: '@asset_root/work/equalize/{Asset}_{task_name}[_{name}]_v{version}.{equalize_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
         

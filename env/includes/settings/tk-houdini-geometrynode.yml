@@ -17,12 +17,28 @@ includes:
 
 settings.tk-houdini-geometrynode.asset_step:
   work_file_template: houdini_asset_work
-  default_node_name: sg_geometrynode_out
-  output_cache_template: houdini_asset_work_geo_cache
+  default_node_name: sg_geometry_out
+  output_profiles:
+  - name: Asset Work VDB Cache Sequence
+    settings: {trange: 1}
+    color: [.88, .78, .64]
+    output_cache_template: houdini_asset_work_vdb_cache
+  - name: Asset Work BGEO Cache Sequence
+    settings: {trange: 0}
+    color: [.88, .78, .64]
+    output_cache_template: houdini_asset_work_geo_cache
   location: "@apps.tk-houdini-geometrynode.location"
 
 settings.tk-houdini-geometrynode.shot_step:
   work_file_template: houdini_shot_work
   default_node_name: sg_geometrynode_out
-  output_cache_template: houdini_shot_work_geo_cache
+  output_profiles:
+  - name: Shot Work VDB Cache Sequence
+    settings: {trange: 1}
+    color: [.88, .78, .64]
+    output_cache_template: houdini_shot_work_geo_cache
+  #- name: Shot Work Cache Still 
+  #  settings: {trange: 0}
+  #  color: [1.0, 0.5, 0.0]
+  #  output_cache_template: houdini_shot_work_alembic_cache_still
   location: "@apps.tk-houdini-geometrynode.location"

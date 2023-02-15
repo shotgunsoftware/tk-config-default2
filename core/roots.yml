@@ -41,7 +41,7 @@
 # core, this requirement has been lifted and the root can be named anything.
 # ------------------------------------------------------------------------------
 
-project_pipeline:
+project_pipe_test_pix:
 
     description: A top-level root folder for production data. Project folders
         will be created beneath this location.
@@ -49,8 +49,8 @@ project_pipeline:
     # these paths will be populated by the associated local storage in Shotgun
     # at setup time.
     mac_path: null
-    linux_path: /mnt/project_pipeline
-    windows_path: \\pix_artist\project_pipeline
+    linux_path: /mnt/project_pipe_test
+    windows_path: \\pix_artist\project_pipe_test
     # If needed the storage ID can be explicitly set with the following key:
     # shotgun_storage_id: {LocalStorage_entity_id}
 
@@ -65,9 +65,9 @@ secondary: {
   }
 
 caches: {
-  linux_path: /mnt/vfx_projects_caches/projects_caches,
+  linux_path: /mnt/projects/caches,
   mac_path: null, 
-  windows_path: \\pix_artist\vfx_projects_caches\projects_caches
+  windows_path: \\10.80.8.252\projects\caches
   }
 
 # ------------------------------------------------------------------------------

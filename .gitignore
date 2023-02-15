@@ -38,3 +38,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+_*
+temp
+# its a crutch. TODO: fix it
+pipeline_configuration_init.py

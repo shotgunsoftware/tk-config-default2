@@ -1,4 +1,4 @@
-﻿# Copyright (c) 2017 Shotgun Software Inc.
+# Copyright (c) 2017 Shotgun Software Inc.
 # 
 # CONFIDENTIAL AND PROPRIETARY
 # 
@@ -9,10 +9,10 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 
-from ss_config.hooks.tk_multi_publish2.maya.collector import SsMayaSessionCollector
+from ss_config.hooks.tk_multi_publish2.maya.publish_animation import SsAnimationPlugin
 
 
-class MayaSessionCollector(SsMayaSessionCollector):
+class AnimationPlugin(SsAnimationPlugin):
     """
     Collector that operates on the maya session. Should inherit from the basic
     collector hook.

@@ -193,7 +193,7 @@ paths:
         
     deadline_temp_folder: 
         definition: 'admin/temp/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     #Source of all plate footage
     rushes_root: shots/{Shot}/rushes
@@ -205,19 +205,19 @@ paths:
 
     project_shots_folder: 
         definition: 'shots/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     workfile_templates: 
         definition: 'admin/workfile_templates'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
         
     deadline_submission_folder: 
         definition: 'admin/temp/scripts/deadline'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     client_submission_folder: 
         definition: 'admin/outgoing/submissions'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     
     client_submission_folder_alt: 
         definition: 'admin/outgoing/submissions'
@@ -225,73 +225,73 @@ paths:
         
     resolve_review_folder: 
         definition: 'editorial/resolve/review'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     processing_root:
         definition: 'admin/processing'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     general_review_process_json:
         definition: admin/processing/json/processing_review_settings.json
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     
     alembic_review_process_json:
         definition: admin/processing/json/processing_incoming_alembic.json
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     shot_review_process_json2:
         definition: admin/processing/json/shot_review_settings.json
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     asset_review_process_json2:
         definition: admin/processing/json/asset_review_settings.json
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     # shot_submission_json_file: 
     #     definition: '@processing_root/temp/json/submissions/{Shot}/{Shot}_{task_name}[_{name}]_v{version}.json'
-    #     root_name: 'project_pipeline'
+    #     root_name: 'project_pipe_test_pix'
 
     # asset_submission_json_file: 
     #     definition: '@processing_root/temp/json/submissions/{sg_asset_type}/{Asset}/{Asset}_{task_name}[_{name}]_v{version}.json'
-    #     root_name: 'project_pipeline'
+    #     root_name: 'project_pipe_test_pix'
 
     shot_review_process_json:
         definition: admin/processing/json/shot_processing_review_settings.json
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     asset_review_process_json:
         definition: admin/processing/json/asset_processing_review_settings.json
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     artist_work_render: 
         definition: 'editorial/work/renders'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     version_zero_internal: 
         definition: 'editorial/v000s'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     version_zero_client: 
         definition: 'admin/outgoing/submissions/V000s'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
         
     project_slate: 
         definition: 'admin/outgoing/slate'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     # Admin
     shot_lineup_jpeg:
         definition: '@shot_context/editorial/line_up/{name}.jpeg'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_process_scripts_deadline:
         definition: '@shot_context/scripts/deadline'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_process_mov:
         definition: '@shot_context/renders/process/{Codec}/{Shot}_v{version}.mov'
-        root_name: 'project_pipeline'               
+        root_name: 'project_pipe_test_pix'               
     # resolve_review_mov: 
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
-    #     root_name: 'project_pipeline'
+    #     root_name: 'project_pipe_test_pix'
     # resolve_review_mov_secondary: 
     #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
     #     root_name: 'secondary'                
@@ -299,93 +299,93 @@ paths:
     # The location of shot rushes references, proxy jpegs and quicktimes
     shot_rushes_root:
         definition: '@rushes_root/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_main_jpg:
         definition: '@rushes_root/jpeg/main/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_root:
         definition: '@plates_root/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_main_proxy:
         definition: '@plates_root/main/proxy/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_main_reformat:
         definition: '@plates_root/main/reformat/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_bg_proxy:
         definition: '@plates_root/background/proxy/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_bg_reformat:
         definition: '@plates_root/background/reformat/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_jpeg:
         definition: '@rushes_root/jpeg/{Shot}_v{version}.{SEQ}.jpeg'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_mov:
         definition: '@rushes_root/mov/{Shot}_v{version}.mov'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_filmstrip:
         definition: '@rushes_root/filmstrip/{Shot}_v{version}.jpeg'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     # DPX
     shot_plates_main_dpx:
         definition: '@plates_root/main/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_main_proxy_dpx:
         definition: '@plates_root/main/proxy/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_main_reformat_dpx:
         definition: '@plates_root/main/reformat/{Rush}.{SEQ}.dpx'        
     shot_plates_bg_dpx:
         definition: '@plates_root/background/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_bg_proxy_dpx:
         definition: '@plates_root/background/proxy/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_bg_reformat_dpx:
         definition: '@plates_root/background/reformat/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_ref_dpx:
         definition: '@plates_root/reference/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_elem_dpx:
         definition: '@plates_root/element/{Rush}/{Rush}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_render_process_version_dpx:
         definition: '@render_root/{task_name}/{Shot}_v{version}/{Shot}_v{version}.{SEQ}.dpx'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     # EXR
     shot_plates_main_exr:
         definition: '@plates_root/main/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_main_proxy_exr:
         definition: '@plates_root/main/proxy/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_main_reformat_exr:
         definition: '@plates_root/main/reformat/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_bg_exr:
         definition: '@plates_root/background/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_bg_proxy_exr:
         definition: '@plates_root/background/proxy/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_plates_bg_reformat_exr:
         definition: '@plates_root/background/reformat/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_ref_exr:
         definition: '@plates_root/reference/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_rushes_elem_exr:
         definition: '@plates_root/element/{Rush}/{Rush}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     shot_render_process_version_exr:
         definition: '@render_root/{task_name}/{Shot}_v{version}/{Shot}_v{version}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
     # RETIME FCURVE EXPORTS
     shot_retime_curve:
             definition: '@shot_context/export/retime/{Shot}[_{name}]_v{version}.txt'
-            root_name: 'project_pipeline'
+            root_name: 'project_pipe_test_pix'
 
     # global shot root locations for the different locations to save to
     shot_render_test_global:
@@ -393,7 +393,7 @@ paths:
         root_name: 'secondary'
     shot_render_global:
         definition: '@shot_context/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     # global asset root locations for the different locations to save to
     asset_render_test_global:
@@ -401,5 +401,5 @@ paths:
         root_name: 'secondary'
     asset_render_global:
         definition: '@asset_context/'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 

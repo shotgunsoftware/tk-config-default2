@@ -100,19 +100,22 @@ apps.tk-hiero-openinshotgun.location:
   type: app_store
   name: tk-hiero-openinshotgun
   version: v0.4.0
-# houdini geometry node
+
+# houdini SGTK nodes
 apps.tk-houdini-geometrynode.location:
-  type: git
-  version: v0.1.0.1
-  path: https://github.com/ssvfx41/tk-houdini-geometrynode.git
+  type: dev
+  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\tk-houdini-geometrynode\v0.1.0.1
 apps.tk-houdini-alembicnode.location:
-  type: app_store
-  name: tk-houdini-alembicnode
-  version: v0.5.0
+  type: dev
+  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\tk-houdini-alembicnode\v0.5.0
 apps.tk-houdini-mantranode.location:
-  type: app_store
-  name: tk-houdini-mantranode
-  version: v0.5.0
+  type: dev
+  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\tk-houdini-mantranode\v0.5.0
+apps.tk-houdini-arnoldnode.location:
+  type: dev 
+  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\tk-houdini-arnoldnode\v0.1.0
+
+
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview

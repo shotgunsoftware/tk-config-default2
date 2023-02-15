@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Shotgun Software Inc.
+# Copyright (c) 2015 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -7,15 +7,13 @@
 # By accessing, using, copying or modifying this work you indicate your
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
+# ### OVERRIDDEN IN SSVFX_SG ###
+
+from ss_config.hooks.tk_multi_publish2.development.upload_version import SsUploadVersionPlugin
 
 
-from ss_config.hooks.tk_multi_publish2.maya.pre_publish import SsPrePublishHook
-
-
-class PrePublishHook(SsPrePublishHook):
+class UploadVersionPlugin(SsUploadVersionPlugin):
     """
-    This hook defines logic to be executed before showing the publish
-    dialog. There may be conditions that need to be checked before allowing
-    the user to proceed to publishing.
+    Plugin for sending quicktimes and images to shotgun for review.
     """
     pass

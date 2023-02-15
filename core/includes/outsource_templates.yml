@@ -23,39 +23,39 @@ strings:
 paths:
     incoming_outsource_shot_folder_root:
         definition: 'admin/incoming/outsource/shots/{vendor}/{YYYY}_{MM}_{DD}/@outsource_name'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     incoming_outsource_shot_subfolder_root:
         definition: '@incoming_outsource_shot_folder_root/{outsource_render}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     incoming_outsource_shot_3de_file:
         definition: '@incoming_outsource_shot_folder_root/{Shot}[_{name}]_v{version}.3de'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     maya_shot_outsource_version_abc:
         definition: '@incoming_outsource_shot_folder_root/{Shot}[_{outsource_task}][_{name}]_v{version}.abc'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     maya_shot_outsource_work_file:
         definition: '@incoming_outsource_shot_folder_root/@outsource_name.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     maya_shot_outsource_notes:
         definition: '@incoming_outsource_shot_folder_root/{name}[_v{version}].{ext}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     incoming_outsource_shot_nuke_render:
         definition: '@incoming_outsource_shot_subfolder_root/[{name}/]@outsource_descriptor_name[.{SEQ}].{ext}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     incoming_outsource_shot_matchmove_render:
         definition: '@incoming_outsource_shot_subfolder_root/{name}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     incoming_outsource_render_copy:
         definition: '@render_root/maya/{task_name}/v{version}/{outsource_render}/[{name}/]@outsource_descriptor_name[.{SEQ}].{ext}'
-        root_name: 'project_pipeline'
+        root_name: 'project_pipe_test_pix'
 
     incoming_outsource_camera_copy:
         definition: '@shot_context/maya/{outsource_task}/caches/alembic/{Shot}[_{outsource_task}][_{name}]_v{version}.abc'
