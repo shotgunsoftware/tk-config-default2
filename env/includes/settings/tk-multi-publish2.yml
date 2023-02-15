@@ -240,7 +240,7 @@ settings.tk-multi-publish2.maya.asset_step:
   - name: Publish Arnold Stand-in
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
     settings:
-        Publish Template: maya_asset_standin_publish
+        Publish Template: maya_asset_cache_standin_file
   - name: Publish Animation
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_animation.py"
     settings:
@@ -264,7 +264,7 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
   - name: Publish to Camera
@@ -273,7 +273,7 @@ settings.tk-multi-publish2.maya.shot_step:
         Publish Template: maya_shot_camera_publish
         Cameras: ["cam_main"]
   - name: Publish to Alembic
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session_geometry.py"
     settings:
         Publish Template: maya_shot_cache_alembic_abc
   - name: Publish to Shaders

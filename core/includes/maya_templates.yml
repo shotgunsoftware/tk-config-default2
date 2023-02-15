@@ -37,6 +37,11 @@ keys:
     maya.camera_name:
         type: str
         filter_by: '^[0-9a-zA-Z_]+$'
+
+    maya.techpass_name:
+        alias: tech_pass
+        type: str
+        filter_by: alphanumeric
   
     # Maya supports two extension types.
     maya_extension:
@@ -194,13 +199,13 @@ paths:
          root_name: 'caches'
     # review output
     maya_shot_playblast_root:
-        definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
         root_name: 'project_pipe_test_pix'
     maya_shot_playblast_output:
-        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
         root_name: 'project_pipe_test_pix'
     maya_shot_playblast_publishing:
-        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
+        definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}.{SEQ}.jpg'
         root_name: 'project_pipe_test_pix'
     maya_shot_quicktime_quick:
         definition: '@render_root/maya/{task_name}/review/quickdaily/{Shot}[_{name}]_v{version}_{iteration}.mov'
@@ -239,13 +244,13 @@ paths:
         definition: '@asset_render_root/maya/{task_name}/publish/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{name}]_v{version}.{SEQ}.exr'
         root_name: 'project_pipe_test_pix'
     maya_asset_playblast_root:
-        definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
         root_name: 'project_pipe_test_pix'
     maya_asset_playblast_output:
-        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{name}]_pb_v{version}'
+        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
         root_name: 'project_pipe_test_pix'
     maya_asset_playblast_publishing:
-        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{name}]_pb_v{version}.{SEQ}.jpg'
+        definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}.{SEQ}.jpg'
         root_name: 'project_pipe_test_pix'
     # # Maya Simulations output
     # maya_asset_sim:
@@ -268,4 +273,7 @@ paths:
          root_name: 'caches'
     maya_asset_cache_alembic_file:
          definition: '@maya_asset_cache_area/geometry/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.abc'
+         root_name: 'caches'
+    maya_asset_cache_standin_file:
+         definition: '@maya_asset_cache_area/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.ass'
          root_name: 'caches'

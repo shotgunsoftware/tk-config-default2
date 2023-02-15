@@ -58,6 +58,7 @@ project_pipe_test_pix:
     default: true
 
 secondary: {
+  shotgun_storage_id: 73,
   linux_path: /mnt/projects,
   mac_path: null, 
   windows_path: \\10.80.8.252\projects,
@@ -65,7 +66,8 @@ secondary: {
   }
 
 caches: {
-  linux_path: /mnt/projects/caches,
+  shotgun_storage_id: 1320,
+  linux_path: /mnt/vfx_projects_caches/projects_caches,
   mac_path: null, 
   windows_path: \\10.80.8.252\projects\caches
   }
