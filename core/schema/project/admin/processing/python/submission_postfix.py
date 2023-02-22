@@ -1,44 +1,53 @@
-import os, sys, json
-import logging
-import logging.config
+import argparse
+import json
+import os
+import sys
 
-# set dev or primary ssvfx_script paths
-ssvfx_script_path = os.path.join( "C:", "Users", os.getenv('username'), "Scripts", "Pipeline" )
-if os.path.exists(ssvfx_script_path):
-    pipeline_root = ssvfx_script_path
-    ssvfx_script_path = os.path.join(pipeline_root,"ssvfx_scripts")
+# Add ssvfx_scripts to env if not already there
+if "SSVFX_PIPELINE" not in os.environ.keys():
+    error = "ERROR! Missing SSVFX_PIPELINE Environment variable! Aborting."
+    print(error)
+    raise ImportError(error)
+
+dev_root = os.environ.get("SSVFX_PIPELINE_DEV", "")
+if os.path.exists(dev_root):
+    pipeline_root = dev_root
 else:
-    if os.environ.get('SSVFX_PIPELINE'): 
-        pipeline_root =  os.environ["SSVFX_PIPELINE"]
-        ssvfx_script_path = os.path.join(pipeline_root,"Pipeline", "ssvfx_scripts")
-    else:
-        print("SSVFX_PIPELINE not in env var keys. Using explicit")
-        pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
-        ssvfx_script_path = os.path.join(pipeline_root,"Pipeline\\ssvfx_scripts")
+    pipeline_root = os.environ["SSVFX_PIPELINE"]
 
-try:
-    # Get an instance of a logging
-    logging.config.fileConfig(os.path.join(ssvfx_script_path,"logging.ini"))
-    logger_config_file = os.path.join(ssvfx_script_path,"logging.ini")
-    # create logger
-    logger = logging.getLogger('ssvfxLogger')
-    logger.info("Using ssvfxLogger!")
-except:
-    logger = logging.getLogger()
-    logger.warning("Could not find global ssvfxLogger!")
+repos = ["ssvfx_scripts", "ssvfx_sg"]
+for repo in repos:
+    repo_path = os.path.join(pipeline_root, "Pipeline", repo)
+    if not os.path.exists(repo_path):
+        repo_path = os.path.join(pipeline_root, repo)
 
-def dict_nav( dictionary, sequence ):
-    '''
+    if repo_path not in sys.path:
+        sys.path.append(repo_path)
+        print(
+            "Added {repo} path to environment: {path}".format(repo=repo, path=repo_path)
+        )
+
+from general.basic_utils import get_logger
+from general.file_functions import json_reader
+
+logger = get_logger(__name__)
+
+logger.info("Python Version: {}".format(sys.version))
+logger.info("----------------------------------\n")
+
+
+def dict_nav(dictionary, sequence):
+    """
     Simplified navigator for nested dictionaries
     returns first non-dictionary value or None
 
     :dictionary: starting dictionary to navifate
     :sequence: ordered sequence of keys to test in list form
-    '''
+    """
     if not dictionary or not sequence:
         return None
 
-    print( ">>>>> Navigating sub-dictionaries for: %s" % "->".join(sequence) )
+    print(">>>>> Navigating sub-dictionaries for: %s" % "->".join(sequence))
     sub_dict = dictionary
     for key in sequence:
         sub_dict = sub_dict.get(key)
@@ -49,29 +58,84 @@ def dict_nav( dictionary, sequence ):
         if not isinstance(sub_dict, dict):
             return sub_dict
 
-# Read in the relevant json file
-json_file = sys.argv[-1]
-json_file_open = open(json_file, "r")
-file_str = json_file_open.read()
-json_file_open.close()
-json_data = json.loads(file_str)
 
-process_jobs = json_data['processes']
-process_keys = list(process_jobs.keys())
+def run_post_fix(json_filepath):
+    """
+        Default submission post-fix process
+        Args:
+            json_filepath: Full path to a valid pump json file.
 
-### Corrective Loop to add nuke node values to JSON file
-for key in process_keys:
-    job_key = str(key)
-    job = process_jobs[key]
+        Returns: 0 if process completes without errors.
 
-    logger.info( ">>>>> Completed revisions for %s" % job_key )
-    
-logger.info( ">>>>> Completed Postfix Process, writing json..." )
+        """
+    logger.info("Loading json data...")
+    with open(json_filepath, "r") as file_read:
+        json_data = json_reader.json_load_version_check(file_read)
 
-# re-write JSON file
-json_object = json.dumps( json_data, indent=4 )
-with open(json_file, "w") as outfile:
-    outfile.write(json_object)
-    outfile.close()
+    logger.info("Loaded Json data successfully.")
+    logger.info("---")
 
-logger.info( ">>>>> Postfix JSON write complete. Resuming submission_process.py" )
+    processes = json_data["processes"]
+    if not processes:
+        logger.warning("Warning there are no processes to loop!")
+
+    # Corrective Loop to add nuke node values to JSON file
+    total = len(processes.keys())
+    count = 0
+    for job_key, job_data in processes.items():
+        count += 1
+        logger.info("***********************")
+        logger.info(
+            "{count} of {total} - {job_key}".format(
+                count=count, total=total, job_key=job_key
+            )
+        )
+        logger.info("***********************")
+
+        logger.info(">>>>> Completed revisions for %s" % job_key)
+
+    logger.info("---")
+    logger.info(">>>>> Completed Postfix Process, writing json...")
+
+    # re-write JSON file
+    json_object = json.dumps(json_data, indent=4)
+    with open(json_filepath, "w") as outfile:
+        outfile.write(json_object)
+        outfile.close()
+
+    logger.info(">>>>> Postfix JSON write complete. Resuming submission_process.py")
+    return 0
+
+
+def get_parser():
+    """
+    Get argument parser for Pump project post-fix.
+    Returns: argparse.ArgumentParser object
+    """
+    parser = argparse.ArgumentParser(
+        prog="pump_project_postfix",
+        description="Runs the generic project post-fix process.",
+    )
+    parser.add_argument("json_filepath", help="Path to the submitted .json file.")
+    return parser
+
+
+def main():
+    parser = get_parser()
+    args = parser.parse_args()
+
+    json_filepath = args.json_filepath
+    logger.info("ARGS: json_filepath: {}\n".format(json_filepath))
+    if not os.path.exists(json_filepath):
+        _error = "ERROR! Json Filepath does not exist! Cannot continue, exiting. Filepath: {}".format(
+            json_filepath
+        )
+        logger.error(_error)
+        return _error
+
+    result = run_post_fix(json_filepath)
+    return result
+
+
+if __name__ == "__main__":
+    sys.exit(main())
