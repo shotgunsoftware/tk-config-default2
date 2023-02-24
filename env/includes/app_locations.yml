@@ -87,7 +87,7 @@ apps.tk-multi-devutils.location:
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
-  version: v0.1.2
+  version: v0.1.3
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
