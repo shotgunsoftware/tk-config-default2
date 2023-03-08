@@ -71,12 +71,12 @@ settings.tk-multi-loader2.flame:
 settings.tk-multi-loader2.houdini:
   actions_hook: '{config}/tk-multi-loader2/tk-houdini_actions.py'
   action_mappings:
-    Alembic Cache: [import]
-    Houdini Scene: [merge]
-    Image: [file_cop]
-    Photoshop Image: [file_cop]
-    Rendered Image: [file_cop]
-    Texture: [file_cop]
+    Alembic Cache: [import, copy_path]
+    Houdini Scene: [merge, copy_path]
+    Image: [file_cop, copy_path]
+    Photoshop Image: [file_cop, copy_path]
+    Rendered Image: [file_cop, copy_path]
+    Texture: [file_cop, copy_path]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -123,7 +123,7 @@ settings.tk-multi-loader2.maya:
   actions_hook: '{config}/tk-multi-loader2/tk-maya_actions.py'
   filter_publishes_hook: '{config}/tk-multi-loader2/filter_publishes.py'
   action_mappings:
-    Alembic Cache: [import, reference, multi_import, multi_ref]
+    Alembic Cache: [import, reference]
     Alembic Camera: [import, reference]
     Image: [texture_node, image_plane]
     Maya Scene: [import, reference, assembly_reference]
@@ -132,7 +132,7 @@ settings.tk-multi-loader2.maya:
     Texture: [texture_node, image_plane]
     UDIM Image: [texture_node, image_plane]
     Maya Shader Network: [import, reference]
-    Standin: [import, reference, multi_import, multi_ref]
+    Standin: [import, reference]
     Ass File: [import, reference]
     Rig Animation: [animation]
   entities:
@@ -165,7 +165,7 @@ settings.tk-multi-loader2.nuke:
   actions_hook: '{config}/tk-multi-loader2/tk-nuke_actions.py'
   filter_publishes_hook: '{config}/tk-multi-loader2/filter_publishes.py'
   action_mappings:
-    Alembic Cache: [read_node, import_camera]
+    Alembic Cache: [read_node]
     Alembic Camera: [import_camera]
     Flame Render: [read_node]
     Flame Quicktime: [read_node]
