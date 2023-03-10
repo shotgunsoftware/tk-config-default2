@@ -46,6 +46,7 @@
                     },
                     "main_write": {
                         "knob_order": ["raw"],
+                        "create_directories": true,
                         "raw": true
                     }
                 },
@@ -109,6 +110,7 @@
                     },
                     "main_write": {
                         "knob_order": ["raw"],
+                        "create_directories": true,
                         "raw": true
                     }
                 },
@@ -175,6 +177,7 @@
                     },
                     "main_write": {
                         "knob_order": ["raw"],
+                        "create_directories": true,
                         "raw": true
                     }
                 },
@@ -241,6 +244,7 @@
                     },
                     "main_write": {
                         "knob_order": ["raw"],
+                        "create_directories": true,
                         "raw": true
                     }
                 },
