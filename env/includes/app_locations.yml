@@ -21,13 +21,13 @@ apps.tk-desktop-libraryimporter.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-desktop-libraryimporter
-  version: 0.3.0
+  version: main
 
 apps.tk-desktop-deliveries.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-desktop-deliveries
-  version: 0.1.0
+  version: main
 
 # ---- Multi apps
 
@@ -36,7 +36,7 @@ apps.tk-multi-startup.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-startup
-  version: 0.2.3
+  version: main
 
 # about
 apps.tk-multi-about.location:
@@ -49,7 +49,7 @@ apps.tk-multi-breakdown.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-breakdown
-  version: 1.8.0.4
+  version: main
 
 # demo
 apps.tk-multi-demo.location:
@@ -68,14 +68,14 @@ apps.tk-multi-loader2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-loader2
-  version: 1.21.0.7
+  version: main
 
 # publish2
 apps.tk-multi-publish2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-publish2
-  version: 2.5.5.3
+  version: main
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -88,14 +88,14 @@ apps.tk-multi-reviewsubmission.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-reviewsubmission
-  version: 1.1.1.3
+  version: main
 
 # deadinereviewsubmission
 apps.tk-multi-deadlinereviewsubmission.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-deadlinereviewsubmission
-  version: 0.2.1
+  version: main
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
@@ -132,7 +132,7 @@ apps.tk-multi-workfiles2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-workfiles2
-  version: 0.13.0.3
+  version: main
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -167,7 +167,7 @@ apps.tk-hiero-export.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-hiero-export
-  version: 0.6.0.5
+  version: main
 
 # hiero openinshotgun
 apps.tk-hiero-openinshotgun.location:
@@ -194,42 +194,42 @@ apps.tk-houdini-cachenode.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-cachenode
-  version: 0.3.3
+  version: main
 
 # houdini flipbook
 apps.tk-houdini-flipbook.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-flipbook
-  version: 1.2.1
+  version: main
 
 # houdini arnold
 apps.tk-houdini-arnold.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-arnold
-  version: 0.3.6
+  version: main
 
 # houdini renderman
 apps.tk-houdini-renderman.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-renderman
-  version: 0.2.2
+  version: main
 
 # houdini usd
 apps.tk-houdini-usdrop.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-usdrop
-  version: 0.1.0
+  version: main
 
 # houdini usd
 apps.tk-houdini-template.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-template
-  version: 0.1.0
+  version: main
 
 # ---- Nuke apps
 
@@ -238,27 +238,27 @@ apps.tk-nuke-quickreview.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-quickreview
-  version: 1.1.0.1
+  version: main
 
 # writenode
 apps.tk-nuke-writenode.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-writenode
-  version: 2.1.1
+  version: main
 
 # template
 apps.tk-nuke-template.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-template
-  version: 0.2.0
+  version: main
 
 apps.tk-nuke-versiondropper.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-versiondropper
-  version: 0.1.3
+  version: main
 
 # ---- Flame apps
 
