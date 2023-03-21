@@ -35,10 +35,10 @@ keys:
     type: str
   Asset:
     type: str
-  projectcode:
+  Projectcode:
     type: str
     shotgun_entity_type: Project
-    shotgun_field_name: sg_projectcode
+    shotgun_field_name: sg_Projectcode
   name:
     type: str
     filter_by: alphanumeric
@@ -194,7 +194,7 @@ paths:
   #
 
   shot_delivery:
-    definition: "@delivery/{projectcode}_sc{Sequence}_{Shot}_v{version}/{projectcode}_sc{Sequence}_{Shot}_v{version}.{SEQ}.exr"
+    definition: "@delivery/{Projectcode}_sc{Sequence}_{Shot}_v{version}/{Projectcode}_sc{Sequence}_{Shot}_v{version}.{SEQ}.exr"
 
 
   #
@@ -203,15 +203,15 @@ paths:
 
   # The location of WIP files
   hiero_project_work:
-    definition: "02_source/editorial/{projectcode}_{name}_v{version}.hrox"
+    definition: "02_source/editorial/{Projectcode}_{name}_v{version}.hrox"
   hiero_project_work_area:
     definition: "02_source/editorial/"
   # The location of backups of WIP files
   hiero_project_snapshot:
-    definition: "02_source/editorial/snapshots/{projectcode}_{name}_v{version}_{timestamp}.hrox"
+    definition: "02_source/editorial/snapshots/{Projectcode}_{name}_v{version}_{timestamp}.hrox"
   # The location of published hiero files
   hiero_project_publish:
-    definition: "02_source/editorial/publish/{projectcode}_{name}_v{version}.hrox"
+    definition: "02_source/editorial/publish/{Projectcode}_{name}_v{version}.hrox"
   hiero_project_publish_area:
     definition: "02_source/editorial/publish"
 
@@ -225,9 +225,9 @@ paths:
 
   # USD paths
   usd_asset_publish:
-    definition: "@asset_publish/usd/{name}/v{version}/{projectcode}_{Asset}_{Step}_{name}_v{version}.usd"
+    definition: "@asset_publish/usd/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.usd"
   usd_shot_publish:
-    definition: "@shot_publish/usd/{name}/v{version}/{projectcode}_{Shot}_{Step}_{name}_v{version}.usd"
+    definition: "@shot_publish/usd/{name}/v{version}/{Projectcode}_{Shot}_{Step}_{name}_v{version}.usd"
 
   ##########################################################################################
 
@@ -248,7 +248,7 @@ paths:
 
   # OBJ Sculpts Standalone Publish Template
   obj_asset_publish:
-    definition: "@asset_publish/obj/{projectcode}_{Asset}_{Step}_pub_v{version}.obj"
+    definition: "@asset_publish/obj/{Projectcode}_{Asset}_{Step}_pub_v{version}.obj"
 
   ##########################################################################################
   # Sequence level paths
@@ -490,7 +490,7 @@ paths:
   # in the beta to support different extensions on mac and windows, while using the same
   # output module (Lossless with Alpha)
   aftereffects_asset_render_movie:
-    definition: "@comp_assetrender/mov/{projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"
+    definition: "@comp_assetrender/mov/{Projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"
 
   #
   # Mari
@@ -510,16 +510,16 @@ paths:
     definition: "@asset_publish/maya"
   # The location of WIP files
   maya_asset_work:
-    definition: "@asset_root/maya/scenes/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.{maya_extension}"
+    definition: "@asset_root/maya/scenes/{Projectcode}_{Asset}_{Step}_{name}_work_v{version}.{maya_extension}"
   # The location of backups of WIP files
   maya_asset_snapshot:
-    definition: "@asset_root/maya/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.{maya_extension}"
+    definition: "@asset_root/maya/snapshots/{Projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.{maya_extension}"
   # The location of published maya files
   maya_asset_publish:
-    definition: "@asset_publish/maya/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.{maya_extension}"
+    definition: "@asset_publish/maya/{Projectcode}_{Asset}_{Step}_{name}_pub_v{version}.{maya_extension}"
   # Alembic
   maya_asset_abc:
-    definition: "@asset_publish/abc/{projectcode}_{Asset}_{Step}_{name}_v{version}.abc"
+    definition: "@asset_publish/abc/{Projectcode}_{Asset}_{Step}_{name}_v{version}.abc"
 
   #
   # Houdini
@@ -533,42 +533,42 @@ paths:
     definition: "@asset_publish/houdini"
   # The location of WIP files
   houdini_asset_work:
-    definition: "@asset_root/houdini/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.hipnc"
+    definition: "@asset_root/houdini/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.hipnc"
   # The location of backups of WIP files
   houdini_asset_snapshot:
-    definition: "@asset_root/houdini/snapshots/{projectcode}_{Asset}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc"
+    definition: "@asset_root/houdini/snapshots/{Projectcode}_{Asset}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc"
   # The location of published houdini files
   houdini_asset_publish:
-    definition: "@asset_publish/houdini/{projectcode}_{Asset}_{Step}_{name}_pub_{name}_v{version}.hipnc"
+    definition: "@asset_publish/houdini/{Projectcode}_{Asset}_{Step}_{name}_pub_{name}_v{version}.hipnc"
   # Alembic caches
   houdini_asset_work_alembic_cache:
-    definition: "@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{projectcode}_{Asset}_{Step}_work_v{version}.abc"
+    definition: "@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Projectcode}_{Asset}_{Step}_work_v{version}.abc"
   # File work caches
   houdini_asset_work_file_cache:
-    definition: "@asset_root/houdini/cache/bgeo/{name}/v{version}/{projectcode}_{Asset}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
+    definition: "@asset_root/houdini/cache/bgeo/{name}/v{version}/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
   # File publish caches
   houdini_asset_publish_file_cache:
-    definition: "@asset_publish/cache/bgeo/{name}/v{version}/{projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
+    definition: "@asset_publish/cache/bgeo/{name}/v{version}/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
   # Houdini review files
   houdini_asset_review:
-    definition: "@cg_assetrender/mov/{projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov"
+    definition: "@cg_assetrender/mov/{Projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov"
 
   # Rendered images
   houdini_asset_render:
-    definition: "@cg_assetrender/{name}/{write.output}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@cg_assetrender/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
 
   # Additional outputs
   houdini_asset_extra_plane:
-    definition: "@cg_assetrender/{name}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    definition: "@cg_assetrender/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
 
   houdini_asset_ifd:
-    definition: "@cg_assetrender/{name}/v{version}/ifds/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
+    definition: "@cg_assetrender/{name}/v{version}/ifds/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
 
   houdini_asset_dcm:
-    definition: "@cg_assetrender/{name}/v{version}/dcms/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
+    definition: "@cg_assetrender/{name}/v{version}/dcms/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
 
   houdini_asset_ass:
-    definition: "@cg_assetrender/{name}/v{version}/ass/{projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"
+    definition: "@cg_assetrender/{name}/v{version}/ass/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"
 
 
   #
@@ -583,13 +583,13 @@ paths:
     definition: "@asset_publish/mobu"
   # The location of WIP files
   mobu_asset_work:
-    definition: "@asset_root/mobu/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.fbx"
+    definition: "@asset_root/mobu/{Projectcode}_{Asset}_{Step}_{name}_work_v{version}.fbx"
   # The location of backups of WIP files
   mobu_asset_snapshot:
-    definition: "@asset_root/mobu/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.fbx"
+    definition: "@asset_root/mobu/snapshots/{Projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.fbx"
   # The location of published Motionbuilder files
   mobu_asset_publish:
-    definition: "@asset_publish/mobu/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.fbx"
+    definition: "@asset_publish/mobu/{Projectcode}_{Asset}_{Step}_{name}_pub_v{version}.fbx"
 
   #
   # Nuke
@@ -603,28 +603,28 @@ paths:
     definition: "@asset_root/publish"
   # outputs from the Shotgun Write Node for assets
   nuke_asset_render:
-    definition: "@asset_root/renders/{name}/{write.output}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@asset_root/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
   nuke_asset_render_pub:
-    definition: "@comp_assetrender/{name}/{write.output}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@comp_assetrender/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
   nuke_asset_tiff_render:
-    definition: "@asset_root/renders/{name}/{write.output}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    definition: "@asset_root/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
   nuke_asset_tiff_render_pub:
-    definition: "@comp_assetrender/{name}/{write.output}/v{version}/{projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    definition: "@comp_assetrender/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
 
   # review output
   nuke_asset_render_movie:
-    definition: "@comp_assetrender/mov/{projectcode}_{Asset}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
+    definition: "@comp_assetrender/mov/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
   asset_quicktime_quick:
-    definition: "@comp_assetrender/mov/{projectcode}_{Asset}_{Step}_{name}_{iteration}.mov"
+    definition: "@comp_assetrender/mov/{Projectcode}_{Asset}_{Step}_{name}_{iteration}.mov"
   # The location of WIP script files
   nuke_asset_work:
-    definition: "@asset_root/nuke/{projectcode}_{Asset}_{Step}_{name}_work_v{version}.nk"
+    definition: "@asset_root/nuke/{Projectcode}_{Asset}_{Step}_{name}_work_v{version}.nk"
   # The location of backups of WIP files
   nuke_asset_snapshot:
-    definition: "@asset_root/nuke/snapshots/{projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.nk"
+    definition: "@asset_root/nuke/snapshots/{Projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.nk"
   # The location of published nuke script files
   nuke_asset_publish:
-    definition: "@asset_publish/nuke/{projectcode}_{Asset}_{Step}_{name}_pub_v{version}.nk"
+    definition: "@asset_publish/nuke/{Projectcode}_{Asset}_{Step}_{name}_pub_v{version}.nk"
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
