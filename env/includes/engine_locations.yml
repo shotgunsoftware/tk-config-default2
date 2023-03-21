@@ -59,7 +59,7 @@ engines.tk-houdini.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini
-  version: main
+  version: 1.8.1.10
 
 # Mari
 engines.tk-mari.location:
@@ -72,7 +72,7 @@ engines.tk-maya.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-maya
-  version: main
+  version: 0.11.1.6
 
 # Motion Builder
 engines.tk-motionbuilder.location:
@@ -85,7 +85,7 @@ engines.tk-nuke.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke
-  version: main
+  version: 0.14.1.7
 
 # Photoshop
 engines.tk-photoshopcc.location:
