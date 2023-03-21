@@ -38,7 +38,7 @@ keys:
   Projectcode:
     type: str
     shotgun_entity_type: Project
-    shotgun_field_name: sg_Projectcode
+    shotgun_field_name: sg_projectcode
   name:
     type: str
     filter_by: alphanumeric
