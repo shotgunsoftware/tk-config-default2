@@ -46,17 +46,17 @@ settings.tk-multi-launchapp.hiero:
   location: "@apps.tk-multi-launchapp.location"
 
 # mari
-settings.tk-multi-launchapp.mari:
-  engine: tk-mari
-  linux_path: "@path.linux.mari"
-  mac_path: "@path.mac.mari"
-  windows_path: "@path.windows.mari"
-  menu_name: Mari
-  location: "@apps.tk-multi-launchapp.location"
+# settings.tk-multi-launchapp.mari:
+#   engine: tk-mari
+#   linux_path: "@path.linux.mari"
+#   mac_path: "@path.mac.mari"
+#   windows_path: "@path.windows.mari"
+#   menu_name: Mari
+#   location: "@apps.tk-multi-launchapp.location"
 
 # motionbuilder
-settings.tk-multi-launchapp.motionbuilder:
-  engine: tk-motionbuilder
-  windows_path: "@path.windows.motionbuilder"
-  menu_name: MotionBuilder
-  location: "@apps.tk-multi-launchapp.location"
+# settings.tk-multi-launchapp.motionbuilder:
+#   engine: tk-motionbuilder
+#   windows_path: "@path.windows.motionbuilder"
+#   menu_name: MotionBuilder
+#   location: "@apps.tk-multi-launchapp.location"

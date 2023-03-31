@@ -20,14 +20,14 @@ description: Apps and engines loaded when a Playlist is loaded.
 includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-shotgun.yml
-- ./includes/settings/tk-vred.yml
+# - ./includes/settings/tk-vred.yml
 
 ################################################################################
 # configuration for all engines to load in a playlist context
 
 engines:
   tk-shotgun: "@settings.tk-shotgun.playlist"
-  tk-vred: "@settings.tk-vred.playlist"
+  # tk-vred: "@settings.tk-vred.playlist"
 
 ################################################################################
 # reference all of the common frameworks

@@ -1,0 +1,4 @@
+# the type of dynamic content
+type: "user_workspace"
+
+name: "{firstname}_{lastname}"

@@ -15,19 +15,19 @@ description: Apps and Engines when launching with a project only context.
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-3dsmaxplus.yml
-- ./includes/settings/tk-3dsmax.yml
+# - ./includes/settings/tk-3dsmaxplus.yml
+# - ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-desktop.yml
-- ./includes/settings/tk-flame.yml
+# - ./includes/settings/tk-flame.yml
 - ./includes/settings/tk-houdini.yml
-- ./includes/settings/tk-mari.yml
+# - ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
-- ./includes/settings/tk-motionbuilder.yml
+# - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
-- ./includes/settings/tk-aftereffects.yml
-- ./includes/settings/tk-alias.yml
-- ./includes/settings/tk-vred.yml
+# - ./includes/settings/tk-aftereffects.yml
+# - ./includes/settings/tk-alias.yml
+# - ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -35,21 +35,21 @@ includes:
 # configuration for all engines to load in a project context
 
 engines:
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.project"
-  tk-3dsmax: "@settings.tk-3dsmax.project"
+  # tk-3dsmaxplus: "@settings.tk-3dsmaxplus.project"
+  # tk-3dsmax: "@settings.tk-3dsmax.project"
   tk-desktop: "@settings.tk-desktop.project"
-  tk-flame: "@settings.tk-flame.project"
+  # tk-flame: "@settings.tk-flame.project"
   tk-hiero: "@settings.tk-nuke.hiero.project"
   tk-houdini: "@settings.tk-houdini.project"
-  tk-mari: "@settings.tk-mari.project"
+  # tk-mari: "@settings.tk-mari.project"
   tk-maya: "@settings.tk-maya.project"
-  tk-motionbuilder: "@settings.tk-motionbuilder.project"
+  # tk-motionbuilder: "@settings.tk-motionbuilder.project"
   tk-nuke: "@settings.tk-nuke.project"
   tk-nukestudio: "@settings.tk-nuke.nukestudio.project"
   tk-photoshopcc: "@settings.tk-photoshopcc.project"
-  tk-aftereffects: "@settings.tk-aftereffects.project"
-  tk-alias: "@settings.tk-alias.project"
-  tk-vred: "@settings.tk-vred.project"
+  # tk-aftereffects: "@settings.tk-aftereffects.project"
+  # tk-alias: "@settings.tk-alias.project"
+  # tk-vred: "@settings.tk-vred.project"
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
 

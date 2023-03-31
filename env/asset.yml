@@ -22,17 +22,17 @@ description: Apps and engines loaded when an Asset is loaded. Since std VFX
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-3dsmaxplus.yml
-- ./includes/settings/tk-3dsmax.yml
+# - ./includes/settings/tk-3dsmaxplus.yml
+# - ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-houdini.yml
-- ./includes/settings/tk-mari.yml
+# - ./includes/settings/tk-mari.yml
 - ./includes/settings/tk-maya.yml
-- ./includes/settings/tk-motionbuilder.yml
+# - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
-- ./includes/settings/tk-aftereffects.yml
-- ./includes/settings/tk-alias.yml
-- ./includes/settings/tk-vred.yml
+# - ./includes/settings/tk-aftereffects.yml
+# - ./includes/settings/tk-alias.yml
+# - ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
@@ -40,17 +40,17 @@ includes:
 # configuration for all engines to load in an asset context
 
 engines:
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset"
-  tk-3dsmax: "@settings.tk-3dsmax.asset"
+  # tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset"
+  # tk-3dsmax: "@settings.tk-3dsmax.asset"
   tk-houdini: "@settings.tk-houdini.asset"
-  tk-mari: "@settings.tk-mari.asset"
+  # tk-mari: "@settings.tk-mari.asset"
   tk-maya: "@settings.tk-maya.asset"
-  tk-motionbuilder: "@settings.tk-motionbuilder.asset"
+  # tk-motionbuilder: "@settings.tk-motionbuilder.asset"
   tk-nuke: "@settings.tk-nuke.asset"
   tk-photoshopcc: "@settings.tk-photoshopcc.asset"
-  tk-aftereffects: "@settings.tk-aftereffects.asset"
-  tk-alias: "@settings.tk-alias.asset"
-  tk-vred: "@settings.tk-vred.asset"
+  # tk-aftereffects: "@settings.tk-aftereffects.asset"
+  # tk-alias: "@settings.tk-alias.asset"
+  # tk-vred: "@settings.tk-vred.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
 

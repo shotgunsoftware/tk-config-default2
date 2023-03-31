@@ -27,8 +27,8 @@ includes:
 settings.tk-shotgun.asset:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
-    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    # tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
+    # tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
@@ -39,8 +39,8 @@ settings.tk-shotgun.asset:
 settings.tk-shotgun.asset_step:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
-    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    # tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
+    # tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
@@ -49,7 +49,7 @@ settings.tk-shotgun.asset_step:
 # playlist
 settings.tk-shotgun.playlist:
   apps:
-    tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
+  #   tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
   location: "@engines.tk-shotgun.location"
 
 # project
@@ -57,8 +57,8 @@ settings.tk-shotgun.project:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
-    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    # tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
+    # tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
@@ -76,7 +76,7 @@ settings.tk-shotgun.publishedfile:
 settings.tk-shotgun.sequence:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    # tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
@@ -87,7 +87,7 @@ settings.tk-shotgun.sequence:
 settings.tk-shotgun.shot:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    # tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-folders: "@settings.tk-shotgun-folders"
@@ -98,8 +98,8 @@ settings.tk-shotgun.shot:
 settings.tk-shotgun.shot_step:
   apps:
     tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
-    tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
+    # tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
+    # tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
@@ -110,5 +110,5 @@ settings.tk-shotgun.version:
   apps:
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-shotgun-launchpublish: "@settings.tk-shotgun-launchpublish"
-    tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
+    # tk-shotgun-launchvredreview: "@settings.tk-shotgun-launchvredreview"
   location: "@engines.tk-shotgun.location"

@@ -14,22 +14,22 @@
 ################################################################################
 
 # 3dsMax
-engines.tk-3dsmaxplus.location:
-  type: app_store
-  name: tk-3dsmaxplus
-  version: v0.6.2
-engines.tk-3dsmax.location:
-  type: app_store
-  name: tk-3dsmax
-  version: v1.2.5
-engines.tk-aftereffects.location:
-  type: app_store
-  name: tk-aftereffects
-  version: v0.3.3
-engines.tk-alias.location:
-  type: app_store
-  name: tk-alias
-  version: v2.2.0
+# engines.tk-3dsmaxplus.location:
+#   type: app_store
+#   name: tk-3dsmaxplus
+#   version: v0.6.2
+# engines.tk-3dsmax.location:
+#   type: app_store
+#   name: tk-3dsmax
+#   version: v1.2.5
+# engines.tk-aftereffects.location:
+#   type: app_store
+#   name: tk-aftereffects
+#   version: v0.3.3
+# engines.tk-alias.location:
+#   type: app_store
+#   name: tk-alias
+#   version: v2.2.0
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -38,26 +38,26 @@ engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
   version: v1.5.1
-engines.tk-flame.location:
-  type: app_store
-  name: tk-flame
-  version: v1.17.7
+# engines.tk-flame.location:
+#   type: app_store
+#   name: tk-flame
+#   version: v1.17.7
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
   version: v1.8.5
-engines.tk-mari.location:
-  type: app_store
-  name: tk-mari
-  version: v1.3.3
+# engines.tk-mari.location:
+#   type: app_store
+#   name: tk-mari
+#   version: v1.3.3
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
   version: v0.11.5
-engines.tk-motionbuilder.location:
-  type: app_store
-  name: tk-motionbuilder
-  version: v0.6.4
+# engines.tk-motionbuilder.location:
+#   type: app_store
+#   name: tk-motionbuilder
+#   version: v0.6.4
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
@@ -74,7 +74,7 @@ engines.tk-shotgun.location:
   type: app_store
   name: tk-shotgun
   version: v0.10.2
-engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v2.1.5
+# engines.tk-vred.location:
+#   type: app_store
+#   name: tk-vred
+#   version: v2.1.5

@@ -128,16 +128,16 @@ apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
   version: v1.6.1
-apps.tk-flame-export.location:
-  name: tk-flame-export
-  type: app_store
-  version: v1.10.6
-apps.tk-flame-review.location:
-  name: tk-flame-review
-  type: app_store
-  version: v1.4.5
-apps.tk-mari-projectmanager.location:
-  name: tk-mari-projectmanager
-  type: app_store
-  version: v1.3.1
+# apps.tk-flame-export.location:
+#   name: tk-flame-export
+#   type: app_store
+#   version: v1.10.6
+# apps.tk-flame-review.location:
+#   name: tk-flame-review
+#   type: app_store
+#   version: v1.4.5
+# apps.tk-mari-projectmanager.location:
+#   name: tk-mari-projectmanager
+#   type: app_store
+#   version: v1.3.1
 frameworks: '@frameworks'
