@@ -108,6 +108,12 @@ settings.tk-multi-loader2.mari:
     - [project, is, '{context.project}']
     hierarchy: [sg_asset_type, code]
     publish_filters: []
+  - caption: Shot
+    entity_type: Shot
+    filters:
+      - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+    publish_filters: []
   - caption: My Tasks
     entity_type: Task
     filters:
