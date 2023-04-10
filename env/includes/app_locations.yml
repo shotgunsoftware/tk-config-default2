@@ -35,7 +35,7 @@ apps.tk-multi-breakdown2.location:
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
-  version: v0.1.2
+  version: v0.1.4
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
@@ -51,7 +51,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.6.3
+  version: v2.6.5
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -71,7 +71,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.8.3
+  version: v1.8.6
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
@@ -79,7 +79,7 @@ apps.tk-multi-snapshot.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.13.2
+  version: v0.13.4
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
@@ -87,7 +87,7 @@ apps.tk-multi-devutils.location:
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
-  version: v0.1.0
+  version: v0.1.3
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
@@ -115,11 +115,11 @@ apps.tk-hiero-openinshotgun.location:
 apps.tk-houdini-alembicnode.location:
   type: app_store
   name: tk-houdini-alembicnode
-  version: v0.5.1
+  version: v0.5.2
 apps.tk-houdini-mantranode.location:
   type: app_store
   name: tk-houdini-mantranode
-  version: v0.5.1
+  version: v0.5.2
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview
