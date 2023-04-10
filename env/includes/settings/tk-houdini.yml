@@ -16,6 +16,7 @@ includes:
 - ../engine_locations.yml
 - ./tk-houdini-alembicnode.yml
 - ./tk-houdini-mantranode.yml
+- ./tk-multi-breakdown2.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-screeningroom.yml
@@ -42,8 +43,7 @@ settings.tk-houdini.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.houdini"
     tk-multi-loader2: "@settings.tk-multi-loader2.houdini"
     tk-multi-publish2: "@settings.tk-multi-publish2.houdini.asset_step"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -100,8 +100,7 @@ settings.tk-houdini.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.houdini"
     tk-multi-setframerange:
       location: "@apps.tk-multi-setframerange.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.houdini"
