@@ -20,6 +20,7 @@ includes:
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-multi-data-validation.yml
+- ./tk-multi-scenebuilder.yml
 
 ################################################################################
 
@@ -51,6 +52,7 @@ settings.tk-alias.asset_step:
     tk-multi-data-validation: "@settings.tk-multi-data-validation.alias"
     tk-multi-bg-publish:
       location: "@apps.tk-multi-bg-publish.location"
+    tk-multi-scenebuilder: "@settings.tk-multi-scenebuilder.alias"
   reference_template: alias_asset_reference_publish
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
