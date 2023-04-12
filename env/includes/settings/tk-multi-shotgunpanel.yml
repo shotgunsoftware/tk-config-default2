@@ -303,9 +303,9 @@ settings.tk-multi-shotgunpanel.alias:
     Version:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
-    Note:
-    - actions: [import_tape]
-      filters: {subject: VRED VR Taping Note}
+#    Note:
+#    - actions: [import_tape]
+#      filters: {subject: VRED VR Taping Note}
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py:{config}/tk-multi-shotgunpanel/alias_scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
 
