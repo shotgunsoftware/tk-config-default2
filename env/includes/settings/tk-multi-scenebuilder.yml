@@ -39,4 +39,12 @@ settings.tk-multi-scenebuilder.vred:
             - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
           action_mappings:
             Alias File: import
+    - name: VRED Scene
+      actions:
+        - context:
+            - [ entity.Asset.parents, in, '{context.entity}' ]
+            - [ task.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.step, is, '{context.step}' ]
+          action_mappings:
+            VRED Scene: smart_reference
   location: "@apps.tk-multi-scenebuilder.location"
