@@ -20,6 +20,7 @@ includes:
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-multi-data-validation.yml
+- ./tk-multi-scenebuilder.yml
 
 ################################################################################
 
@@ -51,6 +52,7 @@ settings.tk-vred.asset_step:
     tk-multi-data-validation: "@settings.tk-multi-data-validation.vred"
     tk-multi-bg-publish:
       location: "@apps.tk-multi-bg-publish.location"
+    tk-multi-scenebuilder: "@settings.tk-multi-scenebuilder.vred"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
