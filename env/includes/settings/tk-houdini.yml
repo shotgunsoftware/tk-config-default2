@@ -43,6 +43,9 @@ settings.tk-houdini.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      display_name: "Legacy Breakdown"
+      location: "@apps.tk-multi-breakdown.location"
     tk-multi-breakdown2: "@settings.tk-multi-breakdown2.houdini"
     tk-multi-loader2: "@settings.tk-multi-loader2.houdini"
     tk-multi-publish2: "@settings.tk-multi-publish2.houdini.asset_step"
@@ -57,6 +60,7 @@ settings.tk-houdini.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   location: '@engines.tk-houdini.location'
 
 # project
@@ -100,9 +104,12 @@ settings.tk-houdini.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.houdini"
     tk-multi-setframerange:
       location: "@apps.tk-multi-setframerange.location"
+    tk-multi-breakdown:
+      display_name: "Legacy Breakdown"
+      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.houdini"
     tk-multi-loader2: "@settings.tk-multi-loader2.houdini"
     tk-multi-publish2: "@settings.tk-multi-publish2.houdini.shot_step"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -116,4 +123,5 @@ settings.tk-houdini.shot_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   location: '@engines.tk-houdini.location'
