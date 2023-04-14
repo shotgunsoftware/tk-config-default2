@@ -35,7 +35,7 @@ apps.tk-multi-breakdown2.location:
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
-  version: v0.1.3
+  version: v0.1.4
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
@@ -49,13 +49,9 @@ apps.tk-multi-loader2.location:
   name: tk-multi-loader2
   version: v1.22.1
 apps.tk-multi-publish2.location:
-#  type: app_store
-#  name: tk-multi-publish2
-#  version: v2.6.4
-  type: git_branch
-  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  branch: SHOT-4192-thumbnail-in-bg-mode
-  version: f8f3b8e
+  type: app_store
+  name: tk-multi-publish2
+  version: v2.6.5
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -75,7 +71,7 @@ apps.tk-multi-setframerange.location:
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.8.5
+  version: v1.8.6
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
@@ -83,7 +79,7 @@ apps.tk-multi-snapshot.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.13.3
+  version: v0.13.4
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
@@ -91,7 +87,7 @@ apps.tk-multi-devutils.location:
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
-  version: v0.1.0
+  version: v0.1.3
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
