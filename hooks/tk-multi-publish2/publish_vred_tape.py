@@ -63,9 +63,9 @@ class PublishVREDTapePlugin(HookBaseClass):
                 "correspond to a template defined in "
                 "templates.yml.",
             },
-            "Tape Node Name": {
+            "Tape Node Path": {
                 "type": "str",
-                "default": "Tape",
+                "default": "WorldRef",
                 "description": ""
             }
         }
@@ -155,7 +155,10 @@ class PublishVREDTapePlugin(HookBaseClass):
 
         publish_template = item.get_property("publish_template")
         template_fields = item.context.as_template_fields(publish_template)
-        template_fields["name"] = settings["Tape Node Name"].value
+
+        # get the file name from the node path
+        path_components = settings["Tape Node Path"].value.split("/")
+        template_fields["name"] = path_components[-1]
 
         # now it's time to get the version number
         existing_files = self.parent.sgtk.paths_from_template(
@@ -197,24 +200,27 @@ class PublishVREDTapePlugin(HookBaseClass):
             "sg_status_list": "opn",
             "content": "A new tape file has been published",
             "project": item.context.project,
-            "note_links": [item.context.entity, item.get_property("sg_publish_data")]
+            "note_links": [item.context.entity, item.get_property("sg_publish_data")],
+            "tasks": [item.context.task],
+            "addressings_to": [item.context.user],
         }
 
         # find the tasks the note should be linked to (current task + downstream task)
         sg_downstream_task = self.parent.shotgun.find_one(
             "Task",
-            [["upstream_tasks", "is", item.context.task]],
+            [["downstream_tasks", "is", item.context.task]],
             ["task_assignees"]
         )
-        data["tasks"] = [item.context.task, sg_downstream_task]
-        data["addressings_to"] = [item.context.user] + sg_downstream_task["task_assignees"]
+        if sg_downstream_task:
+            data["tasks"] += [sg_downstream_task]
+            data["addressings_to"] += sg_downstream_task["task_assignees"]
 
         self.parent.shotgun.create("Note", data)
 
     def get_tape_node(self, settings):
         """Check for the Tape node in the VRED scene"""
-        node_name = settings.get("Tape Node Name").value
-        return self.parent.engine.vredpy.vrScenegraph.findNode(node_name)
+        node_path = settings.get("Tape Node Path").value
+        return self.parent.engine.vredpy.vrScenegraph.findNodePath(node_path)
 
     def export_tape_as_fbx(self, settings, item):
         """Export the tape as FBX"""
