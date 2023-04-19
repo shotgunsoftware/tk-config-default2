@@ -111,6 +111,12 @@ class PublishVREDTapePlugin(HookBaseClass):
 
         :returns: dictionary with boolean keys accepted, required and enabled
         """
+
+        tape_node = self.get_tape_node(settings)
+        if not tape_node:
+            self.logger.debug("Skipping plugin: couldn't find tape node in the current scene")
+            return {"accepted": False}
+
         return {"accepted": True, "checked": False}
 
     def validate(self, settings, item):
@@ -135,12 +141,6 @@ class PublishVREDTapePlugin(HookBaseClass):
             return False
         item.local_properties["publish_template"] = publish_template
 
-        # check that we have something to export
-        tape_node = self.get_tape_node(settings)
-        if not tape_node:
-            self.logger.error("Couldn't find tape node in the current scene")
-            return False
-
         return True
 
     def publish(self, settings, item):
@@ -158,7 +158,7 @@ class PublishVREDTapePlugin(HookBaseClass):
 
         # get the file name from the node path
         path_components = settings["Tape Node Path"].value.split("/")
-        template_fields["name"] = path_components[-1]
+        template_fields["name"] = path_components[-1].replace(" ", "")
 
         # now it's time to get the version number
         existing_files = self.parent.sgtk.paths_from_template(
