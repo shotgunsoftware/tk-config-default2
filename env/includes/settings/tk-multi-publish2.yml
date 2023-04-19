@@ -589,10 +589,10 @@ settings.tk-multi-publish2.vred.asset_step:
    - name: Upload for review
      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
      settings: {}
-#   - name: Publish Tape to ShotGrid
-#     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_vred_tape.py"
-#     settings:
-#       Publish Template: vred_asset_tape_publish
+   - name: Publish Tape to ShotGrid
+     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_vred_tape.py"
+     settings:
+       Publish Template: vred_asset_tape_publish
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
