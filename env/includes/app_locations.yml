@@ -25,14 +25,9 @@ apps.tk-multi-about.location:
   name: tk-multi-about
   version: v0.4.2
 apps.tk-multi-breakdown.location:
-#  type: app_store
-#  name: tk-multi-breakdown
-#  version: v1.8.1
-# TODO release v1.8.2 before configs
-  type: git_branch
-  path: https://github.com/shotgunsoftware/tk-multi-breakdown
-  branch: master
-  version: ba8f22b
+  type: app_store
+  name: tk-multi-breakdown
+  version: v1.8.2
 apps.tk-multi-breakdown2.location:
 #  type: app_store
 #  name: tk-multi-breakdown2
