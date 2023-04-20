@@ -96,7 +96,7 @@ def run_post_fix(json_filepath):
 
         # remove color for Matchmove submissions
         step_id = dict_nav(json_data, ["entity_info", "step_info", "id"])
-        if step_id == 4:
+        if step_id in [4, 5]:
             nuke_settings['color_switch'] = {"which": 0}
             logger.info( ">>>>> color_switch for matchmove: %s" % nuke_settings['color_switch'] )
 
