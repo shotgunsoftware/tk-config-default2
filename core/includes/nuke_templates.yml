@@ -42,9 +42,12 @@ paths:
         definition: '@nuke_shot_work_area/snapshots/{Shot}_{task_name}[_{name}]_v{version}.{timestamp}.nk'
         root_name: 'project_pipeline'
     # The location of published nuke script files
+    # nuke_shot_publish:
+    #     definition: '@nuke_shot_publish_area/{Shot}_{task_name}[_{name}]_v{version}.nk'
+    #     root_name: 'secondary'
     nuke_shot_publish:
         definition: '@nuke_shot_publish_area/{Shot}_{task_name}[_{name}]_v{version}.nk'
-        root_name: 'secondary'
+        root_name: 'records'
     nuke_review_template:
         definition: '@client_submission_folder/nuke_script/nuke_submission_review.nk'
         root_name: 'project_pipeline'
@@ -71,7 +74,7 @@ paths:
     # The location of published nuke script files
     nuke_asset_publish:
         definition: '@asset_root/publish/nuke/{Asset}_{task_name}_v{version}.nk'
-        root_name: 'project_pipeline' 
+        root_name: 'records' 
     ########################################SHOT OUTPUT   
     # sequence render roots
     nuke_shot_render_root:

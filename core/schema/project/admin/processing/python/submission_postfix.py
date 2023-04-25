@@ -92,6 +92,14 @@ def run_post_fix(json_filepath):
         )
         logger.info("***********************")
 
+        nuke_settings = job_data.get('nuke_settings')
+
+        # remove color for Matchmove submissions
+        step_id = dict_nav(json_data, ["entity_info", "step_info", "id"])
+        if step_id in [4, 5]:
+            nuke_settings['color_switch'] = {"which": 0}
+            logger.info( ">>>>> color_switch for matchmove: %s" % nuke_settings['color_switch'] )
+
         logger.info(">>>>> Completed revisions for %s" % job_key)
 
     logger.info("---")
