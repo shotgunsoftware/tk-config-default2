@@ -18,7 +18,15 @@ includes:
 # Alias
 settings.tk-multi-scenebuilder.alias:
   presets:
-    - name: Default
+    - name: Reference
+      actions:
+        - context:
+            - [ entity.Asset.parents, in, '{context.entity}' ]
+            - [ task.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.step, is, '{context.step}' ]
+          action_mappings:
+            Alias File: import_as_reference
+    - name: Import
       actions:
         - context:
             - [ entity.Asset.parents, in, '{context.entity}' ]
