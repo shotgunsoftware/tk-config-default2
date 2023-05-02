@@ -206,6 +206,7 @@ class PublishVREDMetadataPlugin(HookBaseClass):
             # finally, publish the scene
             item.local_properties.publish_type = "VRED Metadata"
             item.local_properties.publish_version = template_fields["version"]
+            item.local_properties.publish_name = self.parent.util.get_publish_name(publish_path)
             super(PublishVREDMetadataPlugin, self).publish(settings, item)
 
     def finalize(self, settings, item):
