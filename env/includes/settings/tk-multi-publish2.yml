@@ -593,6 +593,11 @@ settings.tk-multi-publish2.vred.asset_step:
      hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_vred_tape.py"
      settings:
        Publish Template: vred_asset_tape_publish
+   - name: Publish Metadata to ShotGrid
+     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_vred_metadata.py"
+     settings:
+       Root Node Name: INTERIOR
+       Publish Template: vred_asset_metadata_publish
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"

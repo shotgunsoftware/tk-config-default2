@@ -704,6 +704,10 @@ paths:
     vred_asset_tape_publish:
         definition: '@asset_root/publish/vred/tapes/{name}.v{version}.fbx'
 
+    # define the location of the published CMF metadata file
+    vred_asset_metadata_publish:
+        definition: '@asset_root/publish/vred/metadata/{name}.v{version}.json'
+
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
