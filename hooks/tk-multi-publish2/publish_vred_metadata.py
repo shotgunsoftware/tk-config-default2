@@ -140,6 +140,19 @@ class PublishVREDMetadataPlugin(HookBaseClass):
         :returns: True if item is valid, False otherwise.
         """
 
+        # be sure the "Publish to ShotGrid" publish plugin is also selected
+        root_item = self.__get_root_item(item)
+        is_plugin_checked = False
+        for d in root_item.descendants:
+            for t in d.tasks:
+                if t.name == "Publish to ShotGrid" and t.checked:
+                    is_plugin_checked = True
+        if not is_plugin_checked:
+            self.logger.error(
+                'Please, check the "Publish to ShotGrid" publish plugin to be able to export the VRED metadata'
+            )
+            return False
+
         # check that we have a valid publish template
         publish_template_setting = settings.get("Publish Template")
         publish_template = self.parent.engine.get_template_by_name(
@@ -207,6 +220,7 @@ class PublishVREDMetadataPlugin(HookBaseClass):
             item.local_properties.publish_type = "VRED Metadata"
             item.local_properties.publish_version = template_fields["version"]
             item.local_properties.publish_name = self.parent.util.get_publish_name(publish_path)
+            item.local_properties.publish_dependencies = [session_publish_path]
             super(PublishVREDMetadataPlugin, self).publish(settings, item)
 
     def finalize(self, settings, item):
@@ -282,3 +296,10 @@ class PublishVREDMetadataPlugin(HookBaseClass):
 
         __rec_get_metadata(root_node)
         return scene_metadata
+
+    def __get_root_item(self, item):
+        """Recursively get the publish root item"""
+        if item.is_root:
+            return item
+        else:
+            return self.__get_root_item(item.parent)
