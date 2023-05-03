@@ -97,7 +97,7 @@ class VredActions(HookBaseClass):
             self.import_metadata(path)
 
         else:
-            super(VredActions, self).execute_actions(name, params, sg_publish_data)
+            super(VredActions, self).execute_action(name, params, sg_publish_data)
 
     def import_metadata(self, path):
         """Import the VRED metadata and update the scene graph accordingly"""
