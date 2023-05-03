@@ -111,7 +111,6 @@ class PublishVREDTapePlugin(HookBaseClass):
 
         :returns: dictionary with boolean keys accepted, required and enabled
         """
-
         tape_node = self.get_tape_node(settings)
         if not tape_node:
             self.logger.debug("Skipping plugin: couldn't find tape node in the current scene")
@@ -220,7 +219,10 @@ class PublishVREDTapePlugin(HookBaseClass):
     def get_tape_node(self, settings):
         """Check for the Tape node in the VRED scene"""
         node_path = settings.get("Tape Node Path").value
-        return self.parent.engine.vredpy.vrScenegraph.findNodePath(node_path)
+        tape_node = vrNodeService.findNodeWithPath(node_path)
+        if not tape_node.isValid():
+            return None
+        return tape_node
 
     def export_tape_as_fbx(self, settings, item):
         """Export the tape as FBX"""
