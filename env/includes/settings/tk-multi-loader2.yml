@@ -404,6 +404,7 @@ settings.tk-multi-loader2.vred:
     Image: [import_sceneplate]
     Rendered Image: [import_sceneplate]
     VRED Metadata: [import_metadata]
+    VRED Material: [import_material]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -415,12 +416,16 @@ settings.tk-multi-loader2.vred:
     filters:
       - [linked_projects, is, "{context.project}"]
     hierarchy: [project.Project.name, sg_asset_type, code]
+  - caption: Materials
+    entity_type: CustomNonProjectEntity01
+    filters: []
+    hierarchy: [code]
   - caption: My Tasks
     entity_type: Task
     filters:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
-  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py:{config}/tk-multi-loader2/scene_actions.py"
+  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py:{config}/tk-multi-loader2/vred_scene_actions.py"
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"

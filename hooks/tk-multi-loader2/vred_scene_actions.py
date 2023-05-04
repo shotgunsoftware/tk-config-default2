@@ -20,6 +20,8 @@ HookBaseClass = sgtk.get_hook_baseclass()
 class VredActions(HookBaseClass):
     """Hook that loads defines all the available actions, broken down by publish type."""
 
+    MATERIAL_GROUP_NAME = "ShotGrid Materials"
+
     def generate_actions(self, sg_publish_data, actions, ui_area):
         """
         Returns a list of action instances for a particular publish.
@@ -78,6 +80,16 @@ class VredActions(HookBaseClass):
                 }
             )
 
+        if "import_material" in actions:
+            action_instances.append(
+                {
+                    "name": "import_material",
+                    "params": None,
+                    "caption": "Import VRED Material",
+                    "description": "This will import the OSB file as VRED Material.",
+                }
+            )
+
         return action_instances
 
     def execute_action(self, name, params, sg_publish_data):
@@ -95,7 +107,8 @@ class VredActions(HookBaseClass):
 
         if name == "import_metadata":
             self.import_metadata(path)
-
+        elif name == "import_material":
+            self.import_material(path)
         else:
             super(VredActions, self).execute_action(name, params, sg_publish_data)
 
@@ -115,3 +128,22 @@ class VredActions(HookBaseClass):
                 object_set = metadata.getObjectSet()
                 for key, value in node_metadata.items():
                     object_set.setValue(key, value)
+
+    def import_material(self, path):
+        """Import the OSB file as VRED Material"""
+
+        if not os.path.isfile(path):
+            return
+
+        # find the material group node and if it doesn't exist, create it
+        group_node = vrNodeService.findNode(self.MATERIAL_GROUP_NAME, root=vrMaterialService.getMaterialRoot())
+        if not group_node.isValid():
+            group_node = vrMaterialService.createMaterialGroup()
+            group_node.setName(self.MATERIAL_GROUP_NAME)
+
+        # load the OSB file
+        material = vrMaterialService.loadMaterials([path])[0]
+
+        # move the material to the right group
+        material_node = vrMaterialService.findMaterialNode(material)
+        group_node.children.append(material_node)
