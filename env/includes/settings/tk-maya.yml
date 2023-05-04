@@ -43,6 +43,9 @@ settings.tk-maya.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      display_name: "Legacy Breakdown"
+      location: "@apps.tk-multi-breakdown.location"
     tk-multi-breakdown2: "@settings.tk-multi-breakdown2.maya"
     tk-multi-loader2: "@settings.tk-multi-loader2.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.maya.asset_step"
@@ -56,6 +59,7 @@ settings.tk-maya.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   template_project: asset_work_area_maya
   location: "@engines.tk-maya.location"
 
@@ -102,6 +106,9 @@ settings.tk-maya.shot_step:
       location: "@apps.tk-multi-about.location"
     tk-multi-setframerange:
       location: "@apps.tk-multi-setframerange.location"
+    tk-multi-breakdown:
+      display_name: "Legacy Breakdown"
+      location: "@apps.tk-multi-breakdown.location"
     tk-multi-breakdown2: "@settings.tk-multi-breakdown2.maya"
     tk-multi-loader2: "@settings.tk-multi-loader2.maya"
     tk-multi-publish2: "@settings.tk-multi-publish2.maya.shot_step"
@@ -115,5 +122,6 @@ settings.tk-maya.shot_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   template_project: shot_work_area_maya
   location: "@engines.tk-maya.location"
