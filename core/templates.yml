@@ -96,6 +96,11 @@ keys:
     eye:
         type: str
 
+    Shot_Sequence:
+        type: str
+        shotgun_entity_type: Sequence
+        shotgun_field_name: code
+
     # for rendering tiles
     tile_x:
         type: int
@@ -190,7 +195,7 @@ paths:
     info_json_file: shots/temp/{Shot}/json/{Shot}_{task_name}[_{name}]_v{version}.json
     alembic_shot_json: shots/temp/[{Shot}][{Asset}]/json/[{Shot}][{Asset}]_{task_name}_alembic_v{version}.json
     alembic_asset_json: assets/temp/{sg_asset_type}/{Asset}/json/{Asset}_{task_name}_alembic_v{version}.json
-        
+
     deadline_temp_folder: 
         definition: 'admin/temp/'
         root_name: 'project_pipeline'
@@ -231,20 +236,40 @@ paths:
         definition: 'admin/processing'
         root_name: 'project_pipeline'
 
+    processing_records:
+        definition: '@processing_root/records'
+        root_name: 'project_pipeline'
+
+    pump_records:
+        definition: '@processing_records/pump'
+        root_name: 'project_pipeline'
+
+    publish_records:
+        definition: '@processing_records/publish'
+        root_name: 'project_pipeline'
+
+    publish_shot_records:
+        definition: '@publish_records/shots'
+        root_name: 'project_pipeline'
+
+    publish_asset_records:
+        definition: '@publish_records/assets'
+        root_name: 'project_pipeline'
+
     general_review_process_json:
-        definition: admin/processing/json/processing_review_settings.json
+        definition: '@processing_root/json/processing_review_settings.json'
         root_name: 'project_pipeline'
     
     alembic_review_process_json:
-        definition: admin/processing/json/processing_incoming_alembic.json
+        definition: '@processing_root/json/processing_incoming_alembic.json'
         root_name: 'project_pipeline'
 
     shot_review_process_json2:
-        definition: admin/processing/json/shot_review_settings.json
+        definition: '@processing_root/json/shot_review_settings.json'
         root_name: 'project_pipeline'
 
     asset_review_process_json2:
-        definition: admin/processing/json/asset_review_settings.json
+        definition: '@processing_root/json/asset_review_settings.json'
         root_name: 'project_pipeline'
 
     # shot_submission_json_file: 
@@ -256,11 +281,11 @@ paths:
     #     root_name: 'project_pipeline'
 
     shot_review_process_json:
-        definition: admin/processing/json/shot_processing_review_settings.json
+        definition: '@processing_root/json/shot_processing_review_settings.json'
         root_name: 'project_pipeline'
 
     asset_review_process_json:
-        definition: admin/processing/json/asset_processing_review_settings.json
+        definition: '@processing_root/json/asset_processing_review_settings.json'
         root_name: 'project_pipeline'
 
     artist_work_render: 
