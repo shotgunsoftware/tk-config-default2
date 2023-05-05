@@ -385,6 +385,12 @@ class AliasCreateVREDFilePlugin(HookBaseClass):
                 alias_publish_path, vred_work_path
             )
 
+            # reset the PYTHONPATH to avoid conflict with SG Desktop libraries
+            # we won't need to have toolkit paths in PYTHONPATH because we won't run the engine nor any toolkit
+            # operations
+            env = os.environ.copy()
+            env.pop("PYTHONPATH")
+
             cmd = [
                 self.get_vred_bin_path(item),
                 "-console",
@@ -392,7 +398,9 @@ class AliasCreateVREDFilePlugin(HookBaseClass):
                 "-postpython",
                 post_python_cmd,
             ]
-            p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            p = subprocess.Popen(
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env
+            )
             p_output, _ = p.communicate()
 
             if p.returncode != 0:
