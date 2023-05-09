@@ -106,11 +106,11 @@ engines.tk-shotgun.location:
   version: v0.10.2
 
 # Unreal Engine
-#engines.tk-unreal.location:
-#  type: github_release
-#  organization: nfa-vfxim
-#  repository: tk-unreal
-#  version: 0.0.0
+engines.tk-unreal.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-unreal
+  version: 0.0.0
 
 # VRED
 engines.tk-vred.location:
