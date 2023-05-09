@@ -281,6 +281,14 @@ apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
   version: v1.3.1
+  
+# --- Unreal
+apps.tk-unreal.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-unreal
+  version: 0.0.0
+
 
 ################################################################################
 # reference all of the common frameworks
