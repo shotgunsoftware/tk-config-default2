@@ -28,9 +28,10 @@ includes:
 - ./includes/max_templates.yml
 - ./includes/photoshop_templates.yml
 - ./includes/mari_templates.yml
-- ./includes/equalize_templates.yml
 - ./includes/outsource_templates.yml
 - ./includes/submitter_templates.yml
+
+- ./includes/3dequalizer_templates.yml
 #
 # The keys section contains the definitions for all the different keys that are being
 # used by Sgtk. A key is a magic token that is replaced by a value at runtime, for example

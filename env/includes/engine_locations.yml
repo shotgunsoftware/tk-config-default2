@@ -78,3 +78,8 @@ engines.tk-vred.location:
   type: app_store
   name: tk-vred
   version: v2.1.1
+
+engines.tk-3dequalizer.location:
+  type: dev
+  name: tk-3dequalizer
+  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\engines\tk-3dequalizer
