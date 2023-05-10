@@ -73,7 +73,7 @@ paths:
         root_name: 'project_pipeline'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@publish_asset_records/{Asset}/{Asset}_{task_name}_v{version}.nk'
+        definition: '@publish_asset_records/{Asset}/{task_name}/{Asset}_{task_name}_v{version}.nk'
         root_name: 'project_pipeline' 
     ########################################SHOT OUTPUT   
     # sequence render roots
