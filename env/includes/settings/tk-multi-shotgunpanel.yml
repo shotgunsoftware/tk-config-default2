@@ -334,3 +334,17 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {}
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
+
+# 3dequalizer
+settings.tk-multi-shotgunpanel.3dequalizer:
+  action_mappings:
+    PublishedFile:
+    - actions: [clip_import]
+      filters: {published_file_type: Image}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
