@@ -428,7 +428,7 @@ settings.tk-multi-loader2.3dequalizer:
   filter_publishes_hook: '{config}/tk-multi-loader2/filter_publishes.py'
   action_mappings:
     Project: [open_project]
-    Main Plate: [clip_import, clip_substitute]
+    Main Plate: [clip_import]
   entities:
   - caption: Assets
     entity_type: Asset

@@ -640,9 +640,6 @@ settings.tk-multi-publish2.3dequalizer.asset_step:
   collector_settings:
       Work Template: 3dequalizer_asset_work
   publish_plugins:
-  # - name: Publish to ShotGrid
-  #   hook: "{self}/publish_file.py"
-  #   settings: {}
   - name: Publish Session to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_session.py"
     settings:
@@ -656,12 +653,7 @@ settings.tk-multi-publish2.3dequalizer.asset_step:
   - name: Publish Distortion Node to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_dist.py"
     settings:
-        Publish Template: 3dequalizer_shot_dist_publish
-        Cameras: ["*"]
-  - name: Publish Distortion Renderscript to ShotGrid
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_distRender.py"
-    settings:
-        Publish Template: 3dequalizer_shot_distRender_publish
+        Publish Template: 3dequalizer_shot_publish
         Cameras: ["*"]
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -673,9 +665,6 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
   collector_settings:
       Work Template: 3dequalizer_shot_work
   publish_plugins:
-  # - name: Publish to ShotGrid
-  #   hook: "{self}/publish_file.py"
-  #   settings: {}
   - name: Publish Session to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_session.py"
     settings:
@@ -688,11 +677,6 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
         Cameras: ["*"]
   - name: Publish Distortion Node to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_dist.py"
-    settings:
-        Publish Template: 3dequalizer_shot_dist_publish
-        Cameras: ["*"]
-  - name: Publish Distortion Node to ShotGrid
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_distRender.py"
     settings:
         Publish Template: 3dequalizer_shot_dist_publish
         Cameras: ["*"]
