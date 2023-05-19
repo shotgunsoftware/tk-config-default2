@@ -80,6 +80,6 @@ engines.tk-vred.location:
   version: v2.1.1
 
 engines.tk-3dequalizer.location:
-  type: dev
+  type: path
   name: tk-3dequalizer
-  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\engines\tk-3dequalizer
+  windows_path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\engines\tk-3dequalizer
