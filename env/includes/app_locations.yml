@@ -142,6 +142,6 @@ frameworks: '@frameworks'
 
 # ---- tk-3dequalizer
 apps.ssvfx-undistort-generator.location:
-  type: dev
+  type: path
   name: ssvfx-undistort-generator
-  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-undistort-generator
+  windows_path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-undistort-generator

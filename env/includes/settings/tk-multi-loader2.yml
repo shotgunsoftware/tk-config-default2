@@ -140,6 +140,7 @@ settings.tk-multi-loader2.maya:
     Maya Shader Network: [import, reference]
     Standin: [import, reference, multi_import, multi_ref]
     Ass File: [import, reference]
+    Mel File: [import_mel]
   entities:
   - caption: Assets
     entity_type: Asset
