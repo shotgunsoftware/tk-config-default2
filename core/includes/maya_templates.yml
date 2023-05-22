@@ -187,6 +187,9 @@ paths:
     maya_shot_cache_standin:
         definition: '@shot_context/maya/{task_name}/caches/standin/{Shot}_{task_name}_standin_cache[_{name}]_v{version}'
         root_name: 'caches'
+    maya_shot_cache_obj:
+        definition: '@shot_context/maya/{task_name}/caches/obj/{Shot}_{task_name}_obj_cache[_{name}]_v{version}/{Shot}_{task_name}_obj-cache[_{name}]_v{version}.obj'
+        root_name: 'caches'
     maya_shot_cache_standin_ass:
         definition: '@shot_context/maya/{task_name}/caches/standin/{Shot}_{task_name}_standin_cache[_{name}]_v{version}/{Shot}_{task_name}_standin-cache[_{name}]_v{version}.ass'
         root_name: 'caches'
@@ -273,3 +276,6 @@ paths:
     maya_asset_cache_standin_file:
          definition: '@maya_asset_cache_area/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.ass'
          root_name: 'caches'
+    maya_asset_cache_obj_file:
+        definition: '@maya_asset_cache_area/obj/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.obj'
+        root_name: 'caches'

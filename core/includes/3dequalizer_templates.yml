@@ -1,0 +1,127 @@
+# Copyright (c) 2015 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+#
+# This file is one of the central points in the Shotgun Pipeline Toolkit configuration and
+# a counterpart to the folder configuration structure.
+#
+# The folder structure underneath the project folder is used to create folders on disk -
+# templates.yml (this file) refers to those folders. Therefore, the two files need to be
+# in sync. This file contains an overview of all locations that are used by Sgtk.
+#
+# Whenever an app or an engine refers to a location on disk, it is using an entry defined in
+# this file. For more information, see the Shotgun Pipeline Toolkit Documentation.
+
+keys:
+    3dequalizer.lens_name:
+        type: str
+        filter_by: '^[0-9a-zA-Z_]+$'
+
+    3dequalizer.camera_name:
+        type: str
+        filter_by: '^[0-9a-zA-Z_]+$'
+
+    3dequalizer.dist_name:
+        type: str
+        filter_by: '^[0-9a-zA-Z_]+$'
+
+    3dequalizer.pointGroup_name:
+        type: str
+        filter_by: '^[0-9a-zA-Z_]+$'
+
+    # 3dequalizer supports two extension types.
+    3dequalizer_extension:
+        type: str
+        choices:
+            3de: 3dequalizer Project (.3de)
+        default: 3de
+        alias: extension
+
+paths:
+    ###########
+    ## 3dequalizer
+    ###########
+    ########################################SHOT WORK
+    # define the location of a work area
+    3dequalizer_shot_work_area:
+        definition: '@shot_root/3dequalizer'
+        root_name: 'project_pipeline'
+    # define the location of a publish area
+    3dequalizer_shot_publish_area:
+        definition: '@shot_root/publish/3dequalizer'
+        root_name: 'project_pipeline'
+    # The location of WIP files
+    3dequalizer_shot_work:
+        definition: '@shot_root/3dequalizer/scenes/{Shot}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
+        root_name: 'project_pipeline'
+        
+    # The location of published 3dequalizer files
+    3dequalizer_shot_publish:
+        definition: '@shot_root/publish/3dequalizer/{Shot}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
+        root_name: 'project_pipeline'
+    # the Location of 3dequalizer published Camera's
+    3dequalizer_shot_camera_publish:
+        definition: '@shot_root/publish/3dequalizer/cameras/{Shot}_{task_name}[_{name}]_v{version}.mel'
+        root_name: 'project_pipeline'
+    # the Location of 3dequalizer published distortion Node's
+    3dequalizer_shot_dist_publish:
+        definition: '@shot_root/publish/3dequalizer/distNode/{Shot}_{task_name}[_{name}]_v{version}.nk'
+        root_name: 'project_pipeline'
+    # the Location of 3dequalizer published distortion Renderscript's
+    3dequalizer_shot_distRender_publish:
+        definition: '@shot_root/publish/3dequalizer/distRender/{Shot}_{task_name}[_{name}]_v{version}.nk'
+        root_name: 'project_pipeline'
+
+    # the location of 3dequalizer published undistorted plates
+    3dequalizer_shot_undist_plates_publish:
+        definition: '@shot_root/publish/3dequalizer/undistRender/{Shot}_{task_name}[_{name}]_v{version}.####.jpg'
+        root_name: 'project_pipeline'
+    
+    ########################################ASSET WORK
+    # define the location of a work area
+    3dequalizer_asset_work_area:
+        definition: '@asset_root/work/3dequalizer'
+        root_name: 'project_pipeline'
+    # define the location of a publish area
+    3dequalizer_asset_publish_area:
+        definition: '@asset_root/publish/3dequalizer'
+        root_name: 'project_pipeline'
+    # The location of WIP files
+    3dequalizer_asset_work:
+        definition: '@asset_root/work/3dequalizer/scenes/{Asset}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
+        root_name: 'project_pipeline'
+    # The location of published 3dequalizer files
+    3dequalizer_asset_publish:
+        definition: '@asset_root/publish/3dequalizer/{Asset}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
+        root_name: 'project_pipeline'
+    # the Location of 3dequalizer published Camera's
+    3dequalizer_asset_camera_publish:
+        definition: '@asset_root/publish/3dequalizer/cameras/{Asset}_{task_name}[_{name}]_v{version}.mel'
+        root_name: 'project_pipeline'
+    
+
+    # # 3dequalizer Object export 
+    3dequalizer_shot_export_obj:
+        definition: '@shot_context/3d_export/obj/{task_name}/{Shot}_{task_name}_v{version}/{Shot}_{task_name}_v{version}.obj'
+        root_name: 'caches'
+ 
+
+    ######################################## ASSET OUTPUT       
+    # Render location for asset renders
+    3dequalizer_asset_renders_step:
+        definition: '@asset_render_root/3dequalizera/{task_name}/version'
+        root_name: 'project_pipeline'
+    3dequalizer_asset_renders_stub:
+        definition: '@asset_render_root/3dequalizer/{task_name}/version/{Asset}_{task_name}[_{name}]_v{version}'
+        root_name: 'project_pipeline'
+
+    3dequalizer_deadline_temp:
+        definition: 'admin/processing/temp/deadline'
+        root_name: 'project_pipeline'

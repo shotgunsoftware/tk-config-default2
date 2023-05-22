@@ -751,4 +751,97 @@ settings.tk-multi-workfiles2.mari:
       filters:
       link_field: entity
       hierarchy: [step]
+
   location: "@apps.tk-multi-workfiles2.location"
+
+
+################################################################################
+
+# ---- 3dequalizer
+
+settings.tk-multi-workfiles2.3dequalizer:
+  allow_task_creation: false
+  show_change_context: false
+  show_file_open: true
+  show_file_save: true
+  my_tasks_filters:
+   - [task_assignees, is, '{context.user}']
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters: *filter_by_omit_hold
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_episode, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-3dequalizer.py'
+  location: "@apps.tk-multi-workfiles2.location"
+
+# asset_step
+settings.tk-multi-workfiles2.3dequalizer.asset_step:
+  allow_task_creation: false
+  template_publish: 3dequalizer_asset_publish
+  template_publish_area: 3dequalizer_asset_publish_area
+  template_work: 3dequalizer_asset_work
+  template_work_area: 3dequalizer_asset_work_area
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters: *filter_by_omit_hold
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-3dequalizer.py'
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.3dequalizer.shot_step:
+  allow_task_creation: false
+  template_publish: 3dequalizer_shot_publish
+  template_publish_area: 3dequalizer_shot_publish_area
+  template_work: 3dequalizer_shot_work
+  template_work_area: 3dequalizer_shot_work_area
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters: *filter_by_omit_hold
+    sub_hierarchy:
+      entity_type: Task
+      filters: *filter_by_omit_hold
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters: *filter_by_omit_hold
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  hook_scene_operation: '{config}/tk-multi-workfiles2/scene_operation_tk-3dequalizer.py'
+  location: '@apps.tk-multi-workfiles2.location'

@@ -28,6 +28,8 @@ includes:
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-desktop.yml
 
+- ./includes/settings/tk-3dequalizer.yml
+
 ################################################################################
 # configuration for all engines to load in a shot step context
 
@@ -46,6 +48,8 @@ engines:
   tk-shell: "@settings.tk-shell.shot_step"
   tk-shotgun: "@settings.tk-shotgun.shot_step"
   tk-desktop: "@settings.tk-desktop.project"
+
+  tk-3dequalizer: "@settings.tk-3dequalizer.shot_step"
 
 ################################################################################
 # reference all of the common frameworks

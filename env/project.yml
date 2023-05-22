@@ -31,6 +31,8 @@ includes:
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
+- ./includes/settings/tk-3dequalizer.yml
+
 ################################################################################
 # configuration for all engines to load in a project context
 
@@ -52,6 +54,8 @@ engines:
   tk-vred: "@settings.tk-vred.project"
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
+
+  tk-3dequalizer: "@settings.tk-3dequalizer.project"
 
 ################################################################################
 # reference all of the common frameworks

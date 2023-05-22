@@ -229,6 +229,10 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
     settings:
         Publish Template: maya_asset_cache_standin_file
+  - name: Publish OBJ
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_obj.py"
+    settings:
+      Publish Template: maya_asset_cache_obj_file
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -268,6 +272,10 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
     settings:
       Publish Template: maya_shot_cache_standin_ass
+  - name: Publish OBJ
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_obj.py"
+    settings:
+      Publish Template: maya_shot_cache_obj
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -619,3 +627,58 @@ settings.tk-multi-publish2.vred.asset_step:
      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
+
+
+################################################################################
+
+# ---- 3dequalizer
+
+# asset_step
+settings.tk-multi-publish2.3dequalizer.asset_step:
+  # pre_publish: "{config}/tk-multi-publish2/basic/3dequalizer/pre_publish.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/_3dequalizer/collector.py"
+  collector_settings:
+      Work Template: 3dequalizer_asset_work
+  publish_plugins:
+  - name: Publish Session to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_session.py"
+    settings:
+        Publish Template: 3dequalizer_shot_publish
+  - name: Publish Camera to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_camera.py"
+    settings:
+        Publish Template: 3dequalizer_shot_camera_publish
+        Publish UndPlates Template: 3dequalizer_shot_undist_plates_publish
+        Cameras: ["*"]
+  - name: Publish Distortion Node to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_dist.py"
+    settings:
+        Publish Template: 3dequalizer_shot_publish
+        Cameras: ["*"]
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+
+# shot step
+settings.tk-multi-publish2.3dequalizer.shot_step:
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/_3dequalizer/collector.py"
+  collector_settings:
+      Work Template: 3dequalizer_shot_work
+  publish_plugins:
+  - name: Publish Session to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_session.py"
+    settings:
+        Publish Template: 3dequalizer_shot_publish
+  - name: Publish Camera to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_camera.py"
+    settings:
+        Publish Template: 3dequalizer_shot_camera_publish
+        Publish UndPlates Template: 3dequalizer_shot_undist_plates_publish
+        Cameras: ["*"]
+  - name: Publish Distortion Node to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_dist.py"
+    settings:
+        Publish Template: 3dequalizer_shot_dist_publish
+        Cameras: ["*"]
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location" 

@@ -36,6 +36,8 @@ includes:
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 
+- ./includes/settings/tk-3dequalizer.yml
+
 ################################################################################
 # configuration for all engines to load in an asset context
 
@@ -53,6 +55,8 @@ engines:
   tk-vred: "@settings.tk-vred.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
+
+  tk-3dequalizer: "@settings.tk-3dequalizer.asset"
 
 ################################################################################
 # reference all of the common frameworks
