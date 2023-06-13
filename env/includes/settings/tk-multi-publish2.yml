@@ -303,9 +303,9 @@ settings.tk-multi-publish2.nuke.asset_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/nuke/nuke_publish_script.py"
     settings:
         Publish Template: nuke_asset_publish
-  - name: Submit for Review
-    hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
-    settings: {}
+  # - name: Submit for Review
+  #   hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+  #   settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
