@@ -548,6 +548,11 @@ settings.tk-multi-publish2.alias.asset_step:
    - name: Publish Annotations to ShotGrid
      hook: "{engine}/tk-multi-publish2/basic/publish_annotations.py"
      settings: {}
+   - name: Create VRED Scene
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_vred.py"
+     settings:
+       Work Template: vred_asset_work
+       Publish Template: vred_asset_publish
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
