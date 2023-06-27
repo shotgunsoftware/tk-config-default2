@@ -43,6 +43,11 @@ keys:
             3de: 3dequalizer Project (.3de)
         default: 3de
         alias: extension
+    3DESEQ:
+        type: sequence
+        format_spec: "04"
+        default: "####"
+        alias: 3DESEQ
 
 paths:
     ###########
@@ -52,59 +57,64 @@ paths:
     # define the location of a work area
     3dequalizer_shot_work_area:
         definition: '@shot_root/3dequalizer'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # define the location of a publish area
     3dequalizer_shot_publish_area:
         definition: '@shot_root/publish/3dequalizer'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # The location of WIP files
     3dequalizer_shot_work:
         definition: '@shot_root/3dequalizer/scenes/{Shot}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
         
     # The location of published 3dequalizer files
     3dequalizer_shot_publish:
         definition: '@shot_root/publish/3dequalizer/{Shot}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # the Location of 3dequalizer published Camera's
     3dequalizer_shot_camera_publish:
         definition: '@shot_root/publish/3dequalizer/cameras/{Shot}_{task_name}[_{name}]_v{version}.mel'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # the Location of 3dequalizer published distortion Node's
     3dequalizer_shot_dist_publish:
         definition: '@shot_root/publish/3dequalizer/distNode/{Shot}_{task_name}[_{name}]_v{version}.nk'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # the Location of 3dequalizer published distortion Renderscript's
     3dequalizer_shot_distRender_publish:
         definition: '@shot_root/publish/3dequalizer/distRender/{Shot}_{task_name}[_{name}]_v{version}.nk'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
 
     # the location of 3dequalizer published undistorted plates
     3dequalizer_shot_undist_plates_publish:
-        definition: '@shot_root/publish/3dequalizer/undistRender/{Shot}_{task_name}[_{name}]_v{version}.####.jpg'
-        root_name: 'project_pipeline'
+        definition: '@shot_root/publish/3dequalizer/undistRender/v{version}/{Shot}_{task_name}[_{name}]_v{version}.{3DESEQ}.jpg'
+        root_name: 'project_gto_pix'
+    
+    # the location of 3dequalizer published playblast plates
+    3dequalizer_shot_playblast_publish:
+        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/{Shot}_{task_name}[_{name}]_v{version}.{3DESEQ}.jpg'
+        root_name: 'project_gto_pix'
     
     ########################################ASSET WORK
     # define the location of a work area
     3dequalizer_asset_work_area:
         definition: '@asset_root/work/3dequalizer'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # define the location of a publish area
     3dequalizer_asset_publish_area:
         definition: '@asset_root/publish/3dequalizer'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # The location of WIP files
     3dequalizer_asset_work:
         definition: '@asset_root/work/3dequalizer/scenes/{Asset}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # The location of published 3dequalizer files
     3dequalizer_asset_publish:
         definition: '@asset_root/publish/3dequalizer/{Asset}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     # the Location of 3dequalizer published Camera's
     3dequalizer_asset_camera_publish:
         definition: '@asset_root/publish/3dequalizer/cameras/{Asset}_{task_name}[_{name}]_v{version}.mel'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     
 
     # # 3dequalizer Object export 
@@ -117,11 +127,11 @@ paths:
     # Render location for asset renders
     3dequalizer_asset_renders_step:
         definition: '@asset_render_root/3dequalizera/{task_name}/version'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
     3dequalizer_asset_renders_stub:
         definition: '@asset_render_root/3dequalizer/{task_name}/version/{Asset}_{task_name}[_{name}]_v{version}'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'
 
     3dequalizer_deadline_temp:
         definition: 'admin/processing/temp/deadline'
-        root_name: 'project_pipeline'
+        root_name: 'project_gto_pix'

@@ -655,6 +655,11 @@ settings.tk-multi-publish2.3dequalizer.asset_step:
     settings:
         Publish Template: 3dequalizer_shot_publish
         Cameras: ["*"]
+  - name: Publish Distortion Renderscript to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_distRender.py"
+    settings:
+        Publish Template: 3dequalizer_shot_distRender_publish
+        Cameras: ["*"]
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -664,6 +669,9 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/_3dequalizer/collector.py"
   collector_settings:
       Work Template: 3dequalizer_shot_work
+      Playblast Render Template: 3dequalizer_shot_playblast_publish
+      Undist Render Template: 3dequalizer_shot_undist_plates_publish
+      Undist Node Template: 3dequalizer_shot_dist_publish
   publish_plugins:
   - name: Publish Session to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_session.py"
@@ -680,5 +688,9 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
     settings:
         Publish Template: 3dequalizer_shot_dist_publish
         Cameras: ["*"]
+  - name: Publish Generated Data
+    hook: "{self}/publish_file.py"
+    settings: {}
+    
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location" 
