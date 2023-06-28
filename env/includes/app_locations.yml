@@ -141,7 +141,18 @@ frameworks: '@frameworks'
 
 
 # ---- tk-3dequalizer
-apps.ssvfx-undistort-generator.location:
+apps.tk-3dequalizer.location:
+  name: tk-3dequalizer
   type: path
+  path: C:\Program Files\3dequalizer\version4\bin\3DE4.exe
+
+apps.ssvfx-undistort-generator.location:
+  type: dev
   name: ssvfx-undistort-generator
-  windows_path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-undistort-generator
+  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-undistort-generator
+
+apps.ssvfx-3de-playblast.location:
+  type: dev
+  name: ssvfx-3de-playblast
+  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-3de-playblast
+        

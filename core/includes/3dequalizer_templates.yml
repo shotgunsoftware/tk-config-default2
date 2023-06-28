@@ -43,6 +43,11 @@ keys:
             3de: 3dequalizer Project (.3de)
         default: 3de
         alias: extension
+    3DESEQ:
+        type: sequence
+        format_spec: "04"
+        default: "####"
+        alias: 3DESEQ
 
 paths:
     ###########
@@ -81,7 +86,12 @@ paths:
 
     # the location of 3dequalizer published undistorted plates
     3dequalizer_shot_undist_plates_publish:
-        definition: '@shot_root/publish/3dequalizer/undistRender/{Shot}_{task_name}[_{name}]_v{version}.####.jpg'
+        definition: '@shot_root/publish/3dequalizer/undistRender/v{version}/{Shot}_{task_name}[_{name}]_v{version}.{3DESEQ}.jpg'
+        root_name: 'project_pipeline'
+
+    # the location of 3dequalizer published playblast plates
+    3dequalizer_shot_playblast_publish:
+        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/{Shot}_{task_name}[_{name}]_v{version}.{3DESEQ}.jpg'
         root_name: 'project_pipeline'
     
     ########################################ASSET WORK

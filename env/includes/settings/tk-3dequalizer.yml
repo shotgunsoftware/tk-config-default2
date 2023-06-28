@@ -38,6 +38,8 @@ settings.tk-3dequalizer.asset_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      location: "@apps.tk-multi-breakdown.location"
     tk-multi-loader2: "@settings.tk-multi-loader2.3dequalizer"
     tk-multi-publish2: "@settings.tk-multi-publish2.3dequalizer.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
@@ -75,6 +77,8 @@ settings.tk-3dequalizer.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-breakdown:
+      location: "@apps.tk-multi-breakdown.location"
     tk-multi-setframerange:
       sg_in_frame_field: sg_head_in
       sg_out_frame_field: sg_tail_out
@@ -85,6 +89,8 @@ settings.tk-3dequalizer.shot_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.3dequalizer.shot_step"
     ssvfx-undistort-generator:
       location: "@apps.ssvfx-undistort-generator.location"
+    ssvfx-3de-playblast:
+      location: "@apps.ssvfx-3de-playblast.location"
   
   
   
