@@ -43,7 +43,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.12.2
+  version: v0.12.3
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
