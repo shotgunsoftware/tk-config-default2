@@ -25,6 +25,11 @@ frameworks:
       version: v0.7.3
       type: app_store
       name: tk-framework-adminui
+  tk-framework-alias_v1.x.x:
+    location:
+      version: v1.0.0
+      type: app_store
+      name: tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
     location:
       version: v0.2.3
