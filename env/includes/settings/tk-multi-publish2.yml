@@ -670,6 +670,8 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
   collector_settings:
       Work Template: 3dequalizer_shot_work
       Playblast Render Template: 3dequalizer_shot_playblast_publish
+      Playblast cone Render Template: 3dequalizer_shot_playblast_cones_publish
+      Playblast wire Render Template: 3dequalizer_shot_playblast_wire_publish
       Undist Render Template: 3dequalizer_shot_undist_plates_publish
       Undist Node Template: 3dequalizer_shot_dist_publish
   publish_plugins:
