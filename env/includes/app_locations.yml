@@ -147,12 +147,12 @@ apps.tk-3dequalizer.location:
   path: C:\Program Files\3dequalizer\version4\bin\3DE4.exe
 
 apps.ssvfx-undistort-generator.location:
-  type: dev
-  name: ssvfx-undistort-generator
-  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-undistort-generator
+  type: git
+  version: v1.0.0
+  path: https://github.com/ssvfx41/ssvfx-undistort-generator.git
 
 apps.ssvfx-3de-playblast.location:
-  type: dev
-  name: ssvfx-3de-playblast
-  path: \\10.80.8.252\VFX_Pipeline\Pipeline\Configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-3de-playblast
+  type: git
+  version: v1.0.0
+  path: https://github.com/ssvfx41/ssvfx-3de-playblast.git
         
