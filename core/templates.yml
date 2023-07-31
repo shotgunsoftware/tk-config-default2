@@ -30,7 +30,6 @@ includes:
 - ./includes/mari_templates.yml
 - ./includes/outsource_templates.yml
 - ./includes/submitter_templates.yml
-
 - ./includes/3dequalizer_templates.yml
 #
 # The keys section contains the definitions for all the different keys that are being
