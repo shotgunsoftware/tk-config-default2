@@ -23,11 +23,11 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.4.0
+  version: v0.4.2
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.8.0
+  version: v1.8.2
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
@@ -39,11 +39,11 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.21.0
+  version: v1.23.1
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.6.0
+  version: v2.6.7
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -55,23 +55,23 @@ apps.tk-multi-reviewsubmission.location:
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
-  version: v0.5.0
+  version: v0.5.1
 apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
-  version: v0.5.0
+  version: v0.5.1
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.8.0
+  version: v1.8.6
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
-  version: v0.9.0
+  version: v0.9.1
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.13.0
+  version: v0.13.6
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
@@ -116,10 +116,10 @@ apps.tk-houdini-mantranode.location:
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview
-  version: v1.2.0
+  version: v1.2.1
 apps.tk-nuke-writenode.location:
   type: git
-  version: v1.4.2.2
+  version: v1.6.0
   path: https://github.com/ssvfx41/tk-nuke-writenode.git
 
 # ---- Flame apps
@@ -138,8 +138,6 @@ apps.tk-mari-projectmanager.location:
   type: app_store
   version: v1.3.0
 frameworks: '@frameworks'
-
-
 # ---- tk-3dequalizer
 apps.tk-3dequalizer.location:
   name: tk-3dequalizer
@@ -155,4 +153,4 @@ apps.ssvfx-3de-playblast.location:
   type: git
   version: v1.0.0
   path: https://github.com/ssvfx41/ssvfx-3de-playblast.git
-        
+
