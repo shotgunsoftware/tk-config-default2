@@ -106,79 +106,79 @@ paths:
     # define the location of a work area
     houdini_shot_work_area:
         definition: '@shot_root/houdini'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # define the location of a publish area
     houdini_shot_publish_area:
         definition: '@shot_root/publish/houdini'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of WIP files
     houdini_shot_work:
         definition: '@houdini_shot_work_area/scenes/@houdini_shot_hipfile.{houdini_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of backups of WIP files
     houdini_shot_snapshot:
         definition: '@houdini_shot_work_area/snapshots/@houdini_shot_hipfile.{timestamp}.{houdini_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published houdini files
     houdini_shot_publish:
         definition: '@houdini_shot_publish_area/@houdini_shot_hipfile.{houdini_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     ######################################## ASSET WORK
     # define the location of a work area
     houdini_asset_work_area:
         definition: '@asset_root/work/houdini'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # define the location of a publish area
     houdini_asset_publish_area:
         definition: '@asset_root/publish/houdini'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of WIP files
     houdini_asset_work:
         definition: '@asset_root/work/houdini/scenes/@houdini_asset_hipfile.{houdini_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of backups of WIP files
     houdini_asset_snapshot:
         definition: '@asset_root/work/houdini/snapshots/@houdini_asset_hipfile.{timestamp}.{houdini_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published houdini files
     houdini_asset_publish:
         definition: '@asset_root/publish/houdini/@houdini_asset_hipfile.{houdini_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     ######################################## SHOT OUTPUT
     # Rendered images go to render root
     houdini_shot_render_step:
         definition: '@render_root/houdini/{task_name}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_render_step_ver:
         definition: '@render_root/houdini/{task_name}/version'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_render_root:
         definition: '@houdini_shot_render_step_ver/@houdini_shot_hipfile'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_render_exr:
         definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_render_multi_exr:
         definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{HSEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_render_multi_tiled_exr:
         definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{tile_index}.{HSEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # Additional mantra SHOT outputs stay in the project folder
     # ifd is "compiled" hip scene for rendering mantra still has to render it
     houdini_shot_ifd:
         definition: '@houdini_shot_render_step/ifds/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.ifd'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_vdb:
         definition: '@houdini_shot_render_step/vdbs/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.vdb'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # potentially very large file size deep camera maps
     houdini_shot_dcm:
         definition: '@houdini_shot_render_step/dcm/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.dcm'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_extra_plane:
         definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{aov_name}.{HSEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # Additional geometry Shot node outputs
     houdini_shot_work_geo_cache:
         definition: '@houdini_shot_cache_root/geometry/@houdini_shot_hipfile/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.bgeo.sc'
@@ -215,44 +215,44 @@ paths:
     # Playblast output
     houdini_shot_playblast_root:
         definition: '@render_root/houdini/{task_name}/flip'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_playblast_output:
         definition: '@houdini_shot_playblast_root/@houdini_shot_hipfile/@houdini_shot_hipfile'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_playblast_publishing:
         definition: '@houdini_shot_playblast_output.{HSEQ}.jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_shot_playblast_mov:
         definition: '@houdini_shot_playblast_output.mov'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
 
     ######################################## ASSET OUTPUT       
     # Rendered images
     houdini_asset_render_step:
         definition: '@asset_render_root/houdini/{task_name}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_render_step_ver:
         definition: '@asset_render_root/houdini/{task_name}/version'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_render_root:
         definition: '@houdini_asset_render_step_ver/@houdini_asset_hipfile'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_render_exr:
         definition: '@houdini_asset_render_root/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # Additional mantra outputs
     houdini_asset_ifd:
         definition: '@houdini_asset_render_step/ifds/@houdini_asset_hipfile/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.ifd'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_vdb:
         definition: '@houdini_asset_render_step/vdbs/@houdini_asset_hipfile/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.vdb'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_dcm:
         definition: '@houdini_asset_render_step/dcms/@houdini_asset_hipfile/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.dcm'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_extra_plane:
         definition: '@houdini_asset_render_root_{aov_name}/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # Additional geometry Asset cache node outputs
     houdini_asset_work_geo_cache:
         definition: '@houdini_asset_cache_root/geometry/@houdini_asset_hipfile/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.bgeo.sc'
@@ -280,13 +280,13 @@ paths:
     # playblast output
     houdini_asset_playblast_root:
         definition: '@asset_render_root/houdini/{task_name}/flip'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_playblast_output:
         definition: '@houdini_asset_playblast_root/@houdini_asset_hipfile/@houdini_asset_hipfile'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_playblast_publishing:
         definition: '@houdini_asset_playblast_output.{HSEQ}.jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     houdini_asset_playblast_mov:
         definition: '@houdini_asset_playblast_output.mov'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
