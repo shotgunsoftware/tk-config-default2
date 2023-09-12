@@ -136,7 +136,7 @@ apps.tk-flame-review.location:
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.3.0
+  version: v1.3.1
 frameworks: '@frameworks'
 # ---- tk-3dequalizer
 apps.tk-3dequalizer.location:
