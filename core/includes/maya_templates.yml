@@ -72,96 +72,96 @@ paths:
     # define the location of a work area
     maya_shot_work_area:
         definition: '@shot_root/maya'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # define the location of a publish area
     maya_shot_publish_area:
         definition: '@shot_root/publish/maya'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of WIP files
     maya_shot_work:
         definition: '@shot_root/maya/scenes/{Shot}_{task_name}[_{name}]_v{version}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
         
     # The location of backups of WIP files
     maya_shot_snapshot:
         definition: '@shot_root/maya/snapshots/{Shot}_{task_name}[_{name}]_v{version}_{timestamp}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published maya files
     maya_shot_publish:
         definition: '@shot_root/publish/maya/{Shot}_{task_name}[_{name}]_v{version}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # the Location of Maya published Camera's
     maya_shot_camera_publish:
         definition: '@shot_root/publish/maya/cameras/{Shot}_{task_name}[_{name}]_v{version}.abc'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     
     ########################################ASSET WORK
     # define the location of a work area
     maya_asset_work_area:
         definition: '@asset_root/work/maya'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # define the location of a publish area
     maya_asset_publish_area:
         definition: '@asset_root/publish/maya'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of WIP files
     maya_asset_work:
         definition: '@asset_root/work/maya/scenes/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of backups of WIP files
     maya_asset_snapshot:
         definition: '@asset_root/work/maya/snapshots/{Asset}_{task_name}[_{name}]_v{version}_{timestamp}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published maya files
     maya_asset_publish:
         definition: '@asset_root/publish/maya/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # # The location of published maya geometry files
     asset_alembic_cache:
         definition: '@asset_root/publish/maya/geometry/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published maya shader files
     maya_shader_network_publish:
         definition: '@asset_root/publish/maya/surfacing/{Asset}_{task_name}[_{name}]_v{version}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # the Location of Maya published Camera's
     maya_asset_camera_publish:
         definition: '@asset_root/publish/maya/cameras/{Asset}_{task_name}[_{name}]_v{version}.abc'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published maya assembly definition files
     maya_asset_assembly_publish:
         definition: '@asset_root/publish/maya/{Asset}_{task_name}[_{name}]_assembly_v{version}.{maya_extension}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_standin_publish:
         definition: '@asset_root/publish/maya/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.ass'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     
     ########################################SHOT OUTPUT
     # version output
     maya_shot_renders_step:
         definition: '@render_root/maya/{task_name}/version'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_render_stub:
         definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_render_layer:
         definition: '@maya_shot_render_stub/{maya.layer_name}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_render_thumb_jpeg:
         definition: '@temp_shot_root/thumbnails/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.jpeg'
         root_name: 'secondary'
     maya_shot_render_exr:
         definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_render_jpg:
         definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_render_png:
         definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.png'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_render_exr_pub:
         definition: '@render_root/maya/{task_name}/publish/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # # Maya Simulations output 
     # fxd = fume effects
     maya_shot_sim_ffx:
@@ -199,58 +199,58 @@ paths:
     # review output
     maya_shot_playblast_root:
         definition: '@render_root/maya/{task_name}/playblast/{Shot}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_playblast_output:
         definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_playblast_publishing:
         definition: '@maya_shot_playblast_root/{Shot}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}.{SEQ}.jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_quicktime_quick:
         definition: '@render_root/maya/{task_name}/review/quickdaily/{Shot}[_{name}]_v{version}_{iteration}.mov'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_shot_render_filmstrip:
         definition: '@render_root/maya/{task_name}/review/{Shot}_review/{Shot}[_{name}]_review_v{version}.{SEQ}.png'
-        root_name: 'project_pipeline' 
+        root_name: 'project_storage_pix'
 
     ######################################## ASSET OUTPUT       
     # Render location for asset renders
     maya_asset_renders_step:
         definition: '@asset_render_root/maya/{task_name}/version'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_renders_stub:
         definition: '@asset_render_root/maya/{task_name}/version/{Asset}_{task_name}[_{name}]_v{version}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_renders_layer:
         definition: '@maya_asset_renders_stub/{maya.layer_name}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_render_thumb_jpeg:
         definition: '@temp_shot_root/thumbnails/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{name}]_v{version}.jpeg'
         root_name: 'secondary'
     maya_asset_render_exr:
         definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_render_jpg:
         definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_render_jpeg:
         definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]jpeg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_render_png:
         definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]png'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_render_exr_pub:
         definition: '@asset_render_root/maya/{task_name}/publish/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{name}]_v{version}.{SEQ}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_playblast_root:
         definition: '@asset_render_root/maya/{task_name}/playblast/{Asset}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_playblast_output:
         definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     maya_asset_playblast_publishing:
         definition: '@maya_asset_playblast_root/{Asset}_{task_name}[_{maya.techpass_name}][_{name}]_pb_v{version}.{SEQ}.jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # # Maya Simulations output
     # maya_asset_sim:
     #     definition: '@asset_context/maya/{task_name}/caches/sim/{Asset}_{task_name}_v{version}/{Asset}_{task_name}_v{version}.fxd'

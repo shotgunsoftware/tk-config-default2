@@ -16,61 +16,61 @@ paths:
     # define the location of a work area
     max_shot_work_area:
         definition: '@shot_root/work/3dsmax'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # define the location of a publish area
     max_shot_publish_area:
         definition: '@shot_root/publish/3dsmax'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of WIP files
     max_shot_work:
         definition: '@shot_root/work/3dsmax/{Shot}_{task_name}[_{name}]_v{version}.max'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of backups of WIP files
     max_shot_snapshot:
         definition: '@shot_root/work/3dsmax/snapshots/{Shot}_{task_name}[_{name}]_v{version}.{timestamp}.max'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published max files
     max_shot_publish:
         definition: '@shot_root/publish/3dsmax/{Shot}_{task_name}_v{version}.max'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     ########################################ASSET WORK
     # define the location of a work area
     max_asset_work_area:
         definition: '@asset_root/work/3dsmax'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # define the location of a publish area
     max_asset_publish_area:
         definition: '@asset_root/publish/3dsmax'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of WIP files
     max_asset_work:
         definition: '@asset_root/work/3dsmax/{Asset}_{task_name}[_{name}]_v{version}.max'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of backups of WIP files
     max_asset_snapshot:
         definition: '@asset_root/work/3dsmax/snapshots/{Asset}_{task_name}[_{name}]_v{version}.{timestamp}.max'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # The location of published max files
     max_asset_publish:
         definition: '@asset_root/publish/3dsmax/{Asset}_{task_name}_v{version}.max'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     ########################################SHOT OUTPUT
     # version output
     max_shot_renders_step:
         definition: '@render_root/3dsmax/{task_name}/version/'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_shot_render_exr:
         definition: '@render_root/3dsmax/{task_name}/version/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_shot_render_jpg:
         definition: '@render_root/3dsmax/{task_name}/version/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}.jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_shot_render_png:
         definition: '@render_root/3dsmax/{task_name}/version/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}.png'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_shot_render_exr_pub:
         definition: '@render_root/3dsmax/{task_name}/publish/{Shot}_{task_name}_v{version}/{Shot}_{task_name}_v{version}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # 3dMax Simulations output
     max_shot_sim_ffx:
         definition: '@shot_context/3dsmax/{task_name}/caches/sim/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}/{Shot}_{task_name}[_{3dsmax.render.output}]_v{version}.fxd'
@@ -82,27 +82,27 @@ paths:
      # review output
     max_shot_quicktime_quick:
         definition: '@temp_shot_root/3dsmax/{task_name}/review/quickdaily/{Shot}_v{version}_{iteration}.mov'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_shot_render_movie:
         definition: '@temp_shot_root/3dsmax/{task_name}/review/{Shot}_review/{Shot}_review_v{version}.mov'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_shot_render_filmstrip:
         definition: '@temp_shot_root/3dsmax/{task_name}/review/{Shot}_revie/{Shot}_review_v{version}.png'
-        root_name: 'project_pipeline' 
+        root_name: 'project_storage_pix'
     ########################################ASSET OUTPUT       
     # Render location for asset renders
     max_asset_render_exr:
         definition: '@asset_render_root/3dsmax/{task_name}/version/{Asset}_{task_name}[_{3dsmax.render.output}]_v{version}/{Asset}_{task_name}[_{3dsmax.render.output}]_v{version}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_asset_render_jpg:
         definition: '@asset_render_root/3dsmax/{task_name}/version/{Asset}_{task_name}[_{3dsmax.render.output}]_v{version}/{Asset}_{task_name}[_{3dsmax.render.output}]_v{version}.jpg'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_asset_render_png:
         definition: '@asset_render_root/3dsmax/{task_name}/version/{Asset}_{task_name}[_{3dsmax.render.output}]_v{version}/{Asset}_{task_name}[_{3dsmax.render.output}]_v{version}.png'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     max_asset_render_exr_pub:
         definition: '@asset_render_root/3dsmax/{task_name}/version/{Asset}_{task_name}_v{version}/{Asset}_{task_name}_v{version}.exr'
-        root_name: 'project_pipeline'
+        root_name: 'project_storage_pix'
     # 3dMax Simulations output
     max_asset_sim:
         definition: '@asset_context/3dsmax/{task_name}/caches/sim/{Asset}_{task_name}[_{3dsmax.cache.output}]_v{version}/{Asset}_{task_name}[_{3dsmax.cache.output}]_v{version}.fxd'
@@ -111,4 +111,3 @@ paths:
     max_asset_cache_alembic:
         definition: '@asset_context/3dsmax/{task_name}/caches/geometry/{Asset}_{task_name}[_{3dsmax.cache.output}]_v{version}/{Asset}_{task_name}[_{3dsmax.cache.output}]_v{version}.abc'
         root_name: 'caches'
-
