@@ -15,7 +15,6 @@ includes:
   - ../app_locations.yml
   - ../engine_locations.yml
   - ./tk-houdini-alembicnode.yml
-  - ./tk-houdini-fbxnode.yml
   - ./tk-houdini-cachenode.yml
   - ./tk-houdini-mantranode.yml
   - ./tk-houdini-flipbook.yml
@@ -64,7 +63,6 @@ settings.tk-houdini.asset_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.asset_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.asset_step"
-    tk-houdini-fbxnode: "@settings.tk-houdini-fbxnode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
     tk-houdini-flipbook: "@settings.tk-houdini-flipbook.asset_step"
     tk-houdini-arnold: "@settings.tk-houdini-arnold.asset_step"
@@ -141,7 +139,6 @@ settings.tk-houdini.shot_step:
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.shot_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.shot_step"
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.shot_step"
-    tk-houdini-fbxnode: "@settings.tk-houdini-fbxnode.shot_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
     tk-houdini-flipbook: "@settings.tk-houdini-flipbook.shot_step"
     tk-houdini-arnold: "@settings.tk-houdini-arnold.shot_step"

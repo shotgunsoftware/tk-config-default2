@@ -183,13 +183,6 @@ apps.tk-houdini-alembicnode.location:
   name: tk-houdini-alembicnode
   version: v0.5.1
 
-# houdini fbxnode
-apps.tk-houdini-fbxnode.location:
-  type: github_release
-  organization: nfa-vfxim
-  repository: tk-houdini-fbxnode
-  version: 1.0.0
-
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
   type: app_store
@@ -238,6 +231,13 @@ apps.tk-houdini-template.location:
   repository: tk-houdini-template
   version: 0.1.0
 
+# houdini splash screen
+apps.tk-houdini-splashscreen.location:
+  type: github_release
+  organization: maximumfx
+  repository: tk-houdini-splashscreen
+  version: 1.0.2
+
 # ---- Nuke apps
 
 # quickreview
@@ -252,7 +252,7 @@ apps.tk-nuke-writenode.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-writenode
-  version: 2.1.1
+  version: 2.1.2
 
 # template
 apps.tk-nuke-template.location:

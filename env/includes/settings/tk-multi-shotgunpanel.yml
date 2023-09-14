@@ -36,8 +36,6 @@ settings.tk-multi-shotgunpanel.3dsmaxplus: &settings_tk-multi-shotgunpanel_3dsma
     PublishedFile:
     - actions: [import]
       filters: {published_file_type: Alembic Cache}
-    - actions: [import]
-      filters: {published_file_type: Fbx Cache}
     - actions: [texture_node]
       filters: {published_file_type: Image}
     - actions: [reference, import]
