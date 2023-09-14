@@ -8,7 +8,6 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-include: ../env/includes/unreal/templates.yml
 
 #
 # This file is one of the central points in the Shotgun Pipeline Toolkit configuration and
