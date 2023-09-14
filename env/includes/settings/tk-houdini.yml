@@ -15,6 +15,7 @@ includes:
   - ../app_locations.yml
   - ../engine_locations.yml
   - ./tk-houdini-alembicnode.yml
+  - ./tk-houdini-fbxnode.yml
   - ./tk-houdini-cachenode.yml
   - ./tk-houdini-mantranode.yml
   - ./tk-houdini-flipbook.yml
