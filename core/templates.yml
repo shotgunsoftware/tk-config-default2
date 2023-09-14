@@ -215,6 +215,12 @@ paths:
   hiero_project_publish_area:
     definition: "02_source/editorial/publish"
 
+  #
+  # Houdini
+  #
+  houdini_splash_screen:
+    definition: "00_pipeline/houdini/splash_screen.jpg"
+
   ##########################################################################################
 
   # OCIO config path

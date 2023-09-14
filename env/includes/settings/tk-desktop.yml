@@ -19,6 +19,7 @@ includes:
 - ./tk-multi-screeningroom.yml
 - ./tk-desktop-libraryimporter.yml
 - ./tk-desktop-deliveries.yml
+- ./tk-houdini-splashscreen.yml
 
 ################################################################################
 
@@ -43,6 +44,7 @@ settings.tk-desktop.project:
     tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-houdini-splashscreen: "@settings.tk-houdini-splashscreen"
   groups:
   - matches:
     - "*Deliveries*"
