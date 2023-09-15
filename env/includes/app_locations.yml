@@ -185,13 +185,14 @@ apps.tk-houdini-alembicnode.location:
 
 # houdini fbxnode
 apps.tk-houdini-fbxnode.location:
-  type: github_release
-  organization: nfa-vfxim
-  repository: tk-houdini-fbxnode
-  version: 1.0.0
+  # type: github_release
+  # organization: nfa-vfxim
+  # repository: tk-houdini-fbxnode
+  # version: 1.0.0
   # name: tk-houdini-fbxnode
   # version: v0.5.1
-  # path: C:/Users/Wouter.Lichtenbelt/Documents/dev2_nfa/app/tk-houdini-fbx-master
+  type: dev
+  path: C:/Users/Wouter.Lichtenbelt/Documents/tk-houdini-fbxnode/tk-houdini-fbxnode
 
 
 
