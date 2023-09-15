@@ -62,6 +62,7 @@ settings.tk-houdini.asset_step:
     tk-multi-snapshot: "@settings.tk-multi-snapshot.houdini.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.houdini.asset_step"
     tk-houdini-alembicnode: "@settings.tk-houdini-alembicnode.asset_step"
+    tk-houdini-fbxnode: "@settings.tk-houdini-fbxnode.shot_step"
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
     tk-houdini-flipbook: "@settings.tk-houdini-flipbook.asset_step"
