@@ -63,6 +63,7 @@ workspace -fr "teClipExports" "Time Editor/Clip Exports";
 workspace -fr "ASS" "data";
 workspace -fr "audio" "sound";
 workspace -fr "Alembic" "data";
+workspace -fr "fbx" "data";
 workspace -fr "illustrator" "data";
 workspace -fr "diskCache" "data";
 workspace -fr "WIRE_ATF" "data";

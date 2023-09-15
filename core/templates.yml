@@ -354,6 +354,9 @@ paths:
   # Alembic caches
   houdini_shot_work_alembic_cache:
     definition: "@shot_root/houdini/cache/alembic/{houdini.node}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.abc"
+  # Fbx caches
+  houdini_shot_work_fbx_cache:
+    definition: "@shot_root/houdini/cache/fbx/{houdini.node}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.fbx"
   # File work caches
   houdini_shot_work_file_cache:
     definition: "@shot_root/houdini/cache/bgeo/{name}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
@@ -549,6 +552,9 @@ paths:
   # Alembic caches
   houdini_asset_work_alembic_cache:
     definition: "@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Projectcode}_{Asset}_{Step}_work_v{version}.abc"
+  # fbx caches
+  houdini_asset_work_fbx_cache:
+    definition: "@asset_root/houdini/cache/fbx/{name}/{houdini.node}/v{version}/{Projectcode}_{Asset}_{Step}_work_v{version}.fbx"
   # File work caches
   houdini_asset_work_file_cache:
     definition: "@asset_root/houdini/cache/bgeo/{name}/v{version}/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"

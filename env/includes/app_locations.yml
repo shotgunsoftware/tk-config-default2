@@ -183,6 +183,13 @@ apps.tk-houdini-alembicnode.location:
   name: tk-houdini-alembicnode
   version: v0.5.1
 
+# houdini fbxnode
+apps.tk-houdini-fbxnode.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini-fbxnode
+  version: 1.0.1
+
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
   type: app_store
