@@ -66,7 +66,7 @@ settings.tk-multi-shotgunpanel.houdini:
     - actions: [import]
       filters: {published_file_type: Alembic Cache}
     - actions: [import]
-      filters: {published_file_type: Fbx Cache}
+      filters: {published_file_type: FBX Cache}
     - actions: [merge]
       filters: {published_file_type: Houdini Scene}
     - actions: [file_cop]
