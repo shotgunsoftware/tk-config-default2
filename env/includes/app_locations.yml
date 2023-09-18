@@ -282,6 +282,14 @@ apps.tk-mari-projectmanager.location:
   type: app_store
   version: v1.3.1
 
+# ----- Unreal
+apps.tk-unreal.location:
+  version: v1.2.0
+  type: github_release
+  organization: ue4plugins
+  repository: tk-unreal
+
+
 ################################################################################
 # reference all of the common frameworks
 frameworks: '@frameworks'
