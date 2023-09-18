@@ -80,3 +80,11 @@ frameworks:
       type: app_store
       name: tk-framework-lmv
       version: v0.2.2
+
+  # ue4plugins Toolkit related to unreal
+  tk-framework-unrealqt_v1.x.x:
+        location:
+          version: v1.2.2
+          type: github_release
+          organization: ue4plugins
+          repository: tk-framework-unrealqt
