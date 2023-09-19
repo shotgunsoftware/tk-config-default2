@@ -60,6 +60,7 @@ settings.tk-desktop.project:
     - "*Max*"
     - "*Maya*"
     - "*Motion*"
+    - "*Unreal*"
     name: 3D
   - matches:
     - "*Hiero*"
