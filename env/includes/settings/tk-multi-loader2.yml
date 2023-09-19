@@ -374,3 +374,31 @@ settings.tk-multi-loader2.vred:
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
+
+#Unreal
+settings.tk-multi-loader2.unreal:
+  action_mappings:
+    Motion Builder FBX: [import_content, import_level]
+    Maya FBX: [import_content]
+    Unreal FBX: [import_content]
+  actions_hook: '{engine}/tk-multi-loader2/tk-unreal_actions.py'
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_asset_type, code]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, '{context.project}']
+    hierarchy: [sg_sequence, code]
+  - caption: My Tasks
+    type: Query
+    entity_type: Task
+    filters:
+    - [project, is, '{context.project}']
+    - [task_assignees, is, '{context.user}']
+    hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"

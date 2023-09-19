@@ -324,3 +324,14 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {}
   actions_hook: "{engine}/tk-multi-shotgunpanel/basic/scene_actions.py"
   location: "@apps.tk-multi-shotgunpanel.location"
+
+# Unreal
+settings.tk-multi-shotgunpanel.unreal:
+  actions_hook: '{self}/general_actions.py:{engine}/tk-multi-shotgunpanel/tk-unreal_actions.py'
+  action_mappings:
+    PublishedFile:
+    - actions: [publish_clipboard]
+      filters: {}
+  # Disable context switching since we only have a Project context.
+  enable_context_switch: false
+  location: "@apps.tk-multi-shotgunpanel.location"
