@@ -103,6 +103,7 @@ settings.tk-nuke.asset_step:
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
     tk-multi-publish2: "@settings.tk-multi-publish2.nuke.asset_step"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.asset"
+    tk-multi-deadlinereviewsubmission: "@settings.tk-multi-deadlinereviewsubmission.comp.asset"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nuke"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.nuke.asset_step"
