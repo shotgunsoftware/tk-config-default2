@@ -231,6 +231,13 @@ apps.tk-houdini-template.location:
   repository: tk-houdini-template
   version: 0.1.0
 
+# houdini splash screen
+apps.tk-houdini-splashscreen.location:
+  type: github_release
+  organization: maximumfx
+  repository: tk-houdini-splashscreen
+  version: 1.0.2
+
 # ---- Nuke apps
 
 # quickreview

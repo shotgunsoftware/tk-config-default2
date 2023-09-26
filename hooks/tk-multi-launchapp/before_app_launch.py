@@ -49,6 +49,15 @@ class BeforeAppLaunch(sgtk.Hook):
 
         if engine_name == "tk-houdini":
             ########################################
+            """Setting splash screen"""
+            splash = self.parent.engine.apps.get('tk-houdini-splashscreen')
+            if splash is not None:
+                self.parent.log_info('Initializing Houdini Splash Screen')
+                splash.create_splash(app_path, app_args, version)
+            else:
+                self.parent.log_info('Something went wrong while initializing tk-houdini-splashscreen')
+
+            ########################################
             """Setting render engine environment"""
 
             # Finding render engine entity
