@@ -189,7 +189,7 @@ settings.tk-multi-workfiles2.houdini:
       filters:
       link_field: entity
       hierarchy: [step]
-  ui_config_hook: "{self}/ui_config.py:{self}/ui_config_tk-houdini.py"
+  ui_config_hook: '{self}/ui_config.py:{engine}/tk-multi-workfiles2/basic/ui_config.py'
   location: "@apps.tk-multi-workfiles2.location"
 
 # Houdini launches at startup.
@@ -214,7 +214,7 @@ settings.tk-multi-workfiles2.houdini.launch_at_startup:
       filters:
       link_field: entity
       hierarchy: [step]
-  ui_config_hook: "{self}/ui_config.py:{self}/ui_config_tk-houdini.py"
+  ui_config_hook: '{self}/ui_config.py:{engine}/tk-multi-workfiles2/basic/ui_config.py'
   location: "@apps.tk-multi-workfiles2.location"
 
 # asset_step
@@ -242,7 +242,7 @@ settings.tk-multi-workfiles2.houdini.asset_step:
       filters:
       link_field: entity
       hierarchy: [step]
-  ui_config_hook: "{self}/ui_config.py:{self}/ui_config_tk-houdini.py"
+  ui_config_hook: '{self}/ui_config.py:{engine}/tk-multi-workfiles2/basic/ui_config.py'
   location: "@apps.tk-multi-workfiles2.location"
 
 # shot_step
@@ -270,7 +270,7 @@ settings.tk-multi-workfiles2.houdini.shot_step:
       filters:
       link_field: entity
       hierarchy: [step]
-  ui_config_hook: "{self}/ui_config.py:{self}/ui_config_tk-houdini.py"
+  ui_config_hook: '{self}/ui_config.py:{engine}/tk-multi-workfiles2/basic/ui_config.py'
   location: '@apps.tk-multi-workfiles2.location'
 
 ################################################################################
