@@ -49,9 +49,10 @@ apps.tk-multi-loader2.location:
   name: tk-multi-loader2
   version: v1.23.1
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.6.8
+  type: git_branch
+  branch: SG-32840-standalone-publish-pdf
+  path: git://https://github.com/shotgunsoftware/tk-multi-publish2.git
+  version: d336c06
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
