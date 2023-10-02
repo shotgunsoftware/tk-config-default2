@@ -80,3 +80,11 @@ frameworks:
       type: app_store
       name: tk-framework-lmv
       version: v0.2.2
+
+  # # unrealqt - PySide build for Unreal (Windows-only)
+  # # Needed for unreal and substance painter
+   tk-framework-unrealqt_v1.x.x:
+    location:
+      type: git
+      path: https://github.com/ue4plugins/tk-framework-unrealqt.git
+      version: v1.2.3

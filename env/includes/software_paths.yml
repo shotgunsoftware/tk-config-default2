@@ -31,3 +31,8 @@ path.windows.hiero: C:/Program Files/Nuke13.2v3/Nuke13.2.exe
 path.linux.rv: "rv"
 path.mac.rv: "/Applications/RV.app"
 path.windows.rv: C:\Program Files\ShotGrid\RV-2021.1.0\bin\rv.exe
+
+#Substance Painter
+path.linux.substance_painter: "Adobe Substance 3D Painterr"
+path.mac.substance_painter: "/Applications/Adobe Substance 3D Painter.app"
+path.windows.substance_painter: C:\Program Files\Adobe\Adobe Substance 3D Painter\Adobe Substance 3D Painter.exe

@@ -146,13 +146,13 @@ keys:
     default: psd
     alias: extension
 
-
+  # Substance supports two extension types.
   texture_extension:
-      type: str
-      alias: extension
-
-  texture_name:
-      type: str
+    type: str
+    alias: extension
+    
+  channel:
+    type: str
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -637,6 +637,52 @@ paths:
   # The location of published nuke script files
   nuke_asset_publish:
     definition: "@asset_publish/nuke/{Projectcode}_{Asset}_{Step}_{name}_pub_v{version}.nk"
+
+
+  
+  # Substance Painter
+  #
+
+  # asset
+  # define the location of a work area
+  asset_work_area_substancepainter:
+    definition: '@asset_root/work/substancepainter'
+    root_name: 'primary'
+
+  # define the location of a publish area
+  asset_publish_area_substancepainter:
+    definition: '@asset_root/publish/substancepainter'
+    root_name: 'primary'
+
+  # The location of WIP files
+  substancepainter_asset_work:
+    definition: '@asset_work_area_substancepainter/{name}.v{version}.spp'
+    root_name: 'primary'
+
+  # The location of backups of WIP files
+  substancepainter_asset_snapshot:
+    definition: '@asset_work_area_substancepainter/snapshots/{name}.v{version}.{timestamp}.spp'
+    root_name: 'primary'
+
+  # The folder where the textures are exported for a project
+  substancepainter_asset_textures_path_export:
+    definition: '@asset_work_area_substancepainter/export'
+    root_name: 'primary'
+
+  # The location of published substance painter files
+  substancepainter_asset_publish:
+    definition: '@asset_publish_area_substancepainter/{name}.v{version}.spp'
+    root_name: 'primary'
+
+  # a texture folder publish
+  substancepainter_asset_textures_path_publish:
+    definition: '@asset_publish_area_substancepainter/textures/{Asset}_textures_v{version}'
+    root_name: 'primary'
+
+  # a texture folder publish
+  substancepainter_asset_texture_path_publish:
+    definition: '@asset_publish_area_substancepainter/textures/{Asset}_{channel}_v{version}.{texture_extension}'
+    root_name: 'primary'
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
