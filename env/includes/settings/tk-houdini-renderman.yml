@@ -29,11 +29,25 @@ includes:
 settings.tk-houdini-renderman.asset_step:
   work_file_template: houdini_asset_work
   output_render_template: houdini_asset_render
-  output_aov_template: houdini_asset_extra_plane
+  render_metadata:
+    - { key: camera, type: string, expression: chsop("camera"), group: camera }
+    - { key: pixelVariance, type: float, expression: ch("ri_Ri_PixelVariance"), group: renderer }
+    - { key: maxSamples, type: int, expression: ch("ri_hider_maxsamples"), group: renderer }
+    - { key: renderer, type: string, expression: chs("renderer_variant"), group: renderer }
+    - { key: integrator, type: string, expression: chs("../integrator"), group: renderer }
+    - { key: hipfile, type: string, expression: $HIPFILE, group: scene }
+    - { key: fps, type: string, expression: $FPS, group: scene }
   location: "@apps.tk-houdini-renderman.location"
 
 settings.tk-houdini-renderman.shot_step:
   work_file_template: houdini_shot_work
   output_render_template: houdini_shot_render
-  output_aov_template: houdini_shot_extra_plane
+  render_metadata:
+    - { key: camera, type: string, expression: chsop("camera"), group: camera }
+    - { key: pixelVariance, type: float, expression: ch("ri_Ri_PixelVariance"), group: renderer }
+    - { key: maxSamples, type: int, expression: ch("ri_hider_maxsamples"), group: renderer }
+    - { key: renderer, type: string, expression: chs("renderer_variant"), group: renderer }
+    - { key: integrator, type: string, expression: chs("../integrator"), group: renderer }
+    - { key: hipfile, type: string, expression: $HIPFILE, group: scene }
+    - { key: fps, type: string, expression: $FPS, group: scene }
   location: "@apps.tk-houdini-renderman.location"
