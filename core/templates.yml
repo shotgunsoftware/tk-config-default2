@@ -662,7 +662,7 @@ paths:
 
   # The folder where the textures are exported for a project
   substancepainter_asset_textures_path_export:
-    definition: '@asset_root/substancepainter/textures/{name}_v{version}'
+    definition: '@asset_root/substancepainter/textures/v{version}/{name}_v{version}'
 
   # The location of published substance painter files
   substancepainter_asset_publish:
@@ -670,11 +670,11 @@ paths:
 
   # a texture folder publish
   substancepainter_asset_textures_path_publish:
-    definition: '@asset_publish/substancepainter/textures/{name}_v{version}'
+    definition: '@asset_publish/textures/v{version}/{name}_v{version}'
 
   # a texture folder publish
   substancepainter_asset_texture_path_publish:
-    definition: '@asset_publish/textures/{Step}/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}'
+    definition: '@asset_publish/textures/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}'
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
