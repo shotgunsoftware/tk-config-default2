@@ -81,4 +81,3 @@ settings.tk-substancepainter.project:
   substance_painter_path_mac: "@path.mac.substance_painter"
   substance_painter_path_windows: "@path.windows.substance_painter"
   location: "@engines.tk-substancepainter.location"
-  # compatibility_dialog_min_version: 2021
