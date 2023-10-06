@@ -111,6 +111,13 @@ engines.tk-vred.location:
   name: tk-vred
   version: v2.1.4
 
+#Substance Painter
+engines.tk-substancepainter.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-substancepainter
+  version: 1.0.1
+
 # Unreal
 engines.tk-unreal.location:
   version: v1.2.0

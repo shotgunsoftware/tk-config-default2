@@ -35,6 +35,8 @@ includes:
 - ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-substancepainter.yml
+
 
 
 ################################################################################
@@ -54,6 +56,7 @@ engines:
   tk-vred: "@settings.tk-vred.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
+  tk-substancepainter: "@settings.tk-substancepainter.asset"
 
 ################################################################################
 # reference all of the common frameworks
