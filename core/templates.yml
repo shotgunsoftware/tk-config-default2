@@ -666,22 +666,22 @@ paths:
 
   # The folder where the textures are exported for a project
   substancepainter_asset_textures_path_export:
-    definition: '@asset_rootr/substancepainter/textures/{name}_v{version}'
+    definition: '@asset_root/substancepainter/textures/{name}_v{version}'
     root_name: 'primary'
 
   # The location of published substance painter files
   substancepainter_asset_publish:
-    definition: '@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_{name}_pub_{name}_v{version}.spp'
+    definition: '@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.spp'
     root_name: 'primary'
 
   # a texture folder publish
   substancepainter_asset_textures_path_publish:
-    definition: '@asset_rootr/substancepainter/textures/{name}_v{version}''
+    definition: '@asset_publish/substancepainter/textures/{name}_v{version}'
     root_name: 'primary'
 
   # a texture folder publish
   substancepainter_asset_texture_path_publish:
-    definition: '@asset_publish/textures/{name}/v{version}/{Projectcode}_{Asset}_{channel}_{name}_v{version}.{texture_extension}'
+    definition: '@asset_publish/textures/{Step}/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}'
     root_name: 'primary'
 
 #
