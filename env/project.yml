@@ -31,6 +31,7 @@ includes:
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-substancepainter.yml
+- ./includes/settings/tk-unreal.yml
 
 ################################################################################
 # configuration for all engines to load in a project context
@@ -54,6 +55,7 @@ engines:
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
   tk-substancepainter: "@settings.tk-substancepainter.project"
+  tk-unreal: "@settings.tk-unreal.project"
 
 
 ################################################################################

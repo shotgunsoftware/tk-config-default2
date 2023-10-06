@@ -63,6 +63,7 @@ settings.tk-desktop.project:
     - "*Maya*"
     - "*Motion*"
     - "*Substance Painter*"
+    - "*Unreal*"
     name: 3D
   - matches:
     - "*Hiero*"

@@ -85,6 +85,7 @@ frameworks:
   # Needed for unreal and substance painter
   tk-framework-unrealqt_v1.x.x:
     location:
-      type: git
-      path: https://github.com/ue4plugins/tk-framework-unrealqt.git
       version: v1.2.3
+      type: github_release
+      organization: ue4plugins
+      repository: tk-framework-unrealqt
