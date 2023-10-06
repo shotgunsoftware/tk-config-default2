@@ -30,6 +30,9 @@ settings.tk-multi-publish2.standalone:
   - name: Upload for review
     hook: "{self}/upload_version.py"
     settings: {}
+  - name: Upload PDF for review 
+    hook: "{self}/upload_version.py:{self}/upload_version_pdf.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
