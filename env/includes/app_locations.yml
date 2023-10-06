@@ -49,9 +49,10 @@ apps.tk-multi-loader2.location:
   name: tk-multi-loader2
   version: v1.23.1
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.6.9
+  type: git_branch
+  branch: ticket/SHOT-4310-publish-ppt-to-pdf
+  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
+  version: 825f3ef
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
