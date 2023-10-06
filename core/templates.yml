@@ -647,42 +647,34 @@ paths:
   # define the location of a work area
   asset_work_area_substancepainter:
     definition: '@asset_root/substancepainter'
-    root_name: 'primary'
 
   # define the location of a publish area
   asset_publish_area_substancepainter:
     definition: '@asset_publish/substancepainter'
-    root_name: 'primary'
 
   # The location of WIP files
   substancepainter_asset_work:
     definition: '@asset_root/substancepainter/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.spp'
-    root_name: 'primary'
 
   # The location of backups of WIP files
   substancepainter_asset_snapshot:
     definition: '@asset_root/substancepainter/snapshots/{Projectcode}_{Asset}_{Step}_snap_{name}_v{version}.{timestamp}.spp'
-    root_name: 'primary'
 
   # The folder where the textures are exported for a project
   substancepainter_asset_textures_path_export:
     definition: '@asset_root/substancepainter/textures/{name}_v{version}'
-    root_name: 'primary'
 
   # The location of published substance painter files
   substancepainter_asset_publish:
     definition: '@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.spp'
-    root_name: 'primary'
 
   # a texture folder publish
   substancepainter_asset_textures_path_publish:
     definition: '@asset_publish/substancepainter/textures/{name}_v{version}'
-    root_name: 'primary'
 
   # a texture folder publish
   substancepainter_asset_texture_path_publish:
     definition: '@asset_publish/textures/{Step}/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}'
-    root_name: 'primary'
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
