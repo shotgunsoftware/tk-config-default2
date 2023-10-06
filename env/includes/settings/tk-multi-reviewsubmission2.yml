@@ -1,0 +1,55 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+    - ../app_locations.yml
+    - ../software_paths.yml
+
+################################################################################
+
+# Houdini Flipbook
+settings.tk-multi-reviewsubmission2.houdini.asset_step:
+  company_name: NFA
+  work_file_template: houdini_asset_work
+  review_file_template: asset_review
+  nuke_path_windows: "@path.windows.hiero"
+  nuke_path_linux: "@path.linux.hiero"
+  nuke_path_mac: "@path.mac.hiero"
+  location: "@apps.tk-multi-reviewsubmission2.location"
+  
+settings.tk-multi-reviewsubmission2.houdini.shot_step:
+  company_name: NFA
+  work_file_template: houdini_shot_work
+  review_file_template: shot_review
+  nuke_path_windows: "@path.windows.hiero"
+  nuke_path_linux: "@path.linux.hiero"
+  nuke_path_mac: "@path.mac.hiero"
+  location: "@apps.tk-multi-reviewsubmission2.location"
+
+# Maya Playblast
+settings.tk-multi-reviewsubmission2.maya.asset_step:
+  company_name: NFA
+  work_file_template: maya_asset_work
+  review_file_template: asset_review
+  nuke_path_windows: "@path.windows.hiero"
+  nuke_path_linux: "@path.linux.hiero"
+  nuke_path_mac: "@path.mac.hiero"
+  location: "@apps.tk-multi-reviewsubmission2.location"
+  
+settings.tk-multi-reviewsubmission2.maya.shot_step:
+  company_name: NFA
+  work_file_template: maya_shot_work
+  review_file_template: shot_review
+  nuke_path_windows: "@path.windows.hiero"
+  nuke_path_linux: "@path.linux.hiero"
+  nuke_path_mac: "@path.mac.hiero"
+  location: "@apps.tk-multi-reviewsubmission2.location"

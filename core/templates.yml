@@ -294,6 +294,10 @@ paths:
   # Shot level paths
   #
 
+  # Review files
+  shot_review:
+    definition: '@shot_root/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_sRGB_v{version}.mov'
+
   #
   # Photoshop
   #
@@ -484,6 +488,9 @@ paths:
   ##########################################################################################
   # Asset pipeline
 
+  # Review files
+  asset_review:
+    definition: '@asset_root/previews/{name}/{Projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov'
 
   #
   # Photoshop
