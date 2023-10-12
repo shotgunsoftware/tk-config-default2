@@ -78,9 +78,12 @@ def swap_paths(json_data):
         if not isinstance(value, str):
             continue
 
-        if value.startswith("\\") or value.startswith("/"):
-            new_value = basic_utils.swap_render_path_root(value)
-            json_data[key] = os.path.abspath(new_value)
+        if value.startswith("\\\\") or value.startswith("//") or value.startswith("/mnt"):
+            new_value = os.path.abspath(basic_utils.swap_render_path_root(value))
+            json_data[key] = new_value
+            logger.info(value)
+            logger.info(json_data[key])
+            logger.info("==============")
 
 
 def run_post_fix(json_filepath):
@@ -101,6 +104,7 @@ def run_post_fix(json_filepath):
 
     logger.info("-----------------------------")
     logger.info("Updating paths for Windows...")
+    logger.info("==============")
     swap_paths(json_data)
     logger.info("Update complete.")
     logger.info("-----------------------------")
