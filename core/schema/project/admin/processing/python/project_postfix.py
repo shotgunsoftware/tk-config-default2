@@ -28,10 +28,10 @@ for repo in repos:
         )
 
 from sgpy.sg_tools import sg_connection
-from general.basic_utils import get_logger
+from general import basic_utils
 from general.file_functions import json_reader
 
-logger = get_logger(__name__)
+logger = basic_utils.get_logger(__name__)
 
 logger.info("Python Version: {}".format(sys.version))
 logger.info("----------------------------------\n")
@@ -60,6 +60,32 @@ def dict_nav(dictionary, sequence):
             return sub_dict
 
 
+def swap_paths(json_data):
+    """
+    Recursive function for correcting paths from the input json data.
+    Args:
+        json_data(dict): Json file data that is being processed.
+
+    Returns: Nothing, updates json data to sanitize paths.
+
+    """
+    for key, value in json_data.items():
+        # recursively fix paths in dictionaries
+        if isinstance(value, dict):
+            swap_paths(value)
+            continue
+
+        if not isinstance(value, str):
+            continue
+
+        if value.startswith("\\\\") or value.startswith("//") or value.startswith("/mnt"):
+            new_value = os.path.abspath(basic_utils.swap_render_path_root(value))
+            json_data[key] = new_value
+            logger.info(value)
+            logger.info(json_data[key])
+            logger.info("==============")
+
+
 def run_post_fix(json_filepath):
     """
     Default project post-fix process
@@ -75,6 +101,13 @@ def run_post_fix(json_filepath):
 
     logger.info("Loaded Json data successfully.")
     logger.info("---")
+
+    logger.info("-----------------------------")
+    logger.info("Updating paths for Windows...")
+    logger.info("==============")
+    swap_paths(json_data)
+    logger.info("Update complete.")
+    logger.info("-----------------------------")
 
     # Get shared variables from entity_info
     seq_ccc_path = dict_nav(
