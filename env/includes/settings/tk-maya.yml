@@ -16,7 +16,7 @@ includes:
 - ../engine_locations.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
-- ./tk-multi-reviewsubmission.yml
+- ./tk-multi-reviewsubmission2.yml
 - ./tk-multi-screeningroom.yml
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-snapshot.yml
@@ -52,7 +52,7 @@ settings.tk-maya.asset_step:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.maya"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.maya.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.asset_step"
-    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.maya"
+    tk-multi-reviewsubmission2: "@settings.tk-multi-reviewsubmission2.maya.asset_step"
     tk-multi-startup:
       location: "@apps.tk-multi-startup.location"
   menu_favourites:
@@ -120,7 +120,7 @@ settings.tk-maya.shot_step:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.maya"
     tk-multi-snapshot: "@settings.tk-multi-snapshot.maya.shot_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.shot_step"
-    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.maya"
+    tk-multi-reviewsubmission2: "@settings.tk-multi-reviewsubmission2.maya.shot_step"
     tk-multi-startup:
       location: "@apps.tk-multi-startup.location"
   menu_favourites:

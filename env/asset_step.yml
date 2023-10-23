@@ -29,6 +29,7 @@ includes:
 - ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-substancepainter.yml
 - ./includes/settings/tk-unreal.yml
 
 ################################################################################
@@ -50,6 +51,7 @@ engines:
   tk-vred: "@settings.tk-vred.asset_step"
   tk-shell: "@settings.tk-shell.asset_step"
   tk-shotgun: "@settings.tk-shotgun.asset_step"
+  tk-substancepainter: "@settings.tk-substancepainter.asset_step"
   tk-unreal: "@settings.tk-unreal.project"
 
 ################################################################################

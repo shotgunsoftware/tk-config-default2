@@ -1,0 +1,83 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# Author: Diego Garcia Huerta
+# Contact: https://www.linkedin.com/in/diegogh/
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ../software_paths.yml
+- ./tk-multi-breakdown.yml
+- ./tk-multi-loader2.yml
+- ./tk-multi-publish2.yml
+- ./tk-multi-screeningroom.yml
+- ./tk-multi-shotgunpanel.yml
+- ./tk-multi-snapshot.yml
+- ./tk-multi-workfiles2.yml
+
+################################################################################
+
+# asset
+settings.tk-substancepainter.asset:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.substancepainter"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.substancepainter.project"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  debug_logging: false
+  location: "@engines.tk-substancepainter.location"
+
+# asset_step
+settings.tk-substancepainter.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-loader2: "@settings.tk-multi-loader2.substancepainter"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.substancepainter"
+    tk-multi-publish2: "@settings.tk-multi-publish2.substancepainter.asset_step"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.substancepainter"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.substancepainter.asset_step"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.substancepainter.asset_step"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-snapshot, name: Snapshot...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
+  template_project: asset_work_area_substancepainter
+  location: "@engines.tk-substancepainter.location"
+
+# project
+settings.tk-substancepainter.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.substancepainter"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.substancepainter.project"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  substance_painter_path_linux: "@path.linux.substance_painter"
+  substance_painter_path_mac: "@path.mac.substance_painter"
+  substance_painter_path_windows: "@path.windows.substance_painter"
+  location: "@engines.tk-substancepainter.location"
