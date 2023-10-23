@@ -399,7 +399,7 @@ paths:
 
   # Rendered images
   houdini_shot_render:
-    definition: "@cg_shotrender/{name}/{write.output}/v{version}/{Projectcode}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@shot_root/renders/{name}/{write.output}/v{version}[/{aov_name}]/{Projectcode}_{Sequence}_{Shot}_{name}_{write.output}[_{aov_name}]_v{version}.{SEQ}.exr"
 
   # Additional outputs
   houdini_shot_extra_plane:
@@ -410,9 +410,6 @@ paths:
 
   houdini_shot_dcm:
     definition: "@cg_shotrender/{name}/v{version}/dcms/{Projectcode}_sc{Sequence}_{Shot}_{name}_v{version}.{SEQ}.dcm"
-
-  houdini_shot_extra_plane:
-    definition: "@cg_shotrender/{name}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{name}_{aov_name}_v{version}.{SEQ}.exr"
 
   houdini_shot_ass:
     definition: "@cg_shotrender/{name}/v{version}/ass/{Projectcode}_sc{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ass"
@@ -597,7 +594,7 @@ paths:
 
   # Rendered images
   houdini_asset_render:
-    definition: "@cg_assetrender/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@asset_root/renders/{name}/{write.output}/v{version}[/{aov_name}]/{Projectcode}_{Asset}_{Step}_{name}_{write.output}[_{aov_name}]_v{version}.{SEQ}.exr"
 
   # Additional outputs
   houdini_asset_extra_plane:
