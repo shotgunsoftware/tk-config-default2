@@ -90,6 +90,13 @@ apps.tk-multi-reviewsubmission.location:
   repository: tk-multi-reviewsubmission
   version: 1.1.1.3
 
+# reviewsubmission2
+apps.tk-multi-reviewsubmission2.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-multi-reviewsubmission2
+  version: 1.0.0.1
+
 # deadinereviewsubmission
 apps.tk-multi-deadlinereviewsubmission.location:
   type: github_release
@@ -203,13 +210,6 @@ apps.tk-houdini-cachenode.location:
   repository: tk-houdini-cachenode
   version: 0.3.3
 
-# houdini flipbook
-apps.tk-houdini-flipbook.location:
-  type: github_release
-  organization: nfa-vfxim
-  repository: tk-houdini-flipbook
-  version: 1.2.1
-
 # houdini arnold
 apps.tk-houdini-arnold.location:
   type: github_release
@@ -222,7 +222,7 @@ apps.tk-houdini-renderman.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-renderman
-  version: 0.3.2
+  version: 0.3.3
 
 # houdini usd
 apps.tk-houdini-usdrop.location:

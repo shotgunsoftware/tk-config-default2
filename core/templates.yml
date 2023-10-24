@@ -146,13 +146,13 @@ keys:
     default: psd
     alias: extension
 
-
+  # Substance supports two extension types.
   texture_extension:
-      type: str
-      alias: extension
-
-  texture_name:
-      type: str
+    type: str
+    alias: extension
+    
+  channel:
+    type: str
 
 
 # These are used by the Loader in Unreal
@@ -293,6 +293,10 @@ paths:
   ##########################################################################################
   # Shot level paths
   #
+
+  # Review files
+  shot_review:
+    definition: '@shot_root/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_sRGB_v{version}.mov'
 
   #
   # Photoshop
@@ -484,6 +488,9 @@ paths:
   ##########################################################################################
   # Asset pipeline
 
+  # Review files
+  asset_review:
+    definition: '@asset_root/previews/{name}/{Projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov'
 
   #
   # Photoshop
@@ -665,6 +672,42 @@ paths:
   nuke_asset_publish:
     definition: "@asset_publish/nuke/{Projectcode}_{Asset}_{Step}_{name}_pub_v{version}.nk"
 
+  #
+  # Substance Painter
+  #
+
+  # asset
+  # define the location of a work area
+  asset_work_area_substancepainter:
+    definition: '@asset_root/substancepainter'
+
+  # define the location of a publish area
+  asset_publish_area_substancepainter:
+    definition: '@asset_publish/substancepainter'
+
+  # The location of WIP files
+  substancepainter_asset_work:
+    definition: '@asset_root/substancepainter/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.spp'
+
+  # The location of backups of WIP files
+  substancepainter_asset_snapshot:
+    definition: '@asset_root/substancepainter/snapshots/{Projectcode}_{Asset}_{Step}_snap_{name}_v{version}.{timestamp}.spp'
+
+  # The folder where the textures are exported for a project
+  substancepainter_asset_textures_path_export:
+    definition: '@asset_root/substancepainter/textures/v{version}/{name}_v{version}'
+
+  # The location of published substance painter files
+  substancepainter_asset_publish:
+    definition: '@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.spp'
+
+  # a texture folder publish
+  substancepainter_asset_textures_path_publish:
+    definition: '@asset_publish/textures/v{version}/{name}_v{version}'
+
+  # a texture folder publish
+  substancepainter_asset_texture_path_publish:
+    definition: '@asset_publish/textures/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}'
 
   #
   # Unreal
@@ -688,6 +731,7 @@ paths:
   # No context info used in template, developers expected to further customize
   unreal.asset_publish:
       definition: 'assets/unrealdemo/exports/{YYYY}_{MM}_{DD}/{name}.fbx'
+
 
 
 #

@@ -31,6 +31,10 @@ settings.tk-multi-deadlinereviewsubmission.comp.shot:
   review_output_path: nuke_shot_render_movie
   location: "@apps.tk-multi-deadlinereviewsubmission.location"
 
+settings.tk-multi-deadlinereviewsubmission.comp.asset:
+  review_output_path: nuke_asset_render_movie
+  location: "@apps.tk-multi-deadlinereviewsubmission.location"
+
 settings.tk-multi-deadlinereviewsubmission.cg.shot:
   review_output_path: houdini_shot_review
   location: "@apps.tk-multi-deadlinereviewsubmission.location"
