@@ -31,7 +31,7 @@ apps.tk-multi-breakdown.location:
 apps.tk-multi-breakdown2.location:
   type: app_store
   name: tk-multi-breakdown2
-  version: v0.2.7
+  version: v0.2.8
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
