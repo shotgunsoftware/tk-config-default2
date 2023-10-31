@@ -79,7 +79,11 @@ class BeforeAppLaunch(sgtk.Hook):
             houdini_otls_template = tk.templates["houdini_otls"]
             otls_path = houdini_otls_template.apply_fields(current_context).replace(os.sep, '/')
 
-            # Add environment
+            # Check if HOUDINI_OTLDSCAN_PATH exists in environment, if it's empty add the default value back
+            if os.environ.get("HOUDINI_OTLDSCAN_PATH") == "":
+                sgtk.util.append_path_to_env_var("HOUDINI_OTLSCAN_PATH", "@/otls")
+
+            # Add the project otls path to the environment
             sgtk.util.append_path_to_env_var("HOUDINI_OTLSCAN_PATH", otls_path)
 
             self.parent.log_info("Added otlscan path %s" % otls_path)
