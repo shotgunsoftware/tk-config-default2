@@ -174,13 +174,13 @@ paths:
     # test output
     nuke_shot_render_test_jpeg:
         definition: '@nuke_shot_test_render_root/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.jpeg'
-        root_name: 'secondary'
+        root_name: 'project_storage_pix'
     nuke_shot_render_test_exr:
         definition: '@nuke_shot_test_render_root/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.exr'
-        root_name: 'secondary'
+        root_name: 'project_storage_pix'
     nuke_shot_render_test_dpx:
         definition: '@nuke_shot_test_render_root/{Shot}_test[_{nuke.output}]_v{version}.{SEQ}.dpx'
-        root_name: 'secondary'      
+        root_name: 'project_storage_pix'      
     ########################################ASSET OUTPUT     
     nuke_asset_render_root:
         definition: '@asset_render_root/nuke/{task_name}/version/{Asset}_{task_name}[_{nuke.output}]_v{version}'
@@ -233,13 +233,13 @@ paths:
     # test output     
     nuke_asset_render_test_jpeg:
         definition: '@temp_asset_render_root/nuke/{task_name}/test/{Asset}_test[_{nuke.output}]_v{version}/{Asset}_test[_{nuke.output}]_v{version}.{SEQ}.jpeg'
-        root_name: 'secondary'  
+        root_name: 'project_storage_pix'  
     nuke_asset_render_test_exr:
         definition: '@temp_asset_render_root/nuke/{task_name}/test/{Asset}_test[_{nuke.output}]_v{version}/{Asset}_test[_{nuke.output}]_v{version}.{SEQ}.exr'
-        root_name: 'secondary'
+        root_name: 'project_storage_pix'
     nuke_asset_render_test_dpx:
         definition: '@temp_asset_render_root/nuke/{task_name}/test/{Asset}_test[_{nuke.output}]_v{version}/{Asset}_test[_{nuke.output}]_v{version}.{SEQ}.dpx'
-        root_name: 'secondary'
+        root_name: 'project_storage_pix'
     # render movie
     nuke_asset_render_mov:
         definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
