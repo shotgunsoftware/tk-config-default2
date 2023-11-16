@@ -478,7 +478,7 @@ paths:
     root_name: "render"
   nuke_shot_render_pub:
     definition: "@shot_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
-  nuke_shot_tiff_render_work:
+  nuke_shot_tiff_render:
     definition: "@shot_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_{write.output}_v{version}.{SEQ}.tiff"
     root_name: "render"
   nuke_shot_tiff_render_pub:

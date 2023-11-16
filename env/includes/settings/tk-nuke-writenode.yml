@@ -88,7 +88,7 @@ settings.tk-nuke-writenode.shot:
       write_nodes:
         - name: exr (dwaa 16bit)
           file_type: exr
-          render_template: nuke_shot_render_work
+          render_template: nuke_shot_render
           publish_template: nuke_shot_render_pub
           tile_color: 4292673791
           settings:
@@ -103,7 +103,7 @@ settings.tk-nuke-writenode.shot:
       write_nodes:
           - name: exr (dwaa 16bit)
             file_type: exr
-            render_template: nuke_shot_render_work
+            render_template: nuke_shot_render
             publish_template: nuke_shot_render_pub
             tile_color: 2365546239
             settings:
@@ -113,7 +113,7 @@ settings.tk-nuke-writenode.shot:
               compression: DWAA
           - name: exr (zip 16bit)
             file_type: exr
-            render_template: nuke_shot_render_work
+            render_template: nuke_shot_render
             publish_template: nuke_shot_render_pub
             tile_color: 2365546239
             settings:
@@ -123,7 +123,7 @@ settings.tk-nuke-writenode.shot:
               compression: Zip (1 scanline)
           - name: exr (zip 32bit)
             file_type: exr
-            render_template: nuke_shot_render_work
+            render_template: nuke_shot_render
             publish_template: nuke_shot_render_pub
             tile_color: 2365546239
             settings:
@@ -136,7 +136,7 @@ settings.tk-nuke-writenode.shot:
       write_nodes:
           - name: tiff (deflate 16 bit)
             file_type: tiff
-            render_template: nuke_shot_tiff_render_work
+            render_template: nuke_shot_tiff_render
             publish_template: nuke_shot_tiff_render_pub
             tile_color: 2095579135
             settings:
