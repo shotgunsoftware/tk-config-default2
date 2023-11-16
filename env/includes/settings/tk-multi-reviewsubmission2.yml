@@ -20,7 +20,7 @@ includes:
 settings.tk-multi-reviewsubmission2.houdini.asset_step:
   company_name: NFA
   work_file_template: houdini_asset_work
-  review_file_template: asset_review
+  review_file_template: asset_review_houdini
   nuke_path_windows: "@path.windows.hiero"
   nuke_path_linux: "@path.linux.hiero"
   nuke_path_mac: "@path.mac.hiero"
@@ -29,7 +29,7 @@ settings.tk-multi-reviewsubmission2.houdini.asset_step:
 settings.tk-multi-reviewsubmission2.houdini.shot_step:
   company_name: NFA
   work_file_template: houdini_shot_work
-  review_file_template: shot_review
+  review_file_template: shot_review_houdini
   nuke_path_windows: "@path.windows.hiero"
   nuke_path_linux: "@path.linux.hiero"
   nuke_path_mac: "@path.mac.hiero"
@@ -39,7 +39,7 @@ settings.tk-multi-reviewsubmission2.houdini.shot_step:
 settings.tk-multi-reviewsubmission2.maya.asset_step:
   company_name: NFA
   work_file_template: maya_asset_work
-  review_file_template: asset_review
+  review_file_template: asset_review_maya
   nuke_path_windows: "@path.windows.hiero"
   nuke_path_linux: "@path.linux.hiero"
   nuke_path_mac: "@path.mac.hiero"
@@ -48,7 +48,7 @@ settings.tk-multi-reviewsubmission2.maya.asset_step:
 settings.tk-multi-reviewsubmission2.maya.shot_step:
   company_name: NFA
   work_file_template: maya_shot_work
-  review_file_template: shot_review
+  review_file_template: shot_review_maya
   nuke_path_windows: "@path.windows.hiero"
   nuke_path_linux: "@path.linux.hiero"
   nuke_path_mac: "@path.mac.hiero"

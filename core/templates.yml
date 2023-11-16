@@ -57,6 +57,8 @@ keys:
     type: int
   height:
     type: int
+  colorspace:
+    type: int
 
   # Represents the optional output name for frames written by the ShotGrid Write Node
   write.output:
@@ -155,7 +157,7 @@ keys:
     type: str
 
 
-# These are used by the Loader in Unreal
+  # These are used by the Loader in Unreal
   ue_sg_asset_type:
       type: str
       shotgun_entity_type: Asset
@@ -208,10 +210,8 @@ paths:
   asset_publish: 04_publish/assets/{Asset}/{Step}
   shot_publish: 04_publish/shots/{Sequence}/{Shot}/{Step}
 
-  cg_assetrender: 05_renders/cg/assets/{Asset}/{Step}
-  cg_shotrender: 05_renders/cg/shots/{Sequence}/{Shot}
-  comp_assetrender: 05_renders/comp/assets/{Asset}/{Step}
-  comp_shotrender: 05_renders/comp/shots/{Sequence}/{Shot}
+  asset_render_publish: 05_renders/assets/{Asset}/{Step}
+  shot_render_publish: 05_renders/shots/{Sequence}/{Shot}/{Step}
 
   delivery: 05_renders/delivery
 
@@ -276,7 +276,7 @@ paths:
 
   ##########################################################################################
 
-  # Template files
+  # OTL files
   houdini_otls:
     definition: "00_pipeline/houdini/otls"
 
@@ -295,8 +295,10 @@ paths:
   #
 
   # Review files
-  shot_review:
-    definition: '@shot_root/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_sRGB_v{version}.mov'
+  shot_review_maya:
+    definition: "@shot_root/maya/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_sRGB_v{version}.mov"
+  shot_review_houdini:
+    definition: "@shot_root/houdini/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_sRGB_v{version}.mov"
 
   #
   # Photoshop
@@ -304,17 +306,17 @@ paths:
 
   # The location of WIP files
   photoshop_shot_work:
-    definition: "@shot_root/photoshop/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{photoshop_extension}"
+    definition: "@shot_root/photoshop/{Projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{photoshop_extension}"
   shot_work_area_photoshop:
     definition: "@shot_root/photoshop"
   # The location of backups of WIP files
   photoshop_shot_snapshot:
-    definition: "@shot_root/photoshop/snapshots/{Projectcode}_sc{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.{photoshop_extension}"
+    definition: "@shot_root/photoshop/snapshots/{Projectcode}_{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.{photoshop_extension}"
   # The location of published files
   shot_publish_area_photoshop:
     definition: "@shot_publish/photoshop"
   photoshop_shot_publish:
-    definition: "@shot_publish/photoshop/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{photoshop_extension}"
+    definition: "@shot_publish/photoshop/{Projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{photoshop_extension}"
 
   #
   # After Effects
@@ -322,24 +324,25 @@ paths:
 
   # The location of WIP files
   aftereffects_shot_work:
-    definition: "@shot_root/afx/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.aep"
+    definition: "@shot_root/ae/{Projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.aep"
   shot_work_area_aftereffects:
-    definition: "@shot_root/afx"
+    definition: "@shot_root/ae"
   # The location of backups of WIP files
   aftereffects_shot_snapshot:
-    definition: "@shot_root/afx/snapshots/{Projectcode}_sc{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.aep"
+    definition: "@shot_root/ae/snapshots/{Projectcode}_{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.aep"
   # The location of published files
   shot_publish_area_aftereffects:
-    definition: "@shot_publish/afx"
+    definition: "@shot_publish/ae"
   aftereffects_shot_publish:
-    definition: "@shot_publish/afx/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.aep"
+    definition: "@shot_publish/ae/{Projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.aep"
   aftereffects_shot_render_pub_mono:
-    definition: "@shot_publish/{afx.comp}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
+    definition: "@shot_render_publish/ae/{name}/{afx.comp}/render/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
   # The following template uses {afx.mov.ext} this is a special key, that will be only there
   # in the beta to support different extensions on mac and windows, while using the same
   # output module (Lossless with Alpha)
   aftereffects_shot_render_movie:
-    definition: "@shot_root/review/{Projectcode}_sc{Sequence}_{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"
+    definition: "@shot_root/ae/previews/{name}/{afx.comp}/{Projectcode}_{Sequence}_{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"
+
   #
   # Maya
   #
@@ -358,7 +361,7 @@ paths:
     definition: "@shot_root/maya/snapshots/{Projectcode}_sc{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.{maya_extension}"
   # The location of playblasts
   maya_shot_playblast:
-    definition: "@cg_shotrender/mov/{Projectcode}_sc{Sequence}_{Shot}_{name}_v{version}.mov"
+    definition: "@shot_root/maya/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.mov"
   # The location of published maya files
   maya_shot_publish:
     definition: "@shot_publish/maya/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{maya_extension}"
@@ -388,35 +391,46 @@ paths:
   # Alembic caches
   houdini_shot_work_alembic_cache:
     definition: "@shot_root/houdini/cache/alembic/{houdini.node}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.abc"
+#    root_name: "render" # Place on source until can be published from render to source
   # Fbx caches
   houdini_shot_work_fbx_cache:
     definition: "@shot_root/houdini/cache/fbx/{houdini.node}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.fbx"
+#    root_name: "render" # Place on source until can be published from render to source
   # File work caches
   houdini_shot_work_file_cache:
     definition: "@shot_root/houdini/cache/bgeo/{name}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
+    root_name: "render"
   # File publish caches
   houdini_shot_publish_file_cache:
     definition: "@shot_publish/cache/bgeo/{name}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
-  # Houdini review files
-  houdini_shot_review:
-    definition: "@cg_shotrender/mov/{Projectcode}_sc{Sequence}_{Shot}_sRGB_v{version}.mov"
 
   # Rendered images
   houdini_shot_render:
-    definition: "@shot_root/renders/{name}/{write.output}/v{version}[/{aov_name}]/{Projectcode}_{Sequence}_{Shot}_{name}_{write.output}[_{aov_name}]_v{version}.{SEQ}.exr"
+    definition: "@shot_root/houdini/renders/{name}/{write.output}/v{version}/[{aov_name}/]{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+    root_name: "render"
+  houdini_shot_render_pub:
+    definition: "@shot_render_publish/houdini/{name}/{write.output}/render/v{version}/[{aov_name}/]{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+  houdini_shot_render_review:
+    definition: "@shot_render_publish/houdini/{name}/{write.output}/review/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+  houdini_shot_render_movie:
+    definition: "@shot_render_publish/houdini/{name}/{write.output}/mov/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
 
   # Additional outputs
   houdini_shot_extra_plane:
-    definition: "@cg_shotrender/{name}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    definition: "@shot_root/houdini/renders/{name}/extra/v{version}/{aov_name}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    root_name: "render"
 
   houdini_shot_ifd:
-    definition: "@cg_shotrender/{name}/v{version}/ifds/{Projectcode}_sc{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ifd"
+    definition: "@shot_root/houdini/ifds/{name}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ifd"
+    root_name: "render"
 
   houdini_shot_dcm:
-    definition: "@cg_shotrender/{name}/v{version}/dcms/{Projectcode}_sc{Sequence}_{Shot}_{name}_v{version}.{SEQ}.dcm"
+    definition: "@shot_root/houdini/dcms/{name}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.dcm"
+    root_name: "render"
 
   houdini_shot_ass:
-    definition: "@cg_shotrender/{name}/v{version}/ass/{Projectcode}_sc{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ass"
+    definition: "@shot_root/houdini/ass/{name}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ass"
+    root_name: "render"
 
 
   #
@@ -431,13 +445,13 @@ paths:
     definition: "@shot_publish/mobu"
   # The location of WIP files
   mobu_shot_work:
-    definition: "@shot_root/mobu/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.fbx"
+    definition: "@shot_root/mobu/{Projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.fbx"
   # The location of backups of WIP files
   mobu_shot_snapshot:
-    definition: "@shot_root/mobu/snapshots/{Projectcode}_sc{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.fbx"
+    definition: "@shot_root/mobu/snapshots/{Projectcode}_{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.fbx"
   # The location of published mobu files
   mobu_shot_publish:
-    definition: "@shot_publish/mobu/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.fbx"
+    definition: "@shot_publish/mobu/{Projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.fbx"
 
   #
   # Nuke
@@ -458,20 +472,22 @@ paths:
   # The location of published nuke script files
   nuke_shot_publish:
     definition: "@shot_publish/nuke/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.nk"
-  # write node outputs
-  nuke_shot_render_work:
-    definition: "@shot_root/nuke/render/{name}/{write.output}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{name}_{write.output}_v{version}.{SEQ}.exr"
+  # Write node outputs
+  nuke_shot_render:
+    definition: "@shot_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    root_name: "render"
   nuke_shot_render_pub:
-    definition: "@comp_shotrender/{name}/{write.output}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@shot_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
   nuke_shot_tiff_render_work:
-    definition: "@shot_root/nuke/render/{name}/{write.output}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    definition: "@shot_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    root_name: "render"
   nuke_shot_tiff_render_pub:
-    definition: "@comp_shotrender/{name}/{write.output}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{name}_{write.output}_v{version}.{SEQ}.tiff"
-  # review output
+    definition: "@shot_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+  # Review output
   shot_quicktime_quick:
-    definition: "@comp_shotrender/mov/{Projectcode}_sc{Sequence}_{Shot}_{name}_{write.output}_sRGB_{iteration}.mov"
+    definition: "@shot_root/nuke/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_{write.output}_sRGB_v{version}_{iteration}.mov"
   nuke_shot_render_movie:
-    definition: "@comp_shotrender/mov/{Projectcode}_sc{Sequence}_{Shot}_{name}_{write.output}_sRGB_v{version}.mov"
+    definition: "@shot_render_publish/nuke/{name}/{write.output}/mov/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
 
   #
   # Hiero
@@ -489,8 +505,10 @@ paths:
   # Asset pipeline
 
   # Review files
-  asset_review:
-    definition: '@asset_root/previews/{name}/{Projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov'
+  asset_review_maya:
+    definition: "@asset_root/maya/previews/{name}/{Projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov"
+  asset_review_houdini:
+    definition: "@asset_root/houdini/previews/{name}/{Projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov"
 
   #
   # Photoshop
@@ -511,29 +529,29 @@ paths:
     definition: "@asset_publish/photoshop/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{photoshop_extension}"
 
   #
-  # after effects
+  # After Effects
   #
 
   # The location of WIP files
   aftereffects_asset_work:
-    definition: "@asset_root/afx/{Projectcode}_{Asset}_{Step}_work_v{version}.aep"
+    definition: "@asset_root/ae/{Projectcode}_{Asset}_{Step}_work_v{version}.aep"
   asset_work_area_aftereffects:
-    definition: "@asset_root/afx"
+    definition: "@asset_root/ae"
   # The location of backups of WIP files
   aftereffects_asset_snapshot:
-    definition: "@asset_root/afx/snapshots/{Projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.aep"
+    definition: "@asset_root/ae/snapshots/{Projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.aep"
   # The location of published files
   asset_publish_area_aftereffects:
-    definition: "@asset_publish/afx"
+    definition: "@asset_publish/ae"
   aftereffects_asset_publish:
-    definition: "@asset_publish/afx/{Projectcode}_{Asset}_{Step}_pub_v{version}.aep"
+    definition: "@asset_publish/ae/{Projectcode}_{Asset}_{Step}_pub_v{version}.aep"
   aftereffects_asset_render_pub_mono:
-    definition: "@comp_assetrender/{afx.comp}/v{version}/{Projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
+    definition: "@asset_render_publish/ae/{name}/{afx.comp}/render/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
   # The following template uses {afx.mov.ext} this is a special key, that will be only there
   # in the beta to support different extensions on mac and windows, while using the same
   # output module (Lossless with Alpha)
   aftereffects_asset_render_movie:
-    definition: "@comp_assetrender/mov/{Projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"
+    definition: "@asset_root/ae/previews/{name}/{afx.comp}/{Projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"
 
   #
   # Mari
@@ -586,35 +604,46 @@ paths:
   # Alembic caches
   houdini_asset_work_alembic_cache:
     definition: "@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Projectcode}_{Asset}_{Step}_work_v{version}.abc"
+#    root_name: "render" # Place on source until can be published from render to source
   # fbx caches
   houdini_asset_work_fbx_cache:
     definition: "@asset_root/houdini/cache/fbx/{name}/{houdini.node}/v{version}/{Projectcode}_{Asset}_{Step}_work_v{version}.fbx"
+#    root_name: "render" # Place on source until can be published from render to source
   # File work caches
   houdini_asset_work_file_cache:
     definition: "@asset_root/houdini/cache/bgeo/{name}/v{version}/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
+    root_name: "render"
   # File publish caches
   houdini_asset_publish_file_cache:
     definition: "@asset_publish/cache/bgeo/{name}/v{version}/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
-  # Houdini review files
-  houdini_asset_review:
-    definition: "@cg_assetrender/mov/{Projectcode}_{Asset}_{Step}_{name}_sRGB_v{version}.mov"
 
   # Rendered images
   houdini_asset_render:
-    definition: "@asset_root/renders/{name}/{write.output}/v{version}[/{aov_name}]/{Projectcode}_{Asset}_{Step}_{name}_{write.output}[_{aov_name}]_v{version}.{SEQ}.exr"
+    definition: "@asset_root/houdini/renders/{name}/{write.output}/v{version}/[{aov_name}/]{Projectcode}_{Asset}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+    root_name: "render"
+  houdini_asset_render_pub:
+    definition: "@asset_render_publish/houdini/{name}/{write.output}/render/v{version}/[{aov_name}/]{Projectcode}_{Asset}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+  houdini_asset_render_review:
+    definition: "@asset_render_publish/houdini/{name}/{write.output}/review/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+  houdini_asset_render_movie:
+    definition: "@asset_render_publish/houdini/{name}/{write.output}/mov/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
 
   # Additional outputs
   houdini_asset_extra_plane:
-    definition: "@cg_assetrender/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    definition: "@asset_root/houdini/renders/{name}/extra/v{version}/{aov_name}/{Projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    root_name: "render"
 
   houdini_asset_ifd:
-    definition: "@cg_assetrender/{name}/v{version}/ifds/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
+    definition: "@asset_root/houdini/ifds/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
+    root_name: "render"
 
   houdini_asset_dcm:
-    definition: "@cg_assetrender/{name}/v{version}/dcms/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
+    definition: "@asset_root/houdini/dcms/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
+    root_name: "render"
 
   houdini_asset_ass:
-    definition: "@cg_assetrender/{name}/v{version}/ass/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"
+    definition: "@asset_root/houdini/ass/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"
+    root_name: "render"
 
 
   #
@@ -649,19 +678,21 @@ paths:
     definition: "@asset_root/publish"
   # outputs from the Shotgun Write Node for assets
   nuke_asset_render:
-    definition: "@asset_root/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@asset_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    root_name: "render"
   nuke_asset_render_pub:
-    definition: "@comp_assetrender/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
   nuke_asset_tiff_render:
-    definition: "@asset_root/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    definition: "@asset_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    root_name: "render"
   nuke_asset_tiff_render_pub:
-    definition: "@comp_assetrender/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
 
   # review output
   nuke_asset_render_movie:
-    definition: "@comp_assetrender/mov/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/mov/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
   asset_quicktime_quick:
-    definition: "@comp_assetrender/mov/{Projectcode}_{Asset}_{Step}_{name}_{iteration}.mov"
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/mov/{Projectcode}_{Asset}_{Step}_{name}_{iteration}.mov"
   # The location of WIP script files
   nuke_asset_work:
     definition: "@asset_root/nuke/{Projectcode}_{Asset}_{Step}_{name}_work_v{version}.nk"
@@ -679,35 +710,28 @@ paths:
   # asset
   # define the location of a work area
   asset_work_area_substancepainter:
-    definition: '@asset_root/substancepainter'
-
+    definition: "@asset_root/substancepainter"
   # define the location of a publish area
   asset_publish_area_substancepainter:
-    definition: '@asset_publish/substancepainter'
-
+    definition: "@asset_publish/substancepainter"
   # The location of WIP files
   substancepainter_asset_work:
-    definition: '@asset_root/substancepainter/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.spp'
-
+    definition: "@asset_root/substancepainter/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.spp"
   # The location of backups of WIP files
   substancepainter_asset_snapshot:
-    definition: '@asset_root/substancepainter/snapshots/{Projectcode}_{Asset}_{Step}_snap_{name}_v{version}.{timestamp}.spp'
-
+    definition: "@asset_root/substancepainter/snapshots/{Projectcode}_{Asset}_{Step}_snap_{name}_v{version}.{timestamp}.spp"
   # The folder where the textures are exported for a project
   substancepainter_asset_textures_path_export:
-    definition: '@asset_root/substancepainter/textures/v{version}/{name}_v{version}'
-
+    definition: "@asset_root/substancepainter/textures/v{version}/{name}_v{version}"
   # The location of published substance painter files
   substancepainter_asset_publish:
-    definition: '@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.spp'
-
+    definition: "@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.spp"
   # a texture folder publish
   substancepainter_asset_textures_path_publish:
-    definition: '@asset_publish/textures/v{version}/{name}_v{version}'
-
+    definition: "@asset_publish/textures/v{version}/{name}_v{version}"
   # a texture folder publish
   substancepainter_asset_texture_path_publish:
-    definition: '@asset_publish/textures/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}'
+    definition: "@asset_publish/textures/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}"
 
   #
   # Unreal
@@ -715,22 +739,23 @@ paths:
 
   # level sequence review output from unreal
   unreal.movie_publish:
-    definition: '[sequences/{Sequence}/][{Shot}/]editorial/{YYYY}_{MM}_{DD}/unreal/{ue_level_sequence}_{ue_world}.v{version}.{ue_mov_ext}'
+    definition: "05_renders/unreal/shots/[{Sequence}/][{Shot}/]{YYYY}_{MM}_{DD}/{ue_level_sequence}_{ue_world}.v{version}.{ue_mov_ext}"
   unreal_shot_publish:
-    definition: '@shot_root/publish/unreal/{name}.v{version}.nk'
+    definition: "@shot_publish/unreal/{name}_v{version}.nk"
   # The location of FBX exports for Unreal
   unreal.maya_asset_fbx_publish:
-    definition: '@asset_root/publish/fbx/{name}.v{version}.fbx'
+    definition: "@asset_publish/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.fbx"
   # The location of turntable review output rendered in Unreal
   unreal.maya_turntable_render:
-    definition: '@asset_root/work/images/{name}_turntable_v{version}.{ue_mov_ext}'
+    definition: "@asset_root/unreal/renders/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{ue_mov_ext}"
+    root_name: "render"
   unreal.maya_turntable_publish:
-    definition: '@asset_root/review/{Asset}_{name}_turntable_v{version}.{ue_mov_ext}'
+    definition: "@asset_render_publish/unreal/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{ue_mov_ext}"
   # Placeholder location for static mesh assets exported from Unreal
   # Hook implementation intended to be a starting point for a pipeline
   # No context info used in template, developers expected to further customize
   unreal.asset_publish:
-      definition: 'assets/unrealdemo/exports/{YYYY}_{MM}_{DD}/{name}.fbx'
+      definition: "@asset_publish/unreal/exports/{YYYY}_{MM}_{DD}/{name}.fbx"
 
 
 
@@ -745,11 +770,15 @@ strings:
   # Nuke
   # when a review Version in Shotgun is created inside of Nuke, this is the
   # name that is being given to it (the code field)
-  nuke_shot_version_name: "{Shot}_{name}_{write.output}_v{version}.{iteration}"
+  nuke_shot_version_name: "{Sequence}_{Shot}_[{Step}_]_nuke_{name}_{write.output}_[{colorspace}_]v{version}[.{iteration}]"
   nuke_quick_shot_version_name: "{Shot}_{name}_quick_{iteration}"
 
-  nuke_asset_version_name: "{Asset}_{name}_{write.output}_v{version}.{iteration}"
+  nuke_asset_version_name: "{Asset}_[{Step}_]_nuke_{name}_{write.output}_[{colorspace}_]v{version}[.{iteration}]"
   nuke_quick_asset_version_name: "{Asset}_{name}_quick_{iteration}"
+
+  # Houdini
+  houdini_asset_version_name: "{Asset}_[{Step}_]_houdini_{name}_{write.output}_[{colorspace}_]v{version}"
+  houdini_shot_version_name: "{Sequence}_{Shot}_[{Step}_]_houdini_{name}_{write.output}_[{colorspace}_]v{version}"
 
   # defines how the {tk_version} token in Hiero gets formatted back to tk.
   hiero_version: "{version}"
