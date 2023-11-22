@@ -403,6 +403,12 @@ settings.tk-multi-loader2.vred:
     Osb File: [import, import_with_options, smart_reference]
     Image: [import_sceneplate]
     Rendered Image: [import_sceneplate]
+    VRED Material: [import_material, smart_reference_material]
+    VRED Material Asset: [import_material_asset, apply_to_nodes, apply_to_scene, open_file_system, export_to_library]
+    Axf File: [import_material]
+    Mtlx File: [import_material]
+    VRED Metadata: [import_metadata]
+    VRED Metadata Set: [import_metadata_set]
   entities:
   - caption: Assets
     entity_type: Asset
