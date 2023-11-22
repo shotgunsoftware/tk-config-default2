@@ -447,3 +447,35 @@ settings.tk-multi-loader2.vred:
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
+
+settings.tk-multi-loader2.vred.project:
+  action_mappings:
+    Osb File: [import, import_with_options, smart_reference]
+    VRED Material: [import_material, smart_reference_material]
+    VRED Material Asset: [import_material_asset, apply_to_nodes, apply_to_scene, open_file_system, export_to_library]
+    Axf File: [import_material]
+    Mtlx File: [import_material]
+    VRED Metadata: [import_metadata]
+    VRED Metadata Set: [import_metadata_set]
+  entities:
+  - caption: Materials
+    entity_type: CustomNonProjectEntity01
+    filters: []
+    fields: [sg_type]
+    # fields: [entity.CustomNonProjectEntity01.sg_type]
+  - caption: Trims
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    - [sg_asset_type, is, Trim]
+    fields: [assets]
+  - caption: Trim Sets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    - [sg_asset_type, is, Trim Set]
+    # - [entity.Asset.sg_asset_type, is, Trim Set]
+    # fields: [entity.Asset.parents]
+    fields: [parents]
+  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
+  location: "@apps.tk-multi-loader2.location"
