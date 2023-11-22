@@ -576,7 +576,7 @@ settings.tk-multi-publish2.alias.asset_step:
 
 # asset_step
 settings.tk-multi-publish2.vred.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{engine}/tk-multi-publish2/basic/collector_scene.py"
   collector_settings:
       Work Template: vred_asset_work
       Background Processing: False
@@ -606,6 +606,70 @@ settings.tk-multi-publish2.vred.asset_step:
    - name: Upload for review
      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
      settings: {}
+   - name: Publish VRED Metadata
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_metadata.py"
+     settings:
+        Publish Template: vred_asset_metadata_publish
+   - name: Publish VRED Metadata Set
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_metadata_sets.py"
+     settings:
+        Publish Template: vred_asset_metadata_publish
   post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+# material_step
+settings.tk-multi-publish2.vred.material_step:
+  display_name: "Publish"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector_settings:
+      Work Template: vred_material_work
+      Background Processing: False
+  publish_plugins:
+   - name: Publish to ShotGrid
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+     settings:
+       Publish Template: vred_material_publish
+   - name: Create Version for Review
+     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_session_version.py"
+     settings:
+       Version Type: 2D Version
+   - name: Publish Rendering to ShotGrid
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
+     settings:
+       Publish Image Template: vred_asset_render_publish
+       Publish Sequence Template: vred_asset_render_sequence_publish
+   - name: Upload for review
+     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+     settings: {}
+   - name: Publish VRED Material
+     hook: "{self}/publish_file.py:{self}/publish_material.py:{engine}/tk-multi-publish2/basic/publish_material.py"
+     settings:
+        Publish Material Template: vred_material_publish_output
+   - name: Publish VRED Metadata
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_metadata.py"
+     settings:
+        Publish Template: vred_material_metadata_publish
+  post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"  # Mainly for bg publish
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+# project
+settings.tk-multi-publish2.vred.project:
+  display_name: "Publish"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector_materials.py"
+  collector_settings:
+      Work Template: vred_material_work
+      Background Processing: False
+  publish_plugins:
+   - name: Publish VRED Material
+     hook: "{self}/publish_file.py:{self}/publish_material.py:{engine}/tk-multi-publish2/basic/publish_material.py"
+     settings:
+        Publish Material Template: vred_material_publish_output
+   - name: Publish VRED Metadata
+     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_metadata.py"
+     settings:
+        Publish Template: vred_material_metadata_publish
+  post_phase: "{self}/post_phase.py:{config}/tk-multi-publish2/post_phase.py"  # Mainly for bg publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
