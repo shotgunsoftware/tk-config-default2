@@ -30,6 +30,18 @@ settings.tk-multi-publish2.standalone:
   - name: Upload for review
     hook: "{self}/upload_version.py"
     settings: {}
+  - name: Publish Material to ShotGrid
+    hook: "{self}/publish_material.py"
+    settings:
+      Publish Material Template: desktop_material_publish
+  - name: Publish VRED Material to ShotGrid
+    hook: "{self}/publish_material.py:{self}/publish_material_vred.py"
+    settings:
+      Publish Material Template: desktop_material_publish_output
+  - name: Publish Material Texture to ShotGrid
+    hook: "{self}/publish_material.py:{self}/publish_material_texture.py"
+    settings:
+      Publish Template: desktop_material_publish_texture
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
