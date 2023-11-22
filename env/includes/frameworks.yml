@@ -44,7 +44,7 @@ frameworks:
     location:
       type: git_branch
       branch: cmf
-      path: http://git.shotgunsoftware.com/shotgun/tk-framework-qtwidgets.git
+      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
       version: 31ba4b8
   tk-framework-shotgunutils_v4.x.x:
     location:

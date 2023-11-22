@@ -31,7 +31,7 @@ apps.tk-multi-breakdown.location:
 apps.tk-multi-breakdown2.location:
   type: git_branch
   branch: cmf
-  path: http://git.shotgunsoftware.com/shotgun/tk-multi-breakdown2.git
+  path: https://github.com/shotgunsoftware/tk-multi-breakdown2.git
   version: f989093
 apps.tk-multi-data-validation.location:
   type: app_store
@@ -48,12 +48,12 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: git_branch
   branch: cmf
-  path: http://git.shotgunsoftware.com/shotgun/tk-multi-loader2.git
+  path: https://github.com/shotgunsoftware/tk-multi-loader2.git
   version: b3ca8b3
 apps.tk-multi-publish2.location:
   type: git_branch
   branch: cmf
-  path: http://git.shotgunsoftware.com/shotgun/tk-multi-publish2.git
+  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
   version: 552313e
 apps.tk-multi-pythonconsole.location:
   type: app_store

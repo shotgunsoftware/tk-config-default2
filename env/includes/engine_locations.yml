@@ -77,5 +77,5 @@ engines.tk-shotgun.location:
 engines.tk-vred.location:
   type: git_branch
   branch: cmf
-  path: http://git.shotgunsoftware.com/shotgun/tk-vred.git
+  path: https://github.com/shotgunsoftware/tk-vred.git
   version: df0880b
