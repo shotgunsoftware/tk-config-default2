@@ -123,3 +123,43 @@ settings.tk-vred.playlist:
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: ""}
   location: "@engines.tk-vred.location"
+
+# material
+settings.tk-vred.material:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+  location: "@engines.tk-vred.location"
+
+# material step
+settings.tk-vred.material_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred.material_step"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.vred"
+    tk-multi-loader2: "@settings.tk-multi-loader2.vred"
+    tk-multi-data-validation: "@settings.tk-multi-data-validation.vred"
+    tk-multi-publish2: "@settings.tk-multi-publish2.vred.material_step"
+    tk-multi-bg-publish:
+      location: "@apps.tk-multi-bg-publish.location"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  docked_apps:
+    tk-multi-pythonconsole:
+        pos: right
+        tabbed: True
+    tk-multi-data-validation:
+        pos: right
+        tabbed: True
+    tk-multi-breakdown2:
+        pos: right
+        tabbed: True
+    tk-multi-shotgunpanel:
+        pos: right
+        tabbed: True
+  location: "@engines.tk-vred.location"
