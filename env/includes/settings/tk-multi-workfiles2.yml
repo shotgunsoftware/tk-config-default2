@@ -685,6 +685,39 @@ settings.tk-multi-workfiles2.vred.asset_step:
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
   location: "@apps.tk-multi-workfiles2.location"
 
+# material_step
+settings.tk-multi-workfiles2.vred.material_step:
+  template_publish: vred_material_publish
+  template_publish_area: material_publish_area_vred
+  template_work: vred_material_work
+  template_work_area: material_work_area_vred
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Materials
+    entity_type: CustomNonProjectEntity01
+    hierarchy: [sg_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  my_tasks_filters:
+    - filter_operator: any
+      filters:
+        - [task_assignees.Group.users, is, '{context.user}']
+        - [task_assignees, is, '{context.user}']
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
+  location: "@apps.tk-multi-workfiles2.location"
+
 ################################################################################
 
 # ---- Mari
