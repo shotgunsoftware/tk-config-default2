@@ -42,9 +42,10 @@ frameworks:
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.10.8
-      type: app_store
-      name: tk-framework-qtwidgets
+      type: git_branch
+      branch: cmf
+      path: http://git.shotgunsoftware.com/shotgun/tk-framework-qtwidgets.git
+      version: 31ba4b8
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15

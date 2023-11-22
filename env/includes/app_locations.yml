@@ -29,9 +29,10 @@ apps.tk-multi-breakdown.location:
   name: tk-multi-breakdown
   version: v1.8.2
 apps.tk-multi-breakdown2.location:
-  type: app_store
-  name: tk-multi-breakdown2
-  version: v0.2.8
+  type: git_branch
+  branch: cmf
+  path: http://git.shotgunsoftware.com/shotgun/tk-multi-breakdown2.git
+  version: f989093
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
@@ -45,13 +46,15 @@ apps.tk-multi-launchapp.location:
   name: tk-multi-launchapp
   version: v0.12.5
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.23.2
+  type: git_branch
+  branch: cmf
+  path: http://git.shotgunsoftware.com/shotgun/tk-multi-loader2.git
+  version: b3ca8b3
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.6.9
+  type: git_branch
+  branch: cmf
+  path: http://git.shotgunsoftware.com/shotgun/tk-multi-publish2.git
+  version: 552313e
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole

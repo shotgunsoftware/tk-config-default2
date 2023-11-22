@@ -75,6 +75,7 @@ engines.tk-shotgun.location:
   name: tk-shotgun
   version: v0.10.2
 engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v3.0.1
+  type: git_branch
+  branch: cmf
+  path: http://git.shotgunsoftware.com/shotgun/tk-vred.git
+  version: df0880b
