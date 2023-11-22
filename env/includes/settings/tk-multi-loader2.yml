@@ -426,6 +426,24 @@ settings.tk-multi-loader2.vred:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
+  - caption: Materials
+    entity_type: CustomNonProjectEntity01
+    filters: []
+    hierarchy: [sg_type, code]
+  - caption: Trims
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    - [sg_asset_type, is, Trim]
+    fields: [assets]
+    hierarchy: [sg_asset_type, code]
+  - caption: Trim Sets
+    entity_type: Asset
+    filters:
+    - [project, is, '{context.project}']
+    - [sg_asset_type, is, Trim Set]
+    fields: [parents]
+    hierarchy: [sg_asset_type, code]
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
