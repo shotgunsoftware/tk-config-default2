@@ -164,7 +164,7 @@ keys:
         alias: SEQ
 
     # Materials
-    Material:
+    CustomNonProjectEntity01:
         type: str
     sg_material_type:
         type: str
@@ -201,7 +201,7 @@ paths:
     shot_root: sequences/{Sequence}/{Shot}/{Step}
     asset_root: assets/{sg_asset_type}/{Asset}/{Step}
     sequence_root: sequences/{Sequence}
-    material_root: materials/{sg_material_type}/{Material}/{Step}
+    material_root: materials/{sg_material_type}/{CustomNonProjectEntity01}/{Step}
 
     ##########################################################################################
     # Materials level paths
