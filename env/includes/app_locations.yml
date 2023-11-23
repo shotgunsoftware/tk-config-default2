@@ -135,7 +135,7 @@ apps.tk-flame-export.location:
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.4.5
+  version: v1.4.6
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
