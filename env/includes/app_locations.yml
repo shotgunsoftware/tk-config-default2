@@ -54,7 +54,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: cmf
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: 552313e
+  version: fcad3ae
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
