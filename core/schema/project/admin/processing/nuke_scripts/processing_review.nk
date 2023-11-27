@@ -496,7 +496,7 @@ ColorMatrix {
  ypos -2373
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper_to_linear.spi1d
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper_to_linear.spi1d
  version 3
  direction inverse
  working_space linear
@@ -505,7 +505,7 @@ OCIOFileTransform {
  ypos -2326
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper.RRT.Rec.709.spi3d
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper.RRT.Rec.709.spi3d
  interpolation tetrahedral
  working_space linear
  name OCIOFileTransform4
@@ -1722,7 +1722,7 @@ Group {
  Read {
   inputs 0
   file_type png
-  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  file //ssvfx_pipeline/pipeline_repo/icons/icon_ssvfx_strap.png
   localizationPolicy off
   origset true
   premultiplied true
@@ -2635,7 +2635,7 @@ push $Nf7408000
  Read {
   inputs 0
   file_type png
-  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  file //ssvfx_pipeline/pipeline_repo/icons/icon_ssvfx_strap.png
   localizationPolicy off
   origset true
   premultiplied true
@@ -2751,7 +2751,7 @@ push $Nf7408c00
  Read {
   inputs 0
   file_type png
-  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+  file //ssvfx_pipeline/pipeline_repo/icons/icon_ssvfx_button.png
   localizationPolicy off
   format "891 891 0 0 891 891 1 "
   origset true

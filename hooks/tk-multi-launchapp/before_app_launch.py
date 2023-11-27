@@ -16,7 +16,7 @@ to set environment variables or run scripts as part of the app initialization.
 import os
 import sys
 
-roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE'), "//10.80.8.252/VFX_Pipeline"]
+roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE'), "//ssvfx_pipeline/pipeline_repo"]
 for root_path in roots:
     if not root_path:
         continue
