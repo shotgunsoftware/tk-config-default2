@@ -29,6 +29,7 @@ includes:
   - ./tk-multi-screeningroom.yml
   - ./tk-multi-shotgunpanel.yml
   - ./tk-multi-snapshot.yml
+  - ./tk-multi-startup.yml
   - ./tk-multi-workfiles2.yml
 
 ################################################################################
@@ -36,8 +37,7 @@ includes:
 # asset
 settings.tk-houdini.asset:
   apps:
-    tk-multi-startup:
-      location: "@apps.tk-multi-startup.location"
+    tk-multi-startup: "@settings.tk-multi-startup.asset"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -50,8 +50,7 @@ settings.tk-houdini.asset:
 # asset_step
 settings.tk-houdini.asset_step:
   apps:
-    tk-multi-startup:
-      location: "@apps.tk-multi-startup.location"
+    tk-multi-startup: "@settings.tk-multi-startup.asset.houdini"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-breakdown:
@@ -82,8 +81,7 @@ settings.tk-houdini.asset_step:
 # project
 settings.tk-houdini.project:
   apps:
-    tk-multi-startup:
-      location: "@apps.tk-multi-startup.location"
+    tk-multi-startup: "@settings.tk-multi-startup"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -96,8 +94,7 @@ settings.tk-houdini.project:
 # sequence
 settings.tk-houdini.sequence:
   apps:
-    tk-multi-startup:
-      location: "@apps.tk-multi-startup.location"
+    tk-multi-startup: "@settings.tk-multi-startup"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -110,8 +107,7 @@ settings.tk-houdini.sequence:
 # shot
 settings.tk-houdini.shot:
   apps:
-    tk-multi-startup:
-      location: "@apps.tk-multi-startup.location"
+    tk-multi-startup: "@settings.tk-multi-startup.shot"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
@@ -124,8 +120,7 @@ settings.tk-houdini.shot:
 # shot_step
 settings.tk-houdini.shot_step:
   apps:
-    tk-multi-startup:
-      location: "@apps.tk-multi-startup.location"
+    tk-multi-startup: "@settings.tk-multi-startup.shot.houdini"
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-breakdown:
