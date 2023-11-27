@@ -36,7 +36,7 @@ apps.tk-multi-startup.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-startup
-  version: 0.2.3
+  version: 0.2.4
 
 # about
 apps.tk-multi-about.location:
