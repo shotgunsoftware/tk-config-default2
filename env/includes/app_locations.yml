@@ -54,7 +54,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: cmf
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: fcad3ae
+  version: 90a2c47
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -80,9 +80,10 @@ apps.tk-multi-snapshot.location:
   name: tk-multi-snapshot
   version: v0.9.1
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.14.0
+  type: git_branch
+  branch: cmf
+  path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
+  version: 08bba66
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
