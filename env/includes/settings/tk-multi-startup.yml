@@ -1,0 +1,47 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+settings.tk-multi-startup:
+  location: "@apps.tk-multi-startup.location"
+
+# Asset
+settings.tk-multi-startup.asset:
+  asset_root: asset_root
+  location: "@apps.tk-multi-startup.location"
+
+settings.tk-multi-startup.asset.houdini:
+  work_file: houdini_asset_work
+  asset_root: asset_root
+  location: "@apps.tk-multi-startup.location"
+settings.tk-multi-startup.asset.maya:
+  work_file: maya_asset_work
+  asset_root: asset_root
+  location: "@apps.tk-multi-startup.location"
+
+# Shot
+settings.tk-multi-startup.shot:
+  shot_root: shot_root
+  location: "@apps.tk-multi-startup.location"
+
+settings.tk-multi-startup.shot.houdini:
+  work_file: houdini_shot_work
+  shot_root: shot_root
+  location: "@apps.tk-multi-startup.location"
+settings.tk-multi-startup.shot.maya:
+  work_file: maya_shot_work
+  shot_root: shot_root
+  location: "@apps.tk-multi-startup.location"
