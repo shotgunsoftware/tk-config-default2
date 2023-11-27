@@ -129,6 +129,12 @@ settings.tk-vred.material:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred.material"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-vred.location"
 
 # material step
