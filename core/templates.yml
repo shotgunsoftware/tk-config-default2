@@ -225,7 +225,7 @@ paths:
     material_work_area_vred:
         definition: '@material_root/work/vred'
     vred_material_work:
-        definition: '@material_root/work/vred/{material.name}.v{version}.{material.extension}'
+        definition: '@material_root/work/vred/{material.name}.v{version}.vpb'
     material_publish_area_vred:
         definition: '@material_root/publish/vred'
     vred_material_publish:
