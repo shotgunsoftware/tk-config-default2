@@ -463,6 +463,12 @@ settings.tk-multi-loader2.vred.project:
     filters: []
     fields: [sg_type]
     hierarchy: [sg_type, code]
+  - caption: Material Libraries
+    entity_type: AssetLibrary
+    filters:
+    - [sg_type, is, Material]
+    fields: [sg_type]
+    hierarchy: [sg_type, code]
   - caption: Trims
     entity_type: Asset
     filters:
