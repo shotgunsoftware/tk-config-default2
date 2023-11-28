@@ -73,11 +73,11 @@ class PrePublishHook(HookBaseClass):
         else:
             postfix = ''
 
-        roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE', "//10.80.8.252/VFX_Pipeline")]
+        roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE'), "//ssvfx_pipeline/pipeline_repo"]
         for root_path in roots:
             if not root_path:
                 continue
-            package_path = os.path.join(root_path, "Pipeline", package_name)
+            package_path = os.path.join(root_path, "master", package_name)
             if os.path.exists(package_path):
                 break
             # some things are kept on the same root level as Pipeline, but let's not look there first

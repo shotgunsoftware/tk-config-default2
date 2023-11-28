@@ -20,7 +20,7 @@ roots = [os.getenv('SSVFX_PIPELINE_DEV'), os.getenv('SSVFX_PIPELINE'), "//ssvfx_
 for root_path in roots:
     if not root_path:
         continue
-    sg_path = os.path.join(root_path, 'Pipeline', 'ssvfx_sg')
+    sg_path = os.path.join(root_path, 'master', 'ssvfx_sg')
     if os.path.exists(sg_path):
         sys.path.append(os.path.normpath(sg_path))
         break
