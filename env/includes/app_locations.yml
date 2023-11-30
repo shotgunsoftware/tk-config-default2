@@ -49,12 +49,12 @@ apps.tk-multi-loader2.location:
   type: git_branch
   branch: cmf
   path: https://github.com/shotgunsoftware/tk-multi-loader2.git
-  version: b3ca8b3
+  version: af72a6b
 apps.tk-multi-publish2.location:
   type: git_branch
   branch: cmf
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
-  version: 90a2c47
+  version: 79c73ee
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole

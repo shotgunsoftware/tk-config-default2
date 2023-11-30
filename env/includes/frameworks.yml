@@ -27,9 +27,10 @@ frameworks:
       name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
     location:
-      version: v1.0.2
-      type: app_store
-      name: tk-framework-alias
+      type: git_branch
+      branch: qa
+      path: https://github.com/shotgunsoftware/tk-framework-alias.git
+      version: 8fe5906
   tk-framework-aliastranslations_v0.x.x:
     location:
       version: v0.2.3
@@ -45,7 +46,7 @@ frameworks:
       type: git_branch
       branch: cmf
       path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      version: 31ba4b8
+      version: a05f71c
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -73,6 +74,7 @@ frameworks:
       name: tk-framework-desktopclient
   tk-framework-lmv_v0.x.x:
     location:
-      version: v0.2.2
-      type: app_store
-      name: tk-framework-lmv
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-lmv.git
+      branch: ticket/SHOT-3221-remove-executables
+      version: 68c6e88
