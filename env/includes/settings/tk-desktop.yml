@@ -62,6 +62,7 @@ settings.tk-desktop.project:
     - "*Max*"
     - "*Maya*"
     - "*Motion*"
+    - "*Substance Painter*"
     - "*Unreal*"
     name: 3D
   - matches:

@@ -585,6 +585,43 @@ settings.tk-multi-publish2.vred.asset_step:
   location: "@apps.tk-multi-publish2.location"
 
 
+
+################################################################################
+
+# --- Substance Painter
+
+# asset step
+settings.tk-multi-publish2.substancepainter.asset_step:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector_settings:
+      Work Template: substancepainter_asset_work
+      Work Export Template: substancepainter_asset_textures_path_export
+      Publish Textures as Folder: true
+  publish_plugins:
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_textures.py"
+    settings:
+      Publish Template: substancepainter_asset_textures_path_publish
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_texture.py"
+    settings:
+      Publish Template: substancepainter_asset_texture_path_publish
+  - name: Upload for review
+    hook: "{self}/upload_version.py"
+    settings: {}
+  - name: Begin file versioning
+    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+    settings: {}
+  - name: Publish to Shotgun
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    settings:
+        Publish Template: substancepainter_asset_publish
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
 ################################################################################
 
 # ---- Unreal

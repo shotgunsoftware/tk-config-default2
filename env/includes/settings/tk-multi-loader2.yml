@@ -375,6 +375,43 @@ settings.tk-multi-loader2.vred:
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
+
+# substance painter
+settings.tk-multi-loader2.substancepainter:
+  actions_hook: '{engine}/tk-multi-loader2/tk-substancepainter_actions.py'
+  action_mappings:
+    Image: [environment, colorlut, alpha, texture]
+    Texture: [environment, colorlut, alpha, texture]
+    Rendered Image: [environment, colorlut, alpha, texture]
+    Substance Material Preset: [preset]
+    Sppr File: [preset]
+    PopcornFX : [script]
+    Pkfx File : [script]
+    Shader: [shader]
+    Glsl File: [shader]
+    Substance Export Preset: [export]
+    Spexp File: [export]
+    Substance Smart Material: [smartmaterial]
+    Spsm File: [smartmaterial]
+    Substance File: [basematerial, alpha, texture, filter, procedural, generator]
+    Sbsar File: [basematerial, alpha, texture, filter, procedural, generator]
+    Substance Smart Mask: [smartmask]
+    Spmsk File: [smartmask]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters:
+    - [project, is, "{context.project}"]
+    hierarchy: [sg_asset_type, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, "{context.user}"]
+    - [project, is, "{context.project}"]
+    hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
 #Unreal
 settings.tk-multi-loader2.unreal:
   action_mappings:
