@@ -35,7 +35,7 @@ settings.tk-houdini-renderman.asset_step:
     - { key: pixelVariance, type: float, expression: ch("ri_Ri_PixelVariance"), group: renderer }
     - { key: maxSamples, type: int, expression: ch("ri_hider_maxsamples"), group: renderer }
     - { key: renderer, type: string, expression: chs("renderer_variant"), group: renderer }
-    - { key: integrator, type: string, expression: chs("../integrator"), group: renderer }
+    - { key: integrator, type: string, expression: chs("integrator"), group: renderer }
     - { key: hipfile, type: string, expression: $HIPFILE, group: scene }
     - { key: fps, type: string, expression: $FPS, group: scene }
   location: "@apps.tk-houdini-renderman.location"
@@ -49,7 +49,7 @@ settings.tk-houdini-renderman.shot_step:
     - { key: pixelVariance, type: float, expression: ch("ri_Ri_PixelVariance"), group: renderer }
     - { key: maxSamples, type: int, expression: ch("ri_hider_maxsamples"), group: renderer }
     - { key: renderer, type: string, expression: chs("renderer_variant"), group: renderer }
-    - { key: integrator, type: string, expression: chs("../integrator"), group: renderer }
+    - { key: integrator, type: string, expression: chs("integrator"), group: renderer }
     - { key: hipfile, type: string, expression: $HIPFILE, group: scene }
     - { key: fps, type: string, expression: $FPS, group: scene }
   location: "@apps.tk-houdini-renderman.location"
