@@ -29,6 +29,7 @@ includes:
 settings.tk-houdini-renderman.asset_step:
   work_file_template: houdini_asset_work
   output_render_template: houdini_asset_render
+  post_task_script: C:/pipeline/shotgrid/tk-houdini-renderman/post_task_script.py
   render_metadata:
     - { key: camera, type: string, expression: chsop("camera"), group: camera }
     - { key: pixelVariance, type: float, expression: ch("ri_Ri_PixelVariance"), group: renderer }
@@ -42,6 +43,7 @@ settings.tk-houdini-renderman.asset_step:
 settings.tk-houdini-renderman.shot_step:
   work_file_template: houdini_shot_work
   output_render_template: houdini_shot_render
+  post_task_script: C:/pipeline/shotgrid/tk-houdini-renderman/post_task_script.py
   render_metadata:
     - { key: camera, type: string, expression: chsop("camera"), group: camera }
     - { key: pixelVariance, type: float, expression: ch("ri_Ri_PixelVariance"), group: renderer }
