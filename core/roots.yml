@@ -61,8 +61,7 @@ secondary: {
   shotgun_storage_id: 73,
   linux_path: /mnt/projects,
   mac_path: null, 
-  windows_path: \\10.80.8.252\projects,
-  default: true
+  windows_path: \\10.80.8.252\projects
   }
 
 caches: {

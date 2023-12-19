@@ -43,7 +43,7 @@
                     "dependent_job_suffix": "update_sg",
                     "dependent_output_directory": "",
                     "dependent_output_file": "",
-                    "dependent_script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
+                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
                 },
                 "nuke_settings":{
                     "plate_switch": {"which": 2},
@@ -99,7 +99,7 @@
                     "dependent_job_suffix": "update_sg",
                     "dependent_output_directory": "",
                     "dependent_output_file": "",
-                    "dependent_script_file": "//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
+                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
                 },
                 "nuke_settings":{
                     "plate_switch": {"which": 1},
@@ -156,7 +156,7 @@
                     "dependent_output_file": "{output_file}",
                     "dependent_output_file_ext": "",
                     "dependent_output_source": "{entity_root}/lut",
-                    "dependent_script_file":"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/dependencies/support_file_transfer.py"
+                    "dependent_script_file":"//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/support_file_transfer.py"
                 },
                 "nuke_settings":{
                     "plate_switch": {"which":2},
@@ -191,7 +191,7 @@
         "pump_settings":{
             "main_plates_exclude_from_loader_efl" : true,
             "postfix_file" : "admin/processing/python/project_postfix.py",
-            "script_file" :"//10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/thinkbox/python/pump_processing/postfix_process_pump.py"
+            "script_file" :"//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/pump_processing/postfix_process_pump.py"
         }
     },
     "secondary":{}

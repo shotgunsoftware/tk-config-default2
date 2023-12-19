@@ -31,7 +31,7 @@ elif "SSVFX_PIPELINE_DEV" in os.environ.keys():
 elif "SSVFX_PIPELINE" in os.environ.keys():
     pipeline_root =  os.environ["SSVFX_PIPELINE"]
 else:
-    pipeline_root = "\\\\10.80.8.252\\VFX_Pipeline"
+    pipeline_root = "\\\\ssvfx_pipeline\\pipeline_repo"
 
 log = sgtk.LogManager.get_logger(__name__)
 HookBaseClass = sgtk.get_hook_baseclass()
