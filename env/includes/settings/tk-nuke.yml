@@ -16,6 +16,7 @@ includes:
 - ../engine_locations.yml
 - ./tk-hiero-export.yml
 - ./tk-multi-breakdown.yml
+- ./tk-multi-breakdown2.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-reviewsubmission.yml
@@ -97,7 +98,9 @@ settings.tk-nuke.asset_step:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-breakdown:
+      display_name: "Legacy Breakdown"
       location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.nuke"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
     tk-multi-publish2: "@settings.tk-multi-publish2.nuke.asset_step"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.asset"
@@ -113,6 +116,7 @@ settings.tk-nuke.asset_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   location: "@engines.tk-nuke.location"
 
 # project
@@ -162,10 +166,12 @@ settings.tk-nuke.shot_step:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
-    tk-multi-breakdown:
-      location: "@apps.tk-multi-breakdown.location"
     tk-multi-setframerange:
       location: "@apps.tk-multi-setframerange.location"
+    tk-multi-breakdown:
+      display_name: "Legacy Breakdown"
+      location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.nuke"
     tk-multi-loader2: "@settings.tk-multi-loader2.nuke"
     tk-multi-publish2: "@settings.tk-multi-publish2.nuke.shot_step"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.shot"
@@ -181,6 +187,7 @@ settings.tk-nuke.shot_step:
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
+  - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   location: "@engines.tk-nuke.location"
 
 ################################################################################

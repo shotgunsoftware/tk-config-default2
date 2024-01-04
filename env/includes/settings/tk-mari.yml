@@ -14,6 +14,7 @@
 includes:
 - ../app_locations.yml
 - ../engine_locations.yml
+- ./tk-multi-breakdown2.yml
 - ./tk-multi-loader2.yml
 - ./tk-multi-publish2.yml
 - ./tk-multi-shotgunpanel.yml
@@ -37,7 +38,9 @@ settings.tk-mari.asset_step:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"
     tk-multi-breakdown:
+      display_name: "Legacy Breakdown"
       location: "@apps.tk-multi-breakdown.location"
+    tk-multi-breakdown2: "@settings.tk-multi-breakdown2.mari"
     tk-multi-loader2: "@settings.tk-multi-loader2.mari"
     tk-multi-publish2: "@settings.tk-multi-publish2.mari.asset_step"
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
