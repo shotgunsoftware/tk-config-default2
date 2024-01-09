@@ -75,3 +75,8 @@ frameworks:
       version: v0.2.2
       type: app_store
       name: tk-framework-lmv
+  tk-framework-lmv_v1.x.x:
+    location:
+      version: v1.0.0
+      type: app_store
+      name: tk-framework-lmv
