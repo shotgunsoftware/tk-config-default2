@@ -118,11 +118,12 @@ settings.tk-multi-data-validation.maya.shot_step:
       data_type: Geometry
     - id: sg_references
       data_type: References
-    - id: no_references
-      data_type: References
     - id: sync_frame_range
       data_type: Timeline
     # Light checks
     - id: render_engine
       data_type: Render
+    # Animation checks
+    - id: empty_anim_layers
+      data_type: Layers
   location: "@apps.tk-multi-data-validation.location"
