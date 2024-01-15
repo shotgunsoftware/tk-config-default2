@@ -107,13 +107,6 @@ settings.tk-multi-data-validation.maya.asset_step:
       data_type: Meshes
     - id: mesh_history
       data_type: Meshes
-    - id: mesh_visibility
-      data_type: Meshes
-    - id: default_materials_only
-      data_type: Materials
-    # Light checks
-    - id: custom_materials_only
-      data_type: Materials
   location: "@apps.tk-multi-data-validation.location"
 
 # shot_step
