@@ -29,6 +29,7 @@ includes:
 settings.tk-houdini-renderman.asset_step:
   work_file_template: houdini_asset_work
   output_render_template: houdini_asset_render
+  deadline_batch_name: deadline_asset_batch_name
   post_task_script: C:/pipeline/shotgrid/tk-houdini-renderman/post_task_script.py
   render_metadata:
     - { key: camera, type: string, expression: chsop("camera"), group: camera }
@@ -43,6 +44,7 @@ settings.tk-houdini-renderman.asset_step:
 settings.tk-houdini-renderman.shot_step:
   work_file_template: houdini_shot_work
   output_render_template: houdini_shot_render
+  deadline_batch_name: deadline_shot_batch_name
   post_task_script: C:/pipeline/shotgrid/tk-houdini-renderman/post_task_script.py
   render_metadata:
     - { key: camera, type: string, expression: chsop("camera"), group: camera }
