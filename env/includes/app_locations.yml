@@ -222,7 +222,7 @@ apps.tk-houdini-renderman.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-renderman
-  version: 0.3.5
+  version: 0.3.6
 
 # houdini usd
 apps.tk-houdini-usdrop.location:
