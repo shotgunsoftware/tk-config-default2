@@ -67,6 +67,11 @@ keys:
         default: hip
         alias: extension
 
+    pass_group:
+        type: str
+        filter_by: alphanumeric
+        default: beauty
+
 strings:
     # Houdini Workfile names minus the file extension
     # Asset work file name
@@ -159,7 +164,7 @@ paths:
         definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version.{HSEQ}.exr'
         root_name: 'project_storage_pix'
     houdini_shot_render_multi_exr:
-        definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{HSEQ}.exr'
+        definition: '@houdini_shot_render_root/[{houdini.node}/]{pass_group}/@houdini_shot_node_version_{pass_group}.{HSEQ}.exr'
         root_name: 'project_storage_pix'
     houdini_shot_render_multi_tiled_exr:
         definition: '@houdini_shot_render_root/[{houdini.node}/]@houdini_shot_node_version_{channel_group}.{tile_index}.{HSEQ}.exr'
@@ -239,6 +244,9 @@ paths:
         root_name: 'project_storage_pix'
     houdini_asset_render_exr:
         definition: '@houdini_asset_render_root/[{houdini.node}/]@houdini_asset_node_version.{HSEQ}.exr'
+        root_name: 'project_storage_pix'
+    houdini_asset_render_multi_exr:
+        definition: '@houdini_asset_render_root/[{houdini.node}/]{pass_group}/@houdini_asset_node_version_{pass_group}.{HSEQ}.exr'
         root_name: 'project_storage_pix'
     # Additional mantra outputs
     houdini_asset_ifd:
