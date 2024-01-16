@@ -780,6 +780,9 @@ strings:
   houdini_asset_version_name: "{Asset}_[{Step}_]_houdini_{name}_{write.output}_[{colorspace}_]v{version}"
   houdini_shot_version_name: "{Sequence}_{Shot}_[{Step}_]_houdini_{name}_{write.output}_[{colorspace}_]v{version}"
 
+  deadline_asset_batch_name: "{Projectcode} {Asset}"
+  deadline_shot_batch_name: "{Projectcode} {Sequence} {Shot}"
+
   # defines how the {tk_version} token in Hiero gets formatted back to tk.
   hiero_version: "{version}"
 
