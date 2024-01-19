@@ -197,6 +197,13 @@ apps.tk-houdini-fbxnode.location:
   repository: tk-houdini-fbxnode
   version: 1.0.1
 
+# houdini karma
+apps.tk-houdini-karma.location:
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-houdini-karma
+  version: 1.0.1
+
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
   type: app_store

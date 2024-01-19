@@ -20,6 +20,7 @@ includes:
   - ./tk-houdini-mantranode.yml
   - ./tk-houdini-arnold.yml
   - ./tk-houdini-renderman.yml
+  - ./tk-houdini-karma.yml
   - ./tk-houdini-usdrop.yml
   - ./tk-houdini-template.yml
   - ./tk-multi-reviewsubmission2.yml
@@ -66,6 +67,7 @@ settings.tk-houdini.asset_step:
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.asset_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.asset_step"
     tk-houdini-arnold: "@settings.tk-houdini-arnold.asset_step"
+    tk-houdini-karma: "@settings.tk-houdini-karma.asset_step"
     tk-houdini-renderman: "@settings.tk-houdini-renderman.asset_step"
     tk-houdini-usdrop: "@settings.tk-houdini-usdrop.asset_step"
     tk-houdini-template: "@settings.tk-houdini-template.asset_step"
@@ -138,6 +140,7 @@ settings.tk-houdini.shot_step:
     tk-houdini-cachenode: "@settings.tk-houdini-cachenode.shot_step"
     tk-houdini-mantranode: "@settings.tk-houdini-mantranode.shot_step"
     tk-houdini-arnold: "@settings.tk-houdini-arnold.shot_step"
+    tk-houdini-karma: "@settings.tk-houdini-karma.shot_step"
     tk-houdini-renderman: "@settings.tk-houdini-renderman.shot_step"
     tk-houdini-usdrop: "@settings.tk-houdini-usdrop.shot_step"
     tk-houdini-template: "@settings.tk-houdini-template.shot_step"
