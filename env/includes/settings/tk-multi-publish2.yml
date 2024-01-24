@@ -198,6 +198,7 @@ settings.tk-multi-publish2.maya.asset_step:
         Publish Template: usd_asset_publish
         Export Active Selection Only: False
         Disable Animations Export: False
+        Export Current Frame Only: False
     - name: Publish to ShotGrid
       hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
       settings:
@@ -230,6 +231,7 @@ settings.tk-multi-publish2.maya.shot_step:
         Publish Template: usd_shot_publish
         Export Active Selection Only: False
         Disable Animations Export: False
+        Export Current Frame Only: False
     - name: Publish to ShotGrid
       hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
       settings:
