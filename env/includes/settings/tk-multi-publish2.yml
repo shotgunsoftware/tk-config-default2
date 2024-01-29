@@ -11,7 +11,7 @@
 ################################################################################
 
 includes:
-- ../app_locations.yml
+  - ../app_locations.yml
 
 ################################################################################
 
@@ -24,11 +24,11 @@ publish_help_url: &help_url "https://nfa-vfxim.notion.site/Guide-to-working-in-S
 settings.tk-multi-publish2.standalone:
   collector: "{self}/collector.py"
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -40,24 +40,24 @@ settings.tk-multi-publish2.standalone:
 settings.tk-multi-publish2.3dsmaxplus.asset_step: &settings_tk-multi-publish2_3dsmaxplus_asset_step
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: max_asset_work
+    Work Template: max_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: max_asset_publish
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+      settings:
         Publish Template: asset_alembic_cache
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -66,24 +66,23 @@ settings.tk-multi-publish2.3dsmaxplus.asset_step: &settings_tk-multi-publish2_3d
 settings.tk-multi-publish2.3dsmaxplus.shot_step: &settings_tk-multi-publish2_3dsmaxplus_shot_step
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: max_shot_work
+    Work Template: max_shot_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: max_shot_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
-
 
 # ---- 3dsMax
 
@@ -101,24 +100,24 @@ settings.tk-multi-publish2.3dsmax.shot_step: *settings_tk-multi-publish2_3dsmaxp
 settings.tk-multi-publish2.houdini.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: houdini_asset_work
+    Work Template: houdini_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: houdini_asset_publish
-  - name: Submit for Review
-    hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
-    settings: {}
+    - name: Submit for Review
+      hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -126,24 +125,24 @@ settings.tk-multi-publish2.houdini.asset_step:
 settings.tk-multi-publish2.houdini.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: houdini_shot_work
+    Work Template: houdini_shot_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: houdini_shot_publish
-  - name: Submit for Review
-    hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
-    settings: {}
+    - name: Submit for Review
+      hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -155,16 +154,16 @@ settings.tk-multi-publish2.houdini.shot_step:
 settings.tk-multi-publish2.mari.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
-    settings:
-      Publish Template: asset_mari_texture_tif
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
+      settings:
+        Publish Template: asset_mari_texture_tif
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -176,28 +175,31 @@ settings.tk-multi-publish2.mari.asset_step:
 settings.tk-multi-publish2.maya.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: maya_asset_work
+    Work Template: maya_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: maya_asset_publish
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_usd.py"
-    settings:
-      Publish Template: usd_asset_publish
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
-    settings:
+    - name: Publish USD to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_usd.py"
+      settings:
+        Publish Template: usd_asset_publish
+        Export Active Selection Only: False
+        Disable Animations Export: False
+        Export Current Frame Only: False
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
+      settings:
         Publish Template: maya_asset_abc
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -206,29 +208,32 @@ settings.tk-multi-publish2.maya.asset_step:
 settings.tk-multi-publish2.maya.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: maya_shot_work
+    Work Template: maya_shot_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: maya_shot_publish
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_usd.py"
-    settings:
-      Publish Template: usd_shot_publish
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
-    settings:
-      Publish Template: maya_shot_abc
+    - name: Publish USD to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_usd.py"
+      settings:
+        Publish Template: usd_shot_publish
+        Export Active Selection Only: False
+        Disable Animations Export: False
+        Export Current Frame Only: False
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
+      settings:
+        Publish Template: maya_shot_abc
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -240,25 +245,25 @@ settings.tk-multi-publish2.maya.shot_step:
 settings.tk-multi-publish2.nuke.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: nuke_asset_work
+    Work Template: nuke_asset_work
   post_phase: "{self}/collector.py:{engine}/tk-multi-publish2/basic/post_phase.py"
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_script.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_script.py"
+      settings:
         Publish Template: nuke_asset_publish
-  - name: Submit for Review
-    hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
-    settings: {}
+    - name: Submit for Review
+      hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -266,28 +271,28 @@ settings.tk-multi-publish2.nuke.asset_step:
 settings.tk-multi-publish2.nuke.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: nuke_shot_work
+    Work Template: nuke_shot_work
   post_phase: "{self}/collector.py:{engine}/tk-multi-publish2/basic/post_phase.py"
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_script.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nuke_publish_script.py"
+      settings:
         Publish Template: nuke_shot_publish
-  - name: Submit for Review
-    hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
-    settings: {}
-  - name: Update Flame Clip
-    hook: "{engine}/tk-multi-publish2/basic/nuke_update_flame_clip.py"
-    settings:
+    - name: Submit for Review
+      hook: "{engine}/tk-multi-publish2/basic/submit_for_review.py"
+      settings: {}
+    - name: Update Flame Clip
+      hook: "{engine}/tk-multi-publish2/basic/nuke_update_flame_clip.py"
+      settings:
         Flame Clip Template: flame_shot_clip
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -299,20 +304,20 @@ settings.tk-multi-publish2.nuke.shot_step:
 settings.tk-multi-publish2.nukestudio:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: hiero_project_work
+    Work Template: hiero_project_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/nukestudio_start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nukestudio_publish_project.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/nukestudio_start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/nukestudio_publish_project.py"
+      settings:
         Publish Template: hiero_project_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -325,24 +330,24 @@ settings.tk-multi-publish2.nukestudio:
 settings.tk-multi-publish2.photoshop.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: photoshop_asset_work
+    Work Template: photoshop_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
+      settings:
         Publish Template: photoshop_asset_publish
-  - name: Upload for review
-    hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
-    settings: {}
+    - name: Upload for review
+      hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -350,24 +355,24 @@ settings.tk-multi-publish2.photoshop.asset_step:
 settings.tk-multi-publish2.photoshop.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: photoshop_shot_work
+    Work Template: photoshop_shot_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
+      settings:
         Publish Template: photoshop_shot_publish
-  - name: Upload for review
-    hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
-    settings: {}
+    - name: Upload for review
+      hook: "{engine}/tk-multi-publish2/basic/upload_version.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -379,37 +384,37 @@ settings.tk-multi-publish2.photoshop.shot_step:
 settings.tk-multi-publish2.aftereffects.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: aftereffects_asset_work
+    Work Template: aftereffects_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Render Render Queue Items
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/make_rendering.py"
-    settings: {}
-  - name: Copy Renderings to Publish Location
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Render Render Queue Items
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/make_rendering.py"
+      settings: {}
+    - name: Copy Renderings to Publish Location
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
+      settings:
         Publish Sequence Template: aftereffects_asset_render_pub_mono
         Publish Movie Template: aftereffects_asset_render_movie
         Default Sequence Output Module: TIFF Sequence with Alpha
         Default Movie Output Module: Lossless with Alpha
-  - name: Publish Renderings to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
-    settings:
+    - name: Publish Renderings to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
+      settings:
         Publish Template: aftereffects_asset_publish
-  - name: Upload for review
-    hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
-    settings:
+    - name: Upload for review
+      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+      settings:
         Movie Output Module: Lossless with Alpha
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -418,34 +423,34 @@ settings.tk-multi-publish2.aftereffects.asset_step:
 settings.tk-multi-publish2.aftereffects.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: aftereffects_shot_work
+    Work Template: aftereffects_shot_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Render Render Queue Items
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/make_rendering.py"
-    settings: {}
-  - name: Copy Renderings to Publish Location
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Render Render Queue Items
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/make_rendering.py"
+      settings: {}
+    - name: Copy Renderings to Publish Location
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/copy_rendering.py"
+      settings:
         Publish Sequence Template: aftereffects_shot_render_pub_mono
         Publish Movie Template: aftereffects_shot_render_movie
         Default Sequence Output Module: TIFF Sequence with Alpha
         Default Movie Output Module: Lossless with Alpha
-  - name: Publish Renderings to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
-    settings:
+    - name: Publish Renderings to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_document.py"
+      settings:
         Publish Template: aftereffects_shot_publish
-  - name: Upload for review
-    hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
-    settings:
+    - name: Upload for review
+      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+      settings:
         Movie Output Module: Lossless with Alpha
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -458,21 +463,21 @@ settings.tk-multi-publish2.aftereffects.shot_step:
 settings.tk-multi-publish2.motion_builder.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: mobu_asset_work
+    Work Template: mobu_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
-      Publish Template: mobu_asset_publish
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
+        Publish Template: mobu_asset_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -480,24 +485,23 @@ settings.tk-multi-publish2.motion_builder.asset_step:
 settings.tk-multi-publish2.motion_builder.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: mobu_shot_work
+    Work Template: mobu_shot_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
-      Publish Template: mobu_shot_publish
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
+        Publish Template: mobu_shot_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
-
 
 ################################################################################
 
@@ -507,44 +511,43 @@ settings.tk-multi-publish2.motion_builder.shot_step:
 settings.tk-multi-publish2.alias.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: alias_asset_work
+    Work Template: alias_asset_work
   publish_plugins:
-   - name: Publish to ShotGrid
-     hook: "{self}/publish_file.py"
-     settings: {}
-   - name: Upload for review
-     hook: "{self}/upload_version.py"
-     settings: {}
-   - name: Begin file versioning
-     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-     settings: {}
-   - name: Publish to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-     settings:
-       Publish Template: alias_asset_publish
-   - name: Publish IGES to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_igs_publish
-   - name: Publish CATPart to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_catpart_publish
-   - name: Publish JT to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_jt_publish
-   - name: Publish STEP to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_stp_publish
-   - name: Publish WREF to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
-     settings:
-       Publish Template: alias_asset_wref_publish
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
+        Publish Template: alias_asset_publish
+    - name: Publish IGES to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+      settings:
+        Publish Template: alias_asset_igs_publish
+    - name: Publish CATPart to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+      settings:
+        Publish Template: alias_asset_catpart_publish
+    - name: Publish JT to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+      settings:
+        Publish Template: alias_asset_jt_publish
+    - name: Publish STEP to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+      settings:
+        Publish Template: alias_asset_stp_publish
+    - name: Publish WREF to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_translation.py"
+      settings:
+        Publish Template: alias_asset_wref_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
-
 
 ################################################################################
 
@@ -554,37 +557,35 @@ settings.tk-multi-publish2.alias.asset_step:
 settings.tk-multi-publish2.vred.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: vred_asset_work
+    Work Template: vred_asset_work
   publish_plugins:
-   - name: Publish to ShotGrid
-     hook: "{self}/publish_file.py"
-     settings: {}
-   - name: Upload for review
-     hook: "{self}/upload_version.py"
-     settings: {}
-   - name: Begin file versioning
-     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-     settings: {}
-   - name: Publish to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-     settings:
-       Publish Template: vred_asset_publish
-   - name: Publish to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
-     settings:
-       Publish Template: vred_asset_geometry_publish
-   - name: Publish Rendering to ShotGrid
-     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
-     settings:
-       Publish Image Template: vred_asset_render_publish
-       Publish Sequence Template: vred_asset_render_sequence_publish
-   - name: Upload for review
-     hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
-     settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
+        Publish Template: vred_asset_publish
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+      settings:
+        Publish Template: vred_asset_geometry_publish
+    - name: Publish Rendering to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_rendering.py"
+      settings:
+        Publish Image Template: vred_asset_render_publish
+        Publish Sequence Template: vred_asset_render_sequence_publish
+    - name: Upload for review
+      hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_version.py"
+      settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
-
-
 
 ################################################################################
 
@@ -594,30 +595,30 @@ settings.tk-multi-publish2.vred.asset_step:
 settings.tk-multi-publish2.substancepainter.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   collector_settings:
-      Work Template: substancepainter_asset_work
-      Work Export Template: substancepainter_asset_textures_path_export
-      Publish Textures as Folder: true
+    Work Template: substancepainter_asset_work
+    Work Export Template: substancepainter_asset_textures_path_export
+    Publish Textures as Folder: true
   publish_plugins:
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_textures.py"
-    settings:
-      Publish Template: substancepainter_asset_textures_path_publish
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_texture.py"
-    settings:
-      Publish Template: substancepainter_asset_texture_path_publish
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to Shotgun
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Publish to Shotgun
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_textures.py"
+      settings:
+        Publish Template: substancepainter_asset_textures_path_publish
+    - name: Publish to Shotgun
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_texture.py"
+      settings:
+        Publish Template: substancepainter_asset_texture_path_publish
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to Shotgun
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: substancepainter_asset_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -629,22 +630,22 @@ settings.tk-multi-publish2.substancepainter.asset_step:
 settings.tk-multi-publish2.unreal.project:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings: {}
-  - name: Export FBX and Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_asset.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings: {}
+    - name: Export FBX and Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_asset.py"
+      settings:
         Publish Template: unreal.asset_publish
-  - name: Render Movie and Submit for Review
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_movie.py"
-    settings:
+    - name: Render Movie and Submit for Review
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_movie.py"
+      settings:
         Publish Template: unreal.movie_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -653,32 +654,32 @@ settings.tk-multi-publish2.unreal.project:
 settings.tk-multi-publish2.maya.asset_step.unreal:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{tk-framework-unrealqt_v1.x.x}/tk-multi-publish2/tk-maya/basic/collector.py"
   collector_settings:
-      Work Template: maya_asset_work
+    Work Template: maya_asset_work
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
-  - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-    settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py"
+      settings: {}
+    - name: Upload for review
+      hook: "{self}/upload_version.py"
+      settings: {}
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: {}
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
         Publish Template: maya_asset_publish
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
-    settings:
+    - name: Publish to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+      settings:
         Publish Template: asset_alembic_cache
-  - name: Publish FBX to ShotGrid
-    hook: "{self}/publish_file.py:{tk-framework-unrealqt_v1.x.x}/tk-multi-publish2/tk-maya/basic/publish_fbx.py"
-    settings:
+    - name: Publish FBX to ShotGrid
+      hook: "{self}/publish_file.py:{tk-framework-unrealqt_v1.x.x}/tk-multi-publish2/tk-maya/basic/publish_fbx.py"
+      settings:
         Publish Template: unreal.maya_asset_fbx_publish
-  - name: Publish and Submit for Review
-    hook: "{self}/publish_file.py:{tk-framework-unrealqt_v1.x.x}/tk-multi-publish2/tk-maya/basic/publish_turntable.py"
-    settings:
+    - name: Publish and Submit for Review
+      hook: "{self}/publish_file.py:{tk-framework-unrealqt_v1.x.x}/tk-multi-publish2/tk-maya/basic/publish_turntable.py"
+      settings:
         Work Template: unreal.maya_turntable_render
         Publish Template: unreal.maya_turntable_publish
         Unreal Engine Version: "5.0"
