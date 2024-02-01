@@ -42,7 +42,7 @@
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
                     "plugin_version": "12.2",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_processing.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_processing.nk"
                 },
                 "nuke_settings": {
                     "plate_switch": {"which": 1},
@@ -98,7 +98,7 @@
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
                     "plugin_version": "12.2",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_DNxHD.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk"
                 },
                 "nuke_settings": {
                     "plate_switch": {"which": 0},
@@ -170,7 +170,7 @@
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
                     "plugin_version": "12.2",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_DNxHD.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk"
                 },
                 "nuke_settings": {
                     "plate_switch": {"which": 0},
