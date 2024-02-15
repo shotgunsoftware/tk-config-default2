@@ -37,7 +37,7 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.5.1
+  version: v1.5.2
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
