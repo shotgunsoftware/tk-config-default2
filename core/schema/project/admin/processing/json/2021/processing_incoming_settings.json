@@ -40,8 +40,8 @@
                     "color_required": false,
                     "client_process": false,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
-                    "plugin_version": "12.2",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
                     "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_processing.nk"
                 },
                 "nuke_settings": {
@@ -96,8 +96,8 @@
                     "color_required": true,
                     "client_process": false,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
-                    "plugin_version": "12.2",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
                     "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk"
                 },
                 "nuke_settings": {
@@ -168,8 +168,8 @@
                     "color_required": true,
                     "client_process": true,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
-                    "plugin_version": "12.2",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
                     "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk"
                 },
                 "nuke_settings": {

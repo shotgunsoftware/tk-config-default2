@@ -17,7 +17,7 @@ else:
 
 repos = ["ssvfx_scripts", "ssvfx_sg"]
 for repo in repos:
-    repo_path = os.path.join(pipeline_root, "Pipeline", repo)
+    repo_path = os.path.join(pipeline_root, "master", repo)
     if not os.path.exists(repo_path):
         repo_path = os.path.join(pipeline_root, repo)
 
