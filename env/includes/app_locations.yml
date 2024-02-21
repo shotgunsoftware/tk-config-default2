@@ -47,7 +47,7 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.23.2
+  version: v1.23.3
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
@@ -73,11 +73,11 @@ apps.tk-multi-screeningroom.location:
 apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
-  version: v0.5.1
+  version: v0.5.2
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.8.8
+  version: v1.8.9
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot

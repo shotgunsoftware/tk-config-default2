@@ -17,7 +17,7 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.9
+      version: v1.1.10
       type: app_store
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
@@ -27,12 +27,12 @@ frameworks:
       name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
     location:
-      version: v1.1.0
+      version: v1.2.0
       type: app_store
       name: tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.2.3
+      version: v0.2.4
       type: app_store
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
@@ -52,7 +52,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.8.7
+      version: v5.8.8
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
