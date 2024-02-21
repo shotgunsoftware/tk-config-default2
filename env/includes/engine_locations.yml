@@ -51,9 +51,19 @@ engines.tk-mari.location:
   name: tk-mari
   version: v1.3.4
 engines.tk-maya.location:
-  type: app_store
-  name: tk-maya
-  version: v0.11.8
+#  type: app_store
+#  name: tk-maya
+#  version: v0.11.8
+
+#  # Test Dev Maya Pipeline
+#  type: git_branch,
+#  branch: SG-31832_Update_Tk_Maya_To_Support_Maya_2025_Using_Pyside6,
+#  path: git@github.com:shotgunsoftware/tk-maya.git,
+#  version: 652f677
+  type: git_branch,
+  branch: SG-31832-poc,
+  path: git@github.com:shotgunsoftware/tk-maya.git,
+  version: 245a6e1
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
