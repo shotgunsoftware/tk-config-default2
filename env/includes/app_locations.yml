@@ -52,6 +52,12 @@ apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
   version: v2.6.9
+
+#  # Test Dev Maya Pipeline
+#  type: git_branch,
+#  branch: SG-33587_Qt6_Maya_Beta_The_Checkboxes_In_The_Publish_Window_Do_Not_Work,
+#  path: git@github.com:shotgunsoftware/tk-multi-publish2.git,
+#  version: 5188107
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
