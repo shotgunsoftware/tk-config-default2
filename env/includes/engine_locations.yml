@@ -60,9 +60,9 @@ engines.tk-maya.location:
 #  branch: SG-31832_Update_Tk_Maya_To_Support_Maya_2025_Using_Pyside6,
 #  path: git@github.com:shotgunsoftware/tk-maya.git,
 #  version: 652f677
-  type: git_branch,
-  branch: SG-31832-poc,
-  path: git@github.com:shotgunsoftware/tk-maya.git,
+  type: git_branch
+  branch: SG-31832-poc
+  path: git@github.com:shotgunsoftware/tk-maya.git
   version: 245a6e1
 engines.tk-motionbuilder.location:
   type: app_store
