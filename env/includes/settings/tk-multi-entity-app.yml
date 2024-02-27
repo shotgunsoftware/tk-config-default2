@@ -1,0 +1,89 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# alias
+settings.tk-multi-entity-app.alias:
+  action_mappings:
+    Alias File: [import, import_as_reference]
+    Wref File: [reference]
+    Igs File: [import, import_as_reference]
+    Stp File: [import, import_as_reference]
+    Stl File: [import, import_as_reference]
+    Jt File: [import, import_as_reference]
+    Catpart File: [import, import_as_reference]
+    Catproduct File: [import, import_as_reference]
+    Fbx File: [import]
+    Motion Builder FBX: [import]
+    Image: [texture_node]
+    Photoshop Image: [texture_node]
+    Tif File: [texture_node]
+    Bmp File: [texture_node]
+    Obj File: [import_subdiv]
+    Tsm File: [import_subdiv]
+    F3d File: [import_subdiv]
+    Sf3d File: [import_subdiv]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters: []
+    hierarchy: [sg_asset_type, code]
+  - caption: Assets - Linked
+    entity_type: Asset
+    filters:
+      - [linked_projects, is, "{context.project}"]
+    hierarchy: [project.Project.name, sg_asset_type, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    hierarchy: [entity, content]
+  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
+  location: "@apps.tk-multi-entity-app.location"
+
+# VRED
+settings.tk-multi-entity-app.vred:
+  action_mappings:
+    Alias File: [import, import_with_options, smart_reference]
+    Igs File: [import, import_with_options, smart_reference]
+    Iges File: [ import, import_with_options, smart_reference ]
+    Stp File: [import, import_with_options, smart_reference]
+    Stl File: [import, import_with_options, smart_reference]
+    Jt File: [import, import_with_options, smart_reference]
+    Catpart File: [import, import_with_options, smart_reference]
+    Fbx File: [import, import_with_options, smart_reference]
+    Motion Builder FBX: [import, import_with_options, smart_reference]
+    VRED Scene: [import, import_with_options, smart_reference]
+    Osb File: [import, import_with_options, smart_reference]
+    Image: [import_sceneplate]
+    Rendered Image: [import_sceneplate]
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    filters: []
+    hierarchy: [sg_asset_type, code]
+  - caption: Assets - Linked
+    entity_type: Asset
+    filters:
+      - [linked_projects, is, "{context.project}"]
+    hierarchy: [project.Project.name, sg_asset_type, code]
+  - caption: My Tasks
+    entity_type: Task
+    filters:
+    - [task_assignees, is, '{context.user}']
+    hierarchy: [entity, content]
+  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
+  location: "@apps.tk-multi-entity-app.location"

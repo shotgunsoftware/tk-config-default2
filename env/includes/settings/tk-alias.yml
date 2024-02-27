@@ -20,6 +20,7 @@ includes:
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-multi-data-validation.yml
+- ./tk-multi-entity-app.yml
 
 ################################################################################
 
@@ -68,6 +69,7 @@ settings.tk-alias.project:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias"
     tk-multi-data-validation: "@settings.tk-multi-data-validation.alias"
+    tk-multi-entity-app: "@settings.tk-multi-entity-app.alias"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   run_at_startup:

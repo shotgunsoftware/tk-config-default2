@@ -17,6 +17,10 @@ includes:
 ################################################################################
 # location descriptors for apps used in this configuration
 
+apps.tk-multi-entity-app.location:
+  type: dev
+  windows_path: C:\Users\qa\sg_envs\dev\tk\tk-multi-entity-app
+
 # ---- Multi apps
 
 # about

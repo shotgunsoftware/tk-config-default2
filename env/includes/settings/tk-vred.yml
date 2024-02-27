@@ -20,6 +20,7 @@ includes:
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-multi-data-validation.yml
+- ./tk-multi-entity-app.yml
 
 ################################################################################
 
@@ -85,6 +86,7 @@ settings.tk-vred.project:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred"
     tk-multi-data-validation: "@settings.tk-multi-data-validation.vred"
+    tk-multi-entity-app: "@settings.tk-multi-entity-app.vred"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   run_at_startup:
