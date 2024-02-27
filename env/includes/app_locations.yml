@@ -23,7 +23,7 @@ apps.tk-multi-entity-app.location:
   type: git_branch
   branch: main
   path: https://github.com/shotgunsoftware/tk-multi-entity-app.git
-  version: 590b72a
+  version: 66ab0a9
 
 # ---- Multi apps
 

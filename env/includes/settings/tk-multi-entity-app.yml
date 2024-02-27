@@ -17,6 +17,7 @@ includes:
 
 # alias
 settings.tk-multi-entity-app.alias:
+  menu_name: "Published Files"
   action_mappings:
     Alias File: [import, import_as_reference]
     Wref File: [reference]
@@ -56,6 +57,7 @@ settings.tk-multi-entity-app.alias:
 
 # VRED
 settings.tk-multi-entity-app.vred:
+  menu_name: "Published Files"
   action_mappings:
     Alias File: [import, import_with_options, smart_reference]
     Igs File: [import, import_with_options, smart_reference]

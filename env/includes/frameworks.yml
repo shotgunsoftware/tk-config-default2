@@ -46,7 +46,7 @@ frameworks:
       # type: app_store
       # name: tk-framework-qtwidgets
       type: git_branch
-      branch: SHOT-4328-dock-filters
+      branch: ticket/SHOT-4328-dock-filters
       path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
       version: fcc6363
   tk-framework-shotgunutils_v4.x.x:
