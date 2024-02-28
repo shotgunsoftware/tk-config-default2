@@ -52,6 +52,7 @@ settings.tk-multi-entity-app.alias:
     filters:
     - [task_assignees, is, '{context.user}']
     hierarchy: [entity, content]
+  published_file_fields: []
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   location: "@apps.tk-multi-entity-app.location"
 
@@ -88,4 +89,5 @@ settings.tk-multi-entity-app.vred:
     - [task_assignees, is, '{context.user}']
     hierarchy: [entity, content]
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
+  published_file_fields: []
   location: "@apps.tk-multi-entity-app.location"
