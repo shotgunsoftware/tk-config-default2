@@ -32,7 +32,8 @@ frameworks:
       name: tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.2.4
+      # version: v0.2.4
+      version: v0.2.3
       type: app_store
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
