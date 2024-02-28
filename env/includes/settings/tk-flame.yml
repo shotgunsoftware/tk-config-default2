@@ -30,8 +30,8 @@ settings.tk-flame.project:
     tk-multi-loader2: "@settings.tk-multi-loader2.flame"
   location: "@engines.tk-flame.location"
   context_menu: [
-    { name : "Load...", app_instance: "tk-multi-loader2", display_name: "ShotGrid Loader..."},
-    { name : "Shotgun Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "ShotGrid Panel..."}
+    { name : "Load...", app_instance: "tk-multi-loader2", display_name: "Flow Production Tracking Loader..."},
+    { name : "Shotgun Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "Flow Production Tracking Panel..."}
   ]
 
 # shot
@@ -44,6 +44,6 @@ settings.tk-flame.shot:
     tk-multi-loader2: "@settings.tk-multi-loader2.flame"
   location: "@engines.tk-flame.location"
   context_menu: [
-    { name : "Load...", app_instance: "tk-multi-loader2", display_name: "ShotGrid Loader..."},
-    { name : "Shotgun Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "ShotGrid Panel..."}
+    { name : "Load...", app_instance: "tk-multi-loader2", display_name: "Flow Production Tracking Loader..."},
+    { name : "Shotgun Panel...", app_instance: "tk-multi-shotgunpanel", display_name: "Flow Production Tracking Panel..."}
   ]
