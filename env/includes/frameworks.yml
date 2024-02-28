@@ -27,13 +27,15 @@ frameworks:
       name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
     location:
-      # version: v1.2.0
-      # type: app_store
-      # name: tk-framework-alias
-      type: git_branch
-      branch: develop
-      path: https://github.com/shotgunsoftware/tk-framework-alias.git
-      version: 17c9c75
+      version: v1.2.0
+      type: app_store
+      name: tk-framework-alias
+      # type: git_branch
+      # branch: develop
+      # path: https://github.com/shotgunsoftware/tk-framework-alias.git
+      # version: 17c9c75
+      # type: dev
+      # windows_path: C:\Users\qa\sg_envs\dev\tk\tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
     location:
       # version: v0.2.4
