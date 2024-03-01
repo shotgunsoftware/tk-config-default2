@@ -17,34 +17,40 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.10
-      type: app_store
-      name: tk-framework-adobe
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-adobe.git
+      branch: ticket/SG-34297-rebranding
+      version: 787e7bc6435fb816485da7dc7ec2e58f89a8d0b3
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.5
-      type: app_store
-      name: tk-framework-adminui
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-adminui.git
+      branch: ticket/SG-34296-rebranding
+      version: cb64ca4e3cf67924808b375343cbaa8e7ce65db8
   tk-framework-alias_v1.x.x:
     location:
-      version: v1.2.1
-      type: app_store
-      name: tk-framework-alias
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-alias.git
+      branch: ticket/SG-34298-rebranding
+      version: 9837f441f50fe1cfcc66252d3f0875b6f6bca208
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.2.4
-      type: app_store
-      name: tk-framework-aliastranslations
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-aliastranslations.git
+      branch: ticket/SG-34298-rebranding
+      version: 430fc8cb09dae58d4acae729c88114dbe5567315
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.6.5
-      type: app_store
-      name: tk-framework-desktopserver
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-desktopserver.git
+      branch: ticket/SG-34300-rebranding
+      version: 09bee40b153867a196571481edca98efe3886227
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.10.11
-      type: app_store
-      name: tk-framework-qtwidgets
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
+      branch: ticket/SG-34303-rebranding
+      version: b3f354f44aa03b7042cda2d4e73907a929a99dbb
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -52,9 +58,10 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.8.8
-      type: app_store
-      name: tk-framework-shotgunutils
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-shotgunutils.git
+      branch: ticket/SG-34304-rebranding
+      version: f43faf9856939683f8aa1cad37fa0cf35862ae5c
   tk-framework-widget_v0.2.x:
     location:
       version: v0.2.8
@@ -62,14 +69,16 @@ frameworks:
       name: tk-framework-widget
   tk-framework-widget_v1.x.x:
     location:
-      version: v1.1.1
-      type: app_store
-      name: tk-framework-widget
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-widget.git
+      branch: ticket/SG-34419-rebranding
+      version: 344f32c1b635455db5f112193963f836e46c1c47
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.3.2
-      type: app_store
-      name: tk-framework-desktopclient
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-desktopclient.git
+      branch: ticket/SG-34299-rebranding
+      version: 32e10353a8a07a1a7e1ff04e24a2ee0ed82c234c
   tk-framework-lmv_v0.x.x:
     location:
       version: v0.2.2
@@ -77,6 +86,7 @@ frameworks:
       name: tk-framework-lmv
   tk-framework-lmv_v1.x.x:
     location:
-      version: v1.0.0
-      type: app_store
-      name: tk-framework-lmv
+      type: git_branch
+      path: https://github.com/shotgunsoftware/tk-framework-lmv.git
+      branch: ticket/SG-34302-rebranding
+      version: 320a2b49a7adf039a858ae58857c0b6d74264f55

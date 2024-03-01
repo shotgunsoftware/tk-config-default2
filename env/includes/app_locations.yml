@@ -21,9 +21,10 @@ includes:
 
 # about
 apps.tk-multi-about.location:
-  type: app_store
-  name: tk-multi-about
-  version: v0.4.2
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-about.git
+  branch: ticket/SG-34317-rebranding
+  version: 74f71e2ae7319eea41e9257ce8b3febf89271672
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
@@ -33,53 +34,62 @@ apps.tk-multi-breakdown2.location:
   name: tk-multi-breakdown2
   version: v0.2.9
 apps.tk-multi-data-validation.location:
-  type: app_store
-  name: tk-multi-data-validation
-  version: v0.1.5
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-data-validation.git
+  branch: ticket/SG-34321-rebranding
+  version: d4054ab77b78a3c993124fb6abdb4f9e073e0c93
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
   version: v1.3.5
 apps.tk-multi-launchapp.location:
-  type: app_store
-  name: tk-multi-launchapp
-  version: v0.12.6
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-launchapp.git
+  branch: ticket/SG-34325-rebranding
+  version: b69028dc1389a14f2c4bb0058865766e887b5ad7
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.23.3
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-loader2.git
+  branch: ticket/SG-34326-rebranding
+  version: d6da28a359d49c5d6cba89937d02e32fac711388
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.6.9
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
+  branch: ticket/SG-34328-rebranding
+  version: 05d8c05a9930fcf44b6ae433cbeabb520fd2500c
 apps.tk-multi-pythonconsole.location:
-  type: app_store
-  name: tk-multi-pythonconsole
-  version: v1.3.2
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-pythonconsole.git
+  branch: ticket/SG-34329-rebranding
+  version: 0dfcf010f083d7caff688e0b9051d34af762a565
 apps.tk-multi-reviewsubmission.location:
-  type: app_store
-  name: tk-multi-reviewsubmission
-  version: v1.2.1
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-reviewsubmission.git
+  branch: ticket/SG-34330-rebranding
+  version: 05cc9bee30b6d17fb9175c497fca1f75b05c05f8
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
   version: v0.5.1
 apps.tk-multi-setframerange.location:
-  type: app_store
-  name: tk-multi-setframerange
-  version: v0.5.2
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-setframerange.git
+  branch: ticket/SG-34334-rebranding
+  version: cbf4c7139ba0fcf8ee6bad5d3dd22ef767287b7a
 apps.tk-multi-shotgunpanel.location:
-  type: app_store
-  name: tk-multi-shotgunpanel
-  version: v1.8.10
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-shotgunpanel.git
+  branch: ticket/SG-34335-rebranding
+  version: 684d724d52e5ee9bb3b30bb351f13a598f6a8cec
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
   version: v0.9.1
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.14.1
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
+  branch: ticket/SG-34338-rebranding
+  version: 7d21a8ff76c5010afcb037430ef17863798b967a
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
@@ -93,17 +103,19 @@ apps.tk-shotgun-folders.location:
   name: tk-shotgun-folders
   version: v0.3.1
 apps.tk-shotgun-launchfolder.location:
-  type: app_store
-  name: tk-shotgun-launchfolder
-  version: v0.3.1
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-shotgun-launchfolder.git
+  branch: ticket/SG-34314-rebranding
+  version: 4c23866bf47ebc7e01c5809ad77ec32e21944577
 apps.tk-shotgun-launchpublish.location:
   type: app_store
   name: tk-shotgun-launchpublish
   version: v0.5.1
 apps.tk-shotgun-launchvredreview.location:
-  type: app_store
-  name: tk-shotgun-launchvredreview
-  version: v1.1.4
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-shotgun-launchvredreview.git
+  branch: ticket/SG-34314-rebranding
+  version: 40e900d4f9bc116963e9513a875faa86a327123c
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
@@ -121,9 +133,10 @@ apps.tk-houdini-mantranode.location:
   name: tk-houdini-mantranode
   version: v0.5.2
 apps.tk-nuke-quickreview.location:
-  type: app_store
-  name: tk-nuke-quickreview
-  version: v1.2.1
+  type: git_branch
+  path: https://github.com/shotgunsoftware/tk-nuke-quickreview.git
+  branch: ticket/SG-34311-rebranding
+  version: ad8a0ced646f2ef426ea561b5eb5153dc3f6432f
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
