@@ -87,9 +87,13 @@ apps.tk-multi-workfiles2.location:
   name: tk-multi-workfiles2
   version: v0.14.1
 apps.tk-multi-devutils.location:
-  type: app_store
-  name: tk-multi-devutils
-  version: v1.2.1
+#  type: app_store
+#  name: tk-multi-devutils
+#  version: v1.2.1
+  type: git_branch
+  branch: ticket/SG-34323-rebranding
+  version: 8e704b6
+  path: git@github.com:shotgunsoftware/tk-multi-devutils.git
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
