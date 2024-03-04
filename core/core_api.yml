@@ -12,11 +12,11 @@
 # core API that should be used at runtime.
 
 location:
-  type: app_store
-  name: tk-core
-  version: v0.20.30
-#  # Test Dev Maya Pipeline
-#  type: git_branch,
-#  branch: SG-34534_Add_Shiboken_Module_To_Tk_Core_Qtimporter_Class,
-#  path: git@github.com:NorberMV/tk-core-maya.git,
-#  version: 307a292
+#  type: app_store
+#  name: tk-core
+#  version: v0.20.30
+  # Test Dev Maya Pipeline
+  type: git_branch,
+  branch: ticket/SG-34066-rebranding
+  path: git@github.com:shotgunsoftware/tk-core.git
+  version: 9d89b1c
