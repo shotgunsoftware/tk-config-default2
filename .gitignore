@@ -40,3 +40,6 @@ pip-log.txt
 # Jetbrains Pycharm
 .idea
 venv
+
+# zipped configs
+zip_config
