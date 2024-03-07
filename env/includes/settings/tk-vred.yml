@@ -51,6 +51,26 @@ settings.tk-vred.asset_step:
     tk-multi-data-validation: "@settings.tk-multi-data-validation.vred"
     tk-multi-bg-publish:
       location: "@apps.tk-multi-bg-publish.location"
+    tk-multi-scenebuilder:
+      location: "@apps.tk-multi-scenebuilder.location"
+      presets:
+        - name: Default
+          actions:
+            - context:
+              - [entity.Asset.parents, in, '{context.entity}']
+              - [task.Task.content, is, Model]
+              - [task.Task.step.Step.code, is, Model]
+              action_mappings:
+                Alias File: import
+                VRED Scene: import
+        - name: CatPart
+          actions:
+            - context:
+              - [entity.Asset.parents, in, '{context.entity}']
+              - [task.Task.content, is, Class-A]
+              - [task.Task.step.Step.code, is, Class-A]
+              action_mappings:
+                Catpart File: import
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}

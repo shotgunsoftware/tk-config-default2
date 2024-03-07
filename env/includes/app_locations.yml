@@ -60,6 +60,10 @@ apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
   version: v1.2.1
+apps.tk-multi-scenebuilder.location:
+  type: app_store
+  name: tk-multi-scenebuilder
+  version: v0.0.2
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
