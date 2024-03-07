@@ -62,7 +62,6 @@ settings.tk-alias.asset_step:
               - [task.Task.step.Step.code, is, Model]
               action_mappings:
                 Alias File: import
-                VRED Scene: import
         - name: CatPart
           actions:
             - context:
