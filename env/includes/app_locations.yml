@@ -61,7 +61,7 @@ apps.tk-multi-pythonconsole.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-pythonconsole.git
   branch: ticket/SG-34329-rebranding
-  version: 0dfcf010f083d7caff688e0b9051d34af762a565
+  version: dc3654134436d28b5be84fbfe8b3fc633c77be0d
 apps.tk-multi-reviewsubmission.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-reviewsubmission.git

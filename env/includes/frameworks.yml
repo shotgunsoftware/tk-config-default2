@@ -20,7 +20,7 @@ frameworks:
       type: git_branch
       path: https://github.com/shotgunsoftware/tk-framework-adobe.git
       branch: ticket/SG-34297-rebranding
-      version: 787e7bc6435fb816485da7dc7ec2e58f89a8d0b3
+      version: 4d8411ab99ba9603084598d1b8bf8cea39680d1b
   tk-framework-adminui_v0.x.x:
     location:
       type: git_branch
@@ -32,25 +32,25 @@ frameworks:
       type: git_branch
       path: https://github.com/shotgunsoftware/tk-framework-alias.git
       branch: ticket/SG-34298-rebranding
-      version: 9837f441f50fe1cfcc66252d3f0875b6f6bca208
+      version: 3254329b5199008e1474a992287bfb9b73c63f89
   tk-framework-aliastranslations_v0.x.x:
     location:
       type: git_branch
       path: https://github.com/shotgunsoftware/tk-framework-aliastranslations.git
       branch: ticket/SG-34298-rebranding
-      version: 430fc8cb09dae58d4acae729c88114dbe5567315
+      version: dce074435a43ca3a9139a5854764f66029b2e017
   tk-framework-desktopserver_v1.x.x:
     location:
       type: git_branch
       path: https://github.com/shotgunsoftware/tk-framework-desktopserver.git
       branch: ticket/SG-34300-rebranding
-      version: 09bee40b153867a196571481edca98efe3886227
+      version: f7bf8ffcdba174dc90203b17b0194514d03e54d1
   tk-framework-qtwidgets_v2.x.x:
     location:
       type: git_branch
       path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
       branch: ticket/SG-34303-rebranding
-      version: b3f354f44aa03b7042cda2d4e73907a929a99dbb
+      version: 25d6fb4ab99384aed91bcdf7beaffcbc77062680
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -61,7 +61,7 @@ frameworks:
       type: git_branch
       path: https://github.com/shotgunsoftware/tk-framework-shotgunutils.git
       branch: ticket/SG-34304-rebranding
-      version: f43faf9856939683f8aa1cad37fa0cf35862ae5c
+      version: 1aaf07bb1c660ae3fa9d0a2bf8ca986c5c680242
   tk-framework-widget_v0.2.x:
     location:
       version: v0.2.8

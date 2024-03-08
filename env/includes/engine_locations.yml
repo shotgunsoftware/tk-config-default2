@@ -18,7 +18,7 @@ engines.tk-3dsmaxplus.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-3dsmaxplus.git
   branch: ticket/SG-SG-34142-rebranding
-  version: 2151116bb6e871b2cb07faa76adfb9b3eabf0741
+  version: 9497c2f063f77930fda06ea9f579d44e256d6122
 engines.tk-3dsmax.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-3dsmax.git
@@ -48,12 +48,12 @@ engines.tk-flame.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-flame.git
   branch: ticket/SG-34295-rebranding
-  version: e56768d80460bc7a764a5875726058e987504428
+  version: d406d75694903ee1a5f114a58faf8369a083a022
 engines.tk-houdini.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-houdini.git
   branch: ticket/SG-34307-rebranding
-  version: 7ad04efdc7aeac794495eacfae55fa7799643a67
+  version: 6310a2aa5db7c71b55b35fab58fa432f195f2f1a
 engines.tk-mari.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-mari.git
