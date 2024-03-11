@@ -34,12 +34,12 @@ apps.tk-multi-breakdown2.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-breakdown2.git
   branch: ticket/SG-34320-rebranding
-  version: 21382d57bd110915a2f23f1fb47b7df60f59a112
+  version: fdeec6f97ae594cef786fbea0e52bf62d89638ea
 apps.tk-multi-data-validation.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-data-validation.git
   branch: ticket/SG-34321-rebranding
-  version: d4054ab77b78a3c993124fb6abdb4f9e073e0c93
+  version: 0e967f498ba93eff4b8bf9d59b6f80e25ddc311f
 apps.tk-multi-demo.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-demo.git
@@ -94,7 +94,7 @@ apps.tk-multi-workfiles2.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
   branch: ticket/SG-34338-rebranding
-  version: 7d21a8ff76c5010afcb037430ef17863798b967a
+  version: d5867bb96f33f05f6ff30fe59c72a158af47aab0
 apps.tk-multi-devutils.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-devutils.git
