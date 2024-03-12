@@ -33,9 +33,9 @@ apps.tk-multi-breakdown2.location:
   # name: tk-multi-breakdown2
   # version: v0.2.9
   type: git_branch
-  branch: ticket/SHOT-4354-api-backward-compatibility
+  branch: SHOT-4349-setting-filter-history-published-files
   path: https://github.com/shotgunsoftware/tk-multi-breakdown2.git
-  version: 068820f
+  version: 26530ed
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
