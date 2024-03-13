@@ -21,9 +21,9 @@
                 "process_settings": {
                     "title": "Convert ACES",
                     "description": "Internal Plate Color Conversion",
-                    "process_type": "acescg",
+                    "output_type": "acescg",
                     "output_root": "primary",
-                    "output_directory": "shots/{Shot}/rushes/acescg/{Plate}/{Source}",
+                    "output_directory": "shots/{Entity}/rushes/acescg/{Plate}/{Source}",
                     "output_file": "{Source}",
                     "output_file_ext": "exr",
                     "create_version": true,
@@ -42,7 +42,7 @@
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
-                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_processing.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_incoming.nk"
                 },
                 "nuke_settings": {
                     "plate_switch": {"which": 1},
@@ -78,6 +78,7 @@
                 "process_settings": {
                     "title": "Internal",
                     "description": "Internal version Zero",
+                    "output_type": "zerothumb",
                     "output_root": "secondary",
                     "output_directory": "editorial/v000",
                     "output_file": "{Source}_v000",
@@ -155,8 +156,9 @@
                 "process_settings": {
                     "title": "Client DNxHD v000",
                     "description": "Client DNxHD v000",
+                    "output_type": "movie",
                     "output_root": "primary",
-                    "output_directory": "admin/outgoing/submissions/v000/{entity}",
+                    "output_directory": "admin/outgoing/submissions/v000/{Entity}",
                     "output_file": "{output_file}",
                     "output_file_ext": "mov",
                     "version_start_number": 0,

@@ -21,9 +21,9 @@
                 "process_settings":{
                     "title" : "V000 Thumbnail",
                     "description" : "Creates a thumbnail for version zero in Shotgrid",
-                    "process_type": "zerothumb",
+                    "output_type": "zerothumb",
                     "output_root": "primary",
-                    "output_directory": "editorial/v000/{entity}",
+                    "output_directory": "editorial/v000/{Entity}",
                     "output_file": "{output_file}",
                     "output_file_ext": "mov",
                     "create_version": false,
@@ -37,7 +37,7 @@
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
-                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_H.264.nk",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk",
                     "dependencies": true,
                     "dependent_pool": "vfx_processing",
                     "dependent_job_suffix": "update_sg",
@@ -51,7 +51,6 @@
                     "transform_switch": {"which": 1},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
-                    "content_vendor_burnin":{"disable":true},
                     "main_read": {
                         "knob_order": ["file"],
                         "raw": true
@@ -76,9 +75,9 @@
             "client-version-dnxhd":{
                 "process_settings":{
                     "title" : "Client DNxHD",
-                    "process_type": "movie",
+                    "output_type": "movie",
                     "output_root": "primary",
-                    "output_directory": "{entity}",
+                    "output_directory": "{Entity}/DNXHD",
                     "output_file": "{output_file}",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": false,
@@ -107,7 +106,171 @@
                     "transform_switch": {"which": 1},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
-                    "content_vendor_burnin":{"disable":true},
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "create_directories": true,
+                        "raw": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            },
+            "client-version-dnxhr":{
+                "process_settings":{
+                    "title" : "Client DNxHR",
+                    "output_type": "movie",
+                    "output_root": "primary",
+                    "output_directory": "{Entity}/DNXHR",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": false,
+                    "version_start_number": 0,
+                    "create_version": false,
+                    "update_version": true,
+                    "create_publish": false,
+                    "update_client_version": false,
+                    "color_required": true,
+                    "client_process": true,
+                    "batch_dependencies": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHR.nk",
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which": 1},
+                    "color_switch": {"which": 1},
+                    "transform_switch": {"which": 1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "create_directories": true,
+                        "raw": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            },
+            "client-version-h264":{
+                "process_settings":{
+                    "title" : "Client H264",
+                    "output_type": "movie",
+                    "output_root": "primary",
+                    "output_directory": "{Entity}/H264",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": false,
+                    "version_start_number": 0,
+                    "create_version": false,
+                    "update_version": true,
+                    "create_publish": false,
+                    "update_client_version": false,
+                    "color_required": true,
+                    "client_process": true,
+                    "batch_dependencies": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_H.264.nk",
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which": 1},
+                    "color_switch": {"which": 1},
+                    "transform_switch": {"which": 1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "create_directories": true,
+                        "raw": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 1000000,
+                    "priority": 55,
+                    "concurrent_task": 1,
+                    "machine_limit": 1,
+                    "publish_file_type": null
+                }
+            },
+            "client-version-prores":{
+                "process_settings":{
+                    "title" : "Client ProRes",
+                    "output_type": "movie",
+                    "output_root": "primary",
+                    "output_directory": "{Entity}/PRORES",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "mov",
+                    "add_to_review_playlist": false,
+                    "version_start_number": 0,
+                    "create_version": false,
+                    "update_version": true,
+                    "create_publish": false,
+                    "update_client_version": false,
+                    "color_required": true,
+                    "client_process": true,
+                    "batch_dependencies": false,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_PRORES.nk",
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which": 1},
+                    "color_switch": {"which": 1},
+                    "transform_switch": {"which": 1},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":false},
                     "main_read": {
                         "knob_order": ["file"],
                         "raw": true
@@ -131,10 +294,10 @@
             },
             "client-version-exr":{
                 "process_settings":{
-                    "title" : "EXRs",
-                    "process_type": "seq",
+                    "title" : "Client EXRs",
+                    "output_type": "seq",
                     "output_root": "primary",            
-                    "output_directory": "{output_file}/4448x3096",
+                    "output_directory": "{Entity}/EXR",
                     "output_file": "{output_file}",
                     "output_file_ext": "exr",
                     "create_version": false,
@@ -152,7 +315,7 @@
                     "dependencies": false,
                     "dependent_job_suffix": "support_files",
                     "dependent_linked_files": ["sg_shot_lut", "sg_shot_ccc"],
-                    "dependent_output_directory": "{output_file}/4448x2224/support_files",
+                    "dependent_output_directory": "{Entity}/EXR/support_files",
                     "dependent_output_file": "{output_file}",
                     "dependent_output_file_ext": "",
                     "dependent_output_source": "{entity_root}/lut",
@@ -164,11 +327,9 @@
                     "transform_switch": {"which":0},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":true},
-                    "content_vendor_burnin":{"disable":true},
                     "main_read": {
                         "knob_order": ["file"],
-                        "raw": true,
-                        "colorspace": "linear"
+                        "raw": true
                     },
                     "main_write": {
                         "create_directories": true,
@@ -186,7 +347,119 @@
                     "machine_limit": 4,
                     "publish_file_type": null
                 }
-            }         
+            },
+            "client-version-jpeg":{
+                "process_settings":{
+                    "title" : "Client Jpegs",
+                    "output_type": "seq",
+                    "output_root": "primary",
+                    "output_directory": "{Entity}/JPEG",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "jpeg",
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,
+                    "update_client_version": false,
+                    "add_to_review_playlist": false,
+                    "color_required": false,
+                    "client_process": true,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_Jpeg.nk",
+                    "batch_dependencies": false,
+                    "dependencies": false,
+                    "dependent_job_suffix": "support_files",
+                    "dependent_linked_files": ["sg_shot_lut", "sg_shot_ccc"],
+                    "dependent_output_directory": "{Entity}/JPEG/support_files",
+                    "dependent_output_file": "{output_file}",
+                    "dependent_output_file_ext": "",
+                    "dependent_output_source": "{entity_root}/lut",
+                    "dependent_script_file":"//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/support_file_transfer.py"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":0},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":true},
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "create_directories": true,
+                        "raw": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 4,
+                    "priority": 50,
+                    "concurrent_task": 4,
+                    "machine_limit": 4,
+                    "publish_file_type": null
+                }
+            },
+            "client-version-dpx":{
+                "process_settings":{
+                    "title" : "Client DPXs",
+                    "output_type": "seq",
+                    "output_root": "primary",
+                    "output_directory": "{Entity}/DPX",
+                    "output_file": "{output_file}",
+                    "output_file_ext": "dpx",
+                    "create_version": false,
+                    "update_version": false,
+                    "create_publish": false,
+                    "update_client_version": false,
+                    "add_to_review_playlist": false,
+                    "color_required": false,
+                    "client_process": true,
+                    "plugin_name": "Nuke",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_processing.nk",
+                    "batch_dependencies": false,
+                    "dependencies": false,
+                    "dependent_job_suffix": "support_files",
+                    "dependent_linked_files": ["sg_shot_lut", "sg_shot_ccc"],
+                    "dependent_output_directory": "{Entity}/DPX/support_files",
+                    "dependent_output_file": "{output_file}",
+                    "dependent_output_file_ext": "",
+                    "dependent_output_source": "{entity_root}/lut",
+                    "dependent_script_file":"//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/support_file_transfer.py"
+                },
+                "nuke_settings":{
+                    "plate_switch": {"which":2},
+                    "color_switch": {"which":0},
+                    "transform_switch": {"which":0},
+                    "slate_switch": {"disable":false},
+                    "burnin_switch": {"disable":true},
+                    "main_read": {
+                        "knob_order": ["file"],
+                        "raw": true
+                    },
+                    "main_write": {
+                        "create_directories": true,
+                        "raw": true
+                    }
+                },
+                "deadline_settings":{
+                    "primary_pool": "vfx_processing",
+                    "secondary_pool": "vfx_processing",
+                    "department": "VFX",
+                    "group": "admin",
+                    "chunk_size": 4,
+                    "priority": 50,
+                    "concurrent_task": 4,
+                    "machine_limit": 4,
+                    "publish_file_type": null
+                }
+            }
         },
         "pump_settings":{
             "main_plates_exclude_from_loader_efl" : true,

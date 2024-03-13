@@ -4,7 +4,8 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
-                    "output_root": "secondary",
+                    "output_type": "movie",
+                    "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": true,
                     "create_version": true,
@@ -71,7 +72,8 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
-                    "output_root": "secondary",
+                    "output_type": "movie",
+                    "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": true,
                     "create_version": true,
@@ -138,7 +140,8 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
-                    "output_root": "secondary",
+                    "output_type": "movie",
+                    "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": true,
                     "create_version": true,
