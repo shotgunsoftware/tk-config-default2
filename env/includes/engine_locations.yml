@@ -48,7 +48,7 @@ engines.tk-flame.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-flame.git
   branch: ticket/SG-34295-rebranding
-  version: d406d75694903ee1a5f114a58faf8369a083a022
+  version: 0f95d5edcecc91603b4a4ae60326dc2fee83883c
 engines.tk-houdini.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-houdini.git
