@@ -59,7 +59,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-publish2.git
   branch: ticket/SG-34328-rebranding
-  version: 05d8c05a9930fcf44b6ae433cbeabb520fd2500c
+  version: 72193d7e27d55e8cbbc16aae46a8a4fd287f1044
 apps.tk-multi-pythonconsole.location:
   type: git_branch
   path: https://github.com/shotgunsoftware/tk-multi-pythonconsole.git
