@@ -12,8 +12,8 @@
 description: Apps and engines loaded when a Playlist is loaded.
   By default, the only engine defined here is tk-shotgun and tk-vred.
   This configuration provides the apps that are necessary to display
-  menu actions in the ShotGrid web application by way of Toolkit's
-  browser integration.
+  menu actions in the Flow Production Tracking web application by way
+  of Toolkit's browser integration.
 
 ################################################################################
 

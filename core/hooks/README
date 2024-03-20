@@ -1,6 +1,6 @@
 This location is for core hook override files.
 
-The ShotGrid Pipeline Toolkit comes with a series of Core Hooks, essentially snippets of python
+The Flow Production Tracking Toolkit comes with a series of Core Hooks, essentially snippets of python
 that contain key operations such as copying a file, creating directories etc.
 
 These hooks are part of the platform distribution and are therefore bundled with the code itself.
