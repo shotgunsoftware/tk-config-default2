@@ -39,7 +39,7 @@ apps.tk-multi-data-validation.location:
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.3.5
+  version: v1.4.0
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
