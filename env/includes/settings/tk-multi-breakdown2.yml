@@ -43,7 +43,7 @@ settings.tk-multi-breakdown2.nuke:
 # VRED
 settings.tk-multi-breakdown2.vred:
   action_mappings:
-    All: [remove_reference]
-  actions_hook: '{engine}/tk-multi-loader2/basic/scene_actions.py'
+    All: [remove_reference, load_reference, unload_reference]
+  actions_hook: '{self}/actions.py:{engine}/tk-multi-breakdown2/basic/scene_actions.py'
   hook_scene_operations: '{self}/tk-vred_scene_operations.py'
   location: "@apps.tk-multi-breakdown2.location"
