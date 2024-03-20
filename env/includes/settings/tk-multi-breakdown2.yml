@@ -19,7 +19,7 @@ includes:
 settings.tk-multi-breakdown2.alias:
   action_mappings:
     All: [remove_reference]
-  actions_hook: '{self}/actions.py:{engine}/tk-multi-breakdown2/basic/scene_actions.py'
+  actions_hook: '{self}/actions.py:{engine}/tk-multi-breakdown2/basic/actions.py'
   hook_scene_operations: '{self}/tk-alias_scene_operations.py'
   location: "@apps.tk-multi-breakdown2.location"
 
@@ -47,6 +47,6 @@ settings.tk-multi-breakdown2.nuke:
 settings.tk-multi-breakdown2.vred:
   action_mappings:
     All: [remove_reference, load_reference, unload_reference]
-  actions_hook: '{self}/actions.py:{engine}/tk-multi-breakdown2/basic/scene_actions.py'
+  actions_hook: '{self}/actions.py:{engine}/tk-multi-breakdown2/basic/actions.py'
   hook_scene_operations: '{self}/tk-vred_scene_operations.py'
   location: "@apps.tk-multi-breakdown2.location"
