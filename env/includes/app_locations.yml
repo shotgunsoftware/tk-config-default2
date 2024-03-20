@@ -27,7 +27,7 @@ apps.tk-multi-about.location:
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.8.2
+  version: v1.9.0
 apps.tk-multi-breakdown2.location:
   type: app_store
   name: tk-multi-breakdown2
