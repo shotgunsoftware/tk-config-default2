@@ -27,7 +27,7 @@ apps.tk-desktop-deliveries.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-desktop-deliveries
-  version: 0.1.1
+  version: 0.2.0
 
 # ---- Multi apps
 
@@ -202,7 +202,7 @@ apps.tk-houdini-karma.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-karma
-  version: 1.0.2
+  version: 1.0.3
 
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
