@@ -1,0 +1,94 @@
+# MIT License
+#
+# Copyright (c) 2024 Netherlands Film Academy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+keys:
+  # These are used by the Loader in Unreal
+  ue_sg_asset_type:
+    type: str
+    shotgun_entity_type: Asset
+    shotgun_field_name: sg_asset_type
+  ue_sg_asset_name:
+    type: str
+    shotgun_entity_type: Asset
+    shotgun_field_name: code
+  ue_sg_shot_name:
+    type: str
+    shotgun_entity_type: Shot
+    shotgun_field_name: code
+  ue_sg_sequence_name:
+    type: str
+    shotgun_entity_type: Shot
+    shotgun_field_name: sg_sequence
+  # These are used by the Movie Publish in Unreal
+  ue_level_sequence:
+    type: str
+  ue_world:
+    type: str
+  # Movie extension for UE, avi on Windows, mov on other platforms
+  ue_mov_ext:
+    type: str
+    choices:
+      mov: Quicktime Movie (.mov)
+      avi: Audio Video Interleaved (.avi)
+
+  YYYY:
+    type: int
+    format_spec: "04"
+  MM:
+    type: int
+    format_spec: "02"
+  DD:
+    type: int
+    format_spec: "02"
+    alias: DD
+
+paths:
+  # level sequence review output from unreal
+  unreal.movie_publish:
+    definition: "05_renders/unreal/shots/[{Sequence}/][{Shot}/]{ue_level_sequence}_{ue_world}.v{version}.{ue_mov_ext}"
+  unreal_shot_publish:
+    definition: "@shot_publish/unreal/{name}_v{version}.nk"
+  # The location of FBX exports for Unreal
+  unreal.maya_asset_fbx_publish:
+    definition: "@asset_publish/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.fbx"
+  # The location of turntable review output rendered in Unreal
+  unreal.maya_turntable_render:
+    definition: "@asset_root/unreal/renders/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{ue_mov_ext}"
+    root_name: "render"
+  unreal.maya_turntable_publish:
+    definition: "@asset_render_publish/unreal/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{ue_mov_ext}"
+  # Placeholder location for static mesh assets exported from Unreal
+  # Hook implementation intended to be a starting point for a pipeline
+  # No context info used in template, developers expected to further customize
+  unreal.asset_publish:
+    definition: "@asset_publish/unreal/exports/{YYYY}_{MM}_{DD}/{name}.fbx"
+
+strings:
+  # entity-specific templates for importing files into the Unreal content browser
+  # template logic is defined in Python, not settings:
+  # tk-unreal/hooks/tk-multi-loader2/tk-unreal_actions.py
+  unreal_loader_asset_path: "/Game/Assets/{ue_sg_asset_type}/{ue_sg_asset_name}/"
+  unreal_loader_asset_name: "{ue_sg_asset_name}_{name}"
+  unreal_loader_shot_path: "/Game/Cinematics/Sequences/{ue_sg_sequence_name}/{ue_sg_shot_name}/"
+  unreal_loader_shot_name: "{ue_sg_shot_name}_{name}"
+  unreal_loader_project_path: "/Game/Assets/"
+  unreal_loader_project_name: "{name}"

@@ -1,0 +1,85 @@
+# MIT License
+#
+# Copyright (c) 2024 Netherlands Film Academy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+keys:
+  # Represents the optional output name for frames written by the After Effects Publish Rendering Plugin
+  afx.comp:
+    alias: comp
+    type: str
+    filter_by: alphanumeric
+  afx.mov.ext:
+    alias: extension
+    type: str
+    choices:
+      mov: Quicktime Movie (.mov)
+      avi: Audio Video Interleaved (.avi)
+
+paths:
+  ##########################################################################################
+  # Shot level paths
+  #
+
+  # The location of WIP files
+  aftereffects_shot_work:
+    definition: "@shot_root/ae/{Projectcode}_{Sequence}_{Shot}_{Step}_work_{name}_v{version}.aep"
+  shot_work_area_aftereffects:
+    definition: "@shot_root/ae"
+  # The location of backups of WIP files
+  aftereffects_shot_snapshot:
+    definition: "@shot_root/ae/snapshots/{Projectcode}_{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.aep"
+  # The location of published files
+  shot_publish_area_aftereffects:
+    definition: "@shot_publish/ae"
+  aftereffects_shot_publish:
+    definition: "@shot_publish/ae/{Projectcode}_{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.aep"
+  aftereffects_shot_render_pub_mono:
+    definition: "@shot_render_publish/ae/{name}/{afx.comp}/render/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
+  # The following template uses {afx.mov.ext} this is a special key, that will be only there
+  # in the beta to support different extensions on mac and windows, while using the same
+  # output module (Lossless with Alpha)
+  aftereffects_shot_render_movie:
+    definition: "@shot_root/ae/previews/{name}/{afx.comp}/{Projectcode}_{Sequence}_{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"
+
+  ##########################################################################################
+  # Asset pipeline
+  #
+
+  # The location of WIP files
+  aftereffects_asset_work:
+    definition: "@asset_root/ae/{Projectcode}_{Asset}_{Step}_work_v{version}.aep"
+  asset_work_area_aftereffects:
+    definition: "@asset_root/ae"
+  # The location of backups of WIP files
+  aftereffects_asset_snapshot:
+    definition: "@asset_root/ae/snapshots/{Projectcode}_{Asset}_{Step}_snap_v{version}_{timestamp}.aep"
+  # The location of published files
+  asset_publish_area_aftereffects:
+    definition: "@asset_publish/ae"
+  aftereffects_asset_publish:
+    definition: "@asset_publish/ae/{Projectcode}_{Asset}_{Step}_pub_v{version}.aep"
+  aftereffects_asset_render_pub_mono:
+    definition: "@asset_render_publish/ae/{name}/{afx.comp}/render/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{afx.comp}_v{version}.{SEQ}.tif"
+  # The following template uses {afx.mov.ext} this is a special key, that will be only there
+  # in the beta to support different extensions on mac and windows, while using the same
+  # output module (Lossless with Alpha)
+  aftereffects_asset_render_movie:
+    definition: "@asset_root/ae/previews/{name}/{afx.comp}/{Projectcode}_{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}"

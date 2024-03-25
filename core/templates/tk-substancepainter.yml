@@ -1,0 +1,60 @@
+# MIT License
+#
+# Copyright (c) 2024 Netherlands Film Academy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+keys:
+  # Substance supports two extension types.
+  texture_extension:
+    type: str
+    alias: extension
+
+  channel:
+    type: str
+
+paths:
+  ##########################################################################################
+  # Asset pipeline
+  #
+
+  # define the location of a work area
+  asset_work_area_substancepainter:
+    definition: "@asset_root/substancepainter"
+  # define the location of a publish area
+  asset_publish_area_substancepainter:
+    definition: "@asset_publish/substancepainter"
+  # The location of WIP files
+  substancepainter_asset_work:
+    definition: "@asset_root/substancepainter/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.spp"
+  # The location of backups of WIP files
+  substancepainter_asset_snapshot:
+    definition: "@asset_root/substancepainter/snapshots/{Projectcode}_{Asset}_{Step}_snap_{name}_v{version}.{timestamp}.spp"
+  # The folder where the textures are exported for a project
+  substancepainter_asset_textures_path_export:
+    definition: "@asset_root/substancepainter/textures/v{version}/{name}_v{version}"
+  # The location of published substance painter files
+  substancepainter_asset_publish:
+    definition: "@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.spp"
+  # a texture folder publish
+  substancepainter_asset_textures_path_publish:
+    definition: "@asset_publish/textures/v{version}/{name}_v{version}"
+  # a texture folder publish
+  substancepainter_asset_texture_path_publish:
+    definition: "@asset_publish/textures/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}"

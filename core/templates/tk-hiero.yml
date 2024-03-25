@@ -1,0 +1,56 @@
+# MIT License
+#
+# Copyright (c) 2024 Netherlands Film Academy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+keys:
+  fileext:
+    type: str
+
+paths:
+  # The location of WIP files
+  hiero_project_work:
+    definition: "02_source/editorial/{Projectcode}_{name}_v{version}.hrox"
+  hiero_project_work_area:
+    definition: "02_source/editorial/"
+  # The location of backups of WIP files
+  hiero_project_snapshot:
+    definition: "02_source/editorial/snapshots/{Projectcode}_{name}_v{version}_{timestamp}.hrox"
+  # The location of published hiero files
+  hiero_project_publish:
+    definition: "02_source/editorial/publish/{Projectcode}_{name}_v{version}.hrox"
+  hiero_project_publish_area:
+    definition: "02_source/editorial/publish"
+
+  ##########################################################################################
+  # Shot level paths
+  #
+
+  # export of shot asset data from hiero
+  hiero_plate_path:
+    definition: "02_source/sc{Sequence}/{Shot}/p{version}/plates/ref/{Projectcode}_sc{Sequence}_{Shot}_reference_p{version}.mov"
+  hiero_render_path:
+    definition: "02_source/sc{Sequence}/{Shot}/p{version}/renders/{Projectcode}_sc{Sequence}_{Shot}_v{version}.{SEQ}.exr"
+  hiero_copy_path:
+    definition: "02_source/sc{Sequence}/{Shot}/p{version}/plates/{fileext}/{Projectcode}_sc{Sequence}_{Shot}_plate_p{version}.{SEQ}.{fileext}"
+
+strings:
+  # defines how the {tk_version} token in Hiero gets formatted back to tk.
+  hiero_version: "{version}"

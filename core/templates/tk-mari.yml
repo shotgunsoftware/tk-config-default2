@@ -20,16 +20,36 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-includes:
-  - ./templates/common.yml
-  - ./templates/tk-aftereffects.yml
-  - ./templates/tk-desktop-deliveries.yml
-  - ./templates/tk-hiero.yml
-  - ./templates/tk-houdini.yml
-  - ./templates/tk-mari.yml
-  - ./templates/tk-maya.yml
-  - ./templates/tk-motionbuilder.yml
-  - ./templates/tk-nuke.yml
-  - ./templates/tk-photoshopcc.yml
-  - ./templates/tk-substancepainter.yml
-  - ./templates/tk-unreal.yml
+keys:
+  UDIM:
+    type: sequence
+    default: "<UDIM>"
+  mari.channel:
+    type: str
+    alias: channel
+  mari.layer:
+    type: str
+    alias: layer
+  mari.project_name:
+    type: str
+    alias: name
+  asset_name:
+    type: str
+    shotgun_entity_type: Asset
+    shotgun_field_name: code
+  task_name:
+    type: str
+    shotgun_entity_type: Task
+    shotgun_field_name: content
+
+paths:
+  ##########################################################################################
+  # Asset pipeline
+  #
+
+  asset_mari_texture_tif:
+    definition: "@asset_publish/mari/{name}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.tif"
+
+strings:
+  # define how new Mari projects should be named
+  mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
