@@ -76,7 +76,7 @@ settings.tk-multi-loader2.houdini:
     Image: [file_cop]
     Photoshop Image: [file_cop]
     Rendered Image: [file_cop]
-    Texture: [file_cop]
+    Texture: [file_cop, materialx_image]
     USD: [usd_reference, usd_sublayer]
   entities:
   - caption: Assets
