@@ -75,7 +75,7 @@ apps.tk-multi-publish2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-publish2
-  version: 2.5.5.3
+  version: 2.5.5.4
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -202,7 +202,7 @@ apps.tk-houdini-karma.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini-karma
-  version: 1.0.3
+  version: 1.1.0
 
 # houdini mantranode
 apps.tk-houdini-mantranode.location:
