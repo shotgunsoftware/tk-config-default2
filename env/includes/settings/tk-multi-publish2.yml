@@ -127,9 +127,6 @@ settings.tk-multi-publish2.houdini.asset_step:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
     settings: {}
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -149,9 +146,6 @@ settings.tk-multi-publish2.houdini.shot_step:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
     settings: {}
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -196,9 +190,6 @@ settings.tk-multi-publish2.maya.asset_step:
       Generated ABC Template: maya_asset_cache_alembic_file
       Generated ASS Template: maya_asset_cache_standin_file
   publish_plugins:
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -253,9 +244,6 @@ settings.tk-multi-publish2.maya.shot_step:
       Generated ABC Template: maya_shot_cache_alembic_abc
       Generated ASS Template: maya_shot_cache_standin_ass
   publish_plugins:
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
