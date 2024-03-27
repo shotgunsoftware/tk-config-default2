@@ -1,0 +1,81 @@
+# MIT License
+#
+# Copyright (c) 2024 Netherlands Film Academy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+keys:
+  # Maya supports two extension types.
+  maya_extension:
+    type: str
+    choices:
+      ma: Maya Ascii (.ma)
+      mb: Maya Binary (.mb)
+    default: ma
+    alias: extension
+
+paths:
+  ##########################################################################################
+  # Shot level paths
+  #
+
+  # define the location of a work area
+  shot_work_area_maya:
+    definition: "@shot_root/maya"
+  # define the location of a publish area
+  shot_publish_area_maya:
+    definition: "@shot_publish/maya"
+  # The location of WIP files
+  maya_shot_work:
+    definition: "@shot_root/maya/scenes/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{maya_extension}"
+  # The location of backups of WIP files
+  maya_shot_snapshot:
+    definition: "@shot_root/maya/snapshots/{Projectcode}_sc{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.{maya_extension}"
+  # The location of playblasts
+  maya_shot_playblast:
+    definition: "@shot_root/maya/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.mov"
+  # The location of published maya files
+  maya_shot_publish:
+    definition: "@shot_publish/maya/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{maya_extension}"
+  # Alembic
+  maya_shot_abc:
+    definition: "@shot_publish/abc/{name}/v{version}/{Projectcode}_{Shot}_{Step}_{name}_v{version}.abc"
+
+  ##########################################################################################
+  # Asset pipeline
+  #
+
+  # define the location of a work area
+  asset_work_area_maya:
+    definition: "@asset_root/maya"
+  # define the location of a publish area
+  asset_publish_area_maya:
+    definition: "@asset_publish/maya"
+  # The location of WIP files
+  maya_asset_work:
+    definition: "@asset_root/maya/scenes/{Projectcode}_{Asset}_{Step}_{name}_work_v{version}.{maya_extension}"
+  # The location of backups of WIP files
+  maya_asset_snapshot:
+    definition: "@asset_root/maya/snapshots/{Projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.{maya_extension}"
+  # The location of published maya files
+  maya_asset_publish:
+    definition: "@asset_publish/maya/{Projectcode}_{Asset}_{Step}_{name}_pub_v{version}.{maya_extension}"
+  # Alembic
+  maya_asset_abc:
+    definition: "@asset_publish/abc/{Projectcode}_{Asset}_{Step}_{name}_v{version}.abc"

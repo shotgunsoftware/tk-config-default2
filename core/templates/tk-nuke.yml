@@ -1,0 +1,108 @@
+# MIT License
+#
+# Copyright (c) 2024 Netherlands Film Academy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+paths:
+  # Template files
+  nuke_template_file:
+    definition: "00_pipeline/nuke/template/ShotGridTemplate.nk"
+
+  ##########################################################################################
+  # Shot level paths
+  #
+
+  # define the location of a work area
+  shot_work_area_nuke:
+    definition: "@shot_root/nuke"
+  # define the location of a publish area
+  shot_publish_area_nuke:
+    definition: "@shot_publish/nuke"
+  # The location of WIP script files
+  nuke_shot_work:
+    definition: "@shot_root/nuke/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.nk"
+  # The location of backups of WIP files
+  nuke_shot_snapshot:
+    definition: "@shot_root/nuke/snapshots/{Projectcode}_sc{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.nk"
+  # The location of published nuke script files
+  nuke_shot_publish:
+    definition: "@shot_publish/nuke/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.nk"
+  # Write node outputs
+  nuke_shot_render:
+    definition: "@shot_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    root_name: "render"
+  nuke_shot_render_pub:
+    definition: "@shot_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+  nuke_shot_tiff_render:
+    definition: "@shot_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    root_name: "render"
+  nuke_shot_tiff_render_pub:
+    definition: "@shot_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+  # Review output
+  shot_quicktime_quick:
+    definition: "@shot_root/nuke/previews/{name}/{Projectcode}_{Sequence}_{Shot}_{name}_{write.output}_sRGB_v{version}_{iteration}.mov"
+  nuke_shot_render_movie:
+    definition: "@shot_render_publish/nuke/{name}/{write.output}/mov/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
+
+  ##########################################################################################
+  # Asset pipeline
+  #
+
+  # define the location of a work area
+  asset_work_area_nuke:
+    definition: "@asset_root/work/nuke"
+  # define the location of a publish area
+  asset_publish_area_nuke:
+    definition: "@asset_root/publish"
+  # outputs from the Shotgun Write Node for assets
+  nuke_asset_render:
+    definition: "@asset_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+    root_name: "render"
+  nuke_asset_render_pub:
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+  nuke_asset_tiff_render:
+    definition: "@asset_root/nuke/renders/{name}/{write.output}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+    root_name: "render"
+  nuke_asset_tiff_render_pub:
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/render/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.tiff"
+
+  # review output
+  nuke_asset_render_movie:
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/mov/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
+  asset_quicktime_quick:
+    definition: "@asset_render_publish/nuke/{name}/{write.output}/mov/{Projectcode}_{Asset}_{Step}_{name}_{iteration}.mov"
+  # The location of WIP script files
+  nuke_asset_work:
+    definition: "@asset_root/nuke/{Projectcode}_{Asset}_{Step}_{name}_work_v{version}.nk"
+  # The location of backups of WIP files
+  nuke_asset_snapshot:
+    definition: "@asset_root/nuke/snapshots/{Projectcode}_{Asset}_{Step}_{name}_snap_v{version}_{timestamp}.nk"
+  # The location of published nuke script files
+  nuke_asset_publish:
+    definition: "@asset_publish/nuke/{Projectcode}_{Asset}_{Step}_{name}_pub_v{version}.nk"
+
+strings:
+  # when a review Version in Shotgun is created inside of Nuke, this is the
+  # name that is being given to it (the code field)
+  nuke_shot_version_name: "{Sequence}_{Shot}_[{Step}_]_nuke_{name}_{write.output}_[{colorspace}_]v{version}[.{iteration}]"
+  nuke_quick_shot_version_name: "{Shot}_{name}_quick_{iteration}"
+
+  nuke_asset_version_name: "{Asset}_[{Step}_]_nuke_{name}_{write.output}_[{colorspace}_]v{version}[.{iteration}]"
+  nuke_quick_asset_version_name: "{Asset}_{name}_quick_{iteration}"

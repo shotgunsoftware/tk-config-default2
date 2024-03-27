@@ -1,0 +1,169 @@
+# MIT License
+#
+# Copyright (c) 2024 Netherlands Film Academy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+keys:
+  houdini.node:
+    alias: node
+    type: str
+  aov_name:
+    type: str
+
+paths:
+  houdini_template_directory:
+    definition: "00_pipeline/houdini/templates"
+
+  houdini_splash_screen:
+    definition: "00_pipeline/houdini/splash_screen.jpg"
+
+  # OTL files
+  houdini_otls:
+    definition: "00_pipeline/houdini/otls"
+
+  ##########################################################################################
+  # Shot level paths
+  #
+
+  # define the location of a work area
+  shot_work_area_houdini:
+    definition: "@shot_root/houdini"
+  # define the location of a publish area
+  shot_publish_area_houdini:
+    definition: "@shot_publish/houdini"
+  # The location of WIP files
+  houdini_shot_work:
+    definition: "@shot_root/houdini/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.hipnc"
+  # The location of backups of WIP files
+  houdini_shot_snapshot:
+    definition: "@shot_root/houdini/snapshots/{Projectcode}_sc{Sequence}_{Shot}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc"
+  # The location of published houdini files
+  houdini_shot_publish:
+    definition: "@shot_publish/houdini/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.hipnc"
+  # Alembic caches
+  houdini_shot_work_alembic_cache:
+    definition: "@shot_root/houdini/cache/alembic/{houdini.node}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.abc"
+  #    root_name: "render" # Place on source until can be published from render to source
+  # Fbx caches
+  houdini_shot_work_fbx_cache:
+    definition: "@shot_root/houdini/cache/fbx/{houdini.node}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.fbx"
+  #    root_name: "render" # Place on source until can be published from render to source
+  # File work caches
+  houdini_shot_work_file_cache:
+    definition: "@shot_root/houdini/cache/bgeo/{name}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
+    root_name: "render"
+  # File publish caches
+  houdini_shot_publish_file_cache:
+    definition: "@shot_publish/cache/bgeo/{name}/v{version}/{Projectcode}_sc{Sequence}_{Shot}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
+
+  # Rendered images
+  houdini_shot_render:
+    definition: "@shot_root/houdini/renders/{name}/{write.output}/v{version}/[{aov_name}/]{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+    root_name: "render"
+  houdini_shot_render_pub:
+    definition: "@shot_render_publish/houdini/{name}/{write.output}/render/v{version}/[{aov_name}/]{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+  houdini_shot_render_review:
+    definition: "@shot_render_publish/houdini/{name}/{write.output}/review/v{version}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+  houdini_shot_render_movie:
+    definition: "@shot_render_publish/houdini/{name}/{write.output}/mov/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
+
+  # Additional outputs
+  houdini_shot_extra_plane:
+    definition: "@shot_root/houdini/renders/{name}/extra/v{version}/{aov_name}/{Projectcode}_{Sequence}_{Shot}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    root_name: "render"
+
+  houdini_shot_ifd:
+    definition: "@shot_root/houdini/ifds/{name}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ifd"
+    root_name: "render"
+
+  houdini_shot_dcm:
+    definition: "@shot_root/houdini/dcms/{name}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.dcm"
+    root_name: "render"
+
+  houdini_shot_ass:
+    definition: "@shot_root/houdini/ass/{name}/v{version}/{Projectcode}_{Sequence}_{Shot}_{name}_v{version}.{SEQ}.ass"
+    root_name: "render"
+
+  ##########################################################################################
+  # Asset pipeline
+  #
+
+  # define the location of a work area
+  asset_work_area_houdini:
+    definition: "@asset_root/houdini"
+  # define the location of a publish area
+  asset_publish_area_houdini:
+    definition: "@asset_publish/houdini"
+  # The location of WIP files
+  houdini_asset_work:
+    definition: "@asset_root/houdini/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.hipnc"
+  # The location of backups of WIP files
+  houdini_asset_snapshot:
+    definition: "@asset_root/houdini/snapshots/{Projectcode}_{Asset}_{Step}_snap_{name}_v{version}_{timestamp}.hipnc"
+  # The location of published houdini files
+  houdini_asset_publish:
+    definition: "@asset_publish/houdini/{Projectcode}_{Asset}_{Step}_{name}_pub_{name}_v{version}.hipnc"
+  # Alembic caches
+  houdini_asset_work_alembic_cache:
+    definition: "@asset_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Projectcode}_{Asset}_{Step}_work_v{version}.abc"
+  #    root_name: "render" # Place on source until can be published from render to source
+  # fbx caches
+  houdini_asset_work_fbx_cache:
+    definition: "@asset_root/houdini/cache/fbx/{name}/{houdini.node}/v{version}/{Projectcode}_{Asset}_{Step}_work_v{version}.fbx"
+  #    root_name: "render" # Place on source until can be published from render to source
+  # File work caches
+  houdini_asset_work_file_cache:
+    definition: "@asset_root/houdini/cache/bgeo/{name}/v{version}/{Projectcode}_{Asset}_{Step}_work_{name}_v{version}.{SEQ}.bgeo"
+    root_name: "render"
+  # File publish caches
+  houdini_asset_publish_file_cache:
+    definition: "@asset_publish/cache/bgeo/{name}/v{version}/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.{SEQ}.bgeo"
+
+  # Rendered images
+  houdini_asset_render:
+    definition: "@asset_root/houdini/renders/{name}/{write.output}/v{version}/[{aov_name}/]{Projectcode}_{Asset}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+    root_name: "render"
+  houdini_asset_render_pub:
+    definition: "@asset_render_publish/houdini/{name}/{write.output}/render/v{version}/[{aov_name}/]{Projectcode}_{Asset}_{Step}_{name}_{write.output}_[{aov_name}_]v{version}.{SEQ}.exr"
+  houdini_asset_render_review:
+    definition: "@asset_render_publish/houdini/{name}/{write.output}/review/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_v{version}.{SEQ}.exr"
+  houdini_asset_render_movie:
+    definition: "@asset_render_publish/houdini/{name}/{write.output}/mov/{Projectcode}_{Asset}_{Step}_{name}_{write.output}_sRGB_v{version}.mov"
+
+  # Additional outputs
+  houdini_asset_extra_plane:
+    definition: "@asset_root/houdini/renders/{name}/extra/v{version}/{aov_name}/{Projectcode}_{Asset}_{Step}_{name}_{aov_name}_v{version}.{SEQ}.exr"
+    root_name: "render"
+
+  houdini_asset_ifd:
+    definition: "@asset_root/houdini/ifds/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ifd"
+    root_name: "render"
+
+  houdini_asset_dcm:
+    definition: "@asset_root/houdini/dcms/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.dcm"
+    root_name: "render"
+
+  houdini_asset_ass:
+    definition: "@asset_root/houdini/ass/{name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_v{version}.{SEQ}.ass"
+    root_name: "render"
+
+strings:
+  houdini_asset_version_name: "{Asset}_[{Step}_]_houdini_{name}_{write.output}_[{colorspace}_]v{version}"
+  houdini_shot_version_name: "{Sequence}_{Shot}_[{Step}_]_houdini_{name}_{write.output}_[{colorspace}_]v{version}"
