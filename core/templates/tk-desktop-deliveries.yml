@@ -20,16 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-includes:
-  - ./templates/common.yml
-  - ./templates/tk-aftereffects.yml
-  - ./templates/tk-desktop-deliveries.yml
-  - ./templates/tk-hiero.yml
-  - ./templates/tk-houdini.yml
-  - ./templates/tk-mari.yml
-  - ./templates/tk-maya.yml
-  - ./templates/tk-motionbuilder.yml
-  - ./templates/tk-nuke.yml
-  - ./templates/tk-photoshopcc.yml
-  - ./templates/tk-substancepainter.yml
-  - ./templates/tk-unreal.yml
+paths:
+  # Shot Delivery Path
+  shot_delivery:
+    definition: "05_renders/delivery/{Projectcode}_sc{Sequence}_{Shot}_v{version}/{Projectcode}_sc{Sequence}_{Shot}_v{version}.{SEQ}.exr"
