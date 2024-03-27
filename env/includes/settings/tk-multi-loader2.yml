@@ -71,12 +71,13 @@ settings.tk-multi-loader2.flame:
 settings.tk-multi-loader2.houdini:
   actions_hook: '{config}/tk-multi-loader2/tk-houdini_actions.py'
   action_mappings:
-    Alembic Cache: [import, copy_path]
-    Houdini Scene: [merge, copy_path]
-    Image: [file_cop, copy_path]
-    Photoshop Image: [file_cop, copy_path]
-    Rendered Image: [file_cop, copy_path]
-    Texture: [file_cop, copy_path]
+    Alembic Cache: [import_alembic, view_metadata, copy_path, shaded_alembic]
+    Standin: [import_arnold, view_metadata, copy_path, assign_shaders]
+    Houdini Scene: [merge]
+    Image: [file_cop]
+    Photoshop Image: [file_cop]
+    Rendered Image: [file_cop]
+    Texture: [file_cop]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -108,12 +109,6 @@ settings.tk-multi-loader2.mari:
     - [project, is, '{context.project}']
     hierarchy: [sg_asset_type, code]
     publish_filters: []
-  - caption: Shot
-    entity_type: Shot
-    filters:
-      - [project, is, '{context.project}']
-    hierarchy: [sg_sequence, code]
-    publish_filters: []
   - caption: My Tasks
     entity_type: Task
     filters:
@@ -129,18 +124,19 @@ settings.tk-multi-loader2.maya:
   actions_hook: '{config}/tk-multi-loader2/tk-maya_actions.py'
   filter_publishes_hook: '{config}/tk-multi-loader2/filter_publishes.py'
   action_mappings:
-    Alembic Cache: [import, reference, multi_import, multi_ref]
-    Alembic Camera: [import, reference]
+    Alembic Cache: [import, multi_import, reference, multi_ref, view_metadata, shaded_alembic]
+    Alembic Camera: [import, reference, view_metadata]
     Image: [texture_node, image_plane]
-    Maya Scene: [import, reference, assembly_reference]
+    Maya Scene: [import, reference, view_metadata]
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
     UDIM Image: [texture_node, image_plane]
     Maya Shader Network: [import, reference]
-    Standin: [import, reference, multi_import, multi_ref]
-    Ass File: [import, reference]
+    Standin: [import, multi_import, reference, multi_ref, view_metadata, assign_shaders]
+    Ass File: [import, multi_import, reference, multi_ref, view_metadata, assign_shaders]
     Mel File: [import_mel]
+    OBJ Cache: [obj_import, view_metadata]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -162,7 +158,7 @@ settings.tk-multi-loader2.maya:
     entity_type: Asset
     filters:
     - [project, is, {'type': 'Project', 'id': 241}]
-    hierarchy: [sg_2d_3d, sg_asset_type, sg_element, tags, code] 
+    hierarchy: [sg_2d_3d, sg_asset_type, sg_element, tags, code]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
@@ -171,7 +167,7 @@ settings.tk-multi-loader2.nuke:
   actions_hook: '{config}/tk-multi-loader2/tk-nuke_actions.py'
   filter_publishes_hook: '{config}/tk-multi-loader2/filter_publishes.py'
   action_mappings:
-    Alembic Cache: [read_node, import_camera]
+    Alembic Cache: [read_node]
     Alembic Camera: [import_camera]
     Flame Render: [read_node]
     Flame Quicktime: [read_node]

@@ -158,6 +158,28 @@ keys:
         default: abc
         alias: extension
 
+    sc_template_extension:
+        type: str
+        choices:
+            ma: Maya (.ma)
+            hip: Houdini (.hip)
+            cpio: Houdini (.cpio)
+            hda: Houdini (.hda)
+            otl: Houdini (.otl)
+            json: JSON (.json)
+            py: Python (.py)
+        alias: extension
+
+    dcc:
+        type: str
+        choices:
+            maya: Maya
+            houdini: Houdini
+
+    sc_template_name:
+        type: str
+        filter_by: '^[0-9a-zA-Z- ]+$'
+
 #
 # The paths section contains all the the key locations where files are to be stored
 # by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
@@ -427,3 +449,8 @@ paths:
     asset_render_global:
         definition: '@asset_context/'
         root_name: 'project_storage_pix'
+
+    # templates
+    showtools_template:
+        definition: '{dcc}/{sc_template_name}/v{version}/[{name}_]template_file.{sc_template_extension}'
+        root_name: 'showtools'
