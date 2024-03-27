@@ -94,6 +94,10 @@ paths:
     maya_shot_camera_publish:
         definition: '@shot_root/publish/maya/cameras/{Shot}_{task_name}[_{name}]_v{version}.abc'
         root_name: 'project_storage_pix'
+    # the location of Maya published json's
+    maya_shot_json_publish:
+        definition: '@shot_root/publish/maya/json/{Shot}_{task_name}[_{name}]_v{version}.json'
+        root_name: 'project_storage_pix'
     
     ########################################ASSET WORK
     # define the location of a work area
@@ -134,6 +138,10 @@ paths:
         root_name: 'project_storage_pix'
     maya_asset_standin_publish:
         definition: '@asset_root/publish/maya/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.ass'
+        root_name: 'project_storage_pix'
+    # the location of Maya published json's
+    maya_asset_json_publish:
+        definition: '@asset_root/publish/maya/json/{Asset}_{task_name}[_{name}]_v{version}.json'
         root_name: 'project_storage_pix'
     
     ########################################SHOT OUTPUT
@@ -185,7 +193,7 @@ paths:
          definition: '@shot_context/maya/{task_name}/caches/alembic/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}.abc'
          root_name: 'caches'
     maya_shot_cache_standin:
-        definition: '@shot_context/maya/{task_name}/caches/standin/{Shot}_{task_name}_standin_cache[_{name}]_v{version}'
+        definition: '@shot_context/maya/{task_name}/caches/standin/{Shot}_{task_name}[_{name}]_v{version}'
         root_name: 'caches'
     maya_shot_cache_obj:
         definition: '@shot_context/maya/{task_name}/caches/obj/{Shot}_{task_name}_obj_cache[_{name}]_v{version}/{Shot}_{task_name}_obj-cache[_{name}]_v{version}.obj'
@@ -274,8 +282,8 @@ paths:
          definition: '@maya_asset_cache_area/geometry/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.abc'
          root_name: 'caches'
     maya_asset_cache_standin_file:
-         definition: '@maya_asset_cache_area/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.ass'
-         root_name: 'caches'
+        definition: '@maya_asset_cache_area/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}[.{SEQ}].ass'
+        root_name: 'caches'
     maya_asset_cache_obj_file:
         definition: '@maya_asset_cache_area/obj/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.obj'
         root_name: 'caches'

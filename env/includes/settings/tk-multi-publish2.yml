@@ -127,9 +127,6 @@ settings.tk-multi-publish2.houdini.asset_step:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
     settings: {}
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -149,9 +146,6 @@ settings.tk-multi-publish2.houdini.shot_step:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
     settings: {}
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
@@ -193,89 +187,103 @@ settings.tk-multi-publish2.maya.asset_step:
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/maya/collector.py"
   collector_settings:
       Work Template: maya_asset_work
+      Generated ABC Template: maya_asset_cache_alembic_file
+      Generated ASS Template: maya_asset_cache_standin_file
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
-  - name: Publish Session
+  - name: Version Up
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session.py"
     settings:
         Publish Template: maya_asset_publish
-  - name: Publish Shaders
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_shader_network.py"
-    settings:
-        Publish Template: maya_shader_network_publish
   - name: Publish Camera
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_camera.py"
     settings:
         Publish Template: maya_asset_camera_publish
-        Cameras: ["cam_main*"]
+        Cameras: ["camMain"]
   - name: Publish to Alembic
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session_geometry.py"
     settings:
-        # Publish Template: asset_alembic_cache
         Publish Template: maya_asset_cache_alembic_file
-  - name: Publish Assembly definition
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_assembly_definition.py"
+        Publish Generated: "False"
+  # its a hack, we need different names of the plugin
+  # the name depends on whether we want to publish generated file
+  - name: Publish generated ABC file
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session_geometry.py"
     settings:
-        Publish Template: maya_asset_assembly_publish
-  - name: Publish Arnold Stand-in
+        Publish Template: maya_asset_cache_alembic_file
+        Publish Generated: "True"
+  - name: Publish to Arnold
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
     settings:
         Publish Template: maya_asset_cache_standin_file
+        Publish Generated: "False"
+  - name: Publish generated ASS file
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
+    settings:
+        Publish Template: maya_asset_cache_standin_file
+        Publish Generated: "True"
   - name: Publish OBJ
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_obj.py"
     settings:
       Publish Template: maya_asset_cache_obj_file
+  - name: Publish maya file
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_ma_file.py"
+    settings:
+      Publish Template: maya_asset_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
 # shot step
 settings.tk-multi-publish2.maya.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/basic/maya/collector.py"
+  pre_publish: "{config}/tk-multi-publish2/basic/maya/pre_publish.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/maya/collector.py"
   collector_settings:
       Work Template: maya_shot_work
+      Generated ABC Template: maya_shot_cache_alembic_abc
+      Generated ASS Template: maya_shot_cache_standin_ass
   publish_plugins:
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py"
-    settings: {}
-  # - name: Upload for review
-  #   hook: "{self}/upload_version.py"
-  #   settings: {}
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
-  - name: Publish to ShotGrid
+  - name: Version Up
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
-  - name: Publish to Camera
+  - name: Publish Camera
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_camera.py"
     settings:
         Publish Template: maya_shot_camera_publish
-        Cameras: ["cam_main"]
+        Cameras: ["camMain"]
   - name: Publish to Alembic
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session_geometry.py"
     settings:
         Publish Template: maya_shot_cache_alembic_abc
-  - name: Publish to Shaders
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_shader_network.py"
+        Publish Generated: "False"
+  - name: Publish generated ABC file
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_session_geometry.py"
     settings:
-        Publish Template: maya_shader_network_publish
+        Publish Template: maya_shot_cache_alembic_abc
+        Publish Generated: "True"
   - name: Publish Arnold Stand-in
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
     settings:
       Publish Template: maya_shot_cache_standin_ass
+      Publish Generated: "False"
+  - name: Publish generated ASS file
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_standin.py"
+    settings:
+      Publish Template: maya_shot_cache_standin_ass
+      Publish Generated: "True"
   - name: Publish OBJ
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_obj.py"
     settings:
       Publish Template: maya_shot_cache_obj
+  - name: Publish maya file
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/maya/publish_ma_file.py"
+    settings:
+      Publish Template: maya_shot_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -650,6 +658,7 @@ settings.tk-multi-publish2.3dequalizer.asset_step:
         Publish Template: 3dequalizer_shot_camera_publish
         Publish UndPlates Template: 3dequalizer_shot_undist_plates_publish
         Cameras: ["*"]
+
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -660,8 +669,6 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
   collector_settings:
       Work Template: 3dequalizer_shot_work
       Playblast Render Template: 3dequalizer_shot_playblast_publish
-      Playblast cone Render Template: 3dequalizer_shot_playblast_cones_publish
-      Playblast wire Render Template: 3dequalizer_shot_playblast_wire_publish
       Undist Render Template: 3dequalizer_shot_undist_plates_publish
       Undist Node Template: 3dequalizer_shot_dist_publish
   publish_plugins:
@@ -675,6 +682,7 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
         Publish Template: 3dequalizer_shot_camera_publish
         Publish UndPlates Template: 3dequalizer_shot_undist_plates_publish
         Cameras: ["*"]
+
   - name: Publish Generated Data
     hook: "{self}/publish_file.py"
     settings: {}

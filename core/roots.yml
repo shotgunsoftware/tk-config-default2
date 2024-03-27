@@ -78,6 +78,14 @@ records: {
   windows_path: \\pix_artist\tech_records\tech_records
   }
 
+# TODO: create the entity
+showtools: {
+  shotgun_storage_id: 2739,
+  linux_path: /mnt/pipeline_repo/show_tools/SHARED,
+  mac_path: null,
+  windows_path: \\ssvfx_pipeline\pipeline_repo\show_tools\SHARED
+  }
+
 # ------------------------------------------------------------------------------
 # Below is an example of a second storage root. This root would require a local
 # storage defined in Shotgun with an id of 2.
