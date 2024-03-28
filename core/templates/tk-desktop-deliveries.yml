@@ -21,6 +21,8 @@
 # SOFTWARE.
 
 paths:
+  # Shot Delivery folder
+  delivery: 05_renders/delivery
   # Shot Delivery Path
   shot_delivery:
-    definition: "05_renders/delivery/{Projectcode}_sc{Sequence}_{Shot}_v{version}/{Projectcode}_sc{Sequence}_{Shot}_v{version}.{SEQ}.exr"
+    definition: "@delivery/{Projectcode}_sc{Sequence}_{Shot}_v{version}/{Projectcode}_sc{Sequence}_{Shot}_v{version}.{SEQ}.exr"
