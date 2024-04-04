@@ -20,6 +20,7 @@ includes:
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-multi-data-validation.yml
+- ./tk-multi-scenebuilder.yml
 
 ################################################################################
 
@@ -49,27 +50,9 @@ settings.tk-alias.asset_step:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.alias"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.alias.asset_step"
     tk-multi-data-validation: "@settings.tk-multi-data-validation.alias"
+    tk-multi-scenebuilder: "@settings.tk-multi-scenebuilder.alias"
     tk-multi-bg-publish:
       location: "@apps.tk-multi-bg-publish.location"
-    tk-multi-scenebuilder:
-      location: "@apps.tk-multi-scenebuilder.location"
-      presets:
-        - name: Default
-          actions:
-            - context:
-              - [entity.Asset.parents, in, '{context.entity}']
-              - [task.Task.content, is, Model]
-              - [task.Task.step.Step.code, is, Model]
-              action_mappings:
-                Alias File: import
-        - name: CatPart
-          actions:
-            - context:
-              - [entity.Asset.parents, in, '{context.entity}']
-              - [task.Task.content, is, Class-A]
-              - [task.Task.step.Step.code, is, Class-A]
-              action_mappings:
-                Catpart File: import
   reference_template: alias_asset_reference_publish
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
