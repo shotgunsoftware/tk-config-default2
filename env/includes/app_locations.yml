@@ -65,9 +65,13 @@ apps.tk-multi-reviewsubmission.location:
   name: tk-multi-reviewsubmission
   version: v1.2.1
 apps.tk-multi-scenebuilder.location:
-  type: app_store
-  name: tk-multi-scenebuilder
-  version: v0.1.0
+  # type: app_store
+  # name: tk-multi-scenebuilder
+  # version: v0.1.0
+  type: git_branch
+  branch: ticket/SHOT-4196
+  path: https://github.com/shotgunsoftware/tk-multi-scenebuilder.git
+  version: da7afea
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
