@@ -606,6 +606,10 @@ settings.tk-multi-publish2.substancepainter.asset_step:
       hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_texture.py"
       settings:
         Publish Template: substancepainter_asset_texture_path_publish
+    - name: Publish to Shotgun
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_textures.py"
+      settings:
+        Publish Template: substancepainter_asset_textures_path_publish
     - name: Upload for review
       hook: "{self}/upload_version.py"
       settings: {}
