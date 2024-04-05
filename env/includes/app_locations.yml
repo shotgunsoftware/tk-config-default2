@@ -71,7 +71,7 @@ apps.tk-multi-scenebuilder.location:
   type: git_branch
   branch: ticket/SHOT-4196
   path: https://github.com/shotgunsoftware/tk-multi-scenebuilder.git
-  version: f69077f
+  version: f09fb0f
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
