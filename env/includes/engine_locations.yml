@@ -116,7 +116,7 @@ engines.tk-substancepainter.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-substancepainter
-  version: 1.0.2
+  version: 1.0.3
 
 # Unreal
 engines.tk-unreal.location:
