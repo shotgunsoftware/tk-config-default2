@@ -54,7 +54,7 @@ paths:
     definition: "@asset_publish/substancepainter/{Projectcode}_{Asset}_{Step}_pub_{name}_v{version}.spp"
   # a texture folder publish
   substancepainter_asset_textures_path_publish:
-    definition: "@asset_publish/textures/v{version}/{name}_v{version}"
+    definition: "@asset_publish/textures/v{version}"
   # a texture folder publish
   substancepainter_asset_texture_path_publish:
     definition: "@asset_publish/textures/v{version}/{Projectcode}_{Asset}_{channel}_v{version}.{texture_extension}"
