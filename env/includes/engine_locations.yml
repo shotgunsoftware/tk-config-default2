@@ -27,9 +27,11 @@ engines.tk-aftereffects.location:
   name: tk-aftereffects
   version: v0.4.0
 engines.tk-alias.location:
-  type: app_store
-  name: tk-alias
-  version: v3.1.0
+  # type: app_store
+  # name: tk-alias
+  # version: v3.1.0
+  type: dev
+  windows_path: C:\Users\qa\sg_envs\dev\tk\tk-alias
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
