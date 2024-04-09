@@ -55,7 +55,7 @@ apps.tk-multi-loader2.location:
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.8.1
+  version: v2.8.2
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -143,11 +143,11 @@ apps.tk-nuke-writenode.location:
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.11.0
+  version: v1.11.1
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.5.0
+  version: v1.5.1
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
