@@ -34,10 +34,8 @@ apps.tk-multi-breakdown2.location:
   # version: v0.3.0
   type: git_branch
   branch: master
-  path: https://github.com/shotgunsoftware/tk-multi-breakdown2.git
+  path: https://github.com/shotgunsoftware/tk-multi-breakdown2
   version: 46d57b9
-  # type: dev
-  # windows_path: C:\Users\qa\sg_envs\dev\tk\tk-multi-breakdown2
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
@@ -51,11 +49,9 @@ apps.tk-multi-launchapp.location:
   name: tk-multi-launchapp
   version: v0.13.0
 apps.tk-multi-loader2.location:
-  # type: app_store
-  # name: tk-multi-loader2
-  # version: v1.24.0
-  type: dev
-  windows_path: C:\Users\qa\sg_envs\dev\tk\tk-multi-loader2
+  type: app_store
+  name: tk-multi-loader2
+  version: v1.25.0
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
@@ -73,11 +69,9 @@ apps.tk-multi-scenebuilder.location:
   # name: tk-multi-scenebuilder
   # version: v0.1.0
   type: git_branch
-  branch: ticket/SHOT-4196
+  branch: master
   path: https://github.com/shotgunsoftware/tk-multi-scenebuilder.git
-  version: f09fb0f
-  # type: dev
-  # windows_path: C:\Users\qa\sg_envs\dev\tk\tk-multi-scenebuilder
+  version: 9b91861
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom

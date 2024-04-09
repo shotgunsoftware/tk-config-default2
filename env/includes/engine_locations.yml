@@ -30,8 +30,10 @@ engines.tk-alias.location:
   # type: app_store
   # name: tk-alias
   # version: v3.1.0
-  type: dev
-  windows_path: C:\Users\qa\sg_envs\dev\tk\tk-alias
+  type: git_branch
+  branch: master
+  path: https://github.com/shotgunsoftware/tk-alias.git
+  version: 471c19f
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -77,6 +79,10 @@ engines.tk-shotgun.location:
   name: tk-shotgun
   version: v0.11.0
 engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v3.1.1
+  # type: app_store
+  # name: tk-vred
+  # version: v3.1.1
+  type: git_branch
+  branch: master
+  path: https://github.com/shotgunsoftware/tk-vred.git
+  version: 9adf495

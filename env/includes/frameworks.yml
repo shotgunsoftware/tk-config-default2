@@ -27,11 +27,9 @@ frameworks:
       name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
     location:
-      # version: v1.3.0
-      # type: app_store
-      # name: tk-framework-alias
-      type: dev
-      windows_path: C:\Users\qa\sg_envs\dev\tk\tk-framework-alias
+      version: v1.3.0
+      type: app_store
+      name: tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
     location:
       version: v0.3.0
@@ -44,7 +42,7 @@ frameworks:
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.11.1
+      version: v2.12.0
       type: app_store
       name: tk-framework-qtwidgets
   tk-framework-shotgunutils_v4.x.x:
