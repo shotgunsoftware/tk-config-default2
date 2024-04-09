@@ -12,7 +12,7 @@
 ################################################################################
 
 includes:
-- ./frameworks.yml
+  - ./frameworks.yml
 
 ################################################################################
 # location descriptors for apps used in this configuration
@@ -49,7 +49,7 @@ apps.tk-multi-breakdown.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-breakdown
-  version: 1.8.0.5
+  version: 1.8.0.6
 
 # demo
 apps.tk-multi-demo.location:
@@ -68,7 +68,7 @@ apps.tk-multi-loader2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-loader2
-  version: 1.21.0.8
+  version: 1.21.0.9
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -305,4 +305,4 @@ apps.tk-mari-projectmanager.location:
 
 ################################################################################
 # reference all of the common frameworks
-frameworks: '@frameworks'
+frameworks: "@frameworks"
