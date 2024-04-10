@@ -65,7 +65,7 @@ engines.tk-houdini.location:
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
-  version: v1.3.3
+  version: v1.3.4
 
 # Maya
 engines.tk-maya.location:
