@@ -17,17 +17,17 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.1.10
+      version: v1.2.1
       type: app_store
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.5
+      version: v0.7.6
       type: app_store
       name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
     location:
-      version: v1.2.0
+      version: v1.3.0
       type: app_store
       name: tk-framework-alias
       # type: git_branch
@@ -38,24 +38,19 @@ frameworks:
       # windows_path: C:\Users\qa\sg_envs\dev\tk\tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
     location:
-      # version: v0.2.4
-      version: v0.2.3
+      version: v0.3.0
       type: app_store
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.6.4
+      version: v1.7.0
       type: app_store
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      # version: v2.10.11
-      # type: app_store
-      # name: tk-framework-qtwidgets
-      type: git_branch
-      branch: ticket/SHOT-4328-dock-filters
-      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      version: fcc6363
+      version: v2.12.0
+      type: app_store
+      name: tk-framework-qtwidgets
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -63,7 +58,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.8.8
+      version: v5.9.1
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
@@ -73,12 +68,12 @@ frameworks:
       name: tk-framework-widget
   tk-framework-widget_v1.x.x:
     location:
-      version: v1.1.1
+      version: v1.2.0
       type: app_store
       name: tk-framework-widget
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.3.2
+      version: v0.3.3
       type: app_store
       name: tk-framework-desktopclient
   tk-framework-lmv_v0.x.x:
@@ -88,6 +83,6 @@ frameworks:
       name: tk-framework-lmv
   tk-framework-lmv_v1.x.x:
     location:
-      version: v1.0.0
+      version: v1.1.0
       type: app_store
       name: tk-framework-lmv
