@@ -201,6 +201,7 @@ settings.tk-multi-publish2.maya.asset_step:
       hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
       settings:
         Publish Template: maya_asset_abc
+        Export Active Selection Only: False
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -234,6 +235,8 @@ settings.tk-multi-publish2.maya.shot_step:
       hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
       settings:
         Publish Template: maya_shot_abc
+        Export Active Selection Only: False
+
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
