@@ -70,7 +70,7 @@ settings.tk-multi-loader2.flame:
 settings.tk-multi-loader2.houdini:
   action_mappings:
     BGEO Cache: [file_sop]
-    Alembic Cache: [import, component_builder]
+    Alembic Cache: [import, stage_import, component_builder]
     Houdini Scene: [merge]
     Image: [file_cop]
     Photoshop Image: [file_cop]
