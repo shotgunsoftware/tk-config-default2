@@ -68,7 +68,7 @@ apps.tk-multi-loader2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-loader2
-  version: 1.21.0.10
+  version: 1.21.0.11
 
 # publish2
 apps.tk-multi-publish2.location:
