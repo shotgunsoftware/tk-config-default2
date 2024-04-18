@@ -123,6 +123,7 @@ settings.tk-multi-loader2.mari:
 settings.tk-multi-loader2.maya:
   action_mappings:
     Alembic Cache: [reference, import]
+    USD: [reference]
     Image: [texture_node, image_plane]
     Maya Scene: [reference, import]
     Photoshop Image: [texture_node, image_plane]

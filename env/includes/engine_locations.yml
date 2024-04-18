@@ -63,9 +63,10 @@ engines.tk-houdini.location:
 
 # Mari
 engines.tk-mari.location:
-  type: app_store
-  name: tk-mari
-  version: v1.3.4
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-mari
+  version: v1.4.1
 
 # Maya
 engines.tk-maya.location:
