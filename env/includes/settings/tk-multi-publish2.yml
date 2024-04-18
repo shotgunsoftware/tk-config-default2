@@ -160,7 +160,7 @@ settings.tk-multi-publish2.mari.asset_step:
     - name: Publish to ShotGrid
       hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_mari_textures.py"
       settings:
-        Publish Template: asset_mari_texture_tif
+        Publish Template: substancepainter_asset_textures_path_publish
     - name: Upload for review
       hook: "{self}/upload_version.py"
       settings: {}
