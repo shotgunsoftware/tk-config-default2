@@ -29,13 +29,9 @@ apps.tk-multi-breakdown.location:
   name: tk-multi-breakdown
   version: v1.9.0
 apps.tk-multi-breakdown2.location:
-  # type: app_store
-  # name: tk-multi-breakdown2
-  # version: v0.3.0
-  type: git_branch
-  branch: master
-  path: https://github.com/shotgunsoftware/tk-multi-breakdown2
-  version: 46d57b9
+  type: app_store
+  name: tk-multi-breakdown2
+  version: v0.4.0
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
@@ -65,13 +61,9 @@ apps.tk-multi-reviewsubmission.location:
   name: tk-multi-reviewsubmission
   version: v1.3.0
 apps.tk-multi-scenebuilder.location:
-  # type: app_store
-  # name: tk-multi-scenebuilder
-  # version: v0.1.0
-  type: git_branch
-  branch: main
-  path: https://github.com/shotgunsoftware/tk-multi-scenebuilder.git
-  version: 9b91861
+  type: app_store
+  name: tk-multi-scenebuilder
+  version: v0.1.1
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
