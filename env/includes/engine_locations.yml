@@ -77,4 +77,4 @@ engines.tk-shotgun.location:
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
-  version: v3.2.0
+  version: v3.2.1
