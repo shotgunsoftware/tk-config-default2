@@ -59,7 +59,7 @@ engines.tk-houdini.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-houdini
-  version: 1.8.5.6
+  version: 1.8.5.7
 
 # Mari
 engines.tk-mari.location:
