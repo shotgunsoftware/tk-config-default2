@@ -19,6 +19,7 @@ includes:
 
 settings.tk-multi-data-validation.alias:
   hook_data_validation: "{engine}/tk-multi-data-validation/basic/data_validation.py"
+  hook_scene_operations: "{engine}/tk-multi-data-validation/basic/scene_operations.py"
   rules:
     - id: layer_is_empty
       data_type: Layers
@@ -61,6 +62,7 @@ settings.tk-multi-data-validation.alias:
 
 settings.tk-multi-data-validation.vred:
   hook_data_validation: "{engine}/tk-multi-data-validation/basic/data_validation.py"
+  hook_scene_operations: "{engine}/tk-multi-data-validation/basic/scene_operations.py"
   hook_ui_config: "{engine}/tk-multi-data-validation/basic/ui_config.py"
   rules:
     - id: scene_graph_hidden_nodes
