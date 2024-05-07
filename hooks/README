@@ -12,5 +12,5 @@ and the app will look for the hook in a hook folder inside of the app itself.
 If you want to customize a hook, just change the value from default to something else, for
 example myhook.py. Sgtk will then look for a file named myhook.py in *this* folder and try
 to execute it instead of the default hook. You can of course use the default hooks as
-examples and starting points when you want to configure the ShotGrid Pipeline Toolkit to
-perform your desired behaviour.
+examples and starting points when you want to configure the Flow Production Tracking Toolkit
+to perform your desired behaviour.
