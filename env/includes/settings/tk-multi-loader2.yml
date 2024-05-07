@@ -160,7 +160,7 @@ settings.tk-multi-loader2.nuke:
     Movie: [read_node]
     Nuke Script: [script_import]
     Photoshop Image: [read_node]
-    Rendered Image: [read_node]
+    Rendered Image: [read_node, deep_read_node]
     Texture: [read_node]
     USD: [geo_node, camera_node]
   entities:
