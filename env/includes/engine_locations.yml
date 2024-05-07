@@ -49,7 +49,7 @@ engines.tk-houdini.location:
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
-  version: v1.4.0
+  version: v1.4.1
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
