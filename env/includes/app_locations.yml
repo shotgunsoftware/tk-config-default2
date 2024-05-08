@@ -33,9 +33,12 @@ apps.tk-multi-breakdown2.location:
   name: tk-multi-breakdown2
   version: v0.4.0
 apps.tk-multi-data-validation.location:
-  type: app_store
-  name: tk-multi-data-validation
-  version: v0.2.0
+  # type: app_store
+  # name: tk-multi-data-validation
+  # version: v0.2.0
+  type: git_branch
+  branch: ticket/SHOT-4226-SHOT-4158-progress-bar-and-ui-updates
+  path: https://github.com/shotgunsoftware/tk-multi-data-validation.git
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo

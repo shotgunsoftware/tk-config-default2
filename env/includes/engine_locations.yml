@@ -27,9 +27,12 @@ engines.tk-aftereffects.location:
   name: tk-aftereffects
   version: v0.4.0
 engines.tk-alias.location:
-  type: app_store
-  name: tk-alias
-  version: v3.2.0
+  # type: app_store
+  # name: tk-alias
+  # version: v3.2.0
+  type: git_branch
+  branch: ticket/SHOT-4158-dv-auto-refresh
+  path: https://github.com/shotgunsoftware/tk-alias.git
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -79,6 +82,9 @@ engines.tk-shotgun.location:
   name: tk-shotgun
   version: v0.11.0
 engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v3.2.1
+  # type: app_store
+  # name: tk-vred
+  # version: v3.2.1
+  type: git_branch
+  branch: ticket/SHOT-4158-dv-auto-refresh
+  path: https://github.com/shotgunsoftware/tk-vred.git
