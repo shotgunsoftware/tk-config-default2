@@ -39,7 +39,7 @@ apps.tk-multi-data-validation.location:
   type: git_branch
   branch: ticket/SHOT-4226-SHOT-4158-progress-bar-and-ui-updates
   path: https://github.com/shotgunsoftware/tk-multi-data-validation.git
-  version: bc8c3d3
+  version: 7a56c2b
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
