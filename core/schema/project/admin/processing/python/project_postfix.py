@@ -106,6 +106,7 @@ def run_post_fix(json_filepath):
     logger.info("Updating paths for Windows...")
     logger.info("==============")
     swap_paths(json_data)
+    logger.info("==============")
     logger.info("Update complete.")
     logger.info("-----------------------------")
 
@@ -148,6 +149,34 @@ def run_post_fix(json_filepath):
     if not processes:
         logger.warning("Warning there are no processes to loop!")
 
+    # Version status
+    version_info = json_data.get("version_info") or {}
+    version_status = version_info.get("sg_status_list") or ""
+
+    # Artist
+    if version_info.get("relationships"):
+        user = version_info["relationships"].get("user") or {}
+        if user.get("data"):
+            user_login = None
+            user_name = user["data"]["name"]
+        else:
+            user_login = json_data["project_info"]["user"]
+            user_name = None
+    else:
+        user_login = json_data["project_info"]["user"]
+        user_name = None
+
+    if user_login and not user_name:
+        user_ent = sg.find_one(
+            entity_type="HumanUser",
+            filters=[["login", "is", user_login]],
+            fields=["name"],
+        )
+        if user_ent:
+            user_name = user_ent["name"]
+        else:
+            user_name = ""
+
     # Corrective Loop to add nuke node values to JSON file
     total = len(processes.keys())
     count = 0
@@ -186,6 +215,14 @@ def run_post_fix(json_filepath):
                 logger.info(
                     ">>>>> Found Sequence CCC Path: %s\n" % nuke_settings.get("seq_ccc")
                 )
+            else:
+                nuke_settings["seq_ccc"] = {"disable": True}
+
+            if not nuke_settings.get("shot_ccc"):
+                nuke_settings["shot_ccc"] = {"disable": True}
+
+            if not nuke_settings.get("shot_lut"):
+                nuke_settings["shot_lut"] = {"disable": True}
 
         #####################
         # ## Slate Fixes ## #
@@ -206,14 +243,19 @@ def run_post_fix(json_filepath):
                     }
                 )
 
+            slate["artist"] = user_name
             logger.info(">>>>> Updated Slate Node: %s" % slate)
 
-            if job_key in ["version_zero_thumbnail"]:
-                if "v000" in slate.get("version"):
-                    proc_settings["update_version_media"] = True
-                    logger.info(
-                        ">>>>> Got Version Zero, setting update_version_media to True."
-                    )
+        ##############################
+        # Version Zero Thumbnail Fix #
+        ##############################
+        # If version status is zerov, update thumbnail media on linked version.
+        if job_key in ["version_zero_thumbnail"]:
+            if version_status and version_status in ["zerov"]:
+                proc_settings["update_version_media"] = True
+                logger.info(
+                    ">>>>> Got Version Zero, setting update_version_media to True."
+                )
 
         #####################
         # ## Tag changes ## #

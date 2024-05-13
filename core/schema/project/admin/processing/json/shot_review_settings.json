@@ -4,7 +4,8 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
-                    "output_root": "secondary",
+                    "output_type": "movie",
+                    "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": true,
                     "create_version": true,
@@ -15,9 +16,9 @@
                     "color_required": true,
                     "client_process": false,              
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
-                    "plugin_version": "12.2",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_Resolve_Review.nk",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_Resolve_Review.nk",
                     "dependencies": true,
                     "dependent_pool": "vfx_processing",
                     "dependent_job_suffix": "update_sg",
@@ -67,7 +68,8 @@
             "delivery-graded-version":{
                 "process_settings":{
                     "title" : "Dailies Graded and Cropped Version",
-                    "output_root": "secondary",
+                    "output_type": "movie",
+                    "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": false,
                     "create_version": false,
@@ -78,9 +80,15 @@
                     "client_process": false,
                     "delivery_graded": true,
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
-                    "plugin_version": "12.2",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/pump_DNxHD.nk"
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk",
+                    "dependencies": true,
+                    "dependent_pool": "vfx_processing",
+                    "dependent_job_suffix": "update_sg",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py"
                 },
                 "nuke_settings":{
                     "plate_switch": {"which":0},
@@ -135,7 +143,8 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
-                    "output_root": "secondary",
+                    "output_type": "movie",
+                    "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": true,
                     "create_version": true,
@@ -146,9 +155,9 @@
                     "color_required": true,
                     "client_process": false,              
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
-                    "plugin_version": "12.2",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_Resolve_Review.nk",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_Resolve_Review.nk",
                     "dependencies": true,
                     "dependent_pool": "vfx_processing",
                     "dependent_job_suffix": "update_sg",
@@ -202,7 +211,8 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
-                    "output_root": "secondary",
+                    "output_type": "movie",
+                    "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": true,
                     "create_version": true,
@@ -213,9 +223,9 @@
                     "color_required": true,
                     "client_process": false,              
                     "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke12.2v4/Nuke12.2.exe",
-                    "plugin_version": "12.2",
-                    "plugin_in_script": "admin/processing/nuke_scripts/2021/processing_Resolve_Review.nk",
+                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
+                    "plugin_version": "14.0",
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_Resolve_Review.nk",
                     "dependencies": true,
                     "dependent_pool": "vfx_processing",
                     "dependent_job_suffix": "update_sg",

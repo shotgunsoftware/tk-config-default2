@@ -1,0 +1,4448 @@
+#! C:/Program Files/Nuke14.0v5/nuke-14.0.5.dll -nx
+#write_info main_write file:"" format:"1920 1080 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1000 1195" fps:"24" colorspace:"linear" datatype:"unknown" transfer:"unknown" views:"main" timecode:"00:00:41:17" colorManagement:"Nuke"
+version 14.0 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1917" h="1026" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1254" stretch="1"/>
+            <splitter orientation="2">
+                <split size="578"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="406"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //pix_artist/tech_records/tech_records/pump_configs/Show_Setups_Media/pump_vanilla/pump_DNxHD.nk
+ frame 1000
+ first_frame 1000
+ last_frame 1195
+ lock_range true
+ format "4268 2844 0 0 4268 2844 1 "
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ monitorOutLUT rec709
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+ free_type_font_path //10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/fonts/gotham/
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ FrameListMode Custom
+ addUserKnob {1 CustomFrameList l customFrameList}
+ CustomFrameList 1000-1289
+ addUserKnob {1 Department l department}
+ Department Comp
+ addUserKnob {1 Pool l pool}
+ Pool vfx_nuke_linux
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ SecondaryPool vfx_nuke_linux
+ addUserKnob {1 Group l group}
+ Group artist
+ addUserKnob {1 Priority l priority}
+ Priority 50
+ addUserKnob {1 MachineLimit l machineLimit}
+ MachineLimit 5
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ IsBlacklist False
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ SubmitSuspended False
+ addUserKnob {1 ChunkSize l chunkSize}
+ ChunkSize 3
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ ConcurrentTasks 3
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ LimitConcurrentTasks True
+ addUserKnob {1 Threads l threads}
+ Threads 0
+ addUserKnob {1 SubmitScene l submitScene}
+ SubmitScene True
+ addUserKnob {1 BatchMode l batchMode}
+ BatchMode True
+ addUserKnob {1 ContinueOnError l continueOnError}
+ ContinueOnError False
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ UseNodeRange False
+ addUserKnob {1 UseGpu l useGpu}
+ UseGpu False
+ addUserKnob {1 UseSpecificGpu l useSpecificGpu}
+ UseSpecificGpu False
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ ChooseGpu 0
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ EnforceRenderOrder False
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ DeadlineRenderMode "Use Scene Settings"
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ PerformanceProfiler False
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ ReloadPlugin False
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode15
+ tile_color 0x52754eff
+ label "CAMERA TRANSFORM"
+ note_font_size 50
+ xpos -962
+ ypos -1171
+ bookmark false
+ bdwidth 5362
+ bdheight 1649
+ z_order -10
+}
+BackdropNode {
+ inputs 0
+ name Backdrop_Adjust3
+ tile_color 0x81818100
+ label "<p align=\"\[value align]\"><font color=\[value note_color]> \[if \{\[value bold]==true\} \{return <b>\} \{return \"\"\}] \[if \{\[value italian]==true\} \{return <i>\} \{return \"\"\}] \[if \{\[value under]==true\} \{return <u>\} \{return \"\"\}] \[if \{\[value strike]==true\} \{return <s>\} \{return \"\"\}] \[value note]"
+ note_font "MS Shell Dlg 2"
+ note_font_size 32
+ xpos -430
+ ypos 2915
+ bookmark false
+ bdwidth 305
+ bdheight 203
+ z_order -1
+ addUserKnob {20 User}
+ addUserKnob {22 cover l "<big><font color=yellow>Cover Selected Area</big></font>" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.coverSelectedArea()" +STARTLINE}
+ addUserKnob {26 _1 l "" -STARTLINE T "   "}
+ addUserKnob {22 extend l "<big><font color=yellow>Extend to Selected Area</big></font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.extendSelectedArea()"}
+ addUserKnob {26 label_1 l <b>Label</b>}
+ addUserKnob {43 note l Note}
+ note "Cut Ref"
+ addUserKnob {4 note_color l "Note Color" M {Orange White Silver Gray Black Red Maroon Yellow Olive Lime Green Aqua Teal Blue Navy Fuchsia Purple}}
+ note_color Black
+ addUserKnob {4 align l Align -STARTLINE M {Center Left Right "" "" ""}}
+ addUserKnob {6 bold l "<b>&nbsp;&nbsp;T" +STARTLINE}
+ bold true
+ addUserKnob {6 italian l "&nbsp;&nbsp;<i>T" -STARTLINE}
+ addUserKnob {6 under l "&nbsp;&nbsp;<u>T" -STARTLINE}
+ addUserKnob {6 strike l "&nbsp;&nbsp;<s>T" -STARTLINE}
+ addUserKnob {26 font_size l "Note size"}
+ addUserKnob {22 size_plus_10 l "<font color=orange>▲ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontPlusTen()"}
+ addUserKnob {22 size_min_10 l "<font color=aqua>▼ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontMinusTen()"}
+ addUserKnob {26 tasks l <b>Tasks</b>}
+ addUserKnob {22 plate l "<big><font style=\"background-color:#559d63;\">&nbsp;<font color=black>Plate</font>&nbsp;" T "# plate\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1436110080)\nbd\['note'].setValue('PLATE')\nbd\['note_font_size'].setValue(102)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 denoise l "<big><font style=\"background-color:#85994d;\">&nbsp;<font color=black>Denoise</font>&nbsp;" -STARTLINE T "# denoise\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2241416448)\nbd\['note'].setValue('DENOISE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 reference l "<big><font style=\"background-color:#4d9976;\">&nbsp;<font color=black>Reference</font>&nbsp;" -STARTLINE T "# reference\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301902848)\nbd\['note'].setValue('REF')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 precomp l "<big><font style=\"background-color:#994d63;\">&nbsp;<font color=black>Precomp</font>&nbsp;" T "# precomp\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2571985664)\nbd\['note'].setValue('PRECOMP')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 merge l "<big><font style=\"background-color:#4d8c99;\">&nbsp;<font color=black>Merge</font>&nbsp;" -STARTLINE T "# merge\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301059840)\nbd\['note'].setValue('MERGE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 output l "<big><font style=\"background-color:#997d4d;\">&nbsp;<font color=black>Output</font>&nbsp;" -STARTLINE T "# output\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2575125760)\nbd\['note'].setValue('OUTPUT')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 Foreground l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>FG</font>&nbsp;" T "# fg\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('FG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 background l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>BG</font>&nbsp;" -STARTLINE T "# background\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('BG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 versions l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>Versions</font>&nbsp;" -STARTLINE T "# versions\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('VERSIONS')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 threed l "<big><font style=\"background-color:#806069;\">&nbsp;<font color=black>3D</font>&nbsp;" T "# 3d\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2153801984)\nbd\['note'].setValue('3D')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 camera l "<big><font style=\"background-color:#806060;\">&nbsp;<font color=black>Camera</font>&nbsp;" -STARTLINE T "# camera\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153799680)\nbd\['note'].setValue('CAMERA')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 track l "<big><font style=\"background-color:#80607d;\">&nbsp;<font color=black>Track</font>&nbsp;" -STARTLINE T "# track\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153807104)\nbd\['note'].setValue('TRACK')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 matte l "<big><font style=\"background-color:#807460;\">&nbsp;<font color=black>DMP</font>&nbsp;" T "# matte\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2155110400)\nbd\['note'].setValue('DMP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 grade l "<big><font style=\"background-color:#607a80;\">&nbsp;<font color=black>Grade</font>&nbsp;" -STARTLINE T "# grade\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1618640896)\nbd\['note'].setValue('GRADE')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n"}
+ addUserKnob {22 lens_effect l "<big><font style=\"background-color:#6d6080;\">&nbsp;<font color=black>Lens Effect</font>&nbsp;" -STARTLINE T "# lens effect\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1835040768)\nbd\['note'].setValue('LENS\\nEFFECT')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 key l "<big><font style=\"background-color:#608071;\">&nbsp;<font color=black>Key</font>&nbsp;" T "# key\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1619030272)\nbd\['note'].setValue('KEY')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 roto l "<big><font style=\"background-color:#638060;\">&nbsp;<font color=black>Roto</font>&nbsp;" -STARTLINE T "# roto\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1669357568)\nbd\['note'].setValue('ROTO')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 prep l "<big><font style=\"background-color:#778060;\">&nbsp;<font color=black>Prep</font>&nbsp;" -STARTLINE T "# prep\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2004901888)\nbd\['note'].setValue('PREP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 grain l "<big><font style=\"background-color:#AAAAAA;\">&nbsp;<font color=black>Grain</font>&nbsp;" -STARTLINE T "# grain\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2576980479)\nbd\['note'].setValue('GRAIN')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('White')"}
+ addUserKnob {26 node_color l "<b>Node Color</b>"}
+ addUserKnob {22 change_colors l "<big><font style=\"background-color:#806060;\">D<font style=\"background-color:#807460;\">u<font style=\"background-color:#778060;\">l<font style=\"background-color:#608071;\">l<font style=\"background-color:#607a80;\"> <font style=\"background-color:#606680;\">C<font style=\"background-color:#606680;\">o<font style=\"background-color:#6d6080;\">l<font style=\"background-color:#80607d;\">o<font style=\"background-color:#806069;\">r<font style=\"background-color:#806060;\">s" t "By clicking on it can toggle between the \"Dull Colors\" and the \"Vivid Colors\" palettes" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.dullVividColor()" +STARTLINE}
+ addUserKnob {22 darken l "<big><font style=\"background-color:#333333;\">&nbsp;<font color=#cccccc>Darken</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.darkenTileColor()"}
+ addUserKnob {22 brighten l "<big><font style=\"background-color:#aaaaaa;\">&nbsp;<font color=black>Brighten</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.brightenTileColor()"}
+ addUserKnob {22 color_0 l "<font color=#806060><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(2153799680)" +STARTLINE}
+ addUserKnob {22 color_1 l "<font color=#807460><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2155110400)"}
+ addUserKnob {22 color_2 l "<font color=#778060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2004901888)"}
+ addUserKnob {22 color_3 l "<font color=#638060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1669357568)"}
+ addUserKnob {22 color_4 l "<font color=#608071><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1619030272)"}
+ addUserKnob {22 color_5 l "<font color=#607a80><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(1618640896)" +STARTLINE}
+ addUserKnob {22 color_6 l "<font color=#606680><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1617330176)"}
+ addUserKnob {22 color_7 l "<font color=#6d6080><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1835040768)"}
+ addUserKnob {22 color_8 l "<font color=#80607d><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153807104)"}
+ addUserKnob {22 color_9 l "<font color=#806069><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153801984)"}
+ addUserKnob {22 grey_1 l "<font color=#DDDDDD><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(3149642751)" +STARTLINE}
+ addUserKnob {22 grey_2 l "<font color=#AAAAAA><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2576980479)"}
+ addUserKnob {22 grey_3 l "<font color=#777777><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1717987071)"}
+ addUserKnob {22 grey_4 l "<font color=#333333><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1145324799)"}
+ addUserKnob {22 grey_5 l "<font color=#222222><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(572662527)"}
+ addUserKnob {20 re_size l "Re Size" n 1}
+ re_size 0
+ addUserKnob {26 upscale l Upscale}
+ addUserKnob {22 upleft500 l "<font color=yellow><big>↖" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500()" +STARTLINE}
+ addUserKnob {22 space1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500 l "<font color=yellow><h3>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500()"}
+ addUserKnob {22 space1_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500 l "<font color=yellow><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500()"}
+ addUserKnob {22 space2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100 l "<font color=orange><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100()"}
+ addUserKnob {22 up100 l "<font color=orange><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100()"}
+ addUserKnob {22 upright100 l "<font color=orange><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100()"}
+ addUserKnob {22 space2_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500 l "<font color=yellow><big>&nbsp;◄" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500()" +STARTLINE}
+ addUserKnob {22 left100 l "<font color=orange><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100()"}
+ addUserKnob {22 center1 l "<font color=crimson><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center()"}
+ addUserKnob {22 right100 l "<font color=orange><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100()"}
+ addUserKnob {22 right500 l "<font color=yellow><big>►&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500()"}
+ addUserKnob {22 space3 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100 l "<font color=orange><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100()"}
+ addUserKnob {22 down100 l "<font color=orange><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100()"}
+ addUserKnob {22 downright100 l "<font color=orange><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100()"}
+ addUserKnob {22 space3_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500 l "<font color=yellow><big>↙" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500()" +STARTLINE}
+ addUserKnob {22 space4 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500 l "<font color=yellow><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500()"}
+ addUserKnob {22 space4_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500 l "<font color=yellow><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500()"}
+ addUserKnob {26 downscale l Downscale}
+ addUserKnob {22 upleft500_2 l "<font color=LightSkyBlue><big>↘" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500_2()" +STARTLINE}
+ addUserKnob {22 space1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500_2 l "<font color=LightSkyBlue><h3>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500_2()"}
+ addUserKnob {22 space1_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500_2 l "<font color=LightSkyBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500_2()"}
+ addUserKnob {22 space2_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100_2 l "<font color=SteelBlue><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100_2()"}
+ addUserKnob {22 up100_2 l "<font color=SteelBlue><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100_2()"}
+ addUserKnob {22 upright100_2 l "<font color=SteelBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100_2()"}
+ addUserKnob {22 space2_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500_2 l "<font color=LightSkyBlue><big>&nbsp;►" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500_2()" +STARTLINE}
+ addUserKnob {22 left100_2 l "<font color=SteelBlue><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100_2()"}
+ addUserKnob {22 center1_2 l "<font color=blue><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center_2()"}
+ addUserKnob {22 right100_2 l "<font color=SteelBlue><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100_2()"}
+ addUserKnob {22 right500_2 l "<font color=LightSkyBlue><big>◄&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500_2()"}
+ addUserKnob {22 space3_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100_2 l "<font color=SteelBlue><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100_2()"}
+ addUserKnob {22 down100_2 l "<font color=SteelBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100_2()"}
+ addUserKnob {22 downright100_2 l "<font color=SteelBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100_2()"}
+ addUserKnob {22 space3_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500_2 l "<font color=LightSkyBlue><big>↗" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500_2()" +STARTLINE}
+ addUserKnob {22 space4_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500_2 l "<font color=LightSkyBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500_2()"}
+ addUserKnob {22 space4_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500_2 l "<font color=LightSkyBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500_2()"}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 TEXT l "" -STARTLINE T "<font color=#808080 size=\"5\" >1.7 version</font>"}
+ addUserKnob {26 _2 l "" -STARTLINE T "   "}
+ addUserKnob {22 info l Tutorial/Info -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.openWebsite()"}
+ addUserKnob {26 HeadlineB l "" +STARTLINE T "<font color=#808080 size=\"2\">Backdrop_Adjust by Attila Gasparetz</font>"}
+}
+BackdropNode {
+ inputs 0
+ name Backdrop_Adjust4
+ tile_color 0x81818100
+ label "<p align=\"\[value align]\"><font color=\[value note_color]> \[if \{\[value bold]==true\} \{return <b>\} \{return \"\"\}] \[if \{\[value italian]==true\} \{return <i>\} \{return \"\"\}] \[if \{\[value under]==true\} \{return <u>\} \{return \"\"\}] \[if \{\[value strike]==true\} \{return <s>\} \{return \"\"\}] \[value note]"
+ note_font "MS Shell Dlg 2"
+ note_font_size 32
+ xpos -64
+ ypos 2906
+ bookmark false
+ bdwidth 1222
+ bdheight 296
+ z_order -1
+ addUserKnob {20 User}
+ addUserKnob {22 cover l "<big><font color=yellow>Cover Selected Area</big></font>" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.coverSelectedArea()" +STARTLINE}
+ addUserKnob {26 _1 l "" -STARTLINE T "   "}
+ addUserKnob {22 extend l "<big><font color=yellow>Extend to Selected Area</big></font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.extendSelectedArea()"}
+ addUserKnob {26 label_1 l <b>Label</b>}
+ addUserKnob {43 note l Note}
+ note "Client Approved VZero (LoopTest) examples"
+ addUserKnob {4 note_color l "Note Color" M {Orange White Silver Gray Black Red Maroon Yellow Olive Lime Green Aqua Teal Blue Navy Fuchsia Purple}}
+ note_color Black
+ addUserKnob {4 align l Align -STARTLINE M {Center Left Right "" "" ""}}
+ addUserKnob {6 bold l "<b>&nbsp;&nbsp;T" +STARTLINE}
+ bold true
+ addUserKnob {6 italian l "&nbsp;&nbsp;<i>T" -STARTLINE}
+ addUserKnob {6 under l "&nbsp;&nbsp;<u>T" -STARTLINE}
+ addUserKnob {6 strike l "&nbsp;&nbsp;<s>T" -STARTLINE}
+ addUserKnob {26 font_size l "Note size"}
+ addUserKnob {22 size_plus_10 l "<font color=orange>▲ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontPlusTen()"}
+ addUserKnob {22 size_min_10 l "<font color=aqua>▼ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontMinusTen()"}
+ addUserKnob {26 tasks l <b>Tasks</b>}
+ addUserKnob {22 plate l "<big><font style=\"background-color:#559d63;\">&nbsp;<font color=black>Plate</font>&nbsp;" T "# plate\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1436110080)\nbd\['note'].setValue('PLATE')\nbd\['note_font_size'].setValue(102)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 denoise l "<big><font style=\"background-color:#85994d;\">&nbsp;<font color=black>Denoise</font>&nbsp;" -STARTLINE T "# denoise\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2241416448)\nbd\['note'].setValue('DENOISE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 reference l "<big><font style=\"background-color:#4d9976;\">&nbsp;<font color=black>Reference</font>&nbsp;" -STARTLINE T "# reference\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301902848)\nbd\['note'].setValue('REF')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 precomp l "<big><font style=\"background-color:#994d63;\">&nbsp;<font color=black>Precomp</font>&nbsp;" T "# precomp\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2571985664)\nbd\['note'].setValue('PRECOMP')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 merge l "<big><font style=\"background-color:#4d8c99;\">&nbsp;<font color=black>Merge</font>&nbsp;" -STARTLINE T "# merge\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301059840)\nbd\['note'].setValue('MERGE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 output l "<big><font style=\"background-color:#997d4d;\">&nbsp;<font color=black>Output</font>&nbsp;" -STARTLINE T "# output\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2575125760)\nbd\['note'].setValue('OUTPUT')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 Foreground l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>FG</font>&nbsp;" T "# fg\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('FG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 background l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>BG</font>&nbsp;" -STARTLINE T "# background\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('BG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 versions l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>Versions</font>&nbsp;" -STARTLINE T "# versions\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('VERSIONS')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 threed l "<big><font style=\"background-color:#806069;\">&nbsp;<font color=black>3D</font>&nbsp;" T "# 3d\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2153801984)\nbd\['note'].setValue('3D')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 camera l "<big><font style=\"background-color:#806060;\">&nbsp;<font color=black>Camera</font>&nbsp;" -STARTLINE T "# camera\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153799680)\nbd\['note'].setValue('CAMERA')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 track l "<big><font style=\"background-color:#80607d;\">&nbsp;<font color=black>Track</font>&nbsp;" -STARTLINE T "# track\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153807104)\nbd\['note'].setValue('TRACK')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 matte l "<big><font style=\"background-color:#807460;\">&nbsp;<font color=black>DMP</font>&nbsp;" T "# matte\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2155110400)\nbd\['note'].setValue('DMP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 grade l "<big><font style=\"background-color:#607a80;\">&nbsp;<font color=black>Grade</font>&nbsp;" -STARTLINE T "# grade\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1618640896)\nbd\['note'].setValue('GRADE')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n"}
+ addUserKnob {22 lens_effect l "<big><font style=\"background-color:#6d6080;\">&nbsp;<font color=black>Lens Effect</font>&nbsp;" -STARTLINE T "# lens effect\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1835040768)\nbd\['note'].setValue('LENS\\nEFFECT')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 key l "<big><font style=\"background-color:#608071;\">&nbsp;<font color=black>Key</font>&nbsp;" T "# key\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1619030272)\nbd\['note'].setValue('KEY')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 roto l "<big><font style=\"background-color:#638060;\">&nbsp;<font color=black>Roto</font>&nbsp;" -STARTLINE T "# roto\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1669357568)\nbd\['note'].setValue('ROTO')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 prep l "<big><font style=\"background-color:#778060;\">&nbsp;<font color=black>Prep</font>&nbsp;" -STARTLINE T "# prep\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2004901888)\nbd\['note'].setValue('PREP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 grain l "<big><font style=\"background-color:#AAAAAA;\">&nbsp;<font color=black>Grain</font>&nbsp;" -STARTLINE T "# grain\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2576980479)\nbd\['note'].setValue('GRAIN')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('White')"}
+ addUserKnob {26 node_color l "<b>Node Color</b>"}
+ addUserKnob {22 change_colors l "<big><font style=\"background-color:#806060;\">D<font style=\"background-color:#807460;\">u<font style=\"background-color:#778060;\">l<font style=\"background-color:#608071;\">l<font style=\"background-color:#607a80;\"> <font style=\"background-color:#606680;\">C<font style=\"background-color:#606680;\">o<font style=\"background-color:#6d6080;\">l<font style=\"background-color:#80607d;\">o<font style=\"background-color:#806069;\">r<font style=\"background-color:#806060;\">s" t "By clicking on it can toggle between the \"Dull Colors\" and the \"Vivid Colors\" palettes" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.dullVividColor()" +STARTLINE}
+ addUserKnob {22 darken l "<big><font style=\"background-color:#333333;\">&nbsp;<font color=#cccccc>Darken</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.darkenTileColor()"}
+ addUserKnob {22 brighten l "<big><font style=\"background-color:#aaaaaa;\">&nbsp;<font color=black>Brighten</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.brightenTileColor()"}
+ addUserKnob {22 color_0 l "<font color=#806060><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(2153799680)" +STARTLINE}
+ addUserKnob {22 color_1 l "<font color=#807460><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2155110400)"}
+ addUserKnob {22 color_2 l "<font color=#778060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2004901888)"}
+ addUserKnob {22 color_3 l "<font color=#638060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1669357568)"}
+ addUserKnob {22 color_4 l "<font color=#608071><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1619030272)"}
+ addUserKnob {22 color_5 l "<font color=#607a80><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(1618640896)" +STARTLINE}
+ addUserKnob {22 color_6 l "<font color=#606680><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1617330176)"}
+ addUserKnob {22 color_7 l "<font color=#6d6080><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1835040768)"}
+ addUserKnob {22 color_8 l "<font color=#80607d><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153807104)"}
+ addUserKnob {22 color_9 l "<font color=#806069><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153801984)"}
+ addUserKnob {22 grey_1 l "<font color=#DDDDDD><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(3149642751)" +STARTLINE}
+ addUserKnob {22 grey_2 l "<font color=#AAAAAA><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2576980479)"}
+ addUserKnob {22 grey_3 l "<font color=#777777><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1717987071)"}
+ addUserKnob {22 grey_4 l "<font color=#333333><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1145324799)"}
+ addUserKnob {22 grey_5 l "<font color=#222222><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(572662527)"}
+ addUserKnob {20 re_size l "Re Size" n 1}
+ re_size 0
+ addUserKnob {26 upscale l Upscale}
+ addUserKnob {22 upleft500 l "<font color=yellow><big>↖" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500()" +STARTLINE}
+ addUserKnob {22 space1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500 l "<font color=yellow><h3>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500()"}
+ addUserKnob {22 space1_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500 l "<font color=yellow><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500()"}
+ addUserKnob {22 space2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100 l "<font color=orange><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100()"}
+ addUserKnob {22 up100 l "<font color=orange><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100()"}
+ addUserKnob {22 upright100 l "<font color=orange><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100()"}
+ addUserKnob {22 space2_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500 l "<font color=yellow><big>&nbsp;◄" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500()" +STARTLINE}
+ addUserKnob {22 left100 l "<font color=orange><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100()"}
+ addUserKnob {22 center1 l "<font color=crimson><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center()"}
+ addUserKnob {22 right100 l "<font color=orange><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100()"}
+ addUserKnob {22 right500 l "<font color=yellow><big>►&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500()"}
+ addUserKnob {22 space3 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100 l "<font color=orange><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100()"}
+ addUserKnob {22 down100 l "<font color=orange><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100()"}
+ addUserKnob {22 downright100 l "<font color=orange><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100()"}
+ addUserKnob {22 space3_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500 l "<font color=yellow><big>↙" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500()" +STARTLINE}
+ addUserKnob {22 space4 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500 l "<font color=yellow><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500()"}
+ addUserKnob {22 space4_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500 l "<font color=yellow><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500()"}
+ addUserKnob {26 downscale l Downscale}
+ addUserKnob {22 upleft500_2 l "<font color=LightSkyBlue><big>↘" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500_2()" +STARTLINE}
+ addUserKnob {22 space1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500_2 l "<font color=LightSkyBlue><h3>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500_2()"}
+ addUserKnob {22 space1_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500_2 l "<font color=LightSkyBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500_2()"}
+ addUserKnob {22 space2_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100_2 l "<font color=SteelBlue><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100_2()"}
+ addUserKnob {22 up100_2 l "<font color=SteelBlue><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100_2()"}
+ addUserKnob {22 upright100_2 l "<font color=SteelBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100_2()"}
+ addUserKnob {22 space2_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500_2 l "<font color=LightSkyBlue><big>&nbsp;►" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500_2()" +STARTLINE}
+ addUserKnob {22 left100_2 l "<font color=SteelBlue><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100_2()"}
+ addUserKnob {22 center1_2 l "<font color=blue><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center_2()"}
+ addUserKnob {22 right100_2 l "<font color=SteelBlue><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100_2()"}
+ addUserKnob {22 right500_2 l "<font color=LightSkyBlue><big>◄&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500_2()"}
+ addUserKnob {22 space3_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100_2 l "<font color=SteelBlue><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100_2()"}
+ addUserKnob {22 down100_2 l "<font color=SteelBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100_2()"}
+ addUserKnob {22 downright100_2 l "<font color=SteelBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100_2()"}
+ addUserKnob {22 space3_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500_2 l "<font color=LightSkyBlue><big>↗" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500_2()" +STARTLINE}
+ addUserKnob {22 space4_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500_2 l "<font color=LightSkyBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500_2()"}
+ addUserKnob {22 space4_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500_2 l "<font color=LightSkyBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500_2()"}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 TEXT l "" -STARTLINE T "<font color=#808080 size=\"5\" >1.7 version</font>"}
+ addUserKnob {26 _2 l "" -STARTLINE T "   "}
+ addUserKnob {22 info l Tutorial/Info -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.openWebsite()"}
+ addUserKnob {26 HeadlineB l "" +STARTLINE T "<font color=#808080 size=\"2\">Backdrop_Adjust by Attila Gasparetz</font>"}
+}
+BackdropNode {
+ inputs 0
+ name Backdrop_Adjust5
+ tile_color 0x80607d00
+ label "<p align=\"\[value align]\"><font color=\[value note_color]> \[if \{\[value bold]==true\} \{return <b>\} \{return \"\"\}] \[if \{\[value italian]==true\} \{return <i>\} \{return \"\"\}] \[if \{\[value under]==true\} \{return <u>\} \{return \"\"\}] \[if \{\[value strike]==true\} \{return <s>\} \{return \"\"\}] \[value note]"
+ note_font "MS Shell Dlg 2"
+ note_font_size 32
+ xpos -39
+ ypos 2987
+ bookmark false
+ bdwidth 298
+ bdheight 175
+ z_order -1
+ addUserKnob {20 User}
+ addUserKnob {22 cover l "<big><font color=yellow>Cover Selected Area</big></font>" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.coverSelectedArea()" +STARTLINE}
+ addUserKnob {26 _1 l "" -STARTLINE T "   "}
+ addUserKnob {22 extend l "<big><font color=yellow>Extend to Selected Area</big></font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.extendSelectedArea()"}
+ addUserKnob {26 label_1 l <b>Label</b>}
+ addUserKnob {43 note l Note}
+ note H264
+ addUserKnob {4 note_color l "Note Color" M {Orange White Silver Gray Black Red Maroon Yellow Olive Lime Green Aqua Teal Blue Navy Fuchsia Purple}}
+ note_color Silver
+ addUserKnob {4 align l Align -STARTLINE M {Center Left Right "" "" ""}}
+ addUserKnob {6 bold l "<b>&nbsp;&nbsp;T" +STARTLINE}
+ bold true
+ addUserKnob {6 italian l "&nbsp;&nbsp;<i>T" -STARTLINE}
+ addUserKnob {6 under l "&nbsp;&nbsp;<u>T" -STARTLINE}
+ addUserKnob {6 strike l "&nbsp;&nbsp;<s>T" -STARTLINE}
+ addUserKnob {26 font_size l "Note size"}
+ addUserKnob {22 size_plus_10 l "<font color=orange>▲ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontPlusTen()"}
+ addUserKnob {22 size_min_10 l "<font color=aqua>▼ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontMinusTen()"}
+ addUserKnob {26 tasks l <b>Tasks</b>}
+ addUserKnob {22 plate l "<big><font style=\"background-color:#559d63;\">&nbsp;<font color=black>Plate</font>&nbsp;" T "# plate\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1436110080)\nbd\['note'].setValue('PLATE')\nbd\['note_font_size'].setValue(102)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 denoise l "<big><font style=\"background-color:#85994d;\">&nbsp;<font color=black>Denoise</font>&nbsp;" -STARTLINE T "# denoise\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2241416448)\nbd\['note'].setValue('DENOISE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 reference l "<big><font style=\"background-color:#4d9976;\">&nbsp;<font color=black>Reference</font>&nbsp;" -STARTLINE T "# reference\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301902848)\nbd\['note'].setValue('REF')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 precomp l "<big><font style=\"background-color:#994d63;\">&nbsp;<font color=black>Precomp</font>&nbsp;" T "# precomp\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2571985664)\nbd\['note'].setValue('PRECOMP')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 merge l "<big><font style=\"background-color:#4d8c99;\">&nbsp;<font color=black>Merge</font>&nbsp;" -STARTLINE T "# merge\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301059840)\nbd\['note'].setValue('MERGE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 output l "<big><font style=\"background-color:#997d4d;\">&nbsp;<font color=black>Output</font>&nbsp;" -STARTLINE T "# output\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2575125760)\nbd\['note'].setValue('OUTPUT')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 Foreground l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>FG</font>&nbsp;" T "# fg\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('FG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 background l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>BG</font>&nbsp;" -STARTLINE T "# background\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('BG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 versions l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>Versions</font>&nbsp;" -STARTLINE T "# versions\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('VERSIONS')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 threed l "<big><font style=\"background-color:#806069;\">&nbsp;<font color=black>3D</font>&nbsp;" T "# 3d\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2153801984)\nbd\['note'].setValue('3D')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 camera l "<big><font style=\"background-color:#806060;\">&nbsp;<font color=black>Camera</font>&nbsp;" -STARTLINE T "# camera\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153799680)\nbd\['note'].setValue('CAMERA')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 track l "<big><font style=\"background-color:#80607d;\">&nbsp;<font color=black>Track</font>&nbsp;" -STARTLINE T "# track\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153807104)\nbd\['note'].setValue('TRACK')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 matte l "<big><font style=\"background-color:#807460;\">&nbsp;<font color=black>DMP</font>&nbsp;" T "# matte\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2155110400)\nbd\['note'].setValue('DMP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 grade l "<big><font style=\"background-color:#607a80;\">&nbsp;<font color=black>Grade</font>&nbsp;" -STARTLINE T "# grade\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1618640896)\nbd\['note'].setValue('GRADE')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n"}
+ addUserKnob {22 lens_effect l "<big><font style=\"background-color:#6d6080;\">&nbsp;<font color=black>Lens Effect</font>&nbsp;" -STARTLINE T "# lens effect\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1835040768)\nbd\['note'].setValue('LENS\\nEFFECT')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 key l "<big><font style=\"background-color:#608071;\">&nbsp;<font color=black>Key</font>&nbsp;" T "# key\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1619030272)\nbd\['note'].setValue('KEY')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 roto l "<big><font style=\"background-color:#638060;\">&nbsp;<font color=black>Roto</font>&nbsp;" -STARTLINE T "# roto\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1669357568)\nbd\['note'].setValue('ROTO')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 prep l "<big><font style=\"background-color:#778060;\">&nbsp;<font color=black>Prep</font>&nbsp;" -STARTLINE T "# prep\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2004901888)\nbd\['note'].setValue('PREP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 grain l "<big><font style=\"background-color:#AAAAAA;\">&nbsp;<font color=black>Grain</font>&nbsp;" -STARTLINE T "# grain\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2576980479)\nbd\['note'].setValue('GRAIN')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('White')"}
+ addUserKnob {26 node_color l "<b>Node Color</b>"}
+ addUserKnob {22 change_colors l "<big><font style=\"background-color:#806060;\">D<font style=\"background-color:#807460;\">u<font style=\"background-color:#778060;\">l<font style=\"background-color:#608071;\">l<font style=\"background-color:#607a80;\"> <font style=\"background-color:#606680;\">C<font style=\"background-color:#606680;\">o<font style=\"background-color:#6d6080;\">l<font style=\"background-color:#80607d;\">o<font style=\"background-color:#806069;\">r<font style=\"background-color:#806060;\">s" t "By clicking on it can toggle between the \"Dull Colors\" and the \"Vivid Colors\" palettes" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.dullVividColor()" +STARTLINE}
+ addUserKnob {22 darken l "<big><font style=\"background-color:#333333;\">&nbsp;<font color=#cccccc>Darken</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.darkenTileColor()"}
+ addUserKnob {22 brighten l "<big><font style=\"background-color:#aaaaaa;\">&nbsp;<font color=black>Brighten</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.brightenTileColor()"}
+ addUserKnob {22 color_0 l "<font color=#806060><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(2153799680)" +STARTLINE}
+ addUserKnob {22 color_1 l "<font color=#807460><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2155110400)"}
+ addUserKnob {22 color_2 l "<font color=#778060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2004901888)"}
+ addUserKnob {22 color_3 l "<font color=#638060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1669357568)"}
+ addUserKnob {22 color_4 l "<font color=#608071><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1619030272)"}
+ addUserKnob {22 color_5 l "<font color=#607a80><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(1618640896)" +STARTLINE}
+ addUserKnob {22 color_6 l "<font color=#606680><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1617330176)"}
+ addUserKnob {22 color_7 l "<font color=#6d6080><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1835040768)"}
+ addUserKnob {22 color_8 l "<font color=#80607d><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153807104)"}
+ addUserKnob {22 color_9 l "<font color=#806069><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153801984)"}
+ addUserKnob {22 grey_1 l "<font color=#DDDDDD><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(3149642751)" +STARTLINE}
+ addUserKnob {22 grey_2 l "<font color=#AAAAAA><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2576980479)"}
+ addUserKnob {22 grey_3 l "<font color=#777777><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1717987071)"}
+ addUserKnob {22 grey_4 l "<font color=#333333><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1145324799)"}
+ addUserKnob {22 grey_5 l "<font color=#222222><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(572662527)"}
+ addUserKnob {20 re_size l "Re Size" n 1}
+ re_size 0
+ addUserKnob {26 upscale l Upscale}
+ addUserKnob {22 upleft500 l "<font color=yellow><big>↖" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500()" +STARTLINE}
+ addUserKnob {22 space1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500 l "<font color=yellow><h3>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500()"}
+ addUserKnob {22 space1_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500 l "<font color=yellow><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500()"}
+ addUserKnob {22 space2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100 l "<font color=orange><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100()"}
+ addUserKnob {22 up100 l "<font color=orange><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100()"}
+ addUserKnob {22 upright100 l "<font color=orange><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100()"}
+ addUserKnob {22 space2_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500 l "<font color=yellow><big>&nbsp;◄" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500()" +STARTLINE}
+ addUserKnob {22 left100 l "<font color=orange><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100()"}
+ addUserKnob {22 center1 l "<font color=crimson><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center()"}
+ addUserKnob {22 right100 l "<font color=orange><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100()"}
+ addUserKnob {22 right500 l "<font color=yellow><big>►&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500()"}
+ addUserKnob {22 space3 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100 l "<font color=orange><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100()"}
+ addUserKnob {22 down100 l "<font color=orange><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100()"}
+ addUserKnob {22 downright100 l "<font color=orange><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100()"}
+ addUserKnob {22 space3_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500 l "<font color=yellow><big>↙" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500()" +STARTLINE}
+ addUserKnob {22 space4 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500 l "<font color=yellow><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500()"}
+ addUserKnob {22 space4_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500 l "<font color=yellow><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500()"}
+ addUserKnob {26 downscale l Downscale}
+ addUserKnob {22 upleft500_2 l "<font color=LightSkyBlue><big>↘" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500_2()" +STARTLINE}
+ addUserKnob {22 space1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500_2 l "<font color=LightSkyBlue><h3>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500_2()"}
+ addUserKnob {22 space1_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500_2 l "<font color=LightSkyBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500_2()"}
+ addUserKnob {22 space2_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100_2 l "<font color=SteelBlue><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100_2()"}
+ addUserKnob {22 up100_2 l "<font color=SteelBlue><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100_2()"}
+ addUserKnob {22 upright100_2 l "<font color=SteelBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100_2()"}
+ addUserKnob {22 space2_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500_2 l "<font color=LightSkyBlue><big>&nbsp;►" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500_2()" +STARTLINE}
+ addUserKnob {22 left100_2 l "<font color=SteelBlue><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100_2()"}
+ addUserKnob {22 center1_2 l "<font color=blue><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center_2()"}
+ addUserKnob {22 right100_2 l "<font color=SteelBlue><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100_2()"}
+ addUserKnob {22 right500_2 l "<font color=LightSkyBlue><big>◄&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500_2()"}
+ addUserKnob {22 space3_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100_2 l "<font color=SteelBlue><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100_2()"}
+ addUserKnob {22 down100_2 l "<font color=SteelBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100_2()"}
+ addUserKnob {22 downright100_2 l "<font color=SteelBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100_2()"}
+ addUserKnob {22 space3_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500_2 l "<font color=LightSkyBlue><big>↗" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500_2()" +STARTLINE}
+ addUserKnob {22 space4_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500_2 l "<font color=LightSkyBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500_2()"}
+ addUserKnob {22 space4_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500_2 l "<font color=LightSkyBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500_2()"}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 TEXT l "" -STARTLINE T "<font color=#808080 size=\"5\" >1.7 version</font>"}
+ addUserKnob {26 _2 l "" -STARTLINE T "   "}
+ addUserKnob {22 info l Tutorial/Info -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.openWebsite()"}
+ addUserKnob {26 HeadlineB l "" +STARTLINE T "<font color=#808080 size=\"2\">Backdrop_Adjust by Attila Gasparetz</font>"}
+}
+BackdropNode {
+ inputs 0
+ name Backdrop_Adjust6
+ tile_color 0x80607d00
+ label "<p align=\"\[value align]\"><font color=\[value note_color]> \[if \{\[value bold]==true\} \{return <b>\} \{return \"\"\}] \[if \{\[value italian]==true\} \{return <i>\} \{return \"\"\}] \[if \{\[value under]==true\} \{return <u>\} \{return \"\"\}] \[if \{\[value strike]==true\} \{return <s>\} \{return \"\"\}] \[value note]"
+ note_font "MS Shell Dlg 2"
+ note_font_size 32
+ xpos 294
+ ypos 2986
+ bookmark false
+ bdwidth 298
+ bdheight 175
+ z_order -1
+ addUserKnob {20 User}
+ addUserKnob {22 cover l "<big><font color=yellow>Cover Selected Area</big></font>" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.coverSelectedArea()" +STARTLINE}
+ addUserKnob {26 _1 l "" -STARTLINE T "   "}
+ addUserKnob {22 extend l "<big><font color=yellow>Extend to Selected Area</big></font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.extendSelectedArea()"}
+ addUserKnob {26 label_1 l <b>Label</b>}
+ addUserKnob {43 note l Note}
+ note DNxHD
+ addUserKnob {4 note_color l "Note Color" M {Orange White Silver Gray Black Red Maroon Yellow Olive Lime Green Aqua Teal Blue Navy Fuchsia Purple}}
+ note_color Silver
+ addUserKnob {4 align l Align -STARTLINE M {Center Left Right "" "" ""}}
+ addUserKnob {6 bold l "<b>&nbsp;&nbsp;T" +STARTLINE}
+ bold true
+ addUserKnob {6 italian l "&nbsp;&nbsp;<i>T" -STARTLINE}
+ addUserKnob {6 under l "&nbsp;&nbsp;<u>T" -STARTLINE}
+ addUserKnob {6 strike l "&nbsp;&nbsp;<s>T" -STARTLINE}
+ addUserKnob {26 font_size l "Note size"}
+ addUserKnob {22 size_plus_10 l "<font color=orange>▲ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontPlusTen()"}
+ addUserKnob {22 size_min_10 l "<font color=aqua>▼ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontMinusTen()"}
+ addUserKnob {26 tasks l <b>Tasks</b>}
+ addUserKnob {22 plate l "<big><font style=\"background-color:#559d63;\">&nbsp;<font color=black>Plate</font>&nbsp;" T "# plate\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1436110080)\nbd\['note'].setValue('PLATE')\nbd\['note_font_size'].setValue(102)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 denoise l "<big><font style=\"background-color:#85994d;\">&nbsp;<font color=black>Denoise</font>&nbsp;" -STARTLINE T "# denoise\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2241416448)\nbd\['note'].setValue('DENOISE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 reference l "<big><font style=\"background-color:#4d9976;\">&nbsp;<font color=black>Reference</font>&nbsp;" -STARTLINE T "# reference\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301902848)\nbd\['note'].setValue('REF')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 precomp l "<big><font style=\"background-color:#994d63;\">&nbsp;<font color=black>Precomp</font>&nbsp;" T "# precomp\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2571985664)\nbd\['note'].setValue('PRECOMP')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 merge l "<big><font style=\"background-color:#4d8c99;\">&nbsp;<font color=black>Merge</font>&nbsp;" -STARTLINE T "# merge\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301059840)\nbd\['note'].setValue('MERGE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 output l "<big><font style=\"background-color:#997d4d;\">&nbsp;<font color=black>Output</font>&nbsp;" -STARTLINE T "# output\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2575125760)\nbd\['note'].setValue('OUTPUT')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 Foreground l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>FG</font>&nbsp;" T "# fg\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('FG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 background l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>BG</font>&nbsp;" -STARTLINE T "# background\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('BG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 versions l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>Versions</font>&nbsp;" -STARTLINE T "# versions\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('VERSIONS')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 threed l "<big><font style=\"background-color:#806069;\">&nbsp;<font color=black>3D</font>&nbsp;" T "# 3d\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2153801984)\nbd\['note'].setValue('3D')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 camera l "<big><font style=\"background-color:#806060;\">&nbsp;<font color=black>Camera</font>&nbsp;" -STARTLINE T "# camera\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153799680)\nbd\['note'].setValue('CAMERA')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 track l "<big><font style=\"background-color:#80607d;\">&nbsp;<font color=black>Track</font>&nbsp;" -STARTLINE T "# track\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153807104)\nbd\['note'].setValue('TRACK')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 matte l "<big><font style=\"background-color:#807460;\">&nbsp;<font color=black>DMP</font>&nbsp;" T "# matte\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2155110400)\nbd\['note'].setValue('DMP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 grade l "<big><font style=\"background-color:#607a80;\">&nbsp;<font color=black>Grade</font>&nbsp;" -STARTLINE T "# grade\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1618640896)\nbd\['note'].setValue('GRADE')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n"}
+ addUserKnob {22 lens_effect l "<big><font style=\"background-color:#6d6080;\">&nbsp;<font color=black>Lens Effect</font>&nbsp;" -STARTLINE T "# lens effect\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1835040768)\nbd\['note'].setValue('LENS\\nEFFECT')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 key l "<big><font style=\"background-color:#608071;\">&nbsp;<font color=black>Key</font>&nbsp;" T "# key\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1619030272)\nbd\['note'].setValue('KEY')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 roto l "<big><font style=\"background-color:#638060;\">&nbsp;<font color=black>Roto</font>&nbsp;" -STARTLINE T "# roto\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1669357568)\nbd\['note'].setValue('ROTO')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 prep l "<big><font style=\"background-color:#778060;\">&nbsp;<font color=black>Prep</font>&nbsp;" -STARTLINE T "# prep\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2004901888)\nbd\['note'].setValue('PREP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 grain l "<big><font style=\"background-color:#AAAAAA;\">&nbsp;<font color=black>Grain</font>&nbsp;" -STARTLINE T "# grain\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2576980479)\nbd\['note'].setValue('GRAIN')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('White')"}
+ addUserKnob {26 node_color l "<b>Node Color</b>"}
+ addUserKnob {22 change_colors l "<big><font style=\"background-color:#806060;\">D<font style=\"background-color:#807460;\">u<font style=\"background-color:#778060;\">l<font style=\"background-color:#608071;\">l<font style=\"background-color:#607a80;\"> <font style=\"background-color:#606680;\">C<font style=\"background-color:#606680;\">o<font style=\"background-color:#6d6080;\">l<font style=\"background-color:#80607d;\">o<font style=\"background-color:#806069;\">r<font style=\"background-color:#806060;\">s" t "By clicking on it can toggle between the \"Dull Colors\" and the \"Vivid Colors\" palettes" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.dullVividColor()" +STARTLINE}
+ addUserKnob {22 darken l "<big><font style=\"background-color:#333333;\">&nbsp;<font color=#cccccc>Darken</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.darkenTileColor()"}
+ addUserKnob {22 brighten l "<big><font style=\"background-color:#aaaaaa;\">&nbsp;<font color=black>Brighten</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.brightenTileColor()"}
+ addUserKnob {22 color_0 l "<font color=#806060><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(2153799680)" +STARTLINE}
+ addUserKnob {22 color_1 l "<font color=#807460><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2155110400)"}
+ addUserKnob {22 color_2 l "<font color=#778060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2004901888)"}
+ addUserKnob {22 color_3 l "<font color=#638060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1669357568)"}
+ addUserKnob {22 color_4 l "<font color=#608071><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1619030272)"}
+ addUserKnob {22 color_5 l "<font color=#607a80><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(1618640896)" +STARTLINE}
+ addUserKnob {22 color_6 l "<font color=#606680><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1617330176)"}
+ addUserKnob {22 color_7 l "<font color=#6d6080><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1835040768)"}
+ addUserKnob {22 color_8 l "<font color=#80607d><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153807104)"}
+ addUserKnob {22 color_9 l "<font color=#806069><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153801984)"}
+ addUserKnob {22 grey_1 l "<font color=#DDDDDD><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(3149642751)" +STARTLINE}
+ addUserKnob {22 grey_2 l "<font color=#AAAAAA><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2576980479)"}
+ addUserKnob {22 grey_3 l "<font color=#777777><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1717987071)"}
+ addUserKnob {22 grey_4 l "<font color=#333333><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1145324799)"}
+ addUserKnob {22 grey_5 l "<font color=#222222><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(572662527)"}
+ addUserKnob {20 re_size l "Re Size" n 1}
+ re_size 0
+ addUserKnob {26 upscale l Upscale}
+ addUserKnob {22 upleft500 l "<font color=yellow><big>↖" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500()" +STARTLINE}
+ addUserKnob {22 space1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500 l "<font color=yellow><h3>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500()"}
+ addUserKnob {22 space1_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500 l "<font color=yellow><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500()"}
+ addUserKnob {22 space2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100 l "<font color=orange><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100()"}
+ addUserKnob {22 up100 l "<font color=orange><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100()"}
+ addUserKnob {22 upright100 l "<font color=orange><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100()"}
+ addUserKnob {22 space2_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500 l "<font color=yellow><big>&nbsp;◄" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500()" +STARTLINE}
+ addUserKnob {22 left100 l "<font color=orange><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100()"}
+ addUserKnob {22 center1 l "<font color=crimson><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center()"}
+ addUserKnob {22 right100 l "<font color=orange><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100()"}
+ addUserKnob {22 right500 l "<font color=yellow><big>►&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500()"}
+ addUserKnob {22 space3 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100 l "<font color=orange><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100()"}
+ addUserKnob {22 down100 l "<font color=orange><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100()"}
+ addUserKnob {22 downright100 l "<font color=orange><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100()"}
+ addUserKnob {22 space3_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500 l "<font color=yellow><big>↙" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500()" +STARTLINE}
+ addUserKnob {22 space4 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500 l "<font color=yellow><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500()"}
+ addUserKnob {22 space4_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500 l "<font color=yellow><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500()"}
+ addUserKnob {26 downscale l Downscale}
+ addUserKnob {22 upleft500_2 l "<font color=LightSkyBlue><big>↘" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500_2()" +STARTLINE}
+ addUserKnob {22 space1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500_2 l "<font color=LightSkyBlue><h3>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500_2()"}
+ addUserKnob {22 space1_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500_2 l "<font color=LightSkyBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500_2()"}
+ addUserKnob {22 space2_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100_2 l "<font color=SteelBlue><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100_2()"}
+ addUserKnob {22 up100_2 l "<font color=SteelBlue><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100_2()"}
+ addUserKnob {22 upright100_2 l "<font color=SteelBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100_2()"}
+ addUserKnob {22 space2_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500_2 l "<font color=LightSkyBlue><big>&nbsp;►" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500_2()" +STARTLINE}
+ addUserKnob {22 left100_2 l "<font color=SteelBlue><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100_2()"}
+ addUserKnob {22 center1_2 l "<font color=blue><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center_2()"}
+ addUserKnob {22 right100_2 l "<font color=SteelBlue><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100_2()"}
+ addUserKnob {22 right500_2 l "<font color=LightSkyBlue><big>◄&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500_2()"}
+ addUserKnob {22 space3_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100_2 l "<font color=SteelBlue><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100_2()"}
+ addUserKnob {22 down100_2 l "<font color=SteelBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100_2()"}
+ addUserKnob {22 downright100_2 l "<font color=SteelBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100_2()"}
+ addUserKnob {22 space3_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500_2 l "<font color=LightSkyBlue><big>↗" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500_2()" +STARTLINE}
+ addUserKnob {22 space4_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500_2 l "<font color=LightSkyBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500_2()"}
+ addUserKnob {22 space4_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500_2 l "<font color=LightSkyBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500_2()"}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 TEXT l "" -STARTLINE T "<font color=#808080 size=\"5\" >1.7 version</font>"}
+ addUserKnob {26 _2 l "" -STARTLINE T "   "}
+ addUserKnob {22 info l Tutorial/Info -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.openWebsite()"}
+ addUserKnob {26 HeadlineB l "" +STARTLINE T "<font color=#808080 size=\"2\">Backdrop_Adjust by Attila Gasparetz</font>"}
+}
+BackdropNode {
+ inputs 0
+ name Backdrop_Adjust7
+ tile_color 0x80607d00
+ label "<p align=\"\[value align]\"><font color=\[value note_color]> \[if \{\[value bold]==true\} \{return <b>\} \{return \"\"\}] \[if \{\[value italian]==true\} \{return <i>\} \{return \"\"\}] \[if \{\[value under]==true\} \{return <u>\} \{return \"\"\}] \[if \{\[value strike]==true\} \{return <s>\} \{return \"\"\}] \[value note]"
+ note_font "MS Shell Dlg 2"
+ note_font_size 32
+ xpos 657
+ ypos 2984
+ bookmark false
+ bdwidth 298
+ bdheight 175
+ z_order -1
+ addUserKnob {20 User}
+ addUserKnob {22 cover l "<big><font color=yellow>Cover Selected Area</big></font>" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.coverSelectedArea()" +STARTLINE}
+ addUserKnob {26 _1 l "" -STARTLINE T "   "}
+ addUserKnob {22 extend l "<big><font color=yellow>Extend to Selected Area</big></font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.extendSelectedArea()"}
+ addUserKnob {26 label_1 l <b>Label</b>}
+ addUserKnob {43 note l Note}
+ note "FINAL EXR"
+ addUserKnob {4 note_color l "Note Color" M {Orange White Silver Gray Black Red Maroon Yellow Olive Lime Green Aqua Teal Blue Navy Fuchsia Purple}}
+ note_color Silver
+ addUserKnob {4 align l Align -STARTLINE M {Center Left Right "" "" ""}}
+ addUserKnob {6 bold l "<b>&nbsp;&nbsp;T" +STARTLINE}
+ bold true
+ addUserKnob {6 italian l "&nbsp;&nbsp;<i>T" -STARTLINE}
+ addUserKnob {6 under l "&nbsp;&nbsp;<u>T" -STARTLINE}
+ addUserKnob {6 strike l "&nbsp;&nbsp;<s>T" -STARTLINE}
+ addUserKnob {26 font_size l "Note size"}
+ addUserKnob {22 size_plus_10 l "<font color=orange>▲ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontPlusTen()"}
+ addUserKnob {22 size_min_10 l "<font color=aqua>▼ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontMinusTen()"}
+ addUserKnob {26 tasks l <b>Tasks</b>}
+ addUserKnob {22 plate l "<big><font style=\"background-color:#559d63;\">&nbsp;<font color=black>Plate</font>&nbsp;" T "# plate\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1436110080)\nbd\['note'].setValue('PLATE')\nbd\['note_font_size'].setValue(102)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 denoise l "<big><font style=\"background-color:#85994d;\">&nbsp;<font color=black>Denoise</font>&nbsp;" -STARTLINE T "# denoise\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2241416448)\nbd\['note'].setValue('DENOISE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 reference l "<big><font style=\"background-color:#4d9976;\">&nbsp;<font color=black>Reference</font>&nbsp;" -STARTLINE T "# reference\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301902848)\nbd\['note'].setValue('REF')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 precomp l "<big><font style=\"background-color:#994d63;\">&nbsp;<font color=black>Precomp</font>&nbsp;" T "# precomp\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2571985664)\nbd\['note'].setValue('PRECOMP')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 merge l "<big><font style=\"background-color:#4d8c99;\">&nbsp;<font color=black>Merge</font>&nbsp;" -STARTLINE T "# merge\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301059840)\nbd\['note'].setValue('MERGE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 output l "<big><font style=\"background-color:#997d4d;\">&nbsp;<font color=black>Output</font>&nbsp;" -STARTLINE T "# output\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2575125760)\nbd\['note'].setValue('OUTPUT')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 Foreground l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>FG</font>&nbsp;" T "# fg\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('FG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 background l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>BG</font>&nbsp;" -STARTLINE T "# background\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('BG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 versions l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>Versions</font>&nbsp;" -STARTLINE T "# versions\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('VERSIONS')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 threed l "<big><font style=\"background-color:#806069;\">&nbsp;<font color=black>3D</font>&nbsp;" T "# 3d\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2153801984)\nbd\['note'].setValue('3D')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 camera l "<big><font style=\"background-color:#806060;\">&nbsp;<font color=black>Camera</font>&nbsp;" -STARTLINE T "# camera\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153799680)\nbd\['note'].setValue('CAMERA')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 track l "<big><font style=\"background-color:#80607d;\">&nbsp;<font color=black>Track</font>&nbsp;" -STARTLINE T "# track\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153807104)\nbd\['note'].setValue('TRACK')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 matte l "<big><font style=\"background-color:#807460;\">&nbsp;<font color=black>DMP</font>&nbsp;" T "# matte\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2155110400)\nbd\['note'].setValue('DMP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 grade l "<big><font style=\"background-color:#607a80;\">&nbsp;<font color=black>Grade</font>&nbsp;" -STARTLINE T "# grade\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1618640896)\nbd\['note'].setValue('GRADE')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n"}
+ addUserKnob {22 lens_effect l "<big><font style=\"background-color:#6d6080;\">&nbsp;<font color=black>Lens Effect</font>&nbsp;" -STARTLINE T "# lens effect\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1835040768)\nbd\['note'].setValue('LENS\\nEFFECT')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 key l "<big><font style=\"background-color:#608071;\">&nbsp;<font color=black>Key</font>&nbsp;" T "# key\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1619030272)\nbd\['note'].setValue('KEY')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 roto l "<big><font style=\"background-color:#638060;\">&nbsp;<font color=black>Roto</font>&nbsp;" -STARTLINE T "# roto\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1669357568)\nbd\['note'].setValue('ROTO')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 prep l "<big><font style=\"background-color:#778060;\">&nbsp;<font color=black>Prep</font>&nbsp;" -STARTLINE T "# prep\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2004901888)\nbd\['note'].setValue('PREP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 grain l "<big><font style=\"background-color:#AAAAAA;\">&nbsp;<font color=black>Grain</font>&nbsp;" -STARTLINE T "# grain\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2576980479)\nbd\['note'].setValue('GRAIN')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('White')"}
+ addUserKnob {26 node_color l "<b>Node Color</b>"}
+ addUserKnob {22 change_colors l "<big><font style=\"background-color:#806060;\">D<font style=\"background-color:#807460;\">u<font style=\"background-color:#778060;\">l<font style=\"background-color:#608071;\">l<font style=\"background-color:#607a80;\"> <font style=\"background-color:#606680;\">C<font style=\"background-color:#606680;\">o<font style=\"background-color:#6d6080;\">l<font style=\"background-color:#80607d;\">o<font style=\"background-color:#806069;\">r<font style=\"background-color:#806060;\">s" t "By clicking on it can toggle between the \"Dull Colors\" and the \"Vivid Colors\" palettes" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.dullVividColor()" +STARTLINE}
+ addUserKnob {22 darken l "<big><font style=\"background-color:#333333;\">&nbsp;<font color=#cccccc>Darken</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.darkenTileColor()"}
+ addUserKnob {22 brighten l "<big><font style=\"background-color:#aaaaaa;\">&nbsp;<font color=black>Brighten</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.brightenTileColor()"}
+ addUserKnob {22 color_0 l "<font color=#806060><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(2153799680)" +STARTLINE}
+ addUserKnob {22 color_1 l "<font color=#807460><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2155110400)"}
+ addUserKnob {22 color_2 l "<font color=#778060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2004901888)"}
+ addUserKnob {22 color_3 l "<font color=#638060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1669357568)"}
+ addUserKnob {22 color_4 l "<font color=#608071><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1619030272)"}
+ addUserKnob {22 color_5 l "<font color=#607a80><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(1618640896)" +STARTLINE}
+ addUserKnob {22 color_6 l "<font color=#606680><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1617330176)"}
+ addUserKnob {22 color_7 l "<font color=#6d6080><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1835040768)"}
+ addUserKnob {22 color_8 l "<font color=#80607d><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153807104)"}
+ addUserKnob {22 color_9 l "<font color=#806069><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153801984)"}
+ addUserKnob {22 grey_1 l "<font color=#DDDDDD><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(3149642751)" +STARTLINE}
+ addUserKnob {22 grey_2 l "<font color=#AAAAAA><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2576980479)"}
+ addUserKnob {22 grey_3 l "<font color=#777777><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1717987071)"}
+ addUserKnob {22 grey_4 l "<font color=#333333><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1145324799)"}
+ addUserKnob {22 grey_5 l "<font color=#222222><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(572662527)"}
+ addUserKnob {20 re_size l "Re Size" n 1}
+ re_size 0
+ addUserKnob {26 upscale l Upscale}
+ addUserKnob {22 upleft500 l "<font color=yellow><big>↖" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500()" +STARTLINE}
+ addUserKnob {22 space1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500 l "<font color=yellow><h3>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500()"}
+ addUserKnob {22 space1_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500 l "<font color=yellow><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500()"}
+ addUserKnob {22 space2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100 l "<font color=orange><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100()"}
+ addUserKnob {22 up100 l "<font color=orange><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100()"}
+ addUserKnob {22 upright100 l "<font color=orange><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100()"}
+ addUserKnob {22 space2_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500 l "<font color=yellow><big>&nbsp;◄" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500()" +STARTLINE}
+ addUserKnob {22 left100 l "<font color=orange><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100()"}
+ addUserKnob {22 center1 l "<font color=crimson><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center()"}
+ addUserKnob {22 right100 l "<font color=orange><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100()"}
+ addUserKnob {22 right500 l "<font color=yellow><big>►&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500()"}
+ addUserKnob {22 space3 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100 l "<font color=orange><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100()"}
+ addUserKnob {22 down100 l "<font color=orange><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100()"}
+ addUserKnob {22 downright100 l "<font color=orange><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100()"}
+ addUserKnob {22 space3_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500 l "<font color=yellow><big>↙" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500()" +STARTLINE}
+ addUserKnob {22 space4 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500 l "<font color=yellow><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500()"}
+ addUserKnob {22 space4_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500 l "<font color=yellow><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500()"}
+ addUserKnob {26 downscale l Downscale}
+ addUserKnob {22 upleft500_2 l "<font color=LightSkyBlue><big>↘" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500_2()" +STARTLINE}
+ addUserKnob {22 space1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500_2 l "<font color=LightSkyBlue><h3>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500_2()"}
+ addUserKnob {22 space1_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500_2 l "<font color=LightSkyBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500_2()"}
+ addUserKnob {22 space2_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100_2 l "<font color=SteelBlue><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100_2()"}
+ addUserKnob {22 up100_2 l "<font color=SteelBlue><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100_2()"}
+ addUserKnob {22 upright100_2 l "<font color=SteelBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100_2()"}
+ addUserKnob {22 space2_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500_2 l "<font color=LightSkyBlue><big>&nbsp;►" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500_2()" +STARTLINE}
+ addUserKnob {22 left100_2 l "<font color=SteelBlue><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100_2()"}
+ addUserKnob {22 center1_2 l "<font color=blue><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center_2()"}
+ addUserKnob {22 right100_2 l "<font color=SteelBlue><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100_2()"}
+ addUserKnob {22 right500_2 l "<font color=LightSkyBlue><big>◄&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500_2()"}
+ addUserKnob {22 space3_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100_2 l "<font color=SteelBlue><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100_2()"}
+ addUserKnob {22 down100_2 l "<font color=SteelBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100_2()"}
+ addUserKnob {22 downright100_2 l "<font color=SteelBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100_2()"}
+ addUserKnob {22 space3_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500_2 l "<font color=LightSkyBlue><big>↗" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500_2()" +STARTLINE}
+ addUserKnob {22 space4_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500_2 l "<font color=LightSkyBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500_2()"}
+ addUserKnob {22 space4_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500_2 l "<font color=LightSkyBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500_2()"}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 TEXT l "" -STARTLINE T "<font color=#808080 size=\"5\" >1.7 version</font>"}
+ addUserKnob {26 _2 l "" -STARTLINE T "   "}
+ addUserKnob {22 info l Tutorial/Info -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.openWebsite()"}
+ addUserKnob {26 HeadlineB l "" +STARTLINE T "<font color=#808080 size=\"2\">Backdrop_Adjust by Attila Gasparetz</font>"}
+}
+BackdropNode {
+ inputs 0
+ name Backdrop_Adjust8
+ tile_color 0x6d608000
+ label "<p align=\"\[value align]\"><font color=\[value note_color]> \[if \{\[value bold]==true\} \{return <b>\} \{return \"\"\}] \[if \{\[value italian]==true\} \{return <i>\} \{return \"\"\}] \[if \{\[value under]==true\} \{return <u>\} \{return \"\"\}] \[if \{\[value strike]==true\} \{return <s>\} \{return \"\"\}] \[value note]"
+ note_font "MS Shell Dlg 2"
+ note_font_size 32
+ xpos -591
+ ypos 3139
+ bookmark false
+ bdwidth 438
+ bdheight 117
+ z_order -1
+ addUserKnob {20 User}
+ addUserKnob {22 cover l "<big><font color=yellow>Cover Selected Area</big></font>" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.coverSelectedArea()" +STARTLINE}
+ addUserKnob {26 _1 l "" -STARTLINE T "   "}
+ addUserKnob {22 extend l "<big><font color=yellow>Extend to Selected Area</big></font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.extendSelectedArea()"}
+ addUserKnob {26 label_1 l <b>Label</b>}
+ addUserKnob {43 note l Note}
+ note "Compare\nOutput"
+ addUserKnob {4 note_color l "Note Color" M {Orange White Silver Gray Black Red Maroon Yellow Olive Lime Green Aqua Teal Blue Navy Fuchsia Purple}}
+ note_color Silver
+ addUserKnob {4 align l Align -STARTLINE M {Center Left Right "" "" ""}}
+ addUserKnob {6 bold l "<b>&nbsp;&nbsp;T" +STARTLINE}
+ bold true
+ addUserKnob {6 italian l "&nbsp;&nbsp;<i>T" -STARTLINE}
+ addUserKnob {6 under l "&nbsp;&nbsp;<u>T" -STARTLINE}
+ addUserKnob {6 strike l "&nbsp;&nbsp;<s>T" -STARTLINE}
+ addUserKnob {26 font_size l "Note size"}
+ addUserKnob {22 size_plus_10 l "<font color=orange>▲ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontPlusTen()"}
+ addUserKnob {22 size_min_10 l "<font color=aqua>▼ 10</font>" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.fontMinusTen()"}
+ addUserKnob {26 tasks l <b>Tasks</b>}
+ addUserKnob {22 plate l "<big><font style=\"background-color:#559d63;\">&nbsp;<font color=black>Plate</font>&nbsp;" T "# plate\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1436110080)\nbd\['note'].setValue('PLATE')\nbd\['note_font_size'].setValue(102)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 denoise l "<big><font style=\"background-color:#85994d;\">&nbsp;<font color=black>Denoise</font>&nbsp;" -STARTLINE T "# denoise\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2241416448)\nbd\['note'].setValue('DENOISE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 reference l "<big><font style=\"background-color:#4d9976;\">&nbsp;<font color=black>Reference</font>&nbsp;" -STARTLINE T "# reference\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301902848)\nbd\['note'].setValue('REF')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 precomp l "<big><font style=\"background-color:#994d63;\">&nbsp;<font color=black>Precomp</font>&nbsp;" T "# precomp\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2571985664)\nbd\['note'].setValue('PRECOMP')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')" +STARTLINE}
+ addUserKnob {22 merge l "<big><font style=\"background-color:#4d8c99;\">&nbsp;<font color=black>Merge</font>&nbsp;" -STARTLINE T "# merge\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1301059840)\nbd\['note'].setValue('MERGE')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 output l "<big><font style=\"background-color:#997d4d;\">&nbsp;<font color=black>Output</font>&nbsp;" -STARTLINE T "# output\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2575125760)\nbd\['note'].setValue('OUTPUT')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 Foreground l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>FG</font>&nbsp;" T "# fg\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('FG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 background l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>BG</font>&nbsp;" -STARTLINE T "# background\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('BG')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 versions l "<big><font style=\"background-color:#777777;\">&nbsp;<font color=black>Versions</font>&nbsp;" -STARTLINE T "# versions\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(1717987071)\nbd\['note'].setValue('VERSIONS')\nbd\['note_font_size'].setValue(82)\nbd\['note_color'].setValue('Black')"}
+ addUserKnob {22 threed l "<big><font style=\"background-color:#806069;\">&nbsp;<font color=black>3D</font>&nbsp;" T "# 3d\n\nbd = nuke.thisNode()\nbd\['tile_color'].setValue(2153801984)\nbd\['note'].setValue('3D')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n" +STARTLINE}
+ addUserKnob {22 camera l "<big><font style=\"background-color:#806060;\">&nbsp;<font color=black>Camera</font>&nbsp;" -STARTLINE T "# camera\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153799680)\nbd\['note'].setValue('CAMERA')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 track l "<big><font style=\"background-color:#80607d;\">&nbsp;<font color=black>Track</font>&nbsp;" -STARTLINE T "# track\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2153807104)\nbd\['note'].setValue('TRACK')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 matte l "<big><font style=\"background-color:#807460;\">&nbsp;<font color=black>DMP</font>&nbsp;" T "# matte\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2155110400)\nbd\['note'].setValue('DMP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 grade l "<big><font style=\"background-color:#607a80;\">&nbsp;<font color=black>Grade</font>&nbsp;" -STARTLINE T "# grade\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1618640896)\nbd\['note'].setValue('GRADE')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')\n"}
+ addUserKnob {22 lens_effect l "<big><font style=\"background-color:#6d6080;\">&nbsp;<font color=black>Lens Effect</font>&nbsp;" -STARTLINE T "# lens effect\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1835040768)\nbd\['note'].setValue('LENS\\nEFFECT')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 key l "<big><font style=\"background-color:#608071;\">&nbsp;<font color=black>Key</font>&nbsp;" T "# key\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1619030272)\nbd\['note'].setValue('KEY')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')" +STARTLINE}
+ addUserKnob {22 roto l "<big><font style=\"background-color:#638060;\">&nbsp;<font color=black>Roto</font>&nbsp;" -STARTLINE T "# roto\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(1669357568)\nbd\['note'].setValue('ROTO')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 prep l "<big><font style=\"background-color:#778060;\">&nbsp;<font color=black>Prep</font>&nbsp;" -STARTLINE T "# prep\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2004901888)\nbd\['note'].setValue('PREP')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('Silver')"}
+ addUserKnob {22 grain l "<big><font style=\"background-color:#AAAAAA;\">&nbsp;<font color=black>Grain</font>&nbsp;" -STARTLINE T "# grain\n\nbd = nuke.thisNode()\n\nbd\['tile_color'].setValue(2576980479)\nbd\['note'].setValue('GRAIN')\nbd\['note_font_size'].setValue(72)\nbd\['note_color'].setValue('White')"}
+ addUserKnob {26 node_color l "<b>Node Color</b>"}
+ addUserKnob {22 change_colors l "<big><font style=\"background-color:#806060;\">D<font style=\"background-color:#807460;\">u<font style=\"background-color:#778060;\">l<font style=\"background-color:#608071;\">l<font style=\"background-color:#607a80;\"> <font style=\"background-color:#606680;\">C<font style=\"background-color:#606680;\">o<font style=\"background-color:#6d6080;\">l<font style=\"background-color:#80607d;\">o<font style=\"background-color:#806069;\">r<font style=\"background-color:#806060;\">s" t "By clicking on it can toggle between the \"Dull Colors\" and the \"Vivid Colors\" palettes" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.dullVividColor()" +STARTLINE}
+ addUserKnob {22 darken l "<big><font style=\"background-color:#333333;\">&nbsp;<font color=#cccccc>Darken</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.darkenTileColor()"}
+ addUserKnob {22 brighten l "<big><font style=\"background-color:#aaaaaa;\">&nbsp;<font color=black>Brighten</font>&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.brightenTileColor()"}
+ addUserKnob {22 color_0 l "<font color=#806060><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(2153799680)" +STARTLINE}
+ addUserKnob {22 color_1 l "<font color=#807460><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2155110400)"}
+ addUserKnob {22 color_2 l "<font color=#778060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2004901888)"}
+ addUserKnob {22 color_3 l "<font color=#638060><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1669357568)"}
+ addUserKnob {22 color_4 l "<font color=#608071><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1619030272)"}
+ addUserKnob {22 color_5 l "<font color=#607a80><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(1618640896)" +STARTLINE}
+ addUserKnob {22 color_6 l "<font color=#606680><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1617330176)"}
+ addUserKnob {22 color_7 l "<font color=#6d6080><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1835040768)"}
+ addUserKnob {22 color_8 l "<font color=#80607d><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153807104)"}
+ addUserKnob {22 color_9 l "<font color=#806069><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2153801984)"}
+ addUserKnob {22 grey_1 l "<font color=#DDDDDD><big>█</big></font>" T "nuke.thisNode()\['tile_color'].setValue(3149642751)" +STARTLINE}
+ addUserKnob {22 grey_2 l "<font color=#AAAAAA><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(2576980479)"}
+ addUserKnob {22 grey_3 l "<font color=#777777><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1717987071)"}
+ addUserKnob {22 grey_4 l "<font color=#333333><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(1145324799)"}
+ addUserKnob {22 grey_5 l "<font color=#222222><big>█</big></font>" -STARTLINE T "nuke.thisNode()\['tile_color'].setValue(572662527)"}
+ addUserKnob {20 re_size l "Re Size" n 1}
+ re_size 0
+ addUserKnob {26 upscale l Upscale}
+ addUserKnob {22 upleft500 l "<font color=yellow><big>↖" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500()" +STARTLINE}
+ addUserKnob {22 space1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500 l "<font color=yellow><h3>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500()"}
+ addUserKnob {22 space1_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500 l "<font color=yellow><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500()"}
+ addUserKnob {22 space2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100 l "<font color=orange><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100()"}
+ addUserKnob {22 up100 l "<font color=orange><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100()"}
+ addUserKnob {22 upright100 l "<font color=orange><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100()"}
+ addUserKnob {22 space2_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500 l "<font color=yellow><big>&nbsp;◄" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500()" +STARTLINE}
+ addUserKnob {22 left100 l "<font color=orange><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100()"}
+ addUserKnob {22 center1 l "<font color=crimson><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center()"}
+ addUserKnob {22 right100 l "<font color=orange><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100()"}
+ addUserKnob {22 right500 l "<font color=yellow><big>►&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500()"}
+ addUserKnob {22 space3 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100 l "<font color=orange><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100()"}
+ addUserKnob {22 down100 l "<font color=orange><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100()"}
+ addUserKnob {22 downright100 l "<font color=orange><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100()"}
+ addUserKnob {22 space3_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500 l "<font color=yellow><big>↙" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500()" +STARTLINE}
+ addUserKnob {22 space4 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500 l "<font color=yellow><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500()"}
+ addUserKnob {22 space4_1 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500 l "<font color=yellow><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500()"}
+ addUserKnob {26 downscale l Downscale}
+ addUserKnob {22 upleft500_2 l "<font color=LightSkyBlue><big>↘" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft500_2()" +STARTLINE}
+ addUserKnob {22 space1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 up500_2 l "<font color=LightSkyBlue><h3>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up500_2()"}
+ addUserKnob {22 space1_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 upright500_2 l "<font color=LightSkyBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright500_2()"}
+ addUserKnob {22 space2_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 upleft100_2 l "<font color=SteelBlue><big>↘" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upleft100_2()"}
+ addUserKnob {22 up100_2 l "<font color=SteelBlue><big>▼" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.up100_2()"}
+ addUserKnob {22 upright100_2 l "<font color=SteelBlue><big>↙" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.upright100_2()"}
+ addUserKnob {22 space2_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 left500_2 l "<font color=LightSkyBlue><big>&nbsp;►" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left500_2()" +STARTLINE}
+ addUserKnob {22 left100_2 l "<font color=SteelBlue><big>►" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.left100_2()"}
+ addUserKnob {22 center1_2 l "<font color=blue><big>⦿" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.center_2()"}
+ addUserKnob {22 right100_2 l "<font color=SteelBlue><big>◄" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right100_2()"}
+ addUserKnob {22 right500_2 l "<font color=LightSkyBlue><big>◄&nbsp;" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.right500_2()"}
+ addUserKnob {22 space3_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" +STARTLINE}
+ addUserKnob {22 downleft100_2 l "<font color=SteelBlue><big>↗" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft100_2()"}
+ addUserKnob {22 down100_2 l "<font color=SteelBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down100_2()"}
+ addUserKnob {22 downright100_2 l "<font color=SteelBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright100_2()"}
+ addUserKnob {22 space3_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downleft500_2 l "<font color=LightSkyBlue><big>↗" T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downleft500_2()" +STARTLINE}
+ addUserKnob {22 space4_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 down500_2 l "<font color=LightSkyBlue><big>▲" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.down500_2()"}
+ addUserKnob {22 space4_1_2 l "<big>&nbsp;&nbsp;&nbsp;&nbsp;" -STARTLINE}
+ addUserKnob {22 downright500_2 l "<font color=LightSkyBlue><big>↖" -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.downright500_2()"}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {26 TEXT l "" -STARTLINE T "<font color=#808080 size=\"5\" >1.7 version</font>"}
+ addUserKnob {26 _2 l "" -STARTLINE T "   "}
+ addUserKnob {22 info l Tutorial/Info -STARTLINE T "import Backdrop_Adjust_utils\n\nBackdrop_Adjust_utils.openWebsite()"}
+ addUserKnob {26 HeadlineB l "" +STARTLINE T "<font color=#808080 size=\"2\">Backdrop_Adjust by Attila Gasparetz</font>"}
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0xff5555ff
+ label "COLOR\n"
+ note_font_size 50
+ xpos -890
+ ypos 501
+ bookmark false
+ bdwidth 1483
+ bdheight 592
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode10
+ tile_color 0x85789aff
+ label SLAP
+ note_font_size 50
+ xpos -1976
+ ypos -3171
+ bookmark false
+ bdwidth 818
+ bdheight 1129
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode12
+ tile_color 0xb4aaffff
+ label "CLIENT FILESET\n\n\n\n\n\nIf a Shot is tagged with a Client Fileset entity \nthen the PUMP switch value of this entity is used "
+ note_font_size 50
+ xpos 1354
+ ypos 1320
+ bookmark false
+ bdwidth 1291
+ bdheight 505
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode123
+ tile_color 0x3f84ff
+ label "Cam-\nSwitch 10\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 3314
+ ypos -914
+ bookmark false
+ bdwidth 424
+ bdheight 519
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode129
+ tile_color 0x649cf2ff
+ label "Cam-\nSwitch 11.\n\n\n\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 3857
+ ypos -909
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode16
+ tile_color 0x515b7aff
+ label "Cam-\nSwitch 1.\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos -912
+ ypos -928
+ bookmark false
+ bdwidth 377
+ bdheight 510
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode17
+ tile_color 0x677a72ff
+ label "Cam-\nSwitch 2.\n\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos -504
+ ypos -922
+ bookmark false
+ bdwidth 381
+ bdheight 511
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode18
+ tile_color 0x644f7aff
+ label "Cam-\nSwitch 3.\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos -80
+ ypos -922
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode19
+ tile_color 0x7a1ad1ff
+ label "Cam-\nSwitch 6.\n\n\n\n\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 1214
+ ypos -922
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x7986edff
+ label "Cam-\nSwitch 8.\n\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 2298
+ ypos -915
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode20
+ tile_color 0x7a8ed1ff
+ label "Cam-\nSwitch 7.\n\n\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 1785
+ ypos -910
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0xff9455ff
+ label "PLATE COLOR \nCONVERT\n"
+ note_font_size 50
+ xpos -900
+ ypos -1967
+ bookmark false
+ bdwidth 1395
+ bdheight 537
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0x6788a8ff
+ label "DELIVERY TRANSFORM\n"
+ note_font_size 50
+ xpos -891
+ ypos 1319
+ bookmark false
+ bdwidth 1510
+ bdheight 504
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x649cf2ff
+ label "Cam-\nSwitch 9.\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 2787
+ ypos -915
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode65
+ tile_color 0x7a4f73ff
+ label "Cam-\nSwitch 5.\n\n\n\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 766
+ ypos -923
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode66
+ tile_color 0x641a7aff
+ label "Cam-\nSwitch 4.\n"
+ note_font "Verdana Bold"
+ note_font_size 22
+ xpos 334
+ ypos -925
+ bookmark false
+ bdwidth 386
+ bdheight 509
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode7
+ tile_color 0xaaaaaa00
+ label DISTORTION
+ note_font_size 42
+ xpos -1813
+ ypos -2616
+ bookmark false
+ bdwidth 327
+ bdheight 246
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode8
+ tile_color 0xaaaaaa00
+ label "CG RENDER"
+ note_font_size 42
+ xpos -1812
+ ypos -3063
+ bookmark false
+ bdwidth 325
+ bdheight 430
+}
+BackdropNode {
+ inputs 0
+ name burnin_text_backdrop
+ tile_color 0x3037ff
+ label "BURN IN"
+ note_font_size 25
+ xpos -620
+ ypos 2084
+ bookmark false
+ bdwidth 475
+ bdheight 344
+}
+BackdropNode {
+ inputs 0
+ name read_backdrop
+ tile_color 0x64ef64ff
+ label "READ\n\nBased on sequential files found in rushes folder.\nFile data processed by PUMP."
+ note_font_size 15
+ xpos -1088
+ ypos -3639
+ bookmark false
+ bdwidth 498
+ bdheight 292
+}
+BackdropNode {
+ inputs 0
+ name write_backdrop
+ tile_color 0xa9b200ff
+ label WRITE
+ note_font_size 25
+ xpos -1222
+ ypos 2918
+ bookmark false
+ bdwidth 533
+ bdheight 341
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode13
+ label DNxHD
+ note_font_size 50
+ xpos -863
+ ypos 1407
+ bookmark false
+ bdwidth 433
+ bdheight 359
+ z_order 1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode22
+ label "DNxHD asset"
+ note_font_size 50
+ xpos -358
+ ypos 1412
+ bookmark false
+ bdwidth 433
+ bdheight 359
+ z_order 1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0x7171c600
+ label "LIN AP1 -> LogC AWG"
+ note_font_size 12
+ xpos -248
+ ypos -1875
+ bookmark false
+ bdwidth 286
+ bdheight 366
+ z_order 1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode9
+ tile_color 0x7171c600
+ label "LogC AWG -> LIN  AP1"
+ note_font_size 20
+ xpos -653
+ ypos -1864
+ bookmark false
+ bdwidth 282
+ bdheight 358
+ z_order 1
+}
+Read {
+ inputs 0
+ file_type exr
+ format "2132 1550 0 0 2132 1550 2 "
+ first 1001
+ last 1068
+ origfirst 1001
+ origlast 1068
+ origset true
+ on_error black
+ raw true
+ name slap_read
+ xpos -1709
+ ypos -2986
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[value slap_read.file]"
+ old_expression_markers {{0 -1}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify center
+ yjustify center
+ transforms {{0 2}
+   }
+ cursor_position 22
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name slap_source_burnin
+ tile_color 0xffffffff
+ label "\nExpression to the main_read file value"
+ note_font_color 0xe9ff55ff
+ xpos -1709
+ ypos -2783
+}
+Reformat {
+ format "4448 3096 0 0 4448 3096 1 proj_format_1"
+ name slap_reformat
+ label "Expression to the main_read format value"
+ note_font_color 0xdfff00ff
+ xpos -1709
+ ypos -2704
+}
+NoOp {
+ name slap_undistort
+ tile_color 0xff0000ff
+ note_font_size 20
+ xpos -1709
+ ypos -2482
+}
+Read {
+ inputs 0
+ file_type exr
+ localizationPolicy on
+ format "6048 4032 0 0 6048 4032 2 "
+ first 1001
+ last 1092
+ origfirst 1001
+ origlast 1092
+ origset true
+ version 2
+ raw true
+ name main_read
+ xpos -1061
+ ypos -3519
+}
+Dot {
+ name Dot6
+ xpos -1027
+ ypos -3395
+}
+set N230f9800 [stack 0]
+Dot {
+ name Dot25
+ xpos -1548
+ ypos -3395
+}
+Dot {
+ name Dot26
+ xpos -1548
+ ypos -2264
+}
+Merge2 {
+ inputs 2
+ name slap_merge
+ xpos -1709
+ ypos -2268
+}
+Dot {
+ name Dot27
+ xpos -1675
+ ypos -2172
+}
+push $N230f9800
+Switch {
+ inputs 2
+ name slap_switch
+ xpos -1061
+ ypos -2175
+}
+Dot {
+ name Dot15
+ xpos -1027
+ ypos -1888
+}
+set N23145000 [stack 0]
+Dot {
+ name Dot14
+ xpos -1027
+ ypos -1781
+}
+set N23145400 [stack 0]
+Dot {
+ name Dot10
+ xpos -518
+ ypos -1781
+}
+set N23145800 [stack 0]
+Dot {
+ name Dot33
+ xpos -110
+ ypos -1781
+}
+OCIOFileTransform {
+ file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
+ invert true
+ working_space scene_linear
+ name OCIOFileTransform11
+ label "ACES AP1 -> ACES AP0\n\[value direction]"
+ xpos -144
+ ypos -1693
+}
+OCIOFileTransform {
+ file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
+ invert true
+ working_space scene_linear
+ name OCIOFileTransform12
+ label "ACES AP0 -> AWG\n\[value direction]"
+ xpos -144
+ ypos -1616
+}
+Dot {
+ name Dot43
+ xpos -110
+ ypos -1474
+}
+push $N23145800
+OCIOFileTransform {
+ file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
+ working_space scene_linear
+ name OCIOFileTransform14
+ label "AWG -> AP0\n\[value direction]"
+ xpos -552
+ ypos -1720
+}
+OCIOFileTransform {
+ file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
+ working_space scene_linear
+ name OCIOFileTransform15
+ label "AP0 -> AP1\n\[value direction]"
+ xpos -552
+ ypos -1645
+}
+Dot {
+ name Dot28
+ xpos -518
+ ypos -1544
+}
+push $N23145400
+Switch {
+ inputs 3
+ name plate_switch
+ tile_color 0xff9455ff
+ label "Applies Conversion\nto/from\nclient colorspace\n\[value which]"
+ note_font_color 0x1f0022ff
+ xpos -1061
+ ypos -1507
+}
+Dot {
+ name Dot2
+ xpos -1027
+ ypos -1377
+}
+set N2316dc00 [stack 0]
+Dot {
+ name Dot31
+ xpos 1691
+ ypos -1377
+}
+NoOp {
+ name NoOp1
+ xpos 1657
+ ypos 1525
+}
+Dot {
+ name Dot30
+ xpos 1691
+ ypos 1776
+}
+NoOp {
+ inputs 0
+ name content_textscalar_burnin
+ xpos -328
+ ypos 2263
+ addUserKnob {20 User}
+ addUserKnob {3 content_textscalar_burnin l "Global Text scalar"}
+ content_textscalar_burnin 18
+}
+ViewMetaData {
+ inputs 0
+ name ViewMetaData1
+ xpos 1042
+ ypos 3074
+}
+FrameHold {
+ inputs 0
+ firstFrame 3941
+ name FrameHold2
+ xpos -314
+ ypos 3199
+}
+Dot {
+ name Dot59
+ xpos -280
+ ypos 3235
+}
+push $N23145000
+Dot {
+ name Dot16
+ xpos -1539
+ ypos -1888
+}
+NoOp {
+ name NoOp3
+ label "Use this pipe to bypass all transform from main_read\n"
+ xpos -1573
+ ypos 635
+}
+Dot {
+ name Dot18
+ xpos -1539
+ ypos 1830
+}
+push $N2316dc00
+Dot {
+ name Dot32
+ xpos -1027
+ ypos -1093
+}
+set N231bc400 [stack 0]
+Dot {
+ name Dot36
+ xpos -731
+ ypos -1093
+}
+set N231bc800 [stack 0]
+Dot {
+ name Dot42
+ xpos -323
+ ypos -1093
+}
+set N231bcc00 [stack 0]
+Dot {
+ name Dot45
+ xpos 101
+ ypos -1093
+}
+set N231bd000 [stack 0]
+Dot {
+ name Dot47
+ xpos 514
+ ypos -1093
+}
+set N231bd400 [stack 0]
+Dot {
+ name Dot49
+ xpos 957
+ ypos -1093
+}
+set N231bd800 [stack 0]
+Dot {
+ name Dot51
+ xpos 1405
+ ypos -1093
+}
+set N231bdc00 [stack 0]
+Dot {
+ name Dot53
+ xpos 1976
+ ypos -1093
+}
+set N23224000 [stack 0]
+Dot {
+ name Dot3
+ xpos 2487
+ ypos -1093
+}
+set N23224400 [stack 0]
+Dot {
+ name Dot4
+ xpos 2982
+ ypos -1093
+}
+set N23224800 [stack 0]
+Dot {
+ name Dot34
+ xpos 3508
+ ypos -1093
+}
+set N23224c00 [stack 0]
+Dot {
+ name Dot56
+ xpos 4042
+ ypos -1093
+}
+Dot {
+ name Dot55
+ label 11
+ note_font_size 21
+ xpos 4042
+ ypos 423
+}
+push $N23224c00
+Dot {
+ name Dot29
+ label 10
+ note_font_size 21
+ xpos 3508
+ ypos 334
+}
+push $N23224800
+Dot {
+ name Dot22
+ label 9
+ note_font_size 21
+ xpos 2982
+ ypos 145
+}
+push $N23224400
+Dot {
+ name Dot9
+ label 8
+ note_font_size 21
+ xpos 2487
+ ypos 38
+}
+push $N23224000
+Dot {
+ name Dot54
+ label 7
+ note_font_size 21
+ xpos 1976
+ ypos 2
+}
+push $N231bdc00
+Dot {
+ name Dot52
+ label 6
+ note_font_size 21
+ xpos 1405
+ ypos -56
+}
+push $N231bd800
+Dot {
+ name Dot50
+ label 5
+ note_font_size 21
+ xpos 957
+ ypos -133
+}
+push $N231bd400
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace32
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos 480
+ ypos -737
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace33
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos 480
+ ypos -505
+}
+Dot {
+ name Dot48
+ label 4
+ note_font_size 21
+ xpos 514
+ ypos -224
+}
+push $N231bd000
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace16
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos 67
+ ypos -732
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace17
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos 67
+ ypos -502
+}
+Dot {
+ name Dot46
+ label 3
+ note_font_size 21
+ xpos 101
+ ypos -287
+}
+push $N231bcc00
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace14
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -357
+ ypos -727
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace15
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -357
+ ypos -497
+}
+Dot {
+ name Dot44
+ label 2
+ note_font_size 21
+ xpos -323
+ ypos -306
+}
+push $N231bc800
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace12
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -765
+ ypos -731
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace13
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -765
+ ypos -504
+}
+Dot {
+ name Dot41
+ label 1
+ note_font_size 21
+ xpos -731
+ ypos -346
+}
+push $N231bc400
+Switch {
+ inputs 12
+ name camera_switch
+ tile_color 0xb4ffaaff
+ label "Applies Camera Transform\n\[value which]"
+ xpos -1061
+ ypos 313
+}
+Dot {
+ name Dot13
+ xpos -1027
+ ypos 424
+}
+set N232a4400 [stack 0]
+Dot {
+ name Dot21
+ xpos -805
+ ypos 424
+}
+set N232a4800 [stack 0]
+Dot {
+ name Dot38
+ xpos -538
+ ypos 424
+}
+OCIOFileTransform {
+ file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
+ version 3
+ invert true
+ working_space linear
+ name OCIOFileTransform1
+ label "AP!1 -> AP0"
+ xpos -572
+ ypos 707
+}
+OCIOFileTransform {
+ file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper_to_linear.spi1d
+ version 3
+ invert true
+ working_space linear
+ name OCIOFileTransform2
+ xpos -572
+ ypos 761
+}
+OCIOFileTransform {
+ file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper.RRT.Rec.709.spi3d
+ interpolation tetrahedral
+ working_space linear
+ name OCIOFileTransform16
+ xpos -572
+ ypos 815
+}
+Dot {
+ name Dot35
+ xpos -538
+ ypos 1124
+}
+push $N232a4800
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace5
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -839
+ ypos 675
+}
+OCIOCDLTransform {
+ working_space scene_linear
+ name shot_ccc
+ xpos -839
+ ypos 763
+}
+Vectorfield {
+ version 1
+ name main_lut
+ xpos -839
+ ypos 828
+}
+Dot {
+ name Dot11
+ xpos -805
+ ypos 1052
+}
+push $N232a4400
+Switch {
+ inputs 3
+ which 1
+ name color_switch
+ tile_color 0xff5555ff
+ label "Applies Color\nColor files from SG\n\[value which]\n"
+ xpos -1061
+ ypos 1097
+}
+Dot {
+ name Dot12
+ xpos -1027
+ ypos 1263
+}
+set N232d1800 [stack 0]
+Dot {
+ name Dot23
+ xpos -678
+ ypos 1263
+}
+set N232d1c00 [stack 0]
+Dot {
+ name Dot39
+ xpos -154
+ ypos 1263
+}
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace4
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -188
+ ypos 1550
+}
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ filter Lanczos6
+ black_outside true
+ name Reformat2
+ xpos -188
+ ypos 1611
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace7
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -188
+ ypos 1664
+}
+Dot {
+ name Dot40
+ xpos -154
+ ypos 1824
+}
+push $N232d1c00
+Colorspace {
+ colorspace_out AlexaV3LogC
+ name Colorspace3
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -712
+ ypos 1495
+}
+Reformat {
+ type "to box"
+ box_width 3840
+ box_height 1920
+ box_fixed true
+ resize none
+ name Reformat18
+ label "Hero Framing"
+ xpos -712
+ ypos 1543
+}
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ filter Lanczos6
+ pbb true
+ name Reformat1
+ xpos -712
+ ypos 1592
+}
+Crop {
+ box {0 60 1920 1020.000977}
+ name Crop2
+ xpos -712
+ ypos 1628
+}
+Crop {
+ box {0 0 1920 1080}
+ reformat true
+ crop false
+ name Crop1
+ xpos -712
+ ypos 1652
+}
+Colorspace {
+ colorspace_in AlexaV3LogC
+ name Colorspace6
+ label "\[value colorspace_in] ->\[value colorspace_out]"
+ xpos -712
+ ypos 1690
+}
+Dot {
+ name Dot37
+ xpos -678
+ ypos 1776
+}
+push $N232d1800
+Switch {
+ inputs 3
+ which 1
+ name transform_switch
+ label "Final transform\n\[value which]"
+ xpos -1061
+ ypos 1755
+}
+Switch {
+ inputs 2
+ name bypass_switch
+ xpos -1061
+ ypos 1826
+}
+Dot {
+ name Dot20
+ xpos -1027
+ ypos 1928
+}
+set N23386400 [stack 0]
+Dot {
+ name Dot5
+ xpos -1541
+ ypos 1928
+}
+Group {
+ name SSVFX_SLATE
+ label v1.2.2
+ xpos -1575
+ ypos 2223
+ addUserKnob {20 Slate}
+ addUserKnob {6 show_bool l "" +STARTLINE +STARTLINE}
+ show_bool true
+ addUserKnob {1 show l "Show Title:" t show -STARTLINE}
+ show "Show Name"
+ addUserKnob {3 show_line l "" -STARTLINE}
+ show_line -2
+ addUserKnob {26 ""}
+ addUserKnob {6 epBool l "" t "Shows episode" -STARTLINE}
+ addUserKnob {1 ep l Episode -STARTLINE}
+ ep episode
+ addUserKnob {3 ep_line l "" -STARTLINE}
+ ep_line -1
+ addUserKnob {6 shot_bool l "" +STARTLINE +STARTLINE}
+ shot_bool true
+ addUserKnob {1 shot l Shot: t shot -STARTLINE}
+ shot shot
+ addUserKnob {3 shot_line l "" -STARTLINE}
+ shot_line -1
+ addUserKnob {26 ""}
+ addUserKnob {6 version_bool l "" +STARTLINE +STARTLINE}
+ version_bool true
+ addUserKnob {1 version l Version: t version -STARTLINE}
+ version version
+ addUserKnob {3 version_line l "" -STARTLINE}
+ addUserKnob {6 vendor_bool l "" +STARTLINE +STARTLINE}
+ vendor_bool true
+ addUserKnob {1 vendor l Vendor: t vendor -STARTLINE}
+ vendor SSVFX
+ addUserKnob {3 vendor_line l "" -STARTLINE}
+ vendor_line 1
+ addUserKnob {26 ""}
+ addUserKnob {6 frame_bool l "" +STARTLINE +STARTLINE}
+ frame_bool true
+ addUserKnob {3 start_frame l Frames: -STARTLINE}
+ start_frame 1001
+ addUserKnob {3 end_frame l "" -STARTLINE}
+ end_frame 1234
+ addUserKnob {3 frame_line l Line -STARTLINE}
+ frame_line 4
+ addUserKnob {26 ""}
+ addUserKnob {6 date_bool l "" +STARTLINE +STARTLINE}
+ date_bool true
+ addUserKnob {1 date l Date t date -STARTLINE}
+ date "\[date %Y-%m-%d]"
+ addUserKnob {3 date_line l "" -STARTLINE}
+ date_line 5
+ addUserKnob {6 lens_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 lens l "Lens Info:" -STARTLINE}
+ lens lens
+ addUserKnob {3 lens_line l "" -STARTLINE}
+ lens_line 6
+ addUserKnob {26 ""}
+ addUserKnob {6 artist_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 artist l "Artist Name:" -STARTLINE}
+ artist name
+ addUserKnob {3 artist_line l "" -STARTLINE}
+ artist_line 7
+ addUserKnob {26 ""}
+ addUserKnob {6 c1_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c1_key -STARTLINE}
+ c1_key "Custom 1:"
+ addUserKnob {1 c1_value -STARTLINE}
+ c1_value "Custom 1 V"
+ addUserKnob {3 c1_line l "" -STARTLINE}
+ c1_line 9
+ addUserKnob {26 ""}
+ addUserKnob {6 c2_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c2_key -STARTLINE}
+ c2_key "Custom 2:"
+ addUserKnob {1 c2_value -STARTLINE}
+ c2_value "Custom 2 V"
+ addUserKnob {3 c2_line l "" -STARTLINE}
+ c2_line 10
+ addUserKnob {26 ""}
+ addUserKnob {6 c3_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c3_key -STARTLINE}
+ c3_key "Custom 3:"
+ addUserKnob {1 c3_value -STARTLINE}
+ c3_value "Custom 3 V"
+ addUserKnob {3 c3_line l "" -STARTLINE}
+ c3_line 11
+ addUserKnob {26 ""}
+ addUserKnob {6 c4_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c4_key -STARTLINE}
+ c4_key "Custom 4:"
+ addUserKnob {1 c4_value -STARTLINE}
+ c4_value "Custom 4 V"
+ addUserKnob {3 c4_line l "" -STARTLINE}
+ c4_line 12
+ addUserKnob {26 ""}
+ addUserKnob {6 c5_bool l "" +STARTLINE +STARTLINE}
+ addUserKnob {1 c5_key -STARTLINE}
+ c5_key "Custom 5:"
+ addUserKnob {1 c5_value -STARTLINE}
+ c5_value "Custom 5 V"
+ addUserKnob {3 c5_line l "" -STARTLINE}
+ c5_line 13
+ addUserKnob {26 ""}
+ addUserKnob {26 ""}
+ addUserKnob {6 notes_bool l "" +STARTLINE +STARTLINE}
+ notes_bool true
+ addUserKnob {1 notes l Notes -STARTLINE}
+ notes notesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotenotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotesnotessnotesnotesnotesnotesnotesnotesnotesnotesnotes
+ addUserKnob {3 notes_line l "" -STARTLINE}
+ notes_line 10
+ addUserKnob {26 ""}
+ addUserKnob {41 format +INVISIBLE T SLATE.format}
+ addUserKnob {14 input_format l "Input Format" t "Input Format" R 0 100}
+ input_format {{"\[python \{nuke.toNode(nuke.tcl(\"full_name \[topnode] \")).width()\}]"} {"\[python \{nuke.toNode(nuke.tcl(\"full_name \[topnode] \")).height()\}]"}}
+ addUserKnob {7 p_a l "Pixel Aspect Ratio" t "Pixel Aspect Ratio" -STARTLINE R 0 2}
+ p_a {{"\[python \{nuke.toNode(nuke.tcl(\"full_name \[topnode] \")).pixelAspect()\}]"}}
+ addUserKnob {20 formatControls l "Format Controls"}
+ addUserKnob {41 TYPE_POS T CONTROL_NULL.TYPE_POS}
+ addUserKnob {41 TYPE_SCALE T CONTROL_NULL.TYPE_SCALE}
+ addUserKnob {41 TYPE_LEADING T CONTROL_NULL.TYPE_LEADING}
+ addUserKnob {41 TYPE_VALUE_SEP T CONTROL_NULL.TYPE_VALUE_SEP}
+ addUserKnob {41 TYPE_UNIT T CONTROL_NULL.TYPE_UNIT}
+ addUserKnob {41 TEXTBOX T CONTROL_NULL.TEXTBOX}
+ addUserKnob {26 ""}
+ addUserKnob {41 THUMB_POS T CONTROL_NULL.THUMB_POS}
+ addUserKnob {41 THUMB_SCALE T CONTROL_NULL.THUMB_SCALE}
+ addUserKnob {26 ""}
+ addUserKnob {41 LOGO_SCALE -STARTLINE T CONTROL_NULL.LOGO_SCALE}
+ addUserKnob {41 LOGO_POS T CONTROL_NULL.LOGO_POS}
+ addUserKnob {41 BG_LOGO_SCALE T CONTROL_NULL.BG_LOGO_SCALE}
+ addUserKnob {41 BG_LOGO_POS T CONTROL_NULL.BG_LOGO_POS}
+ addUserKnob {26 ""}
+ addUserKnob {41 BW_GRAD_POS T CONTROL_NULL.BW_GRAD_POS}
+ addUserKnob {41 COLOUR_GRAD_POS T CONTROL_NULL.COLOUR_GRAD_POS}
+ addUserKnob {26 ""}
+ addUserKnob {41 GRID l "GRID UNITS" T CONTROL_NULL.GRID}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x888888ff
+  label BW_GRAD
+  note_font_size 42
+  xpos 1166
+  ypos -524
+  bookmark false
+  bdwidth 683
+  bdheight 259
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x888888ff
+  label COLOUR_GRAD
+  note_font_size 42
+  xpos 1168
+  ypos -206
+  bookmark false
+  bdwidth 683
+  bdheight 405
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode3
+  tile_color 0x888888ff
+  label LOGO
+  note_font_size 42
+  xpos 1163
+  ypos 278
+  bookmark false
+  bdwidth 683
+  bdheight 405
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode4
+  tile_color 0x888888ff
+  label THUMB
+  note_font_size 42
+  xpos 4349
+  ypos 2351
+  bookmark false
+  bdwidth 1213
+  bdheight 424
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode5
+  tile_color 0x888888ff
+  label BG_LOGO
+  note_font_size 42
+  xpos 1158
+  ypos -1123
+  bookmark false
+  bdwidth 683
+  bdheight 405
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode6
+  tile_color 0x888888ff
+  label TEXT
+  note_font_size 42
+  xpos 2036
+  ypos 515
+  bookmark false
+  bdwidth 5772
+  bdheight 1640
+ }
+ BackdropNode {
+  inputs 0
+  name RELEASE_NOTES
+  label "Release Notes:\n\n\n\n-----------------------------------\n\nV1.2.1\n\n-Added release notes\n\t\n-Capturing format info from topnode\n-Added Width/Height/Pixel Aspect Ratio Field\n\n-Fixed formatting of text for anamorphic aspect ratio\n\n-Exposed formatting controls outside gizmo\n\n-----------------------------------\n\nV1.2.2\n\n-Added Dynamic Slate Scaling based on input size\n-Added Artist field\n-Added 5 Custom Values\n-Added Visiblity Control\n-Added Line Control"
+  note_font "MS Shell Dlg 2 Bold"
+  note_font_size 24
+  xpos -1213
+  ypos -1294
+  bookmark false
+  bdwidth 763
+  bdheight 787
+ }
+ Input {
+  inputs 0
+  name slate_input
+  label /COMP
+  xpos 5430
+  ypos -1635
+ }
+ Dot {
+  name Dot27
+  xpos 5464
+  ypos -1482
+ }
+set N233b2c00 [stack 0]
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  resize height
+  black_outside true
+  name Reformat3
+  xpos 5430
+  ypos 2598
+ }
+ Reformat {
+  type scale
+  scale {{(1/CONTROL_NULL.GRID)*CONTROL_NULL.THUMB_SCALE}}
+  black_outside true
+  name Reformat5
+  xpos 5430
+  ypos 2636
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop5
+  xpos 5430
+  ypos 2660
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.THUMB_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.THUMB_POS.y}}
+  center {480 270}
+  name Transform4
+  xpos 5430
+  ypos 2692
+ }
+ Dot {
+  name Dot5
+  xpos 5464
+  ypos 2727
+ }
+push $N233b2c00
+ Shuffle {
+  red black
+  green black
+  blue black
+  alpha black
+  name Shuffle2
+  xpos 875
+  ypos -1476
+ }
+ Reformat {
+  type "to box"
+  box_width {{input.width}}
+  box_height {{input.height}}
+  box_fixed true
+  box_pixel_aspect {{input.pixel_aspect}}
+  name SLATE_REFORMAT
+  xpos 635
+  ypos -1476
+ }
+ Dot {
+  name Dot26
+  xpos 562
+  ypos -1473
+ }
+ Dot {
+  name Dot11
+  xpos 562
+  ypos -1349
+ }
+set N233d9c00 [stack 0]
+ Dot {
+  name Dot2
+  xpos 1615
+  ypos -1349
+ }
+set N233fa000 [stack 0]
+ Dot {
+  name Dot3
+  xpos 1730
+  ypos -1349
+ }
+ Dot {
+  name Dot6
+  xpos 2493
+  ypos -1349
+ }
+ Dot {
+  name Dot7
+  xpos 2473
+  ypos 731
+ }
+set N233fac00 [stack 0]
+ Dot {
+  name Dot16
+  xpos 2604
+  ypos 731
+ }
+set N233fb000 [stack 0]
+ Dot {
+  name Dot24
+  xpos 2714
+  ypos 731
+ }
+set N233fb400 [stack 0]
+ Dot {
+  name Dot25
+  xpos 2845
+  ypos 731
+ }
+set N233fb800 [stack 0]
+ Dot {
+  name Dot8
+  xpos 2963
+  ypos 731
+ }
+set N233fbc00 [stack 0]
+ Dot {
+  name Dot17
+  xpos 3120
+  ypos 731
+ }
+set N23410000 [stack 0]
+ Dot {
+  name Dot9
+  xpos 3274
+  ypos 731
+ }
+set N23410400 [stack 0]
+ Dot {
+  name Dot18
+  xpos 3430
+  ypos 731
+ }
+set N23410800 [stack 0]
+ Dot {
+  name Dot10
+  xpos 3586
+  ypos 731
+ }
+set N23410c00 [stack 0]
+ Dot {
+  name Dot19
+  xpos 3742
+  ypos 731
+ }
+set N23411000 [stack 0]
+ Dot {
+  name Dot12
+  xpos 3898
+  ypos 731
+ }
+set N23411400 [stack 0]
+ Dot {
+  name Dot20
+  xpos 4054
+  ypos 731
+ }
+set N23411800 [stack 0]
+ Dot {
+  name Dot13
+  xpos 4210
+  ypos 731
+ }
+set N23411c00 [stack 0]
+ Dot {
+  name Dot21
+  xpos 4366
+  ypos 731
+ }
+set N2342c000 [stack 0]
+ Dot {
+  name Dot14
+  xpos 4522
+  ypos 731
+ }
+set N2342c400 [stack 0]
+ Dot {
+  name Dot22
+  xpos 4678
+  ypos 731
+ }
+set N2342c800 [stack 0]
+ Dot {
+  name Dot29
+  xpos 4841
+  ypos 732
+ }
+set N2342cc00 [stack 0]
+ Dot {
+  name Dot30
+  xpos 4997
+  ypos 732
+ }
+set N2342d000 [stack 0]
+ Dot {
+  name Dot31
+  xpos 5181
+  ypos 730
+ }
+set N2342d400 [stack 0]
+ Dot {
+  name Dot32
+  xpos 5337
+  ypos 730
+ }
+set N2342d800 [stack 0]
+ Dot {
+  name Dot33
+  xpos 5623
+  ypos 732
+ }
+set N2342dc00 [stack 0]
+ Dot {
+  name Dot34
+  xpos 5779
+  ypos 732
+ }
+set N23466000 [stack 0]
+ Dot {
+  name Dot35
+  xpos 5987
+  ypos 732
+ }
+set N23466400 [stack 0]
+ Dot {
+  name Dot36
+  xpos 6143
+  ypos 732
+ }
+set N23466800 [stack 0]
+ Dot {
+  name Dot37
+  xpos 6335
+  ypos 731
+ }
+set N23466c00 [stack 0]
+ Dot {
+  name Dot38
+  xpos 6491
+  ypos 731
+ }
+set N23467000 [stack 0]
+ Dot {
+  name Dot39
+  xpos 6691
+  ypos 732
+ }
+set N23467400 [stack 0]
+ Dot {
+  name Dot40
+  xpos 6847
+  ypos 732
+ }
+set N23467800 [stack 0]
+ Dot {
+  name Dot15
+  xpos 7358
+  ypos 730
+ }
+set N23467c00 [stack 0]
+ Dot {
+  name Dot23
+  xpos 7514
+  ypos 730
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.notes]"
+  old_message {{110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115 110 111 116 101 115}
+    }
+  old_expression_markers {{0 229}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  transforms {{0 2}
+    }
+  kern_values {{0 0 0 0.004 1 0 2 0 3 0 1 1 2 1 3 1}
+    }
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value8
+  xpos 7480
+  ypos 836
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform21
+  xpos 7480
+  ypos 927
+ }
+push $N23467c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Notes:
+  old_message {{78 111 116 101 115 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key8
+  label "\[value message]"
+  xpos 7320
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge22
+  xpos 7324
+  ypos 962
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)-SLATE_REFORMAT.height}}
+  center {960 540}
+  name Transform12
+  xpos 7320
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-notes_line}}
+ }
+ Dot {
+  name Dot28
+  xpos 7354
+  ypos 2064
+ }
+push $N23467800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c5_value]"
+  old_message {{67 117 115 116 111 109 32 53 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value15
+  xpos 6813
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform34
+  xpos 6813
+  ypos 929
+ }
+push $N23467400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c5_key]"
+  old_message {{67 117 115 116 111 109 32 53 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key15
+  label "\[value message]"
+  xpos 6657
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge31
+  xpos 6657
+  ypos 964
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform35
+  xpos 6657
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c5_line)}}
+ }
+push $N23467000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c4_value]"
+  old_message {{67 117 115 116 111 109 32 52 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value14
+  xpos 6457
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform32
+  xpos 6457
+  ypos 928
+ }
+push $N23466c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c4_key]"
+  old_message {{67 117 115 116 111 109 32 52 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key14
+  label "\[value message]"
+  xpos 6301
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge30
+  xpos 6301
+  ypos 963
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform33
+  xpos 6301
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c4_line)}}
+ }
+push $N23466800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c3_value]"
+  old_message {{67 117 115 116 111 109 32 51 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value13
+  xpos 6109
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform30
+  xpos 6109
+  ypos 929
+ }
+push $N23466400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c3_key]"
+  old_message {{67 117 115 116 111 109 32 51 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key13
+  label "\[value message]"
+  xpos 5953
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge29
+  xpos 5953
+  ypos 964
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform31
+  xpos 5953
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c3_line)}}
+ }
+push $N23466000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c2_value]"
+  old_message {{67 117 115 116 111 109 32 50 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value12
+  xpos 5745
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform28
+  xpos 5745
+  ypos 929
+ }
+push $N2342dc00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c2_key]"
+  old_message {{67 117 115 116 111 109 32 50 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key12
+  label "\[value message]"
+  xpos 5589
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge28
+  xpos 5589
+  ypos 964
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform29
+  xpos 5589
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c2_line)}}
+ }
+push $N2342d800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c1_value]"
+  old_message {{67 117 115 116 111 109 32 49 32 86}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 22
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value11
+  xpos 5303
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform26
+  xpos 5303
+  ypos 927
+ }
+push $N2342d400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.c1_key]"
+  old_message {{67 117 115 116 111 109 32 49 58}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key11
+  label "\[value message]"
+  xpos 5147
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge26
+  xpos 5147
+  ypos 962
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform27
+  xpos 5147
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(c1_line)}}
+ }
+push $N2342d000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.artist]"
+  old_message {{110 97 109 101}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {{curve x1 0} {curve x1 0} {(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TEXTBOX x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 20
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value10
+  xpos 4963
+  ypos 837
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform22
+  xpos 4963
+  ypos 927
+ }
+push $N2342cc00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Artist
+  old_message {{65 114 116 105 115 116}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 6
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key10
+  label "\[value message]"
+  xpos 4807
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge24
+  xpos 4807
+  ypos 963
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform25
+  xpos 4807
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(artist_line)}}
+ }
+push $N2342c800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.lens]"
+  old_message {{108 101 110 115}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value7
+  label "\[value message]"
+  xpos 4644
+  ypos 831
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform20
+  xpos 4644
+  ypos 928
+ }
+push $N2342c400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "Lens Info:"
+  old_message {{76 101 110 115 32 73 110 102 111 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 10
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key7
+  label "\[value message]"
+  xpos 4488
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge21
+  xpos 4488
+  ypos 963
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform11
+  xpos 4488
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(lens_line)}}
+ }
+push $N2342c000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.date]"
+  old_message {{50 48 50 52 45 48 50 45 48 49}
+    }
+  old_expression_markers {{0 9}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value6
+  xpos 4332
+  ypos 831
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform19
+  xpos 4332
+  ypos 910
+ }
+push $N23411c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Date:
+  old_message {{68 97 116 101 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 5
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key6
+  label "\[value message]"
+  xpos 4176
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge20
+  xpos 4176
+  ypos 981
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform10
+  xpos 4176
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(date_line)}}
+ }
+push $N23411800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.start_frame] - \[value parent.end_frame]"
+  old_message {{49 48 48 49 32 45 32 49 50 51 52}
+    }
+  old_expression_markers {{0 3 7 10}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 53
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value5
+  xpos 4020
+  ypos 830
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform18
+  xpos 4020
+  ypos 928
+ }
+push $N23411400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Frames:
+  old_message {{70 114 97 109 101 115 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 7
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key5
+  label "\[value message]"
+  xpos 3864
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge19
+  xpos 3864
+  ypos 977
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform9
+  xpos 3864
+  ypos 1053
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(frame_line)}}
+ }
+push $N23411000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value content_vendor_burnin.message]\n"
+  old_message {{83 83 86 70 88 10}
+    }
+  old_expression_markers {{0 4}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 38
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value4
+  xpos 3708
+  ypos 831
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform17
+  xpos 3708
+  ypos 892
+ }
+push $N23410c00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Vendor:
+  old_message {{86 101 110 100 111 114 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 7
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key4
+  label "\[value message]"
+  xpos 3552
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge18
+  xpos 3552
+  ypos 974
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform8
+  xpos 3552
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(vendor_line)}}
+ }
+push $N23410800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.version]"
+  old_message {{118 101 114 115 105 111 110}
+    }
+  old_expression_markers {{0 6}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 21
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value3
+  xpos 3396
+  ypos 830
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform16
+  xpos 3396
+  ypos 892
+ }
+push $N23410400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Version:
+  old_message {{86 101 114 115 105 111 110 58}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 8
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key3
+  label "\[value message]"
+  xpos 3240
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge17
+  xpos 3240
+  ypos 970
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform7
+  xpos 3240
+  ypos 1071
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(version_line)}}
+ }
+push $N23410000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.shot]"
+  old_message {{115 104 111 116}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {0 0 {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value2
+  xpos 3084
+  ypos 832
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform15
+  xpos 3084
+  ypos 899
+ }
+push $N233fbc00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Shot:
+  old_message {{83 104 111 116 58}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 0 10}
+    }
+  cursor_position 5
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key2
+  label "\[value message]"
+  xpos 2929
+  ypos 837
+ }
+ Merge2 {
+  inputs 2
+  name Merge16
+  xpos 2934
+  ypos 971
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform6
+  xpos 2934
+  ypos 999
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(shot_line)}}
+ }
+push $N233fb800
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.ep]"
+  old_message {{101 112 105 115 111 100 101}
+    }
+  old_expression_markers {{0 6}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 16
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value9
+  xpos 2811
+  ypos 838
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform14
+  xpos 2811
+  ypos 910
+ }
+push $N233fb400
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Episode:
+  old_message {{69 112 105 115 111 100 101 58}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 8
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key9
+  label "\[value message]"
+  xpos 2680
+  ypos 855
+ }
+ Merge2 {
+  inputs 2
+  name Merge5
+  xpos 2680
+  ypos 948
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform23
+  xpos 2680
+  ypos 981
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(ep_line)}}
+ }
+push $N233fb000
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.show]"
+  old_message {{83 104 111 119 32 78 97 109 101}
+    }
+  old_expression_markers {{0 8}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 18
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  name Value1
+  xpos 2570
+  ypos 847
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_VALUE_SEP} 0}
+  center {960 540}
+  name Transform5
+  xpos 2570
+  ypos 910
+ }
+push $N233fac00
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message Show:
+  old_message {{83 104 111 119 58}
+    }
+  box {{curve x1 0} {curve x1 0} {SLATE_REFORMAT.width x1 3656 x3 1} {SLATE_REFORMAT.height x1 3112}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 5
+  font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+  global_font_scale {{(1/100)*((SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_SCALE)}}
+  center {960 540}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1080}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 960 540 0 0 1 1 0 0 0 0}
+    }
+  color 0.25
+  name Key1
+  label "\[value message]"
+  xpos 2439
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge15
+  xpos 2439
+  ypos 927
+ }
+ Multiply {
+  channels rgba
+  value {{show_bool}}
+  name Multiply2
+  label "\[value value]"
+  xpos 2439
+  ypos 969
+ }
+ Transform {
+  translate {{(SLATE_REFORMAT.width/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.x} {(SLATE_REFORMAT.height/CONTROL_NULL.GRID)*CONTROL_NULL.TYPE_POS.y+((CONTROL_NULL.TYPE_UNIT.y)*LINE)}}
+  center {960 540}
+  name Transform24
+  xpos 2439
+  ypos 1017
+  addUserKnob {20 User}
+  addUserKnob {16 LINE t LINE}
+  LINE {{-(show_line)}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge23
+  xpos 2439
+  ypos 1053
+  disable {{"parent.epBool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge7
+  xpos 2439
+  ypos 1143
+  disable {{"shot_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge8
+  xpos 2439
+  ypos 1287
+  disable {{"version_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge9
+  xpos 2439
+  ypos 1359
+  disable {{"vendor_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge10
+  xpos 2439
+  ypos 1449
+  disable {{"frame_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge11
+  xpos 2439
+  ypos 1521
+  disable {{"date_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge12
+  xpos 2433
+  ypos 1593
+  disable {{"lens_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge25
+  xpos 2433
+  ypos 1647
+  disable {{"artist_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge27
+  xpos 2437
+  ypos 1701
+  disable {{"c1_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge32
+  xpos 2437
+  ypos 1773
+  disable {{"c2_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge33
+  xpos 2437
+  ypos 1845
+  disable {{"c3_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge34
+  xpos 2437
+  ypos 1917
+  disable {{"c4_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge35
+  xpos 2437
+  ypos 1989
+  disable {{"c5_bool == 1 ? 0 : 1"}}
+ }
+ Merge2 {
+  inputs 2
+  name Merge13
+  xpos 2437
+  ypos 2043
+  disable {{"notes_bool == 1 ? 0 : 1"}}
+ }
+ Crop {
+  box {0 0 {SLATE_REFORMAT.width} {SLATE_REFORMAT.height}}
+  name Crop6
+  xpos 2437
+  ypos 2079
+ }
+ Read {
+  inputs 0
+  file_type png
+  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  localizationPolicy off
+  origset true
+  premultiplied true
+  name logo_read_2
+  xpos 1716
+  ypos 353
+ }
+ Crop {
+  box {2927.02002 190.0200043 3617.100098 379.0599976}
+  reformat true
+  crop false
+  name Crop3
+  xpos 1716
+  ypos 495
+ }
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  center false
+  black_outside true
+  name Reformat9
+  xpos 1716
+  ypos 549
+ }
+ Transform {
+  translate {{(input.width/CONTROL_NULL.GRID)*(CONTROL_NULL.LOGO_POS.x)} {(input.width/CONTROL_NULL.GRID)*(CONTROL_NULL.LOGO_POS.y)}}
+  scale {{CONTROL_NULL.LOGO_SCALE/CONTROL_NULL.GRID}}
+  name Transform3
+  xpos 1716
+  ypos 590
+ }
+ ColorBars {
+  inputs 0
+  format "4096 2160 0 0 4096 2160 1 4K_DCP"
+  PAL true
+  name ColorBarsTester
+  xpos 1696
+  ypos -177
+ }
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  resize fill
+  center false
+  name Reformat7
+  xpos 1696
+  ypos -111
+ }
+ Reformat {
+  type "to box"
+  box_width {{input.width}}
+  box_height {{(input.height)/CONTROL_NULL.GRID}}
+  box_fixed true
+  black_outside true
+  name Reformat2
+  xpos 1696
+  ypos -70
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop2
+  xpos 1696
+  ypos -34
+ }
+ Transform {
+  translate {{curve} {((SLATE_REFORMAT.height)/CONTROL_NULL.GRID)*CONTROL_NULL.COLOUR_GRAD_POS.y}}
+  center {960 33.5}
+  name Transform2
+  xpos 1696
+  ypos 117
+ }
+ Dot {
+  name Dot4
+  xpos 1730
+  ypos 162
+ }
+push $N233fa000
+ Shuffle1 {
+  red black
+  green black
+  blue black
+  alpha white
+  name Shuffle1
+  xpos 1581
+  ypos -482
+ }
+ Expression {
+  temp_name0 v
+  temp_expr0 int(x/width*11)/10
+  temp_name1 size
+  temp_expr1 "height  / 16"
+  expr0 y<height-size?v:r
+  expr1 y<height-size?v:g
+  expr2 y<height-size?v:b
+  expr3 1
+  name bw_chips
+  xpos 1581
+  ypos -402
+ }
+ Reformat {
+  type "to box"
+  box_width {{input.width}}
+  box_height {{(input.height)/CONTROL_NULL.GRID}}
+  box_fixed true
+  black_outside true
+  name Reformat1
+  xpos 1581
+  ypos -351
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop1
+  xpos 1581
+  ypos -324
+ }
+ Transform {
+  translate {{curve} {"((\[topnode].height)/CONTROL_NULL.GRID)*CONTROL_NULL.BW_GRAD_POS.y"}}
+  center {960 33.5}
+  name Transform1
+  xpos 1581
+  ypos -300
+ }
+ Read {
+  inputs 0
+  file_type png
+  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+  localizationPolicy off
+  format "891 891 0 0 891 891 1 "
+  origset true
+  version 2
+  premultiplied true
+  name logo_read_3
+  xpos 1456
+  ypos -1083
+ }
+ Posterize {
+  Colors 1.2
+  name Posterize2
+  xpos 1456
+  ypos -987
+  disable true
+ }
+ Crop {
+  box {198.1999969 253.6000061 681.4000244 847.2000122}
+  reformat true
+  crop false
+  name Crop4
+  xpos 1456
+  ypos -957
+ }
+ Clamp {
+  name Clamp1
+  xpos 1456
+  ypos -879
+ }
+ Multiply {
+  value 0.005
+  name Multiply1
+  xpos 1456
+  ypos -843
+ }
+ Transform {
+  scale {{CONTROL_NULL.BG_LOGO_SCALE}}
+  center {0 {input.height}}
+  name Transform13
+  xpos 1456
+  ypos -801
+ }
+ Reformat {
+  type "to box"
+  box_width {{SLATE_REFORMAT.width}}
+  box_height {{SLATE_REFORMAT.height}}
+  box_fixed true
+  box_pixel_aspect {{SLATE_REFORMAT.pixel_aspect}}
+  resize height
+  center false
+  name Reformat6
+  xpos 1456
+  ypos -765
+ }
+push $N233d9c00
+ Grid {
+  number {{CONTROL_NULL.GRID}}
+  color 0.034
+  name Grid1
+  xpos 528
+  ypos -1233
+  disable true
+ }
+ Merge2 {
+  inputs 2
+  name Merge14
+  xpos 528
+  ypos -765
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge1
+  xpos 528
+  ypos -300
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge2
+  xpos 528
+  ypos 159
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge3
+  xpos 528
+  ypos 590
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge6
+  xpos 528
+  ypos 2079
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge4
+  xpos 528
+  ypos 2724
+ }
+ Dot {
+  name Dot1
+  xpos 562
+  ypos 2796
+ }
+ Reformat {
+  type "to box"
+  box_width {{parent.input_format.w}}
+  box_height {{(parent.input_format.h)}}
+  box_fixed true
+  box_pixel_aspect {{(parent.p_a)}}
+  resize height
+  name Reformat8
+  xpos 528
+  ypos 2872
+  disable true
+ }
+ Output {
+  name Output1
+  xpos 528
+  ypos 2925
+ }
+ Read {
+  inputs 0
+  file_type png
+  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  localizationPolicy off
+  origset true
+  premultiplied true
+  in_colorspace linear
+  out_colorspace linear
+  name logo_read_1
+  xpos 1441
+  ypos -1227
+ }
+ NoOp {
+  inputs 0
+  name CONTROL_NULL
+  xpos 353
+  ypos -1233
+  addUserKnob {20 User}
+  addUserKnob {12 TYPE_POS t TYPE_POS}
+  TYPE_POS {1.5 24}
+  addUserKnob {16 TYPE_SCALE t TYPE_SCALE}
+  TYPE_SCALE 0.6
+  addUserKnob {16 TYPE_LEADING t TYPE_LEADING}
+  TYPE_LEADING 1
+  addUserKnob {16 TYPE_VALUE_SEP t TYPE_VALUE_SEP}
+  TYPE_VALUE_SEP 3
+  addUserKnob {12 TYPE_UNIT t TYPE_UNIT}
+  TYPE_UNIT {{(SLATE_REFORMAT.width/GRID)} {(SLATE_REFORMAT.height/GRID)*TYPE_LEADING}}
+  addUserKnob {16 TEXTBOX}
+  TEXTBOX 11
+  addUserKnob {26 ""}
+  addUserKnob {12 THUMB_POS t THUMB_POS}
+  THUMB_POS {17 13}
+  addUserKnob {3 THUMB_SCALE t THUMB_SCALE}
+  THUMB_SCALE 14
+  addUserKnob {26 ""}
+  addUserKnob {3 LOGO_SCALE t LOGO_SCALE}
+  LOGO_SCALE 3
+  addUserKnob {12 LOGO_POS t LOGO_POS}
+  LOGO_POS {27 0.5}
+  addUserKnob {16 BG_LOGO_SCALE t BG_LOGO_SCALE}
+  BG_LOGO_SCALE 2
+  addUserKnob {12 BG_LOGO_POS t BG_LOGO_POS}
+  addUserKnob {26 ""}
+  addUserKnob {12 BW_GRAD_POS}
+  BW_GRAD_POS {0 5}
+  addUserKnob {12 COLOUR_GRAD_POS t COLOUR_GRAD_POS}
+  COLOUR_GRAD_POS {0 4}
+  addUserKnob {26 ""}
+  addUserKnob {3 GRID l "GRID UNITS"}
+  GRID 32
+ }
+end_group
+set N231ac580 [stack 0]
+Dot {
+ name Dot1
+ xpos -1541
+ ypos 2688
+}
+push $N23386400
+Dot {
+ name Dot8
+ xpos -342
+ ypos 1928
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[value SSVFX_SLATE.show]"
+ old_message {{83 104 111 103 117 110}
+   }
+ old_expression_markers {{0 5}
+   }
+ box {10 {height-75 x1000 1040} {width-box.x x1000 1910} {height-1 x1000 1065}}
+ xjustify center
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100}
+   }
+ cursor_position 23
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_project_burnin
+ xpos -376
+ ypos 2101
+ disable true
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "  /\n"
+ old_message {{32 32 47 10}
+   }
+ box {60 {height-75} {width-box.x} {height-1}}
+ transforms {{0 2}
+   }
+ cursor_position 2
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_vendor_burnin_slash
+ xpos -376
+ ypos 2154
+ disable true
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message SVX
+ old_message {{83 86 88}
+   }
+ box {10 {height-75} {width-box.x} {height-1}}
+ transforms {{0 2}
+   }
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_vendor_burnin1
+ xpos -502
+ ypos 2154
+ disable true
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[value SSVFX_SLATE.show]"
+ old_message {{83 104 111 119 32 78 97 109 101}
+   }
+ old_expression_markers {{0 8}
+   }
+ box {10 {height-100 x1001 1005} {width-box.x x1001 1910} {height-3 x1001 1081}}
+ transforms {{0 2}
+   }
+ cursor_position 23
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_version_burnin
+ xpos -605
+ ypos 2154
+}
+Dot {
+ name Dot7
+ xpos -571
+ ypos 2195
+}
+Dot {
+ name Dot17
+ xpos -205
+ ypos 2195
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[clock format \[clock seconds] -format %d/%m/%Y]"
+ old_message {{48 49 47 48 50 47 50 48 50 52}
+   }
+ old_expression_markers {{0 9}
+   }
+ box {10 {height-100} {width-box.x} {height-3}}
+ xjustify right
+ transforms {{0 2}
+   }
+ font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 0 70 1 70 2 70 3 70 4 70 5 70 6 70 7 70 8 70 9 70}
+   }
+ cursor_position 47
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_date_burnin
+ xpos -239
+ ypos 2145
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[value SSVFX_SLATE.version]"
+ old_message {{118 101 114 115 105 111 110}
+   }
+ old_expression_markers {{0 6}
+   }
+ box {10 0 {width/2.5-box.x} 100}
+ yjustify bottom
+ transforms {{0 2}
+   }
+ cursor_position 27
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_notes_burnin
+ xpos -612
+ ypos 2358
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message SSVFX
+ old_message {{83 83 86 70 88}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify center
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_vendor_burnin
+ xpos -495
+ ypos 2358
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\n"
+ old_message {{10}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify center
+ yjustify bottom
+ transforms {{0 2}
+   }
+ cursor_position 1
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_lensinfo_burnin
+ xpos -379
+ ypos 2358
+}
+Text2 {
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 100
+ message "\[format %04d \[expr \[value frame]]] of \[format %04d \[expr \[value last_frame]]] "
+ old_message {{49 48 48 48 32 111 102 32 49 48 57 50 32}
+   }
+ old_expression_markers {{0 3 8 11}
+   }
+ box {10 0 {width-box.x} 100}
+ xjustify right
+ yjustify bottom
+ transforms {{0 2}
+   }
+ font {{ Gotham Rounded : Book : GothamRnd-Book.otf : 0 }}
+ global_font_scale {{format.height*content_textscalar_burnin.content_textscalar_burnin/100000}}
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{2066.5 25.5}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ enable_shadows true
+ shadow_distance 2
+ name content_framecounter_burnin
+ xpos -238
+ ypos 2358
+}
+Dot {
+ name Dot19
+ xpos -204
+ ypos 2530
+}
+push $N23386400
+Switch {
+ inputs 2
+ which 1
+ name burnin_switch
+ xpos -1065
+ ypos 2527
+}
+Switch {
+ inputs 2
+ which {{"(frame == root.first_frame || frame == root.first_frame) ? 1 : 0"}}
+ name slate_switch
+ xpos -1065
+ ypos 2685
+}
+AddTimeCode {
+ startcode 00:00:41:16
+ metafps false
+ frame {{"\[ expr \[frames \{first\}] ]"}}
+ useFrame true
+ name main_timecode
+ label "\nCalculates timecode based on 0:00:00:00 starting at frame 0000. \nSo for clips starting at frame 1000, timecode would be 00:00:41:16\n\nPlease embed \"frame accurate\" timecode for both editorial and vfx quicktimes."
+ xpos -1065
+ ypos 2990
+}
+set N88b2b400 [stack 0]
+Dot {
+ name Dot57
+ xpos -491
+ ypos 3023
+}
+FrameHold {
+ firstFrame 1075
+ name FrameHold1
+ xpos -525
+ ypos 3196
+}
+Dot {
+ name Dot58
+ xpos -491
+ ypos 3232
+}
+push $N231ac580
+Viewer {
+ frame_range 1000-1195
+ rgb_only true
+ viewerProcess None
+ monitorOutOutputTransform rec709
+ name Viewer1
+ xpos 19
+ ypos 3306
+}
+push $N88b2b400
+Write {
+ colorspace linear
+ raw true
+ file_type mov
+ mov64_format "mov (QuickTime / MOV)"
+ mov64_codec AVdn
+ mov64_dnxhd_codec_profile "DNxHD 422 8-bit 36Mbit"
+ mov_h264_codec_profile "High 4:2:0 8-bit"
+ mov64_pixel_format {{0}}
+ mov64_quality High
+ mov64_write_timecode true
+ mov64_gop_size 12
+ mov64_b_frames 0
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 4000000
+ mov64_quality_min 1
+ mov64_quality_max 3
+ create_directories true
+ checkHashOnRead false
+ version 43
+ name main_write
+ xpos -1065
+ ypos 3132
+ postage_stamp true
+}
