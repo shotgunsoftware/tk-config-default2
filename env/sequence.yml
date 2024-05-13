@@ -22,7 +22,6 @@ description: Apps and engines loaded when a Sequence is loaded. Since std VFX
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-maya.yml
@@ -35,7 +34,6 @@ includes:
 # configuration for all engines to load in a sequence context
 
 engines:
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.sequence"
   tk-3dsmax: "@settings.tk-3dsmax.sequence"
   tk-houdini: "@settings.tk-houdini.sequence"
   tk-maya: "@settings.tk-maya.sequence"
