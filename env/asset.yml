@@ -22,7 +22,6 @@ description: Apps and engines loaded when an Asset is loaded. Since std VFX
 
 includes:
 - ./includes/frameworks.yml
-- ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-mari.yml
@@ -40,7 +39,6 @@ includes:
 # configuration for all engines to load in an asset context
 
 engines:
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset"
   tk-3dsmax: "@settings.tk-3dsmax.asset"
   tk-houdini: "@settings.tk-houdini.asset"
   tk-mari: "@settings.tk-mari.asset"
