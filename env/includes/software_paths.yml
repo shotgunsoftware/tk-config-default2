@@ -20,7 +20,7 @@ path.mac.mari: "/Applications/Mari4.7v7/Mari4.7v7.app" # Latest version for macO
 path.windows.mari: C:\Program Files\Mari7.0v2\Bundle\bin\Mari7.0v2.exe
 
 # Motionbuilder
-path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2020\bin\x64\motionbuilder.exe
+path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2025\bin\x64\motionbuilder.exe
 
 # Hiero
 path.linux.hiero: "Nuke12.1"
