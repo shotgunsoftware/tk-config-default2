@@ -13,27 +13,18 @@
 
 ################################################################################
 
-# 3dsMax
-engines.tk-3dsmaxplus.location:
-  type: app_store
-  name: tk-3dsmaxplus
-  version: v0.6.2
 engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
-  version: v1.3.1
+  version: v1.3.2
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
   version: v0.4.0
 engines.tk-alias.location:
-  # type: app_store
-  # name: tk-alias
-  # version: v3.2.0
-  type: git_branch
-  branch: ticket/SHOT-4158-dv-auto-refresh
-  path: https://github.com/shotgunsoftware/tk-alias.git
-  version: 2561ff3
+  type: app_store
+  name: tk-alias
+  version: v3.3.0
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -49,19 +40,15 @@ engines.tk-flame.location:
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.9.0
+  version: v1.9.1
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
   version: v1.4.1
 engines.tk-maya.location:
-#  type: app_store
-#  name: tk-maya
-  # version: v0.12.1
-  type: git_branch
-  path: https://github.com/shotgunsoftware/tk-maya.git
-  branch: SHOT-4029-maya-DV
-  version: db69261
+  type: app_store
+  name: tk-maya
+  version: v0.13.0
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
@@ -83,10 +70,6 @@ engines.tk-shotgun.location:
   name: tk-shotgun
   version: v0.11.0
 engines.tk-vred.location:
-  # type: app_store
-  # name: tk-vred
-  # version: v3.2.1
-  type: git_branch
-  branch: ticket/SHOT-4158-dv-auto-refresh
-  path: https://github.com/shotgunsoftware/tk-vred.git
-  version: 9817f3a
+  type: app_store
+  name: tk-vred
+  version: v3.3.0
