@@ -1,6 +1,6 @@
 primary:
   default: true
-  linux_path: "~/ShotGrid-Toolkit-Data/storages"
-  mac_path: "~/Documents/ShotGrid-Files"
+  linux_path: "/opt/SGTK-Data-Storage"
+  mac_path: "/opt/SGTK-Data-Storage"
   shotgun_storage_id: 3
-  windows_path: "C:\\Users\\julien\\Documents\\SG-Test-Config"
+  windows_path: "C:\\SGTK-Data-Storage"
