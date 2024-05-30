@@ -28,7 +28,7 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.7.1
+  version: v2.7.2
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
