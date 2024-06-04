@@ -49,9 +49,8 @@ apps.tk-multi-loader2.location:
   name: tk-multi-loader2
   version: v1.25.0
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.8.4
+  type: dev
+  path: "C:\\Users\\langloj\\git\\sgtk\\tk-multi-publish2"
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
