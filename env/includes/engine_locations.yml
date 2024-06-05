@@ -23,17 +23,19 @@ engines.tk-3dsmax.location:
   name: tk-3dsmax
   version: v1.3.0
 engines.tk-aftereffects.location:
-  type: app_store
-  name: tk-aftereffects
-  version: v0.4.0
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4
+  path: https://github.com/shotgunsoftware/tk-aftereffects.git
+  version: ca08458227eac54353cb0e039417ebdcc0202ea1
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
   version: v3.2.0
 engines.tk-desktop.location:
-  type: app_store
-  name: tk-desktop
-  version: v2.7.1
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4
+  path: https://github.com/shotgunsoftware/tk-desktop.git
+  version: 48e740c6395b0c710431acce4e5093b259fb0ee9
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
@@ -51,9 +53,10 @@ engines.tk-mari.location:
   name: tk-mari
   version: v1.4.0
 engines.tk-maya.location:
-  type: app_store
-  name: tk-maya
-  version: v0.12.1
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4-and-pyside
+  path: https://github.com/shotgunsoftware/tk-maya.git
+  version: fcfda41b5904fa3a7a084ee53bdd1d8d11b5041b
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
@@ -63,18 +66,21 @@ engines.tk-nuke.location:
   name: tk-nuke
   version: v0.15.0
 engines.tk-photoshopcc.location:
-  type: app_store
-  name: tk-photoshopcc
-  version: v1.10.0
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4
+  path: https://github.com/shotgunsoftware/tk-photoshopcc.git
+  version: 4a92f55063e37e80674aefdc492cb27c92ccc37b
 engines.tk-shell.location:
-  type: app_store
-  name: tk-shell
-  version: v0.10.0
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4
+  path: https://github.com/shotgunsoftware/tk-shell.git
+  version: 3db9b0e8bee293e5c7f36593c147e0b96bccd638
 engines.tk-shotgun.location:
   type: app_store
   name: tk-shotgun
   version: v0.11.0
 engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v3.2.0
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4
+  path: https://github.com/shotgunsoftware/tk-vred.git
+  version: b3ba0d1255eff7a91e313f7bad94597436416c3b

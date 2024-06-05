@@ -49,13 +49,15 @@ apps.tk-multi-loader2.location:
   name: tk-multi-loader2
   version: v1.25.0
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.8.3
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4
+  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
+  version: 44bfa42c713ccd73a5584938866382c796f11c9c
 apps.tk-multi-pythonconsole.location:
-  type: app_store
-  name: tk-multi-pythonconsole
-  version: v1.4.0
+  type: git_branch
+  branch: ticket/SG-30560-code-cleanup-qt4
+  path: https://github.com/shotgunsoftware/tk-multi-pythonconsole.git
+  version: 6b63dea1ce75db8cdbe51daef6d53ff1118644c5
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
