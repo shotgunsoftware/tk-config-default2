@@ -45,7 +45,7 @@ frameworks:
       type: git_branch
       branch: ticket/SG-30560-code-cleanup-qt4
       path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      version: 3d86aa11058514ce3edf0e22a3ec6f8c069700f4
+      version: 675176e277510844cb0d58d32acc5151e2ae0b7c
   tk-framework-shotgunutils_v4.x.x:
     location:
       type: git_branch
