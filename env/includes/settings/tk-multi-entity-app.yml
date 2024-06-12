@@ -40,10 +40,7 @@ settings.tk-multi-entity-app.alias:
   entities:
   - caption: Project
     entity_type: Project
-    filters:
-    - [archived, is, False]
-    - [is_template, is, False]
-    - [is_demo, is, False]
+    filters: []
     hierarchy: [name]
   - caption: Assets
     entity_type: Asset
@@ -83,10 +80,7 @@ settings.tk-multi-entity-app.vred:
   entities:
   - caption: Project
     entity_type: Project
-    filters:
-    - [archived, is, False]
-    - [is_template, is, False]
-    - [is_demo, is, False]
+    filters: []
     hierarchy: [name]
   - caption: Assets
     entity_type: Asset
