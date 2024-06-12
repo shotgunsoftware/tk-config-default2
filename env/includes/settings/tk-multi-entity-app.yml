@@ -38,6 +38,13 @@ settings.tk-multi-entity-app.alias:
     F3d File: [import_subdiv]
     Sf3d File: [import_subdiv]
   entities:
+  - caption: Project
+    entity_type: Project
+    filters:
+    - [archived, is, False]
+    - [is_template, is, False]
+    - [is_demo, is, False]
+    hierarchy: [name]
   - caption: Assets
     entity_type: Asset
     filters: []
@@ -74,6 +81,13 @@ settings.tk-multi-entity-app.vred:
     Image: [import_sceneplate]
     Rendered Image: [import_sceneplate]
   entities:
+  - caption: Project
+    entity_type: Project
+    filters:
+    - [archived, is, False]
+    - [is_template, is, False]
+    - [is_demo, is, False]
+    hierarchy: [name]
   - caption: Assets
     entity_type: Asset
     filters: []
