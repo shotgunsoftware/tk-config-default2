@@ -186,7 +186,7 @@ settings.tk-multi-publish2.maya.asset_step:
 
 # shot step
 settings.tk-multi-publish2.maya.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/maya/collector.py"
   collector_settings:
       Work Template: maya_shot_work
   publish_plugins:
@@ -203,6 +203,11 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
+  - name: Publish to Flow Production Tracking
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_camera.py"
+    settings:
+        Publish Template: maya_shot_camera_publish
+        Cameras: [cam*]   
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
