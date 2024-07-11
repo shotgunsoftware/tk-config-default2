@@ -352,6 +352,7 @@ settings.tk-multi-loader2.alias:
     Catproduct File: [import, import_as_reference]
     Fbx File: [import]
     Motion Builder FBX: [import]
+    ICEM: [import]
     Image: [texture_node]
     Photoshop Image: [texture_node]
     Tif File: [texture_node]
