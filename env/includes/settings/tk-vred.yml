@@ -92,7 +92,7 @@ settings.tk-vred.project:
   run_at_startup:
   - { app_instance: tk-multi-shotgunpanel, name: '' }
   - { app_instance: tk-multi-workfiles2, name: 'File Open...' }
-  - { app_instance: tk-multi-pythonconsole, name: 'Flow Production Tracking Python Console...' }
+  - { app_instance: tk-multi-pythonconsole, name: 'PTR Python Console...' }
   - { app_instance: tk-multi-data-validation, name: 'Data Validation...' }
   docked_apps:
     tk-multi-shotgunpanel:
