@@ -25,7 +25,6 @@ settings.tk-shell.asset:
   apps:
     tk-multi-launchapp: '@settings.tk-multi-launchapp'
     tk-multi-launchmari: '@settings.tk-multi-launchapp.mari'
-    tk-multi-launchmotionbuilder: '@settings.tk-multi-launchapp.motionbuilder'
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
   location: '@engines.tk-shell.location'
@@ -35,7 +34,6 @@ settings.tk-shell.asset_step:
   apps:
     tk-multi-launchapp: '@settings.tk-multi-launchapp'
     tk-multi-launchmari: '@settings.tk-multi-launchapp.mari'
-    tk-multi-launchmotionbuilder: '@settings.tk-multi-launchapp.motionbuilder'
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
   location: '@engines.tk-shell.location'
@@ -48,8 +46,7 @@ settings.tk-shell.project:
     tk-multi-launchapp: '@settings.tk-multi-launchapp'
     tk-multi-launchhiero: '@settings.tk-multi-launchapp.hiero'
     tk-multi-launchmari: '@settings.tk-multi-launchapp.mari'
-    tk-multi-launchmotionbuilder: '@settings.tk-multi-launchapp.motionbuilder'
-    tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
+    # tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
   location: '@engines.tk-shell.location'
 
@@ -57,7 +54,6 @@ settings.tk-shell.project:
 settings.tk-shell.sequence:
   apps:
     tk-multi-launchapp: '@settings.tk-multi-launchapp'
-    tk-multi-launchmotionbuilder: '@settings.tk-multi-launchapp.motionbuilder'
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
   location: '@engines.tk-shell.location'
@@ -66,7 +62,6 @@ settings.tk-shell.sequence:
 settings.tk-shell.shot:
   apps:
     tk-multi-launchapp: '@settings.tk-multi-launchapp'
-    tk-multi-launchmotionbuilder: '@settings.tk-multi-launchapp.motionbuilder'
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
   location: '@engines.tk-shell.location'
@@ -75,7 +70,6 @@ settings.tk-shell.shot:
 settings.tk-shell.shot_step:
   apps:
     tk-multi-launchapp: '@settings.tk-multi-launchapp'
-    tk-multi-launchmotionbuilder: '@settings.tk-multi-launchapp.motionbuilder'
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
     tk-multi-screeningroom: '@settings.tk-multi-screeningroom.rv'
   location: '@engines.tk-shell.location'

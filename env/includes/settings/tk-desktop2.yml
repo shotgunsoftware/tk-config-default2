@@ -31,6 +31,5 @@ settings.tk-desktop2.all:
     tk-multi-launchapp: "@settings.tk-multi-launchapp"
     tk-multi-launchhiero: "@settings.tk-multi-launchapp.hiero"
     tk-multi-launchmari: "@settings.tk-multi-launchapp.mari"
-    tk-multi-launchmotionbuilder: "@settings.tk-multi-launchapp.motionbuilder"
     tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
   location: "@engines.tk-desktop2.location"
