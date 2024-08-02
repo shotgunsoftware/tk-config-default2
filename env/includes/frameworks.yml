@@ -17,9 +17,13 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.2.1
-      type: app_store
-      name: tk-framework-adobe
+      # version: v1.2.1
+      # type: app_store
+      # name: tk-framework-adobe
+      type: git_branch
+      branch: ticket/SG-35935-first-phase-python2-removing
+      path: https://github.com/shotgunsoftware/tk-framework-adobe.git
+      version: aa9b3e794e554e5e0518f20405e02108b9bac322
   tk-framework-adminui_v0.x.x:
     location:
       version: v0.7.6
@@ -37,14 +41,22 @@ frameworks:
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.7.0
-      type: app_store
-      name: tk-framework-desktopserver
+      # version: v1.7.0
+      # type: app_store
+      # name: tk-framework-desktopserver
+      type: git_branch
+      branch: ticket/SG-35935-first-phase-python2-removing
+      path: https://github.com/shotgunsoftware/tk-framework-desktopserver.git
+      version: bf4e1de891c7b0840e072f3cafcea6194ffd9711
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.12.0
-      type: app_store
-      name: tk-framework-qtwidgets
+      # version: v2.12.0
+      # type: app_store
+      # name: tk-framework-qtwidgets
+      type: git_branch
+      branch: ticket/SG-29997-first-phase-python2-dropping
+      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
+      version: 6f272a2407974a347102f81ff3c7a4b52becc83b
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -52,9 +64,13 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.9.1
-      type: app_store
-      name: tk-framework-shotgunutils
+      # version: v5.9.1
+      # type: app_store
+      # name: tk-framework-shotgunutils
+      type: git_branch
+      branch: ticket/SG-35935-first-phase-python2-removing
+      path: https://github.com/shotgunsoftware/tk-framework-shotgunutils.git
+      version: bc8b3f005d318ba7377b643466abf306672d5299
   tk-framework-widget_v0.2.x:
     location:
       version: v0.2.8
@@ -62,14 +78,22 @@ frameworks:
       name: tk-framework-widget
   tk-framework-widget_v1.x.x:
     location:
-      version: v1.2.0
-      type: app_store
-      name: tk-framework-widget
+      # version: v1.2.0
+      # type: app_store
+      # name: tk-framework-widget
+      type: git_branch
+      branch: ticket/SG-35935-first-phase-python2-removing
+      path: https://github.com/shotgunsoftware/tk-framework-widget.git
+      version: bc8b3f005d318ba7377b643466abf306672d5299
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.3.3
-      type: app_store
-      name: tk-framework-desktopclient
+      # version: v0.3.3
+      # type: app_store
+      # name: tk-framework-desktopclient
+      type: git_branch
+      branch: ticket/SG-35935-first-phase-python2-removing
+      path: https://github.com/shotgunsoftware/tk-framework-desktopclient.git
+      version: 452c3593e3b4fe283c105ed52ca37f60b59f588d
   tk-framework-lmv_v0.x.x:
     location:
       version: v0.2.2

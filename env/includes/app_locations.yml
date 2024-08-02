@@ -29,25 +29,37 @@ apps.tk-multi-breakdown.location:
   name: tk-multi-breakdown
   version: v1.9.0
 apps.tk-multi-breakdown2.location:
-  type: app_store
-  name: tk-multi-breakdown2
-  version: v0.3.0
+  # type: app_store
+  # name: tk-multi-breakdown2
+  # version: v0.3.0
+  type: git_branch
+  branch: https://github.com/shotgunsoftware/tk-multi-breakdown2.git
+  path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
+  version: 4e1b3534911c0f75f26cdf98143f1932e7732cfd
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
   version: v0.2.0
 apps.tk-multi-demo.location:
-  type: app_store
-  name: tk-multi-demo
-  version: v1.4.0
+  # type: app_store
+  # name: tk-multi-demo
+  # version: v1.4.0
+  type: git_branch
+  branch: ticket/SG-35758-first-phase-remove-python2
+  path: https://github.com/shotgunsoftware/tk-multi-demo.git
+  version: 9ea5130edc99d2b6cd422da4e360d01722816ef6
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
   version: v0.13.0
 apps.tk-multi-loader2.location:
-  type: app_store
-  name: tk-multi-loader2
-  version: v1.25.0
+  # type: app_store
+  # name: tk-multi-loader2
+  # version: v1.25.0
+  type: git_branch
+  branch: ticket/SG-35762-first-phase-python2-removing
+  path: https://github.com/shotgunsoftware/tk-multi-loader2.git
+  version: f03850ce5fbf26f82880871cfc62fd84c6508f4e
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
@@ -61,29 +73,42 @@ apps.tk-multi-reviewsubmission.location:
   name: tk-multi-reviewsubmission
   version: v1.3.0
 apps.tk-multi-screeningroom.location:
-  type: app_store
-  name: tk-multi-screeningroom
-  version: v0.6.0
+  # type: app_store
+  # name: tk-multi-screeningroom
+  # version: v0.6.0
+  type: git_branch
+  branch: ticket/SG-35769-first-phase-python2-removing
+  path: https://github.com/shotgunsoftware/tk-multi-screeningroom.git
+  version: b10cad52eccf3c1ad58117e60824eb7df5ef6e93
 apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
   version: v0.6.0
 apps.tk-multi-shotgunpanel.location:
-  type: app_store
-  name: tk-multi-shotgunpanel
-  version: v1.9.0
+  # type: app_store
+  # name: tk-multi-shotgunpanel
+  # version: v1.9.0
+  type: git_branch
+  branch: ticket/SG-35769-first-phase-python2-removing
+  path: https://github.com/shotgunsoftware/tk-multi-shotgunpanel.git
+  version: 5238a7afd3826e9c960c0d6b5b5289623a566261
 apps.tk-multi-snapshot.location:
-  type: app_store
-  name: tk-multi-snapshot
-  version: v0.10.0
+  type: git_branch
+  branch: ticket/SG-35770-first-phase-python2-removing
+  path: https://github.com/shotgunsoftware/tk-multi-snapshot.git
+  version: b953a6887ae70c13b5d11a763c2169dcb153fc87
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
   version: v0.15.0
 apps.tk-multi-devutils.location:
-  type: app_store
-  name: tk-multi-devutils
-  version: v1.3.0
+  # type: app_store
+  # name: tk-multi-devutils
+  # version: v1.3.0
+  type: git_branch
+  branch: ticket/SG-35760-first-phase-pythn2-removing
+  path: https://github.com/shotgunsoftware/tk-multi-devutils.git
+  version: 42e111fae7c15375e06bdaccc7b32d5055a0d20d
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
