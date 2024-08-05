@@ -18,4 +18,4 @@ location:
   type: git_branch
   branch: ticket/SG-29997-first-phase-python2-dropping
   path: https://github.com/shotgunsoftware/tk-core.git
-  version: 5258eefe3e56445c41c48d6fd75d002da8d29dfc
+  version: dd22389ae1458150a8c7a3cf4db652f91ac5a087
