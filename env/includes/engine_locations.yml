@@ -26,17 +26,25 @@ engines.tk-alias.location:
   name: tk-alias
   version: v3.3.1
 engines.tk-desktop.location:
-  type: app_store
-  name: tk-desktop
-  version: v2.7.3
+  # type: app_store
+  # name: tk-desktop
+  # version: v2.7.3
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-desktop.git
+  version: dc91a949fe68b815ef58728c5b47359264c4e721
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
   version: v1.6.0
 engines.tk-flame.location:
-  type: app_store
-  name: tk-flame
-  version: v1.19.0
+  # type: app_store
+  # name: tk-flame
+  # version: v1.19.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-flame.git
+  version: 6ed8dd867d77c4bd7dcef28c5b7646a8bb01c6ee
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini

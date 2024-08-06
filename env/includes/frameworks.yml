@@ -22,9 +22,13 @@ frameworks:
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.6
-      type: app_store
-      name: tk-framework-adminui
+      # version: v0.7.6
+      # type: app_store
+      # name: tk-framework-adminui
+      type: git_branch
+      branch: ticket/SG-33500-new-build-resources-yml
+      path: https://github.com/shotgunsoftware/tk-framework-adminui.git
+      version: 4594f759eeb49eab82f3b6f2c35981fb73733dae
   tk-framework-alias_v1.x.x:
     location:
       version: v1.4.1
@@ -42,9 +46,13 @@ frameworks:
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.12.2
-      type: app_store
-      name: tk-framework-qtwidgets
+      # version: v2.12.2
+      # type: app_store
+      # name: tk-framework-qtwidgets
+      type: git_branch
+      branch: ticket/SG-33500-new-build-resources-yml
+      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
+      version: a654fdfcd1b48cfbbfa0cf722a52e16055d2f542
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -52,9 +60,13 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.10.0
-      type: app_store
-      name: tk-framework-shotgunutils
+      # version: v5.10.0
+      # type: app_store
+      # name: tk-framework-shotgunutils
+      type: git_branch
+      branch: ticket/SG-33500-new-build-resources-yml
+      path: https://github.com/shotgunsoftware/tk-framework-shotgunutils.git
+      version: c733ced0b1d12e8fc04b3cd6dad9e8e2b7bbd880
   tk-framework-widget_v0.2.x:
     location:
       version: v0.2.8
@@ -62,9 +74,13 @@ frameworks:
       name: tk-framework-widget
   tk-framework-widget_v1.x.x:
     location:
-      version: v1.2.0
-      type: app_store
-      name: tk-framework-widget
+      # version: v1.2.0
+      # type: app_store
+      # name: tk-framework-widget
+      type: git_branch
+      branch: ticket/SG-33500-new-build-resources-yml
+      path: https://github.com/shotgunsoftware/tk-framework-widget.git
+      version: 22f9cc52e22eec0c8ea5173eae66d01f464776e3
   tk-framework-desktopclient_v0.x.x:
     location:
       version: v0.3.3

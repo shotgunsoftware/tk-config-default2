@@ -12,6 +12,10 @@
 # core API that should be used at runtime.
 
 location:
-  type: app_store
-  name: tk-core
-  version: v0.21.6
+  # type: app_store
+  # name: tk-core
+  # version: v0.21.6
+  type: git_branch
+  branch: ticket/SG-33500-build_resources-file-updated-to-work-with-pyside2
+  path: https://github.com/shotgunsoftware/tk-core.git
+  version: acaad06f2022ba488db26baf4657d81bd32597a8
