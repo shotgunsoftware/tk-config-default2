@@ -16,6 +16,6 @@ location:
   # name: tk-core
   # version: v0.21.2
   type: git_branch
-  branch: ticket/SG-29997-first-phase-python2-dropping
+  branch: python2-clean-und-build-resources
   path: https://github.com/shotgunsoftware/tk-core.git
-  version: dd22389ae1458150a8c7a3cf4db652f91ac5a087
+  version: 2d92c8b93df502e3925e6ad73c5a4012157e6708

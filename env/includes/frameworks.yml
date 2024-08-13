@@ -54,9 +54,9 @@ frameworks:
       # type: app_store
       # name: tk-framework-qtwidgets
       type: git_branch
-      branch: ticket/SG-29997-first-phase-python2-dropping
+      branch: python2-clean-and-build-resources
       path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      version: 6f272a2407974a347102f81ff3c7a4b52becc83b
+      version: 92e3df07aa644d93208fd71e5cb68f09a188a6f8
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
@@ -68,9 +68,9 @@ frameworks:
       # type: app_store
       # name: tk-framework-shotgunutils
       type: git_branch
-      branch: ticket/SG-35935-first-phase-python2-removing
+      branch: python2-clean-and-build-resources
       path: https://github.com/shotgunsoftware/tk-framework-shotgunutils.git
-      version: bc8b3f005d318ba7377b643466abf306672d5299
+      version: 5c0350c71389c8a8e7c18c68029a3fb337432eaa
   tk-framework-widget_v0.2.x:
     location:
       version: v0.2.8
@@ -82,9 +82,9 @@ frameworks:
       # type: app_store
       # name: tk-framework-widget
       type: git_branch
-      branch: ticket/SG-35935-first-phase-python2-removing
+      branch: python2-clean-and-build-resources
       path: https://github.com/shotgunsoftware/tk-framework-widget.git
-      version: bc8b3f005d318ba7377b643466abf306672d5299
+      version: abf96888f3d7f44969c93f5ddc1d30c101566a41
   tk-framework-desktopclient_v0.x.x:
     location:
       # version: v0.3.3

@@ -21,13 +21,21 @@ includes:
 
 # about
 apps.tk-multi-about.location:
-  type: app_store
-  name: tk-multi-about
-  version: v0.5.0
+  # type: app_store
+  # name: tk-multi-about
+  # version: v0.5.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-multi-about.git
+  version: 7a75513c01e46ecdec4b3437150ab2c10a89e7a1
 apps.tk-multi-breakdown.location:
-  type: app_store
-  name: tk-multi-breakdown
-  version: v1.9.0
+  # type: app_store
+  # name: tk-multi-breakdown
+  # version: v1.9.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-multi-breakdown.git
+  version: a2fbcf79f5ec0fa430d4dea20a07ae3754629187
 apps.tk-multi-breakdown2.location:
   # type: app_store
   # name: tk-multi-breakdown2
@@ -45,29 +53,41 @@ apps.tk-multi-demo.location:
   # name: tk-multi-demo
   # version: v1.4.0
   type: git_branch
-  branch: ticket/SG-35758-first-phase-remove-python2
+  branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-multi-demo.git
-  version: 9ea5130edc99d2b6cd422da4e360d01722816ef6
+  version: d31d24673de87ce8f044f4035038caec94252484
 apps.tk-multi-launchapp.location:
-  type: app_store
-  name: tk-multi-launchapp
-  version: v0.13.0
+  # type: app_store
+  # name: tk-multi-launchapp
+  # version: v0.13.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-multi-launchapp.git
+  version: dc913e34bf435081c206594e0fe3fe85a7f80931
 apps.tk-multi-loader2.location:
   # type: app_store
   # name: tk-multi-loader2
   # version: v1.25.0
   type: git_branch
-  branch: ticket/SG-35762-first-phase-python2-removing
+  branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-multi-loader2.git
-  version: f03850ce5fbf26f82880871cfc62fd84c6508f4e
+  version: e773ab3b3fbc3f8d2b27ce461db4cc84a65b636b
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.8.3
+  # type: app_store
+  # name: tk-multi-publish2
+  # version: v2.8.3
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-multi-about.git
+  version: 1540bb6d0bcd04b555e96069cc22feb6a3476cdc
 apps.tk-multi-pythonconsole.location:
-  type: app_store
-  name: tk-multi-pythonconsole
-  version: v1.4.0
+  # type: app_store
+  # name: tk-multi-pythonconsole
+  # version: v1.4.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-multi-pythonconsole.git
+  version: ed68715e31997fd56b5ab5f1e9cc162243a339f8
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
@@ -89,26 +109,30 @@ apps.tk-multi-shotgunpanel.location:
   # name: tk-multi-shotgunpanel
   # version: v1.9.0
   type: git_branch
-  branch: ticket/SG-35769-first-phase-python2-removing
+  branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-multi-shotgunpanel.git
-  version: 5238a7afd3826e9c960c0d6b5b5289623a566261
+  version: 6a5897dbf93f8ce65dfd1c1b0f4d40fa03cdd742
 apps.tk-multi-snapshot.location:
   type: git_branch
-  branch: ticket/SG-35770-first-phase-python2-removing
+  branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-multi-snapshot.git
-  version: b953a6887ae70c13b5d11a763c2169dcb153fc87
+  version: 774022688af6e871ab7b4eba781beb71335b7ef7
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.15.0
+  # type: app_store
+  # name: tk-multi-workfiles2
+  # version: v0.15.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
+  version: 1b38040e99a9fe0cf8d07f9957c97265bec61001
 apps.tk-multi-devutils.location:
   # type: app_store
   # name: tk-multi-devutils
   # version: v1.3.0
   type: git_branch
-  branch: ticket/SG-35760-first-phase-pythn2-removing
+  branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-multi-devutils.git
-  version: 42e111fae7c15375e06bdaccc7b32d5055a0d20d
+  version: 18173de059729ee159ba6de8aa5b79b43417070c
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
@@ -126,9 +150,13 @@ apps.tk-shotgun-launchpublish.location:
   name: tk-shotgun-launchpublish
   version: v0.7.0
 apps.tk-shotgun-launchvredreview.location:
-  type: app_store
-  name: tk-shotgun-launchvredreview
-  version: v1.2.0
+  # type: app_store
+  # name: tk-shotgun-launchvredreview
+  # version: v1.2.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-shotgun-launchvredreview.git
+  version: 8c218aac4c0872a24aadf4387a1d4391c884d49f
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
@@ -146,9 +174,10 @@ apps.tk-houdini-mantranode.location:
   name: tk-houdini-mantranode
   version: v0.6.0
 apps.tk-nuke-quickreview.location:
-  type: app_store
-  name: tk-nuke-quickreview
-  version: v1.3.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-nuke-quickreview.git
+  version: 99cbb17b69c66be5cd88ee253363df1e7a285a2e
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
@@ -158,11 +187,19 @@ apps.tk-flame-export.location:
   type: app_store
   version: v1.11.1
 apps.tk-flame-review.location:
-  name: tk-flame-review
-  type: app_store
-  version: v1.5.1
+  # name: tk-flame-review
+  # type: app_store
+  # version: v1.5.1
+  type: git_branch
+  branch: ticket/SG-33500-compile-qt-resources-for-pyside2
+  path: https://github.com/shotgunsoftware/tk-flame-review.git
+  version: 74d40641814f1b86cbe3762fb96d690b7c15d112
 apps.tk-mari-projectmanager.location:
-  name: tk-mari-projectmanager
-  type: app_store
-  version: v1.4.0
+  # name: tk-mari-projectmanager
+  # type: app_store
+  # version: v1.4.0
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-mari-projectmanager.git
+  version: 20a12ffde1d6039e37f57c1cd72e4f63d9a5e27d
 frameworks: '@frameworks'
