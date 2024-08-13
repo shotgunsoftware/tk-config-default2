@@ -20,7 +20,7 @@ engines.tk-3dsmax.location:
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
-  version: v0.4.1
+  version: v0.4.2
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
