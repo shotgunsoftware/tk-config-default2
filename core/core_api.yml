@@ -18,4 +18,4 @@ location:
   type: git_branch
   branch: python2-clean-und-build-resources
   path: https://github.com/shotgunsoftware/tk-core.git
-  version: 2d92c8b93df502e3925e6ad73c5a4012157e6708
+  version: 441a8943beb77ef3d9beb409806f52430eca96c5

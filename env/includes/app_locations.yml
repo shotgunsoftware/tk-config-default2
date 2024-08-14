@@ -78,7 +78,7 @@ apps.tk-multi-publish2.location:
   # version: v2.8.3
   type: git_branch
   branch: ticket/SG-33500-new-build-resources-yml
-  path: https://github.com/shotgunsoftware/tk-multi-about.git
+  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
   version: 1540bb6d0bcd04b555e96069cc22feb6a3476cdc
 apps.tk-multi-pythonconsole.location:
   # type: app_store

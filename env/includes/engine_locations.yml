@@ -44,9 +44,9 @@ engines.tk-desktop.location:
   # name: tk-desktop
   # version: v2.7.1
   type: git_branch
-  branch: ticket/SG-35870-first-phase-python2-removing
+  branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-desktop.git
-  version: 92c95f5b97d66314cbf29b95dcfcd065571d0f1f
+  version: 06f63037539365de50ddaaef077b0bf57d35803b
 engines.tk-desktop2.location:
   # type: app_store
   # name: tk-desktop2
