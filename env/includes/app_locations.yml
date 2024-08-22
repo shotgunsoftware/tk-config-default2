@@ -41,8 +41,8 @@ apps.tk-multi-breakdown2.location:
   # name: tk-multi-breakdown2
   # version: v0.3.0
   type: git_branch
-  branch: https://github.com/shotgunsoftware/tk-multi-breakdown2.git
-  path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
+  branch: ticket/SG-35759-first-phase-python2-removing
+  path: https://github.com/shotgunsoftware/tk-multi-breakdown2.git
   version: 4e1b3534911c0f75f26cdf98143f1932e7732cfd
 apps.tk-multi-data-validation.location:
   type: app_store
