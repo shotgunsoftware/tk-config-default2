@@ -81,9 +81,13 @@ apps.tk-multi-snapshot.location:
   name: tk-multi-snapshot
   version: v0.10.0
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.15.1
+  # type: app_store
+  # name: tk-multi-workfiles2
+  # version: v0.15.1
+  type: git_branch
+  branch: ticket/SG-33500-new-build-resources-yml
+  path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
+  version: 1b38040e99a9fe0cf8d07f9957c97265bec61001
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
