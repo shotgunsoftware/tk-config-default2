@@ -47,7 +47,7 @@ apps.tk-multi-breakdown2.location:
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
-  version: v0.2.0
+  version: v0.3.0
 apps.tk-multi-demo.location:
   # type: app_store
   # name: tk-multi-demo
@@ -92,12 +92,16 @@ apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
   version: v1.3.0
+apps.tk-multi-scenebuilder.location:
+  type: app_store
+  name: tk-multi-scenebuilder
+  version: v0.1.1
 apps.tk-multi-screeningroom.location:
   # type: app_store
   # name: tk-multi-screeningroom
   # version: v0.6.0
   type: git_branch
-  branch: ticket/SG-35769-first-phase-python2-removing
+  branch: ticket/SG-35763-first-phase-python2-removing
   path: https://github.com/shotgunsoftware/tk-multi-screeningroom.git
   version: b10cad52eccf3c1ad58117e60824eb7df5ef6e93
 apps.tk-multi-setframerange.location:

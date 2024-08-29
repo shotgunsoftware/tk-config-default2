@@ -15,8 +15,9 @@ includes:
 
 ################################################################################
 
-# 3dsmaxplus
-settings.tk-multi-loader2.3dsmaxplus: &settings_tk-multi-loader2_3dsmaxplus
+# 3dsmax
+settings.tk-multi-loader2.3dsmax:
+  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   action_mappings:
     3dsmax Scene: [import, reference]
     Alembic Cache: [import]
@@ -41,13 +42,6 @@ settings.tk-multi-loader2.3dsmaxplus: &settings_tk-multi-loader2_3dsmaxplus
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
   location: "@apps.tk-multi-loader2.location"
-
-# 3dsmax
-# Uses the same settings, but a different hook.
-settings.tk-multi-loader2.3dsmax:
-  <<: *settings_tk-multi-loader2_3dsmaxplus
-  actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
-
 
 # flame
 settings.tk-multi-loader2.flame:
@@ -358,6 +352,7 @@ settings.tk-multi-loader2.alias:
     Catproduct File: [import, import_as_reference]
     Fbx File: [import]
     Motion Builder FBX: [import]
+    ICEM: [import]
     Image: [texture_node]
     Photoshop Image: [texture_node]
     Tif File: [texture_node]

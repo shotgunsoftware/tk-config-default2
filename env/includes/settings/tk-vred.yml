@@ -20,6 +20,7 @@ includes:
 - ./tk-multi-shotgunpanel.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-multi-data-validation.yml
+- ./tk-multi-scenebuilder.yml
 
 ################################################################################
 
@@ -49,6 +50,7 @@ settings.tk-vred.asset_step:
     tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.vred"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.vred.asset_step"
     tk-multi-data-validation: "@settings.tk-multi-data-validation.vred"
+    tk-multi-scenebuilder: "@settings.tk-multi-scenebuilder.vred"
     tk-multi-bg-publish:
       location: "@apps.tk-multi-bg-publish.location"
   menu_favourites:
@@ -90,7 +92,7 @@ settings.tk-vred.project:
   run_at_startup:
   - { app_instance: tk-multi-shotgunpanel, name: '' }
   - { app_instance: tk-multi-workfiles2, name: 'File Open...' }
-  - { app_instance: tk-multi-pythonconsole, name: 'Flow Production Tracking Python Console...' }
+  - { app_instance: tk-multi-pythonconsole, name: 'PTR Python Console...' }
   - { app_instance: tk-multi-data-validation, name: 'Data Validation...' }
   docked_apps:
     tk-multi-shotgunpanel:

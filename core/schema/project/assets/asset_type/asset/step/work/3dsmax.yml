@@ -12,4 +12,4 @@
 type: "static"
 
 # defer creation and only create this folder when 3dsmax starts
-defer_creation: ["tk-3dsmax", "tk-3dsmaxplus"]
+defer_creation: ["tk-3dsmax"]

@@ -1,0 +1,58 @@
+# Copyright (c) 2024 Autodesk Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the ShotGrid Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the ShotGrid Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Autodesk Inc.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+
+################################################################################
+
+# Alias
+settings.tk-multi-scenebuilder.alias:
+  presets:
+    - name: Reference
+      actions:
+        - context:
+            - [ entity.Asset.parents, in, '{context.entity}' ]
+            - [ task.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.step, is, '{context.step}' ]
+          action_mappings:
+            Alias File: import_as_reference
+    - name: Import
+      actions:
+        - context:
+            - [ entity.Asset.parents, in, '{context.entity}' ]
+            - [ task.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.step, is, '{context.step}' ]
+          action_mappings:
+            Alias File: import
+  location: "@apps.tk-multi-scenebuilder.location"
+
+# VRED
+settings.tk-multi-scenebuilder.vred:
+  presets:
+    - name: Alias Wire
+      actions:
+        - context:
+            - [ entity.Asset.parents, in, '{context.entity}' ]
+            - [ task.Task.downstream_tasks.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
+          action_mappings:
+            Alias File: import
+    - name: VRED Scene
+      actions:
+        - context:
+            - [ entity.Asset.parents, in, '{context.entity}' ]
+            - [ task.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.step, is, '{context.step}' ]
+          action_mappings:
+            VRED Scene: smart_reference
+  location: "@apps.tk-multi-scenebuilder.location"
