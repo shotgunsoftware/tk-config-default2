@@ -128,7 +128,7 @@ apps.tk-multi-workfiles2.location:
   type: git_branch
   branch: ticket/SG-33500-new-build-resources-yml
   path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
-  version: 1b38040e99a9fe0cf8d07f9957c97265bec61001
+  version: f5d88b2f82b9749e3dbd5efab3db0195aab2184f
 apps.tk-multi-devutils.location:
   # type: app_store
   # name: tk-multi-devutils
