@@ -136,7 +136,7 @@ apps.tk-multi-devutils.location:
   type: git_branch
   branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-multi-devutils.git
-  version: 18173de059729ee159ba6de8aa5b79b43417070c
+  version: b6ec49a208befb1401c96069ab57c3b178f25bdf
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
