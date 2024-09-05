@@ -65,7 +65,7 @@ engines.tk-houdini.location:
   type: git_branch
   branch: ticket/SG-35870-first-phase-python2-removing
   path: https://github.com/shotgunsoftware/tk-houdini.git
-  version: af5bc240435942d1b65a8e324fc0fc93f1cb22cd
+  version: cc23bfaf1b259e1e9c7bddf9c9e87b219c0414aa
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
