@@ -66,9 +66,13 @@ engines.tk-shell.location:
   name: tk-shell
   version: v0.10.1
 engines.tk-shotgun.location:
-  type: app_store
-  name: tk-shotgun
-  version: v0.11.0
+  # type: app_store
+  # name: tk-shotgun
+  # version: v0.11.0
+  type: git_branch
+  branch: ticket/SG-35848-delete-qt4-behaviour
+  path: https://github.com/shotgunsoftware/tk-shotgun.git
+  version: d43bdb18d41b104ce5ded1e7f353cc0b90d4214c
 engines.tk-vred.location:
   type: app_store
   name: tk-vred
