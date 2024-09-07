@@ -26,9 +26,13 @@ frameworks:
       version: aa9b3e794e554e5e0518f20405e02108b9bac322
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.6
-      type: app_store
-      name: tk-framework-adminui
+      # version: v0.7.6
+      # type: app_store
+      # name: tk-framework-adminui
+      type: git_branch
+      branch: ticket/SG-33500-new-build-resources-yml
+      path: https://github.com/shotgunsoftware/tk-framework-adminui.git
+      version: 4594f759eeb49eab82f3b6f2c35981fb73733dae
   tk-framework-alias_v1.x.x:
     location:
       version: v1.4.1

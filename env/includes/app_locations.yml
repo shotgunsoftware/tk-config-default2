@@ -55,7 +55,7 @@ apps.tk-multi-demo.location:
   type: git_branch
   branch: python2-clean-and-build-resources
   path: https://github.com/shotgunsoftware/tk-multi-demo.git
-  version: d31d24673de87ce8f044f4035038caec94252484
+  version: e6203c4681f331a26731aba0bac54539ef3d96c9
 apps.tk-multi-launchapp.location:
   # type: app_store
   # name: tk-multi-launchapp
