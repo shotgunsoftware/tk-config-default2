@@ -127,7 +127,7 @@ apps.tk-houdini-mantranode.location:
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview
-  version: v1.3.0
+  version: v1.3.1
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
