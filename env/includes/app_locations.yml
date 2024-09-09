@@ -143,5 +143,5 @@ apps.tk-flame-review.location:
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.4.0
+  version: v1.4.1
 frameworks: '@frameworks'
