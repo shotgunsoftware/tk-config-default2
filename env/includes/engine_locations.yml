@@ -30,9 +30,13 @@ engines.tk-alias.location:
   path: https://github.com/shotgunsoftware/tk-alias.git
   version: 8a4eadc
 engines.tk-desktop.location:
-  type: app_store
-  name: tk-desktop
-  version: v2.7.4
+  # type: app_store
+  # name: tk-desktop
+  # version: v2.7.4
+  type: git_branch
+  branch: ticket/SG-35559
+  path: https://github.com/shotgunsoftware/tk-desktop.git
+  version: d6fb52ab4723f3850ed91e0f1aa6987a4be022bc 
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
