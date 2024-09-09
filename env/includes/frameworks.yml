@@ -17,22 +17,14 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      # version: v1.2.4
-      # type: app_store
-      # name: tk-framework-adobe
-      type: git_branch
-      branch: ticket/SG-36028
-      path: https://github.com/shotgunsoftware/tk-framework-adobe.git
-      version: 76a54601c33a1100b00fb59952b268fb4dd72ac6
+      version: v1.2.4
+      type: app_store
+      name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
     location:
-      # version: v0.7.7
-      # type: app_store
-      # name: tk-framework-adminui
-      type: git_branch
-      branch: ticket/SG-35559
-      path: https://github.com/shotgunsoftware/tk-framework-adminui.git
-      version: 50a524a94c93775b84695445abdc018c89a98242 
+      version: v0.7.7
+      type: app_store
+      name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
     location:
       # version: v1.4.1
@@ -49,13 +41,9 @@ frameworks:
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
     location:
-      # version: v1.7.3
-      # type: app_store
-      # name: tk-framework-desktopserver
-      type: git_branch
-      branch: ticket/SG-36027_python-311-automated
-      path: https://github.com/shotgunsoftware/tk-framework-desktopserver.git
-      version: 740f0dd1d6a14e156a14b0d686acbb0d72e838d1
+      version: v1.7.3
+      type: app_store
+      name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
       version: v2.12.4
