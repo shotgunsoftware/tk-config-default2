@@ -79,7 +79,7 @@ apps.tk-multi-shotgunpanel.location:
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
-  version: v0.10.0
+  version: v0.10.1
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
