@@ -22,7 +22,7 @@ frameworks:
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.6
+      version: v0.7.7
       type: app_store
       name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
