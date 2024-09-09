@@ -223,8 +223,8 @@
         },
         "pump_settings": {
             "main_plates_exclude_from_loader_efl": true,
-            "postfix_file": "admin/processing/python/project_postfix.py",
-            "script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/pump_processing/postfix_process_pump.py"
+            "postfix_file": "admin/processing/python/json_dl_submit_postfix.py",
+            "script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/general/json_dl_submit/json_dl_submit.py"
         }
     },
     "secondary": {}
