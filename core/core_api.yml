@@ -1,6 +1,6 @@
-# SG Pipeline Toolkit configuration file. This file was automatically
+# Flow Production Tracking Toolkit configuration file. This file was automatically
 # created during the latest core update.
 location:
   name: tk-core
   type: app_store
-  version: v0.21.2
+  version: v0.21.3

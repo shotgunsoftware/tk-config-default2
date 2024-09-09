@@ -13,6 +13,27 @@ keys:
         type: str
         filter_by: alphanumeric
 
+    
+strings:
+    # when a review Version in Shotgun is created inside of Nuke, this is the
+    # name that is being given to it (the code field)
+    nuke_quick_shot_version_name: "{Shot}_DAILIES_{iteration}"
+    nuke_quick_asset_version_name: "{Asset}_DAILIES_{iteration}"
+
+    nuke_shot_version_name: "{Shot}_{nuke.output}_v{version}.{iteration}"
+    nuke_asset_version_name: "{Asset}_{nuke.output}_v{version}.{iteration}"
+
+    # non-version shot strings
+    shot_denoise_string:     "{Shot}_denoise_{task_name}[_{nuke.output}]_v{version}"
+    shot_stmap_string:       "{Shot}_STMap_{task_name}[_{nuke.output}]_v{version}"
+    shot_smartvector_string: "{Shot}_SmartVector_{task_name}[_{nuke.output}]_v{version}"
+
+    # non-version asset strings
+    asset_denoise_string:     "{Asset}_denoise_{task_name}[_{nuke.output}]_v{version}"
+    asset_stmap_string:       "{Asset}_STMap_{task_name}[_{nuke.output}]_v{version}"
+    asset_smartvector_string: "{Asset}_SmartVector_{task_name}[_{nuke.output}]_v{version}"
+
+
 paths:
     ###########
     ## Nuke
@@ -88,15 +109,15 @@ paths:
         root_name: 'project_storage_pix'
     nuke_shot_denoise_render_root:
         # definition: '@render_root/nuke/element/denoise/{Shot}_{task_name}[_{nuke.output}]_v{version}'
-        definition: '@render_root/nuke/element/denoise/{Shot}_denoise[_{nuke.output}]_v{version}'
+        definition: '@render_root/nuke/element/denoise/@shot_denoise_string'
         root_name: 'project_storage_pix'
     nuke_shot_stmap_render_root:
         # definition: '@render_root/nuke/element/STMap/{Shot}_{task_name}[_{nuke.output}]_v{version}'
-        definition: '@render_root/nuke/element/STMap/{Shot}_STMap[_{nuke.output}]_v{version}'
+        definition: '@render_root/nuke/element/STMap/@shot_stmap_string'
         root_name: 'project_storage_pix'
     nuke_shot_smartvector_render_root:
         # definition: '@render_root/nuke/element/SmartVector/{Shot}_{task_name}[_{nuke.output}]_v{version}'
-        definition: '@render_root/nuke/element/SmartVector/{Shot}_SmartVector[_{nuke.output}]_v{version}'
+        definition: '@render_root/nuke/element/SmartVector/@shot_smartvector_string'
         root_name: 'project_storage_pix'
     nuke_shot_test_render_root:
         definition: '@temp_shot_root/renders/nuke/{task_name}/test/{Shot}_test[_{nuke.output}]_v{version}'
@@ -133,33 +154,33 @@ paths:
         root_name: 'project_storage_pix'
     # denoise output
     nuke_shot_render_denoise_jpeg:
-        definition: '@nuke_shot_denoise_render_root/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@nuke_shot_denoise_render_root/@shot_denoise_string.{SEQ}.jpeg'
         root_name: 'project_storage_pix'
     nuke_shot_render_denoise_exr:
-        definition: '@nuke_shot_denoise_render_root/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@nuke_shot_denoise_render_root/@shot_denoise_string.{SEQ}.exr'
         root_name: 'project_storage_pix'
     nuke_shot_render_denoise_dpx:
-        definition: '@nuke_shot_denoise_render_root/{Shot}_denoise[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@nuke_shot_denoise_render_root/@shot_denoise_string.{SEQ}.dpx'
         root_name: 'project_storage_pix'
     # stmap output
     nuke_shot_render_stmap_jpeg:
-        definition: '@nuke_shot_stmap_render_root/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@nuke_shot_stmap_render_root/@shot_stmap_string.{SEQ}.jpeg'
         root_name: 'project_storage_pix'
     nuke_shot_render_stmap_exr:
-        definition: '@nuke_shot_stmap_render_root/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@nuke_shot_stmap_render_root/@shot_stmap_string.{SEQ}.exr'
         root_name: 'project_storage_pix'
     nuke_shot_render_stmap_dpx:
-        definition: '@nuke_shot_stmap_render_root/{Shot}_STMap[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@nuke_shot_stmap_render_root/@shot_stmap_string.{SEQ}.dpx'
         root_name: 'project_storage_pix'
     # smartvector output
     nuke_shot_render_smartvector_jpeg:
-        definition: '@nuke_shot_smartvector_render_root/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@nuke_shot_smartvector_render_root/@shot_smartvector_string.{SEQ}.jpeg'
         root_name: 'project_storage_pix'
     nuke_shot_render_smartvector_exr:
-        definition: '@nuke_shot_smartvector_render_root/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@nuke_shot_smartvector_render_root/@shot_smartvector_string.{SEQ}.exr'
         root_name: 'project_storage_pix'
     nuke_shot_render_smartvector_dpx:
-        definition: '@nuke_shot_smartvector_render_root/{Shot}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@nuke_shot_smartvector_render_root/@shot_smartvector_string.{SEQ}.dpx'
         root_name: 'project_storage_pix'
     # render movie    
     nuke_shot_render_mov:
@@ -192,13 +213,13 @@ paths:
         definition: '@asset_render_root/nuke/{task_name}/element/{Asset}_elem[_{nuke.output}]_v{version}'
         root_name: 'project_storage_pix'
     nuke_asset_denoise_render_root:
-        definition: '@asset_render_root/nuke/element/denoise/{Asset}_denoise[_{nuke.output}]_v{version}'
+        definition: '@asset_render_root/nuke/element/denoise/@asset_denoise_string'
         root_name: 'project_storage_pix'
     nuke_asset_stmap_render_root:
-        definition: '@asset_render_root/nuke/element/STMap/{Asset}_stmap[_{nuke.output}]_v{version}'
+        definition: '@asset_render_root/nuke/element/STMap/@asset_stmap_string'
         root_name: 'project_storage_pix'
     nuke_asset_smartvector_render_root:
-        definition: '@asset_render_root/nuke/element/SmartVector/{Asset}_SmartVector[_{nuke.output}]_v{version}'
+        definition: '@asset_render_root/nuke/element/SmartVector/@asset_smartvector_string'
         root_name: 'project_storage_pix'
     # version output
     nuke_asset_render_jpeg:
@@ -259,40 +280,31 @@ paths:
         root_name: 'project_storage_pix'
     # denoise output
     nuke_asset_render_denoise_jpeg:
-        definition: '@nuke_asset_denoise_render_root/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@nuke_asset_denoise_render_root/@asset_denoise_string.{SEQ}.jpeg'
         root_name: 'project_storage_pix'
     nuke_asset_render_denoise_exr:
-        definition: '@nuke_asset_denoise_render_root/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@nuke_asset_denoise_render_root/@asset_denoise_string.{SEQ}.exr'
         root_name: 'project_storage_pix'
     nuke_asset_render_denoise_dpx:
-        definition: '@nuke_asset_denoise_render_root/{Asset}_denoise[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@nuke_asset_denoise_render_root/@asset_denoise_string.{SEQ}.dpx'
         root_name: 'project_storage_pix'
     # smartvector output
     nuke_asset_render_smartvector_jpeg:
-        definition: '@nuke_asset_smartvector_render_root/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@nuke_asset_smartvector_render_root/@asset_smartvector_string.{SEQ}.jpeg'
         root_name: 'project_storage_pix'
     nuke_asset_render_smartvector_exr:
-        definition: '@nuke_asset_smartvector_render_root/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@nuke_asset_smartvector_render_root/@asset_smartvector_string.{SEQ}.exr'
         root_name: 'project_storage_pix'
     nuke_asset_render_smartvector_dpx:
-        definition: '@nuke_asset_smartvector_render_root/{Asset}_SmartVector[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@nuke_asset_smartvector_render_root/@asset_smartvector_string.{SEQ}.dpx'
         root_name: 'project_storage_pix'
     # stmap output
     nuke_asset_render_stmap_jpeg:
-        definition: '@nuke_asset_stmap_render_root/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.jpeg'
+        definition: '@nuke_asset_stmap_render_root/@asset_stmap_string.{SEQ}.jpeg'
         root_name: 'project_storage_pix'
     nuke_asset_render_stmap_exr:
-        definition: '@nuke_asset_stmap_render_root/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.exr'
+        definition: '@nuke_asset_stmap_render_root/@asset_stmap_string.{SEQ}.exr'
         root_name: 'project_storage_pix'
     nuke_asset_render_stmap_dpx:
-        definition: '@nuke_asset_stmap_render_root/{Asset}_stmap[_{nuke.output}]_v{version}.{SEQ}.dpx'
+        definition: '@nuke_asset_stmap_render_root/@asset_stmap_string.{SEQ}.dpx'
         root_name: 'project_storage_pix'
-    
-strings:
-    # when a review Version in Shotgun is created inside of Nuke, this is the
-    # name that is being given to it (the code field)
-    nuke_quick_shot_version_name: "{Shot}_DAILIES_{iteration}"
-    nuke_quick_asset_version_name: "{Asset}_DAILIES_{iteration}"
-
-    nuke_shot_version_name: "{Shot}_{nuke.output}_v{version}.{iteration}"
-    nuke_asset_version_name: "{Asset}_{nuke.output}_v{version}.{iteration}"
