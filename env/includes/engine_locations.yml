@@ -25,10 +25,12 @@ engines.tk-alias.location:
   # type: app_store
   # name: tk-alias
   # version: v3.3.1
+  # type: dev
+  # windows_path: C:\Users\qa\sg_envs\dev\tk\tk-alias
   type: git_branch
-  branch: master
+  branch: ticket/SHOT-4392-qt6-style
   path: https://github.com/shotgunsoftware/tk-alias.git
-  version: 8a4eadc
+  version: ea970c9
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
