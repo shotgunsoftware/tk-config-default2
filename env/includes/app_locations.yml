@@ -89,9 +89,13 @@ apps.tk-multi-devutils.location:
   name: tk-multi-devutils
   version: v1.3.1
 apps.tk-multi-bg-publish.location:
-  type: app_store
-  name: tk-multi-bg-publish
-  version: v0.2.0
+  # type: app_store
+  # name: tk-multi-bg-publish
+  # version: v0.2.0
+  type: git_branch
+  branch: bugfix/get-engine
+  path: https://github.com/shotgunsoftware/tk-multi-bg-publishg.git
+  version: 6a2fd11
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
