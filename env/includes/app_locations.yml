@@ -112,9 +112,10 @@ apps.tk-multi-screeningroom.location:
 
 # setframerange
 apps.tk-multi-setframerange.location:
-  type: app_store
-  name: tk-multi-setframerange
-  version: v0.5.1
+  type: github_release
+  organization: nfa-vfxim
+  repository: tk-multi-setframerange
+  version: 0.6.2
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:
