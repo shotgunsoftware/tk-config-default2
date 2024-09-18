@@ -95,7 +95,7 @@ apps.tk-multi-reviewsubmission2.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-multi-reviewsubmission2
-  version: 1.0.0.3
+  version: 1.0.0.4
 
 # deadinereviewsubmission
 apps.tk-multi-deadlinereviewsubmission.location:
