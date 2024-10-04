@@ -173,7 +173,7 @@ settings.tk-multi-publish2.mari.asset_step:
 
 # asset step
 settings.tk-multi-publish2.maya.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/publishers/collector.py"
   collector_settings:
     Work Template: maya_asset_work
   publish_plugins:
@@ -183,31 +183,29 @@ settings.tk-multi-publish2.maya.asset_step:
     - name: Upload for review
       hook: "{self}/upload_version.py"
       settings: {}
-    - name: Begin file versioning
-      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-      settings: {}
-    - name: Publish to ShotGrid
-      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    - name: Publish Maya file to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_session.py"
       settings:
         Publish Template: maya_asset_publish
-    - name: Publish USD to ShotGrid
-      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_usd.py"
+    - name: ShotGrid animation exporter
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_animation.py"
       settings:
-        Publish Template: usd_asset_publish
-        Export Active Selection Only: False
-        Disable Animations Export: False
-        Export Current Frame Only: False
-    - name: Publish to ShotGrid
-      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
+        Publish Template: maya_asset_named_publish
+    - name: ShotGrid camera exporter
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_camera.py"
       settings:
-        Publish Template: maya_asset_abc
-        Export Active Selection Only: False
+        Publish Template: maya_asset_named_publish
+    - name: ShotGrid model exporter
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_model.py"
+      settings:
+        Publish Template: maya_asset_named_publish
+
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
 # shot step
 settings.tk-multi-publish2.maya.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/publishers/collector.py"
   collector_settings:
     Work Template: maya_shot_work
   publish_plugins:
@@ -217,25 +215,22 @@ settings.tk-multi-publish2.maya.shot_step:
     - name: Upload for review
       hook: "{self}/upload_version.py"
       settings: {}
-    - name: Begin file versioning
-      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
-      settings: {}
-    - name: Publish to ShotGrid
-      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    - name: Publish Maya file to ShotGrid
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_session.py"
       settings:
         Publish Template: maya_shot_publish
-    - name: Publish USD to ShotGrid
-      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_usd.py"
+    - name: ShotGrid animation exporter
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_animation.py"
       settings:
-        Publish Template: usd_shot_publish
-        Export Active Selection Only: False
-        Disable Animations Export: False
-        Export Current Frame Only: False
-    - name: Publish to ShotGrid
-      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_alembic.py"
+        Publish Template: maya_shot_named_publish
+    - name: ShotGrid camera exporter
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_camera.py"
       settings:
-        Publish Template: maya_shot_abc
-        Export Active Selection Only: False
+        Publish Template: maya_shot_named_publish
+    - name: ShotGrid model exporter
+      hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publishers/publish_model.py"
+      settings:
+        Publish Template: maya_shot_named_publish
 
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"

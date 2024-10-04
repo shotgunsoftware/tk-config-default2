@@ -56,7 +56,9 @@ paths:
   # Alembic
   maya_shot_abc:
     definition: "@shot_publish/abc/{name}/v{version}/{Projectcode}_{Shot}_{Step}_{name}_v{version}.abc"
-
+  # Named publishes 
+  maya_shot_named_publish:
+    definition: "@shot_publish/{publish_type}/{name}/{publish_name}/v{version}/{Projectcode}_{Shot}_{Step}_{name}_{publish_name}_{publish_type}_v{version}.{publish_extension}"
   ##########################################################################################
   # Asset pipeline
   #
@@ -79,3 +81,6 @@ paths:
   # Alembic
   maya_asset_abc:
     definition: "@asset_publish/abc/{Projectcode}_{Asset}_{Step}_{name}_v{version}.abc"
+  # Named publishes 
+  maya_asset_named_publish:
+    definition: "@asset_publish/{publish_type}/{name}/{publish_name}/v{version}/{Projectcode}_{Asset}_{Step}_{name}_{publish_name}_{publish_type}_v{version}.{publish_extension}"
