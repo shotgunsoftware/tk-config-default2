@@ -43,6 +43,13 @@ keys:
   name:
     type: str
     filter_by: alphanumeric
+  publish_extension:
+    type: str
+  publish_name:
+    type: str
+    filter_by: alphanumeric
+  publish_type:
+    type: str
   iteration:
     type: int
   version:
