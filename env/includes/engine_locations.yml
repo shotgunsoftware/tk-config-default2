@@ -73,7 +73,7 @@ engines.tk-maya.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-maya
-  version: 0.12.0.0
+  version: 0.12.1.0
 
 # Motion Builder
 engines.tk-motionbuilder.location:
