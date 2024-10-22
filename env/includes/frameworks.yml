@@ -43,7 +43,7 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-qtwidgets
-      version: v2.10.5
+      version: v2.12.4
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
@@ -56,7 +56,7 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-shotgunutils
-      version: v5.8.5
+      version: v5.10.1
   # widget - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
@@ -68,7 +68,7 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-widget
-      version: v1.1.1
+      version: v1.2.1
   # desktopclient - A client for Shotgun Create
   tk-framework-desktopclient_v0.x.x:
     location:
