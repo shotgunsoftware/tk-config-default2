@@ -16,7 +16,6 @@ description: Apps and Engines related to Asset based work.
 includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-desktop2.yml
-- ./includes/settings/tk-3dsmaxplus.yml
 - ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-mari.yml
@@ -35,7 +34,6 @@ includes:
 
 engines:
   tk-desktop2: "@settings.tk-desktop2.all"
-  tk-3dsmaxplus: "@settings.tk-3dsmaxplus.asset_step"
   tk-3dsmax: "@settings.tk-3dsmax.asset_step"
   tk-houdini: "@settings.tk-houdini.asset_step"
   tk-mari: "@settings.tk-mari.asset_step"

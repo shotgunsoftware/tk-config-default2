@@ -19,6 +19,7 @@ includes:
 
 settings.tk-multi-data-validation.alias:
   hook_data_validation: "{engine}/tk-multi-data-validation/basic/data_validation.py"
+  hook_scene_operations: "{engine}/tk-multi-data-validation/basic/scene_operations.py"
   rules:
     - id: layer_is_empty
       data_type: Layers
@@ -61,6 +62,7 @@ settings.tk-multi-data-validation.alias:
 
 settings.tk-multi-data-validation.vred:
   hook_data_validation: "{engine}/tk-multi-data-validation/basic/data_validation.py"
+  hook_scene_operations: "{engine}/tk-multi-data-validation/basic/scene_operations.py"
   hook_ui_config: "{engine}/tk-multi-data-validation/basic/ui_config.py"
   rules:
     - id: scene_graph_hidden_nodes
@@ -77,4 +79,55 @@ settings.tk-multi-data-validation.vred:
       data_type: Animation
     - id: animation_clip_empty
       data_type: Animation
+  location: "@apps.tk-multi-data-validation.location"
+
+# ---- Maya
+
+# asset_step
+settings.tk-multi-data-validation.maya.asset_step:
+  hook_data_validation: "{engine}/tk-multi-data-validation/basic/data_validation.py"
+  hook_scene_operations: "{engine}/tk-multi-data-validation/basic/scene_operations.py"
+  rules:
+    # Common checks
+    - id: unknown_nodes
+      data_type: Geometry
+    - id: sg_references
+      data_type: References
+    - id: no_references
+      data_type: References
+    - id: material_unused
+      data_type: Materials
+    - id: one_top_node
+      data_type: Top-Node
+    - id: top_node_pivot_position
+      data_type: Top-Node
+    # Modelling checks
+    - id: top_node_freeze_transforms
+      data_type: Top-Node
+    - id: group_node_freeze_transforms
+      data_type: Groups
+    - id: mesh_freeze_transforms
+      data_type: Meshes
+    - id: mesh_history
+      data_type: Meshes
+  location: "@apps.tk-multi-data-validation.location"
+
+# shot_step
+settings.tk-multi-data-validation.maya.shot_step:
+  hook_data_validation: "{engine}/tk-multi-data-validation/basic/data_validation.py"
+  hook_scene_operations: "{engine}/tk-multi-data-validation/basic/scene_operations.py"
+  rules:
+    # Common checks
+    - id: unknown_nodes
+      data_type: Geometry
+    - id: sg_references
+      data_type: References
+    - id: sync_frame_range
+      data_type: Timeline
+    # Light checks
+    - id: render_engine
+      data_type: Render
+    # Animation checks
+    - id: empty_anim_layers
+      data_type: Layers
   location: "@apps.tk-multi-data-validation.location"

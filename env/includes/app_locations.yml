@@ -29,71 +29,75 @@ apps.tk-multi-entity-app.location:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.5.0
+  version: v0.5.1
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.9.0
+  version: v1.9.1
 apps.tk-multi-breakdown2.location:
   type: app_store
   name: tk-multi-breakdown2
-  version: v0.3.0
+  version: v0.4.2
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
-  version: v0.2.0
+  version: v0.3.1
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.4.0
+  version: v1.5.1
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.13.0
+  version: v0.13.2
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.25.0
+  version: v1.25.2
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.8.2
+  version: v2.10.1
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.4.0
+  version: v1.4.2
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
   version: v1.3.0
+apps.tk-multi-scenebuilder.location:
+  type: app_store
+  name: tk-multi-scenebuilder
+  version: v0.1.1
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
-  version: v0.6.0
+  version: v0.6.1
 apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
-  version: v0.6.0
+  version: v0.6.1
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.9.0
+  version: v1.9.1
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
-  version: v0.10.0
+  version: v0.10.1
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.15.0
+  version: v0.15.3
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
-  version: v1.3.0
+  version: v1.3.1
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
-  version: v0.2.0
+  version: v0.2.1
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
@@ -129,11 +133,11 @@ apps.tk-houdini-mantranode.location:
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview
-  version: v1.3.0
+  version: v1.3.2
 apps.tk-nuke-writenode.location:
   name: tk-nuke-writenode
   type: app_store
-  version: v1.7.0
+  version: v1.7.2
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
@@ -141,9 +145,9 @@ apps.tk-flame-export.location:
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.5.1
+  version: v1.5.2
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.4.0
+  version: v1.4.1
 frameworks: '@frameworks'
