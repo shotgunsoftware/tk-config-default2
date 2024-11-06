@@ -118,13 +118,9 @@ apps.tk-nuke-quickreview.location:
   name: tk-nuke-quickreview
   version: v1.2.1
 apps.tk-nuke-writenode.location:
-  type: dev
-  name: tk-nuke-writenode
-  path: \\pix_artist\pipeline_repo\configs\vhuba_dev\Pipeline\bundle_cache\apps\tk-nuke-writenode\v1.6.0
-
-#  type: git
-#  version: v1.6.0
-#  path: https://github.com/ssvfx41/tk-nuke-writenode.git
+  type: git
+  version: v1.6.0
+  path: https://github.com/ssvfx41/tk-nuke-writenode.git
 
 # ---- Flame apps
 
@@ -149,20 +145,12 @@ apps.tk-3dequalizer.location:
   path: C:\Program Files\3dequalizer\version4\bin\3DE4.exe
 
 apps.ssvfx-undistort-generator.location:
-  type: dev
-  name: ssvfx-undistort-generator
-  path: \\pix_artist\pipeline_repo\configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-undistort-generator
-
-#  type: git
-#  version: v1.0.0
-#  path: https://github.com/ssvfx41/ssvfx-undistort-generator.git
+  type: git
+  version: v1.0.1
+  path: https://github.com/ssvfx41/ssvfx-undistort-generator.git
 
 apps.ssvfx-3de-playblast.location:
-  type: dev
-  name: ssvfx-3de-playblast
-  path: \\pix_artist\pipeline_repo\configs\vhuba_dev\Pipeline\bundle_cache\apps\ssvfx-3de-playblast
-
-#  type: git
-#  version: v1.0.0
-#  path: https://github.com/ssvfx41/ssvfx-3de-playblast.git
+  type: git
+  version: v2.0.0
+  path: https://github.com/ssvfx41/ssvfx-3de-playblast.git
 

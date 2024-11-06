@@ -80,10 +80,6 @@ engines.tk-vred.location:
   version: v2.1.1
 
 engines.tk-3dequalizer.location:
-  type: dev
-  name: tk-3dequalizer
-  path: \\pix_artist\pipeline_repo\configs\vhuba_dev\Pipeline\bundle_cache\engines\tk-3dequalizer
-
-#  type: git
-#  version: v1.0.0
-#  path: https://github.com/ssvfx41/tk-3dequalizer.git
+  type: git
+  version: v1.0.0
+  path: https://github.com/ssvfx41/tk-3dequalizer.git
