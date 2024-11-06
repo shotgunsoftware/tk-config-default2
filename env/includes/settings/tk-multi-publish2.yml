@@ -139,9 +139,13 @@ settings.tk-multi-publish2.houdini.asset_step:
 
 # shot step
 settings.tk-multi-publish2.houdini.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/houdini/collector.py"
   collector_settings:
       Work Template: houdini_shot_work
+      Generated ABC Template: houdini_shot_cache_alembic_abc
+      Generated BGEO Template Anim: houdini_shot_cache_bgeo_anim
+      Generated BGEO Template Stat: houdini_shot_cache_bgeo
+      Generated EXR Template: houdini_shot_render_exr
   publish_plugins:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
@@ -149,12 +153,17 @@ settings.tk-multi-publish2.houdini.shot_step:
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+  - name: Publish to Shotgrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/houdini/publish_session.py"
     settings:
         Publish Template: houdini_shot_publish
+  - name: Publish Node Preset
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/houdini/publish_node.py"
+    settings:
+      Publish Template: houdini_shot_node_param_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
+  enable_manual_load: false
 
 ################################################################################
 
@@ -648,16 +657,16 @@ settings.tk-multi-publish2.3dequalizer.asset_step:
   collector_settings:
       Work Template: 3dequalizer_asset_work
   publish_plugins:
+
   - name: Publish Session to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_session.py"
     settings:
-        Publish Template: 3dequalizer_shot_publish
-  - name: Publish Camera to ShotGrid
-    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_camera.py"
+        Publish Template: 3dequalizer_asset_publish
+
+  - name: Publish Lens to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_lens.py"
     settings:
-        Publish Template: 3dequalizer_shot_camera_publish
-        Publish UndPlates Template: 3dequalizer_shot_undist_plates_publish
-        Cameras: ["*"]
+        Publish Template: 3dequalizer_asset_lens_publish
 
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
@@ -668,7 +677,9 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
   collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/_3dequalizer/collector.py"
   collector_settings:
       Work Template: 3dequalizer_shot_work
-      Playblast Render Template: 3dequalizer_shot_playblast_publish
+      #Playblast Render Template: 3dequalizer_shot_playblast_publish
+      #Playblast cone Render Template: 3dequalizer_shot_playblast_cones_publish
+      #Playblast wire Render Template: 3dequalizer_shot_playblast_wire_publish
       Undist Render Template: 3dequalizer_shot_undist_plates_publish
       Undist Node Template: 3dequalizer_shot_dist_publish
   publish_plugins:
@@ -676,6 +687,7 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_session.py"
     settings:
         Publish Template: 3dequalizer_shot_publish
+
   - name: Publish Camera to ShotGrid
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_camera.py"
     settings:
@@ -683,9 +695,15 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
         Publish UndPlates Template: 3dequalizer_shot_undist_plates_publish
         Cameras: ["*"]
 
+  - name: Publish Alembic Camera to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_camera_ABC.py"
+    settings:
+        Publish Template: 3dequalizer_shot_camera_publish
+
   - name: Publish Generated Data
     hook: "{self}/publish_file.py"
     settings: {}
-    
+
+   
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location" 

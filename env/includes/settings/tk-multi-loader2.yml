@@ -71,7 +71,9 @@ settings.tk-multi-loader2.flame:
 settings.tk-multi-loader2.houdini:
   actions_hook: '{config}/tk-multi-loader2/tk-houdini_actions.py'
   action_mappings:
-    Alembic Cache: [import_alembic, view_metadata, copy_path, shaded_alembic]
+    Alembic Cache: [import_alembic, import_hierarchy_alembic, view_metadata, copy_path, shaded_alembic, hda_input]
+    Alembic Camera: [view_metadata, copy_path, import_abc_camera]
+    Houdini Geo: [import_geometry, view_metadata, copy_path, hda_input]
     Standin: [import_arnold, view_metadata, copy_path, assign_shaders]
     Houdini Scene: [merge]
     Image: [file_cop]
@@ -109,6 +111,11 @@ settings.tk-multi-loader2.mari:
     - [project, is, '{context.project}']
     hierarchy: [sg_asset_type, code]
     publish_filters: []
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    - [project, is, "{context.project}"]
+    hierarchy: [sg_sequence, code]
   - caption: My Tasks
     entity_type: Task
     filters:
@@ -426,6 +433,8 @@ settings.tk-multi-loader2.3dequalizer:
   action_mappings:
     Project: [open_project]
     Main Plate: [clip_import, clip_substitute]
+    Rendered Image: [clip_import, clip_substitute]
+    3DE lens: [import_lens]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -433,6 +442,7 @@ settings.tk-multi-loader2.3dequalizer:
     - [project, is, '{context.project}']
     hierarchy: [sg_asset_type, code]
     publish_filters: []
+
   - caption: Shots
     entity_type: Shot
     filters:

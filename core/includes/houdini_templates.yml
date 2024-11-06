@@ -52,6 +52,9 @@ keys:
         format_spec: "04"
         default: "$F4"
         alias: HSEQ
+
+    HSEQ1:
+        type: str
     
     point_cache_ext:
         type: str
@@ -71,6 +74,16 @@ keys:
         type: str
         filter_by: alphanumeric
         default: beauty
+    
+    # node context
+    houdini.context:
+        type: str
+        alias: context
+
+    # node type
+    houdini.node.type:
+        type: str
+        alias: type
 
 strings:
     # Houdini Workfile names minus the file extension
@@ -102,7 +115,7 @@ strings:
 paths:
     # houdini_cache_root: shots/cache
     # Asset Context = assets/{sg_asset_type}/{Asset}
-    houdini_cache_shot_root:  '@shot_context/pipeline_task/{task_name}/caches/houdini'
+    houdini_cache_shot_root:  '@shot_context/houdini/{task_name}/caches'
     houdini_cache_asset_root: '@asset_context/pipeline_task/{task_name}/caches/houdini'
     houdini_shot_temp_root:   '@shot_context/renders/houdini/{task_name}'
     houdini_asset_temp_root:  '@asset_context/renders/houdini/{task_name}'
@@ -127,6 +140,9 @@ paths:
     # The location of published houdini files
     houdini_shot_publish:
         definition: '@houdini_shot_publish_area/@houdini_shot_hipfile.{houdini_extension}'
+        root_name: 'project_storage_pix'
+    houdini_shot_node_param_publish:
+        definition: '@houdini_shot_publish_area/{Shot}_{task_name}[_{name}]_v{version}/node/{houdini.node}/{houdini.context}/{houdini.node.type}.idx'
         root_name: 'project_storage_pix'
     ######################################## ASSET WORK
     # define the location of a work area
@@ -230,6 +246,8 @@ paths:
     houdini_shot_playblast_mov:
         definition: '@houdini_shot_playblast_output.mov'
         root_name: 'project_storage_pix'
+    # node output
+
 
     ######################################## ASSET OUTPUT       
     # Rendered images
@@ -298,3 +316,16 @@ paths:
     houdini_asset_playblast_mov:
         definition: '@houdini_asset_playblast_output.mov'
         root_name: 'project_storage_pix'
+    ######################################## SHOT CACHES
+    houdini_shot_cache_alembic_abc:
+         definition: '@houdini_cache_shot_root/alembic/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}/{Shot}_{task_name}_alembic-cache_{houdini.node}_v{version}.abc'
+         root_name: 'caches'
+    houdini_shot_cache_bgeo_area:
+         definition: '@houdini_cache_shot_root/geometry/{Shot}_{task_name}_geometry-cache[_{name}]_v{version}'
+         root_name: 'caches'     
+    houdini_shot_cache_bgeo:
+         definition: '@houdini_shot_cache_bgeo_area/{Shot}_{task_name}_geometry-cache_{houdini.node}_v{version}.bgeosc'
+         root_name: 'caches'
+    houdini_shot_cache_bgeo_anim:
+         definition: '@houdini_shot_cache_bgeo_area/{Shot}_{task_name}_geometry-cache_{houdini.node}_v{version}.{HSEQ}.bgeosc'
+         root_name: 'caches'

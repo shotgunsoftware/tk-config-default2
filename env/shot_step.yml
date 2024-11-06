@@ -27,6 +27,8 @@ includes:
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-desktop.yml
+- ./includes/settings/tk-mari.yml
+
 
 - ./includes/settings/tk-3dequalizer.yml
 
@@ -48,6 +50,7 @@ engines:
   tk-shell: "@settings.tk-shell.shot_step"
   tk-shotgun: "@settings.tk-shotgun.shot_step"
   tk-desktop: "@settings.tk-desktop.project"
+  tk-mari: "@settings.tk-mari.shot_step"
 
   tk-3dequalizer: "@settings.tk-3dequalizer.shot_step"
 

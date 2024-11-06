@@ -62,3 +62,4 @@ paths:
 strings:
     # Define a new Mari project name
     mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
+    mari_shot_project_name: "{mari.project_name} - Shot {shot_name}, {task_name}"
