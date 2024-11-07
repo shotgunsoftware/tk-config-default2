@@ -15,7 +15,14 @@ includes:
 
 ################################################################################
 
-settings.tk-mari-projectmanager:
+# asset
+settings.tk-mari-projectmanager.asset_step:
   template_new_project_name: mari_asset_project_name
+  location: "@apps.tk-mari-projectmanager.location"
+  get_project_creation_args_hook: "{config}/tk-mari-projectmanager/get_project_creation_args.py"
+
+# shot
+settings.tk-mari-projectmanager.shot_step:
+  template_new_project_name: mari_shot_project_name
   location: "@apps.tk-mari-projectmanager.location"
   get_project_creation_args_hook: "{config}/tk-mari-projectmanager/get_project_creation_args.py"

@@ -143,6 +143,10 @@ keys:
         type: str
         shotgun_entity_type: Asset
         shotgun_field_name: code
+    shot_name:
+        type: str
+        shotgun_entity_type: Shot
+        shotgun_field_name: code
     task_name:
         type: str
         shotgun_entity_type: Task

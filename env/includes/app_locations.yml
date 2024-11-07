@@ -146,11 +146,11 @@ apps.tk-3dequalizer.location:
 
 apps.ssvfx-undistort-generator.location:
   type: git
-  version: v1.0.0
+  version: v1.0.1
   path: https://github.com/ssvfx41/ssvfx-undistort-generator.git
 
 apps.ssvfx-3de-playblast.location:
   type: git
-  version: v1.0.0
+  version: v2.0.0
   path: https://github.com/ssvfx41/ssvfx-3de-playblast.git
 

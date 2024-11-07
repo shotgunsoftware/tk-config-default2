@@ -48,11 +48,19 @@ keys:
         format_spec: "04"
         default: "####"
         alias: 3DESEQ
+    3dequalizer_camera_extension:
+        type: str
+        choices:
+            mel: Maya MEL
+            abc: Alembic
+        default: mel
+        alias: extension
 
 paths:
     ###########
     ## 3dequalizer
     ###########
+    3dequalizer_cache_shot_root:  '@shot_context/3dequalizer/{task_name}/caches'
     ########################################SHOT WORK
     # define the location of a work area
     3dequalizer_shot_work_area:
@@ -71,10 +79,23 @@ paths:
     3dequalizer_shot_publish:
         definition: '@shot_root/publish/3dequalizer/{Shot}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
         root_name: 'project_storage_pix'
-    # the Location of 3dequalizer published Camera's
+    # the Location of 3dequalizer published Cameras
+    #3dequalizer_shot_camera_publish:
+    #    definition: '@shot_root/publish/3dequalizer/cameras/{Shot}_{task_name}[_{name}]_v{version}.{3dequalizer_camera_extension}'
+    #    root_name: 'project_storage_pix'
+    
     3dequalizer_shot_camera_publish:
-        definition: '@shot_root/publish/3dequalizer/cameras/{Shot}_{task_name}[_{name}]_v{version}.mel'
-        root_name: 'project_storage_pix'
+        definition: '@3dequalizer_cache_shot_root/alembic/{Shot}_{task_name}_camera-cache[_{name}]_v{version}/{Shot}_{task_name}_camera-cache[_{name}]_v{version}.{3dequalizer_camera_extension}'
+        root_name: 'caches'
+
+    #maya_shot_cache_alembic_abc:
+    #     definition: '@shot_context/maya/{task_name}/caches/alembic/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}.abc'
+    #     root_name: 'caches'
+    
+    #houdini_shot_cache_alembic_abc:
+    #     definition: '@houdini_cache_shot_root/alembic/{Shot}_{task_name}_alembic-cache[_{name}]_v{version}/{Shot}_{task_name}_alembic-cache_{houdini.node}_v{version}.abc'
+    #     root_name: 'caches'
+
     # the Location of 3dequalizer published distortion Node's
     3dequalizer_shot_dist_publish:
         definition: '@shot_root/publish/3dequalizer/distNode/{Shot}_{task_name}[_{name}]_v{version}.nk'
@@ -90,18 +111,30 @@ paths:
         root_name: 'project_storage_pix'
     
     # the location of 3dequalizer published playblast plates
+    3dequalizer_shot_playblast_publish_root:
+        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/standard'
+        root_name: 'project_storage_pix'
+
     3dequalizer_shot_playblast_publish:
-        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/{Shot}_{task_name}[_{name}]_v{version}.{3DESEQ}.jpg'
+        definition: '@3dequalizer_shot_playblast_publish_root/{Shot}_{task_name}[_{name}]_v{version}.{3DESEQ}.jpg'
         root_name: 'project_storage_pix'
 
     # the location of 3dequalizer published playblast plates
+    3dequalizer_shot_playblast_cones_publish_root:
+        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/cones'
+        root_name: 'project_storage_pix'
+
     3dequalizer_shot_playblast_cones_publish:
-        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/{Shot}_{task_name}[_{name}]_cones_v{version}.{3DESEQ}.jpg'
+        definition: '@3dequalizer_shot_playblast_cones_publish_root/{Shot}_{task_name}[_{name}]_cones_v{version}.{3DESEQ}.jpg'
         root_name: 'project_storage_pix'
     
     # the location of 3dequalizer published playblast plates
+    3dequalizer_shot_playblast_wire_publish_root:
+        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/wire'
+        root_name: 'project_storage_pix'
+
     3dequalizer_shot_playblast_wire_publish:
-        definition: '@shot_root/publish/3dequalizer/playblast/v{version}/{Shot}_{task_name}[_{name}]_wire_v{version}.{3DESEQ}.jpg'
+        definition: '@3dequalizer_shot_playblast_wire_publish_root/{Shot}_{task_name}[_{name}]_wire_v{version}.{3DESEQ}.jpg'
         root_name: 'project_storage_pix'
 
     ########################################ASSET WORK
@@ -121,9 +154,13 @@ paths:
     3dequalizer_asset_publish:
         definition: '@asset_root/publish/3dequalizer/{Asset}_{task_name}[_{name}]_v{version}.{3dequalizer_extension}'
         root_name: 'project_storage_pix'
-    # the Location of 3dequalizer published Camera's
+    # the Location of 3dequalizer published Cameras
     3dequalizer_asset_camera_publish:
-        definition: '@asset_root/publish/3dequalizer/cameras/{Asset}_{task_name}[_{name}]_v{version}.mel'
+        definition: '@asset_root/publish/3dequalizer/cameras/{Asset}_{task_name}[_{name}]_v{version}.{3dequalizer_camera_extension}'
+        root_name: 'project_storage_pix'
+    # the Location of 3dequalizer published Lenses
+    3dequalizer_asset_lens_publish:
+        definition: '@asset_root/publish/3dequalizer/lenses/{Asset}_{task_name}[_{name}]_v{version}.txt'
         root_name: 'project_storage_pix'
     
 

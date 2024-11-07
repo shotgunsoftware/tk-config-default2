@@ -739,7 +739,6 @@ settings.tk-multi-workfiles2.mari:
   show_file_open: false
   show_file_save: false
   my_tasks_filters:
-   - [entity, type_is, Asset]
    - [task_assignees, is, '{context.user}']
   entities:
   - caption: Assets
@@ -751,7 +750,15 @@ settings.tk-multi-workfiles2.mari:
       filters:
       link_field: entity
       hierarchy: [step]
-
+  - caption: Shots
+    entity_type: Shot
+    filters: 
+    hierarchy: [sg_episode, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
   location: "@apps.tk-multi-workfiles2.location"
 
 
