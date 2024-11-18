@@ -1,26 +1,12 @@
 {
-    "settings":{
-        "table_headers":[
-            {"header_value": "#", "cell_key":"option", "sel_button": true},
-            {"header_value": "Info", "cell_key": "status_value"},
-            {"header_value": "Entity", "cell_key": "code"},
-            {"header_value": "In - Out", "cell_key": "frame_range"},
-            {"header_value": "Previous Client Version", "cell_key": "prev_client_code"},
-            {"header_value": "Next Client Version", "cell_key": "next_client_code"},            
-            {"header_value": "Main Plate", "cell_key": "sg_main_plate"},
-            {"header_value": "BG Plate", "cell_key": "sg_bg_plate"},
-            {"header_value": "Elem Plate", "cell_key":"sg_elem_plate"},
-            {"header_value": "Ref Plate", "cell_key":"sg_ref_plate"},
-            {"header_value": "Lineup Sheet", "cell_key":"sg_lineup"},            
-            {"header_value": "Linked Color", "cell_key":"sg_linked_color"}            
-        ]
-    },
     "primary": {
         "processes": {
             "convert-aces": {
                 "process_settings": {
                     "title": "Convert ACES",
                     "description": "Internal Plate Color Conversion",
+                    "config_type": "incoming",
+                    "process_type": "primary",
                     "output_type": "acescg",
                     "output_root": "primary",
                     "output_directory": "shots/{Entity}/rushes/acescg/{Plate}/{Source}",
@@ -31,18 +17,18 @@
                     "update_version_media": true,
                     "create_publish": true,
                     "update_client_version": false,
-                    "dependencies": true,
-                    "dependent_pool": "vfx_processing",
-                    "dependent_job_suffix": "update_sg",
-                    "dependent_output_directory": "",
-                    "dependent_output_file": "",
-                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py",
                     "color_required": false,
                     "client_process": false,
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
-                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_incoming.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_incoming.nk",
+                    "dependencies": false,
+                    "dependent_pool": "",
+                    "dependent_job_suffix": "",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": ""
                 },
                 "nuke_settings": {
                     "plate_switch": {"which": 1},
@@ -76,11 +62,13 @@
             },
             "incoming-version": {
                 "process_settings": {
-                    "title": "Internal",
+                    "title": "Incoming Version",
                     "description": "Internal version Zero",
+                    "config_type": "incoming",
+                    "process_type": "primary",
                     "output_type": "zerothumb",
-                    "output_root": "secondary",
-                    "output_directory": "editorial/v000",
+                    "output_root": "primary",
+                    "output_directory": "editorial/v000/{entity}",
                     "output_file": "{Source}_v000",
                     "output_file_ext": "mov",
                     "create_version": true,
@@ -88,18 +76,18 @@
                     "update_version_media": true,
                     "create_publish": false,
                     "update_client_version": false,
-                    "dependencies": true,
-                    "dependent_pool": "vfx_processing",
-                    "dependent_job_suffix": "update_sg",
-                    "dependent_output_directory": "",
-                    "dependent_output_file": "",
-                    "dependent_script_file": "//ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/thinkbox/python/dependencies/update_sg.py",
                     "color_required": true,
                     "client_process": false,
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
-                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk"
+                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk",
+                    "dependencies": false,
+                    "dependent_pool": "",
+                    "dependent_job_suffix": "",
+                    "dependent_output_directory": "",
+                    "dependent_output_file": "",
+                    "dependent_script_file": ""
                 },
                 "nuke_settings": {
                     "plate_switch": {"which": 0},
@@ -110,93 +98,6 @@
                     "burnin_switch": {
                         "disable": false
                     },
-                    "content_vendor_burnin": {
-                        "disable": true
-                    },
-                    "format": {},
-                    "main_read": {
-                        "knob_order": [
-                            "file"
-                        ],
-                        "raw": true
-                    },
-                    "main_timecode": {
-                        "startcode": "00:00:00:00",
-                        "metafps": true,
-                        "frame": 0,
-                        "useFrame": true
-                    },
-                    "main_write": {
-                        "knob_order": [
-                            "file_type",
-                            "meta_codec"
-                        ],
-                        "create_directories": true,
-                        "raw": true,
-                        "file_type": "mov",
-                        "meta_codec": "ap4h",
-                        "mov64_codec": "ap4h",
-                        "mov64_fps": 24,
-                        "mov64_write_timecode": true
-                    }
-                },
-                "deadline_settings": {
-                    "primary_pool": "vfx_processing",
-                    "secondary_pool": "vfx_processing",
-                    "department": "VFX",
-                    "group": "admin",
-                    "chunk_size": 1000000,
-                    "priority": 55,
-                    "concurrent_task": 1,
-                    "machine_limit": 1,
-                    "publish_file_type": null
-                }
-            },
-            "client-version-dnxhd": {
-                "process_settings": {
-                    "title": "Client DNxHD v000",
-                    "description": "Client DNxHD v000",
-                    "output_type": "movie",
-                    "output_root": "primary",
-                    "output_directory": "admin/outgoing/submissions/v000/{Entity}",
-                    "output_file": "{output_file}",
-                    "output_file_ext": "mov",
-                    "version_start_number": 0,
-                    "dependencies": false,
-                    "create_version": false,
-                    "update_version": false,
-                    "create_publish": false,
-                    "update_client_version": false,
-                    "color_required": true,
-                    "client_process": true,
-                    "plugin_name": "Nuke",
-                    "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
-                    "plugin_version": "14.0",
-                    "plugin_in_script": "admin/processing/nuke_scripts/nuke14/pump_DNxHD.nk"
-                },
-                "nuke_settings": {
-                    "plate_switch": {"which": 0},
-                    "color_switch": {"which": 1},
-                    "transform_switch": {"which": 1},
-                    "slate_switch": {
-                        "disable": false
-                    },
-                    "burnin_switch": {
-                        "disable": false
-                    },
-                    "content_vendor_burnin": {
-                        "disable": true
-                    },
-                    "main_lut": {
-                        "colorspaceIn": "linear",
-                        "colorspaceOut": "linear"
-                    },
-                    "main_ocio": {},
-                    "format": {
-                        "type": "CustomNonProjectEntity01",
-                        "id": 5,
-                        "name": "FHD"
-                    },
                     "main_read": {
                         "knob_order": [
                             "file"
@@ -204,6 +105,7 @@
                         "raw": true
                     },
                     "main_write": {
+                        "knob_order": [],
                         "create_directories": true,
                         "raw": true
                     }

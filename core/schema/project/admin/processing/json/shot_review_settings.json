@@ -4,6 +4,9 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
+                    "description" : "Artist Dailies Reviewable",
+                    "config_type": "shot_submit",
+                    "process_type": "primary",
                     "output_type": "movie",
                     "output_root": "primary",
                     "output_file_ext": "mov",
@@ -11,10 +14,10 @@
                     "create_version": true,
                     "update_version": true,
                     "update_version_media": true, 
-                    "create_publish": false,                    
-                    "update_client_version": false,                       
+                    "create_publish": false,
+                    "update_client_version": false,
                     "color_required": true,
-                    "client_process": false,              
+                    "client_process": false,
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
@@ -32,15 +35,6 @@
                     "transform_switch": {"which":0},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
-                    "content_vendor_burnin":{"disable":true},            
-                    "format":{
-                        "name": "delivery_format"
-                    },     
-                    "quicktime_codec":{
-                        "type": "CustomNonProjectEntity08",
-                        "id": 37,
-                        "name": "ProRes422Proxy"
-                    },      
                     "main_read": {
                         "knob_order": ["file"],
                         "raw": true
@@ -68,17 +62,20 @@
             "delivery-graded-version":{
                 "process_settings":{
                     "title" : "Dailies Graded and Cropped Version",
+                    "description" : "Client Graded Reviewable",
+                    "config_type": "shot_submit",
+                    "process_type": "primary",
                     "output_type": "movie",
                     "output_root": "primary",
                     "output_file_ext": "mov",
                     "add_to_review_playlist": false,
                     "create_version": false,
                     "update_version": false,
-                    "create_publish": false,                    
-                    "update_client_version": false,                       
+                    "create_publish": false,
+                    "update_client_version": false,
+                    "delivery_graded": true,
                     "color_required": true,
                     "client_process": false,
-                    "delivery_graded": true,
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
@@ -96,22 +93,6 @@
                     "transform_switch": {"which":1},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
-                    "content_vendor_burnin":{"disable":true},
-                    "main_lut": {
-                        "colorspaceIn": "linear",          
-                        "colorspaceOut": "linear"
-                    },                          
-                    "main_ocio": {},               
-                    "format":{
-                        "type": "CustomNonProjectEntity01",
-                        "id": 5,
-                        "name": "FHD"
-                    },     
-                    "quicktime_codec":{
-                        "type": "CustomNonProjectEntity08",
-                        "id": 37,
-                        "name": "ProRes422Proxy"
-                    },       
                     "main_read": {
                         "knob_order": ["file"],
                         "raw": true
@@ -143,6 +124,9 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
+                    "description" : "Artist Dailies Reviewable",
+                    "config_type": "shot_submit",
+                    "process_type": "secondary",
                     "output_type": "movie",
                     "output_root": "primary",
                     "output_file_ext": "mov",
@@ -150,10 +134,10 @@
                     "create_version": true,
                     "update_version": true,
                     "update_version_media": true,
-                    "create_publish": false,                    
-                    "update_client_version": false,                       
+                    "create_publish": false,
+                    "update_client_version": false,
                     "color_required": true,
-                    "client_process": false,              
+                    "client_process": false,
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
@@ -171,15 +155,6 @@
                     "transform_switch": {"which":0},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
-                    "content_vendor_burnin":{"disable":true},            
-                    "format":{
-                        "name": "delivery_format"
-                    },     
-                    "quicktime_codec":{
-                        "type": "CustomNonProjectEntity08",
-                        "id": 37,
-                        "name": "ProRes422Proxy"
-                    },      
                     "main_read": {
                         "knob_order": ["file"],
                         "raw": true
@@ -211,6 +186,9 @@
             "resolve-version":{
                 "process_settings":{
                     "title" : "Dailies Render",
+                    "description" : "Artist Dailies Reviewable",
+                    "config_type": "shot_submit",
+                    "process_type": "3d",
                     "output_type": "movie",
                     "output_root": "primary",
                     "output_file_ext": "mov",
@@ -218,10 +196,10 @@
                     "create_version": true,
                     "update_version": true,
                     "update_version_media": true,
-                    "create_publish": false,                    
-                    "update_client_version": false,                       
+                    "create_publish": false,
+                    "update_client_version": false,
                     "color_required": true,
-                    "client_process": false,              
+                    "client_process": false,
                     "plugin_name": "Nuke",
                     "plugin_path": "C:/Program Files/Nuke14.0v5/Nuke14.0.exe",
                     "plugin_version": "14.0",
@@ -239,15 +217,6 @@
                     "transform_switch": {"which":0},
                     "slate_switch": {"disable":false},
                     "burnin_switch": {"disable":false},
-                    "content_vendor_burnin":{"disable":true},            
-                    "format":{
-                        "name": "delivery_format"
-                    },     
-                    "quicktime_codec":{
-                        "type": "CustomNonProjectEntity08",
-                        "id": 37,
-                        "name": "ProRes422Proxy"
-                    },      
                     "main_read": {
                         "knob_order": ["file"],
                         "raw": true
