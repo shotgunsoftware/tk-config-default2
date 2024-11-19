@@ -103,7 +103,7 @@ apps.tk-shotgun-launchfolder.location:
 apps.tk-shotgun-launchpublish.location:
   type: app_store
   name: tk-shotgun-launchpublish
-  version: v0.7.0
+  version: v0.7.1
 apps.tk-shotgun-launchvredreview.location:
   type: app_store
   name: tk-shotgun-launchvredreview
