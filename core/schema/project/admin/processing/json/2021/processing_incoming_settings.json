@@ -53,9 +53,9 @@
                     "secondary_pool": "vfx_processing",
                     "department": "VFX",
                     "group": "admin",
-                    "chunk_size": 4,
+                    "chunk_size": 10,
                     "priority": 50,
-                    "concurrent_task": 10,
+                    "concurrent_task": 4,
                     "machine_limit": 4,
                     "publish_file_type": null
                 }
