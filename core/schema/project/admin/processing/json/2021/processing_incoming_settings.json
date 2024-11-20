@@ -55,7 +55,7 @@
                     "group": "admin",
                     "chunk_size": 4,
                     "priority": 50,
-                    "concurrent_task": 4,
+                    "concurrent_task": 10,
                     "machine_limit": 4,
                     "publish_file_type": null
                 }
