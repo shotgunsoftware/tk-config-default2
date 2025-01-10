@@ -23,83 +23,83 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.4.2
+  version: v0.5.1
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
-  version: v1.8.2
+  version: v1.9.1
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.3.0
+  version: v1.5.1
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.12.0
+  version: v0.13.2
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.23.1
+  version: v1.25.2
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.6.7
+  version: v2.10.1
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.3.0
+  version: v1.4.2
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
-  version: v1.2.0
+  version: v1.3.0
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
-  version: v0.5.1
+  version: v0.6.2
 apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
-  version: v0.5.1
+  version: v0.6.1
 apps.tk-multi-shotgunpanel.location:
   type: app_store
   name: tk-multi-shotgunpanel
-  version: v1.8.6
+  version: v1.9.2
 apps.tk-multi-snapshot.location:
   type: app_store
   name: tk-multi-snapshot
-  version: v0.9.1
+  version: v0.10.1
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.13.6
+  version: v0.15.4
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
-  version: v1.2.0
+  version: v1.3.1
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
-  version: v0.3.0
+  version: v0.4.0
 apps.tk-shotgun-launchfolder.location:
   type: app_store
   name: tk-shotgun-launchfolder
-  version: v0.3.0
+  version: v0.4.0
 apps.tk-shotgun-launchpublish.location:
   type: app_store
   name: tk-shotgun-launchpublish
-  version: v0.5.0
+  version: v0.7.1
 apps.tk-shotgun-launchvredreview.location:
   type: app_store
   name: tk-shotgun-launchvredreview
-  version: v1.1.0
+  version: v1.2.1
 apps.tk-hiero-export.location:
   type: app_store
   name: tk-hiero-export
-  version: v0.7.0
+  version: v0.8.1
 apps.tk-hiero-openinshotgun.location:
   type: app_store
   name: tk-hiero-openinshotgun
-  version: v0.4.0
+  version: v0.5.0
 # houdini geometry node
 apps.tk-houdini-geometrynode.location:
   type: git
@@ -116,7 +116,7 @@ apps.tk-houdini-mantranode.location:
 apps.tk-nuke-quickreview.location:
   type: app_store
   name: tk-nuke-quickreview
-  version: v1.2.1
+  version: v1.3.2
 apps.tk-nuke-writenode.location:
   type: git
   version: v1.6.0
@@ -128,15 +128,15 @@ apps.tk-nuke-writenode.location:
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.10.4
+  version: v1.11.2
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.4.3
+  version: v1.5.4
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
-  version: v1.3.1
+  version: v1.4.1
 frameworks: '@frameworks'
 # ---- tk-3dequalizer
 apps.tk-3dequalizer.location:
