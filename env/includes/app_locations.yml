@@ -21,45 +21,77 @@ includes:
 
 # about
 apps.tk-multi-about.location:
-  type: app_store
-  name: tk-multi-about
-  version: v0.5.1
+  # type: app_store
+  # name: tk-multi-about
+  # version: v0.5.1
+  type: git_branch
+  branch: ticket/SG-36835-python2-removal
+  path: git@github.com:shotgunsoftware/tk-multi-about.git
+  version: b55bac1565ae4b158893543aa0ca77a4c6f61014
 apps.tk-multi-breakdown.location:
   type: app_store
   name: tk-multi-breakdown
   version: v1.9.1
 apps.tk-multi-breakdown2.location:
-  type: app_store
-  name: tk-multi-breakdown2
-  version: v0.4.2
+  # type: app_store
+  # name: tk-multi-breakdown2
+  # version: v0.4.2
+  type: git_branch
+  branch: ticket/SG-36838-python2-removal
+  path: git@github.com:shotgunsoftware/tk-multi-breakdown2.git
+  version: 232beb5bca2d60fe131b4066f5261833befdf791
 apps.tk-multi-data-validation.location:
-  type: app_store
-  name: tk-multi-data-validation
-  version: v0.3.1
+  # type: app_store
+  # name: tk-multi-data-validation
+  # version: v0.3.1
+  type: git_branch
+  branch: ticket/SG-36835-python2-removal
+  path: git@github.com:shotgunsoftware/tk-multi-data-validation.git
+  version: 9ff226bcd9ff0ada2ad2300e523923271b8e6f1e
 apps.tk-multi-demo.location:
-  type: app_store
-  name: tk-multi-demo
-  version: v1.5.1
+  # type: app_store
+  # name: tk-multi-demo
+  # version: v1.5.1
+  type: git_branch
+  branch: ticket/SG-36835-python2-removal
+  path: git@github.com:shotgunsoftware/tk-multi-demo.git
+  version: d2a50dc5ac0ac08a8fa816b7c6df46dd99558eec
 apps.tk-multi-launchapp.location:
-  type: app_store
-  name: tk-multi-launchapp
-  version: v0.13.2
+  # type: app_store
+  # name: tk-multi-launchapp
+  # version: v0.13.2
+  type: git_branch
+  branch: ticket/SG-36835-python2-removal
+  path: git@github.com:shotgunsoftware/tk-multi-launchapp.git
+  version: f90f75e197fdd3f34fb89a0fdb6f2512e52e1bd8
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
   version: v1.25.2
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.10.1
+  # type: app_store
+  # name: tk-multi-publish2
+  # version: v2.10.1
+  type: git_branch
+  branch: ticket/SG-36835-python2-removal
+  path: git@github.com:shotgunsoftware/tk-multi-publish2.git
+  version: 4cc464970622af27149eb1aeba36d2c195bff32f
 apps.tk-multi-pythonconsole.location:
-  type: app_store
-  name: tk-multi-pythonconsole
-  version: v1.4.2
+  # type: app_store
+  # name: tk-multi-pythonconsole
+  # version: v1.4.2
+  type: git_branch
+  branch: ticket/SG-36835-python2-removal
+  path: git@github.com:shotgunsoftware/tk-multi-pythonconsole.git
+  version: 423d17be1e6e451ab8162f2c362286e4e8eaa7c6
 apps.tk-multi-reviewsubmission.location:
-  type: app_store
-  name: tk-multi-reviewsubmission
-  version: v1.3.0
+  # type: app_store
+  # name: tk-multi-reviewsubmission
+  # version: v1.3.0
+  type: git_branch
+  branch: ticket/SG-36838-drop-python-2-compatibility
+  path: git@github.com:shotgunsoftware/tk-multi-reviewsubmission.git
+  version: af0c64e26856aba6b9e1bf19211f36bd9d4a410e
 apps.tk-multi-scenebuilder.location:
   type: app_store
   name: tk-multi-scenebuilder
@@ -81,9 +113,13 @@ apps.tk-multi-snapshot.location:
   name: tk-multi-snapshot
   version: v0.10.1
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.15.4
+  # type: app_store
+  # name: tk-multi-workfiles2
+  # version: v0.15.4
+  type: git_branch
+  branch: ticket/SG-36835-removing-python-2
+  path: git@github.com:shotgunsoftware/tk-multi-workfiles2.git
+  version: 49bdbaf9765cea20d65e3dba4719a4ca5966e5c4
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
