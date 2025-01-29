@@ -47,7 +47,7 @@ frameworks:
       # name: tk-framework-desktopserver
       type: git_branch
       branch: ticket/SG-37774_remove_py2
-      path: git@github.com:shotgunsoftware/tk-framework-desktopserver.git
+      path: https://github.com/shotgunsoftware/tk-framework-desktopserver.git
       version: 4a0df2554c9ddb5ffee6e6c05bb52ee7f9110b79
   tk-framework-qtwidgets_v2.x.x:
     location:
@@ -56,7 +56,7 @@ frameworks:
       # name: tk-framework-qtwidgets
       type: git_branch
       branch: ticket/SG-37888-pytho2-removal
-      path: git@github.com:shotgunsoftware/tk-framework-qtwidgets.git
+      path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
       version: 6e282c457c75684dfa88f368dfd976dfe144eb52
   tk-framework-shotgunutils_v4.x.x:
     location:
@@ -70,7 +70,7 @@ frameworks:
       # name: tk-framework-shotgunutils
       type: git_branch
       branch: ticket/SG-37888-python2-removal
-      path: git@github.com:shotgunsoftware/tk-framework-shotgunutils.git
+      path: https://github.com/shotgunsoftware/tk-framework-shotgunutils.git
       version: 0c8b8c77afe99d5b1cd8d7786685ff8eae762b01
   tk-framework-widget_v0.2.x:
     location:
@@ -89,7 +89,7 @@ frameworks:
       # name: tk-framework-desktopclient
       type: git_branch
       branch: ticket/SG-37774_remove_py2
-      path: git@github.com:shotgunsoftware/tk-framework-desktopclient.git
+      path: https://github.com/shotgunsoftware/tk-framework-desktopclient.git
       version: c85ffd9397e0819208a485ef67c3ece8f5122fee
   tk-framework-lmv_v0.x.x:
     location:
