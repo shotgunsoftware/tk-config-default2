@@ -57,7 +57,7 @@ frameworks:
       type: git_branch
       branch: ticket/SG-37888-pytho2-removal
       path: https://github.com/shotgunsoftware/tk-framework-qtwidgets.git
-      version: 6e282c457c75684dfa88f368dfd976dfe144eb52
+      version: 0e89e95267eecc0eadb8d10f8ceb2c34e3fa9ea7
   tk-framework-shotgunutils_v4.x.x:
     location:
       version: v4.4.15
