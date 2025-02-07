@@ -59,7 +59,7 @@ apps.tk-multi-pythonconsole.location:
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
-  version: v1.3.0
+  version: v1.3.1
 apps.tk-multi-scenebuilder.location:
   type: app_store
   name: tk-multi-scenebuilder
