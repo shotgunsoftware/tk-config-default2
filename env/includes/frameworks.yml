@@ -17,12 +17,12 @@ frameworks:
   # adobe - Common functionality for adobe products
   tk-framework-adobe_v1.x.x:
     location:
-      version: v1.2.5
+      version: v1.2.9
       type: app_store
       name: tk-framework-adobe
   tk-framework-adminui_v0.x.x:
     location:
-      version: v0.7.7
+      version: v0.8.0
       type: app_store
       name: tk-framework-adminui
   tk-framework-alias_v1.x.x:
@@ -32,7 +32,7 @@ frameworks:
       name: tk-framework-alias
   tk-framework-alias_v2.x.x:
     location:
-      version: v2.0.0
+      version: v2.1.2
       type: app_store
       name: tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
@@ -42,12 +42,12 @@ frameworks:
       name: tk-framework-aliastranslations
   tk-framework-desktopserver_v1.x.x:
     location:
-      version: v1.7.5
+      version: v1.8.2
       type: app_store
       name: tk-framework-desktopserver
   tk-framework-qtwidgets_v2.x.x:
     location:
-      version: v2.12.4
+      version: v2.12.6
       type: app_store
       name: tk-framework-qtwidgets
   tk-framework-shotgunutils_v4.x.x:
@@ -57,7 +57,7 @@ frameworks:
       name: tk-framework-shotgunutils
   tk-framework-shotgunutils_v5.x.x:
     location:
-      version: v5.10.1
+      version: v5.10.2
       type: app_store
       name: tk-framework-shotgunutils
   tk-framework-widget_v0.2.x:
@@ -72,7 +72,7 @@ frameworks:
       name: tk-framework-widget
   tk-framework-desktopclient_v0.x.x:
     location:
-      version: v0.3.4
+      version: v0.4.0
       type: app_store
       name: tk-framework-desktopclient
   tk-framework-lmv_v0.x.x:
