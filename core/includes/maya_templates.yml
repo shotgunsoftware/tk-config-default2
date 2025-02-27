@@ -161,6 +161,9 @@ paths:
     maya_shot_render_exr:
         definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.exr'
         root_name: 'project_storage_pix'
+    maya_shot_render_multi_exr:
+        definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{pass_group}/{Shot}_{task_name}[_{maya.layer_name}]_v{version}_{pass_group}.{SEQ}.exr'
+        root_name: 'project_storage_pix'
     maya_shot_render_jpg:
         definition: '@render_root/maya/{task_name}/version/{Shot}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Shot}_{task_name}[_{maya.layer_name}]_v{version}.{SEQ}.jpg'
         root_name: 'project_storage_pix'
@@ -237,6 +240,9 @@ paths:
         root_name: 'secondary'
     maya_asset_render_exr:
         definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]exr'
+        root_name: 'project_storage_pix'
+    maya_asset_render_multi_exr:
+        definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{pass_group}/{Asset}_{task_name}[_{maya.layer_name}]_v{version}_{pass_group}.[{SEQ}.]exr'
         root_name: 'project_storage_pix'
     maya_asset_render_jpg:
         definition: '@maya_asset_renders_step/{Asset}_{task_name}[_{name}]_v{version}/[{maya.layer_name}/]{Asset}_{task_name}[_{maya.layer_name}]_v{version}.[{SEQ}.]jpg'

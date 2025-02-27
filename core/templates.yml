@@ -135,6 +135,12 @@ keys:
     project:
         type: str
 
+    # For Maya and Houdini passes
+    pass_group:
+      type: str
+      filter_by: alphanumeric
+      default: beauty
+
     # These are used for the Mari UDIM pipeline:
     UDIM:
         type: sequence
