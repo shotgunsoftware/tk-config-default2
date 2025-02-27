@@ -69,11 +69,6 @@ keys:
             hiplc: Houdini Indie Scene (.hiplc)
         default: hip
         alias: extension
-
-    pass_group:
-        type: str
-        filter_by: alphanumeric
-        default: beauty
     
     # node context
     houdini.context:
