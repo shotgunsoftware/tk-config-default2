@@ -324,3 +324,17 @@ paths:
     houdini_shot_cache_bgeo_anim:
          definition: '@houdini_shot_cache_bgeo_area/{Shot}_{task_name}_geometry-cache_{houdini.node}_v{version}.{HSEQ}.bgeosc'
          root_name: 'caches'
+
+    ######################################## ASSET CACHES
+    houdini_asset_cache_alembic_abc:
+         definition: '@houdini_cache_asset_root/alembic/{Asset}_{task_name}_alembic-cache[_{name}]_v{version}/{Asset}_{task_name}_alembic-cache_{houdini.node}_v{version}.abc'
+         root_name: 'caches'
+    houdini_asset_cache_bgeo_area:
+         definition: '@houdini_cache_asset_root/geometry/{Asset}_{task_name}_geometry-cache[_{name}]_v{version}'
+         root_name: 'caches'     
+    houdini_asset_cache_bgeo:
+         definition: '@houdini_asset_cache_bgeo_area/{Asset}_{task_name}_geometry-cache_{houdini.node}_v{version}.bgeosc'
+         root_name: 'caches'
+    houdini_asset_cache_bgeo_anim:
+         definition: '@houdini_asset_cache_bgeo_area/{Asset}_{task_name}_geometry-cache_{houdini.node}_v{version}.{HSEQ}.bgeosc'
+         root_name: 'caches'
