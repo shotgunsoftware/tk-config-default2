@@ -22,9 +22,13 @@ engines.tk-aftereffects.location:
   name: tk-aftereffects
   version: v0.4.5
 engines.tk-alias.location:
-  type: app_store
-  name: tk-alias
-  version: v4.1.6
+  # type: app_store
+  # name: tk-alias
+  # version: v4.1.6
+  type: git_branch
+  branch: alias2026-tech-preview
+  path: https://github.com/shotgunsoftware/tk-alias.git
+  version: 043dc6d
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
