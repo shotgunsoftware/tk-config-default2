@@ -53,7 +53,7 @@
                     "secondary_pool": "vfx_processing",
                     "department": "VFX",
                     "group": "admin",
-                    "chunk_size": 10,
+                    "chunk_size": 15,
                     "priority": 50,
                     "concurrent_task": 4,
                     "machine_limit": 4,
