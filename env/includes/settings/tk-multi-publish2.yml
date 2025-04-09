@@ -704,6 +704,10 @@ settings.tk-multi-publish2.3dequalizer.shot_step:
     hook: "{self}/publish_file.py"
     settings: {}
 
+  - name: Publish Lens to ShotGrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/_3dequalizer/publish_lens.py"
+    settings:
+        Publish Template: 3dequalizer_asset_lens_publish
    
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location" 
