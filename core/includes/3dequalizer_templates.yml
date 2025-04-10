@@ -137,6 +137,11 @@ paths:
         definition: '@3dequalizer_shot_playblast_wire_publish_root/{Shot}_{task_name}[_{name}]_wire_v{version}.{3DESEQ}.jpg'
         root_name: 'project_storage_pix'
 
+    # the Location of 3dequalizer published Lenses
+    3dequalizer_shot_lens_publish:
+        definition: '@shot_root/publish/3dequalizer/lenses/{Shot}_{task_name}[_{name}]_v{version}.txt'
+        root_name: 'project_storage_pix'
+
     ########################################ASSET WORK
     # define the location of a work area
     3dequalizer_asset_work_area:
