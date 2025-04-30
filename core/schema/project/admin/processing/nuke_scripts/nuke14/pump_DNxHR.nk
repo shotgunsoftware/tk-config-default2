@@ -50,7 +50,7 @@ Root {
  int16Lut sRGB
  logLut Cineon
  floatLut linear
- free_type_font_path //10.80.8.252/VFX_Pipeline/Pipeline/ssvfx_scripts/fonts/gotham/
+ free_type_font_path //ssvfx_pipeline/pipeline_repo/master/ssvfx_scripts/fonts/gotham/
  addUserKnob {20 Deadline}
  addUserKnob {1 FrameListMode l frameListMode}
  FrameListMode Custom
@@ -1353,7 +1353,7 @@ Dot {
  ypos -1781
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
  invert true
  working_space scene_linear
  name OCIOFileTransform11
@@ -1362,7 +1362,7 @@ OCIOFileTransform {
  ypos -1693
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
  invert true
  working_space scene_linear
  name OCIOFileTransform12
@@ -1377,7 +1377,7 @@ Dot {
 }
 push $N82bc5800
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Arri_Wide_Gamut_to_ACES_ap0.spimtx
  working_space scene_linear
  name OCIOFileTransform14
  label "AWG -> AP0\n\[value direction]"
@@ -1385,7 +1385,7 @@ OCIOFileTransform {
  ypos -1720
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
  working_space scene_linear
  name OCIOFileTransform15
  label "AP0 -> AP1\n\[value direction]"
@@ -1714,7 +1714,7 @@ Dot {
  ypos 424
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/ACES_to_ACEScg.spimtx
  version 3
  invert true
  working_space linear
@@ -1724,7 +1724,7 @@ OCIOFileTransform {
  ypos 707
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper_to_linear.spi1d
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper_to_linear.spi1d
  version 3
  invert true
  working_space linear
@@ -1733,7 +1733,7 @@ OCIOFileTransform {
  ypos 761
 }
 OCIOFileTransform {
- file //10.80.8.252/VFX_Pipeline/Pipeline/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper.RRT.Rec.709.spi3d
+ file //ssvfx_pipeline/pipeline_repo/master/external_scripts/OpenColorIO-Configs/aces_1.0.3/luts/Log2_48_nits_Shaper.RRT.Rec.709.spi3d
  interpolation tetrahedral
  working_space linear
  name OCIOFileTransform16
@@ -3763,7 +3763,7 @@ push $N82e7ac00
  Read {
   inputs 0
   file_type png
-  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  file //ssvfx_pipeline/pipeline_repo/Icons/icon_ssvfx_strap.png
   localizationPolicy off
   origset true
   premultiplied true
@@ -3895,7 +3895,7 @@ push $N82e7a000
  Read {
   inputs 0
   file_type png
-  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_button.png
+  file //ssvfx_pipeline/pipeline_repo/Icons/icon_ssvfx_button.png
   localizationPolicy off
   format "891 891 0 0 891 891 1 "
   origset true
@@ -4025,7 +4025,7 @@ push $N82e59c00
  Read {
   inputs 0
   file_type png
-  file //10.80.8.252/VFX_Pipeline/Pipeline/Icons/icon_ssvfx_strap.png
+  file //ssvfx_pipeline/pipeline_repo/Icons/icon_ssvfx_strap.png
   localizationPolicy off
   origset true
   premultiplied true
@@ -4338,7 +4338,7 @@ Text2 {
  font_size_toolbar 100
  font_width_toolbar 100
  font_height_toolbar 100
- message "\[format %04d \[expr \[value frame]]] of \[format %04d \[expr \[value last_frame]]] "
+ message "\[format %04d \[expr \[value frame]]] of \[format %04d \[expr \[value SSVFX_SLATE.end_frame]]]"
  old_message {{49 48 48 48 32 111 102 32 49 48 57 50 32}
    }
  old_expression_markers {{0 3 8 11}
