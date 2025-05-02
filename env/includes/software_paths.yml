@@ -23,9 +23,9 @@ path.windows.mari: C:\Program Files\Mari7.0v2\Bundle\bin\Mari7.0v2.exe
 path.windows.motionbuilder: C:\Program Files\Autodesk\MotionBuilder 2026\bin\x64\motionbuilder.exe
 
 # Hiero
-path.linux.hiero: "Nuke12.1"
-path.mac.hiero: "/Applications/Nuke12.1v4/Hiero12.1v4.app"
-path.windows.hiero: E:\Program Files\Nuke13.2v2\Nuke13.2.exe
+path.linux.hiero: "Nuke16.0"
+path.mac.hiero: "/Applications/Nuke16.0v1/Hiero16.0v1.app"
+path.windows.hiero: C:\Program Files\Nuke16.0v1\Nuke16.0.exe
 
 # RV
 path.linux.rv: "rv"
