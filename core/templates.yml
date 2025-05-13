@@ -256,10 +256,6 @@ paths:
         definition: 'admin/outgoing/submissions'
         root_name: 'project_storage_pix'
     
-    client_submission_folder_alt: 
-        definition: 'admin/outgoing/submissions'
-        root_name: 'secondary'
-        
     resolve_review_folder: 
         definition: 'editorial/resolve/review'
         root_name: 'project_storage_pix'
@@ -346,12 +342,6 @@ paths:
     shot_process_mov:
         definition: '@shot_context/renders/process/{Codec}/{Shot}_v{version}.mov'
         root_name: 'project_storage_pix'
-    # resolve_review_mov: 
-    #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
-    #     root_name: 'project_storage_pix'
-    # resolve_review_mov_secondary: 
-    #     definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{name}]_v{version}.mov'
-    #     root_name: 'secondary'                
 
     # The location of shot rushes references, proxy jpegs and quicktimes
     shot_rushes_root:
@@ -445,17 +435,11 @@ paths:
             root_name: 'project_storage_pix'
 
     # global shot root locations for the different locations to save to
-    shot_render_test_global:
-        definition: '@temp_shot_root/'
-        root_name: 'secondary'
     shot_render_global:
         definition: '@shot_context/'
         root_name: 'project_storage_pix'
 
     # global asset root locations for the different locations to save to
-    asset_render_test_global:
-        definition: '@temp_asset_render_root/'
-        root_name: 'secondary'
     asset_render_global:
         definition: '@asset_context/'
         root_name: 'project_storage_pix'

@@ -63,9 +63,6 @@ paths:
         definition: '@nuke_shot_work_area/snapshots/{Shot}_{task_name}[_{name}]_v{version}.{timestamp}.nk'
         root_name: 'project_storage_pix'
     # The location of published nuke script files
-    # nuke_shot_publish:
-    #     definition: '@nuke_shot_publish_area/{Shot}_{task_name}[_{name}]_v{version}.nk'
-    #     root_name: 'secondary'
     nuke_shot_publish:
         definition: '@publish_shot_records/{Shot}/{task_name}/{Shot}_{task_name}[_{name}]_v{version}.nk'
         root_name: 'project_storage_pix'
@@ -186,9 +183,6 @@ paths:
     nuke_shot_render_mov:
         definition: '@temp_shot_root/renders/nuke/{task_name}/review/{Shot}_{task_name}[_{name}]_v{version}/{Shot}_{task_name}[_{name}]_v{version}.mov'
         root_name: 'project_storage_pix'
-    nuke_shot_render_mov_secondary:
-        definition: '@nuke_shot_render_mov'
-        root_name: 'secondary'         
     nuke_shot_render_filmstrip:
         definition: '@temp_shot_root/renders/nuke/{task_name}/review/{Shot}_{task_name}[_{nuke.output}]_v{version}/{Shot}_{task_name}[_{nuke.output}]_v{version}.png'
         root_name: 'project_storage_pix'
@@ -265,9 +259,6 @@ paths:
     nuke_asset_render_mov:
         definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
         root_name: 'project_storage_pix'
-    nuke_asset_render_mov_secondary:
-        definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}[_{name}]_v{version}.mov'
-        root_name: 'secondary'
     nuke_asset_render_filmstrip:
         definition: '@temp_asset_render_root/renders/nuke/{task_name}/review/{Asset}_{task_name}[_{nuke.output}]_v{version}/{Asset}_{task_name}[_{nuke.output}]_v{version}.png'
         root_name: 'project_storage_pix'

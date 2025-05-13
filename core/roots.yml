@@ -57,12 +57,6 @@ project_storage_pix:
     # indicates that this is the default storage root
     default: true
 
-secondary: {
-  shotgun_storage_id: 73,
-  linux_path: /mnt/projects,
-  mac_path: null, 
-  windows_path: \\10.80.8.252\projects
-  }
 
 caches: {
   shotgun_storage_id: 1320,

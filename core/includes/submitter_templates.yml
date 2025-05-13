@@ -26,12 +26,6 @@ paths:
     resolve_shot_review_mov: 
         definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{maya.techpass_name}][_{underscore_name}][_{process}]_v{version}.mov'
         root_name: 'project_storage_pix'
-    resolve_shot_review_mov_secondary: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Shot}_{task_name}[_{maya.techpass_name}][_{underscore_name}][_{process}]_v{version}.mov'
-        root_name: 'secondary'                
     resolve_asset_review_mov: 
         definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{maya.techpass_name}][_{underscore_name}][_{process}]_v{version}.mov'
         root_name: 'project_storage_pix'
-    resolve_asset_review_mov_secondary: 
-        definition: 'editorial/resolve/review/{YYYY}{MM}{DD}_Resolve_Review/{ampm}/{Asset}_{task_name}[_{maya.techpass_name}][_{underscore_name}][_{process}]_v{version}.mov'
-        root_name: 'secondary' 
