@@ -394,6 +394,7 @@ settings.tk-multi-loader2.vred:
     Catpart File: [import, import_with_options]
     Fbx File: [import, import_with_options]
     Motion Builder FBX: [import, import_with_options]
+    Nx File: [import, import_with_options]
     VRED Scene: [import, import_with_options, import_as_env, smart_reference]
     Osb File: [import, import_with_options, import_as_env, smart_reference]
     Image: [import_sceneplate]
