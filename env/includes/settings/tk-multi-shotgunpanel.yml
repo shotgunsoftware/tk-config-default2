@@ -323,6 +323,8 @@ settings.tk-multi-shotgunpanel.vred:
     - actions: [import]
       filters: {published_file_type: Catpart File}
     - actions: [import]
+      filters: {published_file_type: Nx File}
+    - actions: [import]
       filters: {published_file_type: Fbx File}
     - actions: [import]
       filters: {published_file_type: Motion Builder FBX}
@@ -330,9 +332,9 @@ settings.tk-multi-shotgunpanel.vred:
       filters: {published_file_type: VRED Scene}
     - actions: [import]
       filters: {published_file_type: Osb File}
-    - actions: [import_sceneplate]
+    - actions: [import_front_sceneplate, import_back_sceneplate]
       filters: {published_file_type: Image}
-    - actions: [import_sceneplate]
+    - actions: [import_front_sceneplate, import_back_sceneplate]
       filters: {published_file_type: Rendered Image}
     - actions: [publish_clipboard]
       filters: {}

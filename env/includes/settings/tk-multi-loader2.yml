@@ -397,8 +397,8 @@ settings.tk-multi-loader2.vred:
     Nx File: [import, import_with_options]
     VRED Scene: [import, import_with_options, import_as_env, smart_reference]
     Osb File: [import, import_with_options, import_as_env, smart_reference]
-    Image: [import_sceneplate]
-    Rendered Image: [import_sceneplate]
+    Image: [import_front_sceneplate, import_back_sceneplate]
+    Rendered Image: [import_front_sceneplate, import_back_sceneplate]
   entities:
   - caption: Assets
     entity_type: Asset
