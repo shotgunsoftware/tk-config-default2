@@ -97,6 +97,13 @@ settings.tk-multi-loader2.houdini:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
     hierarchy: [entity, content]
+  - caption: Current Entity
+    entity_type: Task
+    type: Query
+    filters:
+    - [project, is, '{context.project}']
+    - [entity, is, '{context.entity}']
+    hierarchy: [entity, content]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
@@ -217,6 +224,13 @@ settings.tk-multi-loader2.nuke:
     filters:
     - [project, is, {'type': 'Project', 'id': 241}]
     hierarchy: [sg_2d_3d, sg_asset_type, code]
+  - caption: Current Entity
+    entity_type: Task
+    type: Query
+    filters:
+    - [project, is, '{context.project}']
+    - [entity, is, '{context.entity}']
+    hierarchy: [entity, content]
   # - caption: My Tasks
   #   entity_type: Task
   #   filters:
