@@ -139,6 +139,9 @@ paths:
     houdini_shot_node_param_publish:
         definition: '@houdini_shot_publish_area/{Shot}_{task_name}[_{name}]_v{version}/node/{houdini.node}/{houdini.context}/{houdini.node.type}.idx'
         root_name: 'project_storage_pix'
+    houdini_shot_node_network_publish:
+        definition: '@houdini_shot_publish_area/{Shot}_{task_name}[_{name}]_v{version}/{houdini.context}/{houdini.node}/{houdini.node}.cpio'
+        root_name: 'project_storage_pix'
     ######################################## ASSET WORK
     # define the location of a work area
     houdini_asset_work_area:
@@ -159,6 +162,12 @@ paths:
     # The location of published houdini files
     houdini_asset_publish:
         definition: '@asset_root/publish/houdini/@houdini_asset_hipfile.{houdini_extension}'
+        root_name: 'project_storage_pix'
+    houdini_asset_node_param_publish:
+        definition: '@houdini_asset_publish_area/{Asset}_{task_name}[_{name}]_v{version}/{houdini.context}/{houdini.node}/{houdini.node.type}.preset'
+        root_name: 'project_storage_pix'
+    houdini_asset_node_network_publish:
+        definition: '@houdini_asset_publish_area/{Asset}_{task_name}[_{name}]_v{version}/{houdini.context}/{houdini.node}/{houdini.node}.cpio'
         root_name: 'project_storage_pix'
     ######################################## SHOT OUTPUT
     # Rendered images go to render root
@@ -324,6 +333,15 @@ paths:
     houdini_shot_cache_bgeo_anim:
          definition: '@houdini_shot_cache_bgeo_area/{Shot}_{task_name}_geometry-cache_{houdini.node}_v{version}.{HSEQ}.bgeosc'
          root_name: 'caches'
+    houdini_shot_cache_vdb_anim:
+         definition: '@houdini_cache_shot_root/vdb/{Shot}_{task_name}_vdb-cache[_{name}]_v{version}/{Shot}_{task_name}_vdb-cache_{houdini.node}_v{version}.{HSEQ}.vdb'
+         root_name: 'caches'
+    houdini_shot_cache_standin:
+        definition: '@houdini_cache_shot_root/standin/{Shot}_{task_name}_standin_cache[_{name}]_v{version}/{Shot}_{task_name}_standin-cache_{houdini.node}_v{version}.ass'
+        root_name: 'caches'
+    houdini_shot_cache_standin_anim:
+        definition: '@houdini_cache_shot_root/standin/{Shot}_{task_name}_standin_cache[_{name}]_v{version}/{Shot}_{task_name}_standin-cache_{houdini.node}_v{version}.{HSEQ}.ass'
+        root_name: 'caches'
 
     ######################################## ASSET CACHES
     houdini_asset_cache_alembic_abc:
@@ -338,3 +356,12 @@ paths:
     houdini_asset_cache_bgeo_anim:
          definition: '@houdini_asset_cache_bgeo_area/{Asset}_{task_name}_geometry-cache_{houdini.node}_v{version}.{HSEQ}.bgeosc'
          root_name: 'caches'
+    houdini_asset_cache_vdb_anim:
+         definition: '@houdini_cache_asset_root/vdb/{Asset}_{task_name}_vdb-cache[_{name}]_v{version}/{Asset}_{task_name}_vdb-cache_{houdini.node}_v{version}.{HSEQ}.vdb'
+         root_name: 'caches'
+    houdini_asset_cache_standin:
+        definition: '@houdini_cache_asset_root/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}_standin-cache_{houdini.node}_v{version}.ass'
+        root_name: 'caches'
+    houdini_asset_cache_standin_anim:
+        definition: '@houdini_cache_asset_root/standin/{Asset}_{task_name}[_{name}]_v{version}/{Asset}_{task_name}_standin-cache_{houdini.node}_v{version}.{HSEQ}.ass'
+        root_name: 'caches'

@@ -120,9 +120,15 @@ settings.tk-multi-publish2.3dsmax.shot_step: *settings_tk-multi-publish2_3dsmaxp
 
 # asset step
 settings.tk-multi-publish2.houdini.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{config}/tk-multi-publish2/basic/houdini/collector.py"
   collector_settings:
       Work Template: houdini_asset_work
+      Generated ABC Template: houdini_asset_cache_alembic_abc
+      Generated BGEO Template Anim: houdini_asset_cache_bgeo_anim
+      Generated BGEO Template Stat: houdini_asset_cache_bgeo
+      Generated ASS Template Stat: houdini_asset_cache_standin
+      Generated ASS Template Anim: houdini_asset_cache_standin_anim
+      Generated EXR Template: houdini_asset_render_exr
   publish_plugins:
   - name: Publish to ShotGrid
     hook: "{self}/publish_file.py"
@@ -130,12 +136,21 @@ settings.tk-multi-publish2.houdini.asset_step:
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
-  - name: Publish to ShotGrid
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+  - name: Publish to Shotgrid
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/houdini/publish_session.py"
     settings:
         Publish Template: houdini_asset_publish
+  - name: Publish Node Preset
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/houdini/publish_node.py"
+    settings:
+      Publish Template: houdini_asset_node_param_publish
+  - name: Publish Node Network
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/houdini/publish_node_network.py"
+    settings:
+      Publish Template: houdini_asset_node_network_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
+  enable_manual_load: false
 
 # shot step
 settings.tk-multi-publish2.houdini.shot_step:
@@ -145,6 +160,8 @@ settings.tk-multi-publish2.houdini.shot_step:
       Generated ABC Template: houdini_shot_cache_alembic_abc
       Generated BGEO Template Anim: houdini_shot_cache_bgeo_anim
       Generated BGEO Template Stat: houdini_shot_cache_bgeo
+      Generated ASS Template Stat: houdini_shot_cache_standin
+      Generated ASS Template Anim: houdini_shot_cache_standin_anim
       Generated EXR Template: houdini_shot_render_exr
   publish_plugins:
   - name: Publish to ShotGrid
@@ -161,6 +178,10 @@ settings.tk-multi-publish2.houdini.shot_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/houdini/publish_node.py"
     settings:
       Publish Template: houdini_shot_node_param_publish
+  - name: Publish Node Network
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/basic/houdini/publish_node_network.py"
+    settings:
+      Publish Template: houdini_shot_node_network_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
   enable_manual_load: false
