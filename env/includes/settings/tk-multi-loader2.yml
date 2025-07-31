@@ -74,11 +74,16 @@ settings.tk-multi-loader2.houdini:
     Alembic Cache: [import_alembic, import_hierarchy_alembic, view_metadata, copy_path, shaded_alembic, hda_input]
     Alembic Camera: [view_metadata, copy_path, import_abc_camera]
     Houdini Geo: [import_geometry, view_metadata, copy_path, hda_input]
+    Node Preset: [set_preset, view_metadata, copy_path]
+    Node Network: [import_network, view_metadata, copy_path]
     Standin: [import_arnold, view_metadata, copy_path, assign_shaders]
     Houdini Scene: [merge]
-    Image: [file_cop]
-    Photoshop Image: [file_cop]
-    Rendered Image: [file_cop]
+    Image: [file_cop, set_backgr]
+    Photoshop Image: [file_cop, set_backgr]
+    Rendered Image: [file_cop, set_backgr]
+    Converted Main Plate: [set_backgr]
+    Converted Reference Plate: [set_backgr]
+    Undist_Plates: [set_backgr]
     Texture: [file_cop]
   entities:
   - caption: Assets
@@ -144,6 +149,9 @@ settings.tk-multi-loader2.maya:
     Maya Scene: [import, reference, view_metadata]
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
+    Converted Main Plate: [texture_node, image_plane]
+    Converted Reference Plate: [texture_node, image_plane]
+    Undist_Plates: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
     UDIM Image: [texture_node, image_plane]
     Maya Shader Network: [import, reference]
@@ -447,6 +455,8 @@ settings.tk-multi-loader2.3dequalizer:
   action_mappings:
     Project: [open_project]
     Main Plate: [clip_import, clip_substitute]
+    Converted Main Plate: [clip_import, clip_substitute]
+    Converted Reference Plate: [clip_import, clip_substitute]
     Rendered Image: [clip_import, clip_substitute]
     3DE lens: [import_lens]
   entities:
