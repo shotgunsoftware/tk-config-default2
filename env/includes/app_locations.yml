@@ -87,7 +87,7 @@ apps.tk-multi-workfiles2.location:
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
-  version: v1.3.1
+  version: v1.3.2
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
