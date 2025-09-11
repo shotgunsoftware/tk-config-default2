@@ -67,7 +67,7 @@ apps.tk-multi-scenebuilder.location:
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
-  version: v0.6.2
+  version: v0.6.3
 apps.tk-multi-setframerange.location:
   type: app_store
   name: tk-multi-setframerange
