@@ -38,7 +38,7 @@ frameworks:
       type: git_branch
       branch: SHOT-4558/alias2026.1
       path: https://github.com/shotgunsoftware/tk-framework-alias.git
-      version: c69dfb7
+      version: 6ca2781
       # type: dev
       # windows_path: C:\Users\oues\git\sgtk\tk-framework-alias
   tk-framework-aliastranslations_v0.x.x:
