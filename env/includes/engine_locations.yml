@@ -36,7 +36,7 @@ engines.tk-desktop2.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.19.7
+  version: v1.19.8
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
