@@ -49,7 +49,6 @@ settings.tk-multi-launchapp.hiero:
 settings.tk-multi-launchapp.mari:
   engine: tk-mari
   linux_path: "@path.linux.mari"
-  mac_path: "@path.mac.mari"
   windows_path: "@path.windows.mari"
   menu_name: Mari
   location: "@apps.tk-multi-launchapp.location"
