@@ -40,7 +40,7 @@ engines.tk-flame.location:
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.9.9
+  version: v1.9.10
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
