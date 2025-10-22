@@ -95,7 +95,7 @@ apps.tk-multi-bg-publish.location:
   type: git_branch
   branch: SHOT-4567/fix-alias-publish
   path: https://github.com/shotgunsoftware/tk-multi-bg-publish.git
-  version: 87862c4
+  version: c41b4e8
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
