@@ -26,10 +26,9 @@ engines.tk-alias.location:
   # name: tk-alias
   # version: v4.3.1
   type: git_branch
-  branch: master
+  branch: SHOt-4582/alias2027
   path: https://github.com/shotgunsoftware/tk-alias.git
-  version: 283a28b
-
+  version: a992b49
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
