@@ -422,15 +422,6 @@ settings.tk-multi-loader2.vred:
 
 # desktop standalone Flow AM
 settings.tk-multi-loader2.standalone:
-  action_mappings:
-    # DCC file types can only be published within DCC to avoid data corruption
-    Maya Workfile: [download, reference_copy_link]
-    Nuke Workfile: [download, reference_copy_link]
-    Houdini Workfile: [download, reference_copy_link]
-    All: [download, publish, reference_copy_link]
-  entity_mappings:
-    Task: [create_generic_asset]
-    Project: [create_generic_asset]
   entities:
   - caption: Current Project
     type: Query
