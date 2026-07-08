@@ -15,3 +15,8 @@ location:
   type: app_store
   name: tk-core
   version: v0.23.9
+  # REMOVEME: Get latest branch from it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-core.git
+  version: 0df22bc70fd8bc15b1d26a2ea82a87e8220b9e60
