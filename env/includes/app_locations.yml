@@ -34,7 +34,7 @@ apps.tk-multi-breakdown2.location:
   version: v0.4.5
   # REMOVEME: Get latest branch from it is released
   type: git_branch
-  branch: main
+  branch: master
   path: git@github.com:shotgunsoftware/tk-multi-breakdown2.git
   version: cd2ca679891979d4de440c2c78ccd33766111f84
 apps.tk-multi-data-validation.location:
