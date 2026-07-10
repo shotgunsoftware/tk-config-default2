@@ -29,7 +29,7 @@ engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
   version: v2.8.6
-  # REMOVEME: Get latest branch from it is released
+  # QA: Use latest branch until it is released
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-desktop.git
@@ -46,7 +46,7 @@ engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
   version: v1.9.12
-  # REMOVEME: Get latest branch from it is released
+  # QA: Use latest branch until it is released
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-houdini.git
@@ -59,7 +59,7 @@ engines.tk-maya.location:
   type: app_store
   name: tk-maya
   version: v0.13.11
-  # REMOVEME: Get latest branch from it is released
+  # QA: Use latest branch until it is released
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-maya.git
@@ -72,7 +72,7 @@ engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.16.4
-  # REMOVEME: Get latest branch from it is released
+  # QA: Use latest branch until it is released
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-nuke.git
