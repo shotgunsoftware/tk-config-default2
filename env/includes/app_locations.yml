@@ -57,7 +57,7 @@ apps.tk-multi-loader2.location:
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-multi-loader2.git
-  version: ccae09491a39dc5d58e3733cbfa191baf1babb64
+  version: 653474e14d81a3636a0c853c8ffd0246bd935fcf
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
@@ -66,7 +66,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-multi-publish2.git
-  version: 2c4730b79ed201a47a5db248ca05c405a3ce15d3
+  version: f2317513ac756b47e4f855663567875a58a9528c
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
