@@ -29,6 +29,11 @@ engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
   version: v2.8.6
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-desktop.git
+  version: c528bccf01fc1c35e1f676f70bf532a42273b1b6
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
@@ -41,6 +46,11 @@ engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
   version: v1.9.12
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-houdini.git
+  version: 13a898c4b32289f0f11be5ddf54d141719384c21
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
@@ -49,6 +59,11 @@ engines.tk-maya.location:
   type: app_store
   name: tk-maya
   version: v0.13.11
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-maya.git
+  version: 6b279ec303fd5e76699b6d206e34198872fd5280
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
@@ -57,6 +72,11 @@ engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.16.4
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-nuke.git
+  version: 02808561cd29466fa6a3aca0e8249b99868e2a47
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc

@@ -108,6 +108,9 @@ settings.tk-multi-publish2.houdini.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: houdini_asset_publish
+  - name: Publish Alembic Derivative
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:{self}/flowam/publish_alembic_derivative.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -130,6 +133,9 @@ settings.tk-multi-publish2.houdini.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: houdini_shot_publish
+  - name: Publish Alembic Derivative
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:{self}/flowam/publish_alembic_derivative.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -181,6 +187,9 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
     settings:
         Publish Template: asset_alembic_cache
+  - name: Publish Alembic Derivative
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:{self}/flowam/publish_alembic_derivative.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -203,6 +212,9 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_shot_publish
+  - name: Publish Alembic Derivative
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:{self}/flowam/publish_alembic_derivative.py"
+    settings: {}
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

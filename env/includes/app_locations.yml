@@ -32,6 +32,11 @@ apps.tk-multi-breakdown2.location:
   type: app_store
   name: tk-multi-breakdown2
   version: v0.4.5
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-multi-breakdown2.git
+  version: cd2ca679891979d4de440c2c78ccd33766111f84
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
@@ -48,10 +53,20 @@ apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
   version: v1.25.6
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-multi-loader2.git
+  version: 653474e14d81a3636a0c853c8ffd0246bd935fcf
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
   version: v2.11.0
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-multi-publish2.git
+  version: f2317513ac756b47e4f855663567875a58a9528c
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
