@@ -32,7 +32,7 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.8.6
+  version: v2.8.8
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
@@ -40,7 +40,7 @@ engines.tk-desktop2.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.19.10
+  version: v1.19.12
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
@@ -52,7 +52,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.13.11
+  version: v0.13.12
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder

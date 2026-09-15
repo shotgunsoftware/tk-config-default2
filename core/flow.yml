@@ -1,0 +1,34 @@
+# Copyright (c) 2026 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+# this configuration file defines which version of the toolkit
+# core API that should be used at runtime.
+
+# -------------------------------------------------------------
+# This file specifies configuration values for working with the
+# Flow Integration SDK. Relevant attributes are described below:
+#
+# auth_application_id   Application ID used for Flow authentication.
+# auth_base_url         Base url for Flow authentication.
+# auth_callback_url     Callback url for Flow authentication.
+# endpoint              GQL endpoint for MEDM server.
+# sandbox_root          Location on local file system for Flow sandbox storage.
+# storage_root          Location on local file system for Flow primary cache.
+# web_url               Url for Flow web app.
+#
+# NOTE: Authentication defaults are provided within tk-core.
+#       Defaults apply to production as do the setting below.
+#       Declare new authentication attributes here to override.
+# --------------------------------------------------------------
+
+endpoint: https://api.aps.usa.autodesk.com/medm/v2/graphql
+sandbox_root: ~/Documents/Autodesk/flow-data/sandbox
+storage_root: ~/Documents/Autodesk/flow-data/blobs
+web_url: https://flow-web-prod.autodesk.com/
