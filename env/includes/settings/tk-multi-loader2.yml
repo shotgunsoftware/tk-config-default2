@@ -163,6 +163,64 @@ settings.tk-multi-loader2.maya:
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
 
+# maya - FlowAM (project context): full FlowAM Loader, all actions available.
+# restrict_flowam_actions_by_context defaults to false, so at project level all
+# draft-introducing actions (Build New Scene, checkout/open, etc.) are offered.
+settings.tk-multi-loader2.maya.project.flowam:
+  action_mappings:
+    Alembic Cache: [reference, import]
+    Image: [texture_node, image_plane]
+    Maya Scene: [reference, import]
+    Photoshop Image: [texture_node, image_plane]
+    Rendered Image: [texture_node, image_plane]
+    Texture: [texture_node, image_plane]
+  actions_hook: "{self}/tk-maya_actions.py"
+  entities:
+  - caption: Current Project
+    type: Hierarchy
+    root: "{context.project}"
+    publish_filters: []
+  - caption: My Tasks
+    type: Query
+    entity_type: Task
+    filters:
+    - [project, is, "{context.project}"]
+    - [task_assignees, is, "{context.user}"]
+    hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
+# maya - FlowAM (asset step context): draft-introducing actions are disabled here.
+# The Loader cannot switch the Toolkit context to the checked-out asset, so opening
+# a draft at asset/task context leaves the engine context stale and publish fails.
+# restrict_flowam_actions_by_context: true -> only reference / copy-reference-link
+# are offered; Build New Scene / checkout / open / discard / download are hidden.
+# See SG-44954 implementation plan Step 4 and advanced_config_revisit_issues.md.
+settings.tk-multi-loader2.maya.asset_step.flowam:
+  action_mappings:
+    Alembic Cache: [reference, import]
+    Image: [texture_node, image_plane]
+    Maya Scene: [reference, import]
+    Photoshop Image: [texture_node, image_plane]
+    Rendered Image: [texture_node, image_plane]
+    Texture: [texture_node, image_plane]
+  actions_hook: "{self}/tk-maya_actions.py"
+  restrict_flowam_actions_by_context: true
+  entities:
+  - caption: Current Project
+    type: Hierarchy
+    root: "{context.project}"
+    publish_filters: []
+  - caption: My Tasks
+    type: Query
+    entity_type: Task
+    filters:
+    - [project, is, "{context.project}"]
+    - [task_assignees, is, "{context.user}"]
+    hierarchy: [entity, content]
+  publish_filters: [["sg_status_list", "is_not", null]]
+  location: "@apps.tk-multi-loader2.location"
+
 # nuke
 settings.tk-multi-loader2.nuke:
   action_mappings:

@@ -218,6 +218,19 @@ settings.tk-multi-publish2.maya.shot_step:
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
+# FlowAM
+settings.tk-multi-publish2.maya.flowam:
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  publish_plugins:
+  - name: Publish to Flow Asset Management
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+    settings: {}
+  - name: Publish Alembic Derivative
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:{self}/flowam/publish_alembic_derivative.py"
+    settings: {}
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
 ################################################################################
 
 # ---- Nuke
