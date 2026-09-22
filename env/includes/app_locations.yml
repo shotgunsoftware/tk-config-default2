@@ -36,7 +36,7 @@ apps.tk-multi-breakdown2.location:
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-multi-breakdown2.git
-  version: cd2ca679891979d4de440c2c78ccd33766111f84
+  version: 9555c67d6761c3b4374b85b7f2f98cfec5e093d0
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
@@ -52,21 +52,11 @@ apps.tk-multi-launchapp.location:
 apps.tk-multi-loader2.location:
   type: app_store
   name: tk-multi-loader2
-  version: v1.25.6
-  # QA: Use latest branch until it is released
-  type: git_branch
-  branch: master
-  path: git@github.com:shotgunsoftware/tk-multi-loader2.git
-  version: 653474e14d81a3636a0c853c8ffd0246bd935fcf
+  version: v1.25.7
 apps.tk-multi-publish2.location:
   type: app_store
   name: tk-multi-publish2
-  version: v2.11.0
-  # QA: Use latest branch until it is released
-  type: git_branch
-  branch: master
-  path: git@github.com:shotgunsoftware/tk-multi-publish2.git
-  version: f2317513ac756b47e4f855663567875a58a9528c
+  version: v2.11.2
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -98,7 +88,7 @@ apps.tk-multi-snapshot.location:
 apps.tk-multi-workfiles2.location:
   type: app_store
   name: tk-multi-workfiles2
-  version: v0.17.0
+  version: v0.18.0
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
@@ -106,7 +96,7 @@ apps.tk-multi-devutils.location:
 apps.tk-multi-bg-publish.location:
   type: app_store
   name: tk-multi-bg-publish
-  version: v0.2.3
+  version: v0.2.4
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders
@@ -150,11 +140,11 @@ apps.tk-nuke-writenode.location:
 apps.tk-flame-export.location:
   name: tk-flame-export
   type: app_store
-  version: v1.11.4
+  version: v1.11.5
 apps.tk-flame-review.location:
   name: tk-flame-review
   type: app_store
-  version: v1.5.5
+  version: v1.5.6
 apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store

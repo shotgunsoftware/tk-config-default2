@@ -28,12 +28,7 @@ engines.tk-alias.location:
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.8.6
-  # QA: Use latest branch until it is released
-  type: git_branch
-  branch: master
-  path: git@github.com:shotgunsoftware/tk-desktop.git
-  version: c528bccf01fc1c35e1f676f70bf532a42273b1b6
+  version: v2.8.8
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
@@ -41,7 +36,7 @@ engines.tk-desktop2.location:
 engines.tk-flame.location:
   type: app_store
   name: tk-flame
-  version: v1.19.10
+  version: v1.19.12
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
@@ -58,12 +53,7 @@ engines.tk-mari.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.13.11
-  # QA: Use latest branch until it is released
-  type: git_branch
-  branch: master
-  path: git@github.com:shotgunsoftware/tk-maya.git
-  version: 6b279ec303fd5e76699b6d206e34198872fd5280
+  version: v0.13.12
 engines.tk-motionbuilder.location:
   type: app_store
   name: tk-motionbuilder
