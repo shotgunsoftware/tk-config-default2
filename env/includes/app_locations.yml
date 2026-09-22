@@ -36,7 +36,7 @@ apps.tk-multi-breakdown2.location:
   type: git_branch
   branch: master
   path: git@github.com:shotgunsoftware/tk-multi-breakdown2.git
-  version: 9555c67d6761c3b4374b85b7f2f98cfec5e093d0
+  version: 25c21b9f3a44ff254d4edbb3356cea1be8aea054
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
