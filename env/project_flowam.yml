@@ -1,0 +1,38 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+description: Apps and Engines when launching a FlowAM project with a project only context.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-desktop.yml
+- ./includes/settings/tk-maya.yml
+- ./includes/settings/tk-shell.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a FlowAM project context.
+# Only tk-maya differs from the non-FlowAM project env (it uses the FlowAM Maya
+# block with automatic_context_switch disabled). Other DCCs have no FlowAM
+# support in scope yet, so they keep their standard project settings.
+
+engines:
+  tk-desktop: "@settings.tk-desktop.project"
+  tk-maya: "@settings.tk-maya.project.flowam"
+  tk-shell: "@settings.tk-shell.project"
+  tk-shotgun: "@settings.tk-shotgun.project"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

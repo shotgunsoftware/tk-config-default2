@@ -1,0 +1,35 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Software Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+description: Apps and Engines for FlowAM asset step work. No snapshot or FPT publish.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-desktop2.yml
+- ./includes/settings/tk-maya.yml
+- ./includes/settings/tk-shell.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a FlowAM asset step context
+
+engines:
+  tk-desktop2: "@settings.tk-desktop2.all"
+  tk-maya: "@settings.tk-maya.asset_step.flowam"
+  tk-shell: "@settings.tk-shell.asset_step"
+  tk-shotgun: "@settings.tk-shotgun.asset_step"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"
