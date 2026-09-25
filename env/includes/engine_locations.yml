@@ -54,9 +54,14 @@ engines.tk-motionbuilder.location:
   name: tk-motionbuilder
   version: v0.8.9
 engines.tk-nuke.location:
-  type: app_store
-  name: tk-nuke
-  version: v0.16.4
+  # type: app_store
+  # name: tk-nuke
+  # version: v0.16.4
+  # QA: Use latest branch until it is released
+  type: git_branch
+  branch: master
+  path: git@github.com:shotgunsoftware/tk-nuke.git
+  version: 02808561cd29466fa6a3aca0e8249b99868e2a47
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
