@@ -31,12 +31,7 @@ apps.tk-multi-breakdown.location:
 apps.tk-multi-breakdown2.location:
   type: app_store
   name: tk-multi-breakdown2
-  version: v0.4.5
-  # QA: Use latest branch until it is released
-  type: git_branch
-  branch: master
-  path: git@github.com:shotgunsoftware/tk-multi-breakdown2.git
-  version: 25c21b9f3a44ff254d4edbb3356cea1be8aea054
+  version: v0.4.6
 apps.tk-multi-data-validation.location:
   type: app_store
   name: tk-multi-data-validation
