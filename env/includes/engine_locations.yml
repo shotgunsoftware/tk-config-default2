@@ -40,12 +40,7 @@ engines.tk-flame.location:
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.9.12
-  # QA: Use latest branch until it is released
-  type: git_branch
-  branch: master
-  path: git@github.com:shotgunsoftware/tk-houdini.git
-  version: 13a898c4b32289f0f11be5ddf54d141719384c21
+  version: v1.9.13
 engines.tk-mari.location:
   type: app_store
   name: tk-mari
