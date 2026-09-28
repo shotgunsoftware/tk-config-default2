@@ -49,9 +49,13 @@ apps.tk-multi-loader2.location:
   name: tk-multi-loader2
   version: v1.25.7
 apps.tk-multi-publish2.location:
-  type: app_store
-  name: tk-multi-publish2
-  version: v2.11.2
+#  type: app_store
+#  name: tk-multi-publish2
+#  version: v2.11.2
+  type: git_branch
+  branch: SHOT-4598/alias-2027.1-python-support
+  path: https://github.com/shotgunsoftware/tk-multi-publish2.git
+  version: 3f19017
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
@@ -61,9 +65,13 @@ apps.tk-multi-reviewsubmission.location:
   name: tk-multi-reviewsubmission
   version: v1.3.1
 apps.tk-multi-scenebuilder.location:
-  type: app_store
-  name: tk-multi-scenebuilder
-  version: v0.1.1
+#  type: app_store
+#  name: tk-multi-scenebuilder
+#  version: v0.1.1
+  type: git_branch
+  branch: SHOT-4598/alias-2027.1-python-support
+  path: https://github.com/shotgunsoftware/tk-multi-scenebuilder.git
+  version: 4e77066
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
@@ -81,9 +89,13 @@ apps.tk-multi-snapshot.location:
   name: tk-multi-snapshot
   version: v0.10.3
 apps.tk-multi-workfiles2.location:
-  type: app_store
-  name: tk-multi-workfiles2
-  version: v0.18.0
+#  type: app_store
+#  name: tk-multi-workfiles2
+#  version: v0.18.0
+  type: git_branch
+  branch: SHOT-4598/alias-2027.1-python-support
+  path: https://github.com/shotgunsoftware/tk-multi-workfiles2.git
+  version: 03dde0d
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
@@ -95,7 +107,7 @@ apps.tk-multi-bg-publish.location:
   type: git_branch
   branch: SHOT-4598/alias-2027.1-python-support
   path: https://github.com/shotgunsoftware/tk-multi-bg-publish.git
-  version: 4df611a
+  version: 76a22f9
 apps.tk-shotgun-folders.location:
   type: app_store
   name: tk-shotgun-folders

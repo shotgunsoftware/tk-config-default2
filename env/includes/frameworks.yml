@@ -38,12 +38,16 @@ frameworks:
       type: git_branch
       branch: SHOT-4598/alias-2027.1-python-support
       path: https://github.com/shotgunsoftware/tk-framework-alias.git
-      version: 76bc920
+      version: 6a86ce2
   tk-framework-aliastranslations_v0.x.x:
     location:
-      version: v0.3.1
-      type: app_store
-      name: tk-framework-aliastranslations
+#      version: v0.3.1
+#      type: app_store
+#      name: tk-framework-aliastranslations
+      type: git_branch
+      branch: SHOT-4598/alias-2027.1-python-support
+      path: https://github.com/shotgunsoftware/tk-framework-aliastranslations.git
+      version: 69e0c3e
   tk-framework-desktopserver_v1.x.x:
     location:
       version: v1.8.456-test1
