@@ -33,13 +33,9 @@ class PickEnvironment(Hook):
             # Our context is completely empty. We're going into the site context.
             return "site"
 
+        is_flowam = bool(getattr(context, "flow_project_id", None))
         if context.entity is None:
             # We have a project but not an entity.
-            # The FlowAM Loader (Build New Scene) is available in the project
-            # context, so route FlowAM projects to a project env whose Maya block
-            # disables automatic_context_switch (opening the resulting draft would
-            # otherwise disable the FPT menu).
-            is_flowam = bool(getattr(context, "flow_project_id", None))
             return "project_flowam" if is_flowam else "project"
 
         if context.entity and context.step is None:
@@ -52,9 +48,8 @@ class PickEnvironment(Hook):
                 return "sequence"
 
         if context.entity and context.step:
-            is_flowam = bool(getattr(context, "flow_project_id", None))
             if context.entity["type"] == "Shot":
-                return "shot_step_flowam" if is_flowam else "shot_step"
+                return "shot_step"
             if context.entity["type"] == "Asset":
                 return "asset_step_flowam" if is_flowam else "asset_step"
 
