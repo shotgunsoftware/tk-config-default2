@@ -33,9 +33,10 @@ class PickEnvironment(Hook):
             # Our context is completely empty. We're going into the site context.
             return "site"
 
+        is_flowam = bool(getattr(context, "flow_project_id", None))
         if context.entity is None:
             # We have a project but not an entity.
-            return "project"
+            return "project_flowam" if is_flowam else "project"
 
         if context.entity and context.step is None:
             # We have an entity but no step.
@@ -47,10 +48,9 @@ class PickEnvironment(Hook):
                 return "sequence"
 
         if context.entity and context.step:
-            # We have a step and an entity.
             if context.entity["type"] == "Shot":
                 return "shot_step"
             if context.entity["type"] == "Asset":
-                return "asset_step"
+                return "asset_step_flowam" if is_flowam else "asset_step"
 
         return None
