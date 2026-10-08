@@ -134,6 +134,7 @@ settings.tk-multi-loader2.maya:
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
+  actions_hook: "{self}/tk-maya_actions.py"
   entities:
   - caption: Current Project
     type: Hierarchy
@@ -159,33 +160,6 @@ settings.tk-multi-loader2.maya:
     filters:
     - [task_assignees, is, "{context.user}"]
     - [project, is, "{context.project}"]
-    hierarchy: [entity, content]
-  publish_filters: [["sg_status_list", "is_not", null]]
-  location: "@apps.tk-multi-loader2.location"
-
-# maya - FlowAM (project context): full FlowAM Loader, all actions available.
-# restrict_flowam_actions_by_context defaults to false, so at project level all
-# draft-introducing actions (Build New Scene, checkout/open, etc.) are offered.
-settings.tk-multi-loader2.maya.project.flowam:
-  action_mappings:
-    Alembic Cache: [reference, import]
-    Image: [texture_node, image_plane]
-    Maya Scene: [reference, import]
-    Photoshop Image: [texture_node, image_plane]
-    Rendered Image: [texture_node, image_plane]
-    Texture: [texture_node, image_plane]
-  actions_hook: "{self}/tk-maya_actions.py"
-  entities:
-  - caption: Current Project
-    type: Hierarchy
-    root: "{context.project}"
-    publish_filters: []
-  - caption: My Tasks
-    type: Query
-    entity_type: Task
-    filters:
-    - [project, is, "{context.project}"]
-    - [task_assignees, is, "{context.user}"]
     hierarchy: [entity, content]
   publish_filters: [["sg_status_list", "is_not", null]]
   location: "@apps.tk-multi-loader2.location"
@@ -488,24 +462,4 @@ settings.tk-multi-loader2.vred:
     hierarchy: [entity, content]
   actions_hook: "{engine}/tk-multi-loader2/basic/scene_actions.py"
   publish_filters: [["sg_status_list", "is_not", null]]
-  location: "@apps.tk-multi-loader2.location"
-
-# desktop standalone Flow AM
-settings.tk-multi-loader2.standalone:
-  entities:
-  - caption: Current Project
-    type: Query
-    entity_type: Project
-    publish_filters: []
-    filters:
-    - ["id", "is", "{context.project.id}"]
-    hierarchy: [name]
-  - caption: My Tasks
-    type: Query
-    entity_type: Task
-    publish_filters: []
-    filters:
-    - [task_assignees, is, "{context.user}"]
-    - ["project", "is", "{context.project}"]
-    hierarchy: [entity, content]
   location: "@apps.tk-multi-loader2.location"
