@@ -21,6 +21,11 @@ class PickEnvironment(Hook):
         The default implementation assumes there are three environments, called shot, asset
         and project, and switches to these based on entity type.
         """
+        if getattr(context, "flow_project_id", None):
+            environment = self._pick_flowam_environment(context)
+            if environment:
+                return environment
+
         if context.source_entity:
             if context.source_entity["type"] == "Version":
                 return "version"
@@ -33,10 +38,9 @@ class PickEnvironment(Hook):
             # Our context is completely empty. We're going into the site context.
             return "site"
 
-        is_flowam = bool(getattr(context, "flow_project_id", None))
         if context.entity is None:
             # We have a project but not an entity.
-            return "project_flowam" if is_flowam else "project"
+            return "project"
 
         if context.entity and context.step is None:
             # We have an entity but no step.
@@ -51,6 +55,28 @@ class PickEnvironment(Hook):
             if context.entity["type"] == "Shot":
                 return "shot_step"
             if context.entity["type"] == "Asset":
-                return "asset_step_flowam" if is_flowam else "asset_step"
+                return "asset_step"
+
+        return None
+
+    def _pick_flowam_environment(self, context):
+        """
+        Picks the environment of a FlowAM project.
+
+        :returns: The FlowAM environment name, or None to use the default one.
+        """
+        if context.source_entity and context.source_entity["type"] in (
+            "Playlist",
+            "PublishedFile",
+            "Version",
+        ):
+            # These use the default environments.
+            return None
+
+        if context.entity is None:
+            return "flowam/project"
+
+        if context.entity["type"] == "Asset" and context.step:
+            return "flowam/asset_step"
 
         return None

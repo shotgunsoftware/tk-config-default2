@@ -1,0 +1,64 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+description: Apps and Engines when launching a FlowAM project with a project only context.
+
+################################################################################
+
+includes:
+- ../includes/app_locations.yml
+- ../includes/engine_locations.yml
+- ../includes/frameworks.yml
+- ../includes/settings/tk-multi-launchapp.yml
+- ../includes/settings/tk-multi-loader2.yml
+- ../includes/settings/tk-multi-shotgunpanel.yml
+- ../includes/settings/tk-multi-workfiles2.yml
+- ../includes/settings/tk-multi-publish2.yml
+
+################################################################################
+# configuration for all engines to load in a FlowAM project context
+
+engines:
+  tk-desktop:
+    apps:
+      tk-multi-launchapp: "@settings.tk-multi-launchapp"
+      tk-multi-publish2: "@settings.tk-multi-publish2.standalone"
+    location: "@engines.tk-desktop.location"
+  tk-maya:
+    apps:
+      tk-multi-about:
+        location: "@apps.tk-multi-about.location"
+      tk-multi-loader2: "@settings.tk-multi-loader2.maya"  # Display loader on project context
+      tk-multi-publish2:  # Display publisher on project context
+        collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+        publish_plugins:
+        - name: Publish to Flow Asset Management
+          hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+          settings: {}
+        - name: Publish Alembic Derivative
+          hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:{self}/flowam/publish_alembic_derivative.py"
+          settings: {}
+        help_url: "https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Supervisor_Artist_sa_integrations_sa_integrations_user_guide_html#the-publisher"
+        location: "@apps.tk-multi-publish2.location"
+      tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+      tk-multi-workfiles2: "@settings.tk-multi-workfiles2.launch_at_startup"
+    menu_favourites:
+    - {app_instance: tk-multi-workfiles2, name: File Open...}
+    location: "@engines.tk-maya.location"
+  tk-shotgun:
+    apps:
+      tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    location: "@engines.tk-shotgun.location"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"
