@@ -56,3 +56,24 @@ settings.tk-multi-scenebuilder.vred:
           action_mappings:
             VRED Scene: smart_reference
   location: "@apps.tk-multi-scenebuilder.location"
+
+# Maya
+settings.tk-multi-scenebuilder.maya.asset:
+  presets:
+    - name: Import
+      actions:
+        - context:
+            - [ entity, is, '{context.entity}' ]
+            - [ task.Task.downstream_tasks.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
+          action_mappings:
+            Maya Scene: import
+    - name: Reference
+      actions:
+        - context:
+            - [ entity, is, '{context.entity}' ]
+            - [ task.Task.downstream_tasks.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
+          action_mappings:
+            Maya Scene: reference
+  location: "@apps.tk-multi-scenebuilder.location"
