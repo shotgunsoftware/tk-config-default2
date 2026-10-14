@@ -30,14 +30,9 @@ engines:
     apps:
       tk-multi-about:
         location: "@apps.tk-multi-about.location"
-      tk-multi-breakdown2: "@settings.tk-multi-breakdown2.maya"
-      # Draft-introducing actions are disabled here. The Loader cannot switch the
-      # Toolkit context to the checked-out asset, so opening a draft at asset/task
-      # context leaves the engine context stale and publish fails.
-      # restrict_flowam_actions_by_context: true -> only reference /
-      # copy-reference-link are offered; Build New Scene / checkout / open /
-      # discard / download are hidden. See SG-44954 implementation plan Step 4
-      # and advanced_config_revisit_issues.md.
+      tk-multi-breakdown2:
+        location: "@apps.tk-multi-breakdown2.location"
+        panel_mode: false
       tk-multi-loader2:
         action_mappings:
           Alembic Cache: [reference, import]
@@ -46,7 +41,9 @@ engines:
           Photoshop Image: [texture_node, image_plane]
           Rendered Image: [texture_node, image_plane]
           Texture: [texture_node, image_plane]
-        actions_hook: "{self}/tk-maya_actions.py"
+        # Draft-introducing actions are disabled by setting:
+        # restrict_flowam_actions_by_context: true
+        # because Loader cannot switch the Toolkit context. 
         restrict_flowam_actions_by_context: true
         entities:
         - caption: Current Project
@@ -78,6 +75,7 @@ engines:
     menu_favourites:
     - {app_instance: tk-multi-workfiles2, name: File Open...}
     - {app_instance: tk-multi-workfiles2, name: File Save...}
+    - {app_instance: tk-multi-loader2, name: Load...}
     - {app_instance: tk-multi-publish2, name: Publish...}
     - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
     template_project: asset_work_area_maya
