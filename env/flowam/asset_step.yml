@@ -43,7 +43,7 @@ engines:
           Texture: [texture_node, image_plane]
         # Draft-introducing actions are disabled by setting:
         # restrict_flowam_actions_by_context: true
-        # because Loader cannot switch the Toolkit context. 
+        # because Loader cannot switch the Toolkit context.
         restrict_flowam_actions_by_context: true
         entities:
         - caption: Current Project
