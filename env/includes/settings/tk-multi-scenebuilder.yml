@@ -77,3 +77,16 @@ settings.tk-multi-scenebuilder.maya.asset:
           action_mappings:
             Maya Scene: reference
   location: "@apps.tk-multi-scenebuilder.location"
+
+settings.tk-multi-scenebuilder.maya.shot:
+#  actions_hook: "{self}/extra_build_actions.py:{config}/tk-multi-scenebuilder/extra_build_actions.py"
+  presets:
+    - name: Rigged Assets
+      actions:
+        - context:
+            - [ entity.Asset.shots, in, '{context.entity}' ]
+            - [ task.Task.content, is, 'Rig' ]
+            - [ task.Task.step.Step.code, is, 'Rig' ]
+          action_mappings:
+            Maya Scene: reference
+  location: "@apps.tk-multi-scenebuilder.location"
