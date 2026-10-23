@@ -39,7 +39,7 @@ keys:
         type: str
     name:
         type: str
-        filter_by: alphanumeric
+        filter_by: '^[a-zA-Z0-9_-]+$'
     iteration:
         type: int
     version:
