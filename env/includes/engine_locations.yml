@@ -24,11 +24,11 @@ engines.tk-aftereffects.location:
 engines.tk-alias.location:
   type: app_store
   name: tk-alias
-  version: v4.4.0
+  version: v4.5.0
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
-  version: v2.8.10
+  version: v2.9.0
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
@@ -56,7 +56,7 @@ engines.tk-motionbuilder.location:
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
-  version: v0.16.4
+  version: v0.17.0
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc

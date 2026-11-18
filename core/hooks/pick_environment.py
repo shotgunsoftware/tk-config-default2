@@ -12,7 +12,7 @@
 Hook which chooses an environment file to use based on the current context.
 """
 
-from tank import Hook
+from tank import Hook, TankError
 
 
 class PickEnvironment(Hook):
@@ -21,6 +21,9 @@ class PickEnvironment(Hook):
         The default implementation assumes there are three environments, called shot, asset
         and project, and switches to these based on entity type.
         """
+        if getattr(context, "flow_project_id", None):
+            return self._pick_flowam_environment(context)
+
         if context.source_entity:
             if context.source_entity["type"] == "Version":
                 return "version"
@@ -47,10 +50,27 @@ class PickEnvironment(Hook):
                 return "sequence"
 
         if context.entity and context.step:
-            # We have a step and an entity.
             if context.entity["type"] == "Shot":
                 return "shot_step"
             if context.entity["type"] == "Asset":
                 return "asset_step"
 
         return None
+
+    def _pick_flowam_environment(self, context):
+        """
+        Picks the environment of a FlowAM project.
+
+        :returns: The FlowAM environment name.
+        :raises TankError: If the context has no supported FlowAM environment.
+        """
+        if context.entity is None:
+            return "flowam/project"
+
+        if context.entity["type"] == "Asset" and context.step:
+            return "flowam/asset_step"
+
+        raise TankError(
+            "You are in a Flow Asset Management project, and the environment for "
+            "your current context (%s) is not supported at this moment." % context
+        )

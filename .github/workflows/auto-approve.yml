@@ -1,0 +1,35 @@
+name: Auto approve Toolkit bundle updates
+
+on:
+  pull_request_target:
+    # Deliberately not "synchronize": a human pushing to the bot's branch must
+    # not get an approval.
+    types: [opened, reopened]
+
+permissions: {}
+
+jobs:
+  auto-approve:
+    # Only PRs opened (and triggered) by the Toolkitty GitHub App, from a
+    # branch in this repo. Replace the login if the app slug differs.
+    if: >-
+      github.event.pull_request.user.login == 'toolkitty-app[bot]' &&
+      github.event.sender.login == 'toolkitty-app[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'update/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # No checkout on purpose: pull_request_target must never run PR code.
+      - uses: hmarr/auto-approve-action@v4 # consider pinning to a commit SHA
+        with:
+          review-message: "Auto approved: bundle update opened by Toolkitty"
+
+      # Queue the PR to merge once the required checks pass.
+      - name: Enable auto-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"
