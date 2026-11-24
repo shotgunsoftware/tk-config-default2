@@ -60,14 +60,6 @@ settings.tk-multi-scenebuilder.vred:
 # Maya
 settings.tk-multi-scenebuilder.maya.asset:
   presets:
-    - name: Import
-      actions:
-        - context:
-            - [ entity, is, '{context.entity}' ]
-            - [ task.Task.downstream_tasks.Task.content, is, '{context.task.name}' ]
-            - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
-          action_mappings:
-            Maya Scene: import
     - name: Reference
       actions:
         - context:
@@ -76,17 +68,31 @@ settings.tk-multi-scenebuilder.maya.asset:
             - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
           action_mappings:
             Maya Scene: reference
+    - name: Import
+      actions:
+        - context:
+            - [ entity, is, '{context.entity}' ]
+            - [ task.Task.downstream_tasks.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
+          action_mappings:
+            Maya Scene: import
   location: "@apps.tk-multi-scenebuilder.location"
 
 settings.tk-multi-scenebuilder.maya.shot:
-#  actions_hook: "{self}/extra_build_actions.py:{config}/tk-multi-scenebuilder/extra_build_actions.py"
   presets:
-    - name: Rigged Assets
+    - name: Upstream Assets
       actions:
         - context:
             - [ entity.Asset.shots, in, '{context.entity}' ]
-            - [ task.Task.content, is, 'Rig' ]
-            - [ task.Task.step.Step.code, is, 'Rig' ]
+            - [ task.Task.step.Step.code, in, '{context.upstream_steps}' ]
+          action_mappings:
+            Maya Scene: reference
+    - name: Upstream Shot Tasks
+      actions:
+        - context:
+            - [ entity, is, '{context.entity}' ]
+            - [ task.Task.downstream_tasks.Task.content, is, '{context.task.name}' ]
+            - [ task.Task.downstream_tasks.Task.step, is, '{context.step}' ]
           action_mappings:
             Maya Scene: reference
   location: "@apps.tk-multi-scenebuilder.location"
