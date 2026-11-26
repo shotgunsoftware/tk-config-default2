@@ -23,6 +23,7 @@ includes:
 - ./tk-multi-snapshot.yml
 - ./tk-multi-workfiles2.yml
 - ./tk-multi-breakdown2.yml
+- ./tk-multi-scenebuilder.yml
 
 ################################################################################
 
@@ -56,12 +57,14 @@ settings.tk-maya.asset_step:
     tk-multi-snapshot: "@settings.tk-multi-snapshot.maya.asset_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.asset_step"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.maya"
+    tk-multi-scenebuilder: "@settings.tk-multi-scenebuilder.maya.asset"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
   - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
+  - {app_instance: tk-multi-scenebuilder, name: Scene Builder...}
   template_project: asset_work_area_maya
   location: "@engines.tk-maya.location"
 
@@ -120,11 +123,13 @@ settings.tk-maya.shot_step:
     tk-multi-snapshot: "@settings.tk-multi-snapshot.maya.shot_step"
     tk-multi-workfiles2: "@settings.tk-multi-workfiles2.maya.shot_step"
     tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.maya"
+    tk-multi-scenebuilder: "@settings.tk-multi-scenebuilder.maya.shot"
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-snapshot, name: Snapshot...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}
   - {app_instance: tk-multi-publish2, name: Publish...}
   - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
+  - {app_instance: tk-multi-scenebuilder, name: Scene Builder...}
   template_project: shot_work_area_maya
   location: "@engines.tk-maya.location"
